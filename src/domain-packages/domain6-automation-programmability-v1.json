@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "domainId": "automation",
+    "domainNumber": 6,
+    "domainName": "Automation & Programmability",
+    "version": "1",
+    "compiledAt": "2026-06-12T19:08:12.834Z",
+    "curatedObjectives": 0,
+    "labs": 0
+  },
+  "sourceAudit": {
+    "sources": {
+      "blueprint": "Cisco CCNA 200-301 v1.1 Exam Topics",
+      "certVol1": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
+      "jeremy": "Jeremy's IT Lab — CCNA 200-301 Notes",
+      "workbook": "CCNA in 60 Days — Lab Workbook (Browning)"
+    },
+    "note": "Content is original/paraphrased from the cited sources; questions are original. Verify command syntax against official Cisco docs."
+  },
+  "objectives": [],
+  "labs": [],
+  "counts": {
+    "ckus": 0,
+    "questions": 0,
+    "flashcards": 0,
+    "commands": 0,
+    "glossary": 0,
+    "mnemonics": 0,
+    "examTraps": 0,
+    "misconceptions": 0,
+    "labs": 0
+  }
+}

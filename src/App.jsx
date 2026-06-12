@@ -3591,6 +3591,56 @@ function quadrantOf(acc, conf) {
   return 'priority'
 }
 
+// Content coverage — shows which objectives have CURATED static content / a
+// LAB vs which still use the AI fallback. The "waypoint" that makes scaling
+// the content library a visible checklist you can chip away at over time.
+function ContentCoverage({ onOpen }) {
+  const rows = DOMAINS.map(d => {
+    const objs = d.objectives
+    const curated = objs.filter(o => hasCurated(o.id)).length
+    const labs = objs.filter(o => labsForObjective(o.id).length > 0).length
+    return { ...d, total: objs.length, curated, labs, objs }
+  })
+  const totalObj = rows.reduce((s, r) => s + r.total, 0)
+  const totalCurated = rows.reduce((s, r) => s + r.curated, 0)
+  const totalLabs = rows.reduce((s, r) => s + r.labs, 0)
+  const [openId, setOpenId] = useState(null)
+
+  return (
+    <div style={{ ...styles.card }}>
+      <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5, marginBottom: 4 }}>CONTENT COVERAGE</div>
+      <div style={{ ...styles.small, marginBottom: 10 }}>{totalCurated}/{totalObj} objectives curated · {totalLabs} with labs. Uncurated objectives still work via AI (hybrid).</div>
+      <ProgressBar value={totalCurated} max={totalObj} accent="mint" label="Curated (static, source-grounded)" sublabel={`${totalCurated}/${totalObj}`} height={8} />
+      {rows.map(r => (
+        <div key={r.id} style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 8, marginTop: 8 }}>
+          <button onClick={() => setOpenId(o => o === r.id ? null : r.id)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+            <span style={{ flex: 1, fontSize: 13, color: COLORS.silver }}>{r.name}</span>
+            <span style={{ ...styles.pill(r.curated === r.total ? 'mint' : r.curated > 0 ? 'amber' : 'silver'), fontSize: 10 }}>{r.curated}/{r.total} curated</span>
+            {r.labs > 0 && <span style={{ ...styles.pill('sky'), fontSize: 10 }}>🧪 {r.labs}</span>}
+            <span style={{ color: COLORS.silverMid, fontSize: 12 }}>{openId === r.id ? '−' : '+'}</span>
+          </button>
+          {openId === r.id && (
+            <div style={{ marginTop: 8 }}>
+              {r.objs.map(o => {
+                const c = hasCurated(o.id), l = labsForObjective(o.id).length > 0
+                return (
+                  <button key={o.id} onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                    <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : COLORS.silverDim, flexShrink: 0 }} />
+                    <span style={{ flex: 1, fontSize: 12, color: c ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
+                    {c && <span style={{ fontSize: 9, color: COLORS.mint }}>CURATED</span>}
+                    {!c && <span style={{ fontSize: 9, color: COLORS.silverDim }}>AI</span>}
+                    {l && <span style={{ fontSize: 11 }}>🧪</span>}
+                  </button>
+                )
+              })}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
   const [data, setData] = useState(null)
 
@@ -3691,6 +3741,9 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
           <ProgressBar key={d.id} value={d.avg} max={1} accent="purple" label={d.name} sublabel={`${Math.round(d.avg * 100)}% · ${d.mastered}/${d.total}`} height={6} />
         ))}
       </div>
+
+      {/* Content coverage — curated (static) vs AI-fallback per domain */}
+      <ContentCoverage onOpen={open} />
 
       {/* Retention health — spaced-review state per section */}
       <div style={section}>
