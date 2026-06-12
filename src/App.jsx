@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { getCurated, hasCurated, getCuratedQuestions } from './data/ccnaCurated.js'
+import { getLab, allLabs, labsForObjective, labsByDomain, normalizeCliLine, labProgress } from './data/ccnaLabs.js'
 
 /* =========================================================================
    DESIGN TOKENS
@@ -549,6 +550,7 @@ const STORAGE_KEYS = {
   syncLast: 'ccna_sync_last_v1',
   usage: 'ccna_usage_v1',
   tutorChat: 'ccna_tutor_chat_v1',
+  labDone: 'ccna_lab_done_v1',
   theme: 'ccna_theme_v1',
 }
 
@@ -3183,9 +3185,178 @@ function VLSMTab() {
 
 
 /* =========================================================================
+   LAB ENGINE v2 — multi-device guided labs (static, deterministic, no AI).
+   Lab data lives in src/data/ccnaLabs.js; checking is local string matching,
+   the same philosophy as the CLI Drill simulator.
+   ========================================================================= */
+async function loadLabDone() { return (await window.storage.getItem(STORAGE_KEYS.labDone)) || [] }
+async function markLabDone(labId) {
+  const done = await loadLabDone()
+  if (!done.includes(labId)) { done.push(labId); await window.storage.setItem(STORAGE_KEYS.labDone, done) }
+}
+const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'amber' }
+
+// Full lab runner: scenario, topology, interactive task checker, verification,
+// success/failure criteria. `bundle` = { lab, topology, validator, diagram, packetFlows }.
+function LabView({ bundle, onBack, onDone }) {
+  const { lab, topology, validator, diagram } = bundle
+  const [entered, setEntered] = useState([])      // normalized command lines typed
+  const [history, setHistory] = useState([])      // {text, kind}
+  const [input, setInput] = useState('')
+  const [revealVerify, setRevealVerify] = useState(false)
+  const scrollRef = useRef(null)
+
+  useEffect(() => { scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight }) }, [history])
+
+  const prog = labProgress(lab.id, entered)
+  const justCompleted = useRef(false)
+  useEffect(() => {
+    if (prog.complete && !justCompleted.current) {
+      justCompleted.current = true
+      markLabDone(lab.id); onDone?.(); celebrate(); haptic([12, 40, 12])
+    }
+  }, [prog.complete, lab.id, onDone])
+
+  function submit() {
+    const raw = input.trim()
+    if (!raw) return
+    const norm = normalizeCliLine(raw)
+    setHistory(h => [...h, { text: raw, kind: 'cmd' }])
+    setEntered(e => [...e, norm])
+    setInput('')
+  }
+  const cmdDone = (cmd) => entered.some(e => e.includes(normalizeCliLine(cmd)))
+
+  return (
+    <div>
+      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <h1 style={styles.h1}>{lab.title}</h1>
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
+        <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 10 }}>{lab.difficulty.toUpperCase()}</span>
+        <span style={{ ...styles.pill('silver'), fontSize: 10 }}>~{lab.estimatedTimeMinutes} MIN</span>
+        <span style={{ ...styles.pill('silver'), fontSize: 10 }}>{lab.objectiveId}</span>
+        {prog.complete && <span style={{ ...styles.pill('mint'), fontSize: 10 }}>✓ COMPLETE</span>}
+      </div>
+
+      <div style={{ ...styles.card, borderLeft: `3px solid ${COLORS.sky}` }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>🎯 SCENARIO</div>
+        <div style={{ fontSize: 13, lineHeight: 1.55 }}>{lab.scenario}</div>
+      </div>
+
+      <CuratedDiagram diagram={topology} />
+
+      {/* Tasks */}
+      <div style={{ ...styles.small, fontWeight: 700, color: COLORS.silver, margin: '8px 0 6px', letterSpacing: 0.4 }}>TASKS — {prog.done.length}/{prog.total} key commands entered</div>
+      {lab.tasks.map(t => {
+        const allIn = (t.expectedCommands || []).every(cmdDone)
+        return (
+          <div key={t.id} style={{ ...styles.card, padding: 12, borderLeft: `3px solid ${allIn ? COLORS.mint : COLORS.border}` }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+              <span style={{ color: allIn ? COLORS.mint : COLORS.silverMid, fontSize: 14 }}>{allIn ? '✓' : t.order}</span>
+              <span style={{ fontSize: 13, fontWeight: 600 }}>{t.title}</span>
+              <span style={{ ...styles.pill('purple'), fontSize: 9, marginLeft: 'auto' }}>{t.device}</span>
+            </div>
+            <div style={{ fontSize: 12.5, color: COLORS.silverMid, lineHeight: 1.5, marginBottom: 6, color: COLORS.silverMid }}>{t.instruction}</div>
+            <details>
+              <summary style={{ fontSize: 11, color: COLORS.sky, cursor: 'pointer' }}>Show commands</summary>
+              <div style={{ marginTop: 6 }}>
+                {(t.expectedCommands || []).map((c, i) => (
+                  <div key={i} style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12, color: cmdDone(c) ? COLORS.mint : COLORS.silver, padding: '2px 0' }}>{cmdDone(c) ? '✓' : '›'} {c}</div>
+                ))}
+              </div>
+            </details>
+          </div>
+        )
+      })}
+
+      {/* Interactive terminal */}
+      <div style={{ ...styles.small, fontWeight: 700, color: COLORS.silver, margin: '8px 0 6px', letterSpacing: 0.4 }}>TERMINAL — type the config commands</div>
+      <div ref={scrollRef} style={{ background: '#05060a', border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: 12, height: 150, overflowY: 'auto', marginBottom: 8, fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12.5, lineHeight: 1.5 }}>
+        {history.length === 0 && <div style={{ color: '#6b7088' }}>Enter commands like <span style={{ color: '#baf0fa' }}>ip dhcp snooping vlan 1</span> — they’re checked against the lab.</div>}
+        {history.map((l, i) => <div key={i} style={{ color: '#d9d9d9' }}>{l.text}</div>)}
+      </div>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+        <input style={{ ...styles.input, flex: 1, fontFamily: 'ui-monospace, Menlo, monospace' }} value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') submit() }} placeholder="command…" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
+        <button style={{ ...styles.primaryBtn, width: 'auto', padding: '12px 18px' }} onClick={submit}>Run</button>
+      </div>
+
+      {prog.complete && (
+        <div style={{ ...styles.card, background: COLORS.mintDim, border: `1px solid ${COLORS.mintBorder}` }}>
+          <div style={{ fontWeight: 700, color: COLORS.mint, fontSize: 14 }}>✓ Lab complete</div>
+          <div style={{ fontSize: 13, color: COLORS.silver, marginTop: 4 }}>All key commands entered. Run the verification commands below on real gear to confirm.</div>
+        </div>
+      )}
+
+      {/* Verification */}
+      <div style={{ ...styles.card }}>
+        <button onClick={() => setRevealVerify(v => !v)} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
+          <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.silverMid }}>🔍 VERIFY</span><span style={{ color: COLORS.silverMid }}>{revealVerify ? '−' : '+'}</span>
+        </button>
+        {revealVerify && (
+          <div style={{ marginTop: 8 }}>
+            {validator.verificationChecks.map(v => (
+              <div key={v.id} style={{ marginBottom: 8 }}>
+                <div style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12, color: COLORS.sky }}>{v.device}# {v.command}</div>
+                <div style={{ fontSize: 12, color: COLORS.silverMid, lineHeight: 1.5 }}>→ {v.expectedResult}</div>
+              </div>
+            ))}
+            {validator.failureChecks.map(f => (
+              <div key={f.id} style={{ marginBottom: 8 }}>
+                <div style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12, color: COLORS.rose }}>{f.device}# {f.command}</div>
+                <div style={{ fontSize: 12, color: COLORS.silverMid, lineHeight: 1.5 }}>→ {f.expectedFailure} <span style={{ color: COLORS.silverDim }}>({f.reason})</span></div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <ExplainBlock icon="✅" title="SUCCESS CRITERIA" accent="mint"><Bullets items={lab.successCriteria} /></ExplainBlock>
+      <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={lab.commonMistakes} /></ExplainBlock>
+      <div style={{ fontSize: 11, color: COLORS.silverDim, marginTop: 8 }}>Source: {lab.source.name}{lab.source.chapter ? ` — ${lab.source.chapter}` : ''}. Commands are factual Cisco IOS; lab paraphrased, not copied.</div>
+    </div>
+  )
+}
+
+// Labs hub — every lab grouped by domain, with metadata + completion status.
+function LabsHub({ onBack, onOpenLab }) {
+  const [done, setDone] = useState([])
+  useEffect(() => { loadLabDone().then(setDone) }, [])
+  const byDomain = labsByDomain()
+  const domainName = (id) => DOMAINS.find(d => d.id === id)?.name || id
+  return (
+    <div>
+      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <h1 style={styles.h1}>🧪 Hands-on Labs</h1>
+      <p style={{ ...styles.small, marginBottom: 14 }}>Multi-device guided labs with a topology, tasks, and deterministic command checking — no AI, works offline.</p>
+      {Object.keys(byDomain).length === 0 && <p style={styles.small}>No labs available yet.</p>}
+      {Object.entries(byDomain).map(([domainId, labs]) => (
+        <div key={domainId} style={{ marginBottom: 16 }}>
+          <div style={{ ...styles.small, fontWeight: 700, color: COLORS.silver, marginBottom: 8, letterSpacing: 0.4 }}>{domainName(domainId).toUpperCase()}</div>
+          {labs.map(lab => (
+            <button key={lab.id} className="ccna-hover" onClick={() => onOpenLab(lab.id)} style={{ ...styles.card, display: 'block', width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                <span style={{ fontSize: 14, fontWeight: 600, color: COLORS.silver, flex: 1 }}>{lab.title}</span>
+                {done.includes(lab.id) && <span style={{ ...styles.pill('mint'), fontSize: 9 }}>✓ DONE</span>}
+              </div>
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 9 }}>{lab.difficulty.toUpperCase()}</span>
+                <span style={{ ...styles.pill('silver'), fontSize: 9 }}>~{lab.estimatedTimeMinutes} MIN</span>
+                <span style={{ ...styles.pill('silver'), fontSize: 9 }}>{lab.objectiveId}</span>
+                <span style={{ fontSize: 11, color: COLORS.silverMid, alignSelf: 'center' }}>{lab.tools.slice(0, 2).join(' · ')}</span>
+              </div>
+            </button>
+          ))}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* =========================================================================
    OBJECTIVE SCREEN — Explain / Quiz / CLI Drill / Subnetting / VLSM tabs
    ========================================================================= */
-function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed }) {
+function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab }) {
+  const objLabs = labsForObjective(objective.id)
   const tabs = useMemo(() => {
     const t = ['Explain', 'Visual', 'Quiz']
     if (COMMAND_DRILLS[objective.id]) t.push('CLI Drill')
@@ -3285,6 +3456,17 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
           <button key={t} style={styles.tabBtn(tab === t)} onClick={() => setTab(t)}>{t}</button>
         ))}
       </div>
+
+      {objLabs.length > 0 && (
+        <button className="ccna-hover" onClick={() => onOpenLab?.(objLabs[0].id)} style={{ ...styles.card, display: 'flex', alignItems: 'center', gap: 10, width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', borderLeft: `3px solid ${COLORS.mint}` }}>
+          <span style={{ fontSize: 18 }} aria-hidden="true">🧪</span>
+          <span style={{ flex: 1 }}>
+            <span style={{ display: 'block', fontSize: 13, fontWeight: 600, color: COLORS.silver }}>{objLabs.length === 1 ? objLabs[0].title : `${objLabs.length} hands-on labs`}</span>
+            <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Guided multi-device lab · ~{objLabs[0].estimatedTimeMinutes} min</span>
+          </span>
+          <span style={{ color: COLORS.sky, fontSize: 13 }}>→</span>
+        </button>
+      )}
 
       {tab === 'Explain' && <ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} />}
       {tab === 'Visual' && <VisualAidTab objective={objective} />}
@@ -3788,7 +3970,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
 /* =========================================================================
    HOME SCREEN
    ========================================================================= */
-function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, syncOn }) {
+function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, syncOn }) {
   const [openDomain, setOpenDomain] = useState(null)
   const [suggestions, setSuggestions] = useState([])
 
@@ -3841,7 +4023,10 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
           </button>
         )
       })()}
-      <button style={{ ...styles.secondaryBtn, marginBottom: 16 }} onClick={onOpenMetrics}>📊 Learner Metrics</button>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+        <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenMetrics}>📊 Metrics</button>
+        <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenLabs}>🧪 Labs</button>
+      </div>
 
       {suggestions.length > 0 && (
         <div style={{ marginBottom: 12 }} className="ccna-stagger">
@@ -4779,6 +4964,9 @@ export default function App() {
   const [syncBusy, setSyncBusy] = useState(false)
   const [syncMsg, setSyncMsg] = useState('')
   const [dueCount, setDueCount] = useState(0)
+  const [selectedLab, setSelectedLab] = useState(null)
+  const [labReturn, setLabReturn] = useState('labs') // where the lab's Back goes
+  const openLab = useCallback((labId, from = 'labs') => { setSelectedLab(labId); setLabReturn(from); setView('lab') }, [])
   const [theme, setTheme] = useState(() =>
     (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme')) || 'dark')
 
@@ -5043,6 +5231,7 @@ export default function App() {
             onOpenTutor={() => setView('tutor')}
             onOpenExport={() => setShowExport(true)}
             onOpenMetrics={() => setView('metrics')}
+            onOpenLabs={() => setView('labs')}
             onOpenSync={() => setShowSync(true)}
             onOpenReview={() => setView('review')}
             dueCount={dueCount}
@@ -5061,12 +5250,15 @@ export default function App() {
             onUpdateProgress={updateProgress}
             onMissed={handleMissed}
             missed={missed}
+            onOpenLab={(id) => openLab(id, 'objective')}
           />
         )}
         {view === 'mock' && <MockExam onExit={() => setView('home')} />}
         {view === 'missed' && <MissedReview missed={missed} onBack={() => setView('home')} onRemove={removeMissed} />}
         {view === 'tutor' && <TutorChat progress={progress} missed={missed} onBack={() => setView('home')} />}
         {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} onBack={() => setView('home')} onSelectObjective={selectObjective} />}
+        {view === 'labs' && <LabsHub onBack={() => setView('home')} onOpenLab={(id) => openLab(id, 'labs')} />}
+        {view === 'lab' && selectedLab && <LabView bundle={getLab(selectedLab)} onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')} />}
         {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
         </div>
       </div>
