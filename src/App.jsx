@@ -483,7 +483,7 @@ const QUIZ_SCHEMA = {
       choices: { type: 'array', items: { type: 'string' }, minItems: 2, maxItems: 4 },
       correctIndex: { type: 'integer', minimum: 0, maximum: 3 },
       explanation: { type: 'string' },
-      type: { type: 'string', enum: ['definition', 'scenario', 'application', 'true-false'] },
+      type: { type: 'string', enum: ['definition', 'scenario', 'application', 'true-false', 'troubleshooting'] },
       difficulty: { type: 'string', enum: ['easy', 'medium', 'hard'] },
       concept: { type: 'string' },
     },
@@ -750,10 +750,12 @@ async function loadDueQuestions(limit = 20) {
       }
     }
   }
-  // Within a section, soonest-due first; lightly randomise section order so a
-  // session isn't always anchored to the same topic.
+  // Within a section: soonest-due first, but float troubleshooting items that
+  // have reached a longer interval (index >= 2) to the front — at maintenance
+  // distances they're the best probe of durable, transferable understanding.
+  const lateTs = (q) => (q.type === 'troubleshooting' && (q.srs?.intervalIndex || 0) >= 2) ? 0 : 1
   const queues = Object.values(bySection)
-    .map(arr => arr.sort((a, b) => a.dueAt - b.dueAt))
+    .map(arr => arr.sort((a, b) => lateTs(a) - lateTs(b) || a.dueAt - b.dueAt))
     .sort(() => Math.random() - 0.5)
   const interleaved = []
   let added = true
@@ -2240,15 +2242,18 @@ function AdjustExplanation({ onAdjust }) {
 const QUIZ_PROMPT_SYSTEM = `You are a CCNA 200-301 quiz generator. Use the provided reference notes as your primary source; where the notes don't cover a detail needed for a good question, you may draw on accurate broader CCNA 200-301 knowledge consistent with the notes. Write questions at genuine CCNA exam difficulty.
 
 Mix the question types across the set:
-- definition/recall (2-3): test knowing a fact or term
-- scenario-based (3-4): a short situation the learner must reason about
-- application (2-3): apply a concept to solve something
-- true-false on a common misconception (1-2): give exactly two choices ["True","False"]
+- definition/recall (2): test knowing a fact or term
+- scenario-based (2-3): a short situation the learner must reason about
+- application (1-2): apply a concept to solve something
+- true-false on a common misconception (1): give exactly two choices ["True","False"]
+- troubleshooting (2-3): a realistic fault scenario where the learner diagnoses the MOST LIKELY cause
+
+For troubleshooting questions, write them the way a network engineer actually troubleshoots: describe a concrete symptom (e.g. "Hosts on VLAN 20 can't reach their gateway"), include a short relevant config or "show" snippet inline using backticks for commands/output, then ask for the most likely cause. Use specific but VARIED surface details (interface names, IPs, VLAN IDs, subnet masks) so regenerated questions test the same underlying principle without being memorizable by pattern. The correct answer must be deducible from the snippet + reference notes; the distractors should be plausible real mistakes.
 
 Spread difficulty from easy to hard. Tag each question with its type, difficulty (easy/medium/hard), and the short sub-concept it tests. Each question's explanation should be 1-2 sentences on why the correct answer is right. Most questions have 4 choices; true-false questions have exactly 2.`
 
 // Small type + difficulty badges shown above a question (mixed-type quizzes).
-const TYPE_LABEL = { definition: 'Definition', scenario: 'Scenario', application: 'Application', 'true-false': 'True / False' }
+const TYPE_LABEL = { definition: 'Definition', scenario: 'Scenario', application: 'Application', 'true-false': 'True / False', troubleshooting: 'Troubleshooting' }
 function QuestionMeta({ q }) {
   if (!q || (!q.type && !q.difficulty)) return null
   // easy = green (approachable) · medium = blue (learning) · hard = amber
@@ -2257,7 +2262,7 @@ function QuestionMeta({ q }) {
   return (
     <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
       {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 10 }}>{q.difficulty.toUpperCase()}</span>}
-      {q.type && <span style={{ ...styles.pill('silver'), fontSize: 10 }}>{TYPE_LABEL[q.type] || q.type}</span>}
+      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' ? 'sky' : 'silver'), fontSize: 10 }}>{TYPE_LABEL[q.type] || q.type}</span>}
       {q.concept && <span style={{ fontSize: 11, color: COLORS.silverMid, alignSelf: 'center' }}>{q.concept}</span>}
     </div>
   )
@@ -2503,7 +2508,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
       {sourceLabel && <div style={{ fontSize: 11, color: COLORS.silverMid, marginBottom: 8 }}>{sourceLabel}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>{current.question}</div>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
         {current.choices.map((choice, idx) => {
           let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
           if (revealed) {
@@ -3619,7 +3624,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>{current.question}</div>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
         {current.choices.map((choice, idx) => {
           let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
           if (revealed) {
