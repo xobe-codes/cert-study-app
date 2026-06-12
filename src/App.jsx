@@ -2204,7 +2204,7 @@ const CONFIDENCE_OPTIONS = [
   { value: 'practice', label: 'Need practice', accent: COLORS.rose, dim: COLORS.roseDim, border: COLORS.roseBorder },
 ]
 
-function QuizTab({ objective, progress, onMissed, onScoreSaved }) {
+function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
   const [phase, setPhase] = useState('idle') // idle | loading | active | done | error
   const [error, setError] = useState(null)
   const [queue, setQueue] = useState([]) // remaining questions
@@ -2237,11 +2237,20 @@ function QuizTab({ objective, progress, onMissed, onScoreSaved }) {
       if (forceNew || banked.length < QUIZ_BANK_MIN) {
         setPhase('loading')
         const refNotes = BOOK_REF[objective.id] || ''
+        // Personalize: tell the generator which sub-concepts this learner has
+        // actually gotten wrong on this objective, so the new batch leans
+        // toward their real weak spots instead of a generic spread.
+        const weakConcepts = [...new Set(
+          (missed || []).filter(m => m.objectiveId === objective.id && m.concept).map(m => m.concept)
+        )].slice(-5)
+        const weakNote = weakConcepts.length
+          ? `\n\nThis learner has previously gotten questions wrong on these sub-concepts: ${weakConcepts.join(', ')}. Include extra questions targeting these specifically (still cover the full objective).`
+          : ''
         const data = await askClaudeJSON({
           system: QUIZ_PROMPT_SYSTEM,
           messages: [{
             role: 'user',
-            content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate 8 multiple-choice questions for this objective.`,
+            content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}${weakNote}\n\nGenerate 8 multiple-choice questions for this objective.`,
           }],
           max_tokens: 2200,
           model: MODELS.fast,
@@ -2274,7 +2283,7 @@ function QuizTab({ objective, progress, onMissed, onScoreSaved }) {
       setError(err.message.includes('JSON') ? 'Claude returned an unexpected format. Please try again.' : err.message)
       setPhase('error')
     }
-  }, [objective.id, objective.title, progress])
+  }, [objective.id, objective.title, progress, missed])
 
   useEffect(() => {
     setPhase('idle')
@@ -2304,6 +2313,7 @@ function QuizTab({ objective, progress, onMissed, onScoreSaved }) {
         correctIndex: current.correctIndex,
         selectedIndex: idx,
         explanation: current.explanation,
+        concept: current.concept,
         addedAt: Date.now(),
       })
       // spaced repetition: re-queue this question once more later in the session
@@ -2923,7 +2933,7 @@ function VLSMTab() {
 /* =========================================================================
    OBJECTIVE SCREEN — Explain / Quiz / CLI Drill / Subnetting / VLSM tabs
    ========================================================================= */
-function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed }) {
+function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed }) {
   const tabs = useMemo(() => {
     const t = ['Explain', 'Visual', 'Quiz']
     if (COMMAND_DRILLS[objective.id]) t.push('CLI Drill')
@@ -3019,7 +3029,7 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
 
       {tab === 'Explain' && <ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} />}
       {tab === 'Visual' && <VisualAidTab objective={objective} />}
-      {tab === 'Quiz' && <QuizTab objective={objective} progress={progress} onMissed={onMissed} onScoreSaved={handleScoreSaved} />}
+      {tab === 'Quiz' && <QuizTab objective={objective} progress={progress} missed={missed} onMissed={onMissed} onScoreSaved={handleScoreSaved} />}
       {tab === 'CLI Drill' && <CLIDrillTab objective={objective} />}
       {tab === 'Subnetting' && <SubnettingTab />}
       {tab === 'VLSM' && <VLSMTab />}
@@ -3386,7 +3396,7 @@ function ReviewSession({ onBack, onMissed, onDone }) {
     recordQuizResult(current.objectiveId, current.id, { correct })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
-      onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, addedAt: Date.now() })
+      onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, addedAt: Date.now() })
     }
   }
   function next() {
@@ -4705,6 +4715,7 @@ export default function App() {
             onBack={() => setView('home')}
             onUpdateProgress={updateProgress}
             onMissed={handleMissed}
+            missed={missed}
           />
         )}
         {view === 'mock' && <MockExam onExit={() => setView('home')} />}
