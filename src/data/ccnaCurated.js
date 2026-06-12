@@ -387,10 +387,137 @@ const OBJ_16 = {
 }
 
 /* -------------------------------------------------------------------------
-   OBJECTIVE 1.5 — Compare TCP to UDP
+   OBJECTIVE 1.5 — Switching concepts (MAC table, frame forwarding)
    ------------------------------------------------------------------------- */
 const OBJ_15 = {
   objectiveId: '1.5',
+  domainId: 'fundamentals',
+  title: 'Switching concepts (MAC table, frame forwarding)',
+  ckus: [
+    { id: 'CKU-MAC-ADDRESS-TABLE', title: 'MAC Address Table (CAM Table)', summary: 'A switch keeps a table mapping learned source MAC addresses (and VLAN) to the port they were heard on. It is the basis for every forwarding decision a switch makes.', aliases: ['CAM table', 'content-addressable memory table', 'bridging table'], tags: ['switching', 'layer2', 'mac'], prerequisiteCkuIds: [], relatedCkuIds: ['CKU-MAC-LEARNING', 'CKU-FRAME-FORWARDING'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Switching — MAC Address Table', confidence: 0.95 }, { sourceName: CURATED_SOURCES.blueprint, chapter: '1.5', confidence: 1 }] },
+    { id: 'CKU-MAC-LEARNING', title: 'MAC Address Learning', summary: 'For every frame received, the switch reads the SOURCE MAC address and the port it arrived on, then adds or refreshes that mapping in the MAC address table.', aliases: ['source address learning', 'dynamic learning'], tags: ['switching', 'learning'], prerequisiteCkuIds: ['CKU-MAC-ADDRESS-TABLE'], relatedCkuIds: ['CKU-MAC-ADDRESS-TABLE', 'CKU-MAC-AGING'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Switching — Learning', confidence: 0.95 }] },
+    { id: 'CKU-MAC-AGING', title: 'MAC Address Table Aging', summary: 'Dynamically learned entries are removed if no frame from that MAC is seen before the aging timer expires — 300 seconds by default on Cisco switches. Keeps the table accurate as devices move or disconnect.', aliases: ['aging timer', 'mac aging-time'], tags: ['switching', 'aging'], prerequisiteCkuIds: ['CKU-MAC-LEARNING'], relatedCkuIds: ['CKU-MAC-LEARNING'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Switching — Aging', confidence: 0.9 }] },
+    { id: 'CKU-FRAME-FORWARDING', title: 'Frame Forwarding Decision (Known Unicast)', summary: 'After learning, the switch looks up the DESTINATION MAC. If it matches an entry, the frame is forwarded out only that port (or filtered/dropped if the destination is on the same port the frame arrived on).', aliases: ['known unicast forwarding', 'filtering'], tags: ['switching', 'forwarding'], prerequisiteCkuIds: ['CKU-MAC-ADDRESS-TABLE'], relatedCkuIds: ['CKU-MAC-ADDRESS-TABLE', 'CKU-FRAME-FLOODING'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Switching — Forwarding', confidence: 0.95 }, { sourceName: CURATED_SOURCES.blueprint, chapter: '1.5', confidence: 1 }] },
+    { id: 'CKU-FRAME-FLOODING', title: 'Flooding (Unknown Unicast, Broadcast, Multicast)', summary: 'If the destination MAC is not in the table (unknown unicast), or the frame is a broadcast (FFFF.FFFF.FFFF) or multicast, the switch floods it out every port in the same VLAN except the one it arrived on.', aliases: ['unknown unicast', 'broadcast flooding', 'BUM traffic'], tags: ['switching', 'flooding'], prerequisiteCkuIds: ['CKU-FRAME-FORWARDING'], relatedCkuIds: ['CKU-FRAME-FORWARDING'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Switching — Flooding', confidence: 0.9 }] },
+  ],
+  reading: {
+    id: 'READ-1.5', ckuIds: ['CKU-MAC-ADDRESS-TABLE', 'CKU-MAC-LEARNING', 'CKU-MAC-AGING', 'CKU-FRAME-FORWARDING', 'CKU-FRAME-FLOODING'], estimatedReadMinutes: 6,
+    tiers: {
+      beginner: 'A switch builds a "phonebook" called the MAC address table that maps device MAC addresses to the switch port they are connected to. It fills this in by watching where frames come FROM (source learning). When a frame arrives, the switch checks its phonebook for the destination — if it finds a match, it sends the frame out only that one port. If it does not find a match (or the frame is a broadcast), it sends the frame out every other port, just to be safe.',
+      intermediate: 'On every incoming frame, the switch performs source-address learning: it records the source MAC address + VLAN + ingress port in the MAC address table (dynamically learned entries age out after 300 seconds of inactivity by default). It then makes a forwarding decision based on the destination MAC: if the destination is a KNOWN unicast address in the table, the frame is forwarded out only that port (or filtered/dropped if it maps to the same port the frame arrived on — the devices are on the same segment). If the destination is an UNKNOWN unicast, a broadcast (FFFF.FFFF.FFFF), or a multicast, the switch FLOODS the frame out all other ports in the same VLAN.',
+      examReady: 'Switch frame-forwarding logic = learn, then forward/flood/filter. **Learn**: record source MAC + VLAN + ingress port; dynamic entries age out (default `300` seconds, configurable with `mac address-table aging-time`). **Forward** (known unicast): destination MAC is in the table → send out that one port only. **Filter**: destination MAC maps to the SAME port the frame arrived on → drop (source and destination already share that segment). **Flood** (unknown unicast / broadcast / multicast — "BUM" traffic): send out every port in the VLAN except the ingress port. Verify with `show mac address-table` / `show mac address-table dynamic`; clear with `clear mac address-table dynamic`; configure static entries with `mac address-table static <mac> vlan <id> interface <intf>`.',
+    },
+    definition: 'A switch learns which MAC addresses live off which ports by reading the **source MAC** of every frame into its **MAC address table**. It then forwards frames based on the **destination MAC**: known unicast → out one port; unknown unicast, broadcast, or multicast → **flood** out all ports in the VLAN except the one it arrived on.',
+    keyPoints: [
+      'Learning: source MAC + VLAN + ingress port → MAC address table.',
+      'Dynamic entries age out after `300` seconds by default (no traffic seen).',
+      'Known unicast destination → forward out that one port only.',
+      'Same-port match → filter/drop (sender and receiver already share that link).',
+      'Unknown unicast, broadcast, multicast → flood out all ports in the VLAN except the source port.',
+      'Flooding is per-VLAN — it never crosses into another VLAN.',
+    ],
+    realWorld: 'When a PC first sends traffic, the switch immediately learns its MAC on that port. The very first frame to a brand-new device on the network is flooded (unknown unicast) — once that device replies, its MAC is learned too and future frames to it are forwarded directly, no more flooding.',
+    commonMistakes: [
+      'Thinking a switch "broadcasts everything" — only unknown unicast/broadcast/multicast frames are flooded; known unicast is forwarded to one port.',
+      'Forgetting flooding is bounded by the VLAN — a switch never floods a frame into a different VLAN.',
+      'Confusing the aging timer with a "lease" — it just removes inactive entries, it does not block the device.',
+      'Assuming `show mac address-table` only shows dynamic entries — it also shows static and system entries.',
+    ],
+    related: ['2.1 VLANs (table is per-VLAN)', '2.5 STP (prevents loops that would melt down flooding)', '5.6 Port security (limits learned MACs per port)'],
+    advanced: 'Because flooding sends a frame out every port in a VLAN, a Layer 2 loop (no STP) causes flooded frames to circulate forever, multiplying exponentially — this is why STP (2.5) exists. CAM table exhaustion attacks fill the table with fake MACs so the switch is forced to flood all traffic, which port security (5.6) defends against by limiting learned MACs per port.',
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Switching Concepts', confidence: 0.95 }, { sourceName: CURATED_SOURCES.certVol1, chapter: 'Ch 4 — Ethernet LANs', confidence: 0.9 }],
+  },
+  questions: [
+    { id: '1.5-c-q1', concept: 'mac learning', type: 'definition', difficulty: 'easy', question: 'When a switch learns a MAC address, which address does it record — source or destination?', choices: ['Destination MAC of the frame', 'Source MAC of the frame', 'Both source and destination', 'Neither — only IP addresses'], correctIndex: 1, explanation: 'Switches learn by reading the SOURCE MAC address and the port it arrived on.', ckuIds: ['CKU-MAC-LEARNING'] },
+    { id: '1.5-c-q2', concept: 'forwarding decision', type: 'scenario', difficulty: 'medium', question: 'A frame arrives whose destination MAC IS in the MAC address table, mapped to a different port than it arrived on. What does the switch do?', choices: ['Flood it out all ports', 'Drop the frame', 'Forward it out only the mapped port', 'Broadcast it within the VLAN'], correctIndex: 2, explanation: 'A known unicast destination is forwarded out only the one port it is mapped to.', ckuIds: ['CKU-FRAME-FORWARDING'] },
+    { id: '1.5-c-q3', concept: 'flooding', type: 'definition', difficulty: 'easy', question: 'What does a switch do with a frame whose destination MAC is NOT in its MAC address table?', choices: ['Drops it', 'Sends it back to the source', 'Floods it out all ports in the VLAN except the source port', 'Sends it to the default gateway'], correctIndex: 2, explanation: 'Unknown unicast frames are flooded out every port in the same VLAN except the ingress port.', ckuIds: ['CKU-FRAME-FLOODING'] },
+    { id: '1.5-c-q4', concept: 'aging timer', type: 'definition', difficulty: 'medium', question: 'What is the default MAC address table aging time on a Cisco switch?', choices: ['30 seconds', '60 seconds', '300 seconds', '3600 seconds'], correctIndex: 2, explanation: 'The default aging time is 300 seconds (5 minutes) of inactivity.', ckuIds: ['CKU-MAC-AGING'] },
+    { id: '1.5-c-q5', concept: 'filtering', type: 'scenario', difficulty: 'hard', question: 'PC-A and PC-B are both connected to the same switch port via a hub. PC-A sends a frame to PC-B. What does the switch do?', choices: ['Forwards it out a different port', 'Floods it everywhere', 'Filters it — does not forward, since both are on the same port', 'Drops it as an error'], correctIndex: 2, explanation: 'If source and destination MAC map to the same ingress port, the switch filters (does not forward) the frame.', ckuIds: ['CKU-FRAME-FORWARDING'] },
+    { id: '1.5-c-q6', concept: 'broadcast', type: 'definition', difficulty: 'easy', question: 'What MAC address represents a Layer 2 broadcast?', choices: ['0000.0000.0000', 'FFFF.FFFF.FFFF', '0000.0000.FFFF', 'AAAA.AAAA.AAAA'], correctIndex: 1, explanation: 'FFFF.FFFF.FFFF is the Ethernet broadcast address; switches always flood broadcasts within the VLAN.', ckuIds: ['CKU-FRAME-FLOODING'] },
+    { id: '1.5-c-q7', concept: 'flooding scope', type: 'true-false', difficulty: 'medium', question: 'True or False: A switch may flood a frame out a port that is in a different VLAN than the frame.', choices: ['True', 'False'], correctIndex: 1, explanation: 'False — flooding is scoped per-VLAN; a frame is never flooded into a different VLAN.', ckuIds: ['CKU-FRAME-FLOODING'] },
+    { id: '1.5-c-q8', concept: 'verify table', type: 'application', difficulty: 'easy', question: 'Which command displays the switch MAC address table?', choices: ['show ip interface brief', 'show mac address-table', 'show vlan brief', 'show cdp neighbors'], correctIndex: 1, explanation: '`show mac address-table` lists learned (and static) MAC-to-port mappings.', ckuIds: ['CKU-MAC-ADDRESS-TABLE'] },
+    { id: '1.5-c-q9', concept: 'static entries', type: 'application', difficulty: 'medium', question: 'How do you add a permanent (non-aging) MAC address entry to the table?', choices: ['mac address-table aging-time 0', 'mac address-table static <mac> vlan <id> interface <intf>', 'switchport mode static', 'arp <mac> static'], correctIndex: 1, explanation: '`mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out.', ckuIds: ['CKU-MAC-ADDRESS-TABLE'] },
+    { id: '1.5-c-q10', concept: 'first frame', type: 'scenario', difficulty: 'medium', question: 'A brand-new server is plugged in and immediately receives a request from PC-A before it has sent any traffic. How does the switch deliver that first frame?', choices: ['It cannot — the server is unknown', 'It floods the frame (unknown unicast) since the server\'s MAC isn\'t learned yet', 'It drops the frame and logs an error', 'It sends an ARP request first'], correctIndex: 1, explanation: 'Until the switch learns the server\'s source MAC, frames addressed to it are unknown unicast and get flooded.', ckuIds: ['CKU-FRAME-FLOODING', 'CKU-MAC-LEARNING'] },
+    { id: '1.5-c-q11', concept: 'relearning after move', type: 'scenario', difficulty: 'hard', question: 'A laptop is unplugged from port 1 and plugged into port 5 of the same switch. What happens to the MAC address table?', choices: ['Nothing — the entry stays on port 1 forever', 'The switch immediately deletes all entries', 'The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop\'s next frame', 'The switch shuts down port 5'], correctIndex: 2, explanation: 'Learning is continuous — the new frame from port 5 updates/relearns the mapping; the stale port-1 entry ages out.', ckuIds: ['CKU-MAC-LEARNING', 'CKU-MAC-AGING'] },
+    { id: '1.5-c-q12', concept: 'switch vs hub', type: 'definition', difficulty: 'medium', question: 'How does a switch\'s forwarding behavior differ from a hub\'s?', choices: ['They behave identically', 'A switch forwards known-unicast frames to only one port; a hub repeats every frame out every port', 'A hub uses a MAC address table; a switch does not', 'A switch only works at Layer 3'], correctIndex: 1, explanation: 'A hub is a simple repeater (everything out every port); a switch learns and forwards intelligently, only flooding when necessary.', ckuIds: ['CKU-FRAME-FORWARDING', 'CKU-FRAME-FLOODING'] },
+  ],
+  flashcards: [
+    { id: '1.5-f1', ckuId: 'CKU-MAC-LEARNING', front: 'What does a switch learn from an incoming frame?', back: 'The SOURCE MAC address, VLAN, and the port it arrived on — stored in the MAC address table.' },
+    { id: '1.5-f2', ckuId: 'CKU-MAC-AGING', front: 'Default MAC address table aging time?', back: '300 seconds (5 minutes) of inactivity.' },
+    { id: '1.5-f3', ckuId: 'CKU-FRAME-FORWARDING', front: 'Known unicast destination — what does the switch do?', back: 'Forwards the frame out only the port mapped to that MAC.' },
+    { id: '1.5-f4', ckuId: 'CKU-FRAME-FLOODING', front: 'What three frame types get flooded?', back: 'Unknown unicast, broadcast, and multicast ("BUM" traffic) — out all ports in the VLAN except the source port.' },
+    { id: '1.5-f5', ckuId: 'CKU-FRAME-FORWARDING', front: 'When does a switch filter (not forward) a frame?', back: 'When the destination MAC maps to the SAME port the frame arrived on.' },
+    { id: '1.5-f6', ckuId: 'CKU-MAC-ADDRESS-TABLE', front: 'Command to view the MAC address table?', back: 'show mac address-table (or show mac address-table dynamic).' },
+    { id: '1.5-f7', ckuId: 'CKU-FRAME-FLOODING', front: 'Ethernet broadcast MAC address?', back: 'FFFF.FFFF.FFFF.' },
+    { id: '1.5-f8', ckuId: 'CKU-FRAME-FLOODING', front: 'Does flooding ever cross VLANs?', back: 'No — flooding is always scoped to the frame\'s own VLAN.' },
+  ],
+  commands: [
+    { id: '1.5-cmd1', command: 'show mac address-table', mode: 'privileged EXEC', purpose: 'Display the dynamic, static, and system MAC address table entries with VLAN and port.', example: 'Switch# show mac address-table', ckuIds: ['CKU-MAC-ADDRESS-TABLE'] },
+    { id: '1.5-cmd2', command: 'mac address-table aging-time <seconds> [vlan <id>]', mode: 'global config', purpose: 'Change the aging timer from the default 300 seconds.', example: 'Switch(config)# mac address-table aging-time 600', ckuIds: ['CKU-MAC-AGING'] },
+    { id: '1.5-cmd3', command: 'mac address-table static <mac> vlan <id> interface <intf>', mode: 'global config', purpose: 'Manually bind a MAC address to a VLAN and port — never ages out.', example: 'Switch(config)# mac address-table static 0011.2233.4455 vlan 10 interface gi0/1', ckuIds: ['CKU-MAC-ADDRESS-TABLE'] },
+  ],
+  glossary: [
+    { id: '1.5-g1', term: 'MAC address table', definition: 'A switch\'s table of learned MAC-to-port (and VLAN) mappings, used to make forwarding decisions. Also called the CAM table.', ckuIds: ['CKU-MAC-ADDRESS-TABLE'] },
+    { id: '1.5-g2', term: 'Learning', definition: 'Recording the source MAC, VLAN, and ingress port of every received frame into the MAC address table.', ckuIds: ['CKU-MAC-LEARNING'] },
+    { id: '1.5-g3', term: 'Aging', definition: 'Removing a dynamically learned MAC entry after a period (default 300s) of no traffic from that address.', ckuIds: ['CKU-MAC-AGING'] },
+    { id: '1.5-g4', term: 'Known unicast', definition: 'A frame whose destination MAC is present in the MAC address table — forwarded out one port only.', ckuIds: ['CKU-FRAME-FORWARDING'] },
+    { id: '1.5-g5', term: 'Unknown unicast', definition: 'A unicast frame whose destination MAC is NOT in the table — flooded out all ports in the VLAN except the source.', ckuIds: ['CKU-FRAME-FLOODING'] },
+    { id: '1.5-g6', term: 'Flooding', definition: 'Sending a frame out every port in a VLAN except the one it arrived on — used for unknown unicast, broadcast, and multicast.', ckuIds: ['CKU-FRAME-FLOODING'] },
+  ],
+  mnemonics: [
+    { id: '1.5-m1', title: 'Learn, Forward, Flood, Filter', mnemonic: '"LFFF" — every frame: Learn the source, then Forward (known), Flood (unknown/broadcast/multicast), or Filter (same port).', explanation: 'Covers the complete switch decision process in order.', ckuIds: ['CKU-MAC-LEARNING', 'CKU-FRAME-FORWARDING', 'CKU-FRAME-FLOODING'] },
+    { id: '1.5-m2', title: 'Source to learn, destination to send', mnemonic: 'A switch reads the SOURCE address to LEARN, and the DESTINATION address to decide where to SEND.', explanation: 'The two MAC fields in a frame serve two different jobs for a switch.', ckuIds: ['CKU-MAC-LEARNING', 'CKU-FRAME-FORWARDING'] },
+  ],
+  examTraps: [
+    { id: '1.5-t1', trap: 'Thinking switches broadcast every frame.', correction: 'Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port.', ckuIds: ['CKU-FRAME-FLOODING'] },
+    { id: '1.5-t2', trap: 'Believing flooding can cross VLAN boundaries.', correction: 'Flooding is always confined to the frame\'s own VLAN.', ckuIds: ['CKU-FRAME-FLOODING'] },
+    { id: '1.5-t3', trap: 'Assuming the aging timer disconnects the device.', correction: 'Aging only removes the table entry; the device itself is unaffected and will be relearned on its next frame.', ckuIds: ['CKU-MAC-AGING'] },
+    { id: '1.5-t4', trap: 'Forgetting same-port source/destination frames are filtered, not forwarded.', correction: 'If both MACs map to the same ingress port, the switch does not forward the frame at all.', ckuIds: ['CKU-FRAME-FORWARDING'] },
+  ],
+  misconceptions: [
+    { id: '1.5-x1', misconception: 'A switch needs to know a device\'s IP address to forward frames to it.', reality: 'Switching is Layer 2 — only MAC addresses matter for the forwarding decision.', example: 'Two PCs in the same VLAN communicate via MAC addresses alone; the switch never inspects IP.', ckuIds: ['CKU-MAC-ADDRESS-TABLE'] },
+    { id: '1.5-x2', misconception: 'Flooding means something is broken.', reality: 'Flooding unknown unicast/broadcast/multicast is normal, expected behavior — it is how a switch reaches devices it hasn\'t learned yet.', example: 'The very first frame to any new device is always flooded.', ckuIds: ['CKU-FRAME-FLOODING'] },
+    { id: '1.5-x3', misconception: 'The MAC address table is the same as an ARP table.', reality: 'The MAC address table (Layer 2, on switches) maps MAC→port; the ARP table (Layer 3, on routers/hosts) maps IP→MAC. They are different tables on different devices.', example: '`show mac address-table` vs `show arp`.', ckuIds: ['CKU-MAC-ADDRESS-TABLE'] },
+  ],
+  diagram: {
+    id: 'DIAG-1.5-forwarding', title: 'Switch learning and forwarding', type: 'topology', ckuIds: ['CKU-MAC-LEARNING', 'CKU-FRAME-FORWARDING', 'CKU-FRAME-FLOODING'],
+    nodes: [
+      { id: 'pcA', label: 'PC-A (AAAA)', type: 'pc', x: 12, y: 50 },
+      { id: 'sw', label: 'Switch — MAC table', type: 'switch', x: 50, y: 50, status: 'highlighted' },
+      { id: 'pcB', label: 'PC-B (BBBB) — Fa0/2', type: 'pc', x: 88, y: 20 },
+      { id: 'pcC', label: 'PC-C — Fa0/3', type: 'pc', x: 88, y: 80 },
+    ],
+    links: [
+      { id: 'l1', source: 'pcA', target: 'sw', status: 'forwarding' },
+      { id: 'l2', source: 'sw', target: 'pcB', status: 'forwarding' },
+      { id: 'l3', source: 'sw', target: 'pcC' },
+    ],
+    annotations: ['PC-A sends a frame to PC-B (BBBB). The switch learns AAAA on Fa0/1.', 'BBBB is already in the table on Fa0/2 → forwarded out Fa0/2 only.', 'Fa0/3 (PC-C) does not receive the frame — known unicast, not flooded.'],
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Switching Concepts', confidence: 0.95 }],
+  },
+  packetFlow: {
+    id: 'FLOW-1.5-forwarding', title: 'Switch frame-forwarding decision', ckuIds: ['CKU-MAC-LEARNING', 'CKU-FRAME-FORWARDING', 'CKU-FRAME-FLOODING'], diagramId: 'DIAG-1.5-forwarding',
+    steps: [
+      { id: 's1', order: 1, title: 'Learn', action: 'Switch reads the source MAC (AAAA) and ingress port (Fa0/1) and records/refreshes the MAC address table entry.', successState: 'matched' },
+      { id: 's2', order: 2, title: 'Lookup', action: 'Switch looks up the destination MAC (BBBB) in the table.', successState: 'matched' },
+      { id: 's3', order: 3, title: 'Forward (known unicast)', action: 'BBBB is mapped to Fa0/2 → frame is forwarded out Fa0/2 only.', successState: 'forwarded' },
+      { id: 's4', order: 4, title: 'If unknown instead', action: 'If BBBB were not in the table, the switch would flood the frame out every port in the VLAN except Fa0/1 (including Fa0/3).', successState: 'forwarded' },
+    ],
+  },
+}
+
+/* -------------------------------------------------------------------------
+   SUPPLEMENTAL — TCP vs UDP (not currently mapped to a blueprint objective;
+   the app's 1.5 slot is "Switching concepts". Kept on the shelf in case the
+   objective list is expanded to the full v1.1 blueprint later.)
+   ------------------------------------------------------------------------- */
+const SUPP_TCPUDP = {
+  objectiveId: 'supp-tcp-udp',
   domainId: 'fundamentals',
   title: 'Compare TCP to UDP',
   ckus: [
@@ -1378,6 +1505,8 @@ const OBJ_55 = {
 /* -------------------------------------------------------------------------
    REGISTRY + LOADER
    ------------------------------------------------------------------------- */
+export const SUPPLEMENTAL = { [SUPP_TCPUDP.objectiveId]: SUPP_TCPUDP }
+
 const CURATED = {
   [OBJ_32.objectiveId]: OBJ_32, [OBJ_16.objectiveId]: OBJ_16, [OBJ_15.objectiveId]: OBJ_15,
   [OBJ_18.objectiveId]: OBJ_18, [OBJ_19.objectiveId]: OBJ_19, [OBJ_21.objectiveId]: OBJ_21, [OBJ_22.objectiveId]: OBJ_22,

@@ -20,13 +20,13 @@ export const LAB_SOURCES = {
 
 /* -------------------------------------------------------------------------
    LAB: Dynamic ARP Inspection with DHCP Snooping
-   Maps to Domain 5.0 / Objective 5.7 (Layer 2 security features).
+   Maps to Domain 5.0 / Objective 5.6 (Layer 2 security features).
    ------------------------------------------------------------------------- */
 const LAB_DAI = {
   id: 'LAB-DAI-DHCP-SNOOPING',
   title: 'Configure Dynamic ARP Inspection with DHCP Snooping',
   domainId: 'security',
-  objectiveId: '5.7',
+  objectiveId: '5.6',
   ckuIds: ['CKU-DYNAMIC-ARP-INSPECTION', 'CKU-DHCP-SNOOPING', 'CKU-ARP', 'CKU-LAYER-2-SECURITY'],
   labType: 'guided',
   difficulty: 'advanced',
@@ -93,7 +93,7 @@ const LAB_DAI = {
 const TOPO_DAI = {
   id: 'TOPO-DAI',
   title: 'DAI topology',
-  objectiveId: '5.7',
+  objectiveId: '5.6',
   nodes: [
     { id: 'att', label: 'Attacker .2 (static)', type: 'attacker', x: 18, y: 22, note: 'untrusted' },
     { id: 'pc', label: 'Valid PC (DHCP)', type: 'pc', x: 18, y: 78 },

@@ -4,7 +4,7 @@
     "domainNumber": 1,
     "domainName": "Network Fundamentals",
     "version": "1",
-    "compiledAt": "2026-06-12T19:47:21.924Z",
+    "compiledAt": "2026-06-12T20:27:45.977Z",
     "curatedObjectives": 4,
     "labs": 0
   },
@@ -753,119 +753,148 @@
     {
       "objectiveId": "1.5",
       "domainId": "fundamentals",
-      "title": "Compare TCP to UDP",
+      "title": "Switching concepts (MAC table, frame forwarding)",
       "ckus": [
         {
-          "id": "CKU-TCP",
-          "title": "TCP (Transmission Control Protocol)",
-          "summary": "A connection-oriented Layer 4 protocol that provides reliability (acknowledgements + retransmission), sequencing, and flow control. IP protocol number 6.",
+          "id": "CKU-MAC-ADDRESS-TABLE",
+          "title": "MAC Address Table (CAM Table)",
+          "summary": "A switch keeps a table mapping learned source MAC addresses (and VLAN) to the port they were heard on. It is the basis for every forwarding decision a switch makes.",
           "aliases": [
-            "Transmission Control Protocol"
+            "CAM table",
+            "content-addressable memory table",
+            "bridging table"
           ],
           "tags": [
-            "transport",
-            "tcp",
-            "layer4"
-          ],
-          "prerequisiteCkuIds": [
-            "CKU-PORT-NUMBERS"
-          ],
-          "relatedCkuIds": [
-            "CKU-UDP",
-            "CKU-TCP-HANDSHAKE"
-          ],
-          "sourceRefs": [
-            {
-              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
-              "chapter": "TCP and UDP (Layer 4)",
-              "confidence": 0.95
-            },
-            {
-              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
-              "chapter": "1.5",
-              "confidence": 1
-            }
-          ]
-        },
-        {
-          "id": "CKU-UDP",
-          "title": "UDP (User Datagram Protocol)",
-          "summary": "A connectionless, best-effort Layer 4 protocol with no acknowledgements, sequencing, or flow control — only a checksum for error detection. Low overhead, low latency. IP protocol number 17.",
-          "aliases": [
-            "User Datagram Protocol"
-          ],
-          "tags": [
-            "transport",
-            "udp",
-            "layer4"
-          ],
-          "prerequisiteCkuIds": [
-            "CKU-PORT-NUMBERS"
-          ],
-          "relatedCkuIds": [
-            "CKU-TCP"
-          ],
-          "sourceRefs": [
-            {
-              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
-              "chapter": "UDP",
-              "confidence": 0.95
-            },
-            {
-              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
-              "chapter": "1.5",
-              "confidence": 1
-            }
-          ]
-        },
-        {
-          "id": "CKU-PORT-NUMBERS",
-          "title": "Port Numbers",
-          "summary": "Layer 4 addresses (0–65535) identifying the application/service. Well-known 0–1023, registered 1024–49151, ephemeral 49152–65535. A socket = IP + port.",
-          "aliases": [
-            "ports",
-            "sockets",
-            "layer 4 addressing"
-          ],
-          "tags": [
-            "ports",
-            "transport"
+            "switching",
+            "layer2",
+            "mac"
           ],
           "prerequisiteCkuIds": [],
           "relatedCkuIds": [
-            "CKU-TCP",
-            "CKU-UDP"
+            "CKU-MAC-LEARNING",
+            "CKU-FRAME-FORWARDING"
           ],
           "sourceRefs": [
             {
               "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
-              "chapter": "Port Numbers (IANA)",
+              "chapter": "Switching — MAC Address Table",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "1.5",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-MAC-LEARNING",
+          "title": "MAC Address Learning",
+          "summary": "For every frame received, the switch reads the SOURCE MAC address and the port it arrived on, then adds or refreshes that mapping in the MAC address table.",
+          "aliases": [
+            "source address learning",
+            "dynamic learning"
+          ],
+          "tags": [
+            "switching",
+            "learning"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-MAC-ADDRESS-TABLE"
+          ],
+          "relatedCkuIds": [
+            "CKU-MAC-ADDRESS-TABLE",
+            "CKU-MAC-AGING"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Switching — Learning",
               "confidence": 0.95
             }
           ]
         },
         {
-          "id": "CKU-TCP-HANDSHAKE",
-          "title": "TCP Three-Way Handshake",
-          "summary": "How TCP establishes a connection before data: SYN → SYN-ACK → ACK. Connection teardown uses FIN/ACK exchanges.",
+          "id": "CKU-MAC-AGING",
+          "title": "MAC Address Table Aging",
+          "summary": "Dynamically learned entries are removed if no frame from that MAC is seen before the aging timer expires — 300 seconds by default on Cisco switches. Keeps the table accurate as devices move or disconnect.",
           "aliases": [
-            "3-way handshake",
-            "SYN SYN-ACK ACK"
+            "aging timer",
+            "mac aging-time"
           ],
           "tags": [
-            "tcp",
-            "connection"
+            "switching",
+            "aging"
           ],
           "prerequisiteCkuIds": [
-            "CKU-TCP"
+            "CKU-MAC-LEARNING"
           ],
           "relatedCkuIds": [
-            "CKU-TCP"
+            "CKU-MAC-LEARNING"
           ],
           "sourceRefs": [
             {
-              "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
-              "chapter": "Ch 5 — Connection Establishment",
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Switching — Aging",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "id": "CKU-FRAME-FORWARDING",
+          "title": "Frame Forwarding Decision (Known Unicast)",
+          "summary": "After learning, the switch looks up the DESTINATION MAC. If it matches an entry, the frame is forwarded out only that port (or filtered/dropped if the destination is on the same port the frame arrived on).",
+          "aliases": [
+            "known unicast forwarding",
+            "filtering"
+          ],
+          "tags": [
+            "switching",
+            "forwarding"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-MAC-ADDRESS-TABLE"
+          ],
+          "relatedCkuIds": [
+            "CKU-MAC-ADDRESS-TABLE",
+            "CKU-FRAME-FLOODING"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Switching — Forwarding",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "1.5",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-FRAME-FLOODING",
+          "title": "Flooding (Unknown Unicast, Broadcast, Multicast)",
+          "summary": "If the destination MAC is not in the table (unknown unicast), or the frame is a broadcast (FFFF.FFFF.FFFF) or multicast, the switch floods it out every port in the same VLAN except the one it arrived on.",
+          "aliases": [
+            "unknown unicast",
+            "broadcast flooding",
+            "BUM traffic"
+          ],
+          "tags": [
+            "switching",
+            "flooding"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-FRAME-FORWARDING"
+          ],
+          "relatedCkuIds": [
+            "CKU-FRAME-FORWARDING"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Switching — Flooding",
               "confidence": 0.9
             }
           ]
@@ -874,48 +903,49 @@
       "reading": {
         "id": "READ-1.5",
         "ckuIds": [
-          "CKU-TCP",
-          "CKU-UDP",
-          "CKU-PORT-NUMBERS",
-          "CKU-TCP-HANDSHAKE"
+          "CKU-MAC-ADDRESS-TABLE",
+          "CKU-MAC-LEARNING",
+          "CKU-MAC-AGING",
+          "CKU-FRAME-FORWARDING",
+          "CKU-FRAME-FLOODING"
         ],
         "estimatedReadMinutes": 6,
         "tiers": {
-          "beginner": "TCP and UDP are the two Layer 4 (transport) protocols. TCP is careful: it sets up a connection first, numbers the data, and makes sure everything arrives — re-sending anything lost. UDP just fires the data off without setup or guarantees (“best effort”). TCP is great for things that must be exact (web pages, files); UDP is great for things that must be fast (voice, video, DNS). Both use port numbers to label which application the data is for.",
-          "intermediate": "TCP is connection-oriented: a three-way handshake (SYN → SYN-ACK → ACK) sets up the session before any data. It provides reliability (every segment is acknowledged; unacknowledged segments are retransmitted), sequencing (sequence numbers reorder out-of-order segments), and flow control (the window size lets the receiver throttle the sender). UDP is connectionless and best-effort — no handshake, no acknowledgements, no sequencing, no flow control — just a checksum for error detection, which makes it lighter and faster. Ports (0–65535) identify the application: well-known 0–1023, registered 1024–49151, ephemeral 49152–65535.",
-          "examReady": "TCP = connection-oriented, reliable (ACK + retransmit), sequenced, flow-controlled (window size); IP protocol 6; three-way handshake SYN → SYN-ACK → ACK. UDP = connectionless, best-effort, no ACK/sequencing/flow-control, checksum only; IP protocol 17; lower overhead → preferred for real-time voice/video and simple query/response (DNS, DHCP, TFTP, SNMP). Ports: well-known 0–1023, registered 1024–49151, ephemeral/dynamic 49152–65535. Know common ports: FTP `20/21`, SSH `22`, Telnet `23`, SMTP `25`, DNS `53`, DHCP `67/68`, TFTP `69`, HTTP `80`, HTTPS `443`, SNMP `161`, Syslog `514`, NTP `123`. DNS and some others use UDP by default but can fall back to TCP."
+          "beginner": "A switch builds a \"phonebook\" called the MAC address table that maps device MAC addresses to the switch port they are connected to. It fills this in by watching where frames come FROM (source learning). When a frame arrives, the switch checks its phonebook for the destination — if it finds a match, it sends the frame out only that one port. If it does not find a match (or the frame is a broadcast), it sends the frame out every other port, just to be safe.",
+          "intermediate": "On every incoming frame, the switch performs source-address learning: it records the source MAC address + VLAN + ingress port in the MAC address table (dynamically learned entries age out after 300 seconds of inactivity by default). It then makes a forwarding decision based on the destination MAC: if the destination is a KNOWN unicast address in the table, the frame is forwarded out only that port (or filtered/dropped if it maps to the same port the frame arrived on — the devices are on the same segment). If the destination is an UNKNOWN unicast, a broadcast (FFFF.FFFF.FFFF), or a multicast, the switch FLOODS the frame out all other ports in the same VLAN.",
+          "examReady": "Switch frame-forwarding logic = learn, then forward/flood/filter. **Learn**: record source MAC + VLAN + ingress port; dynamic entries age out (default `300` seconds, configurable with `mac address-table aging-time`). **Forward** (known unicast): destination MAC is in the table → send out that one port only. **Filter**: destination MAC maps to the SAME port the frame arrived on → drop (source and destination already share that segment). **Flood** (unknown unicast / broadcast / multicast — \"BUM\" traffic): send out every port in the VLAN except the ingress port. Verify with `show mac address-table` / `show mac address-table dynamic`; clear with `clear mac address-table dynamic`; configure static entries with `mac address-table static <mac> vlan <id> interface <intf>`."
         },
-        "definition": "TCP and UDP are the two Layer 4 protocols. **TCP** is connection-oriented and **reliable** (handshake, acknowledgements, sequencing, flow control). **UDP** is connectionless and **best-effort** (no guarantees, just a checksum) — lighter and faster. Both use **port numbers** to identify the application.",
+        "definition": "A switch learns which MAC addresses live off which ports by reading the **source MAC** of every frame into its **MAC address table**. It then forwards frames based on the **destination MAC**: known unicast → out one port; unknown unicast, broadcast, or multicast → **flood** out all ports in the VLAN except the one it arrived on.",
         "keyPoints": [
-          "TCP: connection-oriented, reliable, sequenced, flow-controlled. IP protocol `6`.",
-          "UDP: connectionless, best-effort, checksum only — low overhead. IP protocol `17`.",
-          "TCP handshake: `SYN` → `SYN-ACK` → `ACK`.",
-          "Port ranges: well-known `0–1023`, registered `1024–49151`, ephemeral `49152–65535`.",
-          "UDP preferred for real-time (voice/video) and simple query/response (DNS, DHCP, TFTP).",
-          "Reliability ≠ security — TCP is reliable but not encrypted."
+          "Learning: source MAC + VLAN + ingress port → MAC address table.",
+          "Dynamic entries age out after `300` seconds by default (no traffic seen).",
+          "Known unicast destination → forward out that one port only.",
+          "Same-port match → filter/drop (sender and receiver already share that link).",
+          "Unknown unicast, broadcast, multicast → flood out all ports in the VLAN except the source port.",
+          "Flooding is per-VLAN — it never crosses into another VLAN."
         ],
-        "realWorld": "A web download uses TCP `443` (HTTPS) so no bytes are lost; a VoIP call uses UDP because re-sending a late voice packet is useless — better to drop it. `show ip access-lists` and ACLs match on TCP/UDP port numbers to permit/deny specific apps.",
+        "realWorld": "When a PC first sends traffic, the switch immediately learns its MAC on that port. The very first frame to a brand-new device on the network is flooded (unknown unicast) — once that device replies, its MAC is learned too and future frames to it are forwarded directly, no more flooding.",
         "commonMistakes": [
-          "Saying UDP has “no error checking” — it has a checksum; it just has no recovery.",
-          "Thinking TCP reliability means TCP is secure (it is not — that is TLS).",
-          "Forgetting DNS uses UDP/53 by default (TCP/53 for large/zone transfers).",
-          "Confusing Layer 4 port numbers with physical switch ports."
+          "Thinking a switch \"broadcasts everything\" — only unknown unicast/broadcast/multicast frames are flooded; known unicast is forwarded to one port.",
+          "Forgetting flooding is bounded by the VLAN — a switch never floods a frame into a different VLAN.",
+          "Confusing the aging timer with a \"lease\" — it just removes inactive entries, it does not block the device.",
+          "Assuming `show mac address-table` only shows dynamic entries — it also shows static and system entries."
         ],
         "related": [
-          "1.13 Switching",
-          "4.3 DHCP/DNS",
-          "5.5 ACLs (match ports)"
+          "2.1 VLANs (table is per-VLAN)",
+          "2.5 STP (prevents loops that would melt down flooding)",
+          "5.6 Port security (limits learned MACs per port)"
         ],
-        "advanced": "TCP flow control uses a sliding window; the receiver advertises a window size that grows/shrinks to match its buffer. TCP also does congestion control (slow start). The IPv4 header’s Protocol field (6 or 17) tells the receiver which Layer 4 header follows.",
+        "advanced": "Because flooding sends a frame out every port in a VLAN, a Layer 2 loop (no STP) causes flooded frames to circulate forever, multiplying exponentially — this is why STP (2.5) exists. CAM table exhaustion attacks fill the table with fake MACs so the switch is forced to flood all traffic, which port security (5.6) defends against by limiting learned MACs per port.",
         "sourceRefs": [
           {
             "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
-            "chapter": "TCP and UDP (Layer 4)",
+            "chapter": "Switching Concepts",
             "confidence": 0.95
           },
           {
             "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
-            "chapter": "Ch 5",
+            "chapter": "Ch 4 — Ethernet LANs",
             "confidence": 0.9
           }
         ]
@@ -923,563 +953,548 @@
       "questions": [
         {
           "id": "1.5-c-q1",
-          "concept": "reliability",
+          "concept": "mac learning",
           "type": "definition",
           "difficulty": "easy",
-          "question": "Which Layer 4 protocol is connection-oriented and reliable?",
+          "question": "When a switch learns a MAC address, which address does it record — source or destination?",
           "choices": [
-            "UDP",
-            "TCP",
-            "IP",
-            "ICMP"
+            "Destination MAC of the frame",
+            "Source MAC of the frame",
+            "Both source and destination",
+            "Neither — only IP addresses"
           ],
           "correctIndex": 1,
-          "explanation": "TCP establishes a connection and guarantees delivery via acknowledgements and retransmission.",
+          "explanation": "Switches learn by reading the SOURCE MAC address and the port it arrived on.",
           "ckuIds": [
-            "CKU-TCP"
+            "CKU-MAC-LEARNING"
           ]
         },
         {
           "id": "1.5-c-q2",
-          "concept": "three-way handshake",
+          "concept": "forwarding decision",
           "type": "scenario",
           "difficulty": "medium",
-          "question": "What is the correct order of the TCP three-way handshake?",
+          "question": "A frame arrives whose destination MAC IS in the MAC address table, mapped to a different port than it arrived on. What does the switch do?",
           "choices": [
-            "ACK → SYN → SYN-ACK",
-            "SYN → ACK → SYN-ACK",
-            "SYN → SYN-ACK → ACK",
-            "SYN-ACK → SYN → ACK"
+            "Flood it out all ports",
+            "Drop the frame",
+            "Forward it out only the mapped port",
+            "Broadcast it within the VLAN"
           ],
           "correctIndex": 2,
-          "explanation": "The initiator sends SYN, the receiver replies SYN-ACK, the initiator confirms with ACK.",
+          "explanation": "A known unicast destination is forwarded out only the one port it is mapped to.",
           "ckuIds": [
-            "CKU-TCP-HANDSHAKE"
+            "CKU-FRAME-FORWARDING"
           ]
         },
         {
           "id": "1.5-c-q3",
-          "concept": "best-effort",
+          "concept": "flooding",
           "type": "definition",
           "difficulty": "easy",
-          "question": "Which protocol is connectionless and best-effort?",
+          "question": "What does a switch do with a frame whose destination MAC is NOT in its MAC address table?",
           "choices": [
-            "TCP",
-            "UDP",
-            "HTTP",
-            "FTP"
+            "Drops it",
+            "Sends it back to the source",
+            "Floods it out all ports in the VLAN except the source port",
+            "Sends it to the default gateway"
           ],
-          "correctIndex": 1,
-          "explanation": "UDP sends data without a connection or guarantees of delivery.",
+          "correctIndex": 2,
+          "explanation": "Unknown unicast frames are flooded out every port in the same VLAN except the ingress port.",
           "ckuIds": [
-            "CKU-UDP"
+            "CKU-FRAME-FLOODING"
           ]
         },
         {
           "id": "1.5-c-q4",
-          "concept": "port ranges",
+          "concept": "aging timer",
           "type": "definition",
           "difficulty": "medium",
-          "question": "What is the well-known port range?",
+          "question": "What is the default MAC address table aging time on a Cisco switch?",
           "choices": [
-            "0–1023",
-            "1024–49151",
-            "49152–65535",
-            "0–255"
+            "30 seconds",
+            "60 seconds",
+            "300 seconds",
+            "3600 seconds"
           ],
-          "correctIndex": 0,
-          "explanation": "Well-known ports are 0–1023 (e.g. HTTP 80, HTTPS 443).",
+          "correctIndex": 2,
+          "explanation": "The default aging time is 300 seconds (5 minutes) of inactivity.",
           "ckuIds": [
-            "CKU-PORT-NUMBERS"
+            "CKU-MAC-AGING"
           ]
         },
         {
           "id": "1.5-c-q5",
-          "concept": "application choice",
+          "concept": "filtering",
           "type": "scenario",
-          "difficulty": "medium",
-          "question": "A real-time VoIP call would most likely use which protocol, and why?",
+          "difficulty": "hard",
+          "question": "PC-A and PC-B are both connected to the same switch port via a hub. PC-A sends a frame to PC-B. What does the switch do?",
           "choices": [
-            "TCP, for guaranteed delivery",
-            "UDP, for low latency and overhead",
-            "TCP, for sequencing",
-            "UDP, because it encrypts voice"
+            "Forwards it out a different port",
+            "Floods it everywhere",
+            "Filters it — does not forward, since both are on the same port",
+            "Drops it as an error"
           ],
-          "correctIndex": 1,
-          "explanation": "Voice favors UDP — retransmitting late audio is useless, so low latency matters more than reliability.",
+          "correctIndex": 2,
+          "explanation": "If source and destination MAC map to the same ingress port, the switch filters (does not forward) the frame.",
           "ckuIds": [
-            "CKU-UDP"
+            "CKU-FRAME-FORWARDING"
           ]
         },
         {
           "id": "1.5-c-q6",
-          "concept": "IP protocol numbers",
-          "type": "application",
-          "difficulty": "hard",
-          "question": "In the IPv4 header, which Protocol values indicate TCP and UDP?",
+          "concept": "broadcast",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "What MAC address represents a Layer 2 broadcast?",
           "choices": [
-            "1 and 2",
-            "6 and 17",
-            "80 and 443",
-            "17 and 6 reversed"
+            "0000.0000.0000",
+            "FFFF.FFFF.FFFF",
+            "0000.0000.FFFF",
+            "AAAA.AAAA.AAAA"
           ],
           "correctIndex": 1,
-          "explanation": "TCP = 6, UDP = 17 in the IPv4 Protocol field.",
+          "explanation": "FFFF.FFFF.FFFF is the Ethernet broadcast address; switches always flood broadcasts within the VLAN.",
           "ckuIds": [
-            "CKU-TCP",
-            "CKU-UDP"
+            "CKU-FRAME-FLOODING"
           ]
         },
         {
           "id": "1.5-c-q7",
-          "concept": "sequencing",
-          "type": "definition",
-          "difficulty": "easy",
-          "question": "Which TCP feature reorders segments that arrive out of order?",
+          "concept": "flooding scope",
+          "type": "true-false",
+          "difficulty": "medium",
+          "question": "True or False: A switch may flood a frame out a port that is in a different VLAN than the frame.",
           "choices": [
-            "Flow control",
-            "Sequencing (sequence numbers)",
-            "Checksum",
-            "Windowing"
+            "True",
+            "False"
           ],
           "correctIndex": 1,
-          "explanation": "Sequence numbers let the receiver reassemble segments in the right order.",
+          "explanation": "False — flooding is scoped per-VLAN; a frame is never flooded into a different VLAN.",
           "ckuIds": [
-            "CKU-TCP"
+            "CKU-FRAME-FLOODING"
           ]
         },
         {
           "id": "1.5-c-q8",
-          "concept": "common ports",
-          "type": "definition",
+          "concept": "verify table",
+          "type": "application",
           "difficulty": "easy",
-          "question": "What port does HTTPS use?",
+          "question": "Which command displays the switch MAC address table?",
           "choices": [
-            "80",
-            "22",
-            "443",
-            "53"
+            "show ip interface brief",
+            "show mac address-table",
+            "show vlan brief",
+            "show cdp neighbors"
           ],
-          "correctIndex": 2,
-          "explanation": "HTTPS uses TCP port 443; HTTP uses 80.",
+          "correctIndex": 1,
+          "explanation": "`show mac address-table` lists learned (and static) MAC-to-port mappings.",
           "ckuIds": [
-            "CKU-PORT-NUMBERS"
+            "CKU-MAC-ADDRESS-TABLE"
           ]
         },
         {
           "id": "1.5-c-q9",
-          "concept": "flow control",
-          "type": "definition",
+          "concept": "static entries",
+          "type": "application",
           "difficulty": "medium",
-          "question": "Which TCP mechanism lets the receiver throttle the sender’s rate?",
+          "question": "How do you add a permanent (non-aging) MAC address entry to the table?",
           "choices": [
-            "Sequencing",
-            "Flow control (window size)",
-            "Checksum",
-            "Handshake"
+            "mac address-table aging-time 0",
+            "mac address-table static <mac> vlan <id> interface <intf>",
+            "switchport mode static",
+            "arp <mac> static"
           ],
           "correctIndex": 1,
-          "explanation": "The advertised window size implements flow control.",
+          "explanation": "`mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out.",
           "ckuIds": [
-            "CKU-TCP"
+            "CKU-MAC-ADDRESS-TABLE"
           ]
         },
         {
           "id": "1.5-c-q10",
-          "concept": "UDP checksum",
-          "type": "true-false",
+          "concept": "first frame",
+          "type": "scenario",
           "difficulty": "medium",
-          "question": "True or False: UDP performs no error detection at all.",
+          "question": "A brand-new server is plugged in and immediately receives a request from PC-A before it has sent any traffic. How does the switch deliver that first frame?",
           "choices": [
-            "True",
-            "False"
+            "It cannot — the server is unknown",
+            "It floods the frame (unknown unicast) since the server's MAC isn't learned yet",
+            "It drops the frame and logs an error",
+            "It sends an ARP request first"
           ],
           "correctIndex": 1,
-          "explanation": "False — UDP has a checksum for error detection; it just cannot recover (retransmit) lost data.",
+          "explanation": "Until the switch learns the server's source MAC, frames addressed to it are unknown unicast and get flooded.",
           "ckuIds": [
-            "CKU-UDP"
+            "CKU-FRAME-FLOODING",
+            "CKU-MAC-LEARNING"
           ]
         },
         {
           "id": "1.5-c-q11",
-          "concept": "DNS transport",
+          "concept": "relearning after move",
           "type": "scenario",
-          "difficulty": "medium",
-          "question": "Which statement about DNS transport is correct?",
+          "difficulty": "hard",
+          "question": "A laptop is unplugged from port 1 and plugged into port 5 of the same switch. What happens to the MAC address table?",
           "choices": [
-            "DNS only uses TCP",
-            "DNS only uses UDP",
-            "DNS uses UDP/53 by default and TCP/53 for large responses/zone transfers",
-            "DNS uses port 80"
+            "Nothing — the entry stays on port 1 forever",
+            "The switch immediately deletes all entries",
+            "The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame",
+            "The switch shuts down port 5"
           ],
           "correctIndex": 2,
-          "explanation": "DNS defaults to UDP/53 but falls back to TCP/53 for large messages and zone transfers.",
+          "explanation": "Learning is continuous — the new frame from port 5 updates/relearns the mapping; the stale port-1 entry ages out.",
           "ckuIds": [
-            "CKU-PORT-NUMBERS",
-            "CKU-UDP"
+            "CKU-MAC-LEARNING",
+            "CKU-MAC-AGING"
           ]
         },
         {
           "id": "1.5-c-q12",
-          "concept": "reliability vs security",
-          "type": "true-false",
-          "difficulty": "easy",
-          "question": "True or False: Because TCP is reliable, the data it carries is also encrypted/secure.",
+          "concept": "switch vs hub",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "How does a switch's forwarding behavior differ from a hub's?",
           "choices": [
-            "True",
-            "False"
+            "They behave identically",
+            "A switch forwards known-unicast frames to only one port; a hub repeats every frame out every port",
+            "A hub uses a MAC address table; a switch does not",
+            "A switch only works at Layer 3"
           ],
           "correctIndex": 1,
-          "explanation": "False — reliability (delivery) and security (encryption) are different; TLS provides encryption, not TCP.",
+          "explanation": "A hub is a simple repeater (everything out every port); a switch learns and forwards intelligently, only flooding when necessary.",
           "ckuIds": [
-            "CKU-TCP"
+            "CKU-FRAME-FORWARDING",
+            "CKU-FRAME-FLOODING"
           ]
         }
       ],
       "flashcards": [
         {
           "id": "1.5-f1",
-          "ckuId": "CKU-TCP",
-          "front": "Four services TCP provides that UDP does not?",
-          "back": "Connection setup (handshake), reliability (ACK + retransmit), sequencing, flow control."
+          "ckuId": "CKU-MAC-LEARNING",
+          "front": "What does a switch learn from an incoming frame?",
+          "back": "The SOURCE MAC address, VLAN, and the port it arrived on — stored in the MAC address table."
         },
         {
           "id": "1.5-f2",
-          "ckuId": "CKU-TCP-HANDSHAKE",
-          "front": "TCP three-way handshake?",
-          "back": "SYN → SYN-ACK → ACK."
+          "ckuId": "CKU-MAC-AGING",
+          "front": "Default MAC address table aging time?",
+          "back": "300 seconds (5 minutes) of inactivity."
         },
         {
           "id": "1.5-f3",
-          "ckuId": "CKU-UDP",
-          "front": "What does UDP provide?",
-          "back": "Best-effort delivery + a checksum (error detection). No connection, ACK, sequencing, or flow control."
+          "ckuId": "CKU-FRAME-FORWARDING",
+          "front": "Known unicast destination — what does the switch do?",
+          "back": "Forwards the frame out only the port mapped to that MAC."
         },
         {
           "id": "1.5-f4",
-          "ckuId": "CKU-TCP",
-          "front": "IP protocol numbers for TCP and UDP?",
-          "back": "TCP = 6, UDP = 17."
+          "ckuId": "CKU-FRAME-FLOODING",
+          "front": "What three frame types get flooded?",
+          "back": "Unknown unicast, broadcast, and multicast (\"BUM\" traffic) — out all ports in the VLAN except the source port."
         },
         {
           "id": "1.5-f5",
-          "ckuId": "CKU-PORT-NUMBERS",
-          "front": "Three port ranges?",
-          "back": "Well-known 0–1023, registered 1024–49151, ephemeral 49152–65535."
+          "ckuId": "CKU-FRAME-FORWARDING",
+          "front": "When does a switch filter (not forward) a frame?",
+          "back": "When the destination MAC maps to the SAME port the frame arrived on."
         },
         {
           "id": "1.5-f6",
-          "ckuId": "CKU-PORT-NUMBERS",
-          "front": "Ports: SSH, Telnet, DNS, HTTP, HTTPS?",
-          "back": "22, 23, 53, 80, 443."
+          "ckuId": "CKU-MAC-ADDRESS-TABLE",
+          "front": "Command to view the MAC address table?",
+          "back": "show mac address-table (or show mac address-table dynamic)."
         },
         {
           "id": "1.5-f7",
-          "ckuId": "CKU-PORT-NUMBERS",
-          "front": "Ports: FTP, TFTP, DHCP, SNMP, Syslog?",
-          "back": "FTP 20/21, TFTP 69, DHCP 67/68, SNMP 161, Syslog 514."
+          "ckuId": "CKU-FRAME-FLOODING",
+          "front": "Ethernet broadcast MAC address?",
+          "back": "FFFF.FFFF.FFFF."
         },
         {
           "id": "1.5-f8",
-          "ckuId": "CKU-UDP",
-          "front": "When is UDP preferred over TCP?",
-          "back": "Real-time voice/video and simple query/response (DNS, DHCP, TFTP) — low latency/overhead."
+          "ckuId": "CKU-FRAME-FLOODING",
+          "front": "Does flooding ever cross VLANs?",
+          "back": "No — flooding is always scoped to the frame's own VLAN."
         }
       ],
       "commands": [
         {
           "id": "1.5-cmd1",
-          "command": "show ip access-lists",
+          "command": "show mac address-table",
           "mode": "privileged EXEC",
-          "purpose": "Display ACLs, which match on TCP/UDP protocol and port numbers.",
-          "example": "R1# show ip access-lists",
+          "purpose": "Display the dynamic, static, and system MAC address table entries with VLAN and port.",
+          "example": "Switch# show mac address-table",
           "ckuIds": [
-            "CKU-PORT-NUMBERS"
+            "CKU-MAC-ADDRESS-TABLE"
           ]
         },
         {
           "id": "1.5-cmd2",
-          "command": "netstat -an",
-          "mode": "device cli",
-          "purpose": "On a host, list active TCP/UDP connections and listening ports.",
-          "example": "C:\\> netstat -an",
+          "command": "mac address-table aging-time <seconds> [vlan <id>]",
+          "mode": "global config",
+          "purpose": "Change the aging timer from the default 300 seconds.",
+          "example": "Switch(config)# mac address-table aging-time 600",
           "ckuIds": [
-            "CKU-TCP",
-            "CKU-PORT-NUMBERS"
+            "CKU-MAC-AGING"
           ]
         },
         {
           "id": "1.5-cmd3",
-          "command": "access-list 100 permit tcp any any eq 443",
+          "command": "mac address-table static <mac> vlan <id> interface <intf>",
           "mode": "global config",
-          "purpose": "Example extended-ACL line matching a TCP destination port (HTTPS).",
-          "example": "R1(config)# access-list 100 permit tcp any any eq 443",
+          "purpose": "Manually bind a MAC address to a VLAN and port — never ages out.",
+          "example": "Switch(config)# mac address-table static 0011.2233.4455 vlan 10 interface gi0/1",
           "ckuIds": [
-            "CKU-TCP",
-            "CKU-PORT-NUMBERS"
+            "CKU-MAC-ADDRESS-TABLE"
           ]
         }
       ],
       "glossary": [
         {
           "id": "1.5-g1",
-          "term": "TCP",
-          "definition": "Connection-oriented, reliable Layer 4 protocol (handshake, ACK, sequencing, flow control); IP protocol 6.",
+          "term": "MAC address table",
+          "definition": "A switch's table of learned MAC-to-port (and VLAN) mappings, used to make forwarding decisions. Also called the CAM table.",
           "ckuIds": [
-            "CKU-TCP"
+            "CKU-MAC-ADDRESS-TABLE"
           ]
         },
         {
           "id": "1.5-g2",
-          "term": "UDP",
-          "definition": "Connectionless, best-effort Layer 4 protocol with only a checksum; IP protocol 17.",
+          "term": "Learning",
+          "definition": "Recording the source MAC, VLAN, and ingress port of every received frame into the MAC address table.",
           "ckuIds": [
-            "CKU-UDP"
+            "CKU-MAC-LEARNING"
           ]
         },
         {
           "id": "1.5-g3",
-          "term": "Three-way handshake",
-          "definition": "TCP connection setup: SYN, SYN-ACK, ACK.",
+          "term": "Aging",
+          "definition": "Removing a dynamically learned MAC entry after a period (default 300s) of no traffic from that address.",
           "ckuIds": [
-            "CKU-TCP-HANDSHAKE"
+            "CKU-MAC-AGING"
           ]
         },
         {
           "id": "1.5-g4",
-          "term": "Port number",
-          "definition": "A 0–65535 Layer 4 address identifying the application/service.",
+          "term": "Known unicast",
+          "definition": "A frame whose destination MAC is present in the MAC address table — forwarded out one port only.",
           "ckuIds": [
-            "CKU-PORT-NUMBERS"
+            "CKU-FRAME-FORWARDING"
           ]
         },
         {
           "id": "1.5-g5",
-          "term": "Socket",
-          "definition": "The combination of an IP address and a port number.",
+          "term": "Unknown unicast",
+          "definition": "A unicast frame whose destination MAC is NOT in the table — flooded out all ports in the VLAN except the source.",
           "ckuIds": [
-            "CKU-PORT-NUMBERS"
+            "CKU-FRAME-FLOODING"
           ]
         },
         {
           "id": "1.5-g6",
-          "term": "Flow control",
-          "definition": "TCP’s use of window size to let the receiver pace the sender.",
+          "term": "Flooding",
+          "definition": "Sending a frame out every port in a VLAN except the one it arrived on — used for unknown unicast, broadcast, and multicast.",
           "ckuIds": [
-            "CKU-TCP"
+            "CKU-FRAME-FLOODING"
           ]
         }
       ],
       "mnemonics": [
         {
           "id": "1.5-m1",
-          "title": "Handshake",
-          "mnemonic": "“SYN, SYN-ACK, ACK.”",
-          "explanation": "Three steps to open a TCP connection — say it as a rhythm.",
+          "title": "Learn, Forward, Flood, Filter",
+          "mnemonic": "\"LFFF\" — every frame: Learn the source, then Forward (known), Flood (unknown/broadcast/multicast), or Filter (same port).",
+          "explanation": "Covers the complete switch decision process in order.",
           "ckuIds": [
-            "CKU-TCP-HANDSHAKE"
+            "CKU-MAC-LEARNING",
+            "CKU-FRAME-FORWARDING",
+            "CKU-FRAME-FLOODING"
           ]
         },
         {
           "id": "1.5-m2",
-          "title": "TCP vs UDP",
-          "mnemonic": "TCP = Telephone Call (set up first), UDP = Unaddressed Drop-off (just send).",
-          "explanation": "A call needs a connection and confirmation (TCP); a flyer dropped in a mailbox is best-effort (UDP).",
+          "title": "Source to learn, destination to send",
+          "mnemonic": "A switch reads the SOURCE address to LEARN, and the DESTINATION address to decide where to SEND.",
+          "explanation": "The two MAC fields in a frame serve two different jobs for a switch.",
           "ckuIds": [
-            "CKU-TCP",
-            "CKU-UDP"
+            "CKU-MAC-LEARNING",
+            "CKU-FRAME-FORWARDING"
           ]
         }
       ],
       "examTraps": [
         {
           "id": "1.5-t1",
-          "trap": "Saying UDP has no error checking.",
-          "correction": "UDP has a checksum for error DETECTION; it just has no recovery/retransmission.",
+          "trap": "Thinking switches broadcast every frame.",
+          "correction": "Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port.",
           "ckuIds": [
-            "CKU-UDP"
+            "CKU-FRAME-FLOODING"
           ]
         },
         {
           "id": "1.5-t2",
-          "trap": "Equating TCP reliability with security.",
-          "correction": "Reliable delivery ≠ encryption. TLS/IPsec provide security; TCP does not.",
+          "trap": "Believing flooding can cross VLAN boundaries.",
+          "correction": "Flooding is always confined to the frame's own VLAN.",
           "ckuIds": [
-            "CKU-TCP"
+            "CKU-FRAME-FLOODING"
           ]
         },
         {
           "id": "1.5-t3",
-          "trap": "Assuming DNS is TCP.",
-          "correction": "DNS uses UDP/53 by default, TCP/53 for large responses and zone transfers.",
+          "trap": "Assuming the aging timer disconnects the device.",
+          "correction": "Aging only removes the table entry; the device itself is unaffected and will be relearned on its next frame.",
           "ckuIds": [
-            "CKU-PORT-NUMBERS"
+            "CKU-MAC-AGING"
           ]
         },
         {
           "id": "1.5-t4",
-          "trap": "Mixing Layer 4 ports with switch ports.",
-          "correction": "Port numbers are Layer 4 application addresses, not physical interfaces.",
+          "trap": "Forgetting same-port source/destination frames are filtered, not forwarded.",
+          "correction": "If both MACs map to the same ingress port, the switch does not forward the frame at all.",
           "ckuIds": [
-            "CKU-PORT-NUMBERS"
+            "CKU-FRAME-FORWARDING"
           ]
         }
       ],
       "misconceptions": [
         {
           "id": "1.5-x1",
-          "misconception": "UDP is “bad” because it is unreliable.",
-          "reality": "UDP is ideal when speed beats guaranteed delivery — voice, video, DNS, DHCP all rely on it.",
-          "example": "Re-sending a late voice packet would arrive too late to be useful.",
+          "misconception": "A switch needs to know a device's IP address to forward frames to it.",
+          "reality": "Switching is Layer 2 — only MAC addresses matter for the forwarding decision.",
+          "example": "Two PCs in the same VLAN communicate via MAC addresses alone; the switch never inspects IP.",
           "ckuIds": [
-            "CKU-UDP"
+            "CKU-MAC-ADDRESS-TABLE"
           ]
         },
         {
           "id": "1.5-x2",
-          "misconception": "TCP and UDP can use the same port for different apps without conflict.",
-          "reality": "TCP/80 and UDP/80 are independent, but within one protocol a listening port maps to one service.",
-          "example": "DNS listens on UDP/53 and TCP/53 separately.",
+          "misconception": "Flooding means something is broken.",
+          "reality": "Flooding unknown unicast/broadcast/multicast is normal, expected behavior — it is how a switch reaches devices it hasn't learned yet.",
+          "example": "The very first frame to any new device is always flooded.",
           "ckuIds": [
-            "CKU-PORT-NUMBERS"
+            "CKU-FRAME-FLOODING"
           ]
         },
         {
           "id": "1.5-x3",
-          "misconception": "The handshake transfers application data.",
-          "reality": "The SYN/SYN-ACK/ACK only establishes the connection; data flows after it completes.",
-          "example": "A web page’s bytes start after the handshake finishes.",
+          "misconception": "The MAC address table is the same as an ARP table.",
+          "reality": "The MAC address table (Layer 2, on switches) maps MAC→port; the ARP table (Layer 3, on routers/hosts) maps IP→MAC. They are different tables on different devices.",
+          "example": "`show mac address-table` vs `show arp`.",
           "ckuIds": [
-            "CKU-TCP-HANDSHAKE"
+            "CKU-MAC-ADDRESS-TABLE"
           ]
         }
       ],
       "diagram": {
-        "id": "DIAG-1.5-handshake",
-        "title": "TCP three-way handshake",
-        "type": "process",
+        "id": "DIAG-1.5-forwarding",
+        "title": "Switch learning and forwarding",
+        "type": "topology",
         "ckuIds": [
-          "CKU-TCP-HANDSHAKE"
+          "CKU-MAC-LEARNING",
+          "CKU-FRAME-FORWARDING",
+          "CKU-FRAME-FLOODING"
         ],
         "nodes": [
           {
-            "id": "c",
-            "label": "Client",
+            "id": "pcA",
+            "label": "PC-A (AAAA)",
             "type": "pc",
-            "x": 20,
+            "x": 12,
             "y": 50
           },
           {
-            "id": "syn",
-            "label": "1. SYN →",
-            "type": "process",
+            "id": "sw",
+            "label": "Switch — MAC table",
+            "type": "switch",
             "x": 50,
-            "y": 18
-          },
-          {
-            "id": "sa",
-            "label": "2. ← SYN-ACK",
-            "type": "process",
-            "x": 50,
-            "y": 50
-          },
-          {
-            "id": "ack",
-            "label": "3. ACK →",
-            "type": "process",
-            "x": 50,
-            "y": 82,
+            "y": 50,
             "status": "highlighted"
           },
           {
-            "id": "s",
-            "label": "Server",
-            "type": "server",
-            "x": 80,
-            "y": 50
+            "id": "pcB",
+            "label": "PC-B (BBBB) — Fa0/2",
+            "type": "pc",
+            "x": 88,
+            "y": 20
+          },
+          {
+            "id": "pcC",
+            "label": "PC-C — Fa0/3",
+            "type": "pc",
+            "x": 88,
+            "y": 80
           }
         ],
         "links": [
           {
             "id": "l1",
-            "source": "c",
-            "target": "syn",
+            "source": "pcA",
+            "target": "sw",
             "status": "forwarding"
           },
           {
             "id": "l2",
-            "source": "syn",
-            "target": "s"
-          },
-          {
-            "id": "l3",
-            "source": "s",
-            "target": "sa"
-          },
-          {
-            "id": "l4",
-            "source": "sa",
-            "target": "c"
-          },
-          {
-            "id": "l5",
-            "source": "c",
-            "target": "ack",
+            "source": "sw",
+            "target": "pcB",
             "status": "forwarding"
           },
           {
-            "id": "l6",
-            "source": "ack",
-            "target": "s"
+            "id": "l3",
+            "source": "sw",
+            "target": "pcC"
           }
         ],
         "annotations": [
-          "Connection is established only after all three messages.",
-          "Data transfer begins after the ACK."
+          "PC-A sends a frame to PC-B (BBBB). The switch learns AAAA on Fa0/1.",
+          "BBBB is already in the table on Fa0/2 → forwarded out Fa0/2 only.",
+          "Fa0/3 (PC-C) does not receive the frame — known unicast, not flooded."
         ],
         "sourceRefs": [
           {
-            "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
-            "chapter": "Ch 5",
-            "confidence": 0.9
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "Switching Concepts",
+            "confidence": 0.95
           }
         ]
       },
       "packetFlow": {
-        "id": "FLOW-1.5-handshake",
-        "title": "Opening a TCP connection",
+        "id": "FLOW-1.5-forwarding",
+        "title": "Switch frame-forwarding decision",
         "ckuIds": [
-          "CKU-TCP-HANDSHAKE",
-          "CKU-TCP"
+          "CKU-MAC-LEARNING",
+          "CKU-FRAME-FORWARDING",
+          "CKU-FRAME-FLOODING"
         ],
-        "diagramId": "DIAG-1.5-handshake",
+        "diagramId": "DIAG-1.5-forwarding",
         "steps": [
           {
             "id": "s1",
             "order": 1,
-            "title": "SYN",
-            "action": "Client sends SYN with its initial sequence number.",
-            "successState": "forwarded"
+            "title": "Learn",
+            "action": "Switch reads the source MAC (AAAA) and ingress port (Fa0/1) and records/refreshes the MAC address table entry.",
+            "successState": "matched"
           },
           {
             "id": "s2",
             "order": 2,
-            "title": "SYN-ACK",
-            "action": "Server replies SYN-ACK, acknowledging and sending its own sequence number.",
-            "successState": "forwarded"
+            "title": "Lookup",
+            "action": "Switch looks up the destination MAC (BBBB) in the table.",
+            "successState": "matched"
           },
           {
             "id": "s3",
             "order": 3,
-            "title": "ACK",
-            "action": "Client ACKs the server’s sequence number; the connection is established.",
-            "successState": "matched"
+            "title": "Forward (known unicast)",
+            "action": "BBBB is mapped to Fa0/2 → frame is forwarded out Fa0/2 only.",
+            "successState": "forwarded"
           },
           {
             "id": "s4",
             "order": 4,
-            "title": "Data",
-            "action": "Application data flows reliably, acknowledged and sequenced.",
+            "title": "If unknown instead",
+            "action": "If BBBB were not in the table, the switch would flood the frame out every port in the VLAN except Fa0/1 (including Fa0/3).",
             "successState": "forwarded"
           }
         ]
@@ -2695,7 +2710,7 @@
   ],
   "labs": [],
   "counts": {
-    "ckus": 16,
+    "ckus": 17,
     "questions": 42,
     "flashcards": 28,
     "commands": 11,
