@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
+import { getCurated, hasCurated, getCuratedQuestions } from './data/ccnaCurated.js'
 
 /* =========================================================================
    DESIGN TOKENS
@@ -2078,6 +2079,113 @@ function StructuredExplanation({ data }) {
   )
 }
 
+/* ---- Curated content renderers (Phase 19 — static, no AI) ---- */
+// Local zero-dependency diagram renderer. Node x/y are 0..100 (% of canvas).
+const DIAGRAM_NODE_COLOR = { router: 'mint', switch: 'purple', subnet: 'sky', process: 'amber', pc: 'sky', server: 'silver', firewall: 'rose', default: 'silver' }
+function CuratedDiagram({ diagram }) {
+  const W = 320, H = 200
+  const nodeAt = id => diagram.nodes.find(n => n.id === id)
+  return (
+    <div style={{ ...styles.card, padding: 12 }}>
+      <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, marginBottom: 8, letterSpacing: 0.4 }}>🗺️ {diagram.title.toUpperCase()}</div>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', display: 'block' }} role="img" aria-label={diagram.title}>
+        {diagram.links.map(l => {
+          const a = nodeAt(l.source), b = nodeAt(l.target)
+          if (!a || !b) return null
+          const x1 = a.x / 100 * W, y1 = a.y / 100 * H, x2 = b.x / 100 * W, y2 = b.y / 100 * H
+          const stroke = l.status === 'forwarding' ? COLORS.mint : l.status === 'blocked' || l.status === 'dropped' ? COLORS.rose : COLORS.silverDim
+          return (
+            <g key={l.id}>
+              <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={stroke} strokeWidth="2" strokeDasharray={l.status === 'dropped' ? '4 3' : undefined} />
+              {l.label && <text x={(x1 + x2) / 2} y={(y1 + y2) / 2 - 3} fontSize="8" fill={COLORS.silverMid} textAnchor="middle">{l.label}</text>}
+            </g>
+          )
+        })}
+        {diagram.nodes.map(n => {
+          const c = accentColors(n.status === 'highlighted' ? 'mint' : DIAGRAM_NODE_COLOR[n.type] || DIAGRAM_NODE_COLOR.default)
+          const cx = n.x / 100 * W, cy = n.y / 100 * H, w = 96, h = 26
+          return (
+            <g key={n.id}>
+              <rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} rx="6" fill={c.dim} stroke={c.text} strokeWidth={n.status === 'highlighted' ? 2 : 1} />
+              <text x={cx} y={cy + 3} fontSize="8.5" fill={c.text} textAnchor="middle" fontFamily="ui-monospace, Menlo, monospace">{n.label}</text>
+            </g>
+          )
+        })}
+      </svg>
+      {diagram.annotations?.length > 0 && (
+        <ul style={{ margin: '8px 0 0', paddingLeft: 16, fontSize: 12, color: COLORS.silverMid, lineHeight: 1.5 }}>
+          {diagram.annotations.map((a, i) => <li key={i}>{a}</li>)}
+        </ul>
+      )}
+    </div>
+  )
+}
+
+const READING_TIERS = [
+  { key: 'beginner', label: 'Beginner' },
+  { key: 'intermediate', label: 'Intermediate' },
+  { key: 'examReady', label: 'Exam-ready' },
+]
+// Renders a curated objective's reading: source-grounded, no AI call. Reuses
+// the same ExplainBlock visual language as the AI path so it feels native.
+function CuratedReading({ data }) {
+  const [tier, setTier] = useState('examReady')
+  const r = data.reading
+  const srcNames = [...new Set(r.sourceRefs.map(s => s.sourceName.replace(/ —.*$/, '').replace(/\s*\(.*\)$/, '')))]
+  return (
+    <div className="ccna-stagger">
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
+        <span style={{ ...styles.pill('mint'), fontSize: 10 }}>📚 CURATED · NO AI</span>
+        <span style={{ fontSize: 11, color: COLORS.silverMid }}>{srcNames.join(' · ')}</span>
+      </div>
+      <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
+        {READING_TIERS.map(t => {
+          const active = tier === t.key
+          return (
+            <button key={t.key} onClick={() => setTier(t.key)} style={{ flex: 1, minHeight: 36, borderRadius: 8, border: `1px solid ${active ? COLORS.skyBorder : COLORS.border}`, background: active ? COLORS.skyDim : COLORS.surface, color: active ? COLORS.sky : COLORS.silverMid, fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
+          )
+        })}
+      </div>
+      <ExplainBlock icon="🎯" title="EXPLANATION" accent="sky"><RichText text={r.tiers[tier]} /></ExplainBlock>
+      <ExplainBlock icon="📌" title="KEY POINTS" accent="amber"><Bullets items={r.keyPoints} /></ExplainBlock>
+      <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={r.commonMistakes} /></ExplainBlock>
+      {r.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={false}><RichText text={r.realWorld} /></ExplainBlock>}
+      {r.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}><RichText text={r.advanced} /></ExplainBlock>}
+      {r.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={r.related} /></ExplainBlock>}
+      {data.diagram && <CuratedDiagram diagram={data.diagram} />}
+      <CuratedSources data={data} />
+    </div>
+  )
+}
+
+// Sources panel for curated content — lists the actual per-reading sourceRefs.
+function CuratedSources({ data }) {
+  const [open, setOpen] = useState(false)
+  const refs = data.reading.sourceRefs
+  return (
+    <div style={{ ...styles.card, padding: 12, marginTop: 4 }}>
+      <button onClick={() => setOpen(o => !o)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
+        <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.silverMid }}>📚 SOURCES (verifiable)</span>
+        <span style={{ fontSize: 13, color: COLORS.silverMid }}>{open ? '−' : '+'}</span>
+      </button>
+      {open && (
+        <div style={{ marginTop: 10, fontSize: 12, lineHeight: 1.5, color: COLORS.silverMid }}>
+          <div style={{ marginBottom: 8 }}>
+            <a href={EXAM_SOURCES.blueprintUrl} target="_blank" rel="noreferrer" style={{ color: COLORS.sky, textDecoration: 'none' }}>{EXAM_SOURCES.examName} exam topic {data.objectiveId}</a> — official blueprint (authoritative).
+          </div>
+          {refs.map((s, i) => (
+            <div key={i} style={{ marginBottom: 6 }}>
+              <span style={{ color: COLORS.silver }}>{s.sourceName}</span>{s.chapter ? ` — ${s.chapter}` : ''}.
+              <span style={{ color: COLORS.silverDim }}> confidence {Math.round(s.confidence * 100)}%</span>
+            </div>
+          ))}
+          <div style={{ marginTop: 6, fontSize: 11, color: COLORS.silverDim }}>Curated and paraphrased from the cited sources — no AI generation on this objective.</div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 /* ---- Sources panel (verifiable only) ---- */
 function SourcesPanel({ objective }) {
   const [open, setOpen] = useState(false)
@@ -2115,6 +2223,7 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
   const [recalled, setRecalled] = useState(false) // retrieval-practice gate
   const [stage, setStage] = useState('assess') // assess | lesson — pre-assessment gates the lesson
   const testedOut = !!progress?.[objective.id]?.testedOut
+  const curated = hasCurated(objective.id) ? getCurated(objective.id) : null
 
   useEffect(() => {
     setRecalled(false)
@@ -2150,9 +2259,10 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
     }
   }, [objective.id, objective.title])
 
-  // Fetch the lesson once the learner enters the lesson stage.
+  // Fetch the lesson once the learner enters the lesson stage — AI path only.
+  // Curated objectives render static content (no fetch).
   useEffect(() => {
-    if (stage !== 'lesson') return
+    if (stage !== 'lesson' || curated) return
     setContent(null); setError(null)
     fetchExplanation(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -2198,7 +2308,8 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
         </div>
       )}
       {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
-      {recalled && content && !loading && (
+      {recalled && curated && <CuratedReading data={curated} />}
+      {recalled && !curated && content && !loading && (
         <>
           <StructuredExplanation data={content} />
           <SourcesPanel objective={objective} />
@@ -2362,7 +2473,16 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
       let banked = bank[objective.id] || []
       let usedApi = false
 
-      if (forceNew || banked.length < QUIZ_BANK_MIN) {
+      // Curated objectives: seed their hand-written questions into the bank so
+      // quizzes run with zero API cost. Done once (skipped if already present).
+      const curatedQs = getCuratedQuestions(objective.id)
+      if (curatedQs.length && banked.length < curatedQs.length) {
+        bank = mergeIntoBank(bank, objective.id, curatedQs)
+        await saveQuizBank(bank)
+        banked = bank[objective.id]
+      }
+
+      if (forceNew || (!curatedQs.length && banked.length < QUIZ_BANK_MIN)) {
         setPhase('loading')
         const refNotes = BOOK_REF[objective.id] || ''
         // Personalize: tell the generator which sub-concepts this learner has
