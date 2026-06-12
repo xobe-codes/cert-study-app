@@ -25,6 +25,17 @@ if (!window.storage) {
   }
 }
 
+// Apply the saved theme synchronously before first paint to avoid a flash of
+// the wrong theme. Falls back to the OS preference, then dark.
+try {
+  const raw = localStorage.getItem('ccna_theme_v1')
+  const saved = raw ? JSON.parse(raw) : null
+  const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+  document.documentElement.setAttribute('data-theme', saved || (prefersLight ? 'light' : 'dark'))
+} catch {
+  document.documentElement.setAttribute('data-theme', 'dark')
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />

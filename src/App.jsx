@@ -3,16 +3,47 @@ import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 /* =========================================================================
    DESIGN TOKENS
    ========================================================================= */
-const COLORS = {
-  bg: '#07080d', surface: '#0d0e18', card: '#111220', cardHover: '#161728',
-  border: '#1e2035', borderGlow: '#2e2050',
-  purple: '#7c3aed', purpleM: '#9333ea', purpleGlow: '#c084fc', purpleDim: '#2d1f5e',
-  mint: '#d4f7d4', mintDim: '#1a3320', mintBorder: '#3a6640',
-  sky: '#baf0fa', skyDim: '#0d2a35', skyBorder: '#1a5060',
-  blush: '#fde8e8', blushDim: '#2a1520', blushBorder: '#5a2530',
-  rose: '#c4898a', roseDim: '#2a1010', roseBorder: '#7a3535',
-  silver: '#d9d9d9', silverMid: '#8a8fa8', silverDim: '#3a3f55',
+// Semantic color system — each token carries one cognitive meaning and is
+// defined for BOTH themes. Components consume `COLORS.x` which resolves to a
+// CSS custom property (`var(--ccna-x)`), so flipping `data-theme` on the root
+// re-themes the whole app instantly without re-rendering. Semantic roles:
+//   sky = LEARN (definition/focus) · amber = KEY (must-remember) ·
+//   rose = WARNING (mistakes/errors) · mint = SUCCESS (correct/mastery) ·
+//   purple = APPLIED (real-world/scenario) · silver = NEUTRAL (meta/sources)
+// Hue tokens flip their text/dim/border values per theme so e.g. `mint` is a
+// light green on dark and a dark green on light — always readable (WCAG AA+).
+const PALETTES = {
+  dark: {
+    bg: '#07080d', surface: '#0d0e18', card: '#111220', cardHover: '#161728',
+    border: '#1e2035', borderGlow: '#2e2050',
+    purple: '#7c3aed', purpleM: '#9333ea', purpleGlow: '#c084fc', purpleDim: '#2d1f5e',
+    mint: '#d4f7d4', mintDim: '#1a3320', mintBorder: '#3a6640',
+    sky: '#baf0fa', skyDim: '#0d2a35', skyBorder: '#1a5060',
+    blush: '#fde8e8', blushDim: '#2a1520', blushBorder: '#5a2530',
+    rose: '#e0a0a0', roseDim: '#2a1010', roseBorder: '#7a3535',
+    amber: '#fcd980', amberDim: '#2a2410', amberBorder: '#6b5618',
+    silver: '#d9d9d9', silverMid: '#8a8fa8', silverDim: '#3a3f55',
+    glowA: '#2d1f5e88', glowB: '#0d2a3588', focus: '#c084fc55', shimmerLine: '#ffffff22',
+  },
+  light: {
+    bg: '#eef0f6', surface: '#e6e9f2', card: '#ffffff', cardHover: '#f4f6fb',
+    border: '#d5d9e6', borderGlow: '#b3a3e6',
+    purple: '#6d28d9', purpleM: '#7c3aed', purpleGlow: '#6d28d9', purpleDim: '#ece9fb',
+    mint: '#1f7a35', mintDim: '#e4f3df', mintBorder: '#86bf57',
+    sky: '#0e5aa0', skyDim: '#e1f0fb', skyBorder: '#8cc0ec',
+    blush: '#9a3b3b', blushDim: '#fdeaea', blushBorder: '#f0b0b0',
+    rose: '#a32d2d', roseDim: '#fcebeb', roseBorder: '#ef9595',
+    amber: '#8a5208', amberDim: '#fbeedb', amberBorder: '#eaa53a',
+    silver: '#1e2130', silverMid: '#5b6178', silverDim: '#c4c8d8',
+    glowA: '#dcd6f7aa', glowB: '#dcebfaaa', focus: '#6d28d955', shimmerLine: '#00000014',
+  },
 }
+const COLOR_KEYS = Object.keys(PALETTES.dark)
+const COLORS = Object.fromEntries(COLOR_KEYS.map(k => [k, `var(--ccna-${k})`]))
+// CSS that publishes each palette under its [data-theme] selector.
+const THEME_CSS = Object.entries(PALETTES)
+  .map(([name, p]) => `[data-theme="${name}"]{${Object.entries(p).map(([k, v]) => `--ccna-${k}:${v};`).join('')}}`)
+  .join('\n')
 
 /* =========================================================================
    BOOK_REF — condensed notes grounded on Jeremy's IT Lab CCNA course,
@@ -517,6 +548,7 @@ const STORAGE_KEYS = {
   syncLast: 'ccna_sync_last_v1',
   usage: 'ccna_usage_v1',
   tutorChat: 'ccna_tutor_chat_v1',
+  theme: 'ccna_theme_v1',
 }
 
 // progress shape: { [objectiveId]: { status: 'unseen'|'in_progress'|'mastered', quizScores: [{score,total,date}], lastSeen } }
@@ -1211,6 +1243,7 @@ function accentColors(accent) {
   switch (accent) {
     case 'mint': return { dim: COLORS.mintDim, border: COLORS.mintBorder, text: COLORS.mint }
     case 'sky': return { dim: COLORS.skyDim, border: COLORS.skyBorder, text: COLORS.sky }
+    case 'amber': return { dim: COLORS.amberDim, border: COLORS.amberBorder, text: COLORS.amber }
     case 'blush': return { dim: COLORS.blushDim, border: COLORS.blushBorder, text: COLORS.blush }
     case 'rose': return { dim: COLORS.roseDim, border: COLORS.roseBorder, text: COLORS.rose }
     case 'silver': return { dim: COLORS.silverDim, border: COLORS.silverDim, text: COLORS.silver }
@@ -1872,7 +1905,10 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
     const pct = correct / results.length
     const missed = [...new Set(results.filter(r => !r.correct).map(r => r.concept).filter(Boolean))]
     const tier = pct >= 0.85 ? 'ready' : pct >= 0.6 ? 'partial' : 'study'
-    const accent = tier === 'ready' ? { c: COLORS.mint, dim: COLORS.mintDim, b: COLORS.mintBorder } : tier === 'partial' ? { c: COLORS.sky, dim: COLORS.skyDim, b: COLORS.skyBorder } : { c: COLORS.rose, dim: COLORS.roseDim, b: COLORS.roseBorder }
+    // Score → color: green (ready/skip) · amber (partial knowledge) · neutral
+    // blue (needs study). Never red for a low score — that demotivates rather
+    // than guides; red is reserved for actual errors/warnings.
+    const accent = tier === 'ready' ? { c: COLORS.mint, dim: COLORS.mintDim, b: COLORS.mintBorder } : tier === 'partial' ? { c: COLORS.amber, dim: COLORS.amberDim, b: COLORS.amberBorder } : { c: COLORS.sky, dim: COLORS.skyDim, b: COLORS.skyBorder }
     return (
       <div style={{ ...styles.card, border: `1px solid ${accent.b}`, background: accent.dim }}>
         <div style={{ fontSize: 26, fontWeight: 700, color: accent.c }}>{correct}/{results.length} · {Math.round(pct * 100)}%</div>
@@ -1880,7 +1916,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
           {tier === 'ready' ? "You're ready — you can skip this section." : tier === 'partial' ? 'You know some of this.' : 'Recommend studying this section first.'}
         </div>
         {missed.length > 0 && (
-          <div style={{ ...styles.small, marginBottom: 12 }}>Review these: {missed.map(m => <span key={m} style={{ ...styles.pill('rose'), fontSize: 11, marginRight: 4, display: 'inline-block', marginBottom: 4 }}>{m}</span>)}</div>
+          <div style={{ ...styles.small, marginBottom: 12 }}>Review these: {missed.map(m => <span key={m} style={{ ...styles.pill('amber'), fontSize: 11, marginRight: 4, display: 'inline-block', marginBottom: 4 }}>{m}</span>)}</div>
         )}
         <div style={{ display: 'flex', gap: 8 }}>
           {tier === 'ready'
@@ -1946,9 +1982,9 @@ function StructuredExplanation({ data }) {
   return (
     <div className="ccna-stagger">
       <ExplainBlock icon="🎯" title="DEFINITION" accent="sky"><RichText text={data.definition} /></ExplainBlock>
-      <ExplainBlock icon="📌" title="KEY POINTS" accent="purple"><Bullets items={data.keyPoints} /></ExplainBlock>
+      <ExplainBlock icon="📌" title="KEY POINTS" accent="amber"><Bullets items={data.keyPoints} /></ExplainBlock>
       <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={data.commonMistakes} /></ExplainBlock>
-      {data.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="mint" collapsible defaultOpen={false}><RichText text={data.realWorld} /></ExplainBlock>}
+      {data.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={false}><RichText text={data.realWorld} /></ExplainBlock>}
       {data.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}><RichText text={data.advanced} /></ExplainBlock>}
       {data.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={data.related} /></ExplainBlock>}
     </div>
@@ -2130,7 +2166,9 @@ Spread difficulty from easy to hard. Tag each question with its type, difficulty
 const TYPE_LABEL = { definition: 'Definition', scenario: 'Scenario', application: 'Application', 'true-false': 'True / False' }
 function QuestionMeta({ q }) {
   if (!q || (!q.type && !q.difficulty)) return null
-  const dAccent = q.difficulty === 'hard' ? 'rose' : q.difficulty === 'medium' ? 'sky' : 'mint'
+  // easy = green (approachable) · medium = blue (learning) · hard = amber
+  // (heads-up). Red stays reserved for wrong answers, never for difficulty.
+  const dAccent = q.difficulty === 'hard' ? 'amber' : q.difficulty === 'medium' ? 'sky' : 'mint'
   return (
     <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
       {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 10 }}>{q.difficulty.toUpperCase()}</span>}
@@ -2714,7 +2752,10 @@ function CLIDrillTab({ objective }) {
   }
 
   const completed = statuses.filter(Boolean).length
-  const lineColor = { cmd: COLORS.silver, ok: COLORS.mint, warn: COLORS.rose, out: COLORS.sky, info: COLORS.silverMid }
+  // The terminal pane is intentionally always-dark (emulates a real console),
+  // so its text uses fixed light colors rather than theme tokens (which would
+  // go dark — and invisible — in light mode).
+  const lineColor = { cmd: '#d9d9d9', ok: '#d4f7d4', warn: '#e0a0a0', out: '#baf0fa', info: '#8a8fa8' }
 
   return (
     <div>
@@ -2752,10 +2793,10 @@ function CLIDrillTab({ objective }) {
         }}
       >
         {history.length === 0 && (
-          <div style={{ color: COLORS.silverDim }}>{host} terminal ready. Type a command and press Enter.</div>
+          <div style={{ color: '#6b7088' }}>{host} terminal ready. Type a command and press Enter.</div>
         )}
         {history.map((l, i) => (
-          <div key={i} style={{ color: lineColor[l.kind] || COLORS.silver, whiteSpace: 'pre-wrap' }}>{l.text}</div>
+          <div key={i} style={{ color: lineColor[l.kind] || '#d9d9d9', whiteSpace: 'pre-wrap' }}>{l.text}</div>
         ))}
       </div>
 
@@ -3507,7 +3548,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
         <h1 style={styles.h1} className="ccna-grad-text">CCNA 200-301</h1>
         {streak.count > 0 && (
-          <div style={{ ...styles.pill('mint'), whiteSpace: 'nowrap' }}>🔥 {streak.count} day{streak.count === 1 ? '' : 's'}</div>
+          <div style={{ ...styles.pill('mint'), whiteSpace: 'nowrap', marginRight: 48 }}>🔥 {streak.count} day{streak.count === 1 ? '' : 's'}</div>
         )}
       </div>
       <div style={{ ...styles.small, marginBottom: 10 }}>
@@ -3518,7 +3559,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
       {dueCount > 0 && (
         <button
           className="ccna-hover"
-          style={{ ...styles.primaryBtn, marginBottom: 8, background: `linear-gradient(135deg, ${COLORS.mintBorder}, ${COLORS.mint})`, color: COLORS.bg }}
+          style={{ ...styles.primaryBtn, marginBottom: 8, background: COLORS.mintDim, border: `1px solid ${COLORS.mintBorder}`, color: COLORS.mint }}
           onClick={onOpenReview}
         >
           🔁 Daily Review — {dueCount} due
@@ -4462,6 +4503,19 @@ export default function App() {
   const [syncBusy, setSyncBusy] = useState(false)
   const [syncMsg, setSyncMsg] = useState('')
   const [dueCount, setDueCount] = useState(0)
+  const [theme, setTheme] = useState(() =>
+    (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme')) || 'dark')
+
+  // Flip the theme: update the root attribute (re-themes instantly via CSS
+  // vars) and persist the choice. Available from a fixed control at all times.
+  const toggleTheme = useCallback(() => {
+    setTheme(prev => {
+      const next = prev === 'dark' ? 'light' : 'dark'
+      document.documentElement.setAttribute('data-theme', next)
+      window.storage.setItem(STORAGE_KEYS.theme, next)
+      return next
+    })
+  }, [])
 
   useEffect(() => {
     (async () => {
@@ -4627,19 +4681,21 @@ export default function App() {
   return (
     <div style={styles.page}>
       <style>{`
+        ${THEME_CSS}
         * { -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         body {
           background:
-            radial-gradient(1100px 560px at 50% -12%, ${COLORS.purpleDim}55, transparent 60%),
-            radial-gradient(760px 460px at 100% 0%, ${COLORS.skyDim}55, transparent 55%),
+            radial-gradient(1100px 560px at 50% -12%, ${COLORS.glowA}, transparent 60%),
+            radial-gradient(760px 460px at 100% 0%, ${COLORS.glowB}, transparent 55%),
             ${COLORS.bg};
           background-attachment: fixed;
+          transition: background .25s ease;
         }
         button { transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease; }
         button:active:not(:disabled) { transform: scale(0.97); }
         button:disabled { opacity: 0.5; cursor: default !important; }
-        input:focus, textarea:focus { outline: none; box-shadow: 0 0 0 2px ${COLORS.purpleGlow}55; }
+        input:focus, textarea:focus { outline: none; box-shadow: 0 0 0 2px ${COLORS.focus}; }
         :focus-visible { outline: 2px solid ${COLORS.purpleGlow}; outline-offset: 2px; }
         * { scrollbar-width: thin; scrollbar-color: ${COLORS.silverDim} transparent; }
         *::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -4657,7 +4713,7 @@ export default function App() {
         .ccna-shimmer { position: relative; overflow: hidden; }
         .ccna-shimmer::after {
           content:''; position:absolute; inset:0;
-          background: linear-gradient(90deg, transparent, #ffffff22, transparent);
+          background: linear-gradient(90deg, transparent, ${COLORS.shimmerLine}, transparent);
           transform: translateX(-100%); animation: ccna-shimmer 2.4s ease-in-out infinite;
         }
         @keyframes ccna-skel { to { background-position: -200% 0; } }
@@ -4681,6 +4737,19 @@ export default function App() {
           button:active:not(:disabled) { transform: none; }
         }
       `}</style>
+      <button
+        onClick={toggleTheme}
+        aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+        title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+        style={{
+          position: 'fixed', top: 10, right: 12, zIndex: 200, width: 40, height: 40,
+          borderRadius: 999, border: `1px solid ${COLORS.border}`, background: COLORS.card,
+          color: COLORS.silver, fontSize: 18, cursor: 'pointer', display: 'flex',
+          alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 10px #00000033',
+        }}
+      >
+        {theme === 'dark' ? '☀️' : '🌙'}
+      </button>
       {!apiOnline && <OfflineBanner />}
       <div style={styles.container}>
         <div className="ccna-view" key={view}>
