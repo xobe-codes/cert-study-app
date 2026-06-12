@@ -38,6 +38,14 @@ export async function onRequestPost({ request, env }) {
     return json({ error: { message: 'Upstream request to Anthropic failed.' } }, 502)
   }
 
+  // Streaming requests: pipe the SSE body straight through as it arrives.
+  if (body.stream) {
+    return new Response(upstream.body, {
+      status: upstream.status,
+      headers: { 'content-type': upstream.headers.get('content-type') || 'text/event-stream' },
+    })
+  }
+
   // Pass Anthropic's response (and status code) straight back to the client.
   const text = await upstream.text()
   return new Response(text, {

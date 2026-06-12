@@ -393,6 +393,55 @@ async function askClaudeJSON({ system, messages, max_tokens = 1500, model = MODE
   return block.input
 }
 
+// Streaming text completion — for long tutor replies, shows tokens as they
+// arrive instead of one long wait. `onDelta(textChunk)` fires per chunk;
+// resolves with the full text once the stream ends. Falls back to a plain
+// error (no retry loop) since a partial stream can't be cleanly retried.
+async function askClaudeStream({ system, messages, max_tokens = 1000, model = MODEL, feature = 'other', onDelta }) {
+  const res = await claudeFetch({ model, max_tokens, system, messages, stream: true })
+  if (!res.ok) {
+    let detail = ''
+    try { detail = (await res.json())?.error?.message || '' } catch { /* not JSON */ }
+    throw new Error(`Claude API error ${res.status}${detail ? `: ${detail}` : ''}`)
+  }
+  if (!res.body) {
+    // Environment doesn't support streaming responses — fall back to one shot.
+    return askClaude({ system, messages, max_tokens, model, feature })
+  }
+
+  const reader = res.body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ''
+  let text = ''
+  const usage = {}
+
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+    buffer += decoder.decode(value, { stream: true })
+    const lines = buffer.split('\n')
+    buffer = lines.pop() // keep any partial line for the next chunk
+    for (const line of lines) {
+      if (!line.startsWith('data: ')) continue
+      let evt
+      try { evt = JSON.parse(line.slice(6)) } catch { continue }
+      if (evt.type === 'content_block_delta' && evt.delta?.type === 'text_delta') {
+        text += evt.delta.text
+        onDelta?.(evt.delta.text)
+      } else if (evt.type === 'message_start' && evt.message?.usage) {
+        Object.assign(usage, evt.message.usage)
+      } else if (evt.type === 'message_delta' && evt.usage) {
+        Object.assign(usage, evt.usage)
+      } else if (evt.type === 'error') {
+        throw new Error(`Claude API error: ${evt.error?.message || 'stream error'}`)
+      }
+    }
+  }
+  if (Object.keys(usage).length) logUsage(feature, model, usage)
+  if (!text) throw new Error('Claude API returned an empty response.')
+  return text
+}
+
 /* ---- JSON Schemas for structured generation ---- */
 const QUIZ_SCHEMA = {
   type: 'object', required: ['questions'],
@@ -4268,6 +4317,7 @@ function TutorChat({ progress, missed, onBack }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [restored, setRestored] = useState(false)
+  const [streamingText, setStreamingText] = useState(null)
   const scrollRef = useRef(null)
 
   // Restore the conversation from a previous session, if any.
@@ -4287,7 +4337,7 @@ function TutorChat({ progress, missed, onBack }) {
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
-  }, [messages, loading])
+  }, [messages, loading, streamingText])
 
   async function send() {
     const text = input.trim()
@@ -4297,19 +4347,23 @@ function TutorChat({ progress, missed, onBack }) {
     setInput('')
     setLoading(true)
     setError(null)
+    setStreamingText('')
     try {
       const system = await buildTutorSystemPrompt(progress, missed)
-      const reply = await askClaude({
+      let acc = ''
+      const reply = await askClaudeStream({
         system: cachedSystem(system),
         messages: newMessages,
         max_tokens: 800,
         feature: 'tutor',
+        onDelta: chunk => { acc += chunk; setStreamingText(acc) },
       })
       setMessages(m => [...m, { role: 'assistant', content: reply }])
     } catch (err) {
       setError(err.message)
     } finally {
       setLoading(false)
+      setStreamingText(null)
     }
   }
 
@@ -4345,7 +4399,16 @@ function TutorChat({ progress, missed, onBack }) {
             <RichText text={m.content} />
           </div>
         ))}
-        {loading && <Spinner label="Tutor is thinking..." />}
+        {loading && (
+          streamingText ? (
+            <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, whiteSpace: 'pre-wrap', fontSize: 14, lineHeight: 1.5 }}>
+              <RichText text={streamingText} />
+              <span className="ccna-pulse" style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: COLORS.sky, marginLeft: 4 }} />
+            </div>
+          ) : (
+            <Spinner label="Tutor is thinking..." />
+          )
+        )}
         {error && <ErrorBox message={error} onRetry={send} />}
         {messages.length > 0 && !loading && (
           <div style={{ fontSize: 11, color: COLORS.silverMid, lineHeight: 1.5, padding: '4px 2px' }}>
