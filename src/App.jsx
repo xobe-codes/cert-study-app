@@ -1363,22 +1363,58 @@ function SegmentedBar({ segments, accent = 'mint' }) {
 /* =========================================================================
    EXPLAIN TAB
    ========================================================================= */
-const EXPLAIN_CACHE_KEY = 'ccna_explain_cache_v1'
-const EXPLAIN_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor. Use the provided reference notes as your primary source. If the notes don't fully cover something a CCNA candidate needs to know for this objective, fill the gap with accurate, exam-relevant CCNA 200-301 knowledge — but never contradict the reference notes. Output must be informative but concise enough to retain: under 250 words total, using exactly this structure with these emoji headers on their own lines:
+const EXPLAIN_CACHE_KEY = 'ccna_explain_cache_v2' // v2: structured sections (was prose)
+const EXPLAIN_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor. Use the provided reference notes as your primary source. If the notes don't fully cover something a CCNA candidate needs, fill the gap with accurate, exam-relevant CCNA 200-301 knowledge — but never contradict the reference notes. Produce a clear, layered explanation in the requested structured fields. Keep each field tight and scannable: short sentences, plain language. The "advanced" field holds deeper detail a learner can skip on first pass.${''}
+- definition: 1-2 sentence plain-language answer to "what is this?"
+- keyPoints: 3-5 of the most testable core facts (short phrases)
+- realWorld: 1-2 sentences of practical/exam/lab context
+- commonMistakes: 2-3 things students typically confuse or get wrong
+- related: 2-4 prerequisite or follow-on topics (short labels)
+- advanced: optional deeper detail (1-3 sentences), or omit if not needed`
+const EXPLAIN_SCHEMA = {
+  type: 'object',
+  required: ['definition', 'keyPoints', 'commonMistakes'],
+  properties: {
+    definition: { type: 'string' },
+    keyPoints: { type: 'array', items: { type: 'string' } },
+    realWorld: { type: 'string' },
+    commonMistakes: { type: 'array', items: { type: 'string' } },
+    related: { type: 'array', items: { type: 'string' } },
+    advanced: { type: 'string' },
+  },
+}
 
-🎯 WHAT IT IS
-(1-2 short sentences, plain-language definition)
+/* =========================================================================
+   SOURCES — verifiable only. We cite the authoritative Cisco exam blueprint
+   (objective id/title) and named reference works. No AI-invented page numbers.
+   Lives here as exam-level config so it generalises to other certifications.
+   ========================================================================= */
+const EXAM_SOURCES = {
+  examName: 'CCNA 200-301',
+  blueprintUrl: 'https://learningnetwork.cisco.com/s/ccna-exam-topics',
+  references: [
+    { title: 'CCNA 200-301 Official Cert Guide (Vol 1 & 2)', author: 'Wendell Odom', publisher: 'Cisco Press' },
+  ],
+}
 
-⚡ KEY FACTS
-(3-5 short bullet points, the most testable facts)
-
-🪤 EXAM TRAPS
-(2-3 short bullet points on common mistakes / things that look similar but differ)
-
-🧠 MEMORY HOOK
-(1 short mnemonic, analogy, or memory trick)
-
-Use "-" for bullets. No extra preamble or closing remarks.`
+/* =========================================================================
+   PRE-ASSESSMENT — test out of a section before studying it.
+   ========================================================================= */
+const PREASSESS_CACHE_KEY = 'ccna_preassess_v1'
+const PREASSESS_PROMPT_SYSTEM = `You are a CCNA 200-301 assessment writer. Using the reference notes as your primary source (supplement with accurate CCNA knowledge consistent with them), write 6 multiple-choice questions that test whether a learner already knows this section's core concepts. Cover distinct sub-concepts so a wrong answer pinpoints a specific gap. Tag each question with the short sub-concept it tests.`
+const PREASSESS_SCHEMA = {
+  type: 'object', required: ['questions'],
+  properties: { questions: { type: 'array', items: {
+    type: 'object', required: ['question', 'choices', 'correctIndex', 'explanation', 'concept'],
+    properties: {
+      question: { type: 'string' },
+      choices: { type: 'array', items: { type: 'string' }, minItems: 4, maxItems: 4 },
+      correctIndex: { type: 'integer', minimum: 0, maximum: 3 },
+      explanation: { type: 'string' },
+      concept: { type: 'string' },
+    },
+  } } },
+}
 
 /* =========================================================================
    KEY TERMS CAROUSEL — horizontal "flash card" pockets of must-know terms
@@ -1685,39 +1721,229 @@ function VisualAidTab({ objective }) {
   )
 }
 
-function ExplainTab({ objective }) {
+// Tested-out topics still re-surface in spaced repetition: add the
+// pre-assessment questions to the quiz bank with an SRS review due in ~7 days.
+async function seedTestedOutReview(objectiveId, questions) {
+  let bank = await loadQuizBank()
+  bank = mergeIntoBank(bank, objectiveId, questions)
+  const now = Date.now()
+  const incoming = new Set(questions.map(q => normalizeQuestionText(q.question)))
+  bank[objectiveId].forEach(q => {
+    if (incoming.has(normalizeQuestionText(q.question)) && (q.attempts?.length || 0) === 0) {
+      q.attempts = [{ correct: true, at: now }]
+      q.srs = { interval: 7, ease: 2.3, reps: 1, due: now + 7 * DAY_MS }
+    }
+  })
+  await saveQuizBank(bank)
+}
+
+/* ---- Pre-assessment: test out of a section before studying it ---- */
+function PreAssessment({ objective, onTestedOut, onStudy }) {
+  const [phase, setPhase] = useState('intro') // intro | loading | active | result | error
+  const [error, setError] = useState(null)
+  const [questions, setQuestions] = useState([])
+  const [idx, setIdx] = useState(0)
+  const [selected, setSelected] = useState(null)
+  const [revealed, setRevealed] = useState(false)
+  const [results, setResults] = useState([]) // { concept, correct }
+
+  const start = useCallback(async () => {
+    setPhase('loading'); setError(null)
+    try {
+      const cache = (await window.storage.getItem(PREASSESS_CACHE_KEY)) || {}
+      let qs = cache[objective.id]
+      if (!qs) {
+        const refNotes = BOOK_REF[objective.id] || ''
+        const data = await askClaudeJSON({
+          system: PREASSESS_PROMPT_SYSTEM,
+          messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nWrite the pre-assessment.` }],
+          max_tokens: 1800, model: MODELS.fast, schema: PREASSESS_SCHEMA, toolName: 'emit_preassessment', feature: 'preassess',
+        })
+        qs = data.questions || []
+        if (qs.length === 0) throw new Error('Could not build a pre-assessment.')
+        cache[objective.id] = qs
+        await window.storage.setItem(PREASSESS_CACHE_KEY, cache)
+      }
+      setQuestions(qs); setIdx(0); setSelected(null); setRevealed(false); setResults([])
+      setPhase('active')
+      logEvent('user_started_preassessment', { objectiveId: objective.id })
+    } catch (err) {
+      setError(err.message); setPhase('error')
+    }
+  }, [objective.id, objective.title])
+
+  function answer(i) {
+    if (revealed) return
+    const q = questions[idx]
+    const correct = i === q.correctIndex
+    haptic(correct ? 15 : [10, 40, 10])
+    setSelected(i); setRevealed(true)
+    setResults(r => [...r, { concept: q.concept, correct }])
+  }
+  function next() {
+    if (idx + 1 >= questions.length) { setPhase('result'); return }
+    setIdx(i => i + 1); setSelected(null); setRevealed(false)
+  }
+
+  if (phase === 'intro') {
+    return (
+      <div style={{ ...styles.card, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>📋 PRE-ASSESSMENT</div>
+        <div style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 12 }}>Already know this section? Take a quick 6-question check — score 85%+ and you can skip straight ahead.</div>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button style={styles.primaryBtn} onClick={start}>Test out</button>
+          <button style={styles.secondaryBtn} onClick={onStudy}>Study it</button>
+        </div>
+      </div>
+    )
+  }
+  if (phase === 'loading') return <div style={{ ...styles.card, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}><Skeleton width="50%" height={16} /><Skeleton width="100%" /><Skeleton width="90%" /></div>
+  if (phase === 'error') return <ErrorBox message={error} onRetry={start} />
+
+  if (phase === 'result') {
+    const correct = results.filter(r => r.correct).length
+    const pct = correct / results.length
+    const missed = [...new Set(results.filter(r => !r.correct).map(r => r.concept).filter(Boolean))]
+    const tier = pct >= 0.85 ? 'ready' : pct >= 0.6 ? 'partial' : 'study'
+    const accent = tier === 'ready' ? { c: COLORS.mint, dim: COLORS.mintDim, b: COLORS.mintBorder } : tier === 'partial' ? { c: COLORS.sky, dim: COLORS.skyDim, b: COLORS.skyBorder } : { c: COLORS.rose, dim: COLORS.roseDim, b: COLORS.roseBorder }
+    return (
+      <div style={{ ...styles.card, border: `1px solid ${accent.b}`, background: accent.dim }}>
+        <div style={{ fontSize: 26, fontWeight: 700, color: accent.c }}>{correct}/{results.length} · {Math.round(pct * 100)}%</div>
+        <div style={{ fontSize: 14, fontWeight: 600, margin: '4px 0 8px' }}>
+          {tier === 'ready' ? "You're ready — you can skip this section." : tier === 'partial' ? 'You know some of this.' : 'Recommend studying this section first.'}
+        </div>
+        {missed.length > 0 && (
+          <div style={{ ...styles.small, marginBottom: 12 }}>Review these: {missed.map(m => <span key={m} style={{ ...styles.pill('rose'), fontSize: 11, marginRight: 4, display: 'inline-block', marginBottom: 4 }}>{m}</span>)}</div>
+        )}
+        <div style={{ display: 'flex', gap: 8 }}>
+          {tier === 'ready'
+            ? <><button style={styles.primaryBtn} onClick={() => onTestedOut(questions, pct)}>Skip section</button><button style={styles.secondaryBtn} onClick={onStudy}>Review anyway</button></>
+            : <button style={styles.primaryBtn} onClick={onStudy}>{tier === 'partial' ? 'Review weak areas' : 'Start lesson'}</button>}
+        </div>
+      </div>
+    )
+  }
+
+  // active
+  const q = questions[idx]
+  const isCorrect = revealed && selected === q.correctIndex
+  return (
+    <div>
+      <div style={{ ...styles.small, marginBottom: 8 }}>Pre-assessment · {idx + 1} of {questions.length}</div>
+      <div style={styles.card}>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>{q.question}</div>
+        {q.choices.map((choice, i) => {
+          let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
+          if (revealed) {
+            if (i === q.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
+            else if (i === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
+          }
+          return <button key={i} onClick={() => answer(i)} style={{ display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8, background: bg, border: `1px solid ${border}`, color, borderRadius: 10, padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4 }}>{choice}</button>
+        })}
+        {revealed && <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}`, fontSize: 13, lineHeight: 1.5 }}>{q.explanation}</div>}
+      </div>
+      {revealed && <button style={styles.primaryBtn} onClick={next}>{idx + 1 >= questions.length ? 'See result' : 'Next'}</button>}
+    </div>
+  )
+}
+
+/* ---- Structured explanation renderer (progressive disclosure) ---- */
+function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen = true }) {
+  const [open, setOpen] = useState(defaultOpen)
+  const c = accentColors(accent)
+  return (
+    <div style={{ borderLeft: `3px solid ${c.text}`, background: COLORS.card, borderRadius: 6, padding: '10px 12px', marginBottom: 8, boxShadow: '0 2px 10px #00000022' }}>
+      <button
+        onClick={() => collapsible && setOpen(o => !o)}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: collapsible ? 'pointer' : 'default', color: c.text }}
+      >
+        <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: 0.3 }}>{icon} {title}</span>
+        {collapsible && <span style={{ fontSize: 13, color: COLORS.silverMid }}>{open ? '−' : '+'}</span>}
+      </button>
+      {open && <div style={{ marginTop: 8, fontSize: 14, lineHeight: 1.55, color: COLORS.silver }}>{children}</div>}
+    </div>
+  )
+}
+function Bullets({ items }) {
+  return <ul style={{ margin: 0, paddingLeft: 18 }}>{(items || []).map((t, i) => <li key={i} style={{ marginBottom: 4 }}>{t}</li>)}</ul>
+}
+function StructuredExplanation({ data }) {
+  return (
+    <div>
+      <ExplainBlock icon="🎯" title="DEFINITION" accent="sky">{data.definition}</ExplainBlock>
+      <ExplainBlock icon="📌" title="KEY POINTS" accent="purple"><Bullets items={data.keyPoints} /></ExplainBlock>
+      <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={data.commonMistakes} /></ExplainBlock>
+      {data.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="mint" collapsible defaultOpen={false}>{data.realWorld}</ExplainBlock>}
+      {data.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}>{data.advanced}</ExplainBlock>}
+      {data.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={data.related} /></ExplainBlock>}
+    </div>
+  )
+}
+
+/* ---- Sources panel (verifiable only) ---- */
+function SourcesPanel({ objective }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div style={{ ...styles.card, padding: 12, marginTop: 4 }}>
+      <button onClick={() => setOpen(o => !o)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
+        <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.silverMid }}>📚 SOURCES</span>
+        <span style={{ fontSize: 13, color: COLORS.silverMid }}>{open ? '−' : '+'}</span>
+      </button>
+      {open && (
+        <div style={{ marginTop: 10, fontSize: 12, lineHeight: 1.5, color: COLORS.silverMid }}>
+          <div style={{ marginBottom: 8 }}>
+            <a href={EXAM_SOURCES.blueprintUrl} target="_blank" rel="noreferrer" style={{ color: COLORS.sky, textDecoration: 'none' }}>
+              {EXAM_SOURCES.examName} exam topic {objective.id} — {objective.title}
+            </a>
+            <div>Official Cisco exam blueprint (authoritative).</div>
+          </div>
+          {EXAM_SOURCES.references.map((r, i) => (
+            <div key={i} style={{ marginBottom: 6 }}>
+              <span style={{ color: COLORS.silver }}>{r.title}</span> — {r.author}, {r.publisher}.
+              <div>Covers: {objective.domainName}.</div>
+            </div>
+          ))}
+          <div style={{ marginTop: 6, fontSize: 11, color: COLORS.silverDim }}>Explanations and key terms are AI study aids grounded in these sources — verify command syntax against official docs.</div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function ExplainTab({ objective, progress, onUpdateProgress }) {
   const [content, setContent] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [recalled, setRecalled] = useState(false) // retrieval-practice gate
+  const [stage, setStage] = useState('assess') // assess | lesson — pre-assessment gates the lesson
+  const testedOut = !!progress?.[objective.id]?.testedOut
 
-  useEffect(() => { setRecalled(false) }, [objective.id])
+  useEffect(() => {
+    setRecalled(false)
+    setStage(progress?.[objective.id]?.testedOut ? 'lesson' : 'assess')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [objective.id])
 
-  const fetchExplanation = useCallback(async (force) => {
+  const adjustments = useMemo(() => ({}), [])
+  const fetchExplanation = useCallback(async (force, adjust) => {
     setLoading(true)
     setError(null)
     try {
+      const cacheKey = adjust ? `${objective.id}::${adjust}` : objective.id
       if (!force) {
         const cache = (await window.storage.getItem(EXPLAIN_CACHE_KEY)) || {}
-        if (cache[objective.id]) {
-          setContent(cache[objective.id])
-          setLoading(false)
-          return
-        }
+        if (cache[cacheKey]) { setContent(cache[cacheKey]); setLoading(false); return }
       }
       const refNotes = BOOK_REF[objective.id] || ''
-      const text = await askClaude({
+      const adjustNote = adjust ? `\n\nThe learner found a previous explanation "${adjust}". Rewrite accordingly.` : ''
+      const data = await askClaudeJSON({
         system: EXPLAIN_PROMPT_SYSTEM,
-        messages: [{
-          role: 'user',
-          content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nExplain this objective for someone studying for the CCNA exam.`,
-        }],
-        max_tokens: 600,
-        feature: 'explain',
+        messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}${adjustNote}\n\nExplain this objective for a CCNA candidate.` }],
+        max_tokens: 1100, schema: EXPLAIN_SCHEMA, toolName: 'emit_explanation', feature: 'explain',
       })
-      setContent(text)
+      setContent(data)
       const cache = (await window.storage.getItem(EXPLAIN_CACHE_KEY)) || {}
-      cache[objective.id] = text
+      cache[cacheKey] = data
       await window.storage.setItem(EXPLAIN_CACHE_KEY, cache)
     } catch (err) {
       setError(err.message)
@@ -1726,46 +1952,87 @@ function ExplainTab({ objective }) {
     }
   }, [objective.id, objective.title])
 
+  // Fetch the lesson once the learner enters the lesson stage.
   useEffect(() => {
-    setContent(null)
-    setError(null)
+    if (stage !== 'lesson') return
+    setContent(null); setError(null)
     fetchExplanation(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [objective.id])
+  }, [stage, objective.id])
 
+  async function handleTestedOut(questions, pct) {
+    onUpdateProgress?.(objective.id, { testedOut: true, lastSeen: Date.now() })
+    await seedTestedOutReview(objective.id, questions)
+    logEvent('user_tested_out', { objectiveId: objective.id, score: pct })
+    setStage('lesson') // show the material; it's marked known + scheduled for review
+  }
+
+  // Pre-assessment stage
+  if (stage === 'assess' && !testedOut) {
+    return (
+      <div>
+        <KeyTermsCarousel objective={objective} />
+        <PreAssessment objective={objective} onTestedOut={handleTestedOut} onStudy={() => setStage('lesson')} />
+      </div>
+    )
+  }
+
+  // Lesson stage
   return (
     <div>
+      {testedOut && <div style={{ ...styles.pill('mint'), fontSize: 11, marginBottom: 10, display: 'inline-block' }}>✓ Tested out — scheduled for review</div>}
       <KeyTermsCarousel objective={objective} />
 
-      {/* Retrieval practice: try to recall before reading (boosts retention). */}
       {!recalled && !error && (
         <div style={{ ...styles.card, border: `1px solid ${COLORS.purpleGlow}`, background: COLORS.purpleDim }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 6 }}>🧠 RECALL FIRST</div>
           <div style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 12 }}>
-            Before you read it: what do you already know about <strong>{objective.title}</strong>? Try to explain it to yourself — even a rough attempt strengthens memory far more than re-reading.
+            Before you read it: what do you already know about <strong>{objective.title}</strong>? Try to explain it to yourself — a rough attempt strengthens memory far more than re-reading.
           </div>
           <button style={styles.primaryBtn} onClick={() => setRecalled(true)}>Reveal explanation</button>
         </div>
       )}
 
       {recalled && loading && (
-        <div style={{ ...styles.card, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
-          <Skeleton width="55%" height={16} style={{ marginBottom: 14 }} />
-          <Skeleton width="100%" /><Skeleton width="96%" /><Skeleton width="90%" />
-          <Skeleton width="40%" height={16} style={{ margin: '14px 0 10px' }} />
-          <Skeleton width="100%" /><Skeleton width="92%" /><Skeleton width="70%" />
+        <div>
+          <Skeleton width="50%" height={16} style={{ marginBottom: 10 }} />
+          <Skeleton width="100%" height={48} /><Skeleton width="100%" height={48} /><Skeleton width="100%" height={48} />
         </div>
       )}
       {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
       {recalled && content && !loading && (
-        <div style={{ ...styles.card, whiteSpace: 'pre-wrap', lineHeight: 1.6, fontSize: 14, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
-          {content}
-        </div>
+        <>
+          <StructuredExplanation data={content} />
+          <SourcesPanel objective={objective} />
+          <AdjustExplanation onAdjust={(a) => fetchExplanation(true, a)} />
+        </>
       )}
-      {recalled && !loading && (
-        <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => fetchExplanation(true)}>
-          Regenerate explanation
-        </button>
+    </div>
+  )
+}
+
+/* ---- Adjust explanation (replaces generic regenerate) ---- */
+const ADJUST_OPTIONS = [
+  { value: 'too technical — simplify the language', label: 'Too technical' },
+  { value: 'too broad — go deeper into details', label: 'Too broad' },
+  { value: 'too abstract — add real-world examples', label: 'Too abstract' },
+  { value: 'too fast-paced — break down each step', label: 'Too fast' },
+  { value: 'too theoretical — add hands-on/lab scenarios', label: 'Too theoretical' },
+]
+function AdjustExplanation({ onAdjust }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div style={{ marginTop: 8 }}>
+      <button style={styles.secondaryBtn} onClick={() => setOpen(o => !o)}>Adjust explanation</button>
+      {open && (
+        <div style={{ marginTop: 8 }}>
+          <div style={{ ...styles.small, marginBottom: 6 }}>This explanation is…</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+            {ADJUST_OPTIONS.map(o => (
+              <button key={o.value} onClick={() => { setOpen(false); onAdjust(o.value) }} style={{ flex: '1 1 auto', minHeight: 40, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}`, color: COLORS.silver, fontSize: 12, fontWeight: 600, padding: '8px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{o.label}</button>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   )
@@ -2590,7 +2857,7 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
         ))}
       </div>
 
-      {tab === 'Explain' && <ExplainTab objective={objective} />}
+      {tab === 'Explain' && <ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} />}
       {tab === 'Visual' && <VisualAidTab objective={objective} />}
       {tab === 'Quiz' && <QuizTab objective={objective} onMissed={onMissed} onScoreSaved={handleScoreSaved} />}
       {tab === 'CLI Drill' && <CLIDrillTab objective={objective} />}
@@ -2611,12 +2878,12 @@ async function ensureExplanationCached(objective) {
   const cache = (await window.storage.getItem(EXPLAIN_CACHE_KEY)) || {}
   if (cache[objective.id]) return
   const refNotes = BOOK_REF[objective.id] || ''
-  const text = await askClaude({
+  const data = await askClaudeJSON({
     system: EXPLAIN_PROMPT_SYSTEM,
-    messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nExplain this objective for someone studying for the CCNA exam.` }],
-    max_tokens: 600, feature: 'explain',
+    messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nExplain this objective for a CCNA candidate.` }],
+    max_tokens: 1100, schema: EXPLAIN_SCHEMA, toolName: 'emit_explanation', feature: 'explain',
   })
-  cache[objective.id] = text
+  cache[objective.id] = data
   await window.storage.setItem(EXPLAIN_CACHE_KEY, cache)
 }
 async function ensureTermsCached(objective) {
@@ -3567,7 +3834,14 @@ function repOfflineStudyPacket(ctx) {
   if (!ready.length) { out.push('No fully offline-ready modules yet. Master a topic (or tap "Make available offline") to build a packet.'); return out.join('\n') }
   ready.forEach(o => {
     out.push(rule(`${o.id} ${o.title}`))
-    if (explainCache[o.id]) out.push('', explainCache[o.id])
+    const ex = explainCache[o.id]
+    if (ex && typeof ex === 'object') {
+      if (ex.definition) out.push('', ex.definition)
+      if (ex.keyPoints?.length) { out.push('', 'Key points:'); ex.keyPoints.forEach(p => out.push(`  • ${p}`)) }
+      if (ex.commonMistakes?.length) { out.push('', 'Common mistakes:'); ex.commonMistakes.forEach(p => out.push(`  • ${p}`)) }
+    } else if (ex) {
+      out.push('', ex) // legacy prose
+    }
     const terms = termsCache[o.id]
     if (terms?.length) { out.push('', 'Key terms:'); terms.forEach(t => out.push(`  • ${t.term}: ${t.detail}`)) }
     const v = visualCache[o.id]
