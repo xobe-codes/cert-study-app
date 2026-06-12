@@ -563,7 +563,14 @@ function mergeIntoBank(bank, objectiveId, questions) {
 // Picks up to QUIZ_SESSION_SIZE questions, prioritising those the learner has
 // never answered, rated hard, or previously missed (deterministic spaced
 // repetition over the stored bank — no API call).
-function pickReviewSet(banked) {
+//
+// `accuracy` (0..1, recent quiz accuracy for this objective, or null if
+// unknown) adaptively nudges the difficulty mix: a learner who's been doing
+// well gets pulled toward harder questions (less time on mastered easy
+// material); a struggling learner gets pulled toward easier/medium ones. This
+// only breaks near-ties in review priority — never-seen or just-missed
+// questions are still reviewed first regardless of difficulty.
+function pickReviewSet(banked, accuracy = null) {
   const priority = (q) => {
     const lastRating = q.ratings.length ? q.ratings[q.ratings.length - 1].value : null
     const lastAttempt = q.attempts.length ? q.attempts[q.attempts.length - 1] : null
@@ -573,10 +580,14 @@ function pickReviewSet(banked) {
     if (lastRating === 'medium') return 3
     return 4                                                    // easy / confident — last
   }
-  // Select by review priority, then present easy -> hard within the session.
+  const diffBias = accuracy == null ? {}
+    : accuracy >= 0.8 ? { easy: 0.35, medium: 0, hard: -0.35 }   // doing well — favor harder
+    : accuracy < 0.5 ? { easy: -0.35, medium: 0, hard: 0.35 }    // struggling — favor easier
+    : {}
+  // Select by review priority (adaptively biased), then present easy -> hard within the session.
   const diffRank = { easy: 0, medium: 1, hard: 2 }
   return [...banked]
-    .map(q => ({ q, p: priority(q), j: Math.random() }))
+    .map(q => ({ q, p: priority(q) + (diffBias[q.difficulty] ?? 0), j: Math.random() }))
     .sort((a, b) => a.p - b.p || a.j - b.j)
     .slice(0, QUIZ_SESSION_SIZE)
     .sort((a, b) => (diffRank[a.q.difficulty] ?? 1) - (diffRank[b.q.difficulty] ?? 1))
@@ -2079,6 +2090,63 @@ function QuestionMeta({ q }) {
   )
 }
 
+// "Explain my mistake" — on-demand, cached, personalized to the SPECIFIC wrong
+// choice the learner picked (not just the generic explanation). Cheap model,
+// short output, cached per question+choice so it's never paid for twice.
+const MISTAKE_CACHE_KEY = 'ccna_mistake_cache_v1'
+const MISTAKE_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor helping a student understand a mistake they just made on a practice question. You'll be given the question, all answer choices, the correct answer, the general explanation, and the choice the student picked instead.
+
+In 2-3 short sentences: (1) name the likely misconception behind picking that specific wrong choice, and (2) clarify the distinction that makes the correct choice right. Be specific to THEIR choice, not generic. Stay strictly within CCNA 200-301 facts already implied by the question/explanation — do not introduce new facts.`
+
+async function explainMistake({ question, choices, correctIndex, selectedIndex, explanation }) {
+  return askClaude({
+    system: MISTAKE_PROMPT_SYSTEM,
+    messages: [{
+      role: 'user',
+      content: `Question: ${question}\nChoices: ${choices.map((c, i) => `${i === correctIndex ? '[CORRECT] ' : ''}${c}`).join(' | ')}\nGeneral explanation: ${explanation || '(none provided)'}\nStudent picked: "${choices[selectedIndex]}"\n\nWhy did the student likely pick that, and what's the key distinction?`,
+    }],
+    max_tokens: 220,
+    model: MODELS.fast,
+    feature: 'mistake',
+  })
+}
+
+function ExplainMistake({ cacheKey, question, choices, correctIndex, selectedIndex, explanation }) {
+  const [phase, setPhase] = useState('idle') // idle | loading | done | error
+  const [text, setText] = useState(null)
+  const [error, setError] = useState(null)
+
+  if (selectedIndex == null || selectedIndex === correctIndex) return null
+
+  async function reveal() {
+    setPhase('loading')
+    try {
+      const cache = (await window.storage.getItem(MISTAKE_CACHE_KEY)) || {}
+      if (cache[cacheKey]) { setText(cache[cacheKey]); setPhase('done'); return }
+      const reply = await explainMistake({ question, choices, correctIndex, selectedIndex, explanation })
+      cache[cacheKey] = reply
+      await window.storage.setItem(MISTAKE_CACHE_KEY, cache)
+      setText(reply)
+      setPhase('done')
+    } catch (err) {
+      setError(err.message)
+      setPhase('error')
+    }
+  }
+
+  if (phase === 'idle') {
+    return <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={reveal}>🤔 Why did I pick that?</button>
+  }
+  if (phase === 'loading') return <Spinner label="Looking at your answer..." />
+  if (phase === 'error') return <ErrorBox message={error} onRetry={reveal} />
+  return (
+    <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.purpleDim, border: `1px solid ${COLORS.borderGlow}` }}>
+      <div style={{ fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 4, fontSize: 12 }}>ABOUT YOUR ANSWER</div>
+      <div style={{ fontSize: 13, lineHeight: 1.5 }}><RichText text={text} /></div>
+    </div>
+  )
+}
+
 const CONFIDENCE_OPTIONS = [
   { value: 'easy', label: 'Easy', accent: COLORS.mint, dim: COLORS.mintDim, border: COLORS.mintBorder },
   { value: 'medium', label: 'Medium', accent: COLORS.sky, dim: COLORS.skyDim, border: COLORS.skyBorder },
@@ -2086,7 +2154,7 @@ const CONFIDENCE_OPTIONS = [
   { value: 'practice', label: 'Need practice', accent: COLORS.rose, dim: COLORS.roseDim, border: COLORS.roseBorder },
 ]
 
-function QuizTab({ objective, onMissed, onScoreSaved }) {
+function QuizTab({ objective, progress, onMissed, onScoreSaved }) {
   const [phase, setPhase] = useState('idle') // idle | loading | active | done | error
   const [error, setError] = useState(null)
   const [queue, setQueue] = useState([]) // remaining questions
@@ -2139,7 +2207,8 @@ function QuizTab({ objective, onMissed, onScoreSaved }) {
         usedApi = true
       }
 
-      const set = pickReviewSet(banked)
+      const breakdown = masteryBreakdown(progress?.[objective.id])
+      const set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null)
       if (set.length === 0) throw new Error('No questions available for this objective yet.')
       setBankSize(banked.length)
       setSourceLabel(usedApi ? 'Freshly generated · added to your bank' : `From your saved bank of ${banked.length} · no API used`)
@@ -2155,7 +2224,7 @@ function QuizTab({ objective, onMissed, onScoreSaved }) {
       setError(err.message.includes('JSON') ? 'Claude returned an unexpected format. Please try again.' : err.message)
       setPhase('error')
     }
-  }, [objective.id, objective.title])
+  }, [objective.id, objective.title, progress])
 
   useEffect(() => {
     setPhase('idle')
@@ -2183,6 +2252,7 @@ function QuizTab({ objective, onMissed, onScoreSaved }) {
         question: current.question,
         choices: current.choices,
         correctIndex: current.correctIndex,
+        selectedIndex: idx,
         explanation: current.explanation,
         addedAt: Date.now(),
       })
@@ -2276,6 +2346,14 @@ function QuizTab({ objective, onMissed, onScoreSaved }) {
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
             <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
+            {!isCorrect && (
+              <ExplainMistake
+                cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
+                question={current.question} choices={current.choices}
+                correctIndex={current.correctIndex} selectedIndex={selected}
+                explanation={current.explanation}
+              />
+            )}
           </div>
         )}
       </div>
@@ -2891,7 +2969,7 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
 
       {tab === 'Explain' && <ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} />}
       {tab === 'Visual' && <VisualAidTab objective={objective} />}
-      {tab === 'Quiz' && <QuizTab objective={objective} onMissed={onMissed} onScoreSaved={handleScoreSaved} />}
+      {tab === 'Quiz' && <QuizTab objective={objective} progress={progress} onMissed={onMissed} onScoreSaved={handleScoreSaved} />}
       {tab === 'CLI Drill' && <CLIDrillTab objective={objective} />}
       {tab === 'Subnetting' && <SubnettingTab />}
       {tab === 'VLSM' && <VLSMTab />}
@@ -3258,7 +3336,7 @@ function ReviewSession({ onBack, onMissed, onDone }) {
     recordQuizResult(current.objectiveId, current.id, { correct })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
-      onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, explanation: current.explanation, addedAt: Date.now() })
+      onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, addedAt: Date.now() })
     }
   }
   function next() {
@@ -3319,6 +3397,14 @@ function ReviewSession({ onBack, onMissed, onDone }) {
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
+            {!isCorrect && (
+              <ExplainMistake
+                cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
+                question={current.question} choices={current.choices}
+                correctIndex={current.correctIndex} selectedIndex={selected}
+                explanation={current.explanation}
+              />
+            )}
           </div>
         )}
       </div>
@@ -3504,7 +3590,15 @@ function MissedReview({ missed, onBack, onRemove }) {
           {revealedIdx === idx ? (
             <div style={{ marginTop: 4 }}>
               <div style={{ fontSize: 13, color: COLORS.silverMid, marginBottom: 8, lineHeight: 1.5 }}>{m.explanation}</div>
-              <button style={styles.secondaryBtn} onClick={() => onRemove(idx)}>Mark as reviewed (remove)</button>
+              {m.selectedIndex != null && (
+                <ExplainMistake
+                  cacheKey={`${normalizeQuestionText(m.question)}::${m.selectedIndex}`}
+                  question={m.question} choices={m.choices}
+                  correctIndex={m.correctIndex} selectedIndex={m.selectedIndex}
+                  explanation={m.explanation}
+                />
+              )}
+              <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => onRemove(idx)}>Mark as reviewed (remove)</button>
             </div>
           ) : (
             <button style={{ ...styles.secondaryBtn, marginTop: 4 }} onClick={() => setRevealedIdx(idx)}>Show answer</button>
