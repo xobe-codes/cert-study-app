@@ -397,12 +397,15 @@ async function askClaudeJSON({ system, messages, max_tokens = 1500, model = MODE
 const QUIZ_SCHEMA = {
   type: 'object', required: ['questions'],
   properties: { questions: { type: 'array', items: {
-    type: 'object', required: ['question', 'choices', 'correctIndex', 'explanation'],
+    type: 'object', required: ['question', 'choices', 'correctIndex', 'explanation', 'type', 'difficulty'],
     properties: {
       question: { type: 'string' },
-      choices: { type: 'array', items: { type: 'string' }, minItems: 4, maxItems: 4 },
+      choices: { type: 'array', items: { type: 'string' }, minItems: 2, maxItems: 4 },
       correctIndex: { type: 'integer', minimum: 0, maximum: 3 },
       explanation: { type: 'string' },
+      type: { type: 'string', enum: ['definition', 'scenario', 'application', 'true-false'] },
+      difficulty: { type: 'string', enum: ['easy', 'medium', 'hard'] },
+      concept: { type: 'string' },
     },
   } } },
 }
@@ -570,10 +573,13 @@ function pickReviewSet(banked) {
     if (lastRating === 'medium') return 3
     return 4                                                    // easy / confident — last
   }
+  // Select by review priority, then present easy -> hard within the session.
+  const diffRank = { easy: 0, medium: 1, hard: 2 }
   return [...banked]
     .map(q => ({ q, p: priority(q), j: Math.random() }))
     .sort((a, b) => a.p - b.p || a.j - b.j)
     .slice(0, QUIZ_SESSION_SIZE)
+    .sort((a, b) => (diffRank[a.q.difficulty] ?? 1) - (diffRank[b.q.difficulty] ?? 1))
     .map(x => x.q)
 }
 // Records an attempt + optional confidence rating against a banked question.
@@ -2041,12 +2047,29 @@ function AdjustExplanation({ onAdjust }) {
 /* =========================================================================
    QUIZ TAB
    ========================================================================= */
-const QUIZ_PROMPT_SYSTEM = `You are a CCNA 200-301 quiz generator. Use the provided reference notes as your primary source; where the notes don't cover a detail needed for a good question, you may draw on accurate broader CCNA 200-301 knowledge as long as it stays consistent with the notes. Generate multiple-choice questions (4 choices each, exactly one correct) at CCNA exam difficulty.
+const QUIZ_PROMPT_SYSTEM = `You are a CCNA 200-301 quiz generator. Use the provided reference notes as your primary source; where the notes don't cover a detail needed for a good question, you may draw on accurate broader CCNA 200-301 knowledge consistent with the notes. Write questions at genuine CCNA exam difficulty.
 
-Respond with ONLY valid JSON (no markdown fences, no commentary), in this exact shape:
-{"questions":[{"question":"...","choices":["...","...","...","..."],"correctIndex":0,"explanation":"..."}]}
+Mix the question types across the set:
+- definition/recall (2-3): test knowing a fact or term
+- scenario-based (3-4): a short situation the learner must reason about
+- application (2-3): apply a concept to solve something
+- true-false on a common misconception (1-2): give exactly two choices ["True","False"]
 
-The explanation should be 1-2 sentences explaining why the correct answer is right.`
+Spread difficulty from easy to hard. Tag each question with its type, difficulty (easy/medium/hard), and the short sub-concept it tests. Each question's explanation should be 1-2 sentences on why the correct answer is right. Most questions have 4 choices; true-false questions have exactly 2.`
+
+// Small type + difficulty badges shown above a question (mixed-type quizzes).
+const TYPE_LABEL = { definition: 'Definition', scenario: 'Scenario', application: 'Application', 'true-false': 'True / False' }
+function QuestionMeta({ q }) {
+  if (!q || (!q.type && !q.difficulty)) return null
+  const dAccent = q.difficulty === 'hard' ? 'rose' : q.difficulty === 'medium' ? 'sky' : 'mint'
+  return (
+    <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
+      {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 10 }}>{q.difficulty.toUpperCase()}</span>}
+      {q.type && <span style={{ ...styles.pill('silver'), fontSize: 10 }}>{TYPE_LABEL[q.type] || q.type}</span>}
+      {q.concept && <span style={{ fontSize: 11, color: COLORS.silverMid, alignSelf: 'center' }}>{q.concept}</span>}
+    </div>
+  )
+}
 
 const CONFIDENCE_OPTIONS = [
   { value: 'easy', label: 'Easy', accent: COLORS.mint, dim: COLORS.mintDim, border: COLORS.mintBorder },
@@ -2217,6 +2240,7 @@ function QuizTab({ objective, onMissed, onScoreSaved }) {
       <div style={{ ...styles.small, marginBottom: 4 }}>Question {stats.total + 1}{queue.length > 0 ? ` · ${queue.length} remaining` : ''}</div>
       {sourceLabel && <div style={{ fontSize: 11, color: COLORS.silverMid, marginBottom: 8 }}>{sourceLabel}</div>}
       <div style={styles.card}>
+        <QuestionMeta q={current} />
         <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>{current.question}</div>
         {current.choices.map((choice, idx) => {
           let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
@@ -3269,6 +3293,7 @@ function ReviewSession({ onBack, onMissed, onDone }) {
       </div>
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
+        <QuestionMeta q={current} />
         <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>{current.question}</div>
         {current.choices.map((choice, idx) => {
           let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
