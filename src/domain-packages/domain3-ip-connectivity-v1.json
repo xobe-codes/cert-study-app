@@ -4,9 +4,9 @@
     "domainNumber": 3,
     "domainName": "IP Connectivity",
     "version": "1",
-    "compiledAt": "2026-06-12T20:27:45.980Z",
+    "compiledAt": "2026-06-12T20:39:58.444Z",
     "curatedObjectives": 2,
-    "labs": 0
+    "labs": 1
   },
   "sourceAudit": {
     "sources": {
@@ -1377,7 +1377,443 @@
       }
     }
   ],
-  "labs": [],
+  "labs": [
+    {
+      "lab": {
+        "id": "LAB-OSPF-SINGLE-AREA",
+        "title": "Configure Single-Area OSPFv2 Between Two Routers",
+        "domainId": "connectivity",
+        "objectiveId": "3.4",
+        "ckuIds": [
+          "CKU-OSPF",
+          "CKU-OSPF-NEIGHBOR",
+          "CKU-OSPF-COST"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 18,
+        "tools": [
+          "Packet Tracer",
+          "GNS3",
+          "CML"
+        ],
+        "examRelevance": "core",
+        "scenario": "R1 and R2 are connected via a point-to-point link and each have a LAN behind them. You will configure IP addressing, enable OSPFv2 in area 0 on both routers, and verify the neighbor adjacency forms and both LANs appear in each router's routing table.",
+        "learningGoals": [
+          "Configure interface IP addressing for a point-to-point link and a LAN.",
+          "Enable OSPFv2 with a router ID and area 0 network statements.",
+          "Verify OSPF neighbor adjacency (state FULL).",
+          "Verify OSPF routes appear in the routing table with AD 110."
+        ],
+        "topologyId": "TOPO-OSPF",
+        "prerequisites": [
+          "CKU-ROUTING-TABLE"
+        ],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Addressing on R1",
+            "device": "R1",
+            "instruction": "Configure R1: Gi0/0 = 10.0.12.1/30 (link to R2), Gi0/1 = 10.0.1.1/24 (LAN1). Bring both interfaces up.",
+            "expectedCommands": [
+              "interface gi0/0",
+              "ip address 10.0.12.1 255.255.255.252",
+              "no shutdown",
+              "interface gi0/1",
+              "ip address 10.0.1.1 255.255.255.0"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Addressing on R2",
+            "device": "R2",
+            "instruction": "Configure R2: Gi0/0 = 10.0.12.2/30 (link to R1), Gi0/1 = 10.0.2.1/24 (LAN2). Bring both interfaces up.",
+            "expectedCommands": [
+              "interface gi0/0",
+              "ip address 10.0.12.2 255.255.255.252",
+              "no shutdown",
+              "interface gi0/1",
+              "ip address 10.0.2.1 255.255.255.0"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Enable OSPF on R1",
+            "device": "R1",
+            "instruction": "Start OSPF process 1 with router-id 1.1.1.1, and advertise both R1 networks into area 0.",
+            "expectedCommands": [
+              "router ospf 1",
+              "router-id 1.1.1.1",
+              "network 10.0.12.0 0.0.0.3 area 0",
+              "network 10.0.1.0 0.0.0.255 area 0"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Enable OSPF on R2",
+            "device": "R2",
+            "instruction": "Start OSPF process 1 with router-id 2.2.2.2, and advertise both R2 networks into area 0.",
+            "expectedCommands": [
+              "router ospf 1",
+              "router-id 2.2.2.2",
+              "network 10.0.12.0 0.0.0.3 area 0",
+              "network 10.0.2.0 0.0.0.255 area 0"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Verify adjacency",
+            "device": "R1",
+            "instruction": "Confirm R1 and R2 have formed a FULL OSPF neighbor adjacency.",
+            "expectedCommands": [
+              "show ip ospf neighbor"
+            ]
+          },
+          {
+            "id": "t6",
+            "order": 6,
+            "title": "Verify routes",
+            "device": "R1",
+            "instruction": "Confirm R1's routing table contains an OSPF (O) route to R2's LAN (10.0.2.0/24).",
+            "expectedCommands": [
+              "show ip route ospf"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show ip ospf neighbor",
+          "show ip route ospf",
+          "show ip protocols",
+          "show ip ospf interface brief"
+        ],
+        "successCriteria": [
+          "show ip ospf neighbor shows R2 (or R1) in state FULL.",
+          "show ip route ospf on R1 shows O 10.0.2.0/24 via 10.0.12.2.",
+          "show ip route ospf on R2 shows O 10.0.1.0/24 via 10.0.12.1.",
+          "Routes show administrative distance 110 (O).",
+          "A PC on LAN1 can ping a PC on LAN2."
+        ],
+        "failureCriteria": [
+          "Mismatched area numbers on the two ends of a link → neighbors never form.",
+          "Wrong wildcard mask on the network statement → the link or LAN is not advertised.",
+          "Mismatched hello/dead timers → adjacency stuck in a non-FULL state.",
+          "Interface left administratively down (`shutdown`) → no adjacency at all."
+        ],
+        "commonMistakes": [
+          "Using a subnet mask instead of a wildcard mask in the `network` command.",
+          "Forgetting `no shutdown` on newly configured interfaces.",
+          "Putting the two ends of the same link in different OSPF areas.",
+          "Expecting routes to appear before the neighbor adjacency reaches FULL."
+        ],
+        "source": {
+          "name": "CCNA in 60 Days — Lab Workbook (Browning)",
+          "chapter": "OSPFv2 Single Area",
+          "confidence": 0.95
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.95
+        }
+      },
+      "topology": {
+        "id": "TOPO-OSPF",
+        "title": "Single-area OSPF topology",
+        "objectiveId": "3.4",
+        "nodes": [
+          {
+            "id": "lan1",
+            "label": "LAN1 10.0.1.0/24",
+            "type": "subnet",
+            "x": 8,
+            "y": 50
+          },
+          {
+            "id": "r1",
+            "label": "R1 (RID 1.1.1.1)",
+            "type": "router",
+            "x": 35,
+            "y": 50
+          },
+          {
+            "id": "link",
+            "label": "10.0.12.0/30 — Area 0",
+            "type": "process",
+            "x": 60,
+            "y": 30
+          },
+          {
+            "id": "r2",
+            "label": "R2 (RID 2.2.2.2)",
+            "type": "router",
+            "x": 85,
+            "y": 50
+          },
+          {
+            "id": "lan2",
+            "label": "LAN2 10.0.2.0/24",
+            "type": "subnet",
+            "x": 100,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "k1",
+            "source": "lan1",
+            "target": "r1",
+            "label": "Gi0/1"
+          },
+          {
+            "id": "k2",
+            "source": "r1",
+            "target": "r2",
+            "label": "Gi0/0 <-> Gi0/0",
+            "status": "forwarding"
+          },
+          {
+            "id": "k3",
+            "source": "r2",
+            "target": "lan2",
+            "label": "Gi0/1"
+          }
+        ],
+        "notes": [
+          "Both routers are in OSPF area 0 (single-area design).",
+          "Wildcard masks: /30 = 0.0.0.3, /24 = 0.0.0.255."
+        ]
+      },
+      "validator": {
+        "labId": "LAB-OSPF-SINGLE-AREA",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "ip address 10.0.12.1 255.255.255.252"
+          },
+          {
+            "device": "R1",
+            "command": "ip address 10.0.1.1 255.255.255.0"
+          },
+          {
+            "device": "R1",
+            "command": "router ospf 1"
+          },
+          {
+            "device": "R1",
+            "command": "network 10.0.12.0 0.0.0.3 area 0"
+          },
+          {
+            "device": "R1",
+            "command": "network 10.0.1.0 0.0.0.255 area 0"
+          },
+          {
+            "device": "R2",
+            "command": "ip address 10.0.12.2 255.255.255.252"
+          },
+          {
+            "device": "R2",
+            "command": "ip address 10.0.2.1 255.255.255.0"
+          },
+          {
+            "device": "R2",
+            "command": "router ospf 1"
+          },
+          {
+            "device": "R2",
+            "command": "network 10.0.12.0 0.0.0.3 area 0"
+          },
+          {
+            "device": "R2",
+            "command": "network 10.0.2.0 0.0.0.255 area 0"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show ip ospf neighbor",
+            "expectedResult": "Neighbor 2.2.2.2 in state FULL.",
+            "passCondition": "neighbor FULL"
+          },
+          {
+            "id": "v2",
+            "device": "R1",
+            "command": "show ip route ospf",
+            "expectedResult": "O 10.0.2.0/24 [110/...] via 10.0.12.2",
+            "passCondition": "OSPF route present"
+          },
+          {
+            "id": "v3",
+            "device": "R2",
+            "command": "show ip route ospf",
+            "expectedResult": "O 10.0.1.0/24 [110/...] via 10.0.12.1",
+            "passCondition": "OSPF route present"
+          }
+        ],
+        "failureChecks": [
+          {
+            "id": "f1",
+            "device": "R1",
+            "command": "show ip ospf neighbor",
+            "expectedFailure": "No neighbors listed",
+            "reason": "Mismatched area, wildcard mask, or a shutdown interface prevents the adjacency from forming."
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-OSPF-adjacency",
+        "title": "OSPF neighbor adjacency and route exchange",
+        "type": "process",
+        "ckuIds": [
+          "CKU-OSPF-NEIGHBOR",
+          "CKU-OSPF"
+        ],
+        "nodes": [
+          {
+            "id": "r1",
+            "label": "R1 — Down",
+            "type": "router",
+            "x": 18,
+            "y": 50
+          },
+          {
+            "id": "hello",
+            "label": "Hello (area, timers match)",
+            "type": "process",
+            "x": 50,
+            "y": 22,
+            "status": "highlighted"
+          },
+          {
+            "id": "lsdb",
+            "label": "Exchange LSDB → FULL",
+            "type": "process",
+            "x": 50,
+            "y": 78
+          },
+          {
+            "id": "r2",
+            "label": "R2 — Down",
+            "type": "router",
+            "x": 82,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "r1",
+            "target": "hello",
+            "status": "forwarding"
+          },
+          {
+            "id": "d2",
+            "source": "hello",
+            "target": "r2"
+          },
+          {
+            "id": "d3",
+            "source": "r2",
+            "target": "lsdb"
+          },
+          {
+            "id": "d4",
+            "source": "lsdb",
+            "target": "r1",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": [
+          "Both routers must agree on area, subnet/mask, and hello/dead timers to become neighbors.",
+          "After LSDB exchange, the adjacency reaches FULL and SPF computes routes."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "CCNA in 60 Days — Lab Workbook (Browning)",
+            "chapter": "OSPF Adjacency",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-OSPF-adjacency",
+          "title": "Forming an OSPF adjacency",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ],
+          "diagramId": "DIAG-OSPF-adjacency",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Hello",
+              "action": "R1 and R2 send Hello packets out the shared link.",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Parameter check",
+              "action": "Each checks the other's area ID, subnet/mask, and hello/dead timers match.",
+              "successState": "matched"
+            },
+            {
+              "id": "s3",
+              "order": 3,
+              "title": "Database exchange",
+              "action": "Routers exchange link-state databases (LSDB).",
+              "successState": "learned"
+            },
+            {
+              "id": "s4",
+              "order": 4,
+              "title": "FULL",
+              "action": "Adjacency reaches FULL; SPF runs and routes are installed.",
+              "successState": "matched"
+            }
+          ]
+        },
+        {
+          "id": "FLOW-OSPF-route",
+          "title": "Reaching the remote LAN",
+          "ckuIds": [
+            "CKU-OSPF",
+            "CKU-OSPF-COST"
+          ],
+          "diagramId": "DIAG-OSPF-adjacency",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "LSA advertised",
+              "action": "R2 advertises 10.0.2.0/24 via an LSA.",
+              "successState": "learned"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "SPF run",
+              "action": "R1 runs SPF and computes the lowest-cost path to 10.0.2.0/24 via R2.",
+              "successState": "matched"
+            },
+            {
+              "id": "s3",
+              "order": 3,
+              "title": "Route installed",
+              "action": "R1 installs O 10.0.2.0/24 [110/cost] via 10.0.12.2.",
+              "successState": "forwarded"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "counts": {
     "ckus": 7,
     "questions": 21,
@@ -1387,6 +1823,6 @@
     "mnemonics": 4,
     "examTraps": 7,
     "misconceptions": 5,
-    "labs": 0
+    "labs": 1
   }
 }

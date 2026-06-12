@@ -4,9 +4,9 @@
     "domainNumber": 4,
     "domainName": "IP Services",
     "version": "1",
-    "compiledAt": "2026-06-12T20:27:45.981Z",
+    "compiledAt": "2026-06-12T20:39:58.445Z",
     "curatedObjectives": 1,
-    "labs": 0
+    "labs": 1
   },
   "sourceAudit": {
     "sources": {
@@ -565,7 +565,347 @@
       }
     }
   ],
-  "labs": [],
+  "labs": [
+    {
+      "lab": {
+        "id": "LAB-NAT-PAT",
+        "title": "Configure NAT Overload (PAT) for Internet Access",
+        "domainId": "services",
+        "objectiveId": "4.1",
+        "ckuIds": [
+          "CKU-NAT",
+          "CKU-PAT",
+          "CKU-NAT-TERMS"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 15,
+        "tools": [
+          "Packet Tracer",
+          "GNS3",
+          "CML"
+        ],
+        "examRelevance": "core",
+        "scenario": "R1 connects a private LAN (192.168.1.0/24) to the internet via its Gi0/0 outside interface (203.0.113.1/30). You will mark the inside/outside interfaces, define which inside addresses are allowed to be translated, and configure PAT so every inside host shares the single outside IP.",
+        "learningGoals": [
+          "Mark interfaces as NAT inside vs outside.",
+          "Write a standard ACL describing the inside addresses to translate.",
+          "Configure NAT overload (PAT) referencing the ACL and outside interface.",
+          "Verify active translations with show ip nat translations."
+        ],
+        "topologyId": "TOPO-NAT",
+        "prerequisites": [
+          "CKU-PRIVATE-IPV4"
+        ],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Addressing",
+            "device": "R1",
+            "instruction": "Configure Gi0/1 (inside) = 192.168.1.1/24 and Gi0/0 (outside) = 203.0.113.1/30. Bring both up.",
+            "expectedCommands": [
+              "interface gi0/1",
+              "ip address 192.168.1.1 255.255.255.0",
+              "no shutdown",
+              "interface gi0/0",
+              "ip address 203.0.113.1 255.255.255.252"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Mark inside/outside",
+            "device": "R1",
+            "instruction": "Mark Gi0/1 as the NAT inside interface and Gi0/0 as the NAT outside interface.",
+            "expectedCommands": [
+              "interface gi0/1",
+              "ip nat inside",
+              "interface gi0/0",
+              "ip nat outside"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Define inside addresses",
+            "device": "R1",
+            "instruction": "Create standard ACL 1 permitting the 192.168.1.0/24 network — this defines which addresses get translated.",
+            "expectedCommands": [
+              "access-list 1 permit 192.168.1.0 0.0.0.255"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Enable PAT",
+            "device": "R1",
+            "instruction": "Configure NAT overload (PAT) so ACL 1 traffic is translated to the Gi0/0 outside IP with port-level multiplexing.",
+            "expectedCommands": [
+              "ip nat inside source list 1 interface gi0/0 overload"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Generate and verify traffic",
+            "device": "PC1",
+            "instruction": "From an inside host (192.168.1.10), ping an outside address, then verify the translation table on R1.",
+            "expectedCommands": [
+              "ping 198.51.100.1"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show ip nat translations",
+          "show ip nat statistics",
+          "show running-config | include nat"
+        ],
+        "successCriteria": [
+          "show ip nat translations shows 192.168.1.10:xxxxx translated to 203.0.113.1:xxxxx after the ping.",
+          "The outside host receives traffic only from 203.0.113.1 — never sees the 192.168.1.x address.",
+          "Multiple inside hosts can be active at once, each using a different source port on 203.0.113.1.",
+          "show ip nat statistics shows hits incrementing for the overload translation."
+        ],
+        "failureCriteria": [
+          "ACL written too narrow (e.g. host instead of /24) → only one inside host can be translated.",
+          "Interfaces not marked inside/outside → \"translation failed\" — no inside/outside interfaces.",
+          "Using `ip nat inside source static` instead of `list ... overload` → only one-to-one mapping, no port sharing.",
+          "ACL with an implicit deny that blocks the real inside subnet → traffic not translated, dropped outbound."
+        ],
+        "commonMistakes": [
+          "Forgetting `overload`, which limits NAT to one inside host per outside IP (no PAT).",
+          "Marking both interfaces as \"inside\" or both as \"outside\".",
+          "Writing the ACL wildcard mask backwards (e.g. 255.255.255.0 instead of 0.0.0.255).",
+          "Expecting `show ip nat translations` to show entries before any traffic has been sent."
+        ],
+        "source": {
+          "name": "CCNA in 60 Days — Lab Workbook (Browning)",
+          "chapter": "NAT Overload (PAT)",
+          "confidence": 0.95
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.95
+        }
+      },
+      "topology": {
+        "id": "TOPO-NAT",
+        "title": "PAT topology",
+        "objectiveId": "4.1",
+        "nodes": [
+          {
+            "id": "pc1",
+            "label": "PC1 192.168.1.10",
+            "type": "pc",
+            "x": 10,
+            "y": 50
+          },
+          {
+            "id": "r1",
+            "label": "R1 — NAT overload",
+            "type": "router",
+            "x": 45,
+            "y": 50,
+            "status": "highlighted"
+          },
+          {
+            "id": "isp",
+            "label": "ISP 198.51.100.1",
+            "type": "server",
+            "x": 85,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "k1",
+            "source": "pc1",
+            "target": "r1",
+            "label": "Gi0/1 inside 192.168.1.1/24"
+          },
+          {
+            "id": "k2",
+            "source": "r1",
+            "target": "isp",
+            "label": "Gi0/0 outside 203.0.113.1/30",
+            "status": "forwarding"
+          }
+        ],
+        "notes": [
+          "All inside hosts share the single outside address 203.0.113.1, distinguished by source port."
+        ]
+      },
+      "validator": {
+        "labId": "LAB-NAT-PAT",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "ip address 192.168.1.1 255.255.255.0"
+          },
+          {
+            "device": "R1",
+            "command": "ip address 203.0.113.1 255.255.255.252"
+          },
+          {
+            "device": "R1",
+            "command": "ip nat inside"
+          },
+          {
+            "device": "R1",
+            "command": "ip nat outside"
+          },
+          {
+            "device": "R1",
+            "command": "access-list 1 permit 192.168.1.0 0.0.0.255"
+          },
+          {
+            "device": "R1",
+            "command": "ip nat inside source list 1 interface gi0/0 overload"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show ip nat translations",
+            "expectedResult": "192.168.1.10:xxxxx <-> 203.0.113.1:xxxxx entry appears after traffic.",
+            "passCondition": "translation present"
+          },
+          {
+            "id": "v2",
+            "device": "R1",
+            "command": "show ip nat statistics",
+            "expectedResult": "Hits counter > 0 for the dynamic overload translation.",
+            "passCondition": "hits > 0"
+          }
+        ],
+        "failureChecks": [
+          {
+            "id": "f1",
+            "device": "R1",
+            "command": "show ip nat translations",
+            "expectedFailure": "No entries after a ping from PC1",
+            "reason": "Missing `ip nat inside`/`outside` markers or a too-narrow ACL prevents translation."
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-NAT-pat",
+        "title": "PAT translation table",
+        "type": "process",
+        "ckuIds": [
+          "CKU-PAT",
+          "CKU-NAT-TERMS"
+        ],
+        "nodes": [
+          {
+            "id": "pc1",
+            "label": "Inside local 192.168.1.10:1500",
+            "type": "pc",
+            "x": 12,
+            "y": 30
+          },
+          {
+            "id": "pc2",
+            "label": "Inside local 192.168.1.11:1500",
+            "type": "pc",
+            "x": 12,
+            "y": 75
+          },
+          {
+            "id": "nat",
+            "label": "R1 PAT table",
+            "type": "router",
+            "x": 50,
+            "y": 50,
+            "status": "highlighted"
+          },
+          {
+            "id": "isp",
+            "label": "Inside global 203.0.113.1",
+            "type": "server",
+            "x": 88,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "pc1",
+            "target": "nat",
+            "label": ":1500 -> :40001",
+            "status": "forwarding"
+          },
+          {
+            "id": "d2",
+            "source": "pc2",
+            "target": "nat",
+            "label": ":1500 -> :40002",
+            "status": "forwarding"
+          },
+          {
+            "id": "d3",
+            "source": "nat",
+            "target": "isp",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": [
+          "Both hosts share 203.0.113.1, distinguished by source port.",
+          "Inside local -> inside global translation tracked per port."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "CCNA in 60 Days — Lab Workbook (Browning)",
+            "chapter": "PAT",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-NAT-pat",
+          "title": "PAT translation",
+          "ckuIds": [
+            "CKU-PAT"
+          ],
+          "diagramId": "DIAG-NAT-pat",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Packet out",
+              "action": "PC1 sends to 198.51.100.1 with source 192.168.1.10:1500.",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Translate",
+              "action": "R1 rewrites the source to 203.0.113.1:40001 and records the mapping.",
+              "successState": "modified"
+            },
+            {
+              "id": "s3",
+              "order": 3,
+              "title": "Reply",
+              "action": "The ISP host replies to 203.0.113.1:40001.",
+              "successState": "matched"
+            },
+            {
+              "id": "s4",
+              "order": 4,
+              "title": "Reverse",
+              "action": "R1 maps the reply back to 192.168.1.10:1500 and forwards it to PC1.",
+              "successState": "forwarded"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "counts": {
     "ckus": 3,
     "questions": 8,
@@ -575,6 +915,6 @@
     "mnemonics": 1,
     "examTraps": 3,
     "misconceptions": 2,
-    "labs": 0
+    "labs": 1
   }
 }

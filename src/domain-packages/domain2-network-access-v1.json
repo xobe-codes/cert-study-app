@@ -4,9 +4,9 @@
     "domainNumber": 2,
     "domainName": "Network Access",
     "version": "1",
-    "compiledAt": "2026-06-12T20:27:45.979Z",
+    "compiledAt": "2026-06-12T20:39:58.442Z",
     "curatedObjectives": 3,
-    "labs": 0
+    "labs": 1
   },
   "sourceAudit": {
     "sources": {
@@ -1654,7 +1654,462 @@
       }
     }
   ],
-  "labs": [],
+  "labs": [
+    {
+      "lab": {
+        "id": "LAB-VLAN-TRUNK",
+        "title": "Configure VLANs, Access Ports, and an 802.1Q Trunk",
+        "domainId": "access",
+        "objectiveId": "2.1",
+        "ckuIds": [
+          "CKU-VLAN",
+          "CKU-ACCESS-PORT",
+          "CKU-TRUNKING",
+          "CKU-NATIVE-VLAN"
+        ],
+        "labType": "guided",
+        "difficulty": "beginner",
+        "estimatedTimeMinutes": 15,
+        "tools": [
+          "Packet Tracer",
+          "GNS3",
+          "CML"
+        ],
+        "examRelevance": "core",
+        "scenario": "SW1 and SW2 each host PCs in two departments — Sales (VLAN 10) and Engineering (VLAN 20). You will create both VLANs on each switch, assign access ports, and configure the link between SW1 and SW2 as an 802.1Q trunk so VLAN 10 and 20 traffic can both cross between switches.",
+        "learningGoals": [
+          "Create VLANs and assign descriptive names.",
+          "Assign access ports to the correct VLAN with switchport mode access.",
+          "Configure a trunk port and verify the native VLAN matches on both ends.",
+          "Verify VLAN membership and trunk status."
+        ],
+        "topologyId": "TOPO-VLAN-TRUNK",
+        "prerequisites": [
+          "CKU-MAC-ADDRESS-TABLE"
+        ],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Create VLANs on SW1",
+            "device": "SW1",
+            "instruction": "Create VLAN 10 (name Sales) and VLAN 20 (name Engineering) on SW1.",
+            "expectedCommands": [
+              "vlan 10",
+              "name Sales",
+              "vlan 20",
+              "name Engineering"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Create VLANs on SW2",
+            "device": "SW2",
+            "instruction": "Create the same two VLANs (10 Sales, 20 Engineering) on SW2.",
+            "expectedCommands": [
+              "vlan 10",
+              "name Sales",
+              "vlan 20",
+              "name Engineering"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Assign access ports on SW1",
+            "device": "SW1",
+            "instruction": "Set Gi0/1 as an access port in VLAN 10 (PC1) and Gi0/2 as an access port in VLAN 20 (PC2).",
+            "expectedCommands": [
+              "interface gi0/1",
+              "switchport mode access",
+              "switchport access vlan 10",
+              "interface gi0/2",
+              "switchport access vlan 20"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Assign access port on SW2",
+            "device": "SW2",
+            "instruction": "Set Gi0/1 as an access port in VLAN 10 (PC3).",
+            "expectedCommands": [
+              "interface gi0/1",
+              "switchport mode access",
+              "switchport access vlan 10"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Configure the trunk on SW1",
+            "device": "SW1",
+            "instruction": "Configure Gi0/3 (link to SW2) as an 802.1Q trunk carrying VLANs 10 and 20, with the default native VLAN 1.",
+            "expectedCommands": [
+              "interface gi0/3",
+              "switchport trunk encapsulation dot1q",
+              "switchport mode trunk",
+              "switchport trunk allowed vlan 10,20"
+            ]
+          },
+          {
+            "id": "t6",
+            "order": 6,
+            "title": "Configure the trunk on SW2",
+            "device": "SW2",
+            "instruction": "Configure Gi0/3 (link to SW1) as a matching 802.1Q trunk carrying VLANs 10 and 20.",
+            "expectedCommands": [
+              "interface gi0/3",
+              "switchport trunk encapsulation dot1q",
+              "switchport mode trunk",
+              "switchport trunk allowed vlan 10,20"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show vlan brief",
+          "show interfaces trunk",
+          "show interfaces gi0/3 switchport"
+        ],
+        "successCriteria": [
+          "show vlan brief lists VLAN 10 (Sales) and VLAN 20 (Engineering) with the correct access ports.",
+          "show interfaces trunk shows Gi0/3 as a trunk on both switches, allowing VLANs 10 and 20.",
+          "PC1 (VLAN 10 on SW1) can ping PC3 (VLAN 10 on SW2) across the trunk.",
+          "The native VLAN (1) matches on both ends of the trunk — no mismatch warning."
+        ],
+        "failureCriteria": [
+          "Forgetting to add the VLAN to the trunk allowed list → that VLAN's traffic is dropped at the trunk.",
+          "Mismatched native VLANs on the two trunk ports → native VLAN mismatch error/log.",
+          "Leaving Gi0/3 in access mode → only one VLAN crosses, others are blocked.",
+          "Assigning an access port to a VLAN that was never created → port goes into an inactive VLAN."
+        ],
+        "commonMistakes": [
+          "Typing `switchport access vlan 10` without first creating VLAN 10 — works, but the VLAN shows as \"inactive\" until created.",
+          "Forgetting `switchport trunk encapsulation dot1q` on switches that support multiple encapsulations (ISL legacy).",
+          "Leaving the allowed-VLAN list at its default (all VLANs) when the design calls for restricting it.",
+          "Mismatching the native VLAN between the two ends of a trunk."
+        ],
+        "source": {
+          "name": "CCNA in 60 Days — Lab Workbook (Browning)",
+          "chapter": "VLANs and Trunking",
+          "confidence": 0.95
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.95
+        }
+      },
+      "topology": {
+        "id": "TOPO-VLAN-TRUNK",
+        "title": "VLAN + trunk topology",
+        "objectiveId": "2.1",
+        "nodes": [
+          {
+            "id": "pc1",
+            "label": "PC1 (VLAN 10)",
+            "type": "pc",
+            "x": 10,
+            "y": 25
+          },
+          {
+            "id": "pc2",
+            "label": "PC2 (VLAN 20)",
+            "type": "pc",
+            "x": 10,
+            "y": 75
+          },
+          {
+            "id": "sw1",
+            "label": "SW1",
+            "type": "switch",
+            "x": 38,
+            "y": 50
+          },
+          {
+            "id": "sw2",
+            "label": "SW2",
+            "type": "switch",
+            "x": 72,
+            "y": 50
+          },
+          {
+            "id": "pc3",
+            "label": "PC3 (VLAN 10)",
+            "type": "pc",
+            "x": 95,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "k1",
+            "source": "pc1",
+            "target": "sw1",
+            "label": "Gi0/1 access VLAN 10"
+          },
+          {
+            "id": "k2",
+            "source": "pc2",
+            "target": "sw1",
+            "label": "Gi0/2 access VLAN 20"
+          },
+          {
+            "id": "k3",
+            "source": "sw1",
+            "target": "sw2",
+            "label": "Gi0/3 trunk (10,20)",
+            "linkType": "trunk",
+            "status": "forwarding"
+          },
+          {
+            "id": "k4",
+            "source": "sw2",
+            "target": "pc3",
+            "label": "Gi0/1 access VLAN 10"
+          }
+        ],
+        "notes": [
+          "VLAN 10 = Sales, VLAN 20 = Engineering.",
+          "Only the trunk (Gi0/3 on each switch) carries tagged frames."
+        ]
+      },
+      "validator": {
+        "labId": "LAB-VLAN-TRUNK",
+        "requiredCommands": [
+          {
+            "device": "SW1",
+            "command": "vlan 10"
+          },
+          {
+            "device": "SW1",
+            "command": "vlan 20"
+          },
+          {
+            "device": "SW1",
+            "command": "switchport access vlan 10"
+          },
+          {
+            "device": "SW1",
+            "command": "switchport access vlan 20"
+          },
+          {
+            "device": "SW1",
+            "command": "switchport mode trunk"
+          },
+          {
+            "device": "SW1",
+            "command": "switchport trunk allowed vlan 10,20"
+          },
+          {
+            "device": "SW2",
+            "command": "vlan 10"
+          },
+          {
+            "device": "SW2",
+            "command": "switchport access vlan 10"
+          },
+          {
+            "device": "SW2",
+            "command": "switchport mode trunk"
+          },
+          {
+            "device": "SW2",
+            "command": "switchport trunk allowed vlan 10,20"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "SW1",
+            "command": "show vlan brief",
+            "expectedResult": "VLAN 10 (Sales) and VLAN 20 (Engineering) listed with Gi0/1 and Gi0/2 respectively.",
+            "passCondition": "VLANs active with correct ports"
+          },
+          {
+            "id": "v2",
+            "device": "SW1",
+            "command": "show interfaces trunk",
+            "expectedResult": "Gi0/3 listed as a trunk, allowed VLANs 10,20.",
+            "passCondition": "trunk active"
+          },
+          {
+            "id": "v3",
+            "device": "PC1",
+            "command": "ping <PC3-IP>",
+            "expectedResult": "Ping succeeds — both in VLAN 10, reachable across the trunk.",
+            "passCondition": "ping success"
+          }
+        ],
+        "failureChecks": [
+          {
+            "id": "f1",
+            "device": "SW1",
+            "command": "show interfaces trunk",
+            "expectedFailure": "VLAN 20 missing from the allowed list",
+            "reason": "If `switchport trunk allowed vlan` excludes 20, VLAN 20 traffic cannot cross the trunk."
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-VLAN-TRUNK",
+        "title": "Tagged vs untagged frames across the trunk",
+        "type": "topology",
+        "ckuIds": [
+          "CKU-TRUNKING",
+          "CKU-NATIVE-VLAN"
+        ],
+        "nodes": [
+          {
+            "id": "pc1",
+            "label": "PC1 (VLAN 10)",
+            "type": "pc",
+            "x": 10,
+            "y": 30
+          },
+          {
+            "id": "sw1",
+            "label": "SW1",
+            "type": "switch",
+            "x": 38,
+            "y": 50
+          },
+          {
+            "id": "trunk",
+            "label": "802.1Q trunk — tag VLAN 10",
+            "type": "process",
+            "x": 55,
+            "y": 50,
+            "status": "highlighted"
+          },
+          {
+            "id": "sw2",
+            "label": "SW2",
+            "type": "switch",
+            "x": 72,
+            "y": 50
+          },
+          {
+            "id": "pc3",
+            "label": "PC3 (VLAN 10)",
+            "type": "pc",
+            "x": 95,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "pc1",
+            "target": "sw1",
+            "label": "untagged"
+          },
+          {
+            "id": "d2",
+            "source": "sw1",
+            "target": "trunk",
+            "status": "forwarding"
+          },
+          {
+            "id": "d3",
+            "source": "trunk",
+            "target": "sw2",
+            "status": "forwarding"
+          },
+          {
+            "id": "d4",
+            "source": "sw2",
+            "target": "pc3",
+            "label": "untagged"
+          }
+        ],
+        "annotations": [
+          "SW1 adds an 802.1Q tag (VLAN 10) before sending the frame across the trunk.",
+          "SW2 strips the tag before delivering the frame to PC3, which never sees tags."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "CCNA in 60 Days — Lab Workbook (Browning)",
+            "chapter": "Trunking",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-VLAN-TRUNK-same",
+          "title": "Same-VLAN frame crosses the trunk",
+          "ckuIds": [
+            "CKU-VLAN",
+            "CKU-TRUNKING"
+          ],
+          "diagramId": "DIAG-VLAN-TRUNK",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Frame from PC1",
+              "action": "PC1 (VLAN 10) sends an untagged frame to SW1.",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Tag added",
+              "action": "SW1 tags the frame with VLAN 10 and sends it out the Gi0/3 trunk.",
+              "successState": "modified"
+            },
+            {
+              "id": "s3",
+              "order": 3,
+              "title": "Tag read",
+              "action": "SW2 reads the VLAN 10 tag and looks up its VLAN 10 MAC table.",
+              "successState": "matched"
+            },
+            {
+              "id": "s4",
+              "order": 4,
+              "title": "Untagged to PC3",
+              "action": "SW2 strips the tag and forwards the untagged frame out the Gi0/1 access port to PC3.",
+              "successState": "forwarded"
+            }
+          ]
+        },
+        {
+          "id": "FLOW-VLAN-TRUNK-blocked",
+          "title": "VLAN not in the allowed list is dropped",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ],
+          "diagramId": "DIAG-VLAN-TRUNK",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Frame from VLAN 20",
+              "action": "PC2 (VLAN 20) sends a frame to SW1.",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Tag added",
+              "action": "SW1 tags it VLAN 20.",
+              "successState": "modified"
+            },
+            {
+              "id": "s3",
+              "order": 3,
+              "title": "Allowed-list check",
+              "action": "If VLAN 20 is not in `switchport trunk allowed vlan` on Gi0/3, the frame is dropped at the trunk.",
+              "successState": "dropped"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "counts": {
     "ckus": 9,
     "questions": 24,
@@ -1664,6 +2119,6 @@
     "mnemonics": 3,
     "examTraps": 9,
     "misconceptions": 6,
-    "labs": 0
+    "labs": 1
   }
 }
