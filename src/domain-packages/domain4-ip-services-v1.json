@@ -4,9 +4,9 @@
     "domainNumber": 4,
     "domainName": "IP Services",
     "version": "1",
-    "compiledAt": "2026-06-12T20:39:58.445Z",
+    "compiledAt": "2026-06-12T20:46:58.684Z",
     "curatedObjectives": 1,
-    "labs": 1
+    "labs": 2
   },
   "sourceAudit": {
     "sources": {
@@ -904,6 +904,370 @@
           ]
         }
       ]
+    },
+    {
+      "lab": {
+        "id": "LAB-SSH-ACCESS",
+        "title": "Configure SSH for Secure Remote Device Access",
+        "domainId": "services",
+        "objectiveId": "4.8",
+        "ckuIds": [
+          "CKU-SSH",
+          "CKU-VTY-ACCESS",
+          "CKU-LOCAL-AUTH"
+        ],
+        "labType": "guided",
+        "difficulty": "beginner",
+        "estimatedTimeMinutes": 12,
+        "tools": [
+          "Packet Tracer",
+          "GNS3",
+          "CML"
+        ],
+        "examRelevance": "core",
+        "scenario": "R1 is currently only manageable via the console. You will configure a hostname and domain name (required for RSA key generation), generate an SSH key pair, create a local administrator account, and restrict the VTY lines to SSH-only with local login — then verify an admin PC can SSH in but Telnet is refused.",
+        "learningGoals": [
+          "Explain why a hostname and domain name are prerequisites for `crypto key generate rsa`.",
+          "Generate an RSA key pair to enable SSH.",
+          "Create a local user account and require local authentication on the VTY lines.",
+          "Restrict VTY access to SSH only (`transport input ssh`)."
+        ],
+        "topologyId": "TOPO-SSH",
+        "prerequisites": [
+          "CKU-ROUTING-TABLE"
+        ],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Hostname and domain",
+            "device": "R1",
+            "instruction": "Set the hostname to R1 and the domain name to ccna.local (required before generating RSA keys).",
+            "expectedCommands": [
+              "hostname R1",
+              "ip domain-name ccna.local"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Generate RSA keys",
+            "device": "R1",
+            "instruction": "Generate a 1024-bit RSA key pair, which automatically enables SSH.",
+            "expectedCommands": [
+              "crypto key generate rsa"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Local admin account",
+            "device": "R1",
+            "instruction": "Create a local user \"admin\" with privilege level 15 and a secret password.",
+            "expectedCommands": [
+              "username admin privilege 15 secret",
+              "enable secret"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Restrict VTY to SSH",
+            "device": "R1",
+            "instruction": "On the VTY lines (0 4), require local login and restrict the transport protocol to SSH only.",
+            "expectedCommands": [
+              "line vty 0 4",
+              "login local",
+              "transport input ssh"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Verify from the admin PC",
+            "device": "PC1",
+            "instruction": "SSH to R1 using the admin account, and confirm Telnet is refused.",
+            "expectedCommands": [
+              "ssh -l admin 192.168.1.1"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show ip ssh",
+          "show running-config | section line vty",
+          "show users"
+        ],
+        "successCriteria": [
+          "show ip ssh shows SSH enabled (version 1.99 or 2) with an active RSA key.",
+          "PC1 can SSH to R1 and authenticate with the local admin account.",
+          "Attempting Telnet to R1 from PC1 is refused (transport input ssh only).",
+          "show running-config | section line vty shows `login local` and `transport input ssh`."
+        ],
+        "failureCriteria": [
+          "No domain name set before `crypto key generate rsa` → the command is rejected (no keys generated, SSH stays disabled).",
+          "VTY lines left at `login` (no `local`) with no password set → access denied or \"password required but none set\" error.",
+          "`transport input` left at default (all/telnet) → Telnet still works, defeating the purpose.",
+          "Local user created without `privilege 15` → user can log in but cannot reach privileged EXEC without the enable secret."
+        ],
+        "commonMistakes": [
+          "Forgetting `ip domain-name` before generating RSA keys — the crypto command silently fails without it.",
+          "Using `login` instead of `login local` on the VTY lines — `login` alone expects a line password, not a username/password.",
+          "Leaving `transport input telnet ssh` (the default) instead of restricting to `ssh` only.",
+          "Setting the user password with `password` instead of `secret` — `secret` is hashed, `password` is reversible."
+        ],
+        "source": {
+          "name": "CCNA in 60 Days — Lab Workbook (Browning)",
+          "chapter": "Securing Remote Access with SSH",
+          "confidence": 0.95
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.95
+        }
+      },
+      "topology": {
+        "id": "TOPO-SSH",
+        "title": "SSH management topology",
+        "objectiveId": "4.8",
+        "nodes": [
+          {
+            "id": "pc1",
+            "label": "Admin PC 192.168.1.10",
+            "type": "pc",
+            "x": 12,
+            "y": 50
+          },
+          {
+            "id": "r1",
+            "label": "R1 192.168.1.1 — SSH only",
+            "type": "router",
+            "x": 60,
+            "y": 50,
+            "status": "highlighted"
+          }
+        ],
+        "links": [
+          {
+            "id": "k1",
+            "source": "pc1",
+            "target": "r1",
+            "label": "SSH (TCP/22) allowed, Telnet (TCP/23) refused",
+            "status": "forwarding"
+          }
+        ],
+        "notes": [
+          "VTY 0 4 configured with `login local` + `transport input ssh`."
+        ]
+      },
+      "validator": {
+        "labId": "LAB-SSH-ACCESS",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "hostname R1"
+          },
+          {
+            "device": "R1",
+            "command": "ip domain-name ccna.local"
+          },
+          {
+            "device": "R1",
+            "command": "crypto key generate rsa"
+          },
+          {
+            "device": "R1",
+            "command": "username admin privilege 15 secret"
+          },
+          {
+            "device": "R1",
+            "command": "line vty 0 4"
+          },
+          {
+            "device": "R1",
+            "command": "login local"
+          },
+          {
+            "device": "R1",
+            "command": "transport input ssh"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show ip ssh",
+            "expectedResult": "SSH enabled, RSA key present.",
+            "passCondition": "ssh enabled"
+          },
+          {
+            "id": "v2",
+            "device": "PC1",
+            "command": "ssh -l admin 192.168.1.1",
+            "expectedResult": "SSH session opens, prompts for the admin secret.",
+            "passCondition": "ssh connects"
+          }
+        ],
+        "failureChecks": [
+          {
+            "id": "f1",
+            "device": "PC1",
+            "command": "telnet 192.168.1.1",
+            "expectedFailure": "Connection refused",
+            "reason": "`transport input ssh` removes Telnet access on the VTY lines."
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-SSH-vty",
+        "title": "SSH allowed, Telnet refused on VTY",
+        "type": "process",
+        "ckuIds": [
+          "CKU-SSH",
+          "CKU-VTY-ACCESS"
+        ],
+        "nodes": [
+          {
+            "id": "pc1",
+            "label": "Admin PC",
+            "type": "pc",
+            "x": 12,
+            "y": 50
+          },
+          {
+            "id": "ssh",
+            "label": "SSH TCP/22 -> allowed",
+            "type": "process",
+            "x": 50,
+            "y": 25,
+            "status": "highlighted"
+          },
+          {
+            "id": "telnet",
+            "label": "Telnet TCP/23 -> refused",
+            "type": "process",
+            "x": 50,
+            "y": 75,
+            "status": "error"
+          },
+          {
+            "id": "r1",
+            "label": "R1 VTY 0 4",
+            "type": "router",
+            "x": 85,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "pc1",
+            "target": "ssh",
+            "status": "forwarding"
+          },
+          {
+            "id": "d2",
+            "source": "ssh",
+            "target": "r1",
+            "status": "forwarding"
+          },
+          {
+            "id": "d3",
+            "source": "pc1",
+            "target": "telnet",
+            "status": "dropped"
+          },
+          {
+            "id": "d4",
+            "source": "telnet",
+            "target": "r1",
+            "status": "dropped"
+          }
+        ],
+        "annotations": [
+          "`transport input ssh` on VTY 0 4 permits only SSH.",
+          "`login local` requires the locally configured username/secret."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "CCNA in 60 Days — Lab Workbook (Browning)",
+            "chapter": "SSH Access",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-SSH-connect",
+          "title": "Admin connects via SSH",
+          "ckuIds": [
+            "CKU-SSH",
+            "CKU-LOCAL-AUTH"
+          ],
+          "diagramId": "DIAG-SSH-vty",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "SSH request",
+              "action": "PC1 opens an SSH session to R1 on TCP/22.",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "VTY accepts",
+              "action": "VTY 0 4 has `transport input ssh` — the SSH session is accepted.",
+              "successState": "matched"
+            },
+            {
+              "id": "s3",
+              "order": 3,
+              "title": "Local login",
+              "action": "`login local` prompts for the admin username/secret and authenticates against the local database.",
+              "successState": "matched"
+            },
+            {
+              "id": "s4",
+              "order": 4,
+              "title": "Privileged access",
+              "action": "Because admin has privilege 15, the session starts in privileged EXEC.",
+              "successState": "forwarded"
+            }
+          ]
+        },
+        {
+          "id": "FLOW-SSH-telnet-blocked",
+          "title": "Telnet attempt is refused",
+          "ckuIds": [
+            "CKU-VTY-ACCESS"
+          ],
+          "diagramId": "DIAG-SSH-vty",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Telnet request",
+              "action": "PC1 attempts a Telnet session to R1 on TCP/23.",
+              "successState": "failed"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Transport check",
+              "action": "VTY 0 4 only allows `transport input ssh` — Telnet (TCP/23) is not permitted.",
+              "successState": "dropped"
+            },
+            {
+              "id": "s3",
+              "order": 3,
+              "title": "Connection refused",
+              "action": "The router refuses the Telnet connection.",
+              "successState": "dropped"
+            }
+          ]
+        }
+      ]
     }
   ],
   "counts": {
@@ -915,6 +1279,6 @@
     "mnemonics": 1,
     "examTraps": 3,
     "misconceptions": 2,
-    "labs": 1
+    "labs": 2
   }
 }

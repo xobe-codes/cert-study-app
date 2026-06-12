@@ -619,9 +619,300 @@ const FLOWS_NAT = [
 const NAT = { lab: LAB_NAT, topology: TOPO_NAT, validator: VALIDATOR_NAT, diagram: DIAGRAM_NAT, packetFlows: FLOWS_NAT }
 
 /* -------------------------------------------------------------------------
+   LAB: Static Routing with a Floating Static Backup Route
+   Maps to Domain 3.0 / Objective 3.3 (static routing).
+   ------------------------------------------------------------------------- */
+const LAB_STATIC = {
+  id: 'LAB-STATIC-FLOATING',
+  title: 'Configure Static Routes with a Floating Static Backup',
+  domainId: 'connectivity',
+  objectiveId: '3.3',
+  ckuIds: ['CKU-STATIC-ROUTE', 'CKU-FLOATING-STATIC', 'CKU-DEFAULT-ROUTE'],
+  labType: 'guided',
+  difficulty: 'intermediate',
+  estimatedTimeMinutes: 16,
+  tools: ['Packet Tracer', 'GNS3', 'CML'],
+  examRelevance: 'core',
+  scenario: 'R1 and R2 each host a LAN and are connected by two links: a primary (Gi0/0) and a backup (Gi0/1). You will configure a normal static route over the primary link, and a FLOATING static route over the backup link with a higher administrative distance so it is only used if the primary link fails.',
+  learningGoals: [
+    'Configure a static route to a remote network via a next-hop IP.',
+    'Configure a floating static route with a non-default administrative distance.',
+    'Verify which route is preferred (lowest AD) in the routing table.',
+    'Verify automatic failover to the floating static route when the primary link goes down.',
+  ],
+  topologyId: 'TOPO-STATIC',
+  prerequisites: ['CKU-ROUTING-TABLE'],
+
+  tasks: [
+    { id: 't1', order: 1, title: 'Addressing on R1', device: 'R1', instruction: 'Configure R1: Gi0/2 = 10.0.1.1/24 (LAN1), Gi0/0 = 10.0.12.1/30 (primary link), Gi0/1 = 10.0.13.1/30 (backup link). Bring all up.',
+      expectedCommands: ['interface gi0/2', 'ip address 10.0.1.1 255.255.255.0', 'no shutdown', 'interface gi0/0', 'ip address 10.0.12.1 255.255.255.252', 'interface gi0/1', 'ip address 10.0.13.1 255.255.255.252'] },
+    { id: 't2', order: 2, title: 'Addressing on R2', device: 'R2', instruction: 'Configure R2: Gi0/2 = 10.0.2.1/24 (LAN2), Gi0/0 = 10.0.12.2/30 (primary link), Gi0/1 = 10.0.13.2/30 (backup link). Bring all up.',
+      expectedCommands: ['interface gi0/2', 'ip address 10.0.2.1 255.255.255.0', 'no shutdown', 'interface gi0/0', 'ip address 10.0.12.2 255.255.255.252', 'interface gi0/1', 'ip address 10.0.13.2 255.255.255.252'] },
+    { id: 't3', order: 3, title: 'Primary static route on R1', device: 'R1', instruction: 'Add a static route to LAN2 (10.0.2.0/24) via the primary link next-hop 10.0.12.2 (default AD 1).',
+      expectedCommands: ['ip route 10.0.2.0 255.255.255.0 10.0.12.2'] },
+    { id: 't4', order: 4, title: 'Floating static on R1', device: 'R1', instruction: 'Add a FLOATING static route to LAN2 via the backup link next-hop 10.0.13.2, with administrative distance 5 so it is only used if the primary route disappears.',
+      expectedCommands: ['ip route 10.0.2.0 255.255.255.0 10.0.13.2 5'] },
+    { id: 't5', order: 5, title: 'Primary + floating static on R2', device: 'R2', instruction: 'Mirror the routes on R2 toward LAN1 (10.0.1.0/24): primary via 10.0.12.1, floating via 10.0.13.1 with AD 5.',
+      expectedCommands: ['ip route 10.0.1.0 255.255.255.0 10.0.12.1', 'ip route 10.0.1.0 255.255.255.0 10.0.13.1 5'] },
+    { id: 't6', order: 6, title: 'Verify and test failover', device: 'R1', instruction: 'Confirm the primary route (AD 1) is installed and preferred. Then shut Gi0/0 and confirm the floating static (AD 5) is installed instead.',
+      expectedCommands: ['show ip route static', 'interface gi0/0', 'shutdown'] },
+  ],
+
+  verificationCommands: [
+    'show ip route static',
+    'show ip route 10.0.2.0',
+    'show running-config | include ip route',
+  ],
+  successCriteria: [
+    'show ip route static on R1 shows S 10.0.2.0/24 [1/0] via 10.0.12.2 as the active route.',
+    'The floating static (S 10.0.2.0/24 [5/0] via 10.0.13.2) exists but is NOT in the routing table while the primary is up.',
+    'After `shutdown` on Gi0/0, the primary route disappears and the floating static (AD 5) is installed and becomes active.',
+    'A PC on LAN1 can still reach LAN2 after the primary link fails (via the backup).',
+  ],
+  failureCriteria: [
+    'Both static routes given the same AD → both attempt to install, causing load-balancing instead of backup-only behavior.',
+    'Floating static AD lower than or equal to a dynamic routing protocol\'s AD → it could be preferred over a better dynamic route.',
+    'Next-hop IP typo → route never installs (recursive lookup fails).',
+    'Forgetting `no shutdown` on new interfaces → routes reference a down interface and never install.',
+  ],
+  commonMistakes: [
+    'Forgetting the AD number entirely on the floating static — without it, AD defaults to 1, same as the primary, and both compete.',
+    'Confusing AD 5 (a static route\'s floating distance) with OSPF\'s AD 110 — floating statics are usually given an AD lower than dynamic protocols but higher than the primary static (1).',
+    'Testing failover without actually shutting the primary interface — the floating route never appears while the primary is reachable.',
+    'Writing the destination network/mask incorrectly so the static route never matches the LAN2 traffic.',
+  ],
+  source: { name: LAB_SOURCES.workbook, chapter: 'Static Routing and Floating Statics', confidence: 0.95 },
+  metadata: { version: '1', status: 'validated', confidence: 0.95 },
+}
+
+const TOPO_STATIC = {
+  id: 'TOPO-STATIC',
+  title: 'Static routing with primary + backup links',
+  objectiveId: '3.3',
+  nodes: [
+    { id: 'lan1', label: 'LAN1 10.0.1.0/24', type: 'subnet', x: 8, y: 50 },
+    { id: 'r1', label: 'R1', type: 'router', x: 35, y: 50 },
+    { id: 'primary', label: 'Primary 10.0.12.0/30', type: 'process', x: 60, y: 25, status: 'forwarding' },
+    { id: 'backup', label: 'Backup 10.0.13.0/30 (AD 5)', type: 'process', x: 60, y: 75 },
+    { id: 'r2', label: 'R2', type: 'router', x: 85, y: 50 },
+    { id: 'lan2', label: 'LAN2 10.0.2.0/24', type: 'subnet', x: 100, y: 50 },
+  ],
+  links: [
+    { id: 'k1', source: 'lan1', target: 'r1', label: 'Gi0/2' },
+    { id: 'k2', source: 'r1', target: 'primary', status: 'forwarding' },
+    { id: 'k3', source: 'primary', target: 'r2', status: 'forwarding' },
+    { id: 'k4', source: 'r1', target: 'backup' },
+    { id: 'k5', source: 'backup', target: 'r2' },
+    { id: 'k6', source: 'r2', target: 'lan2', label: 'Gi0/2' },
+  ],
+  notes: ['Primary static route has AD 1 (default) and is preferred.', 'Floating static (AD 5) is only installed if the primary route is removed.'],
+}
+
+const VALIDATOR_STATIC = {
+  labId: 'LAB-STATIC-FLOATING',
+  requiredCommands: [
+    { device: 'R1', command: 'ip address 10.0.1.1 255.255.255.0' },
+    { device: 'R1', command: 'ip address 10.0.12.1 255.255.255.252' },
+    { device: 'R1', command: 'ip address 10.0.13.1 255.255.255.252' },
+    { device: 'R1', command: 'ip route 10.0.2.0 255.255.255.0 10.0.12.2' },
+    { device: 'R1', command: 'ip route 10.0.2.0 255.255.255.0 10.0.13.2 5' },
+    { device: 'R2', command: 'ip address 10.0.2.1 255.255.255.0' },
+    { device: 'R2', command: 'ip route 10.0.1.0 255.255.255.0 10.0.12.1' },
+    { device: 'R2', command: 'ip route 10.0.1.0 255.255.255.0 10.0.13.1 5' },
+  ],
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show ip route static', expectedResult: 'S 10.0.2.0/24 [1/0] via 10.0.12.2 is active.', passCondition: 'primary static active' },
+    { id: 'v2', device: 'R1', command: 'show ip route static', expectedResult: 'After shutting Gi0/0, S 10.0.2.0/24 [5/0] via 10.0.13.2 becomes active.', passCondition: 'floating static activates on failover' },
+  ],
+  failureChecks: [
+    { id: 'f1', device: 'R1', command: 'show ip route static', expectedFailure: 'Floating static missing AD or shares AD 1 with the primary', reason: 'Both routes would attempt to install, causing unwanted load-balancing instead of backup-only behavior.' },
+  ],
+}
+
+const DIAGRAM_STATIC = {
+  id: 'DIAG-STATIC-failover',
+  title: 'Floating static activates on primary failure',
+  type: 'troubleshooting',
+  ckuIds: ['CKU-FLOATING-STATIC', 'CKU-STATIC-ROUTE'],
+  nodes: [
+    { id: 'r1', label: 'R1', type: 'router', x: 15, y: 50 },
+    { id: 'primary', label: 'Primary AD 1 — DOWN', type: 'process', x: 50, y: 22, status: 'error' },
+    { id: 'backup', label: 'Floating AD 5 — now active', type: 'process', x: 50, y: 78, status: 'highlighted' },
+    { id: 'r2', label: 'R2', type: 'router', x: 85, y: 50 },
+  ],
+  links: [
+    { id: 'd1', source: 'r1', target: 'primary', status: 'dropped' }, { id: 'd2', source: 'primary', target: 'r2', status: 'dropped' },
+    { id: 'd3', source: 'r1', target: 'backup', status: 'forwarding' }, { id: 'd4', source: 'backup', target: 'r2', status: 'forwarding' },
+  ],
+  annotations: ['When Gi0/0 (primary) goes down, R1 removes the AD-1 static route.', 'With no competing route, the AD-5 floating static is installed and traffic now flows over the backup link.'],
+  sourceRefs: [{ sourceName: LAB_SOURCES.workbook, chapter: 'Floating Static Routes', confidence: 0.9 }],
+}
+
+const FLOWS_STATIC = [
+  {
+    id: 'FLOW-STATIC-normal', title: 'Primary static route preferred', ckuIds: ['CKU-STATIC-ROUTE'], diagramId: 'DIAG-STATIC-failover',
+    steps: [
+      { id: 's1', order: 1, title: 'Both routes configured', action: 'R1 has a primary static (AD 1) and a floating static (AD 5) to 10.0.2.0/24.', successState: 'learned' },
+      { id: 's2', order: 2, title: 'Best AD wins', action: 'The router installs only the lowest-AD route — the primary (AD 1).', successState: 'matched' },
+      { id: 's3', order: 3, title: 'Forward', action: 'Traffic to LAN2 is forwarded via 10.0.12.2 (primary).', successState: 'forwarded' },
+    ],
+  },
+  {
+    id: 'FLOW-STATIC-failover', title: 'Failover to the floating static', ckuIds: ['CKU-FLOATING-STATIC'], diagramId: 'DIAG-STATIC-failover',
+    steps: [
+      { id: 's1', order: 1, title: 'Primary link down', action: 'Gi0/0 is shut down (or fails); the AD-1 static route is removed from the table.', successState: 'dropped' },
+      { id: 's2', order: 2, title: 'Floating static installed', action: 'With no AD-1 route present, the AD-5 floating static to 10.0.2.0/24 is installed.', successState: 'matched' },
+      { id: 's3', order: 3, title: 'Forward via backup', action: 'Traffic to LAN2 now flows via 10.0.13.2 (backup link).', successState: 'forwarded' },
+    ],
+  },
+]
+
+const STATIC = { lab: LAB_STATIC, topology: TOPO_STATIC, validator: VALIDATOR_STATIC, diagram: DIAGRAM_STATIC, packetFlows: FLOWS_STATIC }
+
+/* -------------------------------------------------------------------------
+   LAB: Secure Remote Access with SSH
+   Maps to Domain 4.0 / Objective 4.8 (configure/verify device access via SSH).
+   ------------------------------------------------------------------------- */
+const LAB_SSH = {
+  id: 'LAB-SSH-ACCESS',
+  title: 'Configure SSH for Secure Remote Device Access',
+  domainId: 'services',
+  objectiveId: '4.8',
+  ckuIds: ['CKU-SSH', 'CKU-VTY-ACCESS', 'CKU-LOCAL-AUTH'],
+  labType: 'guided',
+  difficulty: 'beginner',
+  estimatedTimeMinutes: 12,
+  tools: ['Packet Tracer', 'GNS3', 'CML'],
+  examRelevance: 'core',
+  scenario: 'R1 is currently only manageable via the console. You will configure a hostname and domain name (required for RSA key generation), generate an SSH key pair, create a local administrator account, and restrict the VTY lines to SSH-only with local login — then verify an admin PC can SSH in but Telnet is refused.',
+  learningGoals: [
+    'Explain why a hostname and domain name are prerequisites for `crypto key generate rsa`.',
+    'Generate an RSA key pair to enable SSH.',
+    'Create a local user account and require local authentication on the VTY lines.',
+    'Restrict VTY access to SSH only (`transport input ssh`).',
+  ],
+  topologyId: 'TOPO-SSH',
+  prerequisites: ['CKU-ROUTING-TABLE'],
+
+  tasks: [
+    { id: 't1', order: 1, title: 'Hostname and domain', device: 'R1', instruction: 'Set the hostname to R1 and the domain name to ccna.local (required before generating RSA keys).',
+      expectedCommands: ['hostname R1', 'ip domain-name ccna.local'] },
+    { id: 't2', order: 2, title: 'Generate RSA keys', device: 'R1', instruction: 'Generate a 1024-bit RSA key pair, which automatically enables SSH.',
+      expectedCommands: ['crypto key generate rsa'] },
+    { id: 't3', order: 3, title: 'Local admin account', device: 'R1', instruction: 'Create a local user "admin" with privilege level 15 and a secret password.',
+      expectedCommands: ['username admin privilege 15 secret', 'enable secret'] },
+    { id: 't4', order: 4, title: 'Restrict VTY to SSH', device: 'R1', instruction: 'On the VTY lines (0 4), require local login and restrict the transport protocol to SSH only.',
+      expectedCommands: ['line vty 0 4', 'login local', 'transport input ssh'] },
+    { id: 't5', order: 5, title: 'Verify from the admin PC', device: 'PC1', instruction: 'SSH to R1 using the admin account, and confirm Telnet is refused.',
+      expectedCommands: ['ssh -l admin 192.168.1.1'] },
+  ],
+
+  verificationCommands: [
+    'show ip ssh',
+    'show running-config | section line vty',
+    'show users',
+  ],
+  successCriteria: [
+    'show ip ssh shows SSH enabled (version 1.99 or 2) with an active RSA key.',
+    'PC1 can SSH to R1 and authenticate with the local admin account.',
+    'Attempting Telnet to R1 from PC1 is refused (transport input ssh only).',
+    'show running-config | section line vty shows `login local` and `transport input ssh`.',
+  ],
+  failureCriteria: [
+    'No domain name set before `crypto key generate rsa` → the command is rejected (no keys generated, SSH stays disabled).',
+    'VTY lines left at `login` (no `local`) with no password set → access denied or "password required but none set" error.',
+    '`transport input` left at default (all/telnet) → Telnet still works, defeating the purpose.',
+    'Local user created without `privilege 15` → user can log in but cannot reach privileged EXEC without the enable secret.',
+  ],
+  commonMistakes: [
+    'Forgetting `ip domain-name` before generating RSA keys — the crypto command silently fails without it.',
+    'Using `login` instead of `login local` on the VTY lines — `login` alone expects a line password, not a username/password.',
+    'Leaving `transport input telnet ssh` (the default) instead of restricting to `ssh` only.',
+    'Setting the user password with `password` instead of `secret` — `secret` is hashed, `password` is reversible.',
+  ],
+  source: { name: LAB_SOURCES.workbook, chapter: 'Securing Remote Access with SSH', confidence: 0.95 },
+  metadata: { version: '1', status: 'validated', confidence: 0.95 },
+}
+
+const TOPO_SSH = {
+  id: 'TOPO-SSH',
+  title: 'SSH management topology',
+  objectiveId: '4.8',
+  nodes: [
+    { id: 'pc1', label: 'Admin PC 192.168.1.10', type: 'pc', x: 12, y: 50 },
+    { id: 'r1', label: 'R1 192.168.1.1 — SSH only', type: 'router', x: 60, y: 50, status: 'highlighted' },
+  ],
+  links: [
+    { id: 'k1', source: 'pc1', target: 'r1', label: 'SSH (TCP/22) allowed, Telnet (TCP/23) refused', status: 'forwarding' },
+  ],
+  notes: ['VTY 0 4 configured with `login local` + `transport input ssh`.'],
+}
+
+const VALIDATOR_SSH = {
+  labId: 'LAB-SSH-ACCESS',
+  requiredCommands: [
+    { device: 'R1', command: 'hostname R1' },
+    { device: 'R1', command: 'ip domain-name ccna.local' },
+    { device: 'R1', command: 'crypto key generate rsa' },
+    { device: 'R1', command: 'username admin privilege 15 secret' },
+    { device: 'R1', command: 'line vty 0 4' },
+    { device: 'R1', command: 'login local' },
+    { device: 'R1', command: 'transport input ssh' },
+  ],
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show ip ssh', expectedResult: 'SSH enabled, RSA key present.', passCondition: 'ssh enabled' },
+    { id: 'v2', device: 'PC1', command: 'ssh -l admin 192.168.1.1', expectedResult: 'SSH session opens, prompts for the admin secret.', passCondition: 'ssh connects' },
+  ],
+  failureChecks: [
+    { id: 'f1', device: 'PC1', command: 'telnet 192.168.1.1', expectedFailure: 'Connection refused', reason: '`transport input ssh` removes Telnet access on the VTY lines.' },
+  ],
+}
+
+const DIAGRAM_SSH = {
+  id: 'DIAG-SSH-vty',
+  title: 'SSH allowed, Telnet refused on VTY',
+  type: 'process',
+  ckuIds: ['CKU-SSH', 'CKU-VTY-ACCESS'],
+  nodes: [
+    { id: 'pc1', label: 'Admin PC', type: 'pc', x: 12, y: 50 },
+    { id: 'ssh', label: 'SSH TCP/22 -> allowed', type: 'process', x: 50, y: 25, status: 'highlighted' },
+    { id: 'telnet', label: 'Telnet TCP/23 -> refused', type: 'process', x: 50, y: 75, status: 'error' },
+    { id: 'r1', label: 'R1 VTY 0 4', type: 'router', x: 85, y: 50 },
+  ],
+  links: [
+    { id: 'd1', source: 'pc1', target: 'ssh', status: 'forwarding' }, { id: 'd2', source: 'ssh', target: 'r1', status: 'forwarding' },
+    { id: 'd3', source: 'pc1', target: 'telnet', status: 'dropped' }, { id: 'd4', source: 'telnet', target: 'r1', status: 'dropped' },
+  ],
+  annotations: ['`transport input ssh` on VTY 0 4 permits only SSH.', '`login local` requires the locally configured username/secret.'],
+  sourceRefs: [{ sourceName: LAB_SOURCES.workbook, chapter: 'SSH Access', confidence: 0.9 }],
+}
+
+const FLOWS_SSH = [
+  {
+    id: 'FLOW-SSH-connect', title: 'Admin connects via SSH', ckuIds: ['CKU-SSH', 'CKU-LOCAL-AUTH'], diagramId: 'DIAG-SSH-vty',
+    steps: [
+      { id: 's1', order: 1, title: 'SSH request', action: 'PC1 opens an SSH session to R1 on TCP/22.', successState: 'forwarded' },
+      { id: 's2', order: 2, title: 'VTY accepts', action: 'VTY 0 4 has `transport input ssh` — the SSH session is accepted.', successState: 'matched' },
+      { id: 's3', order: 3, title: 'Local login', action: '`login local` prompts for the admin username/secret and authenticates against the local database.', successState: 'matched' },
+      { id: 's4', order: 4, title: 'Privileged access', action: 'Because admin has privilege 15, the session starts in privileged EXEC.', successState: 'forwarded' },
+    ],
+  },
+  {
+    id: 'FLOW-SSH-telnet-blocked', title: 'Telnet attempt is refused', ckuIds: ['CKU-VTY-ACCESS'], diagramId: 'DIAG-SSH-vty',
+    steps: [
+      { id: 's1', order: 1, title: 'Telnet request', action: 'PC1 attempts a Telnet session to R1 on TCP/23.', successState: 'failed' },
+      { id: 's2', order: 2, title: 'Transport check', action: 'VTY 0 4 only allows `transport input ssh` — Telnet (TCP/23) is not permitted.', successState: 'dropped' },
+      { id: 's3', order: 3, title: 'Connection refused', action: 'The router refuses the Telnet connection.', successState: 'dropped' },
+    ],
+  },
+]
+
+const SSH = { lab: LAB_SSH, topology: TOPO_SSH, validator: VALIDATOR_SSH, diagram: DIAGRAM_SSH, packetFlows: FLOWS_SSH }
+
+/* -------------------------------------------------------------------------
    REGISTRY + LOADERS
    ------------------------------------------------------------------------- */
-const LABS = { [DAI.lab.id]: DAI, [VLAN_TRUNK.lab.id]: VLAN_TRUNK, [OSPF.lab.id]: OSPF, [NAT.lab.id]: NAT }
+const LABS = { [DAI.lab.id]: DAI, [VLAN_TRUNK.lab.id]: VLAN_TRUNK, [OSPF.lab.id]: OSPF, [NAT.lab.id]: NAT, [STATIC.lab.id]: STATIC, [SSH.lab.id]: SSH }
 
 export const allLabs = () => Object.values(LABS).map(x => x.lab)
 export function getLab(labId) { return LABS[labId] || null }
