@@ -296,10 +296,45 @@ function claudeFetch(body) {
   })
 }
 
+/* ---- Token usage + cost telemetry (local; no network) ---- */
+// $ per 1M tokens. Cache reads are ~0.1x input; cache writes ~1.25x.
+const PRICING = {
+  'claude-sonnet-4-6': { in: 3, out: 15 },
+  'claude-haiku-4-5': { in: 1, out: 5 },
+  default: { in: 3, out: 15 },
+}
+function estimateCost(model, u = {}) {
+  const r = PRICING[model] || PRICING.default
+  const input = u.input_tokens || 0
+  const cacheRead = u.cache_read_input_tokens || 0
+  const cacheWrite = u.cache_creation_input_tokens || 0
+  const output = u.output_tokens || 0
+  return (input * r.in + cacheRead * r.in * 0.1 + cacheWrite * r.in * 1.25 + output * r.out) / 1e6
+}
+// Fire-and-forget: accumulate per-feature / per-model token + cost totals.
+async function logUsage(feature, model, u) {
+  try {
+    if (!u) return
+    const store = (await window.storage.getItem(STORAGE_KEYS.usage)) || { since: Date.now(), calls: 0, input: 0, output: 0, costUSD: 0, byFeature: {}, byModel: {} }
+    const cost = estimateCost(model, u)
+    const inTok = (u.input_tokens || 0) + (u.cache_read_input_tokens || 0) + (u.cache_creation_input_tokens || 0)
+    const out = u.output_tokens || 0
+    store.calls += 1; store.input += inTok; store.output += out; store.costUSD += cost
+    const bump = (map, key) => {
+      const e = map[key] || { calls: 0, input: 0, output: 0, costUSD: 0 }
+      e.calls += 1; e.input += inTok; e.output += out; e.costUSD += cost
+      map[key] = e
+    }
+    bump(store.byFeature, feature || 'other')
+    bump(store.byModel, model || 'unknown')
+    await window.storage.setItem(STORAGE_KEYS.usage, store)
+  } catch { /* telemetry must never break the app */ }
+}
+
 // Core request loop: tries up to (1 + retries) times with 800ms / 1600ms backoff
 // (+jitter), retrying network errors and 429/5xx/529. Returns the parsed
 // response object. Throws an Error with a user-facing message on failure.
-async function callClaude(body, retries = 2) {
+async function callClaude(body, retries = 2, feature = 'other') {
   const delays = [800, 1600]
   const wait = (ms) => new Promise(r => setTimeout(r, ms + Math.floor(Math.random() * 200)))
   let lastError = null
@@ -320,7 +355,9 @@ async function callClaude(body, retries = 2) {
         throw new Error(`Claude API error ${res.status}${detail ? `: ${detail}` : ' — check your API key and request.'}`)
       }
 
-      return await res.json()
+      const data = await res.json()
+      if (data?.usage) logUsage(feature, body.model, data.usage)
+      return data
     } catch (err) {
       lastError = err
       const isNetworkError = err instanceof TypeError || /failed to fetch|network/i.test(err.message || '')
@@ -335,8 +372,8 @@ async function callClaude(body, retries = 2) {
 }
 
 // Text completion. `model` lets callers pick a tier (defaults to Sonnet).
-async function askClaude({ system, messages, max_tokens = 1000, model = MODEL, retries = 2 }) {
-  const data = await callClaude({ model, max_tokens, system, messages }, retries)
+async function askClaude({ system, messages, max_tokens = 1000, model = MODEL, retries = 2, feature = 'other' }) {
+  const data = await callClaude({ model, max_tokens, system, messages }, retries, feature)
   const text = data?.content?.find(b => b.type === 'text')?.text
   if (!text) throw new Error('Claude API returned an empty response.')
   return text
@@ -345,12 +382,12 @@ async function askClaude({ system, messages, max_tokens = 1000, model = MODEL, r
 // Structured output via a forced tool call: Claude must return data matching
 // `schema`, so we get a guaranteed-shaped object instead of parsing JSON out of
 // prose. Eliminates the whole "unexpected format" failure class.
-async function askClaudeJSON({ system, messages, max_tokens = 1500, model = MODEL, schema, toolName = 'emit_result', retries = 2 }) {
+async function askClaudeJSON({ system, messages, max_tokens = 1500, model = MODEL, schema, toolName = 'emit_result', retries = 2, feature = 'other' }) {
   const tool = { name: toolName, description: 'Return the result as structured data.', input_schema: schema }
   const data = await callClaude({
     model, max_tokens, system, messages,
     tools: [tool], tool_choice: { type: 'tool', name: toolName },
-  }, retries)
+  }, retries, feature)
   const block = data?.content?.find(b => b.type === 'tool_use')
   if (!block || !block.input) throw new Error('Claude returned no structured result. Please try again.')
   return block.input
@@ -426,6 +463,7 @@ const STORAGE_KEYS = {
   cliStats: 'ccna_cli_stats_v1',
   syncCode: 'ccna_sync_code_v1',
   syncLast: 'ccna_sync_last_v1',
+  usage: 'ccna_usage_v1',
 }
 
 // progress shape: { [objectiveId]: { status: 'unseen'|'in_progress'|'mastered', quizScores: [{score,total,date}], lastSeen } }
@@ -1272,6 +1310,7 @@ function KeyTermsCarousel({ objective }) {
         model: MODELS.fast,
         schema: TERMS_SCHEMA,
         toolName: 'emit_terms',
+        feature: 'terms',
       })
       const list = data.cards || []
       if (list.length === 0) throw new Error('Claude returned no flashcards.')
@@ -1499,6 +1538,7 @@ function VisualAidTab({ objective }) {
         model: MODELS.fast,
         schema: VISUAL_SCHEMA,
         toolName: 'emit_visual',
+        feature: 'visual',
       })
       if (!data || !data.type) throw new Error('Claude returned an unexpected format. Please try again.')
       setSpec(data)
@@ -1559,6 +1599,7 @@ function ExplainTab({ objective }) {
           content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nExplain this objective for someone studying for the CCNA exam.`,
         }],
         max_tokens: 600,
+        feature: 'explain',
       })
       setContent(text)
       const cache = (await window.storage.getItem(EXPLAIN_CACHE_KEY)) || {}
@@ -1654,8 +1695,10 @@ function QuizTab({ objective, onMissed, onScoreSaved }) {
             content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate 8 multiple-choice questions for this objective.`,
           }],
           max_tokens: 2200,
+          model: MODELS.fast,
           schema: QUIZ_SCHEMA,
           toolName: 'emit_quiz',
+          feature: 'quiz',
         })
         const fresh = data.questions || []
         if (fresh.length === 0 && banked.length === 0) throw new Error('Claude returned no questions.')
@@ -2435,7 +2478,7 @@ async function ensureExplanationCached(objective) {
   const text = await askClaude({
     system: EXPLAIN_PROMPT_SYSTEM,
     messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nExplain this objective for someone studying for the CCNA exam.` }],
-    max_tokens: 600,
+    max_tokens: 600, feature: 'explain',
   })
   cache[objective.id] = text
   await window.storage.setItem(EXPLAIN_CACHE_KEY, cache)
@@ -2447,7 +2490,7 @@ async function ensureTermsCached(objective) {
   const data = await askClaudeJSON({
     system: TERMS_PROMPT_SYSTEM,
     messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate key-term flashcards for this objective.` }],
-    max_tokens: 700, model: MODELS.fast, schema: TERMS_SCHEMA, toolName: 'emit_terms',
+    max_tokens: 700, model: MODELS.fast, schema: TERMS_SCHEMA, toolName: 'emit_terms', feature: 'terms',
   })
   if ((data.cards || []).length === 0) throw new Error('Could not generate key terms.')
   cache[objective.id] = data.cards
@@ -2460,7 +2503,7 @@ async function ensureVisualCached(objective) {
   const data = await askClaudeJSON({
     system: VISUAL_PROMPT_SYSTEM,
     messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nDesign one visual aid for this objective.` }],
-    max_tokens: 700, model: MODELS.fast, schema: VISUAL_SCHEMA, toolName: 'emit_visual',
+    max_tokens: 700, model: MODELS.fast, schema: VISUAL_SCHEMA, toolName: 'emit_visual', feature: 'visual',
   })
   if (!data || !data.type) throw new Error('Could not generate a visual aid.')
   cache[objective.id] = data
@@ -2473,7 +2516,7 @@ async function ensureQuizBankFilled(objective) {
   const data = await askClaudeJSON({
     system: QUIZ_PROMPT_SYSTEM,
     messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate 8 multiple-choice questions for this objective.` }],
-    max_tokens: 2200, schema: QUIZ_SCHEMA, toolName: 'emit_quiz',
+    max_tokens: 2200, model: MODELS.fast, schema: QUIZ_SCHEMA, toolName: 'emit_quiz', feature: 'quiz',
   })
   bank = mergeIntoBank(bank, objective.id, data.questions || [])
   await saveQuizBank(bank)
@@ -2540,12 +2583,13 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
   useEffect(() => {
     let cancelled = false
     ;(async () => {
-      const [summary, cli, offlineDetail] = await Promise.all([
+      const [summary, cli, offlineDetail, usage] = await Promise.all([
         buildLearnerSummary(progress, missed || []),
         loadCliStats(),
         loadOfflineDetail(),
+        window.storage.getItem(STORAGE_KEYS.usage),
       ])
-      if (!cancelled) setData({ summary, cli, offlineDetail })
+      if (!cancelled) setData({ summary, cli, offlineDetail, usage })
     })()
     return () => { cancelled = true }
   }, [progress, missed])
@@ -2559,7 +2603,7 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
     )
   }
 
-  const { summary, cli, offlineDetail } = data
+  const { summary, cli, offlineDetail, usage } = data
   const objs = summary.perObjective
   const studied = objs.filter(o => o.attempts > 0)
 
@@ -2712,6 +2756,39 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
             <SegmentedBar segments={d.reqs} accent="mint" />
           </div>
         ))}
+      </div>
+
+      {/* AI usage & estimated cost */}
+      <div style={section}>
+        <div style={sectionTitle}>AI USAGE & ESTIMATED COST</div>
+        {!usage || !usage.calls ? (
+          <div style={styles.small}>No AI calls recorded yet. Generate an explanation or quiz to start tracking spend.</div>
+        ) : (
+          <>
+            <div style={{ display: 'flex', gap: 16, alignItems: 'baseline', marginBottom: 10 }}>
+              <div>
+                <div style={{ fontSize: 24, fontWeight: 700, color: COLORS.mint }}>${usage.costUSD.toFixed(3)}</div>
+                <div style={styles.small}>estimated total</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 18, fontWeight: 600, color: COLORS.silver }}>{usage.calls}</div>
+                <div style={styles.small}>API calls</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 18, fontWeight: 600, color: COLORS.silver }}>{Math.round((usage.input + usage.output) / 1000)}k</div>
+                <div style={styles.small}>tokens</div>
+              </div>
+            </div>
+            <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>By feature</div>
+            {Object.entries(usage.byFeature).sort((a, b) => b[1].costUSD - a[1].costUSD).map(([f, e]) => (
+              <div key={f} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: COLORS.silverMid, marginBottom: 2 }}>
+                <span>{f} · {e.calls} call{e.calls === 1 ? '' : 's'}</span>
+                <span style={{ color: COLORS.sky }}>${e.costUSD.toFixed(3)}</span>
+              </div>
+            ))}
+            <div style={{ ...styles.small, marginTop: 8, fontSize: 11 }}>Estimate based on public token pricing; cached/free reuse isn't billed.</div>
+          </>
+        )}
       </div>
     </div>
   )
@@ -2933,6 +3010,7 @@ function MockExam({ onExit }) {
           max_tokens: 250 * count + 300,
           schema: MOCK_SCHEMA,
           toolName: 'emit_exam',
+          feature: 'mock',
         })
         return (data.questions || []).slice(0, count)
       }))
@@ -3562,6 +3640,7 @@ function TutorChat({ progress, missed, onBack }) {
         system: cachedSystem(system),
         messages: newMessages,
         max_tokens: 800,
+        feature: 'tutor',
       })
       setMessages(m => [...m, { role: 'assistant', content: reply }])
     } catch (err) {
