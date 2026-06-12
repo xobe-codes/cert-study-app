@@ -511,9 +511,878 @@ const OBJ_15 = {
 }
 
 /* -------------------------------------------------------------------------
+   OBJECTIVE 1.8 — Configure and verify IPv6 addressing and prefix
+   ------------------------------------------------------------------------- */
+const OBJ_18 = {
+  objectiveId: '1.8', domainId: 'fundamentals', title: 'Configure and verify IPv6 addressing and prefix',
+  ckus: [
+    { id: 'CKU-IPV6-ADDRESSING', title: 'IPv6 Addressing', summary: '128-bit address written as 8 groups of 4 hex digits separated by colons; the prefix length (usually /64) marks the network portion.', aliases: ['IPv6'], tags: ['ipv6', 'addressing'], prerequisiteCkuIds: [], relatedCkuIds: ['CKU-IPV6-SHORTENING', 'CKU-MODIFIED-EUI-64'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'IPv6', confidence: 0.95 }, { sourceName: CURATED_SOURCES.blueprint, chapter: '1.8', confidence: 1 }] },
+    { id: 'CKU-IPV6-SHORTENING', title: 'IPv6 Abbreviation Rules', summary: 'Omit leading zeros in each group; replace ONE run of all-zero groups with :: (only once per address).', aliases: ['compression', '::'], tags: ['ipv6'], prerequisiteCkuIds: ['CKU-IPV6-ADDRESSING'], relatedCkuIds: ['CKU-IPV6-ADDRESSING'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'IPv6 shortening', confidence: 0.95 }] },
+    { id: 'CKU-MODIFIED-EUI-64', title: 'Modified EUI-64', summary: 'Builds the 64-bit interface ID from a 48-bit MAC: split it, insert FFFE in the middle, and flip the 7th bit (U/L) of the first byte.', aliases: ['EUI-64'], tags: ['ipv6', 'slaac'], prerequisiteCkuIds: ['CKU-IPV6-ADDRESSING'], relatedCkuIds: ['CKU-IPV6-ADDRESSING'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'EUI-64', confidence: 0.9 }] },
+    { id: 'CKU-IPV6-SLAAC', title: 'SLAAC', summary: 'Stateless Address Autoconfiguration: a host forms its own IPv6 address from the prefix in a Router Advertisement plus an interface ID (EUI-64 or random).', aliases: ['autoconfiguration', 'RA'], tags: ['ipv6'], prerequisiteCkuIds: ['CKU-IPV6-ADDRESSING'], relatedCkuIds: ['CKU-MODIFIED-EUI-64'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'SLAAC', confidence: 0.9 }] },
+  ],
+  reading: {
+    id: 'READ-1.8', ckuIds: ['CKU-IPV6-ADDRESSING', 'CKU-IPV6-SHORTENING', 'CKU-MODIFIED-EUI-64', 'CKU-IPV6-SLAAC'], estimatedReadMinutes: 7,
+    tiers: {
+      beginner: 'IPv6 addresses are much bigger than IPv4 — 128 bits, written as eight blocks of hex separated by colons. Because they are long, you can shorten them: drop leading zeros in a block, and replace one run of all-zero blocks with “::”. The /64 at the end usually marks the network half. Hosts can even build their own address automatically (SLAAC) from information the router advertises.',
+      intermediate: 'An IPv6 address is 128 bits = 8 hextets of 4 hex digits. Shortening rules: (1) remove leading zeros within each hextet; (2) replace one contiguous run of all-zero hextets with :: (only once). LANs almost always use a /64 prefix so the lower 64 bits are the interface ID. Hosts get addresses three ways: static, DHCPv6, or SLAAC (form the address from the RA prefix + an interface ID, which can be Modified EUI-64).',
+      examReady: 'IPv6 = 128 bits, 8 hextets of 4 hex digits. Abbreviate by removing leading zeros per hextet and using `::` once for a run of all-zero hextets. Prefix length (e.g. `/64`) marks the network portion; /64 is standard for LANs to allow SLAAC/EUI-64. Three addressing methods: static, DHCPv6 (stateful), SLAAC (stateless, from the Router Advertisement prefix). Modified EUI-64: split the 48-bit MAC, insert `FFFE` in the middle, flip the 7th bit (U/L) of the first byte. Config: `ipv6 address 2001:db8::1/64` on an interface, with `ipv6 unicast-routing` enabled globally.',
+    },
+    definition: 'IPv6 addresses are **128 bits**, written as 8 hextets of hex. Abbreviate by dropping leading zeros and using `::` once. The prefix (usually `/64`) marks the network; hosts can self-configure via **SLAAC**.',
+    keyPoints: [
+      '128 bits = 8 hextets of 4 hex digits, colon-separated.',
+      'Shorten: drop leading zeros per hextet; `::` replaces one run of all-zero hextets (once only).',
+      'LAN prefix is almost always `/64`.',
+      'Addressing: static, DHCPv6, or SLAAC (from the RA prefix).',
+      'Modified EUI-64: insert `FFFE`, flip the 7th bit of the MAC’s first byte.',
+      'Enable routing with `ipv6 unicast-routing`.',
+    ],
+    realWorld: 'Verify with `show ipv6 interface brief`; an interface typically shows a link-local (FE80::) AND a global (2001:…) address. `ipv6 address autoconfig` enables SLAAC on an interface.',
+    commonMistakes: [
+      'Using `::` more than once in an address (ambiguous — only allowed once).',
+      'Removing trailing zeros (only LEADING zeros within a hextet may be dropped).',
+      'Forgetting `ipv6 unicast-routing`, so the router won’t route IPv6.',
+      'Assuming a LAN can use anything other than /64 with SLAAC.',
+    ],
+    related: ['1.9 IPv6 address types', '1.6 IPv4 subnetting'],
+    advanced: 'SLAAC requires /64. The interface ID can be Modified EUI-64 (derived from MAC, so traceable) or a random/privacy value. Duplicate Address Detection (DAD) uses neighbor solicitation before an address is used.',
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'IPv6', confidence: 0.95 }],
+  },
+  questions: [
+    { id: '1.8-c-q1', concept: 'address length', type: 'definition', difficulty: 'easy', question: 'How many bits is an IPv6 address?', choices: ['32', '64', '128', '256'], correctIndex: 2, explanation: 'IPv6 addresses are 128 bits (8 hextets of 16 bits).', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+    { id: '1.8-c-q2', concept: 'shortening', type: 'application', difficulty: 'medium', question: 'Which is the correct shortened form of `2001:0db8:0000:0000:0000:0000:0000:0001`?', choices: ['2001:db8::1', '2001:db8:::1', '2001:db8::0:1::', '2001::db8::1'], correctIndex: 0, explanation: 'Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.', ckuIds: ['CKU-IPV6-SHORTENING'] },
+    { id: '1.8-c-q3', concept: 'double colon rule', type: 'true-false', difficulty: 'medium', question: 'True or False: `::` can be used twice in one IPv6 address.', choices: ['True', 'False'], correctIndex: 1, explanation: 'False — `::` may appear only once, otherwise the number of zero groups is ambiguous.', ckuIds: ['CKU-IPV6-SHORTENING'] },
+    { id: '1.8-c-q4', concept: 'LAN prefix', type: 'definition', difficulty: 'easy', question: 'What prefix length is standard for an IPv6 LAN?', choices: ['/24', '/48', '/64', '/128'], correctIndex: 2, explanation: '/64 is standard for LANs and is required for SLAAC/EUI-64.', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+    { id: '1.8-c-q5', concept: 'EUI-64', type: 'application', difficulty: 'hard', question: 'In Modified EUI-64, what is inserted into the middle of the 48-bit MAC?', choices: ['FFFE', 'FF00', 'FFFF', 'FE80'], correctIndex: 0, explanation: 'FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.', ckuIds: ['CKU-MODIFIED-EUI-64'] },
+    { id: '1.8-c-q6', concept: 'SLAAC', type: 'scenario', difficulty: 'medium', question: 'A host builds its own IPv6 address from a Router Advertisement prefix. What is this called?', choices: ['DHCPv6', 'SLAAC', 'Static', 'NAT66'], correctIndex: 1, explanation: 'SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.', ckuIds: ['CKU-IPV6-SLAAC'] },
+    { id: '1.8-c-q7', concept: 'enable routing', type: 'application', difficulty: 'medium', question: 'Which global command enables a Cisco router to route IPv6?', choices: ['ipv6 routing', 'ipv6 unicast-routing', 'ip routing v6', 'enable ipv6'], correctIndex: 1, explanation: '`ipv6 unicast-routing` must be enabled globally.', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+    { id: '1.8-c-q8', concept: 'zero compression', type: 'application', difficulty: 'medium', question: 'Which zeros may be removed when shortening a hextet like `00a0`?', choices: ['Trailing zeros', 'Leading zeros → a0', 'All zeros', 'None'], correctIndex: 1, explanation: 'Only leading zeros within a hextet may be dropped: 00a0 → a0.', ckuIds: ['CKU-IPV6-SHORTENING'] },
+    { id: '1.8-c-q9', concept: 'verify', type: 'application', difficulty: 'easy', question: 'Which command shows IPv6 addresses and interface status?', choices: ['show ip interface brief', 'show ipv6 interface brief', 'show ipv6 route', 'show running-config'], correctIndex: 1, explanation: '`show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+    { id: '1.8-c-q10', concept: 'interface ID size', type: 'definition', difficulty: 'medium', question: 'With a /64 prefix, how many bits are the interface ID?', choices: ['32', '48', '64', '128'], correctIndex: 2, explanation: '128 − 64 = 64 bits for the interface ID.', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+  ],
+  flashcards: [
+    { id: '1.8-f1', ckuId: 'CKU-IPV6-ADDRESSING', front: 'IPv6 address size and format?', back: '128 bits — 8 hextets of 4 hex digits, colon-separated.' },
+    { id: '1.8-f2', ckuId: 'CKU-IPV6-SHORTENING', front: 'Two IPv6 shortening rules?', back: 'Drop leading zeros per hextet; replace ONE run of all-zero hextets with :: (once).' },
+    { id: '1.8-f3', ckuId: 'CKU-IPV6-ADDRESSING', front: 'Standard LAN prefix length?', back: '/64.' },
+    { id: '1.8-f4', ckuId: 'CKU-MODIFIED-EUI-64', front: 'Modified EUI-64 steps?', back: 'Split the MAC, insert FFFE in the middle, flip the 7th (U/L) bit of the first byte.' },
+    { id: '1.8-f5', ckuId: 'CKU-IPV6-SLAAC', front: 'Three ways a host gets an IPv6 address?', back: 'Static, DHCPv6, SLAAC (from the RA prefix).' },
+    { id: '1.8-f6', ckuId: 'CKU-IPV6-ADDRESSING', front: 'Command to enable IPv6 routing?', back: 'ipv6 unicast-routing (global config).' },
+  ],
+  commands: [
+    { id: '1.8-cmd1', command: 'ipv6 unicast-routing', mode: 'global config', purpose: 'Enable IPv6 routing on the device.', example: 'R1(config)# ipv6 unicast-routing', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+    { id: '1.8-cmd2', command: 'ipv6 address <addr>/<len>', mode: 'interface config', purpose: 'Assign a global IPv6 address and prefix to an interface.', example: 'R1(config-if)# ipv6 address 2001:db8::1/64', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+    { id: '1.8-cmd3', command: 'show ipv6 interface brief', mode: 'privileged EXEC', purpose: 'List IPv6 addresses and interface status.', example: 'R1# show ipv6 interface brief', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+  ],
+  glossary: [
+    { id: '1.8-g1', term: 'Hextet', definition: 'One of the eight 16-bit (4-hex-digit) groups in an IPv6 address.', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+    { id: '1.8-g2', term: 'Prefix length', definition: 'The /n marking the network portion of an IPv6 address (usually /64 on LANs).', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+    { id: '1.8-g3', term: 'SLAAC', definition: 'Stateless Address Autoconfiguration — host forms its address from the RA prefix.', ckuIds: ['CKU-IPV6-SLAAC'] },
+    { id: '1.8-g4', term: 'Modified EUI-64', definition: 'Method to derive a 64-bit interface ID from a 48-bit MAC (insert FFFE, flip U/L bit).', ckuIds: ['CKU-MODIFIED-EUI-64'] },
+    { id: '1.8-g5', term: 'Interface ID', definition: 'The host portion (lower bits) of an IPv6 address, 64 bits with a /64 prefix.', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+  ],
+  mnemonics: [
+    { id: '1.8-m1', title: 'Compression', mnemonic: '“Leading gone, one double-colon.”', explanation: 'Drop leading zeros in each hextet; use :: only once for a zero run.', ckuIds: ['CKU-IPV6-SHORTENING'] },
+    { id: '1.8-m2', title: 'EUI-64', mnemonic: 'Split, FFFE, Flip 7.', explanation: 'Split the MAC, insert FFFE, flip the 7th bit.', ckuIds: ['CKU-MODIFIED-EUI-64'] },
+  ],
+  examTraps: [
+    { id: '1.8-t1', trap: 'Using :: twice.', correction: 'Only one :: per address is allowed.', ckuIds: ['CKU-IPV6-SHORTENING'] },
+    { id: '1.8-t2', trap: 'Dropping trailing zeros in a hextet.', correction: 'Only leading zeros may be dropped (00a0 → a0, not a).', ckuIds: ['CKU-IPV6-SHORTENING'] },
+    { id: '1.8-t3', trap: 'Expecting SLAAC on a non-/64 prefix.', correction: 'SLAAC requires a /64 prefix.', ckuIds: ['CKU-IPV6-SLAAC'] },
+  ],
+  misconceptions: [
+    { id: '1.8-x1', misconception: 'IPv6 needs NAT like IPv4.', reality: 'IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.', example: 'A LAN gets a /64 of globally routable addresses.', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+    { id: '1.8-x2', misconception: '`::` represents exactly one zero hextet.', reality: '`::` represents one or more contiguous all-zero hextets — as many as needed to total 8.', example: '2001:db8::1 expands the :: to five zero hextets.', ckuIds: ['CKU-IPV6-SHORTENING'] },
+    { id: '1.8-x3', misconception: 'An interface has only one IPv6 address.', reality: 'Interfaces normally have at least a link-local (FE80::) and a global address.', example: 'show ipv6 interface brief lists both.', ckuIds: ['CKU-IPV6-ADDRESSING'] },
+  ],
+  diagram: {
+    id: 'DIAG-1.8-eui64', title: 'Modified EUI-64', type: 'process', ckuIds: ['CKU-MODIFIED-EUI-64'],
+    nodes: [
+      { id: 'mac', label: 'MAC 48-bit', type: 'process', x: 50, y: 12 },
+      { id: 'split', label: 'Split in half', type: 'process', x: 50, y: 40 },
+      { id: 'ins', label: 'Insert FFFE', type: 'process', x: 50, y: 68 },
+      { id: 'flip', label: 'Flip 7th bit → 64-bit ID', type: 'router', x: 50, y: 92, status: 'highlighted' },
+    ],
+    links: [
+      { id: 'l1', source: 'mac', target: 'split' }, { id: 'l2', source: 'split', target: 'ins' }, { id: 'l3', source: 'ins', target: 'flip', status: 'forwarding' },
+    ],
+    annotations: ['48-bit MAC → 64-bit interface ID.', 'FFFE goes in the middle; the U/L (7th) bit is flipped.'],
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'EUI-64', confidence: 0.9 }],
+  },
+  packetFlow: {
+    id: 'FLOW-1.8-slaac', title: 'SLAAC address formation', ckuIds: ['CKU-IPV6-SLAAC'], diagramId: 'DIAG-1.8-eui64',
+    steps: [
+      { id: 's1', order: 1, title: 'Router Solicitation', action: 'Host sends an RS asking for network info.', successState: 'forwarded' },
+      { id: 's2', order: 2, title: 'Router Advertisement', action: 'Router replies with the /64 prefix.', successState: 'forwarded' },
+      { id: 's3', order: 3, title: 'Build address', action: 'Host appends an interface ID (EUI-64 or random) to the prefix.', successState: 'learned' },
+      { id: 's4', order: 4, title: 'DAD', action: 'Host runs Duplicate Address Detection, then uses the address.', successState: 'matched' },
+    ],
+  },
+}
+
+/* -------------------------------------------------------------------------
+   OBJECTIVE 1.9 — Describe IPv6 address types
+   ------------------------------------------------------------------------- */
+const OBJ_19 = {
+  objectiveId: '1.9', domainId: 'fundamentals', title: 'Describe IPv6 address types',
+  ckus: [
+    { id: 'CKU-IPV6-GLOBAL-UNICAST', title: 'Global Unicast (GUA)', summary: 'Publicly routable IPv6, like a public IPv4. Range 2000::/3.', aliases: ['GUA'], tags: ['ipv6', 'unicast'], prerequisiteCkuIds: ['CKU-IPV6-ADDRESSING'], relatedCkuIds: ['CKU-IPV6-LINK-LOCAL'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'IPv6 address types', confidence: 0.95 }, { sourceName: CURATED_SOURCES.blueprint, chapter: '1.9', confidence: 1 }] },
+    { id: 'CKU-IPV6-UNIQUE-LOCAL', title: 'Unique Local (ULA)', summary: 'Private IPv6, like RFC1918. FC00::/7, in practice FD00::/8.', aliases: ['ULA'], tags: ['ipv6'], prerequisiteCkuIds: ['CKU-IPV6-ADDRESSING'], relatedCkuIds: ['CKU-IPV6-GLOBAL-UNICAST'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'ULA', confidence: 0.9 }] },
+    { id: 'CKU-IPV6-LINK-LOCAL', title: 'Link-Local', summary: 'Auto-assigned on every IPv6 interface, used for on-link communication (neighbor discovery, routing protocols); never routed. FE80::/10.', aliases: ['FE80'], tags: ['ipv6'], prerequisiteCkuIds: ['CKU-IPV6-ADDRESSING'], relatedCkuIds: ['CKU-IPV6-GLOBAL-UNICAST'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Link-local', confidence: 0.95 }] },
+    { id: 'CKU-IPV6-MULTICAST', title: 'Multicast & Anycast', summary: 'IPv6 has no broadcast; multicast (FF00::/8) replaces it — e.g. FF02::1 all nodes, FF02::2 all routers. Anycast = one address on several devices, routed to the nearest.', aliases: ['FF00', 'anycast'], tags: ['ipv6'], prerequisiteCkuIds: ['CKU-IPV6-ADDRESSING'], relatedCkuIds: ['CKU-IPV6-LINK-LOCAL'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Multicast/Anycast', confidence: 0.9 }] },
+  ],
+  reading: {
+    id: 'READ-1.9', ckuIds: ['CKU-IPV6-GLOBAL-UNICAST', 'CKU-IPV6-UNIQUE-LOCAL', 'CKU-IPV6-LINK-LOCAL', 'CKU-IPV6-MULTICAST'], estimatedReadMinutes: 6,
+    tiers: {
+      beginner: 'IPv6 has a few address “flavors.” Global unicast is the public, internet-routable kind. Unique local is the private kind (like home/office IPv4 ranges). Link-local addresses start with FE80 and only work on the local link — every interface gets one automatically. There is no broadcast in IPv6; instead, multicast (starting FF) sends to a group, like “all routers.”',
+      intermediate: 'Key IPv6 types: Global Unicast (2000::/3) — public, routable. Unique Local (FC00::/7, used as FD00::/8) — private, not internet-routable. Link-Local (FE80::/10) — auto-configured on every interface, used for neighbor discovery and routing-protocol peering, never forwarded off the link. Multicast (FF00::/8) replaces broadcast — well-known groups include FF02::1 (all nodes) and FF02::2 (all routers). Anycast assigns the same address to multiple devices; traffic goes to the nearest one.',
+      examReady: 'Memorize the ranges: Global Unicast `2000::/3` (public), Unique Local `FC00::/7` (private, commonly `FD00::/8`), Link-Local `FE80::/10` (on-link only, every interface, used by NDP and routing protocols), Multicast `FF00::/8` (replaces broadcast: `FF02::1` all nodes, `FF02::2` all routers). Anycast = same address on multiple nodes, delivered to the nearest. IPv6 has NO broadcast. Link-local is mandatory and is the next-hop for many routing protocols.',
+    },
+    definition: 'IPv6 address types: **Global Unicast** `2000::/3` (public), **Unique Local** `FC00::/7`/`FD00::/8` (private), **Link-Local** `FE80::/10` (on-link only), **Multicast** `FF00::/8` (replaces broadcast). **Anycast** = nearest of many. No broadcast in IPv6.',
+    keyPoints: [
+      'Global Unicast `2000::/3` — public, routable (like public IPv4).',
+      'Unique Local `FC00::/7` (use `FD00::/8`) — private (like RFC1918).',
+      'Link-Local `FE80::/10` — auto, on-link only, never routed.',
+      'Multicast `FF00::/8` replaces broadcast: `FF02::1` all nodes, `FF02::2` all routers.',
+      'Anycast — one address on many devices; goes to the nearest.',
+      'IPv6 has NO broadcast.',
+    ],
+    realWorld: 'Routing protocols (OSPFv3, EIGRPv6) peer using link-local (FE80::) next hops. `show ipv6 interface` shows the FE80:: link-local and joined multicast groups (e.g. FF02::1).',
+    commonMistakes: [
+      'Expecting an IPv6 broadcast address — there is none; multicast is used instead.',
+      'Confusing FE80 (link-local) with FF02 (multicast).',
+      'Thinking ULA (FD00) is internet-routable — it is private.',
+    ],
+    related: ['1.8 IPv6 addressing', '3.4 OSPF (uses link-local)'],
+    advanced: 'Solicited-node multicast (FF02::1:FFxx:xxxx) is used by Neighbor Discovery instead of ARP. Every IPv6 host joins the all-nodes group FF02::1; routers also join FF02::2.',
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'IPv6 address types', confidence: 0.95 }],
+  },
+  questions: [
+    { id: '1.9-c-q1', concept: 'global unicast', type: 'definition', difficulty: 'easy', question: 'Which range is IPv6 global unicast (public)?', choices: ['FE80::/10', '2000::/3', 'FC00::/7', 'FF00::/8'], correctIndex: 1, explanation: 'Global unicast = 2000::/3, the public/routable range.', ckuIds: ['CKU-IPV6-GLOBAL-UNICAST'] },
+    { id: '1.9-c-q2', concept: 'link-local', type: 'definition', difficulty: 'easy', question: 'What does an IPv6 link-local address begin with?', choices: ['FF02', '2001', 'FE80', 'FD00'], correctIndex: 2, explanation: 'Link-local addresses are FE80::/10.', ckuIds: ['CKU-IPV6-LINK-LOCAL'] },
+    { id: '1.9-c-q3', concept: 'unique local', type: 'definition', difficulty: 'medium', question: 'Which is the IPv6 “private” (RFC1918-like) range commonly used?', choices: ['FD00::/8', '2000::/3', 'FE80::/10', 'FF00::/8'], correctIndex: 0, explanation: 'Unique Local is FC00::/7, used in practice as FD00::/8.', ckuIds: ['CKU-IPV6-UNIQUE-LOCAL'] },
+    { id: '1.9-c-q4', concept: 'multicast', type: 'definition', difficulty: 'medium', question: 'Which multicast address reaches all routers on a link?', choices: ['FF02::1', 'FF02::2', 'FF02::5', '224.0.0.2'], correctIndex: 1, explanation: 'FF02::2 = all routers; FF02::1 = all nodes.', ckuIds: ['CKU-IPV6-MULTICAST'] },
+    { id: '1.9-c-q5', concept: 'no broadcast', type: 'true-false', difficulty: 'easy', question: 'True or False: IPv6 uses a broadcast address like IPv4.', choices: ['True', 'False'], correctIndex: 1, explanation: 'False — IPv6 has no broadcast; multicast (FF00::/8) replaces it.', ckuIds: ['CKU-IPV6-MULTICAST'] },
+    { id: '1.9-c-q6', concept: 'anycast', type: 'scenario', difficulty: 'medium', question: 'The same IPv6 address is configured on several servers and traffic goes to the nearest. What type is this?', choices: ['Multicast', 'Anycast', 'Link-local', 'Broadcast'], correctIndex: 1, explanation: 'Anycast = one address on multiple devices, delivered to the nearest.', ckuIds: ['CKU-IPV6-MULTICAST'] },
+    { id: '1.9-c-q7', concept: 'link-local scope', type: 'application', difficulty: 'medium', question: 'Where can a link-local (FE80::) address be used?', choices: ['Across the internet', 'Only on the local link', 'Only by routers', 'Only with NAT'], correctIndex: 1, explanation: 'Link-local is never routed off the local link.', ckuIds: ['CKU-IPV6-LINK-LOCAL'] },
+    { id: '1.9-c-q8', concept: 'all nodes', type: 'definition', difficulty: 'easy', question: 'Which multicast group does every IPv6 host join?', choices: ['FF02::1 (all nodes)', 'FF02::2 (all routers)', 'FE80::1', '2000::1'], correctIndex: 0, explanation: 'All IPv6 hosts join FF02::1, the all-nodes group.', ckuIds: ['CKU-IPV6-MULTICAST'] },
+  ],
+  flashcards: [
+    { id: '1.9-f1', ckuId: 'CKU-IPV6-GLOBAL-UNICAST', front: 'Global unicast range?', back: '2000::/3 (public, routable).' },
+    { id: '1.9-f2', ckuId: 'CKU-IPV6-UNIQUE-LOCAL', front: 'Unique local range?', back: 'FC00::/7, used as FD00::/8 (private).' },
+    { id: '1.9-f3', ckuId: 'CKU-IPV6-LINK-LOCAL', front: 'Link-local range and scope?', back: 'FE80::/10 — on-link only, auto-assigned, never routed.' },
+    { id: '1.9-f4', ckuId: 'CKU-IPV6-MULTICAST', front: 'Multicast range + FF02::1 / FF02::2?', back: 'FF00::/8; FF02::1 = all nodes, FF02::2 = all routers.' },
+    { id: '1.9-f5', ckuId: 'CKU-IPV6-MULTICAST', front: 'What replaces broadcast in IPv6?', back: 'Multicast — IPv6 has no broadcast.' },
+    { id: '1.9-f6', ckuId: 'CKU-IPV6-MULTICAST', front: 'What is anycast?', back: 'One address on multiple devices; traffic goes to the nearest.' },
+  ],
+  commands: [
+    { id: '1.9-cmd1', command: 'show ipv6 interface', mode: 'privileged EXEC', purpose: 'Show an interface’s link-local, global addresses, and joined multicast groups.', example: 'R1# show ipv6 interface g0/0', ckuIds: ['CKU-IPV6-LINK-LOCAL', 'CKU-IPV6-MULTICAST'] },
+    { id: '1.9-cmd2', command: 'show ipv6 neighbors', mode: 'privileged EXEC', purpose: 'Display the IPv6 neighbor (NDP) table — the IPv6 equivalent of the ARP table.', example: 'R1# show ipv6 neighbors', ckuIds: ['CKU-IPV6-LINK-LOCAL'] },
+  ],
+  glossary: [
+    { id: '1.9-g1', term: 'Global unicast', definition: 'Public, internet-routable IPv6 address (2000::/3).', ckuIds: ['CKU-IPV6-GLOBAL-UNICAST'] },
+    { id: '1.9-g2', term: 'Unique local', definition: 'Private IPv6 (FC00::/7, used as FD00::/8).', ckuIds: ['CKU-IPV6-UNIQUE-LOCAL'] },
+    { id: '1.9-g3', term: 'Link-local', definition: 'Auto-assigned FE80::/10 address used only on the local link.', ckuIds: ['CKU-IPV6-LINK-LOCAL'] },
+    { id: '1.9-g4', term: 'Anycast', definition: 'One address on multiple nodes; delivered to the nearest.', ckuIds: ['CKU-IPV6-MULTICAST'] },
+    { id: '1.9-g5', term: 'Solicited-node multicast', definition: 'FF02::1:FFxx:xxxx group used by Neighbor Discovery in place of ARP.', ckuIds: ['CKU-IPV6-MULTICAST'] },
+  ],
+  mnemonics: [
+    { id: '1.9-m1', title: 'Prefixes', mnemonic: '2=public, FD=private, FE80=local, FF=multicast.', explanation: 'Match the leading hex to the type.', ckuIds: ['CKU-IPV6-GLOBAL-UNICAST', 'CKU-IPV6-LINK-LOCAL', 'CKU-IPV6-MULTICAST'] },
+    { id: '1.9-m2', title: 'FF02', mnemonic: 'FF02::1 one=nodes, FF02::2 two=routers.', explanation: 'The number after :: matches “1 = all nodes, 2 = all routers.”', ckuIds: ['CKU-IPV6-MULTICAST'] },
+  ],
+  examTraps: [
+    { id: '1.9-t1', trap: 'Looking for an IPv6 broadcast.', correction: 'There is none; multicast (FF00::/8) replaces broadcast.', ckuIds: ['CKU-IPV6-MULTICAST'] },
+    { id: '1.9-t2', trap: 'Confusing FE80 and FF02.', correction: 'FE80 = link-local unicast; FF02 = link-local multicast group.', ckuIds: ['CKU-IPV6-LINK-LOCAL', 'CKU-IPV6-MULTICAST'] },
+    { id: '1.9-t3', trap: 'Treating ULA as routable.', correction: 'FD00::/8 is private and should not be advertised to the internet.', ckuIds: ['CKU-IPV6-UNIQUE-LOCAL'] },
+  ],
+  misconceptions: [
+    { id: '1.9-x1', misconception: 'Link-local addresses must be configured manually.', reality: 'Every IPv6 interface auto-generates an FE80:: link-local address.', example: 'It appears even with no global address set.', ckuIds: ['CKU-IPV6-LINK-LOCAL'] },
+    { id: '1.9-x2', misconception: 'Anycast and multicast are the same.', reality: 'Multicast delivers to ALL group members; anycast delivers to the NEAREST one.', example: 'DNS root servers use anycast.', ckuIds: ['CKU-IPV6-MULTICAST'] },
+    { id: '1.9-x3', misconception: 'Global unicast is the only usable type on a router link.', reality: 'Routers often peer over link-local (FE80::) next hops for routing protocols.', example: 'OSPFv3 neighbors use link-local addresses.', ckuIds: ['CKU-IPV6-LINK-LOCAL'] },
+  ],
+  diagram: {
+    id: 'DIAG-1.9-types', title: 'IPv6 address type map', type: 'comparison', ckuIds: ['CKU-IPV6-GLOBAL-UNICAST', 'CKU-IPV6-LINK-LOCAL', 'CKU-IPV6-MULTICAST'],
+    nodes: [
+      { id: 'g', label: '2000::/3 Global', type: 'subnet', x: 22, y: 30 },
+      { id: 'u', label: 'FD00::/8 ULA', type: 'subnet', x: 22, y: 75 },
+      { id: 'l', label: 'FE80::/10 Link-local', type: 'process', x: 60, y: 30 },
+      { id: 'm', label: 'FF00::/8 Multicast', type: 'process', x: 60, y: 75 },
+    ],
+    links: [
+      { id: 'l1', source: 'g', target: 'l', label: 'unicast' }, { id: 'l2', source: 'u', target: 'g', label: 'private/public' }, { id: 'l3', source: 'm', target: 'l', label: 'no broadcast' },
+    ],
+    annotations: ['2 = public, FD = private, FE80 = on-link, FF = multicast.', 'No broadcast in IPv6.'],
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'IPv6 types', confidence: 0.9 }],
+  },
+  packetFlow: {
+    id: 'FLOW-1.9-nd', title: 'Neighbor Discovery (ARP replacement)', ckuIds: ['CKU-IPV6-MULTICAST', 'CKU-IPV6-LINK-LOCAL'], diagramId: 'DIAG-1.9-types',
+    steps: [
+      { id: 's1', order: 1, title: 'Neighbor Solicitation', action: 'Host sends NS to the solicited-node multicast for the target.', successState: 'forwarded' },
+      { id: 's2', order: 2, title: 'Neighbor Advertisement', action: 'Target replies with its link-layer address.', successState: 'forwarded' },
+      { id: 's3', order: 3, title: 'Cache', action: 'Host stores the mapping in the neighbor table.', successState: 'learned' },
+    ],
+  },
+}
+
+/* -------------------------------------------------------------------------
+   OBJECTIVE 2.1 — Configure and verify VLANs spanning multiple switches
+   ------------------------------------------------------------------------- */
+const OBJ_21 = {
+  objectiveId: '2.1', domainId: 'access', title: 'Configure and verify VLANs (normal range) spanning multiple switches',
+  ckus: [
+    { id: 'CKU-VLAN', title: 'VLAN', summary: 'A logical Layer 2 broadcast domain. Devices in the same VLAN communicate at L2 regardless of physical location; different VLANs require a router/L3 switch.', aliases: ['virtual LAN'], tags: ['vlan', 'switching'], prerequisiteCkuIds: ['CKU-BROADCAST-DOMAIN'], relatedCkuIds: ['CKU-ACCESS-PORT', 'CKU-TRUNKING'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'VLANs', confidence: 0.95 }, { sourceName: CURATED_SOURCES.blueprint, chapter: '2.1', confidence: 1 }] },
+    { id: 'CKU-ACCESS-PORT', title: 'Access Port', summary: 'A switchport that belongs to exactly one VLAN and carries untagged traffic for an end device.', aliases: ['access mode'], tags: ['vlan'], prerequisiteCkuIds: ['CKU-VLAN'], relatedCkuIds: ['CKU-VLAN'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Access ports', confidence: 0.9 }] },
+    { id: 'CKU-VOICE-VLAN', title: 'Voice VLAN', summary: 'A second VLAN on an access port for IP phones, so voice and data traffic are separated on the same physical port.', aliases: ['voice vlan'], tags: ['vlan', 'voice'], prerequisiteCkuIds: ['CKU-ACCESS-PORT'], relatedCkuIds: ['CKU-ACCESS-PORT'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Voice VLAN', confidence: 0.85 }] },
+  ],
+  reading: {
+    id: 'READ-2.1', ckuIds: ['CKU-VLAN', 'CKU-ACCESS-PORT', 'CKU-VOICE-VLAN'], estimatedReadMinutes: 6,
+    tiers: {
+      beginner: 'A VLAN lets one physical switch act like several separate switches. Ports put in VLAN 10 can talk to each other; ports in VLAN 20 are a separate group. To let VLAN 10 talk to VLAN 20 you need a router. You assign a normal end-device port to a VLAN by making it an “access” port.',
+      intermediate: 'A VLAN is a logical broadcast domain. You create one with `vlan <id>` (and name it), then assign access ports with `switchport mode access` + `switchport access vlan <id>`. Devices in the same VLAN reach each other at Layer 2 across multiple switches (via trunks); devices in different VLANs need a Layer 3 device. VLAN 1 is the default for all ports — best practice is to move user traffic off VLAN 1. An IP phone can use a voice VLAN alongside the data VLAN on one port.',
+      examReady: 'VLAN = logical broadcast domain. Create: `vlan 10` → `name SALES`. Assign an access port: `switchport mode access` + `switchport access vlan 10`. Verify with `show vlan brief`. Inter-VLAN traffic needs a router or L3 switch (SVI / router-on-a-stick). VLAN 1 is the default VLAN AND default native VLAN — best practice is to not use it for user data. Voice VLAN: `switchport voice vlan 20` puts phone traffic in a separate VLAN on the same access port. Normal range = 1–1005; extended = 1006–4094.',
+    },
+    definition: 'A **VLAN** is a logical Layer 2 broadcast domain. Same-VLAN devices talk at L2 (even across switches via trunks); **different VLANs need a router/L3 switch**. End-device ports are **access ports** assigned to one VLAN.',
+    keyPoints: [
+      'Create: `vlan <id>` then `name <name>`.',
+      'Assign access port: `switchport mode access` + `switchport access vlan <id>`.',
+      'Same VLAN = same broadcast domain; inter-VLAN needs L3.',
+      'Verify with `show vlan brief`.',
+      'VLAN 1 = default VLAN and default native VLAN — avoid for user traffic.',
+      'Voice VLAN carries phone traffic separately on an access port.',
+    ],
+    realWorld: 'A trunk carries multiple VLANs between switches, so VLAN 10 can span the building. `show vlan brief` confirms port-to-VLAN mapping; a missing VLAN assignment is a top cause of “host can’t reach anyone.”',
+    commonMistakes: [
+      'Assigning a port to a VLAN that hasn’t been created (it may go inactive).',
+      'Leaving user traffic on VLAN 1.',
+      'Expecting two VLANs to talk without a router/L3 switch.',
+      'Forgetting `switchport mode access` so the port may negotiate a trunk.',
+    ],
+    related: ['2.2 Trunking', '3.x Inter-VLAN routing', '1.13 Switching'],
+    advanced: 'Normal-range VLANs (1–1005) are stored in vlan.dat; extended (1006–4094) require certain VTP modes. A port in a deleted VLAN goes inactive until the VLAN exists again.',
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'VLANs', confidence: 0.95 }],
+  },
+  questions: [
+    { id: '2.1-c-q1', concept: 'vlan definition', type: 'definition', difficulty: 'easy', question: 'A VLAN is best described as a…', choices: ['Collision domain', 'Logical broadcast domain', 'Physical cable', 'Routing protocol'], correctIndex: 1, explanation: 'A VLAN is a logical broadcast domain at Layer 2.', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-c-q2', concept: 'inter-vlan', type: 'scenario', difficulty: 'medium', question: 'Hosts in VLAN 10 cannot reach hosts in VLAN 20. What is required?', choices: ['Another switch', 'A router or L3 switch', 'A longer cable', 'A trunk between the two hosts'], correctIndex: 1, explanation: 'Traffic between VLANs must be routed by a Layer 3 device.', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-c-q3', concept: 'access port config', type: 'application', difficulty: 'medium', question: 'Which commands assign a port to VLAN 10 as an access port?', choices: ['switchport trunk vlan 10', 'switchport mode access / switchport access vlan 10', 'vlan 10 / no shutdown', 'switchport voice vlan 10'], correctIndex: 1, explanation: 'Set the mode to access, then assign the VLAN.', ckuIds: ['CKU-ACCESS-PORT'] },
+    { id: '2.1-c-q4', concept: 'verify', type: 'application', difficulty: 'easy', question: 'Which command shows VLAN-to-port assignments?', choices: ['show interfaces trunk', 'show vlan brief', 'show ip route', 'show mac address-table'], correctIndex: 1, explanation: '`show vlan brief` lists VLANs and their assigned ports.', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-c-q5', concept: 'default vlan', type: 'definition', difficulty: 'medium', question: 'What is special about VLAN 1 by default?', choices: ['It is the only routable VLAN', 'It is the default VLAN and default native VLAN', 'It cannot carry traffic', 'It is the voice VLAN'], correctIndex: 1, explanation: 'VLAN 1 is the default VLAN for all ports and the default native VLAN; best practice avoids it for user data.', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-c-q6', concept: 'voice vlan', type: 'scenario', difficulty: 'medium', question: 'An IP phone and a PC share one switchport. How are their traffic types separated?', choices: ['Two access VLANs are impossible', 'A data VLAN + a voice VLAN on the port', 'A trunk to the phone', 'Port security'], correctIndex: 1, explanation: 'The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.', ckuIds: ['CKU-VOICE-VLAN'] },
+    { id: '2.1-c-q7', concept: 'same vlan reach', type: 'true-false', difficulty: 'easy', question: 'True or False: Devices in the same VLAN on two different switches can communicate at Layer 2 (given a trunk).', choices: ['True', 'False'], correctIndex: 0, explanation: 'True — a trunk lets a VLAN span switches at Layer 2.', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-c-q8', concept: 'create vlan', type: 'application', difficulty: 'easy', question: 'Which command creates VLAN 30?', choices: ['vlan 30', 'switchport access vlan 30', 'create vlan 30', 'ip vlan 30'], correctIndex: 0, explanation: '`vlan 30` in global config creates the VLAN.', ckuIds: ['CKU-VLAN'] },
+  ],
+  flashcards: [
+    { id: '2.1-f1', ckuId: 'CKU-VLAN', front: 'What is a VLAN?', back: 'A logical Layer 2 broadcast domain; inter-VLAN traffic needs a router/L3 switch.' },
+    { id: '2.1-f2', ckuId: 'CKU-ACCESS-PORT', front: 'Commands to make an access port in VLAN 10?', back: 'switchport mode access / switchport access vlan 10.' },
+    { id: '2.1-f3', ckuId: 'CKU-VLAN', front: 'Command to verify VLAN/port assignments?', back: 'show vlan brief.' },
+    { id: '2.1-f4', ckuId: 'CKU-VLAN', front: 'What is special about VLAN 1?', back: 'Default VLAN + default native VLAN; avoid for user traffic.' },
+    { id: '2.1-f5', ckuId: 'CKU-VOICE-VLAN', front: 'Voice VLAN purpose?', back: 'Separates IP-phone traffic from PC data on the same access port.' },
+    { id: '2.1-f6', ckuId: 'CKU-VLAN', front: 'Normal vs extended VLAN ranges?', back: 'Normal 1–1005; extended 1006–4094.' },
+  ],
+  commands: [
+    { id: '2.1-cmd1', command: 'vlan <id>', mode: 'global config', purpose: 'Create a VLAN (then name it).', example: 'SW1(config)# vlan 10', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-cmd2', command: 'switchport access vlan <id>', mode: 'interface config', purpose: 'Assign an access port to a VLAN.', example: 'SW1(config-if)# switchport access vlan 10', ckuIds: ['CKU-ACCESS-PORT'] },
+    { id: '2.1-cmd3', command: 'show vlan brief', mode: 'privileged EXEC', purpose: 'Display VLANs and their assigned ports.', example: 'SW1# show vlan brief', ckuIds: ['CKU-VLAN'] },
+  ],
+  glossary: [
+    { id: '2.1-g1', term: 'VLAN', definition: 'A logical Layer 2 broadcast domain configured on switches.', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-g2', term: 'Access port', definition: 'A switchport in one VLAN carrying untagged end-device traffic.', ckuIds: ['CKU-ACCESS-PORT'] },
+    { id: '2.1-g3', term: 'Native VLAN', definition: 'The untagged VLAN on a trunk; VLAN 1 by default.', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-g4', term: 'Voice VLAN', definition: 'A separate VLAN for IP-phone traffic on an access port.', ckuIds: ['CKU-VOICE-VLAN'] },
+  ],
+  mnemonics: [
+    { id: '2.1-m1', title: 'Access port', mnemonic: '“Mode access, then access vlan.”', explanation: 'Two commands in order: set mode, then assign the VLAN.', ckuIds: ['CKU-ACCESS-PORT'] },
+  ],
+  examTraps: [
+    { id: '2.1-t1', trap: 'Thinking same-VLAN devices need a router.', correction: 'Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-t2', trap: 'Leaving ports on VLAN 1.', correction: 'Best practice moves user traffic off VLAN 1 and changes the native VLAN.', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-t3', trap: 'Assigning a port to an uncreated VLAN.', correction: 'Create the VLAN first or the port may go inactive.', ckuIds: ['CKU-VLAN'] },
+  ],
+  misconceptions: [
+    { id: '2.1-x1', misconception: 'VLANs improve speed.', reality: 'VLANs segment broadcast domains for organization/security, not raw speed.', example: 'Smaller broadcast domains reduce flooding but don’t increase link rate.', ckuIds: ['CKU-VLAN'] },
+    { id: '2.1-x2', misconception: 'A VLAN exists on only one switch.', reality: 'A VLAN can span many switches over trunks.', example: 'VLAN 10 on SW1 and SW2 is one broadcast domain via a trunk.', ckuIds: ['CKU-VLAN'] },
+  ],
+  diagram: {
+    id: 'DIAG-2.1-vlans', title: 'VLAN segmentation', type: 'topology', ckuIds: ['CKU-VLAN'],
+    nodes: [
+      { id: 'sw', label: 'Switch', type: 'switch', x: 50, y: 25 },
+      { id: 'v10a', label: 'PC VLAN10', type: 'pc', x: 20, y: 78 },
+      { id: 'v10b', label: 'PC VLAN10', type: 'pc', x: 45, y: 78, status: 'highlighted' },
+      { id: 'v20', label: 'PC VLAN20', type: 'pc', x: 78, y: 78 },
+    ],
+    links: [
+      { id: 'l1', source: 'sw', target: 'v10a', label: 'vlan10' }, { id: 'l2', source: 'sw', target: 'v10b', label: 'vlan10', status: 'forwarding' }, { id: 'l3', source: 'sw', target: 'v20', label: 'vlan20' },
+    ],
+    annotations: ['VLAN10 hosts talk directly (L2).', 'VLAN10 ↔ VLAN20 needs a router/L3 switch.'],
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'VLANs', confidence: 0.9 }],
+  },
+  packetFlow: {
+    id: 'FLOW-2.1-samevlan', title: 'Same-VLAN frame forwarding', ckuIds: ['CKU-VLAN'], diagramId: 'DIAG-2.1-vlans',
+    steps: [
+      { id: 's1', order: 1, title: 'Frame in', action: 'PC in VLAN10 sends a frame to another VLAN10 host.', successState: 'forwarded' },
+      { id: 's2', order: 2, title: 'VLAN check', action: 'Switch keeps the frame within VLAN10’s broadcast domain.', successState: 'matched' },
+      { id: 's3', order: 3, title: 'Forward', action: 'Frame is delivered out the destination’s VLAN10 port (no routing).', successState: 'forwarded' },
+    ],
+  },
+}
+
+/* -------------------------------------------------------------------------
+   OBJECTIVE 2.2 — Configure and verify interswitch connectivity (trunking)
+   ------------------------------------------------------------------------- */
+const OBJ_22 = {
+  objectiveId: '2.2', domainId: 'access', title: 'Configure and verify interswitch connectivity (trunking)',
+  ckus: [
+    { id: 'CKU-TRUNKING', title: 'Trunking (802.1Q)', summary: 'A trunk carries traffic for multiple VLANs between switches using 802.1Q tagging — a 4-byte tag (12-bit VLAN ID) added to each frame.', aliases: ['802.1Q', 'dot1q', 'tagging'], tags: ['trunk', 'vlan'], prerequisiteCkuIds: ['CKU-VLAN'], relatedCkuIds: ['CKU-NATIVE-VLAN', 'CKU-DTP'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Trunking', confidence: 0.95 }, { sourceName: CURATED_SOURCES.blueprint, chapter: '2.2', confidence: 1 }] },
+    { id: 'CKU-NATIVE-VLAN', title: 'Native VLAN', summary: 'The one VLAN whose frames cross an 802.1Q trunk UNtagged. Must match on both ends (default VLAN 1) or you get a native VLAN mismatch.', aliases: ['untagged vlan'], tags: ['trunk'], prerequisiteCkuIds: ['CKU-TRUNKING'], relatedCkuIds: ['CKU-TRUNKING'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Native VLAN', confidence: 0.9 }] },
+    { id: 'CKU-DTP', title: 'DTP', summary: 'Dynamic Trunking Protocol auto-negotiates trunk vs access; often disabled for security with `switchport nonegotiate`.', aliases: ['dynamic trunking'], tags: ['trunk', 'security'], prerequisiteCkuIds: ['CKU-TRUNKING'], relatedCkuIds: ['CKU-TRUNKING'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'DTP', confidence: 0.85 }] },
+  ],
+  reading: {
+    id: 'READ-2.2', ckuIds: ['CKU-TRUNKING', 'CKU-NATIVE-VLAN', 'CKU-DTP'], estimatedReadMinutes: 6,
+    tiers: {
+      beginner: 'When two switches need to carry several VLANs over a single link between them, that link is a “trunk.” To keep VLANs separate, the switch adds a small tag to each frame saying which VLAN it belongs to. One VLAN — the “native” VLAN — is sent without a tag, and both ends must agree on which one it is.',
+      intermediate: 'A trunk uses 802.1Q to tag frames with their VLAN ID (a 4-byte tag) so multiple VLANs share one link. Configure with `switchport mode trunk`; restrict VLANs with `switchport trunk allowed vlan <list>`; set the untagged native VLAN with `switchport trunk native vlan <id>` (must match both ends). DTP can auto-form trunks but is commonly disabled (`switchport nonegotiate`) to prevent VLAN-hopping. Verify with `show interfaces trunk`.',
+      examReady: 'Trunk = 802.1Q-tagged link carrying multiple VLANs between switches. Config: `switchport mode trunk`, optionally `switchport trunk allowed vlan 10,20`, and `switchport trunk native vlan 99`. The native VLAN crosses UNtagged and must match on both ends (mismatch → CDP warning, traffic leakage). 802.1Q tag = 4 bytes inserted into the Ethernet frame, holding the 12-bit VLAN ID (so 4094 usable VLANs). DTP auto-negotiates trunking; disable with `switchport nonegotiate` for security. Verify: `show interfaces trunk` (mode, native VLAN, allowed/active VLANs).',
+    },
+    definition: 'A **trunk** carries multiple VLANs between switches using **802.1Q** tagging (a 4-byte tag with the VLAN ID). One **native VLAN** crosses **untagged** and must match on both ends.',
+    keyPoints: [
+      'Config: `switchport mode trunk`.',
+      '802.1Q tag = 4 bytes, 12-bit VLAN ID (up to 4094 VLANs).',
+      'Native VLAN is untagged; must match both ends (default VLAN 1).',
+      'Restrict VLANs with `switchport trunk allowed vlan <list>`.',
+      'DTP auto-negotiates trunks; disable with `switchport nonegotiate`.',
+      'Verify with `show interfaces trunk`.',
+    ],
+    realWorld: 'A native-VLAN mismatch shows up as a CDP error and can leak traffic between VLANs. Pruning the allowed VLAN list limits broadcast scope and is a security best practice.',
+    commonMistakes: [
+      'Native VLAN mismatch between the two trunk ends.',
+      'Leaving the native VLAN as 1 (security risk).',
+      'Allowing all VLANs on a trunk that only needs a few.',
+      'Relying on DTP auto-negotiation on untrusted links.',
+    ],
+    related: ['2.1 VLANs', '2.5 STP', 'Inter-VLAN routing'],
+    advanced: 'ISL is the legacy Cisco trunking protocol; 802.1Q is the standard and the only one on the exam in practice. A double-tagging attack abuses the native VLAN — hence the advice to use a dedicated, unused native VLAN.',
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Trunking', confidence: 0.95 }],
+  },
+  questions: [
+    { id: '2.2-c-q1', concept: 'trunk purpose', type: 'definition', difficulty: 'easy', question: 'What does a trunk link do?', choices: ['Carries one VLAN only', 'Carries multiple VLANs between switches', 'Connects a PC to a switch', 'Routes between VLANs'], correctIndex: 1, explanation: 'A trunk carries traffic for multiple VLANs between switches using 802.1Q.', ckuIds: ['CKU-TRUNKING'] },
+    { id: '2.2-c-q2', concept: 'tag size', type: 'definition', difficulty: 'medium', question: 'How big is the 802.1Q tag added to a frame?', choices: ['2 bytes', '4 bytes', '8 bytes', '12 bytes'], correctIndex: 1, explanation: 'The 802.1Q tag is 4 bytes and contains the 12-bit VLAN ID.', ckuIds: ['CKU-TRUNKING'] },
+    { id: '2.2-c-q3', concept: 'native vlan', type: 'scenario', difficulty: 'medium', question: 'On an 802.1Q trunk, how is the native VLAN’s traffic sent?', choices: ['Double-tagged', 'Tagged', 'Untagged', 'Dropped'], correctIndex: 2, explanation: 'Native VLAN frames cross the trunk untagged.', ckuIds: ['CKU-NATIVE-VLAN'] },
+    { id: '2.2-c-q4', concept: 'native mismatch', type: 'troubleshooting', difficulty: 'hard', question: 'Two trunked switches log a native VLAN mismatch. What is the likely effect?', choices: ['Trunk speed drops', 'Traffic from those VLANs can leak/merge', 'All VLANs stop', 'Nothing — it is cosmetic'], correctIndex: 1, explanation: 'A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.', ckuIds: ['CKU-NATIVE-VLAN'] },
+    { id: '2.2-c-q5', concept: 'config trunk', type: 'application', difficulty: 'easy', question: 'Which command forces a port to trunk?', choices: ['switchport mode access', 'switchport mode trunk', 'switchport trunk allowed vlan', 'switchport nonegotiate'], correctIndex: 1, explanation: '`switchport mode trunk` sets the port to trunking.', ckuIds: ['CKU-TRUNKING'] },
+    { id: '2.2-c-q6', concept: 'DTP security', type: 'application', difficulty: 'medium', question: 'Which command disables DTP auto-negotiation on a port?', choices: ['no dtp', 'switchport nonegotiate', 'switchport mode dynamic', 'no switchport trunk'], correctIndex: 1, explanation: '`switchport nonegotiate` stops DTP, a hardening best practice.', ckuIds: ['CKU-DTP'] },
+    { id: '2.2-c-q7', concept: 'verify trunk', type: 'application', difficulty: 'easy', question: 'Which command shows trunk mode, native VLAN, and allowed VLANs?', choices: ['show vlan brief', 'show interfaces trunk', 'show ip interface brief', 'show cdp neighbors'], correctIndex: 1, explanation: '`show interfaces trunk` lists trunking details.', ckuIds: ['CKU-TRUNKING'] },
+    { id: '2.2-c-q8', concept: 'allowed vlans', type: 'application', difficulty: 'medium', question: 'Which command limits a trunk to VLANs 10 and 20?', choices: ['switchport access vlan 10,20', 'switchport trunk allowed vlan 10,20', 'vlan 10,20', 'switchport trunk native vlan 10'], correctIndex: 1, explanation: '`switchport trunk allowed vlan 10,20` prunes the trunk.', ckuIds: ['CKU-TRUNKING'] },
+  ],
+  flashcards: [
+    { id: '2.2-f1', ckuId: 'CKU-TRUNKING', front: 'What is a trunk and what protocol tags it?', back: 'A link carrying multiple VLANs between switches; 802.1Q tags frames with the VLAN ID.' },
+    { id: '2.2-f2', ckuId: 'CKU-TRUNKING', front: 'Size and content of the 802.1Q tag?', back: '4 bytes, including the 12-bit VLAN ID.' },
+    { id: '2.2-f3', ckuId: 'CKU-NATIVE-VLAN', front: 'How is the native VLAN carried, and what must match?', back: 'Untagged; the native VLAN ID must match on both trunk ends.' },
+    { id: '2.2-f4', ckuId: 'CKU-TRUNKING', front: 'Command to verify trunks?', back: 'show interfaces trunk.' },
+    { id: '2.2-f5', ckuId: 'CKU-DTP', front: 'How do you disable DTP?', back: 'switchport nonegotiate.' },
+    { id: '2.2-f6', ckuId: 'CKU-TRUNKING', front: 'Command to restrict allowed VLANs on a trunk?', back: 'switchport trunk allowed vlan <list>.' },
+  ],
+  commands: [
+    { id: '2.2-cmd1', command: 'switchport mode trunk', mode: 'interface config', purpose: 'Configure the port as an 802.1Q trunk.', example: 'SW1(config-if)# switchport mode trunk', ckuIds: ['CKU-TRUNKING'] },
+    { id: '2.2-cmd2', command: 'switchport trunk native vlan <id>', mode: 'interface config', purpose: 'Set the untagged native VLAN (match both ends).', example: 'SW1(config-if)# switchport trunk native vlan 99', ckuIds: ['CKU-NATIVE-VLAN'] },
+    { id: '2.2-cmd3', command: 'show interfaces trunk', mode: 'privileged EXEC', purpose: 'Show trunk mode, native VLAN, and allowed/active VLANs.', example: 'SW1# show interfaces trunk', ckuIds: ['CKU-TRUNKING'] },
+  ],
+  glossary: [
+    { id: '2.2-g1', term: 'Trunk', definition: 'A switch link carrying multiple VLANs using 802.1Q tagging.', ckuIds: ['CKU-TRUNKING'] },
+    { id: '2.2-g2', term: '802.1Q', definition: 'The IEEE VLAN tagging standard; inserts a 4-byte tag with the VLAN ID.', ckuIds: ['CKU-TRUNKING'] },
+    { id: '2.2-g3', term: 'Native VLAN', definition: 'The VLAN sent untagged on a trunk; must match both ends.', ckuIds: ['CKU-NATIVE-VLAN'] },
+    { id: '2.2-g4', term: 'DTP', definition: 'Dynamic Trunking Protocol; auto-negotiates trunk/access.', ckuIds: ['CKU-DTP'] },
+  ],
+  mnemonics: [
+    { id: '2.2-m1', title: 'Native = naked', mnemonic: 'Native VLAN travels “naked” (untagged).', explanation: 'The native VLAN is the one frame type sent without an 802.1Q tag.', ckuIds: ['CKU-NATIVE-VLAN'] },
+  ],
+  examTraps: [
+    { id: '2.2-t1', trap: 'Mismatched native VLANs.', correction: 'Native VLAN must match on both ends or traffic can leak (CDP warns).', ckuIds: ['CKU-NATIVE-VLAN'] },
+    { id: '2.2-t2', trap: 'Thinking all VLANs are tagged.', correction: 'The native VLAN is untagged; all others are tagged.', ckuIds: ['CKU-NATIVE-VLAN'] },
+    { id: '2.2-t3', trap: 'Leaving DTP on for untrusted ports.', correction: 'Disable DTP with switchport nonegotiate to prevent VLAN hopping.', ckuIds: ['CKU-DTP'] },
+  ],
+  misconceptions: [
+    { id: '2.2-x1', misconception: 'A trunk is faster than an access port.', reality: 'A trunk simply carries multiple VLANs; speed depends on the physical link.', example: 'A 1G trunk and 1G access port have the same link rate.', ckuIds: ['CKU-TRUNKING'] },
+    { id: '2.2-x2', misconception: '802.1Q encapsulates the whole frame.', reality: '802.1Q inserts a 4-byte tag into the existing frame; it does not wrap it.', example: 'The tag sits after the source MAC.', ckuIds: ['CKU-TRUNKING'] },
+  ],
+  diagram: {
+    id: 'DIAG-2.2-trunk', title: 'Trunk between switches', type: 'topology', ckuIds: ['CKU-TRUNKING'],
+    nodes: [
+      { id: 'sw1', label: 'SW1', type: 'switch', x: 25, y: 40 },
+      { id: 'sw2', label: 'SW2', type: 'switch', x: 75, y: 40 },
+      { id: 'v', label: 'VLAN 10,20,99', type: 'process', x: 50, y: 82 },
+    ],
+    links: [
+      { id: 'l1', source: 'sw1', target: 'sw2', label: '802.1Q trunk', status: 'forwarding' }, { id: 'l2', source: 'v', target: 'sw1', label: 'tagged' }, { id: 'l3', source: 'v', target: 'sw2', label: 'tagged' },
+    ],
+    annotations: ['One link carries many VLANs, each frame tagged with its VLAN ID.', 'The native VLAN (99) crosses untagged.'],
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Trunking', confidence: 0.9 }],
+  },
+  packetFlow: {
+    id: 'FLOW-2.2-tag', title: 'Tagging across a trunk', ckuIds: ['CKU-TRUNKING', 'CKU-NATIVE-VLAN'], diagramId: 'DIAG-2.2-trunk',
+    steps: [
+      { id: 's1', order: 1, title: 'Frame enters SW1', action: 'A VLAN10 frame arrives at SW1.', successState: 'forwarded' },
+      { id: 's2', order: 2, title: 'Tag', action: 'SW1 inserts an 802.1Q tag with VLAN ID 10 before sending on the trunk.', successState: 'modified' },
+      { id: 's3', order: 3, title: 'SW2 reads tag', action: 'SW2 reads the tag, removes it, and places the frame in VLAN10.', successState: 'matched' },
+      { id: 's4', order: 4, title: 'Deliver', action: 'Frame is forwarded out a VLAN10 access port.', successState: 'forwarded' },
+    ],
+  },
+}
+
+/* -------------------------------------------------------------------------
+   OBJECTIVE 2.5 — Interpret basic operations of Rapid PVST+ Spanning Tree
+   ------------------------------------------------------------------------- */
+const OBJ_25 = {
+  objectiveId: '2.5', domainId: 'access', title: 'Interpret basic operations of Rapid PVST+ Spanning Tree Protocol',
+  ckus: [
+    { id: 'CKU-STP', title: 'Spanning Tree Protocol', summary: 'Prevents Layer 2 loops by blocking redundant switch paths, leaving one active path to the root bridge.', aliases: ['STP', '802.1D', 'spanning tree'], tags: ['stp', 'switching', 'loop-prevention'], prerequisiteCkuIds: ['CKU-TRUNKING'], relatedCkuIds: ['CKU-ROOT-BRIDGE', 'CKU-STP-PORTFAST'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'STP', confidence: 0.95 }, { sourceName: CURATED_SOURCES.blueprint, chapter: '2.5', confidence: 1 }] },
+    { id: 'CKU-ROOT-BRIDGE', title: 'Root Bridge Election', summary: 'The switch with the lowest Bridge ID (priority + MAC) becomes root; all others find the lowest-cost path to it. Default priority 32768.', aliases: ['root election', 'bridge ID'], tags: ['stp'], prerequisiteCkuIds: ['CKU-STP'], relatedCkuIds: ['CKU-STP'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Root bridge', confidence: 0.9 }] },
+    { id: 'CKU-STP-PORTFAST', title: 'PortFast & BPDU Guard', summary: 'PortFast skips listening/learning on access ports for fast host connectivity; BPDU Guard err-disables a PortFast port that receives a BPDU (rogue switch).', aliases: ['portfast', 'bpdu guard'], tags: ['stp', 'security'], prerequisiteCkuIds: ['CKU-STP'], relatedCkuIds: ['CKU-STP'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'PortFast/BPDU Guard', confidence: 0.9 }] },
+  ],
+  reading: {
+    id: 'READ-2.5', ckuIds: ['CKU-STP', 'CKU-ROOT-BRIDGE', 'CKU-STP-PORTFAST'], estimatedReadMinutes: 7,
+    tiers: {
+      beginner: 'If you connect switches in a loop for redundancy, frames can circle forever and crash the network. Spanning Tree fixes this by automatically blocking the extra paths, leaving just one active route. If a link fails, it unblocks a backup path. One switch is elected the “root,” and every other switch keeps its best path toward it.',
+      intermediate: 'STP prevents Layer 2 loops by electing a root bridge (lowest Bridge ID = priority + MAC) and blocking redundant links. Each non-root switch has one root port (best path to root) and each segment has one designated port; other ports block. Port roles/states converge so exactly one loop-free path exists. Rapid PVST+ (Cisco default) runs a per-VLAN rapid spanning tree that converges in seconds using proposal/agreement. PortFast on access ports skips the listening/learning delay; BPDU Guard shuts a PortFast port if it unexpectedly receives a BPDU.',
+      examReady: 'STP (802.1D) blocks redundant L2 paths to prevent loops. Root bridge = lowest Bridge ID (priority + MAC); default priority 32768; lower wins (ties broken by lowest MAC). Roles: Root Port (one per non-root switch, lowest cost to root), Designated Port (one per segment, forwards), Non-Designated/Alternate (blocks). Path cost by speed (e.g. 10G=2, 1G=4, 100M=19, 10M=100). Rapid PVST+ = Cisco default, per-VLAN, states discarding/learning/forwarding, fast convergence via proposal/agreement. PortFast → access ports skip listening/learning; BPDU Guard → err-disables a PortFast port that receives a BPDU. Set root: `spanning-tree vlan 1 root primary` (or lower the priority). Verify: `show spanning-tree`.',
+    },
+    definition: 'STP prevents **Layer 2 loops** by blocking redundant paths, leaving one path to the **root bridge** (lowest Bridge ID). **Rapid PVST+** (Cisco default) converges in seconds. **PortFast/BPDU Guard** speed up and protect access ports.',
+    keyPoints: [
+      'Root bridge = lowest Bridge ID (priority + MAC); default priority `32768`.',
+      'Roles: root port (per switch), designated port (per segment), others block.',
+      'Lower path cost wins; cost by link speed (1G=`4`, 100M=`19`).',
+      'Rapid PVST+ = Cisco default; states discarding/learning/forwarding.',
+      'PortFast skips listening/learning on access ports.',
+      'BPDU Guard err-disables a PortFast port that receives a BPDU.',
+    ],
+    realWorld: 'Lower a switch’s priority (`spanning-tree vlan 1 priority 4096`) to make it root deterministically. `show spanning-tree` reveals the root, port roles, and which ports are blocking — the first stop when redundant links misbehave.',
+    commonMistakes: [
+      'Assuming the highest-priority number wins (lowest BID wins).',
+      'Enabling PortFast on a switch-to-switch link (loop risk).',
+      'Forgetting BPDU Guard, leaving PortFast ports open to rogue switches.',
+      'Confusing root port (toward root) with designated port (per segment).',
+    ],
+    related: ['2.2 Trunking', '2.4 EtherChannel', '1.13 Switching'],
+    advanced: 'Rapid PVST+ uses proposal/agreement to converge without timers in most cases. Root Guard prevents a downstream switch from becoming root; Loop Guard protects against unidirectional link failures.',
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'STP', confidence: 0.95 }],
+  },
+  questions: [
+    { id: '2.5-c-q1', concept: 'stp purpose', type: 'definition', difficulty: 'easy', question: 'What problem does STP solve?', choices: ['Routing loops', 'Layer 2 switching loops', 'IP address conflicts', 'Slow DNS'], correctIndex: 1, explanation: 'STP prevents Layer 2 loops by blocking redundant paths.', ckuIds: ['CKU-STP'] },
+    { id: '2.5-c-q2', concept: 'root election', type: 'application', difficulty: 'medium', question: 'How is the root bridge chosen?', choices: ['Highest priority', 'Lowest Bridge ID (priority + MAC)', 'Highest MAC', 'Fastest CPU'], correctIndex: 1, explanation: 'The lowest Bridge ID (priority, then MAC) wins the root election.', ckuIds: ['CKU-ROOT-BRIDGE'] },
+    { id: '2.5-c-q3', concept: 'default priority', type: 'definition', difficulty: 'medium', question: 'What is the default STP bridge priority?', choices: ['0', '4096', '32768', '65535'], correctIndex: 2, explanation: 'Default priority is 32768 (lower is preferred).', ckuIds: ['CKU-ROOT-BRIDGE'] },
+    { id: '2.5-c-q4', concept: 'port roles', type: 'definition', difficulty: 'medium', question: 'Each non-root switch has exactly one of which port type toward the root?', choices: ['Designated port', 'Root port', 'Blocking port', 'Trunk port'], correctIndex: 1, explanation: 'Each non-root switch has one root port — its lowest-cost path to root.', ckuIds: ['CKU-STP'] },
+    { id: '2.5-c-q5', concept: 'portfast', type: 'application', difficulty: 'medium', question: 'PortFast should be enabled on which ports?', choices: ['Switch-to-switch trunks', 'Access ports to end devices', 'Router uplinks', 'All ports'], correctIndex: 1, explanation: 'PortFast belongs on access ports to hosts; on switch links it risks loops.', ckuIds: ['CKU-STP-PORTFAST'] },
+    { id: '2.5-c-q6', concept: 'bpdu guard', type: 'scenario', difficulty: 'hard', question: 'A PortFast access port receives a BPDU with BPDU Guard enabled. What happens?', choices: ['Port becomes root', 'Port is err-disabled (shut down)', 'BPDU is forwarded', 'Nothing'], correctIndex: 1, explanation: 'BPDU Guard err-disables the port, protecting against a rogue switch.', ckuIds: ['CKU-STP-PORTFAST'] },
+    { id: '2.5-c-q7', concept: 'rapid pvst', type: 'definition', difficulty: 'medium', question: 'What is the Cisco default spanning-tree mode?', choices: ['802.1D', 'Rapid PVST+', 'MST', 'PVST'], correctIndex: 1, explanation: 'Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.', ckuIds: ['CKU-STP'] },
+    { id: '2.5-c-q8', concept: 'set root', type: 'application', difficulty: 'medium', question: 'Which command makes a switch the root for VLAN 1 by lowering its priority?', choices: ['spanning-tree vlan 1 root primary', 'spanning-tree portfast', 'spanning-tree bpduguard enable', 'switchport mode trunk'], correctIndex: 0, explanation: '`spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root.', ckuIds: ['CKU-ROOT-BRIDGE'] },
+  ],
+  flashcards: [
+    { id: '2.5-f1', ckuId: 'CKU-STP', front: 'What does STP do?', back: 'Blocks redundant L2 paths to prevent switching loops; unblocks on failure.' },
+    { id: '2.5-f2', ckuId: 'CKU-ROOT-BRIDGE', front: 'How is the root bridge elected?', back: 'Lowest Bridge ID = priority (default 32768) then MAC.' },
+    { id: '2.5-f3', ckuId: 'CKU-STP', front: 'Three STP port roles?', back: 'Root port (per switch), designated port (per segment), blocking/alternate.' },
+    { id: '2.5-f4', ckuId: 'CKU-STP-PORTFAST', front: 'What does PortFast do?', back: 'Skips listening/learning so access ports forward immediately.' },
+    { id: '2.5-f5', ckuId: 'CKU-STP-PORTFAST', front: 'What does BPDU Guard do?', back: 'Err-disables a PortFast port that receives a BPDU (rogue switch protection).' },
+    { id: '2.5-f6', ckuId: 'CKU-STP', front: 'Cisco default STP mode + verify command?', back: 'Rapid PVST+; show spanning-tree.' },
+  ],
+  commands: [
+    { id: '2.5-cmd1', command: 'show spanning-tree', mode: 'privileged EXEC', purpose: 'Show the root bridge, port roles/states, and costs.', example: 'SW1# show spanning-tree vlan 1', ckuIds: ['CKU-STP', 'CKU-ROOT-BRIDGE'] },
+    { id: '2.5-cmd2', command: 'spanning-tree vlan <id> root primary', mode: 'global config', purpose: 'Lower priority so this switch becomes the root for a VLAN.', example: 'SW1(config)# spanning-tree vlan 1 root primary', ckuIds: ['CKU-ROOT-BRIDGE'] },
+    { id: '2.5-cmd3', command: 'spanning-tree portfast', mode: 'interface config', purpose: 'Enable PortFast on an access port.', example: 'SW1(config-if)# spanning-tree portfast', ckuIds: ['CKU-STP-PORTFAST'] },
+  ],
+  glossary: [
+    { id: '2.5-g1', term: 'Spanning Tree Protocol', definition: 'L2 protocol that blocks redundant paths to prevent loops.', ckuIds: ['CKU-STP'] },
+    { id: '2.5-g2', term: 'Root bridge', definition: 'The switch with the lowest Bridge ID; reference point of the tree.', ckuIds: ['CKU-ROOT-BRIDGE'] },
+    { id: '2.5-g3', term: 'Root port', definition: 'A non-root switch’s lowest-cost port toward the root.', ckuIds: ['CKU-STP'] },
+    { id: '2.5-g4', term: 'PortFast', definition: 'Feature letting access ports skip listening/learning.', ckuIds: ['CKU-STP-PORTFAST'] },
+    { id: '2.5-g5', term: 'BPDU Guard', definition: 'Err-disables a PortFast port that receives a BPDU.', ckuIds: ['CKU-STP-PORTFAST'] },
+  ],
+  mnemonics: [
+    { id: '2.5-m1', title: 'Lowest wins', mnemonic: 'Lowest Bridge ID = Root.', explanation: 'Priority first (default 32768), then MAC — lowest is root.', ckuIds: ['CKU-ROOT-BRIDGE'] },
+  ],
+  examTraps: [
+    { id: '2.5-t1', trap: 'Highest priority becomes root.', correction: 'LOWEST Bridge ID (priority then MAC) becomes root.', ckuIds: ['CKU-ROOT-BRIDGE'] },
+    { id: '2.5-t2', trap: 'PortFast on switch links.', correction: 'PortFast belongs only on access/host ports; on switch links it risks loops.', ckuIds: ['CKU-STP-PORTFAST'] },
+    { id: '2.5-t3', trap: 'Confusing root and designated ports.', correction: 'Root port = best path to root (per switch); designated = forwarding port per segment.', ckuIds: ['CKU-STP'] },
+  ],
+  misconceptions: [
+    { id: '2.5-x1', misconception: 'STP load-balances across redundant links.', reality: 'Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.', example: 'A blocked link carries no data until the primary fails.', ckuIds: ['CKU-STP'] },
+    { id: '2.5-x2', misconception: 'STP prevents routing loops.', reality: 'STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).', example: 'STP has no effect on IP routing.', ckuIds: ['CKU-STP'] },
+  ],
+  diagram: {
+    id: 'DIAG-2.5-stp', title: 'STP blocks one redundant path', type: 'topology', ckuIds: ['CKU-STP', 'CKU-ROOT-BRIDGE'],
+    nodes: [
+      { id: 'root', label: 'Root (lowest BID)', type: 'switch', x: 50, y: 15, status: 'highlighted' },
+      { id: 'a', label: 'SW-A', type: 'switch', x: 22, y: 70 },
+      { id: 'b', label: 'SW-B', type: 'switch', x: 78, y: 70 },
+    ],
+    links: [
+      { id: 'l1', source: 'root', target: 'a', label: 'forwarding', status: 'forwarding' }, { id: 'l2', source: 'root', target: 'b', label: 'forwarding', status: 'forwarding' }, { id: 'l3', source: 'a', target: 'b', label: 'BLOCKED', status: 'blocked' },
+    ],
+    annotations: ['Both links to root forward.', 'The A–B link is blocked to break the loop.'],
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'STP', confidence: 0.9 }],
+  },
+  packetFlow: {
+    id: 'FLOW-2.5-converge', title: 'STP convergence', ckuIds: ['CKU-STP', 'CKU-ROOT-BRIDGE'], diagramId: 'DIAG-2.5-stp',
+    steps: [
+      { id: 's1', order: 1, title: 'Elect root', action: 'Switches exchange BPDUs; lowest Bridge ID becomes root.', successState: 'matched' },
+      { id: 's2', order: 2, title: 'Choose root ports', action: 'Each non-root switch picks its lowest-cost port to root.', successState: 'matched' },
+      { id: 's3', order: 3, title: 'Choose designated', action: 'Each segment elects one designated (forwarding) port.', successState: 'matched' },
+      { id: 's4', order: 4, title: 'Block the rest', action: 'Remaining ports block, leaving a single loop-free tree.', successState: 'dropped' },
+    ],
+  },
+}
+
+/* -------------------------------------------------------------------------
+   OBJECTIVE 3.4 — Configure and verify single area OSPFv2
+   ------------------------------------------------------------------------- */
+const OBJ_34 = {
+  objectiveId: '3.4', domainId: 'connectivity', title: 'Configure and verify single area OSPFv2',
+  ckus: [
+    { id: 'CKU-OSPF', title: 'OSPFv2', summary: 'A link-state IGP: routers flood LSAs to build an identical LSDB per area, then run SPF (Dijkstra) to compute shortest paths. AD 110.', aliases: ['OSPF', 'open shortest path first'], tags: ['ospf', 'routing'], prerequisiteCkuIds: ['CKU-ROUTING-TABLE'], relatedCkuIds: ['CKU-OSPF-COST', 'CKU-OSPF-NEIGHBOR'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'OSPF', confidence: 0.95 }, { sourceName: CURATED_SOURCES.blueprint, chapter: '3.4', confidence: 1 }] },
+    { id: 'CKU-OSPF-COST', title: 'OSPF Cost (Metric)', summary: 'OSPF metric = reference bandwidth (default 100 Mbps) ÷ interface bandwidth; lower cost is preferred. Total path cost sums interface costs.', aliases: ['ospf metric', 'cost'], tags: ['ospf', 'metric'], prerequisiteCkuIds: ['CKU-OSPF'], relatedCkuIds: ['CKU-OSPF'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'OSPF cost', confidence: 0.9 }] },
+    { id: 'CKU-OSPF-NEIGHBOR', title: 'OSPF Neighbors & RID', summary: 'Neighbors must match area, subnet/mask, hello/dead timers, and authentication. Router ID = highest loopback IP, else highest active interface IP, or set manually.', aliases: ['adjacency', 'router id', 'DR/BDR'], tags: ['ospf', 'neighbor'], prerequisiteCkuIds: ['CKU-OSPF'], relatedCkuIds: ['CKU-OSPF'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'OSPF neighbors', confidence: 0.9 }] },
+  ],
+  reading: {
+    id: 'READ-3.4', ckuIds: ['CKU-OSPF', 'CKU-OSPF-COST', 'CKU-OSPF-NEIGHBOR'], estimatedReadMinutes: 9,
+    tiers: {
+      beginner: 'OSPF is a routing protocol that lets routers learn paths automatically. Each router tells the others about its links; together they build the same “map” of the network and each calculates the shortest path to every destination. Routers that share a link become “neighbors” and exchange this information. The “cost” of a path is based on link speed — faster links cost less, so OSPF prefers them.',
+      intermediate: 'OSPF is a link-state IGP. Routers flood Link-State Advertisements (LSAs) to build an identical link-state database (LSDB) within an area, then run the SPF (Dijkstra) algorithm to find the lowest-cost path to each prefix. Configure with `router ospf <process-id>` then `network <addr> <wildcard> area 0` (or `ip ospf <pid> area 0` on the interface). The Router ID is the highest loopback IP, else the highest active interface IP, or set with `router-id`. Cost = reference bandwidth ÷ interface bandwidth (lower wins). Neighbors must agree on area, subnet, timers, and auth to reach Full adjacency. `passive-interface` stops hellos toward LAN hosts.',
+      examReady: 'OSPFv2 = link-state IGP, AD `110`, metric = reference-bw (default 100 Mbps) ÷ interface bandwidth (lower cost wins; total = sum of egress interface costs). Config: `router ospf 1` → `network 10.0.0.0 0.0.0.255 area 0` (wildcard mask) or interface `ip ospf 1 area 0`. Router ID: highest loopback IP → highest active interface IP → manual `router-id`. Adjacency requires matching area, subnet/mask, hello/dead timers (default 10/40 on broadcast), and authentication; states Down→Init→2-Way→ExStart→Exchange→Loading→Full. On multi-access links a DR/BDR are elected (highest priority, then highest RID). `passive-interface` advertises a network but sends no hellos. Verify: `show ip ospf neighbor`, `show ip route ospf`.',
+    },
+    definition: 'OSPFv2 is a **link-state IGP** (AD `110`): routers flood **LSAs** into a shared **LSDB**, then run **SPF** to pick lowest-**cost** paths. Cost = reference-bw ÷ interface-bw. Neighbors must match area, subnet, timers, and auth.',
+    keyPoints: [
+      'Link-state; AD `110`; metric = reference-bw (100 Mbps) ÷ interface-bw (lower wins).',
+      'Config: `router ospf 1` → `network <addr> <wildcard> area 0`.',
+      'Router ID: highest loopback → highest active IP → manual `router-id`.',
+      'Adjacency needs matching area, subnet/mask, hello/dead timers, auth.',
+      'Neighbor states end at `Full`; DR/BDR elected on multi-access links.',
+      '`passive-interface` advertises a network but stops hellos.',
+    ],
+    realWorld: 'Set loopbacks or a manual `router-id` for stable IDs. Default reference bandwidth treats 1G and 10G as equal cost — raise it with `auto-cost reference-bandwidth` on all routers. `show ip ospf neighbor` is the first troubleshooting stop (stuck in Init = one-way hellos; never forming = timer/subnet/area mismatch).',
+    commonMistakes: [
+      'Wrong wildcard mask in the `network` statement.',
+      'Mismatched hello/dead timers, area, or subnet preventing adjacency.',
+      'Forgetting that default reference bandwidth makes 1G+ links equal cost.',
+      'Expecting a DR/BDR on point-to-point links (there isn’t one).',
+    ],
+    related: ['3.1 Routing table', '3.2 Forwarding decision', '3.3 Static routing'],
+    advanced: 'Single-area OSPF uses area 0. The DR reduces LSA flooding on multi-access segments by being the central point; BDR is the backup. Priority 0 means a router never becomes DR.',
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'OSPF', confidence: 0.95 }, { sourceName: CURATED_SOURCES.certVol1, chapter: 'Ch 19-21', confidence: 0.9 }],
+  },
+  questions: [
+    { id: '3.4-c-q1', concept: 'protocol type', type: 'definition', difficulty: 'easy', question: 'What type of routing protocol is OSPF?', choices: ['Distance vector', 'Link-state', 'Path vector', 'Static'], correctIndex: 1, explanation: 'OSPF is a link-state IGP using LSAs and SPF.', ckuIds: ['CKU-OSPF'] },
+    { id: '3.4-c-q2', concept: 'administrative distance', type: 'definition', difficulty: 'easy', question: 'What is OSPF’s default administrative distance?', choices: ['90', '100', '110', '120'], correctIndex: 2, explanation: 'OSPF AD is 110.', ckuIds: ['CKU-OSPF'] },
+    { id: '3.4-c-q3', concept: 'cost formula', type: 'application', difficulty: 'hard', question: 'With default settings, what is the OSPF cost of a 100 Mbps link?', choices: ['1', '10', '100', '64'], correctIndex: 0, explanation: 'Cost = 100 Mbps reference ÷ 100 Mbps = 1.', ckuIds: ['CKU-OSPF-COST'] },
+    { id: '3.4-c-q4', concept: 'router id', type: 'application', difficulty: 'medium', question: 'How is the OSPF Router ID selected if not set manually?', choices: ['Lowest interface IP', 'Highest loopback IP, else highest active interface IP', 'MAC address', 'Always 0.0.0.0'], correctIndex: 1, explanation: 'Highest loopback IP wins; otherwise the highest active interface IP.', ckuIds: ['CKU-OSPF-NEIGHBOR'] },
+    { id: '3.4-c-q5', concept: 'adjacency requirements', type: 'troubleshooting', difficulty: 'hard', question: 'Two OSPF routers won’t form an adjacency. Which mismatch is a likely cause?', choices: ['Different hostnames', 'Different hello/dead timers or area', 'Different SNMP strings', 'Different banners'], correctIndex: 1, explanation: 'Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.', ckuIds: ['CKU-OSPF-NEIGHBOR'] },
+    { id: '3.4-c-q6', concept: 'config network', type: 'application', difficulty: 'medium', question: 'Which command advertises 10.0.0.0/24 into OSPF area 0?', choices: ['network 10.0.0.0 255.255.255.0 area 0', 'network 10.0.0.0 0.0.0.255 area 0', 'ospf network 10.0.0.0/24', 'advertise 10.0.0.0 area 0'], correctIndex: 1, explanation: 'OSPF `network` uses a wildcard mask: 0.0.0.255 for a /24.', ckuIds: ['CKU-OSPF'] },
+    { id: '3.4-c-q7', concept: 'full state', type: 'definition', difficulty: 'medium', question: 'A healthy OSPF neighbor relationship settles in which state?', choices: ['Init', '2-Way', 'Exchange', 'Full'], correctIndex: 3, explanation: 'Adjacent neighbors reach the Full state.', ckuIds: ['CKU-OSPF-NEIGHBOR'] },
+    { id: '3.4-c-q8', concept: 'passive interface', type: 'application', difficulty: 'medium', question: 'What does `passive-interface` do in OSPF?', choices: ['Stops advertising the network', 'Advertises the network but sends no hellos', 'Disables the interface', 'Forces DR election'], correctIndex: 1, explanation: 'A passive interface is still advertised but sends no OSPF hellos (e.g. toward LAN hosts).', ckuIds: ['CKU-OSPF-NEIGHBOR'] },
+    { id: '3.4-c-q9', concept: 'DR election', type: 'scenario', difficulty: 'medium', question: 'On a multi-access Ethernet segment, how is the DR elected?', choices: ['Lowest IP', 'Highest OSPF priority, then highest Router ID', 'Lowest MAC', 'First to boot only'], correctIndex: 1, explanation: 'Highest priority wins; ties break on highest Router ID. Priority 0 never becomes DR.', ckuIds: ['CKU-OSPF-NEIGHBOR'] },
+  ],
+  flashcards: [
+    { id: '3.4-f1', ckuId: 'CKU-OSPF', front: 'OSPF type and AD?', back: 'Link-state IGP; administrative distance 110.' },
+    { id: '3.4-f2', ckuId: 'CKU-OSPF-COST', front: 'OSPF cost formula?', back: 'Reference bandwidth (default 100 Mbps) ÷ interface bandwidth; lower cost wins.' },
+    { id: '3.4-f3', ckuId: 'CKU-OSPF-NEIGHBOR', front: 'Router ID selection order?', back: 'Highest loopback IP → highest active interface IP → manual router-id.' },
+    { id: '3.4-f4', ckuId: 'CKU-OSPF-NEIGHBOR', front: 'What must match to form an adjacency?', back: 'Area, subnet/mask, hello/dead timers, authentication.' },
+    { id: '3.4-f5', ckuId: 'CKU-OSPF', front: 'Command to advertise a /24 into area 0?', back: 'network <addr> 0.0.0.255 area 0 (wildcard mask).' },
+    { id: '3.4-f6', ckuId: 'CKU-OSPF-NEIGHBOR', front: 'Final neighbor state + verify command?', back: 'Full; show ip ospf neighbor.' },
+  ],
+  commands: [
+    { id: '3.4-cmd1', command: 'router ospf <pid>', mode: 'global config', purpose: 'Enter OSPF configuration for a process.', example: 'R1(config)# router ospf 1', ckuIds: ['CKU-OSPF'] },
+    { id: '3.4-cmd2', command: 'network <addr> <wildcard> area <id>', mode: 'router config', purpose: 'Advertise matching interfaces into an OSPF area.', example: 'R1(config-router)# network 10.0.0.0 0.0.0.255 area 0', ckuIds: ['CKU-OSPF'] },
+    { id: '3.4-cmd3', command: 'show ip ospf neighbor', mode: 'privileged EXEC', purpose: 'Show OSPF neighbors and their adjacency state.', example: 'R1# show ip ospf neighbor', ckuIds: ['CKU-OSPF-NEIGHBOR'] },
+  ],
+  glossary: [
+    { id: '3.4-g1', term: 'OSPF', definition: 'Open Shortest Path First — a link-state interior gateway protocol (AD 110).', ckuIds: ['CKU-OSPF'] },
+    { id: '3.4-g2', term: 'LSA / LSDB', definition: 'Link-State Advertisement; the database of LSAs all routers in an area share.', ckuIds: ['CKU-OSPF'] },
+    { id: '3.4-g3', term: 'OSPF cost', definition: 'Metric = reference bandwidth ÷ interface bandwidth; lower is preferred.', ckuIds: ['CKU-OSPF-COST'] },
+    { id: '3.4-g4', term: 'Router ID', definition: 'A 32-bit ID for an OSPF router (highest loopback, else interface IP, or manual).', ckuIds: ['CKU-OSPF-NEIGHBOR'] },
+    { id: '3.4-g5', term: 'DR/BDR', definition: 'Designated/Backup Designated Router that reduce LSA flooding on multi-access links.', ckuIds: ['CKU-OSPF-NEIGHBOR'] },
+  ],
+  mnemonics: [
+    { id: '3.4-m1', title: 'Neighbor match', mnemonic: 'A-S-T-A: Area, Subnet, Timers, Auth.', explanation: 'Four things that must match to form an OSPF adjacency.', ckuIds: ['CKU-OSPF-NEIGHBOR'] },
+    { id: '3.4-m2', title: 'Cost', mnemonic: 'Reference ÷ Bandwidth.', explanation: 'OSPF cost = reference bandwidth divided by interface bandwidth.', ckuIds: ['CKU-OSPF-COST'] },
+  ],
+  examTraps: [
+    { id: '3.4-t1', trap: 'Using a subnet mask in the network statement.', correction: 'OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24).', ckuIds: ['CKU-OSPF'] },
+    { id: '3.4-t2', trap: 'Assuming 1G and 10G have different OSPF cost by default.', correction: 'Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.', ckuIds: ['CKU-OSPF-COST'] },
+    { id: '3.4-t3', trap: 'Expecting DR/BDR on point-to-point links.', correction: 'DR/BDR are only elected on multi-access (e.g. Ethernet) segments.', ckuIds: ['CKU-OSPF-NEIGHBOR'] },
+  ],
+  misconceptions: [
+    { id: '3.4-x1', misconception: 'OSPF uses hop count like RIP.', reality: 'OSPF uses cost (bandwidth-based), not hop count.', example: 'A 2-hop fast path can beat a 1-hop slow path.', ckuIds: ['CKU-OSPF-COST'] },
+    { id: '3.4-x2', misconception: 'Higher OSPF cost is better.', reality: 'Lower cost is preferred — it represents a faster path.', example: 'A 1G link (cost 1 by default) beats a slower link.', ckuIds: ['CKU-OSPF-COST'] },
+  ],
+  diagram: {
+    id: 'DIAG-3.4-ospf', title: 'OSPF picks the lowest-cost path', type: 'topology', ckuIds: ['CKU-OSPF', 'CKU-OSPF-COST'],
+    nodes: [
+      { id: 'r1', label: 'R1', type: 'router', x: 18, y: 50 },
+      { id: 'r2', label: 'R2', type: 'router', x: 50, y: 18 },
+      { id: 'r3', label: 'R3', type: 'router', x: 50, y: 82 },
+      { id: 'dst', label: 'Dest', type: 'subnet', x: 82, y: 50, status: 'highlighted' },
+    ],
+    links: [
+      { id: 'l1', source: 'r1', target: 'r2', label: 'cost 1', status: 'forwarding' }, { id: 'l2', source: 'r2', target: 'dst', label: 'cost 1', status: 'forwarding' },
+      { id: 'l3', source: 'r1', target: 'r3', label: 'cost 10' }, { id: 'l4', source: 'r3', target: 'dst', label: 'cost 10' },
+    ],
+    annotations: ['Top path total cost = 2; bottom = 20.', 'OSPF installs the lowest-cost (top) path.'],
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'OSPF', confidence: 0.9 }],
+  },
+  packetFlow: {
+    id: 'FLOW-3.4-adjacency', title: 'Forming an OSPF adjacency', ckuIds: ['CKU-OSPF-NEIGHBOR'], diagramId: 'DIAG-3.4-ospf',
+    steps: [
+      { id: 's1', order: 1, title: 'Hello', action: 'Routers send hellos; matching parameters reach 2-Way.', successState: 'matched' },
+      { id: 's2', order: 2, title: 'Exchange', action: 'Neighbors exchange database descriptions (ExStart/Exchange).', successState: 'learned' },
+      { id: 's3', order: 3, title: 'Loading', action: 'Each requests missing LSAs to sync the LSDB.', successState: 'learned' },
+      { id: 's4', order: 4, title: 'Full', action: 'LSDBs match; adjacency is Full and SPF runs.', successState: 'matched' },
+    ],
+  },
+}
+
+/* -------------------------------------------------------------------------
+   OBJECTIVE 4.1 — Configure and verify inside source NAT (static, pool, PAT)
+   ------------------------------------------------------------------------- */
+const OBJ_41 = {
+  objectiveId: '4.1', domainId: 'services', title: 'Configure and verify inside source NAT using static and pools',
+  ckus: [
+    { id: 'CKU-NAT', title: 'NAT', summary: 'Network Address Translation maps private (inside local) IPs to public (inside global) IPs so internal hosts can reach the internet.', aliases: ['network address translation'], tags: ['nat', 'services'], prerequisiteCkuIds: ['CKU-PRIVATE-IPV4'], relatedCkuIds: ['CKU-PAT', 'CKU-NAT-TERMS'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'NAT', confidence: 0.95 }, { sourceName: CURATED_SOURCES.blueprint, chapter: '4.1', confidence: 1 }] },
+    { id: 'CKU-PAT', title: 'PAT (NAT Overload)', summary: 'Maps many inside addresses to ONE public IP using different source port numbers — the common home/SOHO method.', aliases: ['overload', 'port address translation'], tags: ['nat', 'pat'], prerequisiteCkuIds: ['CKU-NAT'], relatedCkuIds: ['CKU-NAT'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'PAT', confidence: 0.9 }] },
+    { id: 'CKU-NAT-TERMS', title: 'NAT Inside/Outside Terminology', summary: 'Inside local = private host IP; inside global = its translated public IP; outside global = the public destination. Mark interfaces `ip nat inside`/`outside`.', aliases: ['inside local', 'inside global'], tags: ['nat'], prerequisiteCkuIds: ['CKU-NAT'], relatedCkuIds: ['CKU-NAT'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'NAT terms', confidence: 0.9 }] },
+  ],
+  reading: {
+    id: 'READ-4.1', ckuIds: ['CKU-NAT', 'CKU-PAT', 'CKU-NAT-TERMS'], estimatedReadMinutes: 7,
+    tiers: {
+      beginner: 'Private IP addresses (like 192.168.x.x) can’t travel on the internet, so a router swaps them for a public address on the way out — that’s NAT. At home, one public address is shared by every device using different port numbers; that flavor is called PAT (or “overload”). The router remembers each translation so replies come back to the right device.',
+      intermediate: 'NAT translates inside local (private) addresses to inside global (public) addresses. Static NAT is a fixed one-to-one mapping (for servers); dynamic NAT draws from a pool of public addresses; PAT (overload) maps many private hosts to one public IP using unique source ports — the typical SOHO setup. You mark the internal interface `ip nat inside` and the internet-facing one `ip nat outside`, then define what to translate (often an ACL). Verify with `show ip nat translations`.',
+      examReady: 'NAT maps inside local ↔ inside global. Types: Static (`ip nat inside source static <local> <global>` — permanent 1:1, for servers); Dynamic (`ip nat pool` + `ip nat inside source list <ACL> pool <name>`); PAT/overload (`ip nat inside source list <ACL> interface <if> overload` — many-to-one via ports). Mark interfaces `ip nat inside` / `ip nat outside`. Terms: inside local (private host), inside global (its public mapping), outside local/global (the destination). Verify: `show ip nat translations`, `show ip nat statistics`.',
+    },
+    definition: '**NAT** maps private **inside local** IPs to public **inside global** IPs. **PAT (overload)** shares one public IP across many hosts using ports. Interfaces are marked `ip nat inside` / `ip nat outside`.',
+    keyPoints: [
+      'Static NAT = permanent 1:1 (servers): `ip nat inside source static <local> <global>`.',
+      'Dynamic NAT = pool of public addresses.',
+      'PAT/overload = many→one via source ports (home/SOHO).',
+      'Mark interfaces `ip nat inside` and `ip nat outside`.',
+      'Inside local = private host; inside global = its public address.',
+      'Verify: `show ip nat translations`, `show ip nat statistics`.',
+    ],
+    realWorld: 'A home router uses PAT so dozens of devices share one ISP address. A web server uses static NAT so it always has the same public IP. Forgetting the `inside`/`outside` interface tags is the #1 reason NAT “does nothing.”',
+    commonMistakes: [
+      'Not marking interfaces `ip nat inside`/`outside`.',
+      'ACL doesn’t match the intended inside hosts.',
+      'Expecting static NAT to overload (it’s 1:1).',
+      'Confusing inside local with inside global.',
+    ],
+    related: ['1.7 Private IPv4', '5.5 ACLs (define NAT traffic)'],
+    advanced: 'PAT tracks translations by the tuple of inside global IP + port, allowing ~65k simultaneous sessions per public IP. NAT breaks end-to-end addressing, which is one reason IPv6 (with its huge space) avoids it.',
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'NAT', confidence: 0.95 }],
+  },
+  questions: [
+    { id: '4.1-c-q1', concept: 'nat purpose', type: 'definition', difficulty: 'easy', question: 'What does NAT primarily do?', choices: ['Encrypts traffic', 'Maps private IPs to public IPs', 'Routes between VLANs', 'Assigns DHCP addresses'], correctIndex: 1, explanation: 'NAT maps inside local (private) to inside global (public) addresses.', ckuIds: ['CKU-NAT'] },
+    { id: '4.1-c-q2', concept: 'pat', type: 'scenario', difficulty: 'medium', question: 'Many home devices share a single public IP. Which NAT type is this?', choices: ['Static NAT', 'Dynamic NAT', 'PAT (overload)', 'No NAT'], correctIndex: 2, explanation: 'PAT/overload maps many inside hosts to one public IP using ports.', ckuIds: ['CKU-PAT'] },
+    { id: '4.1-c-q3', concept: 'static nat', type: 'application', difficulty: 'medium', question: 'Which command creates a permanent 1:1 mapping for a server?', choices: ['ip nat inside source static 192.168.1.10 203.0.113.10', 'ip nat pool', 'ip nat inside source list 1 interface g0/0 overload', 'ip nat outside'], correctIndex: 0, explanation: 'Static NAT uses `ip nat inside source static <local> <global>`.', ckuIds: ['CKU-NAT'] },
+    { id: '4.1-c-q4', concept: 'interface tags', type: 'troubleshooting', difficulty: 'hard', question: 'NAT is configured but nothing is translated. What is most often missing?', choices: ['A default route', 'The ip nat inside / ip nat outside interface tags', 'A loopback', 'DNS'], correctIndex: 1, explanation: 'Interfaces must be marked `ip nat inside` and `ip nat outside`.', ckuIds: ['CKU-NAT-TERMS'] },
+    { id: '4.1-c-q5', concept: 'overload command', type: 'application', difficulty: 'hard', question: 'Which command configures PAT to the outside interface?', choices: ['ip nat inside source list 1 interface g0/0 overload', 'ip nat inside source static', 'ip nat pool MYPOOL', 'ip nat outside source list 1'], correctIndex: 0, explanation: 'PAT: `ip nat inside source list <ACL> interface <if> overload`.', ckuIds: ['CKU-PAT'] },
+    { id: '4.1-c-q6', concept: 'terminology', type: 'definition', difficulty: 'medium', question: 'A host’s private address as seen inside the network is called its…', choices: ['Inside global', 'Inside local', 'Outside global', 'Outside local'], correctIndex: 1, explanation: 'Inside local = the private address of an inside host.', ckuIds: ['CKU-NAT-TERMS'] },
+    { id: '4.1-c-q7', concept: 'verify', type: 'application', difficulty: 'easy', question: 'Which command shows active NAT translations?', choices: ['show ip route', 'show ip nat translations', 'show running-config', 'show ip nat inside'], correctIndex: 1, explanation: '`show ip nat translations` lists the current mappings.', ckuIds: ['CKU-NAT'] },
+    { id: '4.1-c-q8', concept: 'pat ports', type: 'true-false', difficulty: 'medium', question: 'True or False: PAT distinguishes multiple inside hosts behind one public IP using port numbers.', choices: ['True', 'False'], correctIndex: 0, explanation: 'True — PAT tracks translations by inside global IP + port.', ckuIds: ['CKU-PAT'] },
+  ],
+  flashcards: [
+    { id: '4.1-f1', ckuId: 'CKU-NAT', front: 'What does NAT map?', back: 'Inside local (private) ↔ inside global (public) addresses.' },
+    { id: '4.1-f2', ckuId: 'CKU-PAT', front: 'What is PAT / overload?', back: 'Many inside hosts → one public IP using unique source ports.' },
+    { id: '4.1-f3', ckuId: 'CKU-NAT', front: 'Static NAT command?', back: 'ip nat inside source static <local> <global>.' },
+    { id: '4.1-f4', ckuId: 'CKU-PAT', front: 'PAT command to the outside interface?', back: 'ip nat inside source list <ACL> interface <if> overload.' },
+    { id: '4.1-f5', ckuId: 'CKU-NAT-TERMS', front: 'Interface tags for NAT?', back: 'ip nat inside (private side) and ip nat outside (public side).' },
+    { id: '4.1-f6', ckuId: 'CKU-NAT', front: 'Verify NAT commands?', back: 'show ip nat translations; show ip nat statistics.' },
+  ],
+  commands: [
+    { id: '4.1-cmd1', command: 'ip nat inside source static <local> <global>', mode: 'global config', purpose: 'Create a permanent one-to-one NAT mapping.', example: 'R1(config)# ip nat inside source static 192.168.1.10 203.0.113.10', ckuIds: ['CKU-NAT'] },
+    { id: '4.1-cmd2', command: 'ip nat inside source list <acl> interface <if> overload', mode: 'global config', purpose: 'Configure PAT (overload) to the outside interface.', example: 'R1(config)# ip nat inside source list 1 interface g0/0 overload', ckuIds: ['CKU-PAT'] },
+    { id: '4.1-cmd3', command: 'show ip nat translations', mode: 'privileged EXEC', purpose: 'Display current NAT translations.', example: 'R1# show ip nat translations', ckuIds: ['CKU-NAT'] },
+  ],
+  glossary: [
+    { id: '4.1-g1', term: 'NAT', definition: 'Network Address Translation — maps private to public IP addresses.', ckuIds: ['CKU-NAT'] },
+    { id: '4.1-g2', term: 'PAT', definition: 'Port Address Translation (NAT overload) — many hosts share one public IP via ports.', ckuIds: ['CKU-PAT'] },
+    { id: '4.1-g3', term: 'Inside local', definition: 'The private IP of an inside host.', ckuIds: ['CKU-NAT-TERMS'] },
+    { id: '4.1-g4', term: 'Inside global', definition: 'The public IP an inside host is translated to.', ckuIds: ['CKU-NAT-TERMS'] },
+  ],
+  mnemonics: [
+    { id: '4.1-m1', title: 'Overload = ports', mnemonic: 'Overload shares one IP with many ports.', explanation: 'PAT multiplexes hosts behind one public IP using source ports.', ckuIds: ['CKU-PAT'] },
+  ],
+  examTraps: [
+    { id: '4.1-t1', trap: 'Forgetting the inside/outside interface tags.', correction: 'Without `ip nat inside`/`outside`, NAT translates nothing.', ckuIds: ['CKU-NAT-TERMS'] },
+    { id: '4.1-t2', trap: 'Mixing up inside local and inside global.', correction: 'Inside local = private host; inside global = its public mapping.', ckuIds: ['CKU-NAT-TERMS'] },
+    { id: '4.1-t3', trap: 'Expecting static NAT to serve many hosts.', correction: 'Static NAT is 1:1; use PAT/overload for many-to-one.', ckuIds: ['CKU-NAT'] },
+  ],
+  misconceptions: [
+    { id: '4.1-x1', misconception: 'NAT provides security/encryption.', reality: 'NAT hides addresses but does not encrypt; it is not a security control by itself.', example: 'Traffic is still cleartext after translation.', ckuIds: ['CKU-NAT'] },
+    { id: '4.1-x2', misconception: 'Every inside host needs its own public IP.', reality: 'PAT lets thousands of hosts share one public IP via ports.', example: 'A home network uses a single ISP address.', ckuIds: ['CKU-PAT'] },
+  ],
+  diagram: {
+    id: 'DIAG-4.1-pat', title: 'PAT shares one public IP', type: 'topology', ckuIds: ['CKU-PAT', 'CKU-NAT-TERMS'],
+    nodes: [
+      { id: 'h1', label: '192.168.1.10', type: 'pc', x: 16, y: 28 },
+      { id: 'h2', label: '192.168.1.11', type: 'pc', x: 16, y: 72 },
+      { id: 'r', label: 'R1 NAT (overload)', type: 'router', x: 52, y: 50 },
+      { id: 'net', label: '203.0.113.1 → Internet', type: 'cloud', x: 85, y: 50, status: 'highlighted' },
+    ],
+    links: [
+      { id: 'l1', source: 'h1', target: 'r', label: ':1025' }, { id: 'l2', source: 'h2', target: 'r', label: ':1026' }, { id: 'l3', source: 'r', target: 'net', label: 'one public IP', status: 'forwarding' },
+    ],
+    annotations: ['Both hosts share 203.0.113.1, distinguished by source port.', 'Inside local → inside global translation tracked per port.'],
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'PAT', confidence: 0.9 }],
+  },
+  packetFlow: {
+    id: 'FLOW-4.1-pat', title: 'PAT translation', ckuIds: ['CKU-PAT'], diagramId: 'DIAG-4.1-pat',
+    steps: [
+      { id: 's1', order: 1, title: 'Packet out', action: 'Inside host sends to the internet with its private source IP.', successState: 'forwarded' },
+      { id: 's2', order: 2, title: 'Translate', action: 'Router rewrites the source to the public IP + a unique port; records the mapping.', successState: 'modified' },
+      { id: 's3', order: 3, title: 'Reply', action: 'Return traffic hits the public IP + port.', successState: 'matched' },
+      { id: 's4', order: 4, title: 'Reverse', action: 'Router maps it back to the original inside host.', successState: 'forwarded' },
+    ],
+  },
+}
+
+/* -------------------------------------------------------------------------
+   OBJECTIVE 5.5 — Configure and verify Layer 2/3 access control lists
+   ------------------------------------------------------------------------- */
+const OBJ_55 = {
+  objectiveId: '5.5', domainId: 'security', title: 'Configure and verify access control lists',
+  ckus: [
+    { id: 'CKU-ACL', title: 'Access Control Lists', summary: 'Ordered rules that permit/deny traffic by criteria. Processed top-down, first match wins, with an implicit deny-all at the end.', aliases: ['ACL', 'access-list'], tags: ['acl', 'security', 'filtering'], prerequisiteCkuIds: ['CKU-WILDCARD-MASK'], relatedCkuIds: ['CKU-ACL-STANDARD', 'CKU-ACL-EXTENDED'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'ACLs', confidence: 0.95 }, { sourceName: CURATED_SOURCES.blueprint, chapter: '5.5', confidence: 1 }] },
+    { id: 'CKU-ACL-STANDARD', title: 'Standard ACL', summary: 'Matches SOURCE IP only (numbered 1–99/1300–1999). Place close to the destination.', aliases: ['standard access-list'], tags: ['acl'], prerequisiteCkuIds: ['CKU-ACL'], relatedCkuIds: ['CKU-ACL-EXTENDED'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Standard ACL', confidence: 0.9 }] },
+    { id: 'CKU-ACL-EXTENDED', title: 'Extended ACL', summary: 'Matches source + destination IP, protocol, and ports (numbered 100–199/2000–2699 or named). Place close to the source.', aliases: ['extended access-list'], tags: ['acl'], prerequisiteCkuIds: ['CKU-ACL'], relatedCkuIds: ['CKU-ACL-STANDARD'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Extended ACL', confidence: 0.9 }] },
+    { id: 'CKU-WILDCARD-MASK', title: 'Wildcard Mask', summary: 'The inverse of a subnet mask used in ACLs: 0 = must match, 1 = don’t care. /24 → 0.0.0.255.', aliases: ['inverse mask'], tags: ['acl', 'wildcard'], prerequisiteCkuIds: [], relatedCkuIds: ['CKU-ACL'],
+      sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'Wildcard masks', confidence: 0.9 }] },
+  ],
+  reading: {
+    id: 'READ-5.5', ckuIds: ['CKU-ACL', 'CKU-ACL-STANDARD', 'CKU-ACL-EXTENDED', 'CKU-WILDCARD-MASK'], estimatedReadMinutes: 8,
+    tiers: {
+      beginner: 'An ACL is a list of permit/deny rules a router checks against traffic. It reads the list top to bottom and stops at the first rule that matches. Anything not matched is denied by a hidden rule at the end. Standard ACLs only look at WHERE traffic came from; extended ACLs can also look at where it’s going and which application (port).',
+      intermediate: 'ACLs filter traffic by criteria, processed top-down with first-match-wins and an implicit `deny any` at the end. Standard ACLs (1–99/1300–1999) match source IP only — place them close to the destination. Extended ACLs (100–199/2000–2699 or named) match source/destination IP, protocol, and ports — place them close to the source to drop unwanted traffic early. ACLs use wildcard masks (inverse of subnet masks: 0 = match, 1 = ignore). Apply to an interface with `ip access-group <name|number> in|out`.',
+      examReady: 'ACL = ordered permit/deny rules; top-down, first match wins, implicit `deny any` at the end (so an all-deny ACL blocks everything). Standard (1–99/1300–1999): source IP only → place near the DESTINATION. Extended (100–199/2000–2699 / named): source+dest IP, protocol, ports → place near the SOURCE. Wildcard mask = inverse subnet mask (0 match / 1 don’t-care; host = 0.0.0.0, any = 255.255.255.255). Apply: `ip access-group 100 in` on an interface. Named ACLs allow editing by sequence number. Verify: `show access-lists`, `show ip interface`.',
+    },
+    definition: 'An **ACL** is an ordered list of permit/deny rules: **top-down, first match wins**, with an **implicit deny-all** at the end. **Standard** = source only (place near destination); **Extended** = source/dest/protocol/ports (place near source). ACLs use **wildcard masks**.',
+    keyPoints: [
+      'Top-down, first-match-wins, implicit `deny any` at the end.',
+      'Standard (1–99): source IP only → place near the destination.',
+      'Extended (100–199): src/dst IP, protocol, ports → place near the source.',
+      'Wildcard mask = inverse subnet mask (`0`=match, `1`=ignore).',
+      'Apply: `ip access-group <name|num> in|out` on an interface.',
+      'Host = `0.0.0.0`; any = `255.255.255.255` (or the keyword `any`).',
+    ],
+    realWorld: 'Because of the implicit deny, an ACL with only `permit` lines silently blocks everything else — always confirm needed traffic is permitted. Named ACLs let you insert/remove a single line by sequence number without rewriting the whole list.',
+    commonMistakes: [
+      'Forgetting the implicit `deny any` at the end.',
+      'Placing an extended ACL far from the source (wastes bandwidth).',
+      'Using a subnet mask instead of a wildcard mask.',
+      'Wrong rule order — a broad permit above a specific deny is never reached.',
+    ],
+    related: ['1.6 Subnetting (wildcards)', '4.1 NAT (ACL defines traffic)', '5.3 Device access (vty access-class)'],
+    advanced: 'Apply an ACL to vty lines with `access-class` to restrict management access. Extended ACLs can match TCP flags (e.g. `established`). Order matters: most-specific rules first.',
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'ACLs', confidence: 0.95 }],
+  },
+  questions: [
+    { id: '5.5-c-q1', concept: 'processing order', type: 'definition', difficulty: 'easy', question: 'How are ACL entries processed?', choices: ['Bottom-up', 'Top-down, first match wins', 'Most-specific first automatically', 'Randomly'], correctIndex: 1, explanation: 'ACLs are read top-down and stop at the first match.', ckuIds: ['CKU-ACL'] },
+    { id: '5.5-c-q2', concept: 'implicit deny', type: 'true-false', difficulty: 'easy', question: 'True or False: An ACL has an implicit deny-all at the end.', choices: ['True', 'False'], correctIndex: 0, explanation: 'True — anything not explicitly permitted is denied.', ckuIds: ['CKU-ACL'] },
+    { id: '5.5-c-q3', concept: 'standard placement', type: 'application', difficulty: 'medium', question: 'Where should a standard ACL be placed?', choices: ['Close to the source', 'Close to the destination', 'On every interface', 'Only on trunks'], correctIndex: 1, explanation: 'Standard ACLs match source only, so place them near the destination to avoid over-blocking.', ckuIds: ['CKU-ACL-STANDARD'] },
+    { id: '5.5-c-q4', concept: 'extended placement', type: 'application', difficulty: 'medium', question: 'Where should an extended ACL be placed?', choices: ['Close to the source', 'Close to the destination', 'On the root bridge', 'On the DHCP server'], correctIndex: 0, explanation: 'Extended ACLs are specific, so place near the source to drop traffic early.', ckuIds: ['CKU-ACL-EXTENDED'] },
+    { id: '5.5-c-q5', concept: 'wildcard mask', type: 'application', difficulty: 'hard', question: 'What wildcard mask matches exactly the /24 network 192.168.1.0?', choices: ['255.255.255.0', '0.0.0.255', '0.0.0.0', '255.255.255.255'], correctIndex: 1, explanation: 'Wildcard = inverse subnet mask; /24 → 0.0.0.255.', ckuIds: ['CKU-WILDCARD-MASK'] },
+    { id: '5.5-c-q6', concept: 'standard range', type: 'definition', difficulty: 'medium', question: 'Which number range is a standard ACL?', choices: ['1–99', '100–199', '200–299', '1300–2699 only'], correctIndex: 0, explanation: 'Standard ACLs are 1–99 (and 1300–1999).', ckuIds: ['CKU-ACL-STANDARD'] },
+    { id: '5.5-c-q7', concept: 'extended match', type: 'definition', difficulty: 'medium', question: 'What can an extended ACL match that a standard ACL cannot?', choices: ['Source IP', 'Destination IP, protocol, and port', 'Interface name', 'VLAN ID'], correctIndex: 1, explanation: 'Extended ACLs match source+destination IP, protocol, and ports.', ckuIds: ['CKU-ACL-EXTENDED'] },
+    { id: '5.5-c-q8', concept: 'apply acl', type: 'application', difficulty: 'medium', question: 'Which command applies ACL 100 inbound on an interface?', choices: ['access-list 100 in', 'ip access-group 100 in', 'ip access-list 100 inbound', 'apply acl 100 in'], correctIndex: 1, explanation: '`ip access-group 100 in` applies the ACL to the interface.', ckuIds: ['CKU-ACL'] },
+    { id: '5.5-c-q9', concept: 'order matters', type: 'troubleshooting', difficulty: 'hard', question: 'A specific `deny` never takes effect because a broad `permit` sits above it. Why?', choices: ['ACLs ignore deny rules', 'First match wins — the permit matches first', 'Deny rules need a wildcard', 'The ACL is not applied'], correctIndex: 1, explanation: 'Top-down first-match means the earlier broad permit matches before the specific deny.', ckuIds: ['CKU-ACL'] },
+  ],
+  flashcards: [
+    { id: '5.5-f1', ckuId: 'CKU-ACL', front: 'How are ACLs processed?', back: 'Top-down, first match wins, with an implicit deny-all at the end.' },
+    { id: '5.5-f2', ckuId: 'CKU-ACL-STANDARD', front: 'Standard ACL: matches what, placed where?', back: 'Source IP only; place near the destination. Numbers 1–99/1300–1999.' },
+    { id: '5.5-f3', ckuId: 'CKU-ACL-EXTENDED', front: 'Extended ACL: matches what, placed where?', back: 'Src/dst IP, protocol, ports; place near the source. Numbers 100–199/2000–2699.' },
+    { id: '5.5-f4', ckuId: 'CKU-WILDCARD-MASK', front: 'What is a wildcard mask?', back: 'Inverse subnet mask: 0 = must match, 1 = don’t care. /24 → 0.0.0.255.' },
+    { id: '5.5-f5', ckuId: 'CKU-ACL', front: 'Command to apply an ACL to an interface?', back: 'ip access-group <name|number> in|out.' },
+    { id: '5.5-f6', ckuId: 'CKU-WILDCARD-MASK', front: 'Wildcard for a single host? For any?', back: 'Host = 0.0.0.0; any = 255.255.255.255 (or keyword any).' },
+  ],
+  commands: [
+    { id: '5.5-cmd1', command: 'access-list <1-99> permit <src> <wildcard>', mode: 'global config', purpose: 'Create a numbered standard ACL entry (source only).', example: 'R1(config)# access-list 10 permit 192.168.1.0 0.0.0.255', ckuIds: ['CKU-ACL-STANDARD'] },
+    { id: '5.5-cmd2', command: 'ip access-group <name|num> in|out', mode: 'interface config', purpose: 'Apply an ACL to an interface in a direction.', example: 'R1(config-if)# ip access-group 100 in', ckuIds: ['CKU-ACL'] },
+    { id: '5.5-cmd3', command: 'show access-lists', mode: 'privileged EXEC', purpose: 'Display ACLs with hit counts.', example: 'R1# show access-lists', ckuIds: ['CKU-ACL'] },
+  ],
+  glossary: [
+    { id: '5.5-g1', term: 'ACL', definition: 'Access Control List — ordered permit/deny rules for filtering traffic.', ckuIds: ['CKU-ACL'] },
+    { id: '5.5-g2', term: 'Standard ACL', definition: 'Matches source IP only; placed near the destination.', ckuIds: ['CKU-ACL-STANDARD'] },
+    { id: '5.5-g3', term: 'Extended ACL', definition: 'Matches src/dst IP, protocol, and ports; placed near the source.', ckuIds: ['CKU-ACL-EXTENDED'] },
+    { id: '5.5-g4', term: 'Wildcard mask', definition: 'Inverse subnet mask used in ACLs (0 = match, 1 = ignore).', ckuIds: ['CKU-WILDCARD-MASK'] },
+    { id: '5.5-g5', term: 'Implicit deny', definition: 'The unseen deny-all rule at the end of every ACL.', ckuIds: ['CKU-ACL'] },
+  ],
+  mnemonics: [
+    { id: '5.5-m1', title: 'Placement', mnemonic: 'Standard = near Destination; Extended = near Source.', explanation: 'Standard/destination and Extended/source — place each where it limits damage.', ckuIds: ['CKU-ACL-STANDARD', 'CKU-ACL-EXTENDED'] },
+    { id: '5.5-m2', title: 'Wildcard', mnemonic: '0 = match, 1 = ignore.', explanation: 'Opposite of a subnet mask.', ckuIds: ['CKU-WILDCARD-MASK'] },
+  ],
+  examTraps: [
+    { id: '5.5-t1', trap: 'Forgetting the implicit deny.', correction: 'An ACL with only permits blocks everything else via the implicit deny any.', ckuIds: ['CKU-ACL'] },
+    { id: '5.5-t2', trap: 'Using a subnet mask in an ACL.', correction: 'ACLs use WILDCARD masks (inverse): /24 → 0.0.0.255.', ckuIds: ['CKU-WILDCARD-MASK'] },
+    { id: '5.5-t3', trap: 'Misordering rules.', correction: 'First match wins — put specific rules before broad ones.', ckuIds: ['CKU-ACL'] },
+    { id: '5.5-t4', trap: 'Placing extended ACLs near the destination.', correction: 'Place extended ACLs near the source to drop traffic early.', ckuIds: ['CKU-ACL-EXTENDED'] },
+  ],
+  misconceptions: [
+    { id: '5.5-x1', misconception: 'ACLs encrypt or deeply inspect traffic.', reality: 'ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.', example: 'An ACL permits TCP/443 but does not inspect the TLS payload.', ckuIds: ['CKU-ACL'] },
+    { id: '5.5-x2', misconception: 'Rule order doesn’t matter.', reality: 'Order is critical — the first matching rule wins and the rest are skipped.', example: 'A broad permit above a specific deny makes the deny dead.', ckuIds: ['CKU-ACL'] },
+  ],
+  diagram: {
+    id: 'DIAG-5.5-acl', title: 'ACL first-match processing', type: 'process', ckuIds: ['CKU-ACL'],
+    nodes: [
+      { id: 'pkt', label: 'Packet', type: 'process', x: 50, y: 10 },
+      { id: 'r1', label: 'Rule 1 match?', type: 'process', x: 50, y: 38 },
+      { id: 'permit', label: 'Permit/Deny (stop)', type: 'router', x: 22, y: 70, status: 'highlighted' },
+      { id: 'deny', label: 'Implicit deny any', type: 'process', x: 78, y: 70, status: 'error' },
+    ],
+    links: [
+      { id: 'l1', source: 'pkt', target: 'r1' }, { id: 'l2', source: 'r1', target: 'permit', label: 'match', status: 'forwarding' }, { id: 'l3', source: 'r1', target: 'deny', label: 'no match → end', status: 'dropped' },
+    ],
+    annotations: ['First matching rule decides and processing stops.', 'No match anywhere → implicit deny any.'],
+    sourceRefs: [{ sourceName: CURATED_SOURCES.jeremy, chapter: 'ACLs', confidence: 0.9 }],
+  },
+  packetFlow: {
+    id: 'FLOW-5.5-acl', title: 'Evaluating a packet against an ACL', ckuIds: ['CKU-ACL'], diagramId: 'DIAG-5.5-acl',
+    steps: [
+      { id: 's1', order: 1, title: 'Top of list', action: 'Start at the first ACL entry.', successState: 'matched' },
+      { id: 's2', order: 2, title: 'Compare', action: 'Check the packet against the entry’s criteria.', successState: 'matched' },
+      { id: 's3', order: 3, title: 'First match', action: 'On a match, apply permit/deny and STOP.', successState: 'matched' },
+      { id: 's4', order: 4, title: 'Implicit deny', action: 'If no entry matched, the implicit deny any drops it.', successState: 'dropped' },
+    ],
+  },
+}
+
+/* -------------------------------------------------------------------------
    REGISTRY + LOADER
    ------------------------------------------------------------------------- */
-const CURATED = { [OBJ_32.objectiveId]: OBJ_32, [OBJ_16.objectiveId]: OBJ_16, [OBJ_15.objectiveId]: OBJ_15 }
+const CURATED = {
+  [OBJ_32.objectiveId]: OBJ_32, [OBJ_16.objectiveId]: OBJ_16, [OBJ_15.objectiveId]: OBJ_15,
+  [OBJ_18.objectiveId]: OBJ_18, [OBJ_19.objectiveId]: OBJ_19, [OBJ_21.objectiveId]: OBJ_21, [OBJ_22.objectiveId]: OBJ_22,
+  [OBJ_25.objectiveId]: OBJ_25, [OBJ_34.objectiveId]: OBJ_34, [OBJ_41.objectiveId]: OBJ_41, [OBJ_55.objectiveId]: OBJ_55,
+}
 
 /** Objective IDs that have curated static content (the rest fall back to AI). */
 export const curatedObjectiveIds = new Set(Object.keys(CURATED))

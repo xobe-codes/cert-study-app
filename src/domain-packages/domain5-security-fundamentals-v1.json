@@ -4,8 +4,8 @@
     "domainNumber": 5,
     "domainName": "Security Fundamentals",
     "version": "1",
-    "compiledAt": "2026-06-12T19:30:07.426Z",
-    "curatedObjectives": 0,
+    "compiledAt": "2026-06-12T19:47:21.930Z",
+    "curatedObjectives": 1,
     "labs": 1
   },
   "sourceAudit": {
@@ -17,7 +17,622 @@
     },
     "note": "Content is original/paraphrased from the cited sources; questions are original. Verify command syntax against official Cisco docs."
   },
-  "objectives": [],
+  "objectives": [
+    {
+      "objectiveId": "5.5",
+      "domainId": "security",
+      "title": "Configure and verify access control lists",
+      "ckus": [
+        {
+          "id": "CKU-ACL",
+          "title": "Access Control Lists",
+          "summary": "Ordered rules that permit/deny traffic by criteria. Processed top-down, first match wins, with an implicit deny-all at the end.",
+          "aliases": [
+            "ACL",
+            "access-list"
+          ],
+          "tags": [
+            "acl",
+            "security",
+            "filtering"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-WILDCARD-MASK"
+          ],
+          "relatedCkuIds": [
+            "CKU-ACL-STANDARD",
+            "CKU-ACL-EXTENDED"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "ACLs",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "5.5",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-ACL-STANDARD",
+          "title": "Standard ACL",
+          "summary": "Matches SOURCE IP only (numbered 1–99/1300–1999). Place close to the destination.",
+          "aliases": [
+            "standard access-list"
+          ],
+          "tags": [
+            "acl"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-ACL"
+          ],
+          "relatedCkuIds": [
+            "CKU-ACL-EXTENDED"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Standard ACL",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "id": "CKU-ACL-EXTENDED",
+          "title": "Extended ACL",
+          "summary": "Matches source + destination IP, protocol, and ports (numbered 100–199/2000–2699 or named). Place close to the source.",
+          "aliases": [
+            "extended access-list"
+          ],
+          "tags": [
+            "acl"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-ACL"
+          ],
+          "relatedCkuIds": [
+            "CKU-ACL-STANDARD"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Extended ACL",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "id": "CKU-WILDCARD-MASK",
+          "title": "Wildcard Mask",
+          "summary": "The inverse of a subnet mask used in ACLs: 0 = must match, 1 = don’t care. /24 → 0.0.0.255.",
+          "aliases": [
+            "inverse mask"
+          ],
+          "tags": [
+            "acl",
+            "wildcard"
+          ],
+          "prerequisiteCkuIds": [],
+          "relatedCkuIds": [
+            "CKU-ACL"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Wildcard masks",
+              "confidence": 0.9
+            }
+          ]
+        }
+      ],
+      "reading": {
+        "id": "READ-5.5",
+        "ckuIds": [
+          "CKU-ACL",
+          "CKU-ACL-STANDARD",
+          "CKU-ACL-EXTENDED",
+          "CKU-WILDCARD-MASK"
+        ],
+        "estimatedReadMinutes": 8,
+        "tiers": {
+          "beginner": "An ACL is a list of permit/deny rules a router checks against traffic. It reads the list top to bottom and stops at the first rule that matches. Anything not matched is denied by a hidden rule at the end. Standard ACLs only look at WHERE traffic came from; extended ACLs can also look at where it’s going and which application (port).",
+          "intermediate": "ACLs filter traffic by criteria, processed top-down with first-match-wins and an implicit `deny any` at the end. Standard ACLs (1–99/1300–1999) match source IP only — place them close to the destination. Extended ACLs (100–199/2000–2699 or named) match source/destination IP, protocol, and ports — place them close to the source to drop unwanted traffic early. ACLs use wildcard masks (inverse of subnet masks: 0 = match, 1 = ignore). Apply to an interface with `ip access-group <name|number> in|out`.",
+          "examReady": "ACL = ordered permit/deny rules; top-down, first match wins, implicit `deny any` at the end (so an all-deny ACL blocks everything). Standard (1–99/1300–1999): source IP only → place near the DESTINATION. Extended (100–199/2000–2699 / named): source+dest IP, protocol, ports → place near the SOURCE. Wildcard mask = inverse subnet mask (0 match / 1 don’t-care; host = 0.0.0.0, any = 255.255.255.255). Apply: `ip access-group 100 in` on an interface. Named ACLs allow editing by sequence number. Verify: `show access-lists`, `show ip interface`."
+        },
+        "definition": "An **ACL** is an ordered list of permit/deny rules: **top-down, first match wins**, with an **implicit deny-all** at the end. **Standard** = source only (place near destination); **Extended** = source/dest/protocol/ports (place near source). ACLs use **wildcard masks**.",
+        "keyPoints": [
+          "Top-down, first-match-wins, implicit `deny any` at the end.",
+          "Standard (1–99): source IP only → place near the destination.",
+          "Extended (100–199): src/dst IP, protocol, ports → place near the source.",
+          "Wildcard mask = inverse subnet mask (`0`=match, `1`=ignore).",
+          "Apply: `ip access-group <name|num> in|out` on an interface.",
+          "Host = `0.0.0.0`; any = `255.255.255.255` (or the keyword `any`)."
+        ],
+        "realWorld": "Because of the implicit deny, an ACL with only `permit` lines silently blocks everything else — always confirm needed traffic is permitted. Named ACLs let you insert/remove a single line by sequence number without rewriting the whole list.",
+        "commonMistakes": [
+          "Forgetting the implicit `deny any` at the end.",
+          "Placing an extended ACL far from the source (wastes bandwidth).",
+          "Using a subnet mask instead of a wildcard mask.",
+          "Wrong rule order — a broad permit above a specific deny is never reached."
+        ],
+        "related": [
+          "1.6 Subnetting (wildcards)",
+          "4.1 NAT (ACL defines traffic)",
+          "5.3 Device access (vty access-class)"
+        ],
+        "advanced": "Apply an ACL to vty lines with `access-class` to restrict management access. Extended ACLs can match TCP flags (e.g. `established`). Order matters: most-specific rules first.",
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "ACLs",
+            "confidence": 0.95
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "5.5-c-q1",
+          "concept": "processing order",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "How are ACL entries processed?",
+          "choices": [
+            "Bottom-up",
+            "Top-down, first match wins",
+            "Most-specific first automatically",
+            "Randomly"
+          ],
+          "correctIndex": 1,
+          "explanation": "ACLs are read top-down and stop at the first match.",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        },
+        {
+          "id": "5.5-c-q2",
+          "concept": "implicit deny",
+          "type": "true-false",
+          "difficulty": "easy",
+          "question": "True or False: An ACL has an implicit deny-all at the end.",
+          "choices": [
+            "True",
+            "False"
+          ],
+          "correctIndex": 0,
+          "explanation": "True — anything not explicitly permitted is denied.",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        },
+        {
+          "id": "5.5-c-q3",
+          "concept": "standard placement",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Where should a standard ACL be placed?",
+          "choices": [
+            "Close to the source",
+            "Close to the destination",
+            "On every interface",
+            "Only on trunks"
+          ],
+          "correctIndex": 1,
+          "explanation": "Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
+          "ckuIds": [
+            "CKU-ACL-STANDARD"
+          ]
+        },
+        {
+          "id": "5.5-c-q4",
+          "concept": "extended placement",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Where should an extended ACL be placed?",
+          "choices": [
+            "Close to the source",
+            "Close to the destination",
+            "On the root bridge",
+            "On the DHCP server"
+          ],
+          "correctIndex": 0,
+          "explanation": "Extended ACLs are specific, so place near the source to drop traffic early.",
+          "ckuIds": [
+            "CKU-ACL-EXTENDED"
+          ]
+        },
+        {
+          "id": "5.5-c-q5",
+          "concept": "wildcard mask",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "What wildcard mask matches exactly the /24 network 192.168.1.0?",
+          "choices": [
+            "255.255.255.0",
+            "0.0.0.255",
+            "0.0.0.0",
+            "255.255.255.255"
+          ],
+          "correctIndex": 1,
+          "explanation": "Wildcard = inverse subnet mask; /24 → 0.0.0.255.",
+          "ckuIds": [
+            "CKU-WILDCARD-MASK"
+          ]
+        },
+        {
+          "id": "5.5-c-q6",
+          "concept": "standard range",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "Which number range is a standard ACL?",
+          "choices": [
+            "1–99",
+            "100–199",
+            "200–299",
+            "1300–2699 only"
+          ],
+          "correctIndex": 0,
+          "explanation": "Standard ACLs are 1–99 (and 1300–1999).",
+          "ckuIds": [
+            "CKU-ACL-STANDARD"
+          ]
+        },
+        {
+          "id": "5.5-c-q7",
+          "concept": "extended match",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "What can an extended ACL match that a standard ACL cannot?",
+          "choices": [
+            "Source IP",
+            "Destination IP, protocol, and port",
+            "Interface name",
+            "VLAN ID"
+          ],
+          "correctIndex": 1,
+          "explanation": "Extended ACLs match source+destination IP, protocol, and ports.",
+          "ckuIds": [
+            "CKU-ACL-EXTENDED"
+          ]
+        },
+        {
+          "id": "5.5-c-q8",
+          "concept": "apply acl",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which command applies ACL 100 inbound on an interface?",
+          "choices": [
+            "access-list 100 in",
+            "ip access-group 100 in",
+            "ip access-list 100 inbound",
+            "apply acl 100 in"
+          ],
+          "correctIndex": 1,
+          "explanation": "`ip access-group 100 in` applies the ACL to the interface.",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        },
+        {
+          "id": "5.5-c-q9",
+          "concept": "order matters",
+          "type": "troubleshooting",
+          "difficulty": "hard",
+          "question": "A specific `deny` never takes effect because a broad `permit` sits above it. Why?",
+          "choices": [
+            "ACLs ignore deny rules",
+            "First match wins — the permit matches first",
+            "Deny rules need a wildcard",
+            "The ACL is not applied"
+          ],
+          "correctIndex": 1,
+          "explanation": "Top-down first-match means the earlier broad permit matches before the specific deny.",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "5.5-f1",
+          "ckuId": "CKU-ACL",
+          "front": "How are ACLs processed?",
+          "back": "Top-down, first match wins, with an implicit deny-all at the end."
+        },
+        {
+          "id": "5.5-f2",
+          "ckuId": "CKU-ACL-STANDARD",
+          "front": "Standard ACL: matches what, placed where?",
+          "back": "Source IP only; place near the destination. Numbers 1–99/1300–1999."
+        },
+        {
+          "id": "5.5-f3",
+          "ckuId": "CKU-ACL-EXTENDED",
+          "front": "Extended ACL: matches what, placed where?",
+          "back": "Src/dst IP, protocol, ports; place near the source. Numbers 100–199/2000–2699."
+        },
+        {
+          "id": "5.5-f4",
+          "ckuId": "CKU-WILDCARD-MASK",
+          "front": "What is a wildcard mask?",
+          "back": "Inverse subnet mask: 0 = must match, 1 = don’t care. /24 → 0.0.0.255."
+        },
+        {
+          "id": "5.5-f5",
+          "ckuId": "CKU-ACL",
+          "front": "Command to apply an ACL to an interface?",
+          "back": "ip access-group <name|number> in|out."
+        },
+        {
+          "id": "5.5-f6",
+          "ckuId": "CKU-WILDCARD-MASK",
+          "front": "Wildcard for a single host? For any?",
+          "back": "Host = 0.0.0.0; any = 255.255.255.255 (or keyword any)."
+        }
+      ],
+      "commands": [
+        {
+          "id": "5.5-cmd1",
+          "command": "access-list <1-99> permit <src> <wildcard>",
+          "mode": "global config",
+          "purpose": "Create a numbered standard ACL entry (source only).",
+          "example": "R1(config)# access-list 10 permit 192.168.1.0 0.0.0.255",
+          "ckuIds": [
+            "CKU-ACL-STANDARD"
+          ]
+        },
+        {
+          "id": "5.5-cmd2",
+          "command": "ip access-group <name|num> in|out",
+          "mode": "interface config",
+          "purpose": "Apply an ACL to an interface in a direction.",
+          "example": "R1(config-if)# ip access-group 100 in",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        },
+        {
+          "id": "5.5-cmd3",
+          "command": "show access-lists",
+          "mode": "privileged EXEC",
+          "purpose": "Display ACLs with hit counts.",
+          "example": "R1# show access-lists",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "id": "5.5-g1",
+          "term": "ACL",
+          "definition": "Access Control List — ordered permit/deny rules for filtering traffic.",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        },
+        {
+          "id": "5.5-g2",
+          "term": "Standard ACL",
+          "definition": "Matches source IP only; placed near the destination.",
+          "ckuIds": [
+            "CKU-ACL-STANDARD"
+          ]
+        },
+        {
+          "id": "5.5-g3",
+          "term": "Extended ACL",
+          "definition": "Matches src/dst IP, protocol, and ports; placed near the source.",
+          "ckuIds": [
+            "CKU-ACL-EXTENDED"
+          ]
+        },
+        {
+          "id": "5.5-g4",
+          "term": "Wildcard mask",
+          "definition": "Inverse subnet mask used in ACLs (0 = match, 1 = ignore).",
+          "ckuIds": [
+            "CKU-WILDCARD-MASK"
+          ]
+        },
+        {
+          "id": "5.5-g5",
+          "term": "Implicit deny",
+          "definition": "The unseen deny-all rule at the end of every ACL.",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        }
+      ],
+      "mnemonics": [
+        {
+          "id": "5.5-m1",
+          "title": "Placement",
+          "mnemonic": "Standard = near Destination; Extended = near Source.",
+          "explanation": "Standard/destination and Extended/source — place each where it limits damage.",
+          "ckuIds": [
+            "CKU-ACL-STANDARD",
+            "CKU-ACL-EXTENDED"
+          ]
+        },
+        {
+          "id": "5.5-m2",
+          "title": "Wildcard",
+          "mnemonic": "0 = match, 1 = ignore.",
+          "explanation": "Opposite of a subnet mask.",
+          "ckuIds": [
+            "CKU-WILDCARD-MASK"
+          ]
+        }
+      ],
+      "examTraps": [
+        {
+          "id": "5.5-t1",
+          "trap": "Forgetting the implicit deny.",
+          "correction": "An ACL with only permits blocks everything else via the implicit deny any.",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        },
+        {
+          "id": "5.5-t2",
+          "trap": "Using a subnet mask in an ACL.",
+          "correction": "ACLs use WILDCARD masks (inverse): /24 → 0.0.0.255.",
+          "ckuIds": [
+            "CKU-WILDCARD-MASK"
+          ]
+        },
+        {
+          "id": "5.5-t3",
+          "trap": "Misordering rules.",
+          "correction": "First match wins — put specific rules before broad ones.",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        },
+        {
+          "id": "5.5-t4",
+          "trap": "Placing extended ACLs near the destination.",
+          "correction": "Place extended ACLs near the source to drop traffic early.",
+          "ckuIds": [
+            "CKU-ACL-EXTENDED"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "id": "5.5-x1",
+          "misconception": "ACLs encrypt or deeply inspect traffic.",
+          "reality": "ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
+          "example": "An ACL permits TCP/443 but does not inspect the TLS payload.",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        },
+        {
+          "id": "5.5-x2",
+          "misconception": "Rule order doesn’t matter.",
+          "reality": "Order is critical — the first matching rule wins and the rest are skipped.",
+          "example": "A broad permit above a specific deny makes the deny dead.",
+          "ckuIds": [
+            "CKU-ACL"
+          ]
+        }
+      ],
+      "diagram": {
+        "id": "DIAG-5.5-acl",
+        "title": "ACL first-match processing",
+        "type": "process",
+        "ckuIds": [
+          "CKU-ACL"
+        ],
+        "nodes": [
+          {
+            "id": "pkt",
+            "label": "Packet",
+            "type": "process",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "id": "r1",
+            "label": "Rule 1 match?",
+            "type": "process",
+            "x": 50,
+            "y": 38
+          },
+          {
+            "id": "permit",
+            "label": "Permit/Deny (stop)",
+            "type": "router",
+            "x": 22,
+            "y": 70,
+            "status": "highlighted"
+          },
+          {
+            "id": "deny",
+            "label": "Implicit deny any",
+            "type": "process",
+            "x": 78,
+            "y": 70,
+            "status": "error"
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "pkt",
+            "target": "r1"
+          },
+          {
+            "id": "l2",
+            "source": "r1",
+            "target": "permit",
+            "label": "match",
+            "status": "forwarding"
+          },
+          {
+            "id": "l3",
+            "source": "r1",
+            "target": "deny",
+            "label": "no match → end",
+            "status": "dropped"
+          }
+        ],
+        "annotations": [
+          "First matching rule decides and processing stops.",
+          "No match anywhere → implicit deny any."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "ACLs",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlow": {
+        "id": "FLOW-5.5-acl",
+        "title": "Evaluating a packet against an ACL",
+        "ckuIds": [
+          "CKU-ACL"
+        ],
+        "diagramId": "DIAG-5.5-acl",
+        "steps": [
+          {
+            "id": "s1",
+            "order": 1,
+            "title": "Top of list",
+            "action": "Start at the first ACL entry.",
+            "successState": "matched"
+          },
+          {
+            "id": "s2",
+            "order": 2,
+            "title": "Compare",
+            "action": "Check the packet against the entry’s criteria.",
+            "successState": "matched"
+          },
+          {
+            "id": "s3",
+            "order": 3,
+            "title": "First match",
+            "action": "On a match, apply permit/deny and STOP.",
+            "successState": "matched"
+          },
+          {
+            "id": "s4",
+            "order": 4,
+            "title": "Implicit deny",
+            "action": "If no entry matched, the implicit deny any drops it.",
+            "successState": "dropped"
+          }
+        ]
+      }
+    }
+  ],
   "labs": [
     {
       "lab": {
@@ -464,14 +1079,14 @@
     }
   ],
   "counts": {
-    "ckus": 0,
-    "questions": 0,
-    "flashcards": 0,
-    "commands": 0,
-    "glossary": 0,
-    "mnemonics": 0,
-    "examTraps": 0,
-    "misconceptions": 0,
+    "ckus": 4,
+    "questions": 9,
+    "flashcards": 6,
+    "commands": 3,
+    "glossary": 5,
+    "mnemonics": 2,
+    "examTraps": 4,
+    "misconceptions": 2,
     "labs": 1
   }
 }

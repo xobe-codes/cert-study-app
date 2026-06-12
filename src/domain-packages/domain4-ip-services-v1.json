@@ -4,8 +4,8 @@
     "domainNumber": 4,
     "domainName": "IP Services",
     "version": "1",
-    "compiledAt": "2026-06-12T19:30:07.425Z",
-    "curatedObjectives": 0,
+    "compiledAt": "2026-06-12T19:47:21.929Z",
+    "curatedObjectives": 1,
     "labs": 0
   },
   "sourceAudit": {
@@ -17,17 +17,564 @@
     },
     "note": "Content is original/paraphrased from the cited sources; questions are original. Verify command syntax against official Cisco docs."
   },
-  "objectives": [],
+  "objectives": [
+    {
+      "objectiveId": "4.1",
+      "domainId": "services",
+      "title": "Configure and verify inside source NAT using static and pools",
+      "ckus": [
+        {
+          "id": "CKU-NAT",
+          "title": "NAT",
+          "summary": "Network Address Translation maps private (inside local) IPs to public (inside global) IPs so internal hosts can reach the internet.",
+          "aliases": [
+            "network address translation"
+          ],
+          "tags": [
+            "nat",
+            "services"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-PRIVATE-IPV4"
+          ],
+          "relatedCkuIds": [
+            "CKU-PAT",
+            "CKU-NAT-TERMS"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "NAT",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "4.1",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-PAT",
+          "title": "PAT (NAT Overload)",
+          "summary": "Maps many inside addresses to ONE public IP using different source port numbers — the common home/SOHO method.",
+          "aliases": [
+            "overload",
+            "port address translation"
+          ],
+          "tags": [
+            "nat",
+            "pat"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-NAT"
+          ],
+          "relatedCkuIds": [
+            "CKU-NAT"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "PAT",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "id": "CKU-NAT-TERMS",
+          "title": "NAT Inside/Outside Terminology",
+          "summary": "Inside local = private host IP; inside global = its translated public IP; outside global = the public destination. Mark interfaces `ip nat inside`/`outside`.",
+          "aliases": [
+            "inside local",
+            "inside global"
+          ],
+          "tags": [
+            "nat"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-NAT"
+          ],
+          "relatedCkuIds": [
+            "CKU-NAT"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "NAT terms",
+              "confidence": 0.9
+            }
+          ]
+        }
+      ],
+      "reading": {
+        "id": "READ-4.1",
+        "ckuIds": [
+          "CKU-NAT",
+          "CKU-PAT",
+          "CKU-NAT-TERMS"
+        ],
+        "estimatedReadMinutes": 7,
+        "tiers": {
+          "beginner": "Private IP addresses (like 192.168.x.x) can’t travel on the internet, so a router swaps them for a public address on the way out — that’s NAT. At home, one public address is shared by every device using different port numbers; that flavor is called PAT (or “overload”). The router remembers each translation so replies come back to the right device.",
+          "intermediate": "NAT translates inside local (private) addresses to inside global (public) addresses. Static NAT is a fixed one-to-one mapping (for servers); dynamic NAT draws from a pool of public addresses; PAT (overload) maps many private hosts to one public IP using unique source ports — the typical SOHO setup. You mark the internal interface `ip nat inside` and the internet-facing one `ip nat outside`, then define what to translate (often an ACL). Verify with `show ip nat translations`.",
+          "examReady": "NAT maps inside local ↔ inside global. Types: Static (`ip nat inside source static <local> <global>` — permanent 1:1, for servers); Dynamic (`ip nat pool` + `ip nat inside source list <ACL> pool <name>`); PAT/overload (`ip nat inside source list <ACL> interface <if> overload` — many-to-one via ports). Mark interfaces `ip nat inside` / `ip nat outside`. Terms: inside local (private host), inside global (its public mapping), outside local/global (the destination). Verify: `show ip nat translations`, `show ip nat statistics`."
+        },
+        "definition": "**NAT** maps private **inside local** IPs to public **inside global** IPs. **PAT (overload)** shares one public IP across many hosts using ports. Interfaces are marked `ip nat inside` / `ip nat outside`.",
+        "keyPoints": [
+          "Static NAT = permanent 1:1 (servers): `ip nat inside source static <local> <global>`.",
+          "Dynamic NAT = pool of public addresses.",
+          "PAT/overload = many→one via source ports (home/SOHO).",
+          "Mark interfaces `ip nat inside` and `ip nat outside`.",
+          "Inside local = private host; inside global = its public address.",
+          "Verify: `show ip nat translations`, `show ip nat statistics`."
+        ],
+        "realWorld": "A home router uses PAT so dozens of devices share one ISP address. A web server uses static NAT so it always has the same public IP. Forgetting the `inside`/`outside` interface tags is the #1 reason NAT “does nothing.”",
+        "commonMistakes": [
+          "Not marking interfaces `ip nat inside`/`outside`.",
+          "ACL doesn’t match the intended inside hosts.",
+          "Expecting static NAT to overload (it’s 1:1).",
+          "Confusing inside local with inside global."
+        ],
+        "related": [
+          "1.7 Private IPv4",
+          "5.5 ACLs (define NAT traffic)"
+        ],
+        "advanced": "PAT tracks translations by the tuple of inside global IP + port, allowing ~65k simultaneous sessions per public IP. NAT breaks end-to-end addressing, which is one reason IPv6 (with its huge space) avoids it.",
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "NAT",
+            "confidence": 0.95
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "4.1-c-q1",
+          "concept": "nat purpose",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "What does NAT primarily do?",
+          "choices": [
+            "Encrypts traffic",
+            "Maps private IPs to public IPs",
+            "Routes between VLANs",
+            "Assigns DHCP addresses"
+          ],
+          "correctIndex": 1,
+          "explanation": "NAT maps inside local (private) to inside global (public) addresses.",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-c-q2",
+          "concept": "pat",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "Many home devices share a single public IP. Which NAT type is this?",
+          "choices": [
+            "Static NAT",
+            "Dynamic NAT",
+            "PAT (overload)",
+            "No NAT"
+          ],
+          "correctIndex": 2,
+          "explanation": "PAT/overload maps many inside hosts to one public IP using ports.",
+          "ckuIds": [
+            "CKU-PAT"
+          ]
+        },
+        {
+          "id": "4.1-c-q3",
+          "concept": "static nat",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which command creates a permanent 1:1 mapping for a server?",
+          "choices": [
+            "ip nat inside source static 192.168.1.10 203.0.113.10",
+            "ip nat pool",
+            "ip nat inside source list 1 interface g0/0 overload",
+            "ip nat outside"
+          ],
+          "correctIndex": 0,
+          "explanation": "Static NAT uses `ip nat inside source static <local> <global>`.",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-c-q4",
+          "concept": "interface tags",
+          "type": "troubleshooting",
+          "difficulty": "hard",
+          "question": "NAT is configured but nothing is translated. What is most often missing?",
+          "choices": [
+            "A default route",
+            "The ip nat inside / ip nat outside interface tags",
+            "A loopback",
+            "DNS"
+          ],
+          "correctIndex": 1,
+          "explanation": "Interfaces must be marked `ip nat inside` and `ip nat outside`.",
+          "ckuIds": [
+            "CKU-NAT-TERMS"
+          ]
+        },
+        {
+          "id": "4.1-c-q5",
+          "concept": "overload command",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "Which command configures PAT to the outside interface?",
+          "choices": [
+            "ip nat inside source list 1 interface g0/0 overload",
+            "ip nat inside source static",
+            "ip nat pool MYPOOL",
+            "ip nat outside source list 1"
+          ],
+          "correctIndex": 0,
+          "explanation": "PAT: `ip nat inside source list <ACL> interface <if> overload`.",
+          "ckuIds": [
+            "CKU-PAT"
+          ]
+        },
+        {
+          "id": "4.1-c-q6",
+          "concept": "terminology",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "A host’s private address as seen inside the network is called its…",
+          "choices": [
+            "Inside global",
+            "Inside local",
+            "Outside global",
+            "Outside local"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inside local = the private address of an inside host.",
+          "ckuIds": [
+            "CKU-NAT-TERMS"
+          ]
+        },
+        {
+          "id": "4.1-c-q7",
+          "concept": "verify",
+          "type": "application",
+          "difficulty": "easy",
+          "question": "Which command shows active NAT translations?",
+          "choices": [
+            "show ip route",
+            "show ip nat translations",
+            "show running-config",
+            "show ip nat inside"
+          ],
+          "correctIndex": 1,
+          "explanation": "`show ip nat translations` lists the current mappings.",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-c-q8",
+          "concept": "pat ports",
+          "type": "true-false",
+          "difficulty": "medium",
+          "question": "True or False: PAT distinguishes multiple inside hosts behind one public IP using port numbers.",
+          "choices": [
+            "True",
+            "False"
+          ],
+          "correctIndex": 0,
+          "explanation": "True — PAT tracks translations by inside global IP + port.",
+          "ckuIds": [
+            "CKU-PAT"
+          ]
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "4.1-f1",
+          "ckuId": "CKU-NAT",
+          "front": "What does NAT map?",
+          "back": "Inside local (private) ↔ inside global (public) addresses."
+        },
+        {
+          "id": "4.1-f2",
+          "ckuId": "CKU-PAT",
+          "front": "What is PAT / overload?",
+          "back": "Many inside hosts → one public IP using unique source ports."
+        },
+        {
+          "id": "4.1-f3",
+          "ckuId": "CKU-NAT",
+          "front": "Static NAT command?",
+          "back": "ip nat inside source static <local> <global>."
+        },
+        {
+          "id": "4.1-f4",
+          "ckuId": "CKU-PAT",
+          "front": "PAT command to the outside interface?",
+          "back": "ip nat inside source list <ACL> interface <if> overload."
+        },
+        {
+          "id": "4.1-f5",
+          "ckuId": "CKU-NAT-TERMS",
+          "front": "Interface tags for NAT?",
+          "back": "ip nat inside (private side) and ip nat outside (public side)."
+        },
+        {
+          "id": "4.1-f6",
+          "ckuId": "CKU-NAT",
+          "front": "Verify NAT commands?",
+          "back": "show ip nat translations; show ip nat statistics."
+        }
+      ],
+      "commands": [
+        {
+          "id": "4.1-cmd1",
+          "command": "ip nat inside source static <local> <global>",
+          "mode": "global config",
+          "purpose": "Create a permanent one-to-one NAT mapping.",
+          "example": "R1(config)# ip nat inside source static 192.168.1.10 203.0.113.10",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-cmd2",
+          "command": "ip nat inside source list <acl> interface <if> overload",
+          "mode": "global config",
+          "purpose": "Configure PAT (overload) to the outside interface.",
+          "example": "R1(config)# ip nat inside source list 1 interface g0/0 overload",
+          "ckuIds": [
+            "CKU-PAT"
+          ]
+        },
+        {
+          "id": "4.1-cmd3",
+          "command": "show ip nat translations",
+          "mode": "privileged EXEC",
+          "purpose": "Display current NAT translations.",
+          "example": "R1# show ip nat translations",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "id": "4.1-g1",
+          "term": "NAT",
+          "definition": "Network Address Translation — maps private to public IP addresses.",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-g2",
+          "term": "PAT",
+          "definition": "Port Address Translation (NAT overload) — many hosts share one public IP via ports.",
+          "ckuIds": [
+            "CKU-PAT"
+          ]
+        },
+        {
+          "id": "4.1-g3",
+          "term": "Inside local",
+          "definition": "The private IP of an inside host.",
+          "ckuIds": [
+            "CKU-NAT-TERMS"
+          ]
+        },
+        {
+          "id": "4.1-g4",
+          "term": "Inside global",
+          "definition": "The public IP an inside host is translated to.",
+          "ckuIds": [
+            "CKU-NAT-TERMS"
+          ]
+        }
+      ],
+      "mnemonics": [
+        {
+          "id": "4.1-m1",
+          "title": "Overload = ports",
+          "mnemonic": "Overload shares one IP with many ports.",
+          "explanation": "PAT multiplexes hosts behind one public IP using source ports.",
+          "ckuIds": [
+            "CKU-PAT"
+          ]
+        }
+      ],
+      "examTraps": [
+        {
+          "id": "4.1-t1",
+          "trap": "Forgetting the inside/outside interface tags.",
+          "correction": "Without `ip nat inside`/`outside`, NAT translates nothing.",
+          "ckuIds": [
+            "CKU-NAT-TERMS"
+          ]
+        },
+        {
+          "id": "4.1-t2",
+          "trap": "Mixing up inside local and inside global.",
+          "correction": "Inside local = private host; inside global = its public mapping.",
+          "ckuIds": [
+            "CKU-NAT-TERMS"
+          ]
+        },
+        {
+          "id": "4.1-t3",
+          "trap": "Expecting static NAT to serve many hosts.",
+          "correction": "Static NAT is 1:1; use PAT/overload for many-to-one.",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "id": "4.1-x1",
+          "misconception": "NAT provides security/encryption.",
+          "reality": "NAT hides addresses but does not encrypt; it is not a security control by itself.",
+          "example": "Traffic is still cleartext after translation.",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-x2",
+          "misconception": "Every inside host needs its own public IP.",
+          "reality": "PAT lets thousands of hosts share one public IP via ports.",
+          "example": "A home network uses a single ISP address.",
+          "ckuIds": [
+            "CKU-PAT"
+          ]
+        }
+      ],
+      "diagram": {
+        "id": "DIAG-4.1-pat",
+        "title": "PAT shares one public IP",
+        "type": "topology",
+        "ckuIds": [
+          "CKU-PAT",
+          "CKU-NAT-TERMS"
+        ],
+        "nodes": [
+          {
+            "id": "h1",
+            "label": "192.168.1.10",
+            "type": "pc",
+            "x": 16,
+            "y": 28
+          },
+          {
+            "id": "h2",
+            "label": "192.168.1.11",
+            "type": "pc",
+            "x": 16,
+            "y": 72
+          },
+          {
+            "id": "r",
+            "label": "R1 NAT (overload)",
+            "type": "router",
+            "x": 52,
+            "y": 50
+          },
+          {
+            "id": "net",
+            "label": "203.0.113.1 → Internet",
+            "type": "cloud",
+            "x": 85,
+            "y": 50,
+            "status": "highlighted"
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "h1",
+            "target": "r",
+            "label": ":1025"
+          },
+          {
+            "id": "l2",
+            "source": "h2",
+            "target": "r",
+            "label": ":1026"
+          },
+          {
+            "id": "l3",
+            "source": "r",
+            "target": "net",
+            "label": "one public IP",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": [
+          "Both hosts share 203.0.113.1, distinguished by source port.",
+          "Inside local → inside global translation tracked per port."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "PAT",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlow": {
+        "id": "FLOW-4.1-pat",
+        "title": "PAT translation",
+        "ckuIds": [
+          "CKU-PAT"
+        ],
+        "diagramId": "DIAG-4.1-pat",
+        "steps": [
+          {
+            "id": "s1",
+            "order": 1,
+            "title": "Packet out",
+            "action": "Inside host sends to the internet with its private source IP.",
+            "successState": "forwarded"
+          },
+          {
+            "id": "s2",
+            "order": 2,
+            "title": "Translate",
+            "action": "Router rewrites the source to the public IP + a unique port; records the mapping.",
+            "successState": "modified"
+          },
+          {
+            "id": "s3",
+            "order": 3,
+            "title": "Reply",
+            "action": "Return traffic hits the public IP + port.",
+            "successState": "matched"
+          },
+          {
+            "id": "s4",
+            "order": 4,
+            "title": "Reverse",
+            "action": "Router maps it back to the original inside host.",
+            "successState": "forwarded"
+          }
+        ]
+      }
+    }
+  ],
   "labs": [],
   "counts": {
-    "ckus": 0,
-    "questions": 0,
-    "flashcards": 0,
-    "commands": 0,
-    "glossary": 0,
-    "mnemonics": 0,
-    "examTraps": 0,
-    "misconceptions": 0,
+    "ckus": 3,
+    "questions": 8,
+    "flashcards": 6,
+    "commands": 3,
+    "glossary": 4,
+    "mnemonics": 1,
+    "examTraps": 3,
+    "misconceptions": 2,
     "labs": 0
   }
 }

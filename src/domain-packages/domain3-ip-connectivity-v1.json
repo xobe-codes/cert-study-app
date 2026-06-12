@@ -4,8 +4,8 @@
     "domainNumber": 3,
     "domainName": "IP Connectivity",
     "version": "1",
-    "compiledAt": "2026-06-12T19:30:07.425Z",
-    "curatedObjectives": 1,
+    "compiledAt": "2026-06-12T19:47:21.929Z",
+    "curatedObjectives": 2,
     "labs": 0
   },
   "sourceAudit": {
@@ -776,18 +776,617 @@
           }
         ]
       }
+    },
+    {
+      "objectiveId": "3.4",
+      "domainId": "connectivity",
+      "title": "Configure and verify single area OSPFv2",
+      "ckus": [
+        {
+          "id": "CKU-OSPF",
+          "title": "OSPFv2",
+          "summary": "A link-state IGP: routers flood LSAs to build an identical LSDB per area, then run SPF (Dijkstra) to compute shortest paths. AD 110.",
+          "aliases": [
+            "OSPF",
+            "open shortest path first"
+          ],
+          "tags": [
+            "ospf",
+            "routing"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-ROUTING-TABLE"
+          ],
+          "relatedCkuIds": [
+            "CKU-OSPF-COST",
+            "CKU-OSPF-NEIGHBOR"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "OSPF",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "3.4",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-OSPF-COST",
+          "title": "OSPF Cost (Metric)",
+          "summary": "OSPF metric = reference bandwidth (default 100 Mbps) ÷ interface bandwidth; lower cost is preferred. Total path cost sums interface costs.",
+          "aliases": [
+            "ospf metric",
+            "cost"
+          ],
+          "tags": [
+            "ospf",
+            "metric"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-OSPF"
+          ],
+          "relatedCkuIds": [
+            "CKU-OSPF"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "OSPF cost",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "id": "CKU-OSPF-NEIGHBOR",
+          "title": "OSPF Neighbors & RID",
+          "summary": "Neighbors must match area, subnet/mask, hello/dead timers, and authentication. Router ID = highest loopback IP, else highest active interface IP, or set manually.",
+          "aliases": [
+            "adjacency",
+            "router id",
+            "DR/BDR"
+          ],
+          "tags": [
+            "ospf",
+            "neighbor"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-OSPF"
+          ],
+          "relatedCkuIds": [
+            "CKU-OSPF"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "OSPF neighbors",
+              "confidence": 0.9
+            }
+          ]
+        }
+      ],
+      "reading": {
+        "id": "READ-3.4",
+        "ckuIds": [
+          "CKU-OSPF",
+          "CKU-OSPF-COST",
+          "CKU-OSPF-NEIGHBOR"
+        ],
+        "estimatedReadMinutes": 9,
+        "tiers": {
+          "beginner": "OSPF is a routing protocol that lets routers learn paths automatically. Each router tells the others about its links; together they build the same “map” of the network and each calculates the shortest path to every destination. Routers that share a link become “neighbors” and exchange this information. The “cost” of a path is based on link speed — faster links cost less, so OSPF prefers them.",
+          "intermediate": "OSPF is a link-state IGP. Routers flood Link-State Advertisements (LSAs) to build an identical link-state database (LSDB) within an area, then run the SPF (Dijkstra) algorithm to find the lowest-cost path to each prefix. Configure with `router ospf <process-id>` then `network <addr> <wildcard> area 0` (or `ip ospf <pid> area 0` on the interface). The Router ID is the highest loopback IP, else the highest active interface IP, or set with `router-id`. Cost = reference bandwidth ÷ interface bandwidth (lower wins). Neighbors must agree on area, subnet, timers, and auth to reach Full adjacency. `passive-interface` stops hellos toward LAN hosts.",
+          "examReady": "OSPFv2 = link-state IGP, AD `110`, metric = reference-bw (default 100 Mbps) ÷ interface bandwidth (lower cost wins; total = sum of egress interface costs). Config: `router ospf 1` → `network 10.0.0.0 0.0.0.255 area 0` (wildcard mask) or interface `ip ospf 1 area 0`. Router ID: highest loopback IP → highest active interface IP → manual `router-id`. Adjacency requires matching area, subnet/mask, hello/dead timers (default 10/40 on broadcast), and authentication; states Down→Init→2-Way→ExStart→Exchange→Loading→Full. On multi-access links a DR/BDR are elected (highest priority, then highest RID). `passive-interface` advertises a network but sends no hellos. Verify: `show ip ospf neighbor`, `show ip route ospf`."
+        },
+        "definition": "OSPFv2 is a **link-state IGP** (AD `110`): routers flood **LSAs** into a shared **LSDB**, then run **SPF** to pick lowest-**cost** paths. Cost = reference-bw ÷ interface-bw. Neighbors must match area, subnet, timers, and auth.",
+        "keyPoints": [
+          "Link-state; AD `110`; metric = reference-bw (100 Mbps) ÷ interface-bw (lower wins).",
+          "Config: `router ospf 1` → `network <addr> <wildcard> area 0`.",
+          "Router ID: highest loopback → highest active IP → manual `router-id`.",
+          "Adjacency needs matching area, subnet/mask, hello/dead timers, auth.",
+          "Neighbor states end at `Full`; DR/BDR elected on multi-access links.",
+          "`passive-interface` advertises a network but stops hellos."
+        ],
+        "realWorld": "Set loopbacks or a manual `router-id` for stable IDs. Default reference bandwidth treats 1G and 10G as equal cost — raise it with `auto-cost reference-bandwidth` on all routers. `show ip ospf neighbor` is the first troubleshooting stop (stuck in Init = one-way hellos; never forming = timer/subnet/area mismatch).",
+        "commonMistakes": [
+          "Wrong wildcard mask in the `network` statement.",
+          "Mismatched hello/dead timers, area, or subnet preventing adjacency.",
+          "Forgetting that default reference bandwidth makes 1G+ links equal cost.",
+          "Expecting a DR/BDR on point-to-point links (there isn’t one)."
+        ],
+        "related": [
+          "3.1 Routing table",
+          "3.2 Forwarding decision",
+          "3.3 Static routing"
+        ],
+        "advanced": "Single-area OSPF uses area 0. The DR reduces LSA flooding on multi-access segments by being the central point; BDR is the backup. Priority 0 means a router never becomes DR.",
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "OSPF",
+            "confidence": 0.95
+          },
+          {
+            "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
+            "chapter": "Ch 19-21",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "3.4-c-q1",
+          "concept": "protocol type",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "What type of routing protocol is OSPF?",
+          "choices": [
+            "Distance vector",
+            "Link-state",
+            "Path vector",
+            "Static"
+          ],
+          "correctIndex": 1,
+          "explanation": "OSPF is a link-state IGP using LSAs and SPF.",
+          "ckuIds": [
+            "CKU-OSPF"
+          ]
+        },
+        {
+          "id": "3.4-c-q2",
+          "concept": "administrative distance",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "What is OSPF’s default administrative distance?",
+          "choices": [
+            "90",
+            "100",
+            "110",
+            "120"
+          ],
+          "correctIndex": 2,
+          "explanation": "OSPF AD is 110.",
+          "ckuIds": [
+            "CKU-OSPF"
+          ]
+        },
+        {
+          "id": "3.4-c-q3",
+          "concept": "cost formula",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "With default settings, what is the OSPF cost of a 100 Mbps link?",
+          "choices": [
+            "1",
+            "10",
+            "100",
+            "64"
+          ],
+          "correctIndex": 0,
+          "explanation": "Cost = 100 Mbps reference ÷ 100 Mbps = 1.",
+          "ckuIds": [
+            "CKU-OSPF-COST"
+          ]
+        },
+        {
+          "id": "3.4-c-q4",
+          "concept": "router id",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "How is the OSPF Router ID selected if not set manually?",
+          "choices": [
+            "Lowest interface IP",
+            "Highest loopback IP, else highest active interface IP",
+            "MAC address",
+            "Always 0.0.0.0"
+          ],
+          "correctIndex": 1,
+          "explanation": "Highest loopback IP wins; otherwise the highest active interface IP.",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ]
+        },
+        {
+          "id": "3.4-c-q5",
+          "concept": "adjacency requirements",
+          "type": "troubleshooting",
+          "difficulty": "hard",
+          "question": "Two OSPF routers won’t form an adjacency. Which mismatch is a likely cause?",
+          "choices": [
+            "Different hostnames",
+            "Different hello/dead timers or area",
+            "Different SNMP strings",
+            "Different banners"
+          ],
+          "correctIndex": 1,
+          "explanation": "Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ]
+        },
+        {
+          "id": "3.4-c-q6",
+          "concept": "config network",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which command advertises 10.0.0.0/24 into OSPF area 0?",
+          "choices": [
+            "network 10.0.0.0 255.255.255.0 area 0",
+            "network 10.0.0.0 0.0.0.255 area 0",
+            "ospf network 10.0.0.0/24",
+            "advertise 10.0.0.0 area 0"
+          ],
+          "correctIndex": 1,
+          "explanation": "OSPF `network` uses a wildcard mask: 0.0.0.255 for a /24.",
+          "ckuIds": [
+            "CKU-OSPF"
+          ]
+        },
+        {
+          "id": "3.4-c-q7",
+          "concept": "full state",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "A healthy OSPF neighbor relationship settles in which state?",
+          "choices": [
+            "Init",
+            "2-Way",
+            "Exchange",
+            "Full"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adjacent neighbors reach the Full state.",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ]
+        },
+        {
+          "id": "3.4-c-q8",
+          "concept": "passive interface",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "What does `passive-interface` do in OSPF?",
+          "choices": [
+            "Stops advertising the network",
+            "Advertises the network but sends no hellos",
+            "Disables the interface",
+            "Forces DR election"
+          ],
+          "correctIndex": 1,
+          "explanation": "A passive interface is still advertised but sends no OSPF hellos (e.g. toward LAN hosts).",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ]
+        },
+        {
+          "id": "3.4-c-q9",
+          "concept": "DR election",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "On a multi-access Ethernet segment, how is the DR elected?",
+          "choices": [
+            "Lowest IP",
+            "Highest OSPF priority, then highest Router ID",
+            "Lowest MAC",
+            "First to boot only"
+          ],
+          "correctIndex": 1,
+          "explanation": "Highest priority wins; ties break on highest Router ID. Priority 0 never becomes DR.",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ]
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "3.4-f1",
+          "ckuId": "CKU-OSPF",
+          "front": "OSPF type and AD?",
+          "back": "Link-state IGP; administrative distance 110."
+        },
+        {
+          "id": "3.4-f2",
+          "ckuId": "CKU-OSPF-COST",
+          "front": "OSPF cost formula?",
+          "back": "Reference bandwidth (default 100 Mbps) ÷ interface bandwidth; lower cost wins."
+        },
+        {
+          "id": "3.4-f3",
+          "ckuId": "CKU-OSPF-NEIGHBOR",
+          "front": "Router ID selection order?",
+          "back": "Highest loopback IP → highest active interface IP → manual router-id."
+        },
+        {
+          "id": "3.4-f4",
+          "ckuId": "CKU-OSPF-NEIGHBOR",
+          "front": "What must match to form an adjacency?",
+          "back": "Area, subnet/mask, hello/dead timers, authentication."
+        },
+        {
+          "id": "3.4-f5",
+          "ckuId": "CKU-OSPF",
+          "front": "Command to advertise a /24 into area 0?",
+          "back": "network <addr> 0.0.0.255 area 0 (wildcard mask)."
+        },
+        {
+          "id": "3.4-f6",
+          "ckuId": "CKU-OSPF-NEIGHBOR",
+          "front": "Final neighbor state + verify command?",
+          "back": "Full; show ip ospf neighbor."
+        }
+      ],
+      "commands": [
+        {
+          "id": "3.4-cmd1",
+          "command": "router ospf <pid>",
+          "mode": "global config",
+          "purpose": "Enter OSPF configuration for a process.",
+          "example": "R1(config)# router ospf 1",
+          "ckuIds": [
+            "CKU-OSPF"
+          ]
+        },
+        {
+          "id": "3.4-cmd2",
+          "command": "network <addr> <wildcard> area <id>",
+          "mode": "router config",
+          "purpose": "Advertise matching interfaces into an OSPF area.",
+          "example": "R1(config-router)# network 10.0.0.0 0.0.0.255 area 0",
+          "ckuIds": [
+            "CKU-OSPF"
+          ]
+        },
+        {
+          "id": "3.4-cmd3",
+          "command": "show ip ospf neighbor",
+          "mode": "privileged EXEC",
+          "purpose": "Show OSPF neighbors and their adjacency state.",
+          "example": "R1# show ip ospf neighbor",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "id": "3.4-g1",
+          "term": "OSPF",
+          "definition": "Open Shortest Path First — a link-state interior gateway protocol (AD 110).",
+          "ckuIds": [
+            "CKU-OSPF"
+          ]
+        },
+        {
+          "id": "3.4-g2",
+          "term": "LSA / LSDB",
+          "definition": "Link-State Advertisement; the database of LSAs all routers in an area share.",
+          "ckuIds": [
+            "CKU-OSPF"
+          ]
+        },
+        {
+          "id": "3.4-g3",
+          "term": "OSPF cost",
+          "definition": "Metric = reference bandwidth ÷ interface bandwidth; lower is preferred.",
+          "ckuIds": [
+            "CKU-OSPF-COST"
+          ]
+        },
+        {
+          "id": "3.4-g4",
+          "term": "Router ID",
+          "definition": "A 32-bit ID for an OSPF router (highest loopback, else interface IP, or manual).",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ]
+        },
+        {
+          "id": "3.4-g5",
+          "term": "DR/BDR",
+          "definition": "Designated/Backup Designated Router that reduce LSA flooding on multi-access links.",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ]
+        }
+      ],
+      "mnemonics": [
+        {
+          "id": "3.4-m1",
+          "title": "Neighbor match",
+          "mnemonic": "A-S-T-A: Area, Subnet, Timers, Auth.",
+          "explanation": "Four things that must match to form an OSPF adjacency.",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ]
+        },
+        {
+          "id": "3.4-m2",
+          "title": "Cost",
+          "mnemonic": "Reference ÷ Bandwidth.",
+          "explanation": "OSPF cost = reference bandwidth divided by interface bandwidth.",
+          "ckuIds": [
+            "CKU-OSPF-COST"
+          ]
+        }
+      ],
+      "examTraps": [
+        {
+          "id": "3.4-t1",
+          "trap": "Using a subnet mask in the network statement.",
+          "correction": "OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24).",
+          "ckuIds": [
+            "CKU-OSPF"
+          ]
+        },
+        {
+          "id": "3.4-t2",
+          "trap": "Assuming 1G and 10G have different OSPF cost by default.",
+          "correction": "Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+          "ckuIds": [
+            "CKU-OSPF-COST"
+          ]
+        },
+        {
+          "id": "3.4-t3",
+          "trap": "Expecting DR/BDR on point-to-point links.",
+          "correction": "DR/BDR are only elected on multi-access (e.g. Ethernet) segments.",
+          "ckuIds": [
+            "CKU-OSPF-NEIGHBOR"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "id": "3.4-x1",
+          "misconception": "OSPF uses hop count like RIP.",
+          "reality": "OSPF uses cost (bandwidth-based), not hop count.",
+          "example": "A 2-hop fast path can beat a 1-hop slow path.",
+          "ckuIds": [
+            "CKU-OSPF-COST"
+          ]
+        },
+        {
+          "id": "3.4-x2",
+          "misconception": "Higher OSPF cost is better.",
+          "reality": "Lower cost is preferred — it represents a faster path.",
+          "example": "A 1G link (cost 1 by default) beats a slower link.",
+          "ckuIds": [
+            "CKU-OSPF-COST"
+          ]
+        }
+      ],
+      "diagram": {
+        "id": "DIAG-3.4-ospf",
+        "title": "OSPF picks the lowest-cost path",
+        "type": "topology",
+        "ckuIds": [
+          "CKU-OSPF",
+          "CKU-OSPF-COST"
+        ],
+        "nodes": [
+          {
+            "id": "r1",
+            "label": "R1",
+            "type": "router",
+            "x": 18,
+            "y": 50
+          },
+          {
+            "id": "r2",
+            "label": "R2",
+            "type": "router",
+            "x": 50,
+            "y": 18
+          },
+          {
+            "id": "r3",
+            "label": "R3",
+            "type": "router",
+            "x": 50,
+            "y": 82
+          },
+          {
+            "id": "dst",
+            "label": "Dest",
+            "type": "subnet",
+            "x": 82,
+            "y": 50,
+            "status": "highlighted"
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "r1",
+            "target": "r2",
+            "label": "cost 1",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "r2",
+            "target": "dst",
+            "label": "cost 1",
+            "status": "forwarding"
+          },
+          {
+            "id": "l3",
+            "source": "r1",
+            "target": "r3",
+            "label": "cost 10"
+          },
+          {
+            "id": "l4",
+            "source": "r3",
+            "target": "dst",
+            "label": "cost 10"
+          }
+        ],
+        "annotations": [
+          "Top path total cost = 2; bottom = 20.",
+          "OSPF installs the lowest-cost (top) path."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "OSPF",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlow": {
+        "id": "FLOW-3.4-adjacency",
+        "title": "Forming an OSPF adjacency",
+        "ckuIds": [
+          "CKU-OSPF-NEIGHBOR"
+        ],
+        "diagramId": "DIAG-3.4-ospf",
+        "steps": [
+          {
+            "id": "s1",
+            "order": 1,
+            "title": "Hello",
+            "action": "Routers send hellos; matching parameters reach 2-Way.",
+            "successState": "matched"
+          },
+          {
+            "id": "s2",
+            "order": 2,
+            "title": "Exchange",
+            "action": "Neighbors exchange database descriptions (ExStart/Exchange).",
+            "successState": "learned"
+          },
+          {
+            "id": "s3",
+            "order": 3,
+            "title": "Loading",
+            "action": "Each requests missing LSAs to sync the LSDB.",
+            "successState": "learned"
+          },
+          {
+            "id": "s4",
+            "order": 4,
+            "title": "Full",
+            "action": "LSDBs match; adjacency is Full and SPF runs.",
+            "successState": "matched"
+          }
+        ]
+      }
     }
   ],
   "labs": [],
   "counts": {
-    "ckus": 4,
-    "questions": 12,
-    "flashcards": 8,
-    "commands": 3,
-    "glossary": 6,
-    "mnemonics": 2,
-    "examTraps": 4,
-    "misconceptions": 3,
+    "ckus": 7,
+    "questions": 21,
+    "flashcards": 14,
+    "commands": 6,
+    "glossary": 11,
+    "mnemonics": 4,
+    "examTraps": 7,
+    "misconceptions": 5,
     "labs": 0
   }
 }

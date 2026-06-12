@@ -4,8 +4,8 @@
     "domainNumber": 2,
     "domainName": "Network Access",
     "version": "1",
-    "compiledAt": "2026-06-12T19:30:07.424Z",
-    "curatedObjectives": 0,
+    "compiledAt": "2026-06-12T19:47:21.928Z",
+    "curatedObjectives": 3,
     "labs": 0
   },
   "sourceAudit": {
@@ -17,17 +17,1653 @@
     },
     "note": "Content is original/paraphrased from the cited sources; questions are original. Verify command syntax against official Cisco docs."
   },
-  "objectives": [],
+  "objectives": [
+    {
+      "objectiveId": "2.1",
+      "domainId": "access",
+      "title": "Configure and verify VLANs (normal range) spanning multiple switches",
+      "ckus": [
+        {
+          "id": "CKU-VLAN",
+          "title": "VLAN",
+          "summary": "A logical Layer 2 broadcast domain. Devices in the same VLAN communicate at L2 regardless of physical location; different VLANs require a router/L3 switch.",
+          "aliases": [
+            "virtual LAN"
+          ],
+          "tags": [
+            "vlan",
+            "switching"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-BROADCAST-DOMAIN"
+          ],
+          "relatedCkuIds": [
+            "CKU-ACCESS-PORT",
+            "CKU-TRUNKING"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "VLANs",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "2.1",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-ACCESS-PORT",
+          "title": "Access Port",
+          "summary": "A switchport that belongs to exactly one VLAN and carries untagged traffic for an end device.",
+          "aliases": [
+            "access mode"
+          ],
+          "tags": [
+            "vlan"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-VLAN"
+          ],
+          "relatedCkuIds": [
+            "CKU-VLAN"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Access ports",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "id": "CKU-VOICE-VLAN",
+          "title": "Voice VLAN",
+          "summary": "A second VLAN on an access port for IP phones, so voice and data traffic are separated on the same physical port.",
+          "aliases": [
+            "voice vlan"
+          ],
+          "tags": [
+            "vlan",
+            "voice"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-ACCESS-PORT"
+          ],
+          "relatedCkuIds": [
+            "CKU-ACCESS-PORT"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Voice VLAN",
+              "confidence": 0.85
+            }
+          ]
+        }
+      ],
+      "reading": {
+        "id": "READ-2.1",
+        "ckuIds": [
+          "CKU-VLAN",
+          "CKU-ACCESS-PORT",
+          "CKU-VOICE-VLAN"
+        ],
+        "estimatedReadMinutes": 6,
+        "tiers": {
+          "beginner": "A VLAN lets one physical switch act like several separate switches. Ports put in VLAN 10 can talk to each other; ports in VLAN 20 are a separate group. To let VLAN 10 talk to VLAN 20 you need a router. You assign a normal end-device port to a VLAN by making it an “access” port.",
+          "intermediate": "A VLAN is a logical broadcast domain. You create one with `vlan <id>` (and name it), then assign access ports with `switchport mode access` + `switchport access vlan <id>`. Devices in the same VLAN reach each other at Layer 2 across multiple switches (via trunks); devices in different VLANs need a Layer 3 device. VLAN 1 is the default for all ports — best practice is to move user traffic off VLAN 1. An IP phone can use a voice VLAN alongside the data VLAN on one port.",
+          "examReady": "VLAN = logical broadcast domain. Create: `vlan 10` → `name SALES`. Assign an access port: `switchport mode access` + `switchport access vlan 10`. Verify with `show vlan brief`. Inter-VLAN traffic needs a router or L3 switch (SVI / router-on-a-stick). VLAN 1 is the default VLAN AND default native VLAN — best practice is to not use it for user data. Voice VLAN: `switchport voice vlan 20` puts phone traffic in a separate VLAN on the same access port. Normal range = 1–1005; extended = 1006–4094."
+        },
+        "definition": "A **VLAN** is a logical Layer 2 broadcast domain. Same-VLAN devices talk at L2 (even across switches via trunks); **different VLANs need a router/L3 switch**. End-device ports are **access ports** assigned to one VLAN.",
+        "keyPoints": [
+          "Create: `vlan <id>` then `name <name>`.",
+          "Assign access port: `switchport mode access` + `switchport access vlan <id>`.",
+          "Same VLAN = same broadcast domain; inter-VLAN needs L3.",
+          "Verify with `show vlan brief`.",
+          "VLAN 1 = default VLAN and default native VLAN — avoid for user traffic.",
+          "Voice VLAN carries phone traffic separately on an access port."
+        ],
+        "realWorld": "A trunk carries multiple VLANs between switches, so VLAN 10 can span the building. `show vlan brief` confirms port-to-VLAN mapping; a missing VLAN assignment is a top cause of “host can’t reach anyone.”",
+        "commonMistakes": [
+          "Assigning a port to a VLAN that hasn’t been created (it may go inactive).",
+          "Leaving user traffic on VLAN 1.",
+          "Expecting two VLANs to talk without a router/L3 switch.",
+          "Forgetting `switchport mode access` so the port may negotiate a trunk."
+        ],
+        "related": [
+          "2.2 Trunking",
+          "3.x Inter-VLAN routing",
+          "1.13 Switching"
+        ],
+        "advanced": "Normal-range VLANs (1–1005) are stored in vlan.dat; extended (1006–4094) require certain VTP modes. A port in a deleted VLAN goes inactive until the VLAN exists again.",
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "VLANs",
+            "confidence": 0.95
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "2.1-c-q1",
+          "concept": "vlan definition",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "A VLAN is best described as a…",
+          "choices": [
+            "Collision domain",
+            "Logical broadcast domain",
+            "Physical cable",
+            "Routing protocol"
+          ],
+          "correctIndex": 1,
+          "explanation": "A VLAN is a logical broadcast domain at Layer 2.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-c-q2",
+          "concept": "inter-vlan",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "Hosts in VLAN 10 cannot reach hosts in VLAN 20. What is required?",
+          "choices": [
+            "Another switch",
+            "A router or L3 switch",
+            "A longer cable",
+            "A trunk between the two hosts"
+          ],
+          "correctIndex": 1,
+          "explanation": "Traffic between VLANs must be routed by a Layer 3 device.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-c-q3",
+          "concept": "access port config",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which commands assign a port to VLAN 10 as an access port?",
+          "choices": [
+            "switchport trunk vlan 10",
+            "switchport mode access / switchport access vlan 10",
+            "vlan 10 / no shutdown",
+            "switchport voice vlan 10"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the mode to access, then assign the VLAN.",
+          "ckuIds": [
+            "CKU-ACCESS-PORT"
+          ]
+        },
+        {
+          "id": "2.1-c-q4",
+          "concept": "verify",
+          "type": "application",
+          "difficulty": "easy",
+          "question": "Which command shows VLAN-to-port assignments?",
+          "choices": [
+            "show interfaces trunk",
+            "show vlan brief",
+            "show ip route",
+            "show mac address-table"
+          ],
+          "correctIndex": 1,
+          "explanation": "`show vlan brief` lists VLANs and their assigned ports.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-c-q5",
+          "concept": "default vlan",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "What is special about VLAN 1 by default?",
+          "choices": [
+            "It is the only routable VLAN",
+            "It is the default VLAN and default native VLAN",
+            "It cannot carry traffic",
+            "It is the voice VLAN"
+          ],
+          "correctIndex": 1,
+          "explanation": "VLAN 1 is the default VLAN for all ports and the default native VLAN; best practice avoids it for user data.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-c-q6",
+          "concept": "voice vlan",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "An IP phone and a PC share one switchport. How are their traffic types separated?",
+          "choices": [
+            "Two access VLANs are impossible",
+            "A data VLAN + a voice VLAN on the port",
+            "A trunk to the phone",
+            "Port security"
+          ],
+          "correctIndex": 1,
+          "explanation": "The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
+          "ckuIds": [
+            "CKU-VOICE-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-c-q7",
+          "concept": "same vlan reach",
+          "type": "true-false",
+          "difficulty": "easy",
+          "question": "True or False: Devices in the same VLAN on two different switches can communicate at Layer 2 (given a trunk).",
+          "choices": [
+            "True",
+            "False"
+          ],
+          "correctIndex": 0,
+          "explanation": "True — a trunk lets a VLAN span switches at Layer 2.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-c-q8",
+          "concept": "create vlan",
+          "type": "application",
+          "difficulty": "easy",
+          "question": "Which command creates VLAN 30?",
+          "choices": [
+            "vlan 30",
+            "switchport access vlan 30",
+            "create vlan 30",
+            "ip vlan 30"
+          ],
+          "correctIndex": 0,
+          "explanation": "`vlan 30` in global config creates the VLAN.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "2.1-f1",
+          "ckuId": "CKU-VLAN",
+          "front": "What is a VLAN?",
+          "back": "A logical Layer 2 broadcast domain; inter-VLAN traffic needs a router/L3 switch."
+        },
+        {
+          "id": "2.1-f2",
+          "ckuId": "CKU-ACCESS-PORT",
+          "front": "Commands to make an access port in VLAN 10?",
+          "back": "switchport mode access / switchport access vlan 10."
+        },
+        {
+          "id": "2.1-f3",
+          "ckuId": "CKU-VLAN",
+          "front": "Command to verify VLAN/port assignments?",
+          "back": "show vlan brief."
+        },
+        {
+          "id": "2.1-f4",
+          "ckuId": "CKU-VLAN",
+          "front": "What is special about VLAN 1?",
+          "back": "Default VLAN + default native VLAN; avoid for user traffic."
+        },
+        {
+          "id": "2.1-f5",
+          "ckuId": "CKU-VOICE-VLAN",
+          "front": "Voice VLAN purpose?",
+          "back": "Separates IP-phone traffic from PC data on the same access port."
+        },
+        {
+          "id": "2.1-f6",
+          "ckuId": "CKU-VLAN",
+          "front": "Normal vs extended VLAN ranges?",
+          "back": "Normal 1–1005; extended 1006–4094."
+        }
+      ],
+      "commands": [
+        {
+          "id": "2.1-cmd1",
+          "command": "vlan <id>",
+          "mode": "global config",
+          "purpose": "Create a VLAN (then name it).",
+          "example": "SW1(config)# vlan 10",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-cmd2",
+          "command": "switchport access vlan <id>",
+          "mode": "interface config",
+          "purpose": "Assign an access port to a VLAN.",
+          "example": "SW1(config-if)# switchport access vlan 10",
+          "ckuIds": [
+            "CKU-ACCESS-PORT"
+          ]
+        },
+        {
+          "id": "2.1-cmd3",
+          "command": "show vlan brief",
+          "mode": "privileged EXEC",
+          "purpose": "Display VLANs and their assigned ports.",
+          "example": "SW1# show vlan brief",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "id": "2.1-g1",
+          "term": "VLAN",
+          "definition": "A logical Layer 2 broadcast domain configured on switches.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-g2",
+          "term": "Access port",
+          "definition": "A switchport in one VLAN carrying untagged end-device traffic.",
+          "ckuIds": [
+            "CKU-ACCESS-PORT"
+          ]
+        },
+        {
+          "id": "2.1-g3",
+          "term": "Native VLAN",
+          "definition": "The untagged VLAN on a trunk; VLAN 1 by default.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-g4",
+          "term": "Voice VLAN",
+          "definition": "A separate VLAN for IP-phone traffic on an access port.",
+          "ckuIds": [
+            "CKU-VOICE-VLAN"
+          ]
+        }
+      ],
+      "mnemonics": [
+        {
+          "id": "2.1-m1",
+          "title": "Access port",
+          "mnemonic": "“Mode access, then access vlan.”",
+          "explanation": "Two commands in order: set mode, then assign the VLAN.",
+          "ckuIds": [
+            "CKU-ACCESS-PORT"
+          ]
+        }
+      ],
+      "examTraps": [
+        {
+          "id": "2.1-t1",
+          "trap": "Thinking same-VLAN devices need a router.",
+          "correction": "Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-t2",
+          "trap": "Leaving ports on VLAN 1.",
+          "correction": "Best practice moves user traffic off VLAN 1 and changes the native VLAN.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-t3",
+          "trap": "Assigning a port to an uncreated VLAN.",
+          "correction": "Create the VLAN first or the port may go inactive.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "id": "2.1-x1",
+          "misconception": "VLANs improve speed.",
+          "reality": "VLANs segment broadcast domains for organization/security, not raw speed.",
+          "example": "Smaller broadcast domains reduce flooding but don’t increase link rate.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        },
+        {
+          "id": "2.1-x2",
+          "misconception": "A VLAN exists on only one switch.",
+          "reality": "A VLAN can span many switches over trunks.",
+          "example": "VLAN 10 on SW1 and SW2 is one broadcast domain via a trunk.",
+          "ckuIds": [
+            "CKU-VLAN"
+          ]
+        }
+      ],
+      "diagram": {
+        "id": "DIAG-2.1-vlans",
+        "title": "VLAN segmentation",
+        "type": "topology",
+        "ckuIds": [
+          "CKU-VLAN"
+        ],
+        "nodes": [
+          {
+            "id": "sw",
+            "label": "Switch",
+            "type": "switch",
+            "x": 50,
+            "y": 25
+          },
+          {
+            "id": "v10a",
+            "label": "PC VLAN10",
+            "type": "pc",
+            "x": 20,
+            "y": 78
+          },
+          {
+            "id": "v10b",
+            "label": "PC VLAN10",
+            "type": "pc",
+            "x": 45,
+            "y": 78,
+            "status": "highlighted"
+          },
+          {
+            "id": "v20",
+            "label": "PC VLAN20",
+            "type": "pc",
+            "x": 78,
+            "y": 78
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "sw",
+            "target": "v10a",
+            "label": "vlan10"
+          },
+          {
+            "id": "l2",
+            "source": "sw",
+            "target": "v10b",
+            "label": "vlan10",
+            "status": "forwarding"
+          },
+          {
+            "id": "l3",
+            "source": "sw",
+            "target": "v20",
+            "label": "vlan20"
+          }
+        ],
+        "annotations": [
+          "VLAN10 hosts talk directly (L2).",
+          "VLAN10 ↔ VLAN20 needs a router/L3 switch."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "VLANs",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlow": {
+        "id": "FLOW-2.1-samevlan",
+        "title": "Same-VLAN frame forwarding",
+        "ckuIds": [
+          "CKU-VLAN"
+        ],
+        "diagramId": "DIAG-2.1-vlans",
+        "steps": [
+          {
+            "id": "s1",
+            "order": 1,
+            "title": "Frame in",
+            "action": "PC in VLAN10 sends a frame to another VLAN10 host.",
+            "successState": "forwarded"
+          },
+          {
+            "id": "s2",
+            "order": 2,
+            "title": "VLAN check",
+            "action": "Switch keeps the frame within VLAN10’s broadcast domain.",
+            "successState": "matched"
+          },
+          {
+            "id": "s3",
+            "order": 3,
+            "title": "Forward",
+            "action": "Frame is delivered out the destination’s VLAN10 port (no routing).",
+            "successState": "forwarded"
+          }
+        ]
+      }
+    },
+    {
+      "objectiveId": "2.2",
+      "domainId": "access",
+      "title": "Configure and verify interswitch connectivity (trunking)",
+      "ckus": [
+        {
+          "id": "CKU-TRUNKING",
+          "title": "Trunking (802.1Q)",
+          "summary": "A trunk carries traffic for multiple VLANs between switches using 802.1Q tagging — a 4-byte tag (12-bit VLAN ID) added to each frame.",
+          "aliases": [
+            "802.1Q",
+            "dot1q",
+            "tagging"
+          ],
+          "tags": [
+            "trunk",
+            "vlan"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-VLAN"
+          ],
+          "relatedCkuIds": [
+            "CKU-NATIVE-VLAN",
+            "CKU-DTP"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Trunking",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "2.2",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-NATIVE-VLAN",
+          "title": "Native VLAN",
+          "summary": "The one VLAN whose frames cross an 802.1Q trunk UNtagged. Must match on both ends (default VLAN 1) or you get a native VLAN mismatch.",
+          "aliases": [
+            "untagged vlan"
+          ],
+          "tags": [
+            "trunk"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-TRUNKING"
+          ],
+          "relatedCkuIds": [
+            "CKU-TRUNKING"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Native VLAN",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "id": "CKU-DTP",
+          "title": "DTP",
+          "summary": "Dynamic Trunking Protocol auto-negotiates trunk vs access; often disabled for security with `switchport nonegotiate`.",
+          "aliases": [
+            "dynamic trunking"
+          ],
+          "tags": [
+            "trunk",
+            "security"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-TRUNKING"
+          ],
+          "relatedCkuIds": [
+            "CKU-TRUNKING"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "DTP",
+              "confidence": 0.85
+            }
+          ]
+        }
+      ],
+      "reading": {
+        "id": "READ-2.2",
+        "ckuIds": [
+          "CKU-TRUNKING",
+          "CKU-NATIVE-VLAN",
+          "CKU-DTP"
+        ],
+        "estimatedReadMinutes": 6,
+        "tiers": {
+          "beginner": "When two switches need to carry several VLANs over a single link between them, that link is a “trunk.” To keep VLANs separate, the switch adds a small tag to each frame saying which VLAN it belongs to. One VLAN — the “native” VLAN — is sent without a tag, and both ends must agree on which one it is.",
+          "intermediate": "A trunk uses 802.1Q to tag frames with their VLAN ID (a 4-byte tag) so multiple VLANs share one link. Configure with `switchport mode trunk`; restrict VLANs with `switchport trunk allowed vlan <list>`; set the untagged native VLAN with `switchport trunk native vlan <id>` (must match both ends). DTP can auto-form trunks but is commonly disabled (`switchport nonegotiate`) to prevent VLAN-hopping. Verify with `show interfaces trunk`.",
+          "examReady": "Trunk = 802.1Q-tagged link carrying multiple VLANs between switches. Config: `switchport mode trunk`, optionally `switchport trunk allowed vlan 10,20`, and `switchport trunk native vlan 99`. The native VLAN crosses UNtagged and must match on both ends (mismatch → CDP warning, traffic leakage). 802.1Q tag = 4 bytes inserted into the Ethernet frame, holding the 12-bit VLAN ID (so 4094 usable VLANs). DTP auto-negotiates trunking; disable with `switchport nonegotiate` for security. Verify: `show interfaces trunk` (mode, native VLAN, allowed/active VLANs)."
+        },
+        "definition": "A **trunk** carries multiple VLANs between switches using **802.1Q** tagging (a 4-byte tag with the VLAN ID). One **native VLAN** crosses **untagged** and must match on both ends.",
+        "keyPoints": [
+          "Config: `switchport mode trunk`.",
+          "802.1Q tag = 4 bytes, 12-bit VLAN ID (up to 4094 VLANs).",
+          "Native VLAN is untagged; must match both ends (default VLAN 1).",
+          "Restrict VLANs with `switchport trunk allowed vlan <list>`.",
+          "DTP auto-negotiates trunks; disable with `switchport nonegotiate`.",
+          "Verify with `show interfaces trunk`."
+        ],
+        "realWorld": "A native-VLAN mismatch shows up as a CDP error and can leak traffic between VLANs. Pruning the allowed VLAN list limits broadcast scope and is a security best practice.",
+        "commonMistakes": [
+          "Native VLAN mismatch between the two trunk ends.",
+          "Leaving the native VLAN as 1 (security risk).",
+          "Allowing all VLANs on a trunk that only needs a few.",
+          "Relying on DTP auto-negotiation on untrusted links."
+        ],
+        "related": [
+          "2.1 VLANs",
+          "2.5 STP",
+          "Inter-VLAN routing"
+        ],
+        "advanced": "ISL is the legacy Cisco trunking protocol; 802.1Q is the standard and the only one on the exam in practice. A double-tagging attack abuses the native VLAN — hence the advice to use a dedicated, unused native VLAN.",
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "Trunking",
+            "confidence": 0.95
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "2.2-c-q1",
+          "concept": "trunk purpose",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "What does a trunk link do?",
+          "choices": [
+            "Carries one VLAN only",
+            "Carries multiple VLANs between switches",
+            "Connects a PC to a switch",
+            "Routes between VLANs"
+          ],
+          "correctIndex": 1,
+          "explanation": "A trunk carries traffic for multiple VLANs between switches using 802.1Q.",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        },
+        {
+          "id": "2.2-c-q2",
+          "concept": "tag size",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "How big is the 802.1Q tag added to a frame?",
+          "choices": [
+            "2 bytes",
+            "4 bytes",
+            "8 bytes",
+            "12 bytes"
+          ],
+          "correctIndex": 1,
+          "explanation": "The 802.1Q tag is 4 bytes and contains the 12-bit VLAN ID.",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        },
+        {
+          "id": "2.2-c-q3",
+          "concept": "native vlan",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "On an 802.1Q trunk, how is the native VLAN’s traffic sent?",
+          "choices": [
+            "Double-tagged",
+            "Tagged",
+            "Untagged",
+            "Dropped"
+          ],
+          "correctIndex": 2,
+          "explanation": "Native VLAN frames cross the trunk untagged.",
+          "ckuIds": [
+            "CKU-NATIVE-VLAN"
+          ]
+        },
+        {
+          "id": "2.2-c-q4",
+          "concept": "native mismatch",
+          "type": "troubleshooting",
+          "difficulty": "hard",
+          "question": "Two trunked switches log a native VLAN mismatch. What is the likely effect?",
+          "choices": [
+            "Trunk speed drops",
+            "Traffic from those VLANs can leak/merge",
+            "All VLANs stop",
+            "Nothing — it is cosmetic"
+          ],
+          "correctIndex": 1,
+          "explanation": "A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
+          "ckuIds": [
+            "CKU-NATIVE-VLAN"
+          ]
+        },
+        {
+          "id": "2.2-c-q5",
+          "concept": "config trunk",
+          "type": "application",
+          "difficulty": "easy",
+          "question": "Which command forces a port to trunk?",
+          "choices": [
+            "switchport mode access",
+            "switchport mode trunk",
+            "switchport trunk allowed vlan",
+            "switchport nonegotiate"
+          ],
+          "correctIndex": 1,
+          "explanation": "`switchport mode trunk` sets the port to trunking.",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        },
+        {
+          "id": "2.2-c-q6",
+          "concept": "DTP security",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which command disables DTP auto-negotiation on a port?",
+          "choices": [
+            "no dtp",
+            "switchport nonegotiate",
+            "switchport mode dynamic",
+            "no switchport trunk"
+          ],
+          "correctIndex": 1,
+          "explanation": "`switchport nonegotiate` stops DTP, a hardening best practice.",
+          "ckuIds": [
+            "CKU-DTP"
+          ]
+        },
+        {
+          "id": "2.2-c-q7",
+          "concept": "verify trunk",
+          "type": "application",
+          "difficulty": "easy",
+          "question": "Which command shows trunk mode, native VLAN, and allowed VLANs?",
+          "choices": [
+            "show vlan brief",
+            "show interfaces trunk",
+            "show ip interface brief",
+            "show cdp neighbors"
+          ],
+          "correctIndex": 1,
+          "explanation": "`show interfaces trunk` lists trunking details.",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        },
+        {
+          "id": "2.2-c-q8",
+          "concept": "allowed vlans",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which command limits a trunk to VLANs 10 and 20?",
+          "choices": [
+            "switchport access vlan 10,20",
+            "switchport trunk allowed vlan 10,20",
+            "vlan 10,20",
+            "switchport trunk native vlan 10"
+          ],
+          "correctIndex": 1,
+          "explanation": "`switchport trunk allowed vlan 10,20` prunes the trunk.",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "2.2-f1",
+          "ckuId": "CKU-TRUNKING",
+          "front": "What is a trunk and what protocol tags it?",
+          "back": "A link carrying multiple VLANs between switches; 802.1Q tags frames with the VLAN ID."
+        },
+        {
+          "id": "2.2-f2",
+          "ckuId": "CKU-TRUNKING",
+          "front": "Size and content of the 802.1Q tag?",
+          "back": "4 bytes, including the 12-bit VLAN ID."
+        },
+        {
+          "id": "2.2-f3",
+          "ckuId": "CKU-NATIVE-VLAN",
+          "front": "How is the native VLAN carried, and what must match?",
+          "back": "Untagged; the native VLAN ID must match on both trunk ends."
+        },
+        {
+          "id": "2.2-f4",
+          "ckuId": "CKU-TRUNKING",
+          "front": "Command to verify trunks?",
+          "back": "show interfaces trunk."
+        },
+        {
+          "id": "2.2-f5",
+          "ckuId": "CKU-DTP",
+          "front": "How do you disable DTP?",
+          "back": "switchport nonegotiate."
+        },
+        {
+          "id": "2.2-f6",
+          "ckuId": "CKU-TRUNKING",
+          "front": "Command to restrict allowed VLANs on a trunk?",
+          "back": "switchport trunk allowed vlan <list>."
+        }
+      ],
+      "commands": [
+        {
+          "id": "2.2-cmd1",
+          "command": "switchport mode trunk",
+          "mode": "interface config",
+          "purpose": "Configure the port as an 802.1Q trunk.",
+          "example": "SW1(config-if)# switchport mode trunk",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        },
+        {
+          "id": "2.2-cmd2",
+          "command": "switchport trunk native vlan <id>",
+          "mode": "interface config",
+          "purpose": "Set the untagged native VLAN (match both ends).",
+          "example": "SW1(config-if)# switchport trunk native vlan 99",
+          "ckuIds": [
+            "CKU-NATIVE-VLAN"
+          ]
+        },
+        {
+          "id": "2.2-cmd3",
+          "command": "show interfaces trunk",
+          "mode": "privileged EXEC",
+          "purpose": "Show trunk mode, native VLAN, and allowed/active VLANs.",
+          "example": "SW1# show interfaces trunk",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "id": "2.2-g1",
+          "term": "Trunk",
+          "definition": "A switch link carrying multiple VLANs using 802.1Q tagging.",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        },
+        {
+          "id": "2.2-g2",
+          "term": "802.1Q",
+          "definition": "The IEEE VLAN tagging standard; inserts a 4-byte tag with the VLAN ID.",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        },
+        {
+          "id": "2.2-g3",
+          "term": "Native VLAN",
+          "definition": "The VLAN sent untagged on a trunk; must match both ends.",
+          "ckuIds": [
+            "CKU-NATIVE-VLAN"
+          ]
+        },
+        {
+          "id": "2.2-g4",
+          "term": "DTP",
+          "definition": "Dynamic Trunking Protocol; auto-negotiates trunk/access.",
+          "ckuIds": [
+            "CKU-DTP"
+          ]
+        }
+      ],
+      "mnemonics": [
+        {
+          "id": "2.2-m1",
+          "title": "Native = naked",
+          "mnemonic": "Native VLAN travels “naked” (untagged).",
+          "explanation": "The native VLAN is the one frame type sent without an 802.1Q tag.",
+          "ckuIds": [
+            "CKU-NATIVE-VLAN"
+          ]
+        }
+      ],
+      "examTraps": [
+        {
+          "id": "2.2-t1",
+          "trap": "Mismatched native VLANs.",
+          "correction": "Native VLAN must match on both ends or traffic can leak (CDP warns).",
+          "ckuIds": [
+            "CKU-NATIVE-VLAN"
+          ]
+        },
+        {
+          "id": "2.2-t2",
+          "trap": "Thinking all VLANs are tagged.",
+          "correction": "The native VLAN is untagged; all others are tagged.",
+          "ckuIds": [
+            "CKU-NATIVE-VLAN"
+          ]
+        },
+        {
+          "id": "2.2-t3",
+          "trap": "Leaving DTP on for untrusted ports.",
+          "correction": "Disable DTP with switchport nonegotiate to prevent VLAN hopping.",
+          "ckuIds": [
+            "CKU-DTP"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "id": "2.2-x1",
+          "misconception": "A trunk is faster than an access port.",
+          "reality": "A trunk simply carries multiple VLANs; speed depends on the physical link.",
+          "example": "A 1G trunk and 1G access port have the same link rate.",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        },
+        {
+          "id": "2.2-x2",
+          "misconception": "802.1Q encapsulates the whole frame.",
+          "reality": "802.1Q inserts a 4-byte tag into the existing frame; it does not wrap it.",
+          "example": "The tag sits after the source MAC.",
+          "ckuIds": [
+            "CKU-TRUNKING"
+          ]
+        }
+      ],
+      "diagram": {
+        "id": "DIAG-2.2-trunk",
+        "title": "Trunk between switches",
+        "type": "topology",
+        "ckuIds": [
+          "CKU-TRUNKING"
+        ],
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "SW1",
+            "type": "switch",
+            "x": 25,
+            "y": 40
+          },
+          {
+            "id": "sw2",
+            "label": "SW2",
+            "type": "switch",
+            "x": 75,
+            "y": 40
+          },
+          {
+            "id": "v",
+            "label": "VLAN 10,20,99",
+            "type": "process",
+            "x": 50,
+            "y": 82
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "sw1",
+            "target": "sw2",
+            "label": "802.1Q trunk",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "v",
+            "target": "sw1",
+            "label": "tagged"
+          },
+          {
+            "id": "l3",
+            "source": "v",
+            "target": "sw2",
+            "label": "tagged"
+          }
+        ],
+        "annotations": [
+          "One link carries many VLANs, each frame tagged with its VLAN ID.",
+          "The native VLAN (99) crosses untagged."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "Trunking",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlow": {
+        "id": "FLOW-2.2-tag",
+        "title": "Tagging across a trunk",
+        "ckuIds": [
+          "CKU-TRUNKING",
+          "CKU-NATIVE-VLAN"
+        ],
+        "diagramId": "DIAG-2.2-trunk",
+        "steps": [
+          {
+            "id": "s1",
+            "order": 1,
+            "title": "Frame enters SW1",
+            "action": "A VLAN10 frame arrives at SW1.",
+            "successState": "forwarded"
+          },
+          {
+            "id": "s2",
+            "order": 2,
+            "title": "Tag",
+            "action": "SW1 inserts an 802.1Q tag with VLAN ID 10 before sending on the trunk.",
+            "successState": "modified"
+          },
+          {
+            "id": "s3",
+            "order": 3,
+            "title": "SW2 reads tag",
+            "action": "SW2 reads the tag, removes it, and places the frame in VLAN10.",
+            "successState": "matched"
+          },
+          {
+            "id": "s4",
+            "order": 4,
+            "title": "Deliver",
+            "action": "Frame is forwarded out a VLAN10 access port.",
+            "successState": "forwarded"
+          }
+        ]
+      }
+    },
+    {
+      "objectiveId": "2.5",
+      "domainId": "access",
+      "title": "Interpret basic operations of Rapid PVST+ Spanning Tree Protocol",
+      "ckus": [
+        {
+          "id": "CKU-STP",
+          "title": "Spanning Tree Protocol",
+          "summary": "Prevents Layer 2 loops by blocking redundant switch paths, leaving one active path to the root bridge.",
+          "aliases": [
+            "STP",
+            "802.1D",
+            "spanning tree"
+          ],
+          "tags": [
+            "stp",
+            "switching",
+            "loop-prevention"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-TRUNKING"
+          ],
+          "relatedCkuIds": [
+            "CKU-ROOT-BRIDGE",
+            "CKU-STP-PORTFAST"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "STP",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "2.5",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-ROOT-BRIDGE",
+          "title": "Root Bridge Election",
+          "summary": "The switch with the lowest Bridge ID (priority + MAC) becomes root; all others find the lowest-cost path to it. Default priority 32768.",
+          "aliases": [
+            "root election",
+            "bridge ID"
+          ],
+          "tags": [
+            "stp"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-STP"
+          ],
+          "relatedCkuIds": [
+            "CKU-STP"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Root bridge",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "id": "CKU-STP-PORTFAST",
+          "title": "PortFast & BPDU Guard",
+          "summary": "PortFast skips listening/learning on access ports for fast host connectivity; BPDU Guard err-disables a PortFast port that receives a BPDU (rogue switch).",
+          "aliases": [
+            "portfast",
+            "bpdu guard"
+          ],
+          "tags": [
+            "stp",
+            "security"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-STP"
+          ],
+          "relatedCkuIds": [
+            "CKU-STP"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "PortFast/BPDU Guard",
+              "confidence": 0.9
+            }
+          ]
+        }
+      ],
+      "reading": {
+        "id": "READ-2.5",
+        "ckuIds": [
+          "CKU-STP",
+          "CKU-ROOT-BRIDGE",
+          "CKU-STP-PORTFAST"
+        ],
+        "estimatedReadMinutes": 7,
+        "tiers": {
+          "beginner": "If you connect switches in a loop for redundancy, frames can circle forever and crash the network. Spanning Tree fixes this by automatically blocking the extra paths, leaving just one active route. If a link fails, it unblocks a backup path. One switch is elected the “root,” and every other switch keeps its best path toward it.",
+          "intermediate": "STP prevents Layer 2 loops by electing a root bridge (lowest Bridge ID = priority + MAC) and blocking redundant links. Each non-root switch has one root port (best path to root) and each segment has one designated port; other ports block. Port roles/states converge so exactly one loop-free path exists. Rapid PVST+ (Cisco default) runs a per-VLAN rapid spanning tree that converges in seconds using proposal/agreement. PortFast on access ports skips the listening/learning delay; BPDU Guard shuts a PortFast port if it unexpectedly receives a BPDU.",
+          "examReady": "STP (802.1D) blocks redundant L2 paths to prevent loops. Root bridge = lowest Bridge ID (priority + MAC); default priority 32768; lower wins (ties broken by lowest MAC). Roles: Root Port (one per non-root switch, lowest cost to root), Designated Port (one per segment, forwards), Non-Designated/Alternate (blocks). Path cost by speed (e.g. 10G=2, 1G=4, 100M=19, 10M=100). Rapid PVST+ = Cisco default, per-VLAN, states discarding/learning/forwarding, fast convergence via proposal/agreement. PortFast → access ports skip listening/learning; BPDU Guard → err-disables a PortFast port that receives a BPDU. Set root: `spanning-tree vlan 1 root primary` (or lower the priority). Verify: `show spanning-tree`."
+        },
+        "definition": "STP prevents **Layer 2 loops** by blocking redundant paths, leaving one path to the **root bridge** (lowest Bridge ID). **Rapid PVST+** (Cisco default) converges in seconds. **PortFast/BPDU Guard** speed up and protect access ports.",
+        "keyPoints": [
+          "Root bridge = lowest Bridge ID (priority + MAC); default priority `32768`.",
+          "Roles: root port (per switch), designated port (per segment), others block.",
+          "Lower path cost wins; cost by link speed (1G=`4`, 100M=`19`).",
+          "Rapid PVST+ = Cisco default; states discarding/learning/forwarding.",
+          "PortFast skips listening/learning on access ports.",
+          "BPDU Guard err-disables a PortFast port that receives a BPDU."
+        ],
+        "realWorld": "Lower a switch’s priority (`spanning-tree vlan 1 priority 4096`) to make it root deterministically. `show spanning-tree` reveals the root, port roles, and which ports are blocking — the first stop when redundant links misbehave.",
+        "commonMistakes": [
+          "Assuming the highest-priority number wins (lowest BID wins).",
+          "Enabling PortFast on a switch-to-switch link (loop risk).",
+          "Forgetting BPDU Guard, leaving PortFast ports open to rogue switches.",
+          "Confusing root port (toward root) with designated port (per segment)."
+        ],
+        "related": [
+          "2.2 Trunking",
+          "2.4 EtherChannel",
+          "1.13 Switching"
+        ],
+        "advanced": "Rapid PVST+ uses proposal/agreement to converge without timers in most cases. Root Guard prevents a downstream switch from becoming root; Loop Guard protects against unidirectional link failures.",
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "STP",
+            "confidence": 0.95
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "2.5-c-q1",
+          "concept": "stp purpose",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "What problem does STP solve?",
+          "choices": [
+            "Routing loops",
+            "Layer 2 switching loops",
+            "IP address conflicts",
+            "Slow DNS"
+          ],
+          "correctIndex": 1,
+          "explanation": "STP prevents Layer 2 loops by blocking redundant paths.",
+          "ckuIds": [
+            "CKU-STP"
+          ]
+        },
+        {
+          "id": "2.5-c-q2",
+          "concept": "root election",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "How is the root bridge chosen?",
+          "choices": [
+            "Highest priority",
+            "Lowest Bridge ID (priority + MAC)",
+            "Highest MAC",
+            "Fastest CPU"
+          ],
+          "correctIndex": 1,
+          "explanation": "The lowest Bridge ID (priority, then MAC) wins the root election.",
+          "ckuIds": [
+            "CKU-ROOT-BRIDGE"
+          ]
+        },
+        {
+          "id": "2.5-c-q3",
+          "concept": "default priority",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "What is the default STP bridge priority?",
+          "choices": [
+            "0",
+            "4096",
+            "32768",
+            "65535"
+          ],
+          "correctIndex": 2,
+          "explanation": "Default priority is 32768 (lower is preferred).",
+          "ckuIds": [
+            "CKU-ROOT-BRIDGE"
+          ]
+        },
+        {
+          "id": "2.5-c-q4",
+          "concept": "port roles",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "Each non-root switch has exactly one of which port type toward the root?",
+          "choices": [
+            "Designated port",
+            "Root port",
+            "Blocking port",
+            "Trunk port"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each non-root switch has one root port — its lowest-cost path to root.",
+          "ckuIds": [
+            "CKU-STP"
+          ]
+        },
+        {
+          "id": "2.5-c-q5",
+          "concept": "portfast",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "PortFast should be enabled on which ports?",
+          "choices": [
+            "Switch-to-switch trunks",
+            "Access ports to end devices",
+            "Router uplinks",
+            "All ports"
+          ],
+          "correctIndex": 1,
+          "explanation": "PortFast belongs on access ports to hosts; on switch links it risks loops.",
+          "ckuIds": [
+            "CKU-STP-PORTFAST"
+          ]
+        },
+        {
+          "id": "2.5-c-q6",
+          "concept": "bpdu guard",
+          "type": "scenario",
+          "difficulty": "hard",
+          "question": "A PortFast access port receives a BPDU with BPDU Guard enabled. What happens?",
+          "choices": [
+            "Port becomes root",
+            "Port is err-disabled (shut down)",
+            "BPDU is forwarded",
+            "Nothing"
+          ],
+          "correctIndex": 1,
+          "explanation": "BPDU Guard err-disables the port, protecting against a rogue switch.",
+          "ckuIds": [
+            "CKU-STP-PORTFAST"
+          ]
+        },
+        {
+          "id": "2.5-c-q7",
+          "concept": "rapid pvst",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "What is the Cisco default spanning-tree mode?",
+          "choices": [
+            "802.1D",
+            "Rapid PVST+",
+            "MST",
+            "PVST"
+          ],
+          "correctIndex": 1,
+          "explanation": "Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
+          "ckuIds": [
+            "CKU-STP"
+          ]
+        },
+        {
+          "id": "2.5-c-q8",
+          "concept": "set root",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which command makes a switch the root for VLAN 1 by lowering its priority?",
+          "choices": [
+            "spanning-tree vlan 1 root primary",
+            "spanning-tree portfast",
+            "spanning-tree bpduguard enable",
+            "switchport mode trunk"
+          ],
+          "correctIndex": 0,
+          "explanation": "`spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root.",
+          "ckuIds": [
+            "CKU-ROOT-BRIDGE"
+          ]
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "2.5-f1",
+          "ckuId": "CKU-STP",
+          "front": "What does STP do?",
+          "back": "Blocks redundant L2 paths to prevent switching loops; unblocks on failure."
+        },
+        {
+          "id": "2.5-f2",
+          "ckuId": "CKU-ROOT-BRIDGE",
+          "front": "How is the root bridge elected?",
+          "back": "Lowest Bridge ID = priority (default 32768) then MAC."
+        },
+        {
+          "id": "2.5-f3",
+          "ckuId": "CKU-STP",
+          "front": "Three STP port roles?",
+          "back": "Root port (per switch), designated port (per segment), blocking/alternate."
+        },
+        {
+          "id": "2.5-f4",
+          "ckuId": "CKU-STP-PORTFAST",
+          "front": "What does PortFast do?",
+          "back": "Skips listening/learning so access ports forward immediately."
+        },
+        {
+          "id": "2.5-f5",
+          "ckuId": "CKU-STP-PORTFAST",
+          "front": "What does BPDU Guard do?",
+          "back": "Err-disables a PortFast port that receives a BPDU (rogue switch protection)."
+        },
+        {
+          "id": "2.5-f6",
+          "ckuId": "CKU-STP",
+          "front": "Cisco default STP mode + verify command?",
+          "back": "Rapid PVST+; show spanning-tree."
+        }
+      ],
+      "commands": [
+        {
+          "id": "2.5-cmd1",
+          "command": "show spanning-tree",
+          "mode": "privileged EXEC",
+          "purpose": "Show the root bridge, port roles/states, and costs.",
+          "example": "SW1# show spanning-tree vlan 1",
+          "ckuIds": [
+            "CKU-STP",
+            "CKU-ROOT-BRIDGE"
+          ]
+        },
+        {
+          "id": "2.5-cmd2",
+          "command": "spanning-tree vlan <id> root primary",
+          "mode": "global config",
+          "purpose": "Lower priority so this switch becomes the root for a VLAN.",
+          "example": "SW1(config)# spanning-tree vlan 1 root primary",
+          "ckuIds": [
+            "CKU-ROOT-BRIDGE"
+          ]
+        },
+        {
+          "id": "2.5-cmd3",
+          "command": "spanning-tree portfast",
+          "mode": "interface config",
+          "purpose": "Enable PortFast on an access port.",
+          "example": "SW1(config-if)# spanning-tree portfast",
+          "ckuIds": [
+            "CKU-STP-PORTFAST"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "id": "2.5-g1",
+          "term": "Spanning Tree Protocol",
+          "definition": "L2 protocol that blocks redundant paths to prevent loops.",
+          "ckuIds": [
+            "CKU-STP"
+          ]
+        },
+        {
+          "id": "2.5-g2",
+          "term": "Root bridge",
+          "definition": "The switch with the lowest Bridge ID; reference point of the tree.",
+          "ckuIds": [
+            "CKU-ROOT-BRIDGE"
+          ]
+        },
+        {
+          "id": "2.5-g3",
+          "term": "Root port",
+          "definition": "A non-root switch’s lowest-cost port toward the root.",
+          "ckuIds": [
+            "CKU-STP"
+          ]
+        },
+        {
+          "id": "2.5-g4",
+          "term": "PortFast",
+          "definition": "Feature letting access ports skip listening/learning.",
+          "ckuIds": [
+            "CKU-STP-PORTFAST"
+          ]
+        },
+        {
+          "id": "2.5-g5",
+          "term": "BPDU Guard",
+          "definition": "Err-disables a PortFast port that receives a BPDU.",
+          "ckuIds": [
+            "CKU-STP-PORTFAST"
+          ]
+        }
+      ],
+      "mnemonics": [
+        {
+          "id": "2.5-m1",
+          "title": "Lowest wins",
+          "mnemonic": "Lowest Bridge ID = Root.",
+          "explanation": "Priority first (default 32768), then MAC — lowest is root.",
+          "ckuIds": [
+            "CKU-ROOT-BRIDGE"
+          ]
+        }
+      ],
+      "examTraps": [
+        {
+          "id": "2.5-t1",
+          "trap": "Highest priority becomes root.",
+          "correction": "LOWEST Bridge ID (priority then MAC) becomes root.",
+          "ckuIds": [
+            "CKU-ROOT-BRIDGE"
+          ]
+        },
+        {
+          "id": "2.5-t2",
+          "trap": "PortFast on switch links.",
+          "correction": "PortFast belongs only on access/host ports; on switch links it risks loops.",
+          "ckuIds": [
+            "CKU-STP-PORTFAST"
+          ]
+        },
+        {
+          "id": "2.5-t3",
+          "trap": "Confusing root and designated ports.",
+          "correction": "Root port = best path to root (per switch); designated = forwarding port per segment.",
+          "ckuIds": [
+            "CKU-STP"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "id": "2.5-x1",
+          "misconception": "STP load-balances across redundant links.",
+          "reality": "Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
+          "example": "A blocked link carries no data until the primary fails.",
+          "ckuIds": [
+            "CKU-STP"
+          ]
+        },
+        {
+          "id": "2.5-x2",
+          "misconception": "STP prevents routing loops.",
+          "reality": "STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
+          "example": "STP has no effect on IP routing.",
+          "ckuIds": [
+            "CKU-STP"
+          ]
+        }
+      ],
+      "diagram": {
+        "id": "DIAG-2.5-stp",
+        "title": "STP blocks one redundant path",
+        "type": "topology",
+        "ckuIds": [
+          "CKU-STP",
+          "CKU-ROOT-BRIDGE"
+        ],
+        "nodes": [
+          {
+            "id": "root",
+            "label": "Root (lowest BID)",
+            "type": "switch",
+            "x": 50,
+            "y": 15,
+            "status": "highlighted"
+          },
+          {
+            "id": "a",
+            "label": "SW-A",
+            "type": "switch",
+            "x": 22,
+            "y": 70
+          },
+          {
+            "id": "b",
+            "label": "SW-B",
+            "type": "switch",
+            "x": 78,
+            "y": 70
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "root",
+            "target": "a",
+            "label": "forwarding",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "root",
+            "target": "b",
+            "label": "forwarding",
+            "status": "forwarding"
+          },
+          {
+            "id": "l3",
+            "source": "a",
+            "target": "b",
+            "label": "BLOCKED",
+            "status": "blocked"
+          }
+        ],
+        "annotations": [
+          "Both links to root forward.",
+          "The A–B link is blocked to break the loop."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "STP",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlow": {
+        "id": "FLOW-2.5-converge",
+        "title": "STP convergence",
+        "ckuIds": [
+          "CKU-STP",
+          "CKU-ROOT-BRIDGE"
+        ],
+        "diagramId": "DIAG-2.5-stp",
+        "steps": [
+          {
+            "id": "s1",
+            "order": 1,
+            "title": "Elect root",
+            "action": "Switches exchange BPDUs; lowest Bridge ID becomes root.",
+            "successState": "matched"
+          },
+          {
+            "id": "s2",
+            "order": 2,
+            "title": "Choose root ports",
+            "action": "Each non-root switch picks its lowest-cost port to root.",
+            "successState": "matched"
+          },
+          {
+            "id": "s3",
+            "order": 3,
+            "title": "Choose designated",
+            "action": "Each segment elects one designated (forwarding) port.",
+            "successState": "matched"
+          },
+          {
+            "id": "s4",
+            "order": 4,
+            "title": "Block the rest",
+            "action": "Remaining ports block, leaving a single loop-free tree.",
+            "successState": "dropped"
+          }
+        ]
+      }
+    }
+  ],
   "labs": [],
   "counts": {
-    "ckus": 0,
-    "questions": 0,
-    "flashcards": 0,
-    "commands": 0,
-    "glossary": 0,
-    "mnemonics": 0,
-    "examTraps": 0,
-    "misconceptions": 0,
+    "ckus": 9,
+    "questions": 24,
+    "flashcards": 18,
+    "commands": 9,
+    "glossary": 13,
+    "mnemonics": 3,
+    "examTraps": 9,
+    "misconceptions": 6,
     "labs": 0
   }
 }

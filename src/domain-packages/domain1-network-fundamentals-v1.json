@@ -4,8 +4,8 @@
     "domainNumber": 1,
     "domainName": "Network Fundamentals",
     "version": "1",
-    "compiledAt": "2026-06-12T19:30:07.422Z",
-    "curatedObjectives": 2,
+    "compiledAt": "2026-06-12T19:47:21.924Z",
+    "curatedObjectives": 4,
     "labs": 0
   },
   "sourceAudit": {
@@ -1484,18 +1484,1225 @@
           }
         ]
       }
+    },
+    {
+      "objectiveId": "1.8",
+      "domainId": "fundamentals",
+      "title": "Configure and verify IPv6 addressing and prefix",
+      "ckus": [
+        {
+          "id": "CKU-IPV6-ADDRESSING",
+          "title": "IPv6 Addressing",
+          "summary": "128-bit address written as 8 groups of 4 hex digits separated by colons; the prefix length (usually /64) marks the network portion.",
+          "aliases": [
+            "IPv6"
+          ],
+          "tags": [
+            "ipv6",
+            "addressing"
+          ],
+          "prerequisiteCkuIds": [],
+          "relatedCkuIds": [
+            "CKU-IPV6-SHORTENING",
+            "CKU-MODIFIED-EUI-64"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "IPv6",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "1.8",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-IPV6-SHORTENING",
+          "title": "IPv6 Abbreviation Rules",
+          "summary": "Omit leading zeros in each group; replace ONE run of all-zero groups with :: (only once per address).",
+          "aliases": [
+            "compression",
+            "::"
+          ],
+          "tags": [
+            "ipv6"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ],
+          "relatedCkuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "IPv6 shortening",
+              "confidence": 0.95
+            }
+          ]
+        },
+        {
+          "id": "CKU-MODIFIED-EUI-64",
+          "title": "Modified EUI-64",
+          "summary": "Builds the 64-bit interface ID from a 48-bit MAC: split it, insert FFFE in the middle, and flip the 7th bit (U/L) of the first byte.",
+          "aliases": [
+            "EUI-64"
+          ],
+          "tags": [
+            "ipv6",
+            "slaac"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ],
+          "relatedCkuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "EUI-64",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "id": "CKU-IPV6-SLAAC",
+          "title": "SLAAC",
+          "summary": "Stateless Address Autoconfiguration: a host forms its own IPv6 address from the prefix in a Router Advertisement plus an interface ID (EUI-64 or random).",
+          "aliases": [
+            "autoconfiguration",
+            "RA"
+          ],
+          "tags": [
+            "ipv6"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ],
+          "relatedCkuIds": [
+            "CKU-MODIFIED-EUI-64"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "SLAAC",
+              "confidence": 0.9
+            }
+          ]
+        }
+      ],
+      "reading": {
+        "id": "READ-1.8",
+        "ckuIds": [
+          "CKU-IPV6-ADDRESSING",
+          "CKU-IPV6-SHORTENING",
+          "CKU-MODIFIED-EUI-64",
+          "CKU-IPV6-SLAAC"
+        ],
+        "estimatedReadMinutes": 7,
+        "tiers": {
+          "beginner": "IPv6 addresses are much bigger than IPv4 — 128 bits, written as eight blocks of hex separated by colons. Because they are long, you can shorten them: drop leading zeros in a block, and replace one run of all-zero blocks with “::”. The /64 at the end usually marks the network half. Hosts can even build their own address automatically (SLAAC) from information the router advertises.",
+          "intermediate": "An IPv6 address is 128 bits = 8 hextets of 4 hex digits. Shortening rules: (1) remove leading zeros within each hextet; (2) replace one contiguous run of all-zero hextets with :: (only once). LANs almost always use a /64 prefix so the lower 64 bits are the interface ID. Hosts get addresses three ways: static, DHCPv6, or SLAAC (form the address from the RA prefix + an interface ID, which can be Modified EUI-64).",
+          "examReady": "IPv6 = 128 bits, 8 hextets of 4 hex digits. Abbreviate by removing leading zeros per hextet and using `::` once for a run of all-zero hextets. Prefix length (e.g. `/64`) marks the network portion; /64 is standard for LANs to allow SLAAC/EUI-64. Three addressing methods: static, DHCPv6 (stateful), SLAAC (stateless, from the Router Advertisement prefix). Modified EUI-64: split the 48-bit MAC, insert `FFFE` in the middle, flip the 7th bit (U/L) of the first byte. Config: `ipv6 address 2001:db8::1/64` on an interface, with `ipv6 unicast-routing` enabled globally."
+        },
+        "definition": "IPv6 addresses are **128 bits**, written as 8 hextets of hex. Abbreviate by dropping leading zeros and using `::` once. The prefix (usually `/64`) marks the network; hosts can self-configure via **SLAAC**.",
+        "keyPoints": [
+          "128 bits = 8 hextets of 4 hex digits, colon-separated.",
+          "Shorten: drop leading zeros per hextet; `::` replaces one run of all-zero hextets (once only).",
+          "LAN prefix is almost always `/64`.",
+          "Addressing: static, DHCPv6, or SLAAC (from the RA prefix).",
+          "Modified EUI-64: insert `FFFE`, flip the 7th bit of the MAC’s first byte.",
+          "Enable routing with `ipv6 unicast-routing`."
+        ],
+        "realWorld": "Verify with `show ipv6 interface brief`; an interface typically shows a link-local (FE80::) AND a global (2001:…) address. `ipv6 address autoconfig` enables SLAAC on an interface.",
+        "commonMistakes": [
+          "Using `::` more than once in an address (ambiguous — only allowed once).",
+          "Removing trailing zeros (only LEADING zeros within a hextet may be dropped).",
+          "Forgetting `ipv6 unicast-routing`, so the router won’t route IPv6.",
+          "Assuming a LAN can use anything other than /64 with SLAAC."
+        ],
+        "related": [
+          "1.9 IPv6 address types",
+          "1.6 IPv4 subnetting"
+        ],
+        "advanced": "SLAAC requires /64. The interface ID can be Modified EUI-64 (derived from MAC, so traceable) or a random/privacy value. Duplicate Address Detection (DAD) uses neighbor solicitation before an address is used.",
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "IPv6",
+            "confidence": 0.95
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "1.8-c-q1",
+          "concept": "address length",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "How many bits is an IPv6 address?",
+          "choices": [
+            "32",
+            "64",
+            "128",
+            "256"
+          ],
+          "correctIndex": 2,
+          "explanation": "IPv6 addresses are 128 bits (8 hextets of 16 bits).",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        },
+        {
+          "id": "1.8-c-q2",
+          "concept": "shortening",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which is the correct shortened form of `2001:0db8:0000:0000:0000:0000:0000:0001`?",
+          "choices": [
+            "2001:db8::1",
+            "2001:db8:::1",
+            "2001:db8::0:1::",
+            "2001::db8::1"
+          ],
+          "correctIndex": 0,
+          "explanation": "Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
+          "ckuIds": [
+            "CKU-IPV6-SHORTENING"
+          ]
+        },
+        {
+          "id": "1.8-c-q3",
+          "concept": "double colon rule",
+          "type": "true-false",
+          "difficulty": "medium",
+          "question": "True or False: `::` can be used twice in one IPv6 address.",
+          "choices": [
+            "True",
+            "False"
+          ],
+          "correctIndex": 1,
+          "explanation": "False — `::` may appear only once, otherwise the number of zero groups is ambiguous.",
+          "ckuIds": [
+            "CKU-IPV6-SHORTENING"
+          ]
+        },
+        {
+          "id": "1.8-c-q4",
+          "concept": "LAN prefix",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "What prefix length is standard for an IPv6 LAN?",
+          "choices": [
+            "/24",
+            "/48",
+            "/64",
+            "/128"
+          ],
+          "correctIndex": 2,
+          "explanation": "/64 is standard for LANs and is required for SLAAC/EUI-64.",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        },
+        {
+          "id": "1.8-c-q5",
+          "concept": "EUI-64",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "In Modified EUI-64, what is inserted into the middle of the 48-bit MAC?",
+          "choices": [
+            "FFFE",
+            "FF00",
+            "FFFF",
+            "FE80"
+          ],
+          "correctIndex": 0,
+          "explanation": "FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
+          "ckuIds": [
+            "CKU-MODIFIED-EUI-64"
+          ]
+        },
+        {
+          "id": "1.8-c-q6",
+          "concept": "SLAAC",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "A host builds its own IPv6 address from a Router Advertisement prefix. What is this called?",
+          "choices": [
+            "DHCPv6",
+            "SLAAC",
+            "Static",
+            "NAT66"
+          ],
+          "correctIndex": 1,
+          "explanation": "SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+          "ckuIds": [
+            "CKU-IPV6-SLAAC"
+          ]
+        },
+        {
+          "id": "1.8-c-q7",
+          "concept": "enable routing",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which global command enables a Cisco router to route IPv6?",
+          "choices": [
+            "ipv6 routing",
+            "ipv6 unicast-routing",
+            "ip routing v6",
+            "enable ipv6"
+          ],
+          "correctIndex": 1,
+          "explanation": "`ipv6 unicast-routing` must be enabled globally.",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        },
+        {
+          "id": "1.8-c-q8",
+          "concept": "zero compression",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which zeros may be removed when shortening a hextet like `00a0`?",
+          "choices": [
+            "Trailing zeros",
+            "Leading zeros → a0",
+            "All zeros",
+            "None"
+          ],
+          "correctIndex": 1,
+          "explanation": "Only leading zeros within a hextet may be dropped: 00a0 → a0.",
+          "ckuIds": [
+            "CKU-IPV6-SHORTENING"
+          ]
+        },
+        {
+          "id": "1.8-c-q9",
+          "concept": "verify",
+          "type": "application",
+          "difficulty": "easy",
+          "question": "Which command shows IPv6 addresses and interface status?",
+          "choices": [
+            "show ip interface brief",
+            "show ipv6 interface brief",
+            "show ipv6 route",
+            "show running-config"
+          ],
+          "correctIndex": 1,
+          "explanation": "`show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        },
+        {
+          "id": "1.8-c-q10",
+          "concept": "interface ID size",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "With a /64 prefix, how many bits are the interface ID?",
+          "choices": [
+            "32",
+            "48",
+            "64",
+            "128"
+          ],
+          "correctIndex": 2,
+          "explanation": "128 − 64 = 64 bits for the interface ID.",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "1.8-f1",
+          "ckuId": "CKU-IPV6-ADDRESSING",
+          "front": "IPv6 address size and format?",
+          "back": "128 bits — 8 hextets of 4 hex digits, colon-separated."
+        },
+        {
+          "id": "1.8-f2",
+          "ckuId": "CKU-IPV6-SHORTENING",
+          "front": "Two IPv6 shortening rules?",
+          "back": "Drop leading zeros per hextet; replace ONE run of all-zero hextets with :: (once)."
+        },
+        {
+          "id": "1.8-f3",
+          "ckuId": "CKU-IPV6-ADDRESSING",
+          "front": "Standard LAN prefix length?",
+          "back": "/64."
+        },
+        {
+          "id": "1.8-f4",
+          "ckuId": "CKU-MODIFIED-EUI-64",
+          "front": "Modified EUI-64 steps?",
+          "back": "Split the MAC, insert FFFE in the middle, flip the 7th (U/L) bit of the first byte."
+        },
+        {
+          "id": "1.8-f5",
+          "ckuId": "CKU-IPV6-SLAAC",
+          "front": "Three ways a host gets an IPv6 address?",
+          "back": "Static, DHCPv6, SLAAC (from the RA prefix)."
+        },
+        {
+          "id": "1.8-f6",
+          "ckuId": "CKU-IPV6-ADDRESSING",
+          "front": "Command to enable IPv6 routing?",
+          "back": "ipv6 unicast-routing (global config)."
+        }
+      ],
+      "commands": [
+        {
+          "id": "1.8-cmd1",
+          "command": "ipv6 unicast-routing",
+          "mode": "global config",
+          "purpose": "Enable IPv6 routing on the device.",
+          "example": "R1(config)# ipv6 unicast-routing",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        },
+        {
+          "id": "1.8-cmd2",
+          "command": "ipv6 address <addr>/<len>",
+          "mode": "interface config",
+          "purpose": "Assign a global IPv6 address and prefix to an interface.",
+          "example": "R1(config-if)# ipv6 address 2001:db8::1/64",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        },
+        {
+          "id": "1.8-cmd3",
+          "command": "show ipv6 interface brief",
+          "mode": "privileged EXEC",
+          "purpose": "List IPv6 addresses and interface status.",
+          "example": "R1# show ipv6 interface brief",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "id": "1.8-g1",
+          "term": "Hextet",
+          "definition": "One of the eight 16-bit (4-hex-digit) groups in an IPv6 address.",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        },
+        {
+          "id": "1.8-g2",
+          "term": "Prefix length",
+          "definition": "The /n marking the network portion of an IPv6 address (usually /64 on LANs).",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        },
+        {
+          "id": "1.8-g3",
+          "term": "SLAAC",
+          "definition": "Stateless Address Autoconfiguration — host forms its address from the RA prefix.",
+          "ckuIds": [
+            "CKU-IPV6-SLAAC"
+          ]
+        },
+        {
+          "id": "1.8-g4",
+          "term": "Modified EUI-64",
+          "definition": "Method to derive a 64-bit interface ID from a 48-bit MAC (insert FFFE, flip U/L bit).",
+          "ckuIds": [
+            "CKU-MODIFIED-EUI-64"
+          ]
+        },
+        {
+          "id": "1.8-g5",
+          "term": "Interface ID",
+          "definition": "The host portion (lower bits) of an IPv6 address, 64 bits with a /64 prefix.",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        }
+      ],
+      "mnemonics": [
+        {
+          "id": "1.8-m1",
+          "title": "Compression",
+          "mnemonic": "“Leading gone, one double-colon.”",
+          "explanation": "Drop leading zeros in each hextet; use :: only once for a zero run.",
+          "ckuIds": [
+            "CKU-IPV6-SHORTENING"
+          ]
+        },
+        {
+          "id": "1.8-m2",
+          "title": "EUI-64",
+          "mnemonic": "Split, FFFE, Flip 7.",
+          "explanation": "Split the MAC, insert FFFE, flip the 7th bit.",
+          "ckuIds": [
+            "CKU-MODIFIED-EUI-64"
+          ]
+        }
+      ],
+      "examTraps": [
+        {
+          "id": "1.8-t1",
+          "trap": "Using :: twice.",
+          "correction": "Only one :: per address is allowed.",
+          "ckuIds": [
+            "CKU-IPV6-SHORTENING"
+          ]
+        },
+        {
+          "id": "1.8-t2",
+          "trap": "Dropping trailing zeros in a hextet.",
+          "correction": "Only leading zeros may be dropped (00a0 → a0, not a).",
+          "ckuIds": [
+            "CKU-IPV6-SHORTENING"
+          ]
+        },
+        {
+          "id": "1.8-t3",
+          "trap": "Expecting SLAAC on a non-/64 prefix.",
+          "correction": "SLAAC requires a /64 prefix.",
+          "ckuIds": [
+            "CKU-IPV6-SLAAC"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "id": "1.8-x1",
+          "misconception": "IPv6 needs NAT like IPv4.",
+          "reality": "IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+          "example": "A LAN gets a /64 of globally routable addresses.",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        },
+        {
+          "id": "1.8-x2",
+          "misconception": "`::` represents exactly one zero hextet.",
+          "reality": "`::` represents one or more contiguous all-zero hextets — as many as needed to total 8.",
+          "example": "2001:db8::1 expands the :: to five zero hextets.",
+          "ckuIds": [
+            "CKU-IPV6-SHORTENING"
+          ]
+        },
+        {
+          "id": "1.8-x3",
+          "misconception": "An interface has only one IPv6 address.",
+          "reality": "Interfaces normally have at least a link-local (FE80::) and a global address.",
+          "example": "show ipv6 interface brief lists both.",
+          "ckuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ]
+        }
+      ],
+      "diagram": {
+        "id": "DIAG-1.8-eui64",
+        "title": "Modified EUI-64",
+        "type": "process",
+        "ckuIds": [
+          "CKU-MODIFIED-EUI-64"
+        ],
+        "nodes": [
+          {
+            "id": "mac",
+            "label": "MAC 48-bit",
+            "type": "process",
+            "x": 50,
+            "y": 12
+          },
+          {
+            "id": "split",
+            "label": "Split in half",
+            "type": "process",
+            "x": 50,
+            "y": 40
+          },
+          {
+            "id": "ins",
+            "label": "Insert FFFE",
+            "type": "process",
+            "x": 50,
+            "y": 68
+          },
+          {
+            "id": "flip",
+            "label": "Flip 7th bit → 64-bit ID",
+            "type": "router",
+            "x": 50,
+            "y": 92,
+            "status": "highlighted"
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "mac",
+            "target": "split"
+          },
+          {
+            "id": "l2",
+            "source": "split",
+            "target": "ins"
+          },
+          {
+            "id": "l3",
+            "source": "ins",
+            "target": "flip",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": [
+          "48-bit MAC → 64-bit interface ID.",
+          "FFFE goes in the middle; the U/L (7th) bit is flipped."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "EUI-64",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlow": {
+        "id": "FLOW-1.8-slaac",
+        "title": "SLAAC address formation",
+        "ckuIds": [
+          "CKU-IPV6-SLAAC"
+        ],
+        "diagramId": "DIAG-1.8-eui64",
+        "steps": [
+          {
+            "id": "s1",
+            "order": 1,
+            "title": "Router Solicitation",
+            "action": "Host sends an RS asking for network info.",
+            "successState": "forwarded"
+          },
+          {
+            "id": "s2",
+            "order": 2,
+            "title": "Router Advertisement",
+            "action": "Router replies with the /64 prefix.",
+            "successState": "forwarded"
+          },
+          {
+            "id": "s3",
+            "order": 3,
+            "title": "Build address",
+            "action": "Host appends an interface ID (EUI-64 or random) to the prefix.",
+            "successState": "learned"
+          },
+          {
+            "id": "s4",
+            "order": 4,
+            "title": "DAD",
+            "action": "Host runs Duplicate Address Detection, then uses the address.",
+            "successState": "matched"
+          }
+        ]
+      }
+    },
+    {
+      "objectiveId": "1.9",
+      "domainId": "fundamentals",
+      "title": "Describe IPv6 address types",
+      "ckus": [
+        {
+          "id": "CKU-IPV6-GLOBAL-UNICAST",
+          "title": "Global Unicast (GUA)",
+          "summary": "Publicly routable IPv6, like a public IPv4. Range 2000::/3.",
+          "aliases": [
+            "GUA"
+          ],
+          "tags": [
+            "ipv6",
+            "unicast"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ],
+          "relatedCkuIds": [
+            "CKU-IPV6-LINK-LOCAL"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "IPv6 address types",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "1.9",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-IPV6-UNIQUE-LOCAL",
+          "title": "Unique Local (ULA)",
+          "summary": "Private IPv6, like RFC1918. FC00::/7, in practice FD00::/8.",
+          "aliases": [
+            "ULA"
+          ],
+          "tags": [
+            "ipv6"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ],
+          "relatedCkuIds": [
+            "CKU-IPV6-GLOBAL-UNICAST"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "ULA",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "id": "CKU-IPV6-LINK-LOCAL",
+          "title": "Link-Local",
+          "summary": "Auto-assigned on every IPv6 interface, used for on-link communication (neighbor discovery, routing protocols); never routed. FE80::/10.",
+          "aliases": [
+            "FE80"
+          ],
+          "tags": [
+            "ipv6"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ],
+          "relatedCkuIds": [
+            "CKU-IPV6-GLOBAL-UNICAST"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Link-local",
+              "confidence": 0.95
+            }
+          ]
+        },
+        {
+          "id": "CKU-IPV6-MULTICAST",
+          "title": "Multicast & Anycast",
+          "summary": "IPv6 has no broadcast; multicast (FF00::/8) replaces it — e.g. FF02::1 all nodes, FF02::2 all routers. Anycast = one address on several devices, routed to the nearest.",
+          "aliases": [
+            "FF00",
+            "anycast"
+          ],
+          "tags": [
+            "ipv6"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-IPV6-ADDRESSING"
+          ],
+          "relatedCkuIds": [
+            "CKU-IPV6-LINK-LOCAL"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Multicast/Anycast",
+              "confidence": 0.9
+            }
+          ]
+        }
+      ],
+      "reading": {
+        "id": "READ-1.9",
+        "ckuIds": [
+          "CKU-IPV6-GLOBAL-UNICAST",
+          "CKU-IPV6-UNIQUE-LOCAL",
+          "CKU-IPV6-LINK-LOCAL",
+          "CKU-IPV6-MULTICAST"
+        ],
+        "estimatedReadMinutes": 6,
+        "tiers": {
+          "beginner": "IPv6 has a few address “flavors.” Global unicast is the public, internet-routable kind. Unique local is the private kind (like home/office IPv4 ranges). Link-local addresses start with FE80 and only work on the local link — every interface gets one automatically. There is no broadcast in IPv6; instead, multicast (starting FF) sends to a group, like “all routers.”",
+          "intermediate": "Key IPv6 types: Global Unicast (2000::/3) — public, routable. Unique Local (FC00::/7, used as FD00::/8) — private, not internet-routable. Link-Local (FE80::/10) — auto-configured on every interface, used for neighbor discovery and routing-protocol peering, never forwarded off the link. Multicast (FF00::/8) replaces broadcast — well-known groups include FF02::1 (all nodes) and FF02::2 (all routers). Anycast assigns the same address to multiple devices; traffic goes to the nearest one.",
+          "examReady": "Memorize the ranges: Global Unicast `2000::/3` (public), Unique Local `FC00::/7` (private, commonly `FD00::/8`), Link-Local `FE80::/10` (on-link only, every interface, used by NDP and routing protocols), Multicast `FF00::/8` (replaces broadcast: `FF02::1` all nodes, `FF02::2` all routers). Anycast = same address on multiple nodes, delivered to the nearest. IPv6 has NO broadcast. Link-local is mandatory and is the next-hop for many routing protocols."
+        },
+        "definition": "IPv6 address types: **Global Unicast** `2000::/3` (public), **Unique Local** `FC00::/7`/`FD00::/8` (private), **Link-Local** `FE80::/10` (on-link only), **Multicast** `FF00::/8` (replaces broadcast). **Anycast** = nearest of many. No broadcast in IPv6.",
+        "keyPoints": [
+          "Global Unicast `2000::/3` — public, routable (like public IPv4).",
+          "Unique Local `FC00::/7` (use `FD00::/8`) — private (like RFC1918).",
+          "Link-Local `FE80::/10` — auto, on-link only, never routed.",
+          "Multicast `FF00::/8` replaces broadcast: `FF02::1` all nodes, `FF02::2` all routers.",
+          "Anycast — one address on many devices; goes to the nearest.",
+          "IPv6 has NO broadcast."
+        ],
+        "realWorld": "Routing protocols (OSPFv3, EIGRPv6) peer using link-local (FE80::) next hops. `show ipv6 interface` shows the FE80:: link-local and joined multicast groups (e.g. FF02::1).",
+        "commonMistakes": [
+          "Expecting an IPv6 broadcast address — there is none; multicast is used instead.",
+          "Confusing FE80 (link-local) with FF02 (multicast).",
+          "Thinking ULA (FD00) is internet-routable — it is private."
+        ],
+        "related": [
+          "1.8 IPv6 addressing",
+          "3.4 OSPF (uses link-local)"
+        ],
+        "advanced": "Solicited-node multicast (FF02::1:FFxx:xxxx) is used by Neighbor Discovery instead of ARP. Every IPv6 host joins the all-nodes group FF02::1; routers also join FF02::2.",
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "IPv6 address types",
+            "confidence": 0.95
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "1.9-c-q1",
+          "concept": "global unicast",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "Which range is IPv6 global unicast (public)?",
+          "choices": [
+            "FE80::/10",
+            "2000::/3",
+            "FC00::/7",
+            "FF00::/8"
+          ],
+          "correctIndex": 1,
+          "explanation": "Global unicast = 2000::/3, the public/routable range.",
+          "ckuIds": [
+            "CKU-IPV6-GLOBAL-UNICAST"
+          ]
+        },
+        {
+          "id": "1.9-c-q2",
+          "concept": "link-local",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "What does an IPv6 link-local address begin with?",
+          "choices": [
+            "FF02",
+            "2001",
+            "FE80",
+            "FD00"
+          ],
+          "correctIndex": 2,
+          "explanation": "Link-local addresses are FE80::/10.",
+          "ckuIds": [
+            "CKU-IPV6-LINK-LOCAL"
+          ]
+        },
+        {
+          "id": "1.9-c-q3",
+          "concept": "unique local",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "Which is the IPv6 “private” (RFC1918-like) range commonly used?",
+          "choices": [
+            "FD00::/8",
+            "2000::/3",
+            "FE80::/10",
+            "FF00::/8"
+          ],
+          "correctIndex": 0,
+          "explanation": "Unique Local is FC00::/7, used in practice as FD00::/8.",
+          "ckuIds": [
+            "CKU-IPV6-UNIQUE-LOCAL"
+          ]
+        },
+        {
+          "id": "1.9-c-q4",
+          "concept": "multicast",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "Which multicast address reaches all routers on a link?",
+          "choices": [
+            "FF02::1",
+            "FF02::2",
+            "FF02::5",
+            "224.0.0.2"
+          ],
+          "correctIndex": 1,
+          "explanation": "FF02::2 = all routers; FF02::1 = all nodes.",
+          "ckuIds": [
+            "CKU-IPV6-MULTICAST"
+          ]
+        },
+        {
+          "id": "1.9-c-q5",
+          "concept": "no broadcast",
+          "type": "true-false",
+          "difficulty": "easy",
+          "question": "True or False: IPv6 uses a broadcast address like IPv4.",
+          "choices": [
+            "True",
+            "False"
+          ],
+          "correctIndex": 1,
+          "explanation": "False — IPv6 has no broadcast; multicast (FF00::/8) replaces it.",
+          "ckuIds": [
+            "CKU-IPV6-MULTICAST"
+          ]
+        },
+        {
+          "id": "1.9-c-q6",
+          "concept": "anycast",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "The same IPv6 address is configured on several servers and traffic goes to the nearest. What type is this?",
+          "choices": [
+            "Multicast",
+            "Anycast",
+            "Link-local",
+            "Broadcast"
+          ],
+          "correctIndex": 1,
+          "explanation": "Anycast = one address on multiple devices, delivered to the nearest.",
+          "ckuIds": [
+            "CKU-IPV6-MULTICAST"
+          ]
+        },
+        {
+          "id": "1.9-c-q7",
+          "concept": "link-local scope",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Where can a link-local (FE80::) address be used?",
+          "choices": [
+            "Across the internet",
+            "Only on the local link",
+            "Only by routers",
+            "Only with NAT"
+          ],
+          "correctIndex": 1,
+          "explanation": "Link-local is never routed off the local link.",
+          "ckuIds": [
+            "CKU-IPV6-LINK-LOCAL"
+          ]
+        },
+        {
+          "id": "1.9-c-q8",
+          "concept": "all nodes",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "Which multicast group does every IPv6 host join?",
+          "choices": [
+            "FF02::1 (all nodes)",
+            "FF02::2 (all routers)",
+            "FE80::1",
+            "2000::1"
+          ],
+          "correctIndex": 0,
+          "explanation": "All IPv6 hosts join FF02::1, the all-nodes group.",
+          "ckuIds": [
+            "CKU-IPV6-MULTICAST"
+          ]
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "1.9-f1",
+          "ckuId": "CKU-IPV6-GLOBAL-UNICAST",
+          "front": "Global unicast range?",
+          "back": "2000::/3 (public, routable)."
+        },
+        {
+          "id": "1.9-f2",
+          "ckuId": "CKU-IPV6-UNIQUE-LOCAL",
+          "front": "Unique local range?",
+          "back": "FC00::/7, used as FD00::/8 (private)."
+        },
+        {
+          "id": "1.9-f3",
+          "ckuId": "CKU-IPV6-LINK-LOCAL",
+          "front": "Link-local range and scope?",
+          "back": "FE80::/10 — on-link only, auto-assigned, never routed."
+        },
+        {
+          "id": "1.9-f4",
+          "ckuId": "CKU-IPV6-MULTICAST",
+          "front": "Multicast range + FF02::1 / FF02::2?",
+          "back": "FF00::/8; FF02::1 = all nodes, FF02::2 = all routers."
+        },
+        {
+          "id": "1.9-f5",
+          "ckuId": "CKU-IPV6-MULTICAST",
+          "front": "What replaces broadcast in IPv6?",
+          "back": "Multicast — IPv6 has no broadcast."
+        },
+        {
+          "id": "1.9-f6",
+          "ckuId": "CKU-IPV6-MULTICAST",
+          "front": "What is anycast?",
+          "back": "One address on multiple devices; traffic goes to the nearest."
+        }
+      ],
+      "commands": [
+        {
+          "id": "1.9-cmd1",
+          "command": "show ipv6 interface",
+          "mode": "privileged EXEC",
+          "purpose": "Show an interface’s link-local, global addresses, and joined multicast groups.",
+          "example": "R1# show ipv6 interface g0/0",
+          "ckuIds": [
+            "CKU-IPV6-LINK-LOCAL",
+            "CKU-IPV6-MULTICAST"
+          ]
+        },
+        {
+          "id": "1.9-cmd2",
+          "command": "show ipv6 neighbors",
+          "mode": "privileged EXEC",
+          "purpose": "Display the IPv6 neighbor (NDP) table — the IPv6 equivalent of the ARP table.",
+          "example": "R1# show ipv6 neighbors",
+          "ckuIds": [
+            "CKU-IPV6-LINK-LOCAL"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "id": "1.9-g1",
+          "term": "Global unicast",
+          "definition": "Public, internet-routable IPv6 address (2000::/3).",
+          "ckuIds": [
+            "CKU-IPV6-GLOBAL-UNICAST"
+          ]
+        },
+        {
+          "id": "1.9-g2",
+          "term": "Unique local",
+          "definition": "Private IPv6 (FC00::/7, used as FD00::/8).",
+          "ckuIds": [
+            "CKU-IPV6-UNIQUE-LOCAL"
+          ]
+        },
+        {
+          "id": "1.9-g3",
+          "term": "Link-local",
+          "definition": "Auto-assigned FE80::/10 address used only on the local link.",
+          "ckuIds": [
+            "CKU-IPV6-LINK-LOCAL"
+          ]
+        },
+        {
+          "id": "1.9-g4",
+          "term": "Anycast",
+          "definition": "One address on multiple nodes; delivered to the nearest.",
+          "ckuIds": [
+            "CKU-IPV6-MULTICAST"
+          ]
+        },
+        {
+          "id": "1.9-g5",
+          "term": "Solicited-node multicast",
+          "definition": "FF02::1:FFxx:xxxx group used by Neighbor Discovery in place of ARP.",
+          "ckuIds": [
+            "CKU-IPV6-MULTICAST"
+          ]
+        }
+      ],
+      "mnemonics": [
+        {
+          "id": "1.9-m1",
+          "title": "Prefixes",
+          "mnemonic": "2=public, FD=private, FE80=local, FF=multicast.",
+          "explanation": "Match the leading hex to the type.",
+          "ckuIds": [
+            "CKU-IPV6-GLOBAL-UNICAST",
+            "CKU-IPV6-LINK-LOCAL",
+            "CKU-IPV6-MULTICAST"
+          ]
+        },
+        {
+          "id": "1.9-m2",
+          "title": "FF02",
+          "mnemonic": "FF02::1 one=nodes, FF02::2 two=routers.",
+          "explanation": "The number after :: matches “1 = all nodes, 2 = all routers.”",
+          "ckuIds": [
+            "CKU-IPV6-MULTICAST"
+          ]
+        }
+      ],
+      "examTraps": [
+        {
+          "id": "1.9-t1",
+          "trap": "Looking for an IPv6 broadcast.",
+          "correction": "There is none; multicast (FF00::/8) replaces broadcast.",
+          "ckuIds": [
+            "CKU-IPV6-MULTICAST"
+          ]
+        },
+        {
+          "id": "1.9-t2",
+          "trap": "Confusing FE80 and FF02.",
+          "correction": "FE80 = link-local unicast; FF02 = link-local multicast group.",
+          "ckuIds": [
+            "CKU-IPV6-LINK-LOCAL",
+            "CKU-IPV6-MULTICAST"
+          ]
+        },
+        {
+          "id": "1.9-t3",
+          "trap": "Treating ULA as routable.",
+          "correction": "FD00::/8 is private and should not be advertised to the internet.",
+          "ckuIds": [
+            "CKU-IPV6-UNIQUE-LOCAL"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "id": "1.9-x1",
+          "misconception": "Link-local addresses must be configured manually.",
+          "reality": "Every IPv6 interface auto-generates an FE80:: link-local address.",
+          "example": "It appears even with no global address set.",
+          "ckuIds": [
+            "CKU-IPV6-LINK-LOCAL"
+          ]
+        },
+        {
+          "id": "1.9-x2",
+          "misconception": "Anycast and multicast are the same.",
+          "reality": "Multicast delivers to ALL group members; anycast delivers to the NEAREST one.",
+          "example": "DNS root servers use anycast.",
+          "ckuIds": [
+            "CKU-IPV6-MULTICAST"
+          ]
+        },
+        {
+          "id": "1.9-x3",
+          "misconception": "Global unicast is the only usable type on a router link.",
+          "reality": "Routers often peer over link-local (FE80::) next hops for routing protocols.",
+          "example": "OSPFv3 neighbors use link-local addresses.",
+          "ckuIds": [
+            "CKU-IPV6-LINK-LOCAL"
+          ]
+        }
+      ],
+      "diagram": {
+        "id": "DIAG-1.9-types",
+        "title": "IPv6 address type map",
+        "type": "comparison",
+        "ckuIds": [
+          "CKU-IPV6-GLOBAL-UNICAST",
+          "CKU-IPV6-LINK-LOCAL",
+          "CKU-IPV6-MULTICAST"
+        ],
+        "nodes": [
+          {
+            "id": "g",
+            "label": "2000::/3 Global",
+            "type": "subnet",
+            "x": 22,
+            "y": 30
+          },
+          {
+            "id": "u",
+            "label": "FD00::/8 ULA",
+            "type": "subnet",
+            "x": 22,
+            "y": 75
+          },
+          {
+            "id": "l",
+            "label": "FE80::/10 Link-local",
+            "type": "process",
+            "x": 60,
+            "y": 30
+          },
+          {
+            "id": "m",
+            "label": "FF00::/8 Multicast",
+            "type": "process",
+            "x": 60,
+            "y": 75
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "g",
+            "target": "l",
+            "label": "unicast"
+          },
+          {
+            "id": "l2",
+            "source": "u",
+            "target": "g",
+            "label": "private/public"
+          },
+          {
+            "id": "l3",
+            "source": "m",
+            "target": "l",
+            "label": "no broadcast"
+          }
+        ],
+        "annotations": [
+          "2 = public, FD = private, FE80 = on-link, FF = multicast.",
+          "No broadcast in IPv6."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "IPv6 types",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlow": {
+        "id": "FLOW-1.9-nd",
+        "title": "Neighbor Discovery (ARP replacement)",
+        "ckuIds": [
+          "CKU-IPV6-MULTICAST",
+          "CKU-IPV6-LINK-LOCAL"
+        ],
+        "diagramId": "DIAG-1.9-types",
+        "steps": [
+          {
+            "id": "s1",
+            "order": 1,
+            "title": "Neighbor Solicitation",
+            "action": "Host sends NS to the solicited-node multicast for the target.",
+            "successState": "forwarded"
+          },
+          {
+            "id": "s2",
+            "order": 2,
+            "title": "Neighbor Advertisement",
+            "action": "Target replies with its link-layer address.",
+            "successState": "forwarded"
+          },
+          {
+            "id": "s3",
+            "order": 3,
+            "title": "Cache",
+            "action": "Host stores the mapping in the neighbor table.",
+            "successState": "learned"
+          }
+        ]
+      }
     }
   ],
   "labs": [],
   "counts": {
-    "ckus": 8,
-    "questions": 24,
-    "flashcards": 16,
-    "commands": 6,
-    "glossary": 12,
-    "mnemonics": 4,
-    "examTraps": 8,
-    "misconceptions": 6,
+    "ckus": 16,
+    "questions": 42,
+    "flashcards": 28,
+    "commands": 11,
+    "glossary": 22,
+    "mnemonics": 8,
+    "examTraps": 14,
+    "misconceptions": 12,
     "labs": 0
   }
 }
