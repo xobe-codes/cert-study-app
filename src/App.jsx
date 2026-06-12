@@ -260,7 +260,17 @@ const COMMAND_DRILLS = {
    ========================================================================= */
 const API_URL = 'https://api.anthropic.com/v1/messages'
 const PROXY_URL = '/api/claude'
-const MODEL = 'claude-sonnet-4-6'
+// Model tiers: cheap/mechanical generation runs on Haiku, reasoning-heavy work
+// (explanations, quizzes, tutor) on Sonnet. Routing per task keeps cost down.
+const MODELS = { smart: 'claude-sonnet-4-6', fast: 'claude-haiku-4-5' }
+const MODEL = MODELS.smart
+
+// Wraps a system string as a cacheable block so a stable prefix can be reused
+// across calls (prompt caching). Used where the context is large/repeated
+// (tutor turns, mock-exam domain notes).
+function cachedSystem(text) {
+  return [{ type: 'text', text, cache_control: { type: 'ephemeral' } }]
+}
 
 // In production we call our same-origin Cloudflare Pages Function, which holds
 // the API key server-side. During local `npm run dev` (no Function running) we
@@ -286,48 +296,35 @@ function claudeFetch(body) {
   })
 }
 
-// Tries the request up to (1 + retries) times with 800ms / 1600ms backoff.
-// Throws an Error with a user-facing message describing exactly what failed.
-async function askClaude({ system, messages, max_tokens = 1000, retries = 2 }) {
+// Core request loop: tries up to (1 + retries) times with 800ms / 1600ms backoff
+// (+jitter), retrying network errors and 429/5xx/529. Returns the parsed
+// response object. Throws an Error with a user-facing message on failure.
+async function callClaude(body, retries = 2) {
   const delays = [800, 1600]
+  const wait = (ms) => new Promise(r => setTimeout(r, ms + Math.floor(Math.random() * 200)))
   let lastError = null
 
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const res = await claudeFetch({ model: MODEL, max_tokens, system, messages })
+      const res = await claudeFetch(body)
 
       if (!res.ok) {
         let detail = ''
-        try {
-          const errBody = await res.json()
-          detail = errBody?.error?.message || ''
-        } catch {
-          // ignore — body wasn't JSON
-        }
-        // 4xx errors won't be fixed by retrying (bad key, bad request, rate limit aside)
-        if (res.status === 429 || res.status >= 500) {
+        try { detail = (await res.json())?.error?.message || '' } catch { /* body wasn't JSON */ }
+        // Retry on rate limit, overloaded (529), or server errors.
+        if (res.status === 429 || res.status === 529 || res.status >= 500) {
           lastError = new Error(`Claude API error ${res.status}${detail ? `: ${detail}` : ''}`)
-          if (attempt < retries) {
-            await new Promise(r => setTimeout(r, delays[attempt] || 1600))
-            continue
-          }
+          if (attempt < retries) { await wait(delays[attempt] || 1600); continue }
           throw lastError
         }
         throw new Error(`Claude API error ${res.status}${detail ? `: ${detail}` : ' — check your API key and request.'}`)
       }
 
-      const data = await res.json()
-      const text = data?.content?.find(b => b.type === 'text')?.text
-      if (!text) throw new Error('Claude API returned an empty response.')
-      return text
+      return await res.json()
     } catch (err) {
       lastError = err
-      // Network-level failure (offline, DNS, LTE drop, CORS) — TypeError: Failed to fetch
       const isNetworkError = err instanceof TypeError || /failed to fetch|network/i.test(err.message || '')
-      if (isNetworkError && attempt < retries) {
-        await new Promise(r => setTimeout(r, delays[attempt] || 1600))
-        continue
-      }
+      if (isNetworkError && attempt < retries) { await wait(delays[attempt] || 1600); continue }
       if (isNetworkError) {
         throw new Error('Network error: could not reach the Claude API. Check your internet connection (this is common on flaky mobile/LTE connections) and try again.')
       }
@@ -337,11 +334,78 @@ async function askClaude({ system, messages, max_tokens = 1000, retries = 2 }) {
   throw lastError || new Error('Unknown error contacting Claude API.')
 }
 
+// Text completion. `model` lets callers pick a tier (defaults to Sonnet).
+async function askClaude({ system, messages, max_tokens = 1000, model = MODEL, retries = 2 }) {
+  const data = await callClaude({ model, max_tokens, system, messages }, retries)
+  const text = data?.content?.find(b => b.type === 'text')?.text
+  if (!text) throw new Error('Claude API returned an empty response.')
+  return text
+}
+
+// Structured output via a forced tool call: Claude must return data matching
+// `schema`, so we get a guaranteed-shaped object instead of parsing JSON out of
+// prose. Eliminates the whole "unexpected format" failure class.
+async function askClaudeJSON({ system, messages, max_tokens = 1500, model = MODEL, schema, toolName = 'emit_result', retries = 2 }) {
+  const tool = { name: toolName, description: 'Return the result as structured data.', input_schema: schema }
+  const data = await callClaude({
+    model, max_tokens, system, messages,
+    tools: [tool], tool_choice: { type: 'tool', name: toolName },
+  }, retries)
+  const block = data?.content?.find(b => b.type === 'tool_use')
+  if (!block || !block.input) throw new Error('Claude returned no structured result. Please try again.')
+  return block.input
+}
+
+/* ---- JSON Schemas for structured generation ---- */
+const QUIZ_SCHEMA = {
+  type: 'object', required: ['questions'],
+  properties: { questions: { type: 'array', items: {
+    type: 'object', required: ['question', 'choices', 'correctIndex', 'explanation'],
+    properties: {
+      question: { type: 'string' },
+      choices: { type: 'array', items: { type: 'string' }, minItems: 4, maxItems: 4 },
+      correctIndex: { type: 'integer', minimum: 0, maximum: 3 },
+      explanation: { type: 'string' },
+    },
+  } } },
+}
+const MOCK_SCHEMA = {
+  type: 'object', required: ['questions'],
+  properties: { questions: { type: 'array', items: {
+    type: 'object', required: ['objectiveId', 'question', 'choices', 'correctIndex', 'explanation'],
+    properties: {
+      objectiveId: { type: 'string' },
+      question: { type: 'string' },
+      choices: { type: 'array', items: { type: 'string' }, minItems: 4, maxItems: 4 },
+      correctIndex: { type: 'integer', minimum: 0, maximum: 3 },
+      explanation: { type: 'string' },
+    },
+  } } },
+}
+const TERMS_SCHEMA = {
+  type: 'object', required: ['cards'],
+  properties: { cards: { type: 'array', items: {
+    type: 'object', required: ['term', 'detail'],
+    properties: { term: { type: 'string' }, detail: { type: 'string' } },
+  } } },
+}
+const VISUAL_SCHEMA = {
+  type: 'object', required: ['type', 'title'],
+  properties: {
+    type: { type: 'string', enum: ['command_sequence', 'comparison', 'layer_stack', 'flow'] },
+    title: { type: 'string' },
+    steps: { type: 'array', items: { type: 'string' } },
+    layers: { type: 'array', items: { type: 'object', required: ['label'], properties: { label: { type: 'string' }, note: { type: 'string' } } } },
+    left: { type: 'object', properties: { label: { type: 'string' }, points: { type: 'array', items: { type: 'string' } } } },
+    right: { type: 'object', properties: { label: { type: 'string' }, points: { type: 'array', items: { type: 'string' } } } },
+  },
+}
+
 // Lightweight reachability check for the offline banner — does not consume
 // significant tokens, just confirms the API endpoint responds.
 async function checkApiReachable() {
   try {
-    const res = await claudeFetch({ model: MODEL, max_tokens: 1, messages: [{ role: 'user', content: 'hi' }] })
+    const res = await claudeFetch({ model: MODELS.fast, max_tokens: 1, messages: [{ role: 'user', content: 'hi' }] })
     // Any HTTP response (even an error like 400/401) means the network path works.
     return res.status !== 0
   } catch {
@@ -1198,15 +1262,17 @@ function KeyTermsCarousel({ objective }) {
         }
       }
       const refNotes = BOOK_REF[objective.id] || ''
-      const text = await askClaude({
+      const data = await askClaudeJSON({
         system: TERMS_PROMPT_SYSTEM,
         messages: [{
           role: 'user',
           content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate key-term flashcards for this objective.`,
         }],
         max_tokens: 700,
+        model: MODELS.fast,
+        schema: TERMS_SCHEMA,
+        toolName: 'emit_terms',
       })
-      const data = parseJsonLoose(text)
       const list = data.cards || []
       if (list.length === 0) throw new Error('Claude returned no flashcards.')
       setCards(list)
@@ -1423,15 +1489,17 @@ function VisualAidTab({ objective }) {
         }
       }
       const refNotes = BOOK_REF[objective.id] || ''
-      const text = await askClaude({
+      const data = await askClaudeJSON({
         system: VISUAL_PROMPT_SYSTEM,
         messages: [{
           role: 'user',
           content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nDesign one visual aid for this objective.`,
         }],
         max_tokens: 700,
+        model: MODELS.fast,
+        schema: VISUAL_SCHEMA,
+        toolName: 'emit_visual',
       })
-      const data = parseJsonLoose(text)
       if (!data || !data.type) throw new Error('Claude returned an unexpected format. Please try again.')
       setSpec(data)
       const cache = (await window.storage.getItem(VISUAL_CACHE_KEY)) || {}
@@ -1539,12 +1607,6 @@ Respond with ONLY valid JSON (no markdown fences, no commentary), in this exact 
 
 The explanation should be 1-2 sentences explaining why the correct answer is right.`
 
-function parseJsonLoose(text) {
-  let cleaned = text.trim()
-  cleaned = cleaned.replace(/^```(?:json)?/i, '').replace(/```$/, '').trim()
-  return JSON.parse(cleaned)
-}
-
 const CONFIDENCE_OPTIONS = [
   { value: 'easy', label: 'Easy', accent: COLORS.mint, dim: COLORS.mintDim, border: COLORS.mintBorder },
   { value: 'medium', label: 'Medium', accent: COLORS.sky, dim: COLORS.skyDim, border: COLORS.skyBorder },
@@ -1585,15 +1647,16 @@ function QuizTab({ objective, onMissed, onScoreSaved }) {
       if (forceNew || banked.length < QUIZ_BANK_MIN) {
         setPhase('loading')
         const refNotes = BOOK_REF[objective.id] || ''
-        const text = await askClaude({
+        const data = await askClaudeJSON({
           system: QUIZ_PROMPT_SYSTEM,
           messages: [{
             role: 'user',
             content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate 8 multiple-choice questions for this objective.`,
           }],
           max_tokens: 2200,
+          schema: QUIZ_SCHEMA,
+          toolName: 'emit_quiz',
         })
-        const data = parseJsonLoose(text)
         const fresh = data.questions || []
         if (fresh.length === 0 && banked.length === 0) throw new Error('Claude returned no questions.')
         bank = mergeIntoBank(bank, objective.id, fresh)
@@ -2381,12 +2444,11 @@ async function ensureTermsCached(objective) {
   const cache = (await window.storage.getItem(TERMS_CACHE_KEY)) || {}
   if (cache[objective.id]) return
   const refNotes = BOOK_REF[objective.id] || ''
-  const text = await askClaude({
+  const data = await askClaudeJSON({
     system: TERMS_PROMPT_SYSTEM,
     messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate key-term flashcards for this objective.` }],
-    max_tokens: 700,
+    max_tokens: 700, model: MODELS.fast, schema: TERMS_SCHEMA, toolName: 'emit_terms',
   })
-  const data = parseJsonLoose(text)
   if ((data.cards || []).length === 0) throw new Error('Could not generate key terms.')
   cache[objective.id] = data.cards
   await window.storage.setItem(TERMS_CACHE_KEY, cache)
@@ -2395,12 +2457,11 @@ async function ensureVisualCached(objective) {
   const cache = (await window.storage.getItem(VISUAL_CACHE_KEY)) || {}
   if (cache[objective.id]) return
   const refNotes = BOOK_REF[objective.id] || ''
-  const text = await askClaude({
+  const data = await askClaudeJSON({
     system: VISUAL_PROMPT_SYSTEM,
     messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nDesign one visual aid for this objective.` }],
-    max_tokens: 700,
+    max_tokens: 700, model: MODELS.fast, schema: VISUAL_SCHEMA, toolName: 'emit_visual',
   })
-  const data = parseJsonLoose(text)
   if (!data || !data.type) throw new Error('Could not generate a visual aid.')
   cache[objective.id] = data
   await window.storage.setItem(VISUAL_CACHE_KEY, cache)
@@ -2409,12 +2470,11 @@ async function ensureQuizBankFilled(objective) {
   let bank = await loadQuizBank()
   if ((bank[objective.id] || []).length >= QUIZ_BANK_MIN) return
   const refNotes = BOOK_REF[objective.id] || ''
-  const text = await askClaude({
+  const data = await askClaudeJSON({
     system: QUIZ_PROMPT_SYSTEM,
     messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate 8 multiple-choice questions for this objective.` }],
-    max_tokens: 2200,
+    max_tokens: 2200, schema: QUIZ_SCHEMA, toolName: 'emit_quiz',
   })
-  const data = parseJsonLoose(text)
   bank = mergeIntoBank(bank, objective.id, data.questions || [])
   await saveQuizBank(bank)
 }
@@ -2864,15 +2924,16 @@ function MockExam({ onExit }) {
       const domainCounts = buildMockExamDomainCounts().filter(dc => dc.count > 0)
       const results = await Promise.all(domainCounts.map(async ({ domain, count }) => {
         const objectivesText = domain.objectives.map(o => `Objective ${o.id} — ${o.title}\n${BOOK_REF[o.id] || ''}`).join('\n\n')
-        const text = await askClaude({
-          system: MOCK_EXAM_SYSTEM,
+        const data = await askClaudeJSON({
+          system: cachedSystem(MOCK_EXAM_SYSTEM),
           messages: [{
             role: 'user',
             content: `Domain: ${domain.name}\n\n${objectivesText}\n\nGenerate ${count} multiple-choice questions total for this domain, spread across the objectives above. Tag each question with its objectiveId.`,
           }],
           max_tokens: 250 * count + 300,
+          schema: MOCK_SCHEMA,
+          toolName: 'emit_exam',
         })
-        const data = parseJsonLoose(text)
         return (data.questions || []).slice(0, count)
       }))
       const all = shuffleArray(results.flat())
@@ -3498,7 +3559,7 @@ function TutorChat({ progress, missed, onBack }) {
     try {
       const system = await buildTutorSystemPrompt(progress, missed)
       const reply = await askClaude({
-        system,
+        system: cachedSystem(system),
         messages: newMessages,
         max_tokens: 800,
       })
