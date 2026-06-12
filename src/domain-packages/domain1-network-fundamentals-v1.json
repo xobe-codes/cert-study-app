@@ -4,8 +4,8 @@
     "domainNumber": 1,
     "domainName": "Network Fundamentals",
     "version": "1",
-    "compiledAt": "2026-06-12T19:17:46.305Z",
-    "curatedObjectives": 1,
+    "compiledAt": "2026-06-12T19:30:07.422Z",
+    "curatedObjectives": 2,
     "labs": 0
   },
   "sourceAudit": {
@@ -749,18 +749,753 @@
           }
         ]
       }
+    },
+    {
+      "objectiveId": "1.5",
+      "domainId": "fundamentals",
+      "title": "Compare TCP to UDP",
+      "ckus": [
+        {
+          "id": "CKU-TCP",
+          "title": "TCP (Transmission Control Protocol)",
+          "summary": "A connection-oriented Layer 4 protocol that provides reliability (acknowledgements + retransmission), sequencing, and flow control. IP protocol number 6.",
+          "aliases": [
+            "Transmission Control Protocol"
+          ],
+          "tags": [
+            "transport",
+            "tcp",
+            "layer4"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-PORT-NUMBERS"
+          ],
+          "relatedCkuIds": [
+            "CKU-UDP",
+            "CKU-TCP-HANDSHAKE"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "TCP and UDP (Layer 4)",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "1.5",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-UDP",
+          "title": "UDP (User Datagram Protocol)",
+          "summary": "A connectionless, best-effort Layer 4 protocol with no acknowledgements, sequencing, or flow control — only a checksum for error detection. Low overhead, low latency. IP protocol number 17.",
+          "aliases": [
+            "User Datagram Protocol"
+          ],
+          "tags": [
+            "transport",
+            "udp",
+            "layer4"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-PORT-NUMBERS"
+          ],
+          "relatedCkuIds": [
+            "CKU-TCP"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "UDP",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "1.5",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-PORT-NUMBERS",
+          "title": "Port Numbers",
+          "summary": "Layer 4 addresses (0–65535) identifying the application/service. Well-known 0–1023, registered 1024–49151, ephemeral 49152–65535. A socket = IP + port.",
+          "aliases": [
+            "ports",
+            "sockets",
+            "layer 4 addressing"
+          ],
+          "tags": [
+            "ports",
+            "transport"
+          ],
+          "prerequisiteCkuIds": [],
+          "relatedCkuIds": [
+            "CKU-TCP",
+            "CKU-UDP"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Port Numbers (IANA)",
+              "confidence": 0.95
+            }
+          ]
+        },
+        {
+          "id": "CKU-TCP-HANDSHAKE",
+          "title": "TCP Three-Way Handshake",
+          "summary": "How TCP establishes a connection before data: SYN → SYN-ACK → ACK. Connection teardown uses FIN/ACK exchanges.",
+          "aliases": [
+            "3-way handshake",
+            "SYN SYN-ACK ACK"
+          ],
+          "tags": [
+            "tcp",
+            "connection"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-TCP"
+          ],
+          "relatedCkuIds": [
+            "CKU-TCP"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
+              "chapter": "Ch 5 — Connection Establishment",
+              "confidence": 0.9
+            }
+          ]
+        }
+      ],
+      "reading": {
+        "id": "READ-1.5",
+        "ckuIds": [
+          "CKU-TCP",
+          "CKU-UDP",
+          "CKU-PORT-NUMBERS",
+          "CKU-TCP-HANDSHAKE"
+        ],
+        "estimatedReadMinutes": 6,
+        "tiers": {
+          "beginner": "TCP and UDP are the two Layer 4 (transport) protocols. TCP is careful: it sets up a connection first, numbers the data, and makes sure everything arrives — re-sending anything lost. UDP just fires the data off without setup or guarantees (“best effort”). TCP is great for things that must be exact (web pages, files); UDP is great for things that must be fast (voice, video, DNS). Both use port numbers to label which application the data is for.",
+          "intermediate": "TCP is connection-oriented: a three-way handshake (SYN → SYN-ACK → ACK) sets up the session before any data. It provides reliability (every segment is acknowledged; unacknowledged segments are retransmitted), sequencing (sequence numbers reorder out-of-order segments), and flow control (the window size lets the receiver throttle the sender). UDP is connectionless and best-effort — no handshake, no acknowledgements, no sequencing, no flow control — just a checksum for error detection, which makes it lighter and faster. Ports (0–65535) identify the application: well-known 0–1023, registered 1024–49151, ephemeral 49152–65535.",
+          "examReady": "TCP = connection-oriented, reliable (ACK + retransmit), sequenced, flow-controlled (window size); IP protocol 6; three-way handshake SYN → SYN-ACK → ACK. UDP = connectionless, best-effort, no ACK/sequencing/flow-control, checksum only; IP protocol 17; lower overhead → preferred for real-time voice/video and simple query/response (DNS, DHCP, TFTP, SNMP). Ports: well-known 0–1023, registered 1024–49151, ephemeral/dynamic 49152–65535. Know common ports: FTP `20/21`, SSH `22`, Telnet `23`, SMTP `25`, DNS `53`, DHCP `67/68`, TFTP `69`, HTTP `80`, HTTPS `443`, SNMP `161`, Syslog `514`, NTP `123`. DNS and some others use UDP by default but can fall back to TCP."
+        },
+        "definition": "TCP and UDP are the two Layer 4 protocols. **TCP** is connection-oriented and **reliable** (handshake, acknowledgements, sequencing, flow control). **UDP** is connectionless and **best-effort** (no guarantees, just a checksum) — lighter and faster. Both use **port numbers** to identify the application.",
+        "keyPoints": [
+          "TCP: connection-oriented, reliable, sequenced, flow-controlled. IP protocol `6`.",
+          "UDP: connectionless, best-effort, checksum only — low overhead. IP protocol `17`.",
+          "TCP handshake: `SYN` → `SYN-ACK` → `ACK`.",
+          "Port ranges: well-known `0–1023`, registered `1024–49151`, ephemeral `49152–65535`.",
+          "UDP preferred for real-time (voice/video) and simple query/response (DNS, DHCP, TFTP).",
+          "Reliability ≠ security — TCP is reliable but not encrypted."
+        ],
+        "realWorld": "A web download uses TCP `443` (HTTPS) so no bytes are lost; a VoIP call uses UDP because re-sending a late voice packet is useless — better to drop it. `show ip access-lists` and ACLs match on TCP/UDP port numbers to permit/deny specific apps.",
+        "commonMistakes": [
+          "Saying UDP has “no error checking” — it has a checksum; it just has no recovery.",
+          "Thinking TCP reliability means TCP is secure (it is not — that is TLS).",
+          "Forgetting DNS uses UDP/53 by default (TCP/53 for large/zone transfers).",
+          "Confusing Layer 4 port numbers with physical switch ports."
+        ],
+        "related": [
+          "1.13 Switching",
+          "4.3 DHCP/DNS",
+          "5.5 ACLs (match ports)"
+        ],
+        "advanced": "TCP flow control uses a sliding window; the receiver advertises a window size that grows/shrinks to match its buffer. TCP also does congestion control (slow start). The IPv4 header’s Protocol field (6 or 17) tells the receiver which Layer 4 header follows.",
+        "sourceRefs": [
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "TCP and UDP (Layer 4)",
+            "confidence": 0.95
+          },
+          {
+            "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
+            "chapter": "Ch 5",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "1.5-c-q1",
+          "concept": "reliability",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "Which Layer 4 protocol is connection-oriented and reliable?",
+          "choices": [
+            "UDP",
+            "TCP",
+            "IP",
+            "ICMP"
+          ],
+          "correctIndex": 1,
+          "explanation": "TCP establishes a connection and guarantees delivery via acknowledgements and retransmission.",
+          "ckuIds": [
+            "CKU-TCP"
+          ]
+        },
+        {
+          "id": "1.5-c-q2",
+          "concept": "three-way handshake",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "What is the correct order of the TCP three-way handshake?",
+          "choices": [
+            "ACK → SYN → SYN-ACK",
+            "SYN → ACK → SYN-ACK",
+            "SYN → SYN-ACK → ACK",
+            "SYN-ACK → SYN → ACK"
+          ],
+          "correctIndex": 2,
+          "explanation": "The initiator sends SYN, the receiver replies SYN-ACK, the initiator confirms with ACK.",
+          "ckuIds": [
+            "CKU-TCP-HANDSHAKE"
+          ]
+        },
+        {
+          "id": "1.5-c-q3",
+          "concept": "best-effort",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "Which protocol is connectionless and best-effort?",
+          "choices": [
+            "TCP",
+            "UDP",
+            "HTTP",
+            "FTP"
+          ],
+          "correctIndex": 1,
+          "explanation": "UDP sends data without a connection or guarantees of delivery.",
+          "ckuIds": [
+            "CKU-UDP"
+          ]
+        },
+        {
+          "id": "1.5-c-q4",
+          "concept": "port ranges",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "What is the well-known port range?",
+          "choices": [
+            "0–1023",
+            "1024–49151",
+            "49152–65535",
+            "0–255"
+          ],
+          "correctIndex": 0,
+          "explanation": "Well-known ports are 0–1023 (e.g. HTTP 80, HTTPS 443).",
+          "ckuIds": [
+            "CKU-PORT-NUMBERS"
+          ]
+        },
+        {
+          "id": "1.5-c-q5",
+          "concept": "application choice",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "A real-time VoIP call would most likely use which protocol, and why?",
+          "choices": [
+            "TCP, for guaranteed delivery",
+            "UDP, for low latency and overhead",
+            "TCP, for sequencing",
+            "UDP, because it encrypts voice"
+          ],
+          "correctIndex": 1,
+          "explanation": "Voice favors UDP — retransmitting late audio is useless, so low latency matters more than reliability.",
+          "ckuIds": [
+            "CKU-UDP"
+          ]
+        },
+        {
+          "id": "1.5-c-q6",
+          "concept": "IP protocol numbers",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "In the IPv4 header, which Protocol values indicate TCP and UDP?",
+          "choices": [
+            "1 and 2",
+            "6 and 17",
+            "80 and 443",
+            "17 and 6 reversed"
+          ],
+          "correctIndex": 1,
+          "explanation": "TCP = 6, UDP = 17 in the IPv4 Protocol field.",
+          "ckuIds": [
+            "CKU-TCP",
+            "CKU-UDP"
+          ]
+        },
+        {
+          "id": "1.5-c-q7",
+          "concept": "sequencing",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "Which TCP feature reorders segments that arrive out of order?",
+          "choices": [
+            "Flow control",
+            "Sequencing (sequence numbers)",
+            "Checksum",
+            "Windowing"
+          ],
+          "correctIndex": 1,
+          "explanation": "Sequence numbers let the receiver reassemble segments in the right order.",
+          "ckuIds": [
+            "CKU-TCP"
+          ]
+        },
+        {
+          "id": "1.5-c-q8",
+          "concept": "common ports",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "What port does HTTPS use?",
+          "choices": [
+            "80",
+            "22",
+            "443",
+            "53"
+          ],
+          "correctIndex": 2,
+          "explanation": "HTTPS uses TCP port 443; HTTP uses 80.",
+          "ckuIds": [
+            "CKU-PORT-NUMBERS"
+          ]
+        },
+        {
+          "id": "1.5-c-q9",
+          "concept": "flow control",
+          "type": "definition",
+          "difficulty": "medium",
+          "question": "Which TCP mechanism lets the receiver throttle the sender’s rate?",
+          "choices": [
+            "Sequencing",
+            "Flow control (window size)",
+            "Checksum",
+            "Handshake"
+          ],
+          "correctIndex": 1,
+          "explanation": "The advertised window size implements flow control.",
+          "ckuIds": [
+            "CKU-TCP"
+          ]
+        },
+        {
+          "id": "1.5-c-q10",
+          "concept": "UDP checksum",
+          "type": "true-false",
+          "difficulty": "medium",
+          "question": "True or False: UDP performs no error detection at all.",
+          "choices": [
+            "True",
+            "False"
+          ],
+          "correctIndex": 1,
+          "explanation": "False — UDP has a checksum for error detection; it just cannot recover (retransmit) lost data.",
+          "ckuIds": [
+            "CKU-UDP"
+          ]
+        },
+        {
+          "id": "1.5-c-q11",
+          "concept": "DNS transport",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "Which statement about DNS transport is correct?",
+          "choices": [
+            "DNS only uses TCP",
+            "DNS only uses UDP",
+            "DNS uses UDP/53 by default and TCP/53 for large responses/zone transfers",
+            "DNS uses port 80"
+          ],
+          "correctIndex": 2,
+          "explanation": "DNS defaults to UDP/53 but falls back to TCP/53 for large messages and zone transfers.",
+          "ckuIds": [
+            "CKU-PORT-NUMBERS",
+            "CKU-UDP"
+          ]
+        },
+        {
+          "id": "1.5-c-q12",
+          "concept": "reliability vs security",
+          "type": "true-false",
+          "difficulty": "easy",
+          "question": "True or False: Because TCP is reliable, the data it carries is also encrypted/secure.",
+          "choices": [
+            "True",
+            "False"
+          ],
+          "correctIndex": 1,
+          "explanation": "False — reliability (delivery) and security (encryption) are different; TLS provides encryption, not TCP.",
+          "ckuIds": [
+            "CKU-TCP"
+          ]
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "1.5-f1",
+          "ckuId": "CKU-TCP",
+          "front": "Four services TCP provides that UDP does not?",
+          "back": "Connection setup (handshake), reliability (ACK + retransmit), sequencing, flow control."
+        },
+        {
+          "id": "1.5-f2",
+          "ckuId": "CKU-TCP-HANDSHAKE",
+          "front": "TCP three-way handshake?",
+          "back": "SYN → SYN-ACK → ACK."
+        },
+        {
+          "id": "1.5-f3",
+          "ckuId": "CKU-UDP",
+          "front": "What does UDP provide?",
+          "back": "Best-effort delivery + a checksum (error detection). No connection, ACK, sequencing, or flow control."
+        },
+        {
+          "id": "1.5-f4",
+          "ckuId": "CKU-TCP",
+          "front": "IP protocol numbers for TCP and UDP?",
+          "back": "TCP = 6, UDP = 17."
+        },
+        {
+          "id": "1.5-f5",
+          "ckuId": "CKU-PORT-NUMBERS",
+          "front": "Three port ranges?",
+          "back": "Well-known 0–1023, registered 1024–49151, ephemeral 49152–65535."
+        },
+        {
+          "id": "1.5-f6",
+          "ckuId": "CKU-PORT-NUMBERS",
+          "front": "Ports: SSH, Telnet, DNS, HTTP, HTTPS?",
+          "back": "22, 23, 53, 80, 443."
+        },
+        {
+          "id": "1.5-f7",
+          "ckuId": "CKU-PORT-NUMBERS",
+          "front": "Ports: FTP, TFTP, DHCP, SNMP, Syslog?",
+          "back": "FTP 20/21, TFTP 69, DHCP 67/68, SNMP 161, Syslog 514."
+        },
+        {
+          "id": "1.5-f8",
+          "ckuId": "CKU-UDP",
+          "front": "When is UDP preferred over TCP?",
+          "back": "Real-time voice/video and simple query/response (DNS, DHCP, TFTP) — low latency/overhead."
+        }
+      ],
+      "commands": [
+        {
+          "id": "1.5-cmd1",
+          "command": "show ip access-lists",
+          "mode": "privileged EXEC",
+          "purpose": "Display ACLs, which match on TCP/UDP protocol and port numbers.",
+          "example": "R1# show ip access-lists",
+          "ckuIds": [
+            "CKU-PORT-NUMBERS"
+          ]
+        },
+        {
+          "id": "1.5-cmd2",
+          "command": "netstat -an",
+          "mode": "device cli",
+          "purpose": "On a host, list active TCP/UDP connections and listening ports.",
+          "example": "C:\\> netstat -an",
+          "ckuIds": [
+            "CKU-TCP",
+            "CKU-PORT-NUMBERS"
+          ]
+        },
+        {
+          "id": "1.5-cmd3",
+          "command": "access-list 100 permit tcp any any eq 443",
+          "mode": "global config",
+          "purpose": "Example extended-ACL line matching a TCP destination port (HTTPS).",
+          "example": "R1(config)# access-list 100 permit tcp any any eq 443",
+          "ckuIds": [
+            "CKU-TCP",
+            "CKU-PORT-NUMBERS"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "id": "1.5-g1",
+          "term": "TCP",
+          "definition": "Connection-oriented, reliable Layer 4 protocol (handshake, ACK, sequencing, flow control); IP protocol 6.",
+          "ckuIds": [
+            "CKU-TCP"
+          ]
+        },
+        {
+          "id": "1.5-g2",
+          "term": "UDP",
+          "definition": "Connectionless, best-effort Layer 4 protocol with only a checksum; IP protocol 17.",
+          "ckuIds": [
+            "CKU-UDP"
+          ]
+        },
+        {
+          "id": "1.5-g3",
+          "term": "Three-way handshake",
+          "definition": "TCP connection setup: SYN, SYN-ACK, ACK.",
+          "ckuIds": [
+            "CKU-TCP-HANDSHAKE"
+          ]
+        },
+        {
+          "id": "1.5-g4",
+          "term": "Port number",
+          "definition": "A 0–65535 Layer 4 address identifying the application/service.",
+          "ckuIds": [
+            "CKU-PORT-NUMBERS"
+          ]
+        },
+        {
+          "id": "1.5-g5",
+          "term": "Socket",
+          "definition": "The combination of an IP address and a port number.",
+          "ckuIds": [
+            "CKU-PORT-NUMBERS"
+          ]
+        },
+        {
+          "id": "1.5-g6",
+          "term": "Flow control",
+          "definition": "TCP’s use of window size to let the receiver pace the sender.",
+          "ckuIds": [
+            "CKU-TCP"
+          ]
+        }
+      ],
+      "mnemonics": [
+        {
+          "id": "1.5-m1",
+          "title": "Handshake",
+          "mnemonic": "“SYN, SYN-ACK, ACK.”",
+          "explanation": "Three steps to open a TCP connection — say it as a rhythm.",
+          "ckuIds": [
+            "CKU-TCP-HANDSHAKE"
+          ]
+        },
+        {
+          "id": "1.5-m2",
+          "title": "TCP vs UDP",
+          "mnemonic": "TCP = Telephone Call (set up first), UDP = Unaddressed Drop-off (just send).",
+          "explanation": "A call needs a connection and confirmation (TCP); a flyer dropped in a mailbox is best-effort (UDP).",
+          "ckuIds": [
+            "CKU-TCP",
+            "CKU-UDP"
+          ]
+        }
+      ],
+      "examTraps": [
+        {
+          "id": "1.5-t1",
+          "trap": "Saying UDP has no error checking.",
+          "correction": "UDP has a checksum for error DETECTION; it just has no recovery/retransmission.",
+          "ckuIds": [
+            "CKU-UDP"
+          ]
+        },
+        {
+          "id": "1.5-t2",
+          "trap": "Equating TCP reliability with security.",
+          "correction": "Reliable delivery ≠ encryption. TLS/IPsec provide security; TCP does not.",
+          "ckuIds": [
+            "CKU-TCP"
+          ]
+        },
+        {
+          "id": "1.5-t3",
+          "trap": "Assuming DNS is TCP.",
+          "correction": "DNS uses UDP/53 by default, TCP/53 for large responses and zone transfers.",
+          "ckuIds": [
+            "CKU-PORT-NUMBERS"
+          ]
+        },
+        {
+          "id": "1.5-t4",
+          "trap": "Mixing Layer 4 ports with switch ports.",
+          "correction": "Port numbers are Layer 4 application addresses, not physical interfaces.",
+          "ckuIds": [
+            "CKU-PORT-NUMBERS"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "id": "1.5-x1",
+          "misconception": "UDP is “bad” because it is unreliable.",
+          "reality": "UDP is ideal when speed beats guaranteed delivery — voice, video, DNS, DHCP all rely on it.",
+          "example": "Re-sending a late voice packet would arrive too late to be useful.",
+          "ckuIds": [
+            "CKU-UDP"
+          ]
+        },
+        {
+          "id": "1.5-x2",
+          "misconception": "TCP and UDP can use the same port for different apps without conflict.",
+          "reality": "TCP/80 and UDP/80 are independent, but within one protocol a listening port maps to one service.",
+          "example": "DNS listens on UDP/53 and TCP/53 separately.",
+          "ckuIds": [
+            "CKU-PORT-NUMBERS"
+          ]
+        },
+        {
+          "id": "1.5-x3",
+          "misconception": "The handshake transfers application data.",
+          "reality": "The SYN/SYN-ACK/ACK only establishes the connection; data flows after it completes.",
+          "example": "A web page’s bytes start after the handshake finishes.",
+          "ckuIds": [
+            "CKU-TCP-HANDSHAKE"
+          ]
+        }
+      ],
+      "diagram": {
+        "id": "DIAG-1.5-handshake",
+        "title": "TCP three-way handshake",
+        "type": "process",
+        "ckuIds": [
+          "CKU-TCP-HANDSHAKE"
+        ],
+        "nodes": [
+          {
+            "id": "c",
+            "label": "Client",
+            "type": "pc",
+            "x": 20,
+            "y": 50
+          },
+          {
+            "id": "syn",
+            "label": "1. SYN →",
+            "type": "process",
+            "x": 50,
+            "y": 18
+          },
+          {
+            "id": "sa",
+            "label": "2. ← SYN-ACK",
+            "type": "process",
+            "x": 50,
+            "y": 50
+          },
+          {
+            "id": "ack",
+            "label": "3. ACK →",
+            "type": "process",
+            "x": 50,
+            "y": 82,
+            "status": "highlighted"
+          },
+          {
+            "id": "s",
+            "label": "Server",
+            "type": "server",
+            "x": 80,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "c",
+            "target": "syn",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "syn",
+            "target": "s"
+          },
+          {
+            "id": "l3",
+            "source": "s",
+            "target": "sa"
+          },
+          {
+            "id": "l4",
+            "source": "sa",
+            "target": "c"
+          },
+          {
+            "id": "l5",
+            "source": "c",
+            "target": "ack",
+            "status": "forwarding"
+          },
+          {
+            "id": "l6",
+            "source": "ack",
+            "target": "s"
+          }
+        ],
+        "annotations": [
+          "Connection is established only after all three messages.",
+          "Data transfer begins after the ACK."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
+            "chapter": "Ch 5",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlow": {
+        "id": "FLOW-1.5-handshake",
+        "title": "Opening a TCP connection",
+        "ckuIds": [
+          "CKU-TCP-HANDSHAKE",
+          "CKU-TCP"
+        ],
+        "diagramId": "DIAG-1.5-handshake",
+        "steps": [
+          {
+            "id": "s1",
+            "order": 1,
+            "title": "SYN",
+            "action": "Client sends SYN with its initial sequence number.",
+            "successState": "forwarded"
+          },
+          {
+            "id": "s2",
+            "order": 2,
+            "title": "SYN-ACK",
+            "action": "Server replies SYN-ACK, acknowledging and sending its own sequence number.",
+            "successState": "forwarded"
+          },
+          {
+            "id": "s3",
+            "order": 3,
+            "title": "ACK",
+            "action": "Client ACKs the server’s sequence number; the connection is established.",
+            "successState": "matched"
+          },
+          {
+            "id": "s4",
+            "order": 4,
+            "title": "Data",
+            "action": "Application data flows reliably, acknowledged and sequenced.",
+            "successState": "forwarded"
+          }
+        ]
+      }
     }
   ],
   "labs": [],
   "counts": {
-    "ckus": 4,
-    "questions": 12,
-    "flashcards": 8,
-    "commands": 3,
-    "glossary": 6,
-    "mnemonics": 2,
-    "examTraps": 4,
-    "misconceptions": 3,
+    "ckus": 8,
+    "questions": 24,
+    "flashcards": 16,
+    "commands": 6,
+    "glossary": 12,
+    "mnemonics": 4,
+    "examTraps": 8,
+    "misconceptions": 6,
     "labs": 0
   }
 }
