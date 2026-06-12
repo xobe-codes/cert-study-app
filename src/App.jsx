@@ -1870,17 +1870,25 @@ function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen 
     </div>
   )
 }
+// Renders `inline code` segments (CLI commands, keywords) in monospace.
+function RichText({ text }) {
+  if (text == null) return null
+  const parts = String(text).split(/`([^`]+)`/)
+  return parts.map((p, i) => i % 2 === 1
+    ? <code key={i} style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 5, padding: '1px 5px', fontSize: 13, color: COLORS.sky }}>{p}</code>
+    : <span key={i}>{p}</span>)
+}
 function Bullets({ items }) {
-  return <ul style={{ margin: 0, paddingLeft: 18 }}>{(items || []).map((t, i) => <li key={i} style={{ marginBottom: 4 }}>{t}</li>)}</ul>
+  return <ul style={{ margin: 0, paddingLeft: 18 }}>{(items || []).map((t, i) => <li key={i} style={{ marginBottom: 4 }}><RichText text={t} /></li>)}</ul>
 }
 function StructuredExplanation({ data }) {
   return (
-    <div>
-      <ExplainBlock icon="🎯" title="DEFINITION" accent="sky">{data.definition}</ExplainBlock>
+    <div className="ccna-stagger">
+      <ExplainBlock icon="🎯" title="DEFINITION" accent="sky"><RichText text={data.definition} /></ExplainBlock>
       <ExplainBlock icon="📌" title="KEY POINTS" accent="purple"><Bullets items={data.keyPoints} /></ExplainBlock>
       <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={data.commonMistakes} /></ExplainBlock>
-      {data.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="mint" collapsible defaultOpen={false}>{data.realWorld}</ExplainBlock>}
-      {data.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}>{data.advanced}</ExplainBlock>}
+      {data.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="mint" collapsible defaultOpen={false}><RichText text={data.realWorld} /></ExplainBlock>}
+      {data.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}><RichText text={data.advanced} /></ExplainBlock>}
       {data.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={data.related} /></ExplainBlock>}
     </div>
   )
