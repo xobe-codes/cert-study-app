@@ -467,6 +467,7 @@ const STORAGE_KEYS = {
   syncCode: 'ccna_sync_code_v1',
   syncLast: 'ccna_sync_last_v1',
   usage: 'ccna_usage_v1',
+  tutorChat: 'ccna_tutor_chat_v1',
 }
 
 // progress shape: { [objectiveId]: { status: 'unseen'|'in_progress'|'mastered', quizScores: [{score,total,date}], lastSeen } }
@@ -4256,7 +4257,9 @@ async function buildTutorSystemPrompt(progress, missed) {
 Here is the student's CURRENT activity, computed from their actual study data:
 ${behaviour}
 
-Use this to give specific, contextual advice — reference their weak objectives, recurring misses, and what they studied recently by name. When they ask "what should I study?", recommend from the weakest objectives and explain why. Keep answers conversational, encouraging, and focused on CCNA exam content. Ground technical explanations in standard CCNA 200-301 material. Keep responses reasonably concise (a few short paragraphs or a short list) unless the student asks for depth.`
+Use this to give specific, contextual advice — reference their weak objectives, recurring misses, and what they studied recently by name. When they ask "what should I study?", recommend from the weakest objectives and explain why. Keep answers conversational, encouraging, and focused on CCNA exam content. Ground technical explanations in standard CCNA 200-301 material. Keep responses reasonably concise (a few short paragraphs or a short list) unless the student asks for depth.
+
+When you discuss a specific exam concept, end that part of your answer with the matching CCNA 200-301 exam topic number(s) in parentheses, e.g. "(exam topic 1.1)", so the student can open that objective's Explain tab and verify against the cited cert guide — don't invent numbers, only cite ones you're confident map to the official blueprint.`
 }
 
 function TutorChat({ progress, missed, onBack }) {
@@ -4264,7 +4267,23 @@ function TutorChat({ progress, missed, onBack }) {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [restored, setRestored] = useState(false)
   const scrollRef = useRef(null)
+
+  // Restore the conversation from a previous session, if any.
+  useEffect(() => {
+    (async () => {
+      const saved = await window.storage.getItem(STORAGE_KEYS.tutorChat)
+      if (saved && Array.isArray(saved) && saved.length) setMessages(saved)
+      setRestored(true)
+    })()
+  }, [])
+
+  // Persist after restore so we don't immediately overwrite saved history with [].
+  useEffect(() => {
+    if (!restored) return
+    window.storage.setItem(STORAGE_KEYS.tutorChat, messages)
+  }, [messages, restored])
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
@@ -4294,9 +4313,19 @@ function TutorChat({ progress, missed, onBack }) {
     }
   }
 
+  function clearChat() {
+    setMessages([])
+    setError(null)
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 32px)' }}>
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        {messages.length > 0 && (
+          <button style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 36, padding: '6px 14px', fontSize: 12 }} onClick={clearChat}>Clear chat</button>
+        )}
+      </div>
       <h1 style={styles.h1}>AI Tutor Chat</h1>
       <div ref={scrollRef} style={{ flex: 1, overflowY: 'auto', marginBottom: 10 }}>
         {messages.length === 0 && (
@@ -4313,11 +4342,18 @@ function TutorChat({ progress, missed, onBack }) {
             border: `1px solid ${m.role === 'user' ? COLORS.borderGlow : COLORS.skyBorder}`,
             whiteSpace: 'pre-wrap', fontSize: 14, lineHeight: 1.5,
           }}>
-            {m.content}
+            <RichText text={m.content} />
           </div>
         ))}
         {loading && <Spinner label="Tutor is thinking..." />}
         {error && <ErrorBox message={error} onRetry={send} />}
+        {messages.length > 0 && !loading && (
+          <div style={{ fontSize: 11, color: COLORS.silverMid, lineHeight: 1.5, padding: '4px 2px' }}>
+            Tutor answers are AI-generated study help. Verify exam objectives, command syntax, and key terms against the{' '}
+            <a href={EXAM_SOURCES.blueprintUrl} target="_blank" rel="noreferrer" style={{ color: COLORS.sky, textDecoration: 'none' }}>{EXAM_SOURCES.examName} exam topics</a>
+            {' '}and {EXAM_SOURCES.references.map(r => r.title).join(', ')} — open the matching objective's Explain tab for cited definitions.
+          </div>
+        )}
       </div>
       <div style={{ display: 'flex', gap: 8 }}>
         <input
