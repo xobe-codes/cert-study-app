@@ -583,9 +583,52 @@ async function recordQuizResult(objectiveId, questionId, { correct, rating } = {
   if (!list) return
   const q = list.find(x => x.id === questionId)
   if (!q) return
-  if (typeof correct === 'boolean') q.attempts.push({ correct, at: Date.now() })
+  if (typeof correct === 'boolean') {
+    q.attempts.push({ correct, at: Date.now() })
+    q.srs = nextSrs(q.srs, correct) // advance spaced-repetition schedule
+  }
   if (rating) q.ratings.push({ value: rating, at: Date.now() })
   await saveQuizBank(bank)
+}
+
+/* =========================================================================
+   SPACED REPETITION (SM-2 lite) — every answered question carries a schedule
+   so it returns for review on the right day, across sessions. All local.
+   srs shape: { due (ts), interval (days), ease, reps }
+   ========================================================================= */
+const DAY_MS = 86400000
+function nextSrs(prev, correct) {
+  const s = prev || { interval: 0, ease: 2.3, reps: 0 }
+  let { interval, ease, reps } = s
+  if (correct) {
+    reps += 1
+    ease = Math.min(2.8, ease + 0.08)
+    interval = reps === 1 ? 1 : reps === 2 ? 3 : Math.round(interval * ease)
+  } else {
+    reps = 0
+    ease = Math.max(1.3, ease - 0.2)
+    interval = 1 // relearn tomorrow
+  }
+  return { interval, ease, reps, due: Date.now() + interval * DAY_MS }
+}
+// All banked questions due for review now (seen at least once), across every
+// objective, soonest-due first.
+async function loadDueQuestions(limit = 20) {
+  const bank = await loadQuizBank()
+  const now = Date.now()
+  const due = []
+  for (const objectiveId of Object.keys(bank)) {
+    for (const q of bank[objectiveId]) {
+      if ((q.attempts?.length || 0) === 0) continue
+      const dueAt = q.srs?.due ?? 0
+      if (dueAt <= now) due.push({ ...q, objectiveId, dueAt })
+    }
+  }
+  due.sort((a, b) => a.dueAt - b.dueAt)
+  return due.slice(0, limit)
+}
+async function countDueQuestions() {
+  return (await loadDueQuestions(999)).length
 }
 
 /* =========================================================================
@@ -1646,6 +1689,9 @@ function ExplainTab({ objective }) {
   const [content, setContent] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [recalled, setRecalled] = useState(false) // retrieval-practice gate
+
+  useEffect(() => { setRecalled(false) }, [objective.id])
 
   const fetchExplanation = useCallback(async (force) => {
     setLoading(true)
@@ -1690,7 +1736,19 @@ function ExplainTab({ objective }) {
   return (
     <div>
       <KeyTermsCarousel objective={objective} />
-      {loading && (
+
+      {/* Retrieval practice: try to recall before reading (boosts retention). */}
+      {!recalled && !error && (
+        <div style={{ ...styles.card, border: `1px solid ${COLORS.purpleGlow}`, background: COLORS.purpleDim }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 6 }}>🧠 RECALL FIRST</div>
+          <div style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 12 }}>
+            Before you read it: what do you already know about <strong>{objective.title}</strong>? Try to explain it to yourself — even a rough attempt strengthens memory far more than re-reading.
+          </div>
+          <button style={styles.primaryBtn} onClick={() => setRecalled(true)}>Reveal explanation</button>
+        </div>
+      )}
+
+      {recalled && loading && (
         <div style={{ ...styles.card, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
           <Skeleton width="55%" height={16} style={{ marginBottom: 14 }} />
           <Skeleton width="100%" /><Skeleton width="96%" /><Skeleton width="90%" />
@@ -1698,13 +1756,13 @@ function ExplainTab({ objective }) {
           <Skeleton width="100%" /><Skeleton width="92%" /><Skeleton width="70%" />
         </div>
       )}
-      {error && <ErrorBox message={error} onRetry={() => fetchExplanation(true)} />}
-      {content && !loading && (
+      {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
+      {recalled && content && !loading && (
         <div style={{ ...styles.card, whiteSpace: 'pre-wrap', lineHeight: 1.6, fontSize: 14, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
           {content}
         </div>
       )}
-      {!loading && (
+      {recalled && !loading && (
         <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => fetchExplanation(true)}>
           Regenerate explanation
         </button>
@@ -2873,9 +2931,106 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
 }
 
 /* =========================================================================
+   REVIEW SESSION — spaced-repetition review of all questions due today,
+   pulled across every objective. Answering advances each card's schedule.
+   ========================================================================= */
+function ReviewSession({ onBack, onMissed, onDone }) {
+  const [phase, setPhase] = useState('loading') // loading | active | empty | done
+  const [queue, setQueue] = useState([])
+  const [current, setCurrent] = useState(null)
+  const [selected, setSelected] = useState(null)
+  const [revealed, setRevealed] = useState(false)
+  const [stats, setStats] = useState({ correct: 0, total: 0 })
+
+  useEffect(() => {
+    (async () => {
+      const due = await loadDueQuestions(20)
+      if (due.length === 0) { setPhase('empty'); return }
+      setCurrent(due[0]); setQueue(due.slice(1)); setPhase('active')
+    })()
+  }, [])
+
+  function answer(idx) {
+    if (revealed) return
+    const correct = idx === current.correctIndex
+    setSelected(idx); setRevealed(true)
+    haptic(correct ? 15 : [10, 40, 10])
+    setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
+    recordQuizResult(current.objectiveId, current.id, { correct })
+    logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
+    if (!correct) {
+      onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, explanation: current.explanation, addedAt: Date.now() })
+    }
+  }
+  function next() {
+    if (queue.length === 0) { setPhase('done'); onDone?.(); return }
+    setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setRevealed(false)
+  }
+
+  if (phase === 'loading') return <div><button style={styles.backBtn} onClick={onBack}>‹ Back</button><Spinner label="Gathering your reviews..." /></div>
+  if (phase === 'empty') {
+    return (
+      <div>
+        <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        <h1 style={styles.h1}>Daily Review</h1>
+        <p style={styles.small}>Nothing due right now. Spaced repetition brings questions back on their schedule — take some quizzes and they'll reappear here over the coming days.</p>
+      </div>
+    )
+  }
+  if (phase === 'done') {
+    return (
+      <div>
+        <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        <div style={styles.card}>
+          <h2 style={styles.h2}>Review complete</h2>
+          <p style={{ fontSize: 28, fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
+          <p style={styles.small}>Each question's next review has been rescheduled. Come back tomorrow for the next batch.</p>
+          <button style={{ ...styles.primaryBtn, marginTop: 10 }} onClick={onBack}>Done</button>
+        </div>
+      </div>
+    )
+  }
+
+  const isCorrect = revealed && selected === current.correctIndex
+  const obj = ALL_OBJECTIVES.find(o => o.id === current.objectiveId)
+  return (
+    <div>
+      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
+        <h1 style={{ ...styles.h1, margin: 0 }}>Daily Review</h1>
+        <span style={styles.small}>{queue.length + 1} left</span>
+      </div>
+      {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
+      <div style={styles.card}>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>{current.question}</div>
+        {current.choices.map((choice, idx) => {
+          let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
+          if (revealed) {
+            if (idx === current.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
+            else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
+          }
+          return (
+            <button key={idx} onClick={() => answer(idx)} style={{ display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8, background: bg, border: `1px solid ${border}`, color, borderRadius: 10, padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4 }}>
+              {choice}
+            </button>
+          )
+        })}
+        {revealed && (
+          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
+            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
+            <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
+          </div>
+        )}
+      </div>
+      {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'Finish' : 'Next'}</button>}
+    </div>
+  )
+}
+
+/* =========================================================================
    HOME SCREEN
    ========================================================================= */
-function HomeScreen({ progress, streak, missed, missedCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, syncOn }) {
+function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, syncOn }) {
   const [openDomain, setOpenDomain] = useState(null)
   const [suggestions, setSuggestions] = useState([])
 
@@ -2914,6 +3069,15 @@ function HomeScreen({ progress, streak, missed, missedCount, apiOnline, offlineR
         {offlineReady?.size > 0 && <> · ⤓ {offlineReady.size} offline-ready</>}
       </div>
       <ProgressBar value={totals.overall} max={1} accent="purple" label="Course mastery" sublabel={`${Math.round(totals.overall * 100)}%`} height={9} />
+      {dueCount > 0 && (
+        <button
+          className="ccna-hover"
+          style={{ ...styles.primaryBtn, marginBottom: 8, background: `linear-gradient(135deg, ${COLORS.mintBorder}, ${COLORS.mint})`, color: COLORS.bg }}
+          onClick={onOpenReview}
+        >
+          🔁 Daily Review — {dueCount} due
+        </button>
+      )}
       <button style={{ ...styles.secondaryBtn, marginBottom: 16 }} onClick={onOpenMetrics}>📊 Learner Metrics</button>
 
       {suggestions.length > 0 && (
@@ -3787,12 +3951,14 @@ export default function App() {
   const [lastSynced, setLastSynced] = useState(null)
   const [syncBusy, setSyncBusy] = useState(false)
   const [syncMsg, setSyncMsg] = useState('')
+  const [dueCount, setDueCount] = useState(0)
 
   useEffect(() => {
     (async () => {
-      const [p, m, s, off, code, last] = await Promise.all([
+      const [p, m, s, off, code, last, due] = await Promise.all([
         loadProgress(), loadMissed(), loadStreak(), loadOfflineReadyIds(),
         window.storage.getItem(STORAGE_KEYS.syncCode), window.storage.getItem(STORAGE_KEYS.syncLast),
+        countDueQuestions(),
       ])
       setProgress(p)
       setMissed(m)
@@ -3800,6 +3966,7 @@ export default function App() {
       setOfflineReady(off)
       setSyncCode(code || null)
       setLastSynced(last || null)
+      setDueCount(due)
       setLoaded(true)
       const updatedStreak = await bumpStreak()
       setStreak(updatedStreak)
@@ -3809,6 +3976,13 @@ export default function App() {
   const refreshOffline = useCallback(async () => {
     setOfflineReady(await loadOfflineReadyIds())
   }, [])
+
+  const refreshDue = useCallback(async () => {
+    setDueCount(await countDueQuestions())
+  }, [])
+
+  // Recompute the due-review count whenever we land back on Home.
+  useEffect(() => { if (view === 'home') refreshDue() }, [view, refreshDue])
 
   // Pull remote → merge with local → save → refresh UI → push merged back.
   // Deterministic and convergent, so it's safe to run on any device.
@@ -4015,6 +4189,8 @@ export default function App() {
             onOpenExport={() => setShowExport(true)}
             onOpenMetrics={() => setView('metrics')}
             onOpenSync={() => setShowSync(true)}
+            onOpenReview={() => setView('review')}
+            dueCount={dueCount}
             syncOn={!!syncCode}
           />
         )}
@@ -4035,6 +4211,7 @@ export default function App() {
         {view === 'missed' && <MissedReview missed={missed} onBack={() => setView('home')} onRemove={removeMissed} />}
         {view === 'tutor' && <TutorChat progress={progress} missed={missed} onBack={() => setView('home')} />}
         {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} onBack={() => setView('home')} onSelectObjective={selectObjective} />}
+        {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} />}
         </div>
       </div>
       {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}
