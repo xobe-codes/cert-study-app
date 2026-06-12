@@ -1112,7 +1112,7 @@ function accentColors(accent) {
 const styles = {
   page: { minHeight: '100vh', background: COLORS.bg, color: COLORS.silver, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', paddingBottom: 32 },
   container: { maxWidth: 640, margin: '0 auto', padding: '16px 16px 40px' },
-  card: { background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14, padding: 16, marginBottom: 12 },
+  card: { background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14, padding: 16, marginBottom: 12, boxShadow: '0 4px 16px #00000033' },
   cardHover: { background: COLORS.cardHover },
   h1: { fontSize: 22, fontWeight: 700, color: COLORS.silver, margin: '4px 0 4px' },
   h2: { fontSize: 17, fontWeight: 600, color: COLORS.silver, margin: '0 0 8px' },
@@ -1188,7 +1188,68 @@ function ErrorBox({ message, onRetry }) {
    ========================================================================= */
 function clamp01(n) { return Math.max(0, Math.min(1, isFinite(n) ? n : 0)) }
 
-// Labeled linear completion/strength bar.
+// Animates 0 -> target with easeOutCubic. Respects reduced-motion by snapping.
+function useCountUp(target, ms = 700) {
+  const [n, setN] = useState(target)
+  const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  useEffect(() => {
+    if (prefersReduced) { setN(target); return }
+    let raf, start
+    const tick = t => {
+      start ??= t
+      const p = Math.min((t - start) / ms, 1)
+      setN(target * (1 - Math.pow(1 - p, 3)))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [target, ms, prefersReduced])
+  return n
+}
+
+// Skeleton placeholder block (shimmer). width/height accept any CSS length.
+function Skeleton({ width = '100%', height = 14, style }) {
+  return <div className="ccna-skeleton" style={{ width, height, marginBottom: 8, ...style }} />
+}
+
+// Short haptic pulse on supported devices (mobile). Silent no-op elsewhere.
+function haptic(pattern) {
+  try { if (navigator.vibrate) navigator.vibrate(pattern) } catch { /* unsupported */ }
+}
+
+// Lightweight, dependency-free confetti burst (used on mastery). Self-cleans.
+function celebrate() {
+  if (typeof document === 'undefined') return
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  const colors = ['#7c3aed', '#c084fc', '#baf0fa', '#d4f7d4', '#fde8e8']
+  const canvas = document.createElement('canvas')
+  canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999'
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight
+  document.body.appendChild(canvas)
+  const ctx = canvas.getContext('2d')
+  const N = 110
+  const parts = Array.from({ length: N }, () => ({
+    x: canvas.width / 2, y: canvas.height * 0.35,
+    vx: (Math.random() - 0.5) * 14, vy: Math.random() * -12 - 4,
+    s: Math.random() * 5 + 3, c: colors[(Math.random() * colors.length) | 0],
+    rot: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.4, life: 1,
+  }))
+  const start = performance.now()
+  function frame(t) {
+    const elapsed = t - start
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    parts.forEach(p => {
+      p.vy += 0.35; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life = 1 - elapsed / 1300
+      ctx.save(); ctx.globalAlpha = Math.max(0, p.life); ctx.translate(p.x, p.y); ctx.rotate(p.rot)
+      ctx.fillStyle = p.c; ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 1.6); ctx.restore()
+    })
+    if (elapsed < 1300) requestAnimationFrame(frame)
+    else canvas.remove()
+  }
+  requestAnimationFrame(frame)
+}
+
+// Labeled linear completion/strength bar — gradient fill + subtle shimmer.
 function ProgressBar({ value, max = 1, label, sublabel, accent = 'purple', height = 8 }) {
   const pct = clamp01(max ? value / max : 0)
   const c = accentColors(accent)
@@ -1201,31 +1262,38 @@ function ProgressBar({ value, max = 1, label, sublabel, accent = 'purple', heigh
         </div>
       )}
       <div style={{ background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 999, height, overflow: 'hidden' }}>
-        <div style={{ width: `${pct * 100}%`, height: '100%', background: c.text, borderRadius: 999, transition: 'width .4s ease' }} />
+        <div className="ccna-shimmer" style={{ width: `${pct * 100}%`, height: '100%', background: `linear-gradient(90deg, ${c.border}, ${c.text})`, borderRadius: 999, transition: 'width .5s ease' }} />
       </div>
     </div>
   )
 }
 
-// Circular mastery ring with center percentage.
+// Circular mastery ring — gradient stroke + glow + animated count-up.
 function ProgressRing({ value, size = 72, stroke = 7, accent = 'purple', caption }) {
   const pct = clamp01(value)
+  const shown = useCountUp(pct, 800)
   const r = (size - stroke) / 2
   const circ = 2 * Math.PI * r
   const c = accentColors(accent)
+  const gid = `ring-${accent}`
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
       <div style={{ position: 'relative', width: size, height: size }}>
         <svg width={size} height={size}>
+          <defs>
+            <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor={c.border} /><stop offset="100%" stopColor={c.text} />
+            </linearGradient>
+          </defs>
           <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={COLORS.border} strokeWidth={stroke} />
           <circle
-            cx={size / 2} cy={size / 2} r={r} fill="none" stroke={c.text} strokeWidth={stroke}
-            strokeDasharray={circ} strokeDashoffset={circ * (1 - pct)} strokeLinecap="round"
-            transform={`rotate(-90 ${size / 2} ${size / 2})`} style={{ transition: 'stroke-dashoffset .5s ease' }}
+            cx={size / 2} cy={size / 2} r={r} fill="none" stroke={`url(#${gid})`} strokeWidth={stroke}
+            strokeDasharray={circ} strokeDashoffset={circ * (1 - shown)} strokeLinecap="round"
+            transform={`rotate(-90 ${size / 2} ${size / 2})`} style={{ filter: `drop-shadow(0 0 5px ${c.text}77)` }}
           />
         </svg>
         <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: size * 0.26, fontWeight: 700, color: COLORS.silver }}>{Math.round(pct * 100)}%</span>
+          <span style={{ fontSize: size * 0.26, fontWeight: 700, color: COLORS.silver }}>{Math.round(shown * 100)}%</span>
         </div>
       </div>
       {caption && <span style={{ fontSize: 11, color: COLORS.silverMid, textAlign: 'center' }}>{caption}</span>}
@@ -1622,7 +1690,14 @@ function ExplainTab({ objective }) {
   return (
     <div>
       <KeyTermsCarousel objective={objective} />
-      {loading && <Spinner label="Generating explanation..." />}
+      {loading && (
+        <div style={{ ...styles.card, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
+          <Skeleton width="55%" height={16} style={{ marginBottom: 14 }} />
+          <Skeleton width="100%" /><Skeleton width="96%" /><Skeleton width="90%" />
+          <Skeleton width="40%" height={16} style={{ margin: '14px 0 10px' }} />
+          <Skeleton width="100%" /><Skeleton width="92%" /><Skeleton width="70%" />
+        </div>
+      )}
       {error && <ErrorBox message={error} onRetry={() => fetchExplanation(true)} />}
       {content && !loading && (
         <div style={{ ...styles.card, whiteSpace: 'pre-wrap', lineHeight: 1.6, fontSize: 14, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
@@ -1742,6 +1817,7 @@ function QuizTab({ objective, onMissed, onScoreSaved }) {
     setSelected(idx)
     setRevealed(true)
     const correct = idx === current.correctIndex
+    haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
     if (current.id) recordQuizResult(objective.id, current.id, { correct })
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
@@ -2392,6 +2468,8 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
       lastSeen: Date.now(),
     })
     logEvent('user_completed_quiz', { objectiveId: objective.id, correct: stats.correct, total: stats.total, masteryScore })
+    // Celebrate a freshly-mastered topic (only on the transition, not repeats).
+    if (mastered && status !== 'mastered') { celebrate(); haptic([12, 40, 12, 40, 18]) }
     // On reaching mastery, auto-package the topic for offline use (online only).
     if (mastered && !isOffline && apiOnline) onPackage?.(objective)
   }
@@ -2826,7 +2904,7 @@ function HomeScreen({ progress, streak, missed, missedCount, apiOnline, offlineR
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
-        <h1 style={styles.h1}>CCNA 200-301</h1>
+        <h1 style={styles.h1} className="ccna-grad-text">CCNA 200-301</h1>
         {streak.count > 0 && (
           <div style={{ ...styles.pill('mint'), whiteSpace: 'nowrap' }}>🔥 {streak.count} day{streak.count === 1 ? '' : 's'}</div>
         )}
@@ -2839,13 +2917,14 @@ function HomeScreen({ progress, streak, missed, missedCount, apiOnline, offlineR
       <button style={{ ...styles.secondaryBtn, marginBottom: 16 }} onClick={onOpenMetrics}>📊 Learner Metrics</button>
 
       {suggestions.length > 0 && (
-        <div style={{ marginBottom: 12 }}>
+        <div style={{ marginBottom: 12 }} className="ccna-stagger">
           <div style={{ ...styles.small, fontWeight: 700, color: COLORS.silver, marginBottom: 8, letterSpacing: 0.5 }}>FOR YOU</div>
           {suggestions.map(s => {
             const c = accentColors(s.accent)
             return (
               <button
                 key={s.key}
+                className="ccna-hover"
                 onClick={() => onSelectObjective({ ...s.objective, __initialTab: s.tab })}
                 style={{
                   display: 'block', width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit',
@@ -2880,7 +2959,7 @@ function HomeScreen({ progress, streak, missed, missedCount, apiOnline, offlineR
         const masteredCount = objs.filter(o => progress[o.id]?.status === 'mastered').length
         const accent = accentColors(domain.accent)
         return (
-          <div key={domain.id} style={styles.card}>
+          <div key={domain.id} className="ccna-hover" style={styles.card}>
             <button
               onClick={() => setOpenDomain(isOpen ? null : domain.id)}
               style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: 0, textAlign: 'left' }}
@@ -3866,6 +3945,13 @@ export default function App() {
       <style>{`
         * { -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
+        body {
+          background:
+            radial-gradient(1100px 560px at 50% -12%, ${COLORS.purpleDim}55, transparent 60%),
+            radial-gradient(760px 460px at 100% 0%, ${COLORS.skyDim}55, transparent 55%),
+            ${COLORS.bg};
+          background-attachment: fixed;
+        }
         button { transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease; }
         button:active:not(:disabled) { transform: scale(0.97); }
         button:disabled { opacity: 0.5; cursor: default !important; }
@@ -3875,15 +3961,39 @@ export default function App() {
         *::-webkit-scrollbar { width: 8px; height: 8px; }
         *::-webkit-scrollbar-thumb { background: ${COLORS.silverDim}; border-radius: 8px; }
         *::-webkit-scrollbar-track { background: transparent; }
+        .ccna-grad-text {
+          background: linear-gradient(90deg, ${COLORS.purpleGlow}, ${COLORS.sky});
+          -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        @media (hover: hover) {
+          .ccna-hover { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+          .ccna-hover:hover { transform: translateY(-2px); box-shadow: 0 12px 30px #00000055; border-color: ${COLORS.borderGlow}; }
+        }
+        @keyframes ccna-shimmer { to { transform: translateX(100%); } }
+        .ccna-shimmer { position: relative; overflow: hidden; }
+        .ccna-shimmer::after {
+          content:''; position:absolute; inset:0;
+          background: linear-gradient(90deg, transparent, #ffffff22, transparent);
+          transform: translateX(-100%); animation: ccna-shimmer 2.4s ease-in-out infinite;
+        }
+        @keyframes ccna-skel { to { background-position: -200% 0; } }
+        .ccna-skeleton {
+          background: linear-gradient(90deg, ${COLORS.card}, ${COLORS.cardHover}, ${COLORS.card});
+          background-size: 200% 100%; animation: ccna-skel 1.3s ease-in-out infinite; border-radius: 8px;
+        }
+        @keyframes ccna-pulse { 0% { box-shadow: 0 0 0 0 currentColor; opacity:.7 } 100% { box-shadow: 0 0 0 10px transparent; opacity:1 } }
+        .ccna-pulse { animation: ccna-pulse .45s ease-out; }
         @keyframes ccna-view-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
         .ccna-view { animation: ccna-view-in .28s ease both; }
+        .ccna-stagger > * { animation: ccna-view-in .42s ease both; }
+        ${[1,2,3,4,5,6,7,8].map(i => `.ccna-stagger > *:nth-child(${i}){animation-delay:${i*0.04}s}`).join('')}
         @keyframes ccna-overlay-in { from { opacity: 0; } to { opacity: 1; } }
         @keyframes ccna-sheet-in { from { transform: translateY(100%); } to { transform: none; } }
         .ccna-overlay { animation: ccna-overlay-in .2s ease both; }
         .ccna-sheet { animation: ccna-sheet-in .3s cubic-bezier(.2,.8,.2,1) both; }
         @media (prefers-reduced-motion: reduce) {
           html { scroll-behavior: auto; }
-          .ccna-view, .ccna-overlay, .ccna-sheet { animation: none; }
+          .ccna-view, .ccna-overlay, .ccna-sheet, .ccna-stagger > *, .ccna-shimmer::after, .ccna-skeleton, .ccna-pulse { animation: none; }
           button:active:not(:disabled) { transform: none; }
         }
       `}</style>
