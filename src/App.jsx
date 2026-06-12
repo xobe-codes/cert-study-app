@@ -777,6 +777,43 @@ async function countDueQuestions() {
   return n
 }
 
+/* ---- Retention health: per-section state derived from each question's
+   spaced-repetition schedule + lapses. Strong (all items in long intervals) /
+   Fading (due soon or lightly lapsed) / Study (multiple lapses → revisit the
+   Explain page). Weak deliberately maps to the blue "study" color, never red. */
+function sectionRetention(list) {
+  const scheduled = (list || []).filter(q => q.srs && (q.attempts?.length || 0) > 0)
+  if (scheduled.length === 0) return null
+  const now = Date.now()
+  const dueNow = scheduled.filter(q => (q.srs.due ?? 0) <= now).length
+  const heavyLapse = scheduled.filter(q => (q.srs.lapses || 0) >= 2).length
+  const inLong = scheduled.filter(q => (q.srs.intervalIndex || 0) >= 2).length
+  let state
+  if (heavyLapse >= 2 || heavyLapse / scheduled.length >= 0.34) state = 'weak'
+  else if (inLong === scheduled.length && dueNow === 0) state = 'strong'
+  else state = 'fading'
+  return { count: scheduled.length, dueNow, heavyLapse, inLong, state }
+}
+async function loadRetentionHealth() {
+  const bank = await loadQuizBank()
+  const rows = []
+  for (const objectiveId of Object.keys(bank)) {
+    const r = sectionRetention(bank[objectiveId])
+    if (!r) continue
+    const o = ALL_OBJECTIVES.find(x => x.id === objectiveId)
+    if (!o) continue
+    rows.push({ ...r, id: objectiveId, title: o.title, objective: o })
+  }
+  // Surface the most at-risk sections first: weak, then fading, then strong.
+  const order = { weak: 0, fading: 1, strong: 2 }
+  return rows.sort((a, b) => order[a.state] - order[b.state] || b.dueNow - a.dueNow)
+}
+const RETENTION_META = {
+  strong: { accent: 'mint', label: 'STRONG', icon: '🛡️', note: () => 'All items in long intervals' },
+  fading: { accent: 'amber', label: 'FADING', icon: '⏳', note: (r) => r.dueNow > 0 ? `${r.dueNow} item${r.dueNow === 1 ? '' : 's'} due soon` : 'Building strength' },
+  weak: { accent: 'sky', label: 'STUDY', icon: '📘', note: () => 'Multiple lapses — revisit Explain first' },
+}
+
 /* =========================================================================
    EVENT LOG — lightweight, append-only behaviour stream (capped). Feeds the
    mastery engine and tutor without any AI calls. Business logic only.
@@ -3253,13 +3290,14 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
   useEffect(() => {
     let cancelled = false
     ;(async () => {
-      const [summary, cli, offlineDetail, usage] = await Promise.all([
+      const [summary, cli, offlineDetail, usage, retention] = await Promise.all([
         buildLearnerSummary(progress, missed || []),
         loadCliStats(),
         loadOfflineDetail(),
         window.storage.getItem(STORAGE_KEYS.usage),
+        loadRetentionHealth(),
       ])
-      if (!cancelled) setData({ summary, cli, offlineDetail, usage })
+      if (!cancelled) setData({ summary, cli, offlineDetail, usage, retention })
     })()
     return () => { cancelled = true }
   }, [progress, missed])
@@ -3273,7 +3311,7 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
     )
   }
 
-  const { summary, cli, offlineDetail, usage } = data
+  const { summary, cli, offlineDetail, usage, retention } = data
   const objs = summary.perObjective
   const studied = objs.filter(o => o.attempts > 0)
 
@@ -3345,6 +3383,44 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
         {summary.domainStats.map(d => (
           <ProgressBar key={d.id} value={d.avg} max={1} accent="purple" label={d.name} sublabel={`${Math.round(d.avg * 100)}% · ${d.mastered}/${d.total}`} height={6} />
         ))}
+      </div>
+
+      {/* Retention health — spaced-review state per section */}
+      <div style={section}>
+        <div style={sectionTitle}>RETENTION HEALTH</div>
+        {retention.length === 0 ? (
+          <div style={styles.small}>No sections in spaced review yet. Score ≥70% on a section's quiz and its questions start coming back on a forgetting-curve schedule — their retention state will show here.</div>
+        ) : (
+          <>
+            <div style={{ display: 'flex', gap: 12, marginBottom: 10 }}>
+              {['strong', 'fading', 'weak'].map(st => {
+                const n = retention.filter(r => r.state === st).length
+                const m = RETENTION_META[st]
+                const c = accentColors(m.accent)
+                return (
+                  <div key={st} style={{ flex: 1, textAlign: 'center', background: c.dim, border: `1px solid ${c.border}`, borderRadius: 10, padding: '8px 4px' }}>
+                    <div style={{ fontSize: 20, fontWeight: 700, color: c.text }}>{n}</div>
+                    <div style={{ fontSize: 10, color: c.text, fontWeight: 600 }}>{m.icon} {m.label}</div>
+                  </div>
+                )
+              })}
+            </div>
+            {retention.map(r => {
+              const m = RETENTION_META[r.state]
+              const c = accentColors(m.accent)
+              return (
+                <button key={r.id} onClick={() => open(r.objective)} style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 10, textAlign: 'left', background: 'none', border: 'none', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', padding: '10px 2px', fontFamily: 'inherit' }}>
+                  <span style={{ fontSize: 18 }} aria-hidden="true">{m.icon}</span>
+                  <span style={{ flex: 1 }}>
+                    <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{r.id} {r.title}</span>
+                    <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>{m.note(r)} · {r.count} item{r.count === 1 ? '' : 's'}</span>
+                  </span>
+                  <span style={{ ...styles.pill(m.accent), fontSize: 10 }}>{m.label}</span>
+                </button>
+              )
+            })}
+          </>
+        )}
       </div>
 
       {/* Weak areas */}
