@@ -4,8 +4,8 @@
     "domainNumber": 1,
     "domainName": "Network Fundamentals",
     "version": "1",
-    "compiledAt": "2026-06-12T19:08:12.831Z",
-    "curatedObjectives": 0,
+    "compiledAt": "2026-06-12T19:17:46.305Z",
+    "curatedObjectives": 1,
     "labs": 0
   },
   "sourceAudit": {
@@ -17,17 +17,750 @@
     },
     "note": "Content is original/paraphrased from the cited sources; questions are original. Verify command syntax against official Cisco docs."
   },
-  "objectives": [],
+  "objectives": [
+    {
+      "objectiveId": "1.6",
+      "domainId": "fundamentals",
+      "title": "Configure and verify IPv4 addressing and subnetting",
+      "ckus": [
+        {
+          "id": "CKU-IPV4-ADDRESSING",
+          "title": "IPv4 Addressing",
+          "summary": "A 32-bit address written as four dotted-decimal octets, paired with a subnet mask that splits it into a network portion and a host portion.",
+          "aliases": [
+            "IPv4",
+            "dotted decimal"
+          ],
+          "tags": [
+            "ipv4",
+            "addressing"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-BINARY"
+          ],
+          "relatedCkuIds": [
+            "CKU-SUBNET-MASK",
+            "CKU-SUBNETTING"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "IPv4 Addressing",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "1.6",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-SUBNET-MASK",
+          "title": "Subnet Mask",
+          "summary": "A 32-bit value of contiguous 1s (network) then 0s (host). The prefix length (/n, CIDR) counts the 1s. Common masks: /24=255.255.255.0, /26=…192, /27=…224, /30=…252.",
+          "aliases": [
+            "mask",
+            "CIDR",
+            "prefix length"
+          ],
+          "tags": [
+            "mask",
+            "cidr"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-IPV4-ADDRESSING"
+          ],
+          "relatedCkuIds": [
+            "CKU-SUBNETTING",
+            "CKU-BLOCK-SIZE"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
+              "chapter": "Ch 13 — Analyzing Subnet Masks",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Cisco CCNA 200-301 v1.1 Exam Topics",
+              "chapter": "1.6",
+              "confidence": 1
+            }
+          ]
+        },
+        {
+          "id": "CKU-SUBNETTING",
+          "title": "Subnetting",
+          "summary": "Borrowing host bits to create more, smaller networks. Hosts per subnet = 2^h − 2 (network + broadcast unusable); number of subnets = 2^(borrowed bits).",
+          "aliases": [
+            "subnet",
+            "subnetwork"
+          ],
+          "tags": [
+            "subnetting",
+            "ipv4"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-SUBNET-MASK"
+          ],
+          "relatedCkuIds": [
+            "CKU-BLOCK-SIZE"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
+              "chapter": "Ch 11-14",
+              "confidence": 0.95
+            },
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Subnetting",
+              "confidence": 0.95
+            }
+          ]
+        },
+        {
+          "id": "CKU-BLOCK-SIZE",
+          "title": "Block Size (Magic Number)",
+          "summary": "Block size = 256 − (the interesting mask octet). Subnet boundaries are multiples of the block size; it gives the network address, broadcast, and usable range fast.",
+          "aliases": [
+            "magic number",
+            "increment"
+          ],
+          "tags": [
+            "subnetting",
+            "shortcut"
+          ],
+          "prerequisiteCkuIds": [
+            "CKU-SUBNETTING"
+          ],
+          "relatedCkuIds": [
+            "CKU-SUBNETTING"
+          ],
+          "sourceRefs": [
+            {
+              "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+              "chapter": "Block Size method",
+              "confidence": 0.95
+            }
+          ]
+        }
+      ],
+      "reading": {
+        "id": "READ-1.6",
+        "ckuIds": [
+          "CKU-IPV4-ADDRESSING",
+          "CKU-SUBNET-MASK",
+          "CKU-SUBNETTING",
+          "CKU-BLOCK-SIZE"
+        ],
+        "estimatedReadMinutes": 8,
+        "tiers": {
+          "beginner": "An IPv4 address has 32 bits, shown as four numbers 0–255 (like 192.168.1.10). A subnet mask decides which part is the “network” and which is the “host.” Subnetting just means splitting one network into several smaller ones by moving the dividing line. In every subnet, the first address (all host bits 0) is the network ID and the last (all host bits 1) is the broadcast — neither can be given to a device.",
+          "intermediate": "The mask is 32 bits: 1s mark the network, 0s mark the host, written as /n (CIDR). Hosts per subnet = 2^h − 2 where h is the number of host bits (you subtract the network and broadcast addresses). To subnet, you borrow bits from the host side: borrowing b bits makes 2^b subnets, each smaller. The fastest way to find boundaries is the block size = 256 − the interesting mask octet; subnets start at multiples of that block size.",
+          "examReady": "IPv4 = 32 bits / 4 octets + a mask of contiguous 1s (network) then 0s (host); the prefix /n is the count of 1s. Hosts/subnet = 2^h − 2 (h = host bits; network and broadcast are unusable). Subnets from borrowing b bits = 2^b. Block size (magic number) = 256 − interesting-octet mask value; subnet network IDs are multiples of the block size in that octet. For any address: network = host bits all 0, broadcast = host bits all 1, usable range = everything between. Examples: /26 (`255.255.255.192`) → block 64, 4 subnets (.0/.64/.128/.192), 62 hosts each; /30 (`255.255.255.252`) → block 4, 2 hosts (point-to-point links); /27 (`255.255.255.224`) → block 32, 30 hosts."
+        },
+        "definition": "An IPv4 address is **32 bits** split by a **subnet mask** into network + host portions. **Subnetting** borrows host bits to make more, smaller networks; **block size** (`256 − mask octet`) locates subnet boundaries instantly.",
+        "keyPoints": [
+          "Hosts per subnet = `2^h − 2` (h = host bits; network + broadcast are unusable).",
+          "Number of subnets when borrowing b bits = `2^b`.",
+          "Block size = `256 − interesting mask octet`; subnets start at multiples of it.",
+          "Network address = host bits all 0; broadcast = host bits all 1; usable = in between.",
+          "Common masks: `/24`=…0, `/26`=…192, `/27`=…224, `/28`=…240, `/30`=…252.",
+          "`/30` gives 2 usable hosts — ideal for point-to-point router links."
+        ],
+        "realWorld": "On a router, `ip address 192.168.1.1 255.255.255.0` sets an interface address + mask; `show ip interface brief` confirms it. Connected (`C`) and local (`L`, /32) routes appear automatically once the interface is up/up.",
+        "commonMistakes": [
+          "Forgetting to subtract 2 for the network and broadcast addresses.",
+          "Assigning the network or broadcast address to a host.",
+          "Mixing up number-of-subnets (2^b) with hosts-per-subnet (2^h − 2).",
+          "Using the wrong octet for the block size on /8–/16 masks."
+        ],
+        "related": [
+          "1.7 Private IPv4",
+          "1.8 IPv6 addressing",
+          "3.1 Routing table"
+        ],
+        "advanced": "VLSM (variable-length subnet masks) applies different masks to different subnets so each is sized to its host count, conserving addresses — e.g. /30 for WAN links and /26 for user LANs in the same network. Always allocate largest subnets first.",
+        "sourceRefs": [
+          {
+            "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
+            "chapter": "Ch 11-14 + App N (VLSM)",
+            "confidence": 0.95
+          },
+          {
+            "sourceName": "Jeremy's IT Lab — CCNA 200-301 Notes",
+            "chapter": "Subnetting",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": "1.6-c-q1",
+          "concept": "hosts per subnet",
+          "type": "application",
+          "difficulty": "easy",
+          "question": "How many usable host addresses are in a `/26` subnet?",
+          "choices": [
+            "64",
+            "62",
+            "30",
+            "126"
+          ],
+          "correctIndex": 1,
+          "explanation": "/26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-c-q2",
+          "concept": "block size",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "What is the block size for a `/27` mask (`255.255.255.224`)?",
+          "choices": [
+            "16",
+            "32",
+            "64",
+            "8"
+          ],
+          "correctIndex": 1,
+          "explanation": "Block size = 256 − 224 = 32.",
+          "ckuIds": [
+            "CKU-BLOCK-SIZE"
+          ]
+        },
+        {
+          "id": "1.6-c-q3",
+          "concept": "broadcast address",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "What is the broadcast address of `192.168.10.0/26`?",
+          "choices": [
+            "192.168.10.255",
+            "192.168.10.63",
+            "192.168.10.127",
+            "192.168.10.64"
+          ],
+          "correctIndex": 1,
+          "explanation": "Block 64 → first subnet is .0–.63, so broadcast = .63.",
+          "ckuIds": [
+            "CKU-BLOCK-SIZE",
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-c-q4",
+          "concept": "find the subnet",
+          "type": "scenario",
+          "difficulty": "hard",
+          "question": "Which subnet does host `172.16.0.100/26` belong to?",
+          "choices": [
+            "172.16.0.0",
+            "172.16.0.64",
+            "172.16.0.96",
+            "172.16.0.128"
+          ],
+          "correctIndex": 1,
+          "explanation": "Block 64 → boundaries .0/.64/.128/.192; 100 falls in .64–.127, so the subnet is 172.16.0.64.",
+          "ckuIds": [
+            "CKU-BLOCK-SIZE"
+          ]
+        },
+        {
+          "id": "1.6-c-q5",
+          "concept": "mask for host count",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which mask provides at least 30 usable hosts with the fewest addresses wasted?",
+          "choices": [
+            "/26",
+            "/27",
+            "/28",
+            "/29"
+          ],
+          "correctIndex": 1,
+          "explanation": "/27 → 2^5 − 2 = 30 usable hosts exactly.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-c-q6",
+          "concept": "point-to-point",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "How many usable hosts does a `/30` subnet provide?",
+          "choices": [
+            "1",
+            "2",
+            "4",
+            "0"
+          ],
+          "correctIndex": 1,
+          "explanation": "/30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-c-q7",
+          "concept": "number of subnets",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Borrowing 3 host bits from a `/24`, how many subnets do you create?",
+          "choices": [
+            "6",
+            "8",
+            "16",
+            "3"
+          ],
+          "correctIndex": 1,
+          "explanation": "Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-c-q8",
+          "concept": "CIDR conversion",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "What is the CIDR prefix for the mask `255.255.255.240`?",
+          "choices": [
+            "/26",
+            "/27",
+            "/28",
+            "/29"
+          ],
+          "correctIndex": 2,
+          "explanation": "240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
+          "ckuIds": [
+            "CKU-SUBNET-MASK"
+          ]
+        },
+        {
+          "id": "1.6-c-q9",
+          "concept": "usable range",
+          "type": "scenario",
+          "difficulty": "hard",
+          "question": "What is the usable host range of `10.0.0.0/29`?",
+          "choices": [
+            "10.0.0.1 – 10.0.0.6",
+            "10.0.0.1 – 10.0.0.7",
+            "10.0.0.0 – 10.0.0.7",
+            "10.0.0.1 – 10.0.0.14"
+          ],
+          "correctIndex": 0,
+          "explanation": "Block 8 → network .0, broadcast .7, usable .1–.6.",
+          "ckuIds": [
+            "CKU-BLOCK-SIZE",
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-c-q10",
+          "concept": "network/host bits",
+          "type": "definition",
+          "difficulty": "easy",
+          "question": "How many host bits are in a `/26` address?",
+          "choices": [
+            "26",
+            "6",
+            "8",
+            "4"
+          ],
+          "correctIndex": 1,
+          "explanation": "32 − 26 = 6 host bits.",
+          "ckuIds": [
+            "CKU-SUBNET-MASK"
+          ]
+        },
+        {
+          "id": "1.6-c-q11",
+          "concept": "reserved addresses",
+          "type": "true-false",
+          "difficulty": "easy",
+          "question": "True or False: The network and broadcast addresses of a subnet can be assigned to hosts.",
+          "choices": [
+            "True",
+            "False"
+          ],
+          "correctIndex": 1,
+          "explanation": "False — both are reserved, which is why hosts = 2^h − 2.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-c-q12",
+          "concept": "mask selection",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "A LAN needs 200 hosts. What is the smallest standard mask that fits?",
+          "choices": [
+            "/24",
+            "/25",
+            "/23",
+            "/26"
+          ],
+          "correctIndex": 0,
+          "explanation": "/24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "1.6-f1",
+          "ckuId": "CKU-SUBNETTING",
+          "front": "Formula for usable hosts per subnet?",
+          "back": "2^h − 2, where h = host bits (subtract network + broadcast)."
+        },
+        {
+          "id": "1.6-f2",
+          "ckuId": "CKU-SUBNETTING",
+          "front": "Formula for number of subnets when borrowing b bits?",
+          "back": "2^b."
+        },
+        {
+          "id": "1.6-f3",
+          "ckuId": "CKU-BLOCK-SIZE",
+          "front": "How do you find the block size (magic number)?",
+          "back": "256 − the interesting mask octet. Subnets start at multiples of it."
+        },
+        {
+          "id": "1.6-f4",
+          "ckuId": "CKU-SUBNETTING",
+          "front": "Network vs broadcast address of a subnet?",
+          "back": "Network = host bits all 0 (first); broadcast = host bits all 1 (last)."
+        },
+        {
+          "id": "1.6-f5",
+          "ckuId": "CKU-SUBNET-MASK",
+          "front": "Masks for /26, /27, /28, /30?",
+          "back": "255.255.255.192 / .224 / .240 / .252."
+        },
+        {
+          "id": "1.6-f6",
+          "ckuId": "CKU-SUBNETTING",
+          "front": "Hosts in /30, /29, /28, /27?",
+          "back": "2, 6, 14, 30."
+        },
+        {
+          "id": "1.6-f7",
+          "ckuId": "CKU-SUBNETTING",
+          "front": "Why use a /30?",
+          "back": "2 usable hosts — exactly right for a point-to-point router link."
+        },
+        {
+          "id": "1.6-f8",
+          "ckuId": "CKU-SUBNET-MASK",
+          "front": "What does the CIDR /n mean?",
+          "back": "The number of network (1) bits in the mask, counted from the left."
+        }
+      ],
+      "commands": [
+        {
+          "id": "1.6-cmd1",
+          "command": "ip address <ip> <mask>",
+          "mode": "interface config",
+          "purpose": "Assign an IPv4 address and subnet mask to an interface.",
+          "example": "R1(config-if)# ip address 192.168.1.1 255.255.255.0",
+          "ckuIds": [
+            "CKU-IPV4-ADDRESSING",
+            "CKU-SUBNET-MASK"
+          ]
+        },
+        {
+          "id": "1.6-cmd2",
+          "command": "show ip interface brief",
+          "mode": "privileged EXEC",
+          "purpose": "List interfaces with their IP address and up/down status.",
+          "example": "R1# show ip interface brief",
+          "ckuIds": [
+            "CKU-IPV4-ADDRESSING"
+          ]
+        },
+        {
+          "id": "1.6-cmd3",
+          "command": "show ip route connected",
+          "mode": "privileged EXEC",
+          "purpose": "Show the connected/local routes created from interface addressing.",
+          "example": "R1# show ip route connected",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "id": "1.6-g1",
+          "term": "Subnet mask",
+          "definition": "32-bit value of contiguous 1s (network) then 0s (host) that divides an IPv4 address.",
+          "ckuIds": [
+            "CKU-SUBNET-MASK"
+          ]
+        },
+        {
+          "id": "1.6-g2",
+          "term": "CIDR / prefix length",
+          "definition": "The /n notation giving the number of network bits in the mask.",
+          "ckuIds": [
+            "CKU-SUBNET-MASK"
+          ]
+        },
+        {
+          "id": "1.6-g3",
+          "term": "Block size",
+          "definition": "256 minus the interesting mask octet; the increment between subnet boundaries.",
+          "ckuIds": [
+            "CKU-BLOCK-SIZE"
+          ]
+        },
+        {
+          "id": "1.6-g4",
+          "term": "Network address",
+          "definition": "The first address of a subnet (host bits all 0); identifies the subnet, not a host.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-g5",
+          "term": "Broadcast address",
+          "definition": "The last address of a subnet (host bits all 1); reaches all hosts in the subnet.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-g6",
+          "term": "VLSM",
+          "definition": "Variable-Length Subnet Masking — using different masks per subnet to match each subnet’s size.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        }
+      ],
+      "mnemonics": [
+        {
+          "id": "1.6-m1",
+          "title": "Block size",
+          "mnemonic": "“256 minus mask = jump.”",
+          "explanation": "Subtract the interesting mask octet from 256 to get the block size; subnet IDs jump by that amount.",
+          "ckuIds": [
+            "CKU-BLOCK-SIZE"
+          ]
+        },
+        {
+          "id": "1.6-m2",
+          "title": "Powers of 2",
+          "mnemonic": "1, 2, 4, 8, 16, 32, 64, 128",
+          "explanation": "Memorize the powers of 2 left-to-right; mask octet values are 128, 192, 224, 240, 248, 252, 254, 255.",
+          "ckuIds": [
+            "CKU-SUBNET-MASK"
+          ]
+        }
+      ],
+      "examTraps": [
+        {
+          "id": "1.6-t1",
+          "trap": "Forgetting the “− 2” in the host formula.",
+          "correction": "Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-t2",
+          "trap": "Confusing subnets (2^b) with hosts (2^h − 2).",
+          "correction": "Borrowed bits give the number of subnets; remaining host bits give hosts per subnet.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-t3",
+          "trap": "Using the wrong octet for block size.",
+          "correction": "Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet).",
+          "ckuIds": [
+            "CKU-BLOCK-SIZE"
+          ]
+        },
+        {
+          "id": "1.6-t4",
+          "trap": "Assuming /31 and /32 are normal host subnets.",
+          "correction": "/32 is a single host route; /31 is a special 2-address point-to-point (RFC 3021) with no broadcast.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        }
+      ],
+      "misconceptions": [
+        {
+          "id": "1.6-x1",
+          "misconception": "A bigger prefix (/27) means a bigger network.",
+          "reality": "A larger prefix number means MORE network bits and FEWER hosts — a smaller subnet.",
+          "example": "/24 has 254 hosts; /27 has only 30.",
+          "ckuIds": [
+            "CKU-SUBNET-MASK"
+          ]
+        },
+        {
+          "id": "1.6-x2",
+          "misconception": "You can assign the .0 or .255 address to a host.",
+          "reality": "Within a subnet the all-0 host (network) and all-1 host (broadcast) are reserved.",
+          "example": "In 192.168.1.0/24, .0 and .255 are not assignable.",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ]
+        },
+        {
+          "id": "1.6-x3",
+          "misconception": "The block size is always in the 4th octet.",
+          "reality": "It applies to whichever octet the mask splits — e.g. a /18 subnets in the 3rd octet.",
+          "example": "/18 = 255.255.192.0 → block 64 in the third octet.",
+          "ckuIds": [
+            "CKU-BLOCK-SIZE"
+          ]
+        }
+      ],
+      "diagram": {
+        "id": "DIAG-1.6-subnets",
+        "title": "A /26 splits a /24 into four",
+        "type": "process",
+        "ckuIds": [
+          "CKU-SUBNETTING",
+          "CKU-BLOCK-SIZE"
+        ],
+        "nodes": [
+          {
+            "id": "net",
+            "label": "192.168.1.0 /24",
+            "type": "subnet",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "id": "s0",
+            "label": ".0–.63 (/26)",
+            "type": "subnet",
+            "x": 18,
+            "y": 60
+          },
+          {
+            "id": "s1",
+            "label": ".64–.127",
+            "type": "subnet",
+            "x": 39,
+            "y": 60
+          },
+          {
+            "id": "s2",
+            "label": ".128–.191",
+            "type": "subnet",
+            "x": 61,
+            "y": 60
+          },
+          {
+            "id": "s3",
+            "label": ".192–.255",
+            "type": "router",
+            "x": 82,
+            "y": 60,
+            "status": "highlighted"
+          }
+        ],
+        "links": [
+          {
+            "id": "b0",
+            "source": "net",
+            "target": "s0",
+            "label": "block 64"
+          },
+          {
+            "id": "b1",
+            "source": "net",
+            "target": "s1"
+          },
+          {
+            "id": "b2",
+            "source": "net",
+            "target": "s2"
+          },
+          {
+            "id": "b3",
+            "source": "net",
+            "target": "s3"
+          }
+        ],
+        "annotations": [
+          "/26 borrows 2 bits → 4 subnets, block size 64.",
+          "Each subnet: 62 usable hosts (.1–.62 in the first)."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)",
+            "chapter": "Ch 14",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlow": {
+        "id": "FLOW-1.6-findsubnet",
+        "title": "Find an address’s subnet",
+        "ckuIds": [
+          "CKU-BLOCK-SIZE",
+          "CKU-SUBNETTING"
+        ],
+        "diagramId": "DIAG-1.6-subnets",
+        "steps": [
+          {
+            "id": "s1",
+            "order": 1,
+            "title": "Block size",
+            "action": "Compute 256 − interesting mask octet.",
+            "successState": "matched"
+          },
+          {
+            "id": "s2",
+            "order": 2,
+            "title": "Find boundary",
+            "action": "Round the address’s octet down to the nearest multiple of the block size = network address.",
+            "successState": "matched"
+          },
+          {
+            "id": "s3",
+            "order": 3,
+            "title": "Broadcast",
+            "action": "Add block size − 1 to the network octet = broadcast address.",
+            "successState": "matched"
+          },
+          {
+            "id": "s4",
+            "order": 4,
+            "title": "Usable range",
+            "action": "Everything between network+1 and broadcast−1 is assignable.",
+            "successState": "forwarded"
+          }
+        ]
+      }
+    }
+  ],
   "labs": [],
   "counts": {
-    "ckus": 0,
-    "questions": 0,
-    "flashcards": 0,
-    "commands": 0,
-    "glossary": 0,
-    "mnemonics": 0,
-    "examTraps": 0,
-    "misconceptions": 0,
+    "ckus": 4,
+    "questions": 12,
+    "flashcards": 8,
+    "commands": 3,
+    "glossary": 6,
+    "mnemonics": 2,
+    "examTraps": 4,
+    "misconceptions": 3,
     "labs": 0
   }
 }
