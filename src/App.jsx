@@ -676,7 +676,11 @@ function pickReviewSet(banked, accuracy = null) {
     .map(x => x.q)
 }
 // Records an attempt + optional confidence rating against a banked question.
-async function recordQuizResult(objectiveId, questionId, { correct, rating } = {}) {
+// `schedule` gates spaced-repetition: a question only joins the review queue
+// once its section has cleared the mastery gate (see enableSectionReview).
+// Reviewing material the learner doesn't yet understand just reinforces
+// confusion, so until the gate opens we record attempts but assign no schedule.
+async function recordQuizResult(objectiveId, questionId, { correct, rating, schedule = true } = {}) {
   const bank = await loadQuizBank()
   const list = bank[objectiveId]
   if (!list) return
@@ -684,50 +688,93 @@ async function recordQuizResult(objectiveId, questionId, { correct, rating } = {
   if (!q) return
   if (typeof correct === 'boolean') {
     q.attempts.push({ correct, at: Date.now() })
-    q.srs = nextSrs(q.srs, correct) // advance spaced-repetition schedule
+    if (schedule) q.srs = nextSrs(q.srs, correct) // advance spaced-repetition schedule
   }
   if (rating) q.ratings.push({ value: rating, at: Date.now() })
   await saveQuizBank(bank)
 }
 
 /* =========================================================================
-   SPACED REPETITION (SM-2 lite) — every answered question carries a schedule
-   so it returns for review on the right day, across sessions. All local.
-   srs shape: { due (ts), interval (days), ease, reps }
+   SPACED REPETITION — expanding fixed-ladder scheduler grounded in the
+   forgetting curve. Each answered question carries a schedule so it returns
+   for review on the right day, across sessions and devices (synced). All local.
+   srs shape: { due (ts), interval (days), reps (consecutiveCorrect),
+                lapses, intervalIndex }
    ========================================================================= */
 const DAY_MS = 86400000
+// Expanding intervals (days): 2d → 1wk → 2wk → 1mo → 2mo (maintenance).
+const SRS_LADDER = [2, 7, 14, 30, 60]
+const MASTERY_GATE = 0.7 // section accuracy required before reviews schedule
 function nextSrs(prev, correct) {
-  const s = prev || { interval: 0, ease: 2.3, reps: 0 }
-  let { interval, ease, reps } = s
+  const s = prev || { reps: 0, lapses: 0 }
+  let reps = s.reps || 0
+  let lapses = s.lapses || 0
   if (correct) {
-    reps += 1
-    ease = Math.min(2.8, ease + 0.08)
-    interval = reps === 1 ? 1 : reps === 2 ? 3 : Math.round(interval * ease)
+    reps += 1                       // advance to the next, longer interval
   } else {
-    reps = 0
-    ease = Math.max(1.3, ease - 0.2)
-    interval = 1 // relearn tomorrow
+    reps = 0                        // lapse: reset to the 2-day interval + flag
+    lapses += 1
   }
-  return { interval, ease, reps, due: Date.now() + interval * DAY_MS }
+  const intervalIndex = Math.min(Math.max(reps - 1, 0), SRS_LADDER.length - 1)
+  const interval = SRS_LADDER[intervalIndex]
+  return { interval, reps, lapses, intervalIndex, due: Date.now() + interval * DAY_MS }
 }
-// All banked questions due for review now (seen at least once), across every
-// objective, soonest-due first.
+// Mastery gate: once a learner clears MASTERY_GATE on a section, its already-
+// answered questions enter the review queue (seeded from their last attempt).
+// Mirrors seedTestedOutReview but for the normal "studied + passed" path.
+async function enableSectionReview(objectiveId) {
+  const bank = await loadQuizBank()
+  const list = bank[objectiveId]
+  if (!list) return
+  let changed = false
+  list.forEach(q => {
+    if ((q.attempts?.length || 0) > 0 && !q.srs) {
+      q.srs = nextSrs(undefined, q.attempts[q.attempts.length - 1].correct)
+      changed = true
+    }
+  })
+  if (changed) await saveQuizBank(bank)
+}
+// All banked questions due for review now (scheduled + seen), across every
+// objective. Returned INTERLEAVED: round-robin across sections so similar
+// concepts never sit adjacent — forcing discrimination strengthens recall.
 async function loadDueQuestions(limit = 20) {
   const bank = await loadQuizBank()
   const now = Date.now()
-  const due = []
+  const bySection = {}
   for (const objectiveId of Object.keys(bank)) {
     for (const q of bank[objectiveId]) {
-      if ((q.attempts?.length || 0) === 0) continue
-      const dueAt = q.srs?.due ?? 0
-      if (dueAt <= now) due.push({ ...q, objectiveId, dueAt })
+      if (!q.srs || (q.attempts?.length || 0) === 0) continue
+      if ((q.srs.due ?? 0) <= now) {
+        (bySection[objectiveId] ||= []).push({ ...q, objectiveId, dueAt: q.srs.due ?? 0 })
+      }
     }
   }
-  due.sort((a, b) => a.dueAt - b.dueAt)
-  return due.slice(0, limit)
+  // Within a section, soonest-due first; lightly randomise section order so a
+  // session isn't always anchored to the same topic.
+  const queues = Object.values(bySection)
+    .map(arr => arr.sort((a, b) => a.dueAt - b.dueAt))
+    .sort(() => Math.random() - 0.5)
+  const interleaved = []
+  let added = true
+  while (added && interleaved.length < limit) {
+    added = false
+    for (const queue of queues) {
+      if (queue.length) { interleaved.push(queue.shift()); added = true; if (interleaved.length >= limit) break }
+    }
+  }
+  return interleaved
 }
 async function countDueQuestions() {
-  return (await loadDueQuestions(999)).length
+  const bank = await loadQuizBank()
+  const now = Date.now()
+  let n = 0
+  for (const objectiveId of Object.keys(bank)) {
+    for (const q of bank[objectiveId]) {
+      if (q.srs && (q.attempts?.length || 0) > 0 && (q.srs.due ?? 0) <= now) n++
+    }
+  }
+  return n
 }
 
 /* =========================================================================
@@ -1831,7 +1878,8 @@ async function seedTestedOutReview(objectiveId, questions) {
   bank[objectiveId].forEach(q => {
     if (incoming.has(normalizeQuestionText(q.question)) && (q.attempts?.length || 0) === 0) {
       q.attempts = [{ correct: true, at: now }]
-      q.srs = { interval: 7, ease: 2.3, reps: 1, due: now + 7 * DAY_MS }
+      // Tested out → seed at the 1-week interval (ladder index 1).
+      q.srs = { interval: SRS_LADDER[1], reps: 2, lapses: 0, intervalIndex: 1, due: now + SRS_LADDER[1] * DAY_MS }
     }
   })
   await saveQuizBank(bank)
@@ -2341,7 +2389,8 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
     const correct = idx === current.correctIndex
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
-    if (current.id) recordQuizResult(objective.id, current.id, { correct })
+    // Only schedule reviews once the section has cleared the mastery gate.
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
     if (!correct) {
       onMissed({
@@ -3004,6 +3053,13 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
       lastSeen: Date.now(),
     })
     logEvent('user_completed_quiz', { objectiveId: objective.id, correct: stats.correct, total: stats.total, masteryScore })
+    // Mastery gate: once this session clears MASTERY_GATE, open the section for
+    // spaced review and seed its answered questions into the queue (one-time).
+    const sessionAcc = stats.total ? stats.correct / stats.total : 0
+    if (sessionAcc >= MASTERY_GATE && !entry.reviewEligible) {
+      enableSectionReview(objective.id)
+      onUpdateProgress(objective.id, { reviewEligible: true })
+    }
     // Celebrate a freshly-mastered topic (only on the transition, not repeats).
     if (mastered && status !== 'mastered') { celebrate(); haptic([12, 40, 12, 40, 18]) }
     // On reaching mastery, auto-package the topic for offline use (online only).
@@ -3412,21 +3468,26 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
    REVIEW SESSION — spaced-repetition review of all questions due today,
    pulled across every objective. Answering advances each card's schedule.
    ========================================================================= */
-function ReviewSession({ onBack, onMissed, onDone }) {
+const REVIEW_SESSION_CAP = 20
+function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
   const [phase, setPhase] = useState('loading') // loading | active | empty | done
   const [queue, setQueue] = useState([])
   const [current, setCurrent] = useState(null)
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
   const [stats, setStats] = useState({ correct: 0, total: 0 })
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     (async () => {
-      const due = await loadDueQuestions(20)
+      const due = await loadDueQuestions(REVIEW_SESSION_CAP)
       if (due.length === 0) { setPhase('empty'); return }
+      setTotal(due.length)
       setCurrent(due[0]); setQueue(due.slice(1)); setPhase('active')
     })()
   }, [])
+  // ~30s per question, shown as a gentle expectation (never a backlog count).
+  const estMin = Math.max(1, Math.round(total * 0.5))
 
   function answer(idx) {
     if (revealed) return
@@ -3474,10 +3535,11 @@ function ReviewSession({ onBack, onMissed, onDone }) {
   return (
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
         <h1 style={{ ...styles.h1, margin: 0 }}>Daily Review</h1>
-        <span style={styles.small}>{queue.length + 1} left</span>
+        <span style={styles.small}>{total - queue.length} of {total}</span>
       </div>
+      <div style={{ ...styles.small, marginBottom: 8 }}>Mixed sections · retrieval practice{revealed ? '' : ' — answer before revealing'}</div>
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
@@ -3505,6 +3567,14 @@ function ReviewSession({ onBack, onMissed, onDone }) {
                 correctIndex={current.correctIndex} selectedIndex={selected}
                 explanation={current.explanation}
               />
+            )}
+            {obj && (
+              <button
+                onClick={() => onOpenSection?.(obj)}
+                style={{ marginTop: 10, background: 'none', border: 'none', color: COLORS.sky, fontSize: 12, fontWeight: 600, cursor: 'pointer', padding: 0 }}
+              >
+                Review {obj.id} {obj.title} →
+              </button>
             )}
           </div>
         )}
@@ -3556,15 +3626,20 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         {offlineReady?.size > 0 && <> · ⤓ {offlineReady.size} offline-ready</>}
       </div>
       <ProgressBar value={totals.overall} max={1} accent="purple" label="Course mastery" sublabel={`${Math.round(totals.overall * 100)}%`} height={9} />
-      {dueCount > 0 && (
-        <button
-          className="ccna-hover"
-          style={{ ...styles.primaryBtn, marginBottom: 8, background: COLORS.mintDim, border: `1px solid ${COLORS.mintBorder}`, color: COLORS.mint }}
-          onClick={onOpenReview}
-        >
-          🔁 Daily Review — {dueCount} due
-        </button>
-      )}
+      {dueCount > 0 && (() => {
+        // Neutral, capped framing — never guilt-trip with a backlog count.
+        const ready = Math.min(dueCount, REVIEW_SESSION_CAP)
+        const estMin = Math.max(1, Math.round(ready * 0.5))
+        return (
+          <button
+            className="ccna-hover"
+            style={{ ...styles.primaryBtn, marginBottom: 8, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
+            onClick={onOpenReview}
+          >
+            📅 Today's Review — {ready} ready · ~{estMin} min
+          </button>
+        )
+      })()}
       <button style={{ ...styles.secondaryBtn, marginBottom: 16 }} onClick={onOpenMetrics}>📊 Learner Metrics</button>
 
       {suggestions.length > 0 && (
@@ -4791,7 +4866,7 @@ export default function App() {
         {view === 'missed' && <MissedReview missed={missed} onBack={() => setView('home')} onRemove={removeMissed} />}
         {view === 'tutor' && <TutorChat progress={progress} missed={missed} onBack={() => setView('home')} />}
         {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} onBack={() => setView('home')} onSelectObjective={selectObjective} />}
-        {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} />}
+        {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
         </div>
       </div>
       {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}
