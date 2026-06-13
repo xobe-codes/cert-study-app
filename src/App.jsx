@@ -364,6 +364,24 @@ function AiBudgetWarning() {
   )
 }
 
+// Small home-screen indicator showing how many AI calls have been made this session.
+function AiCallsIndicator() {
+  const count = useAiCallCount()
+  if (count === 0) return null
+  const overBudget = count > AI_BUDGET_LIMIT
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 6,
+      fontSize: 11, color: overBudget ? COLORS.amber : COLORS.silverMid,
+      marginBottom: 12,
+    }}>
+      <span style={{ opacity: 0.7 }}>🤖</span>
+      <span>{count} AI call{count === 1 ? '' : 's'} this session</span>
+      {overBudget && <span style={{ color: COLORS.amber, fontWeight: 600 }}>· High usage</span>}
+    </div>
+  )
+}
+
 /* ---- Token usage + cost telemetry (local; no network) ---- */
 // $ per 1M tokens. Cache reads are ~0.1x input; cache writes ~1.25x.
 const PRICING = {
@@ -464,10 +482,23 @@ async function askClaudeJSON({ system, messages, max_tokens = 1500, model = MODE
 
 // Streaming text completion — for long tutor replies, shows tokens as they
 // arrive instead of one long wait. `onDelta(textChunk)` fires per chunk;
-// resolves with the full text once the stream ends. Falls back to a plain
-// error (no retry loop) since a partial stream can't be cleanly retried.
+// resolves with the full text once the stream ends. Retries on 529/5xx
+// before the stream starts (partial in-flight streams are not retried).
 async function askClaudeStream({ system, messages, max_tokens = 1000, model = MODEL, feature = 'other', onDelta }) {
-  const res = await claudeFetch({ model, max_tokens, system, messages, stream: true })
+  const streamDelays = [1000, 3000]
+  const wait = (ms) => new Promise(r => setTimeout(r, ms))
+  let res
+  for (let attempt = 0; attempt <= 2; attempt++) {
+    res = await claudeFetch({ model, max_tokens, system, messages, stream: true })
+    if (res.ok) break
+    if ((res.status === 529 || res.status >= 500) && attempt < 2) {
+      await wait(streamDelays[attempt])
+      continue
+    }
+    let detail = ''
+    try { detail = (await res.json())?.error?.message || '' } catch { /* not JSON */ }
+    throw new Error(`Claude API error ${res.status}${detail ? `: ${detail}` : ''}`)
+  }
   if (!res.ok) {
     let detail = ''
     try { detail = (await res.json())?.error?.message || '' } catch { /* not JSON */ }
@@ -508,6 +539,7 @@ async function askClaudeStream({ system, messages, max_tokens = 1000, model = MO
   }
   if (Object.keys(usage).length) logUsage(feature, model, usage)
   if (!text) throw new Error('Claude API returned an empty response.')
+  bumpSessionAiCalls()
   return text
 }
 
@@ -1414,7 +1446,7 @@ function accentColors(accent) {
 }
 
 const styles = {
-  page: { minHeight: '100vh', background: COLORS.bg, color: COLORS.silver, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', paddingBottom: 32, paddingTop: 'env(safe-area-inset-top)', paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' },
+  page: { minHeight: '100vh', background: COLORS.bg, color: COLORS.silver, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', paddingBottom: 'calc(env(safe-area-inset-bottom) + 80px)', paddingTop: 'env(safe-area-inset-top)', paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' },
   container: { maxWidth: 640, margin: '0 auto', padding: '16px 16px 40px' },
   card: { background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14, padding: 16, marginBottom: 12, boxShadow: '0 4px 16px #00000033' },
   cardHover: { background: COLORS.cardHover },
@@ -2465,6 +2497,7 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
       )}
       {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
       {recalled && curated && <><SectionLabel icon="📖" label="READING" /><CuratedReading data={curated} /></>}
+      {recalled && !curated && <AiBudgetWarning />}
       {recalled && !curated && content && !loading && (
         <>
           <SectionLabel icon="📖" label="READING" />
@@ -2777,6 +2810,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
             ? `${bankSize} questions saved for this objective. Review sessions reuse them — no API call. Wrong answers and "Need practice" ratings come back first.`
             : 'Generate a question bank for this objective. Questions are stored so future reviews cost nothing.'}
         </p>
+        {!hasBank && <AiBudgetWarning />}
         <button style={styles.primaryBtn} onClick={() => startQuiz(false)}>{hasBank ? 'Review from bank' : 'Build question bank'}</button>
         {hasBank && (
           <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => startQuiz(true)}>Generate new questions</button>
@@ -5207,6 +5241,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenMetrics}>📊 Metrics</button>
         <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenLabs}>🧪 Labs</button>
       </div>
+      <AiCallsIndicator />
 
       {suggestions.length > 0 && (
         <div style={{ marginBottom: 12 }} className="ccna-stagger">
@@ -6493,12 +6528,15 @@ export default function App() {
           button:active:not(:disabled) { transform: none; }
         }
       `}</style>
-      {/* Search button — fixed top-center */}
+      {/* Search button — fixed bottom-center, accessible from every screen */}
       <button
         onClick={() => setShowSearch(true)}
         title="Search objectives"
         style={{
-          position: 'fixed', top: 10, left: '50%', transform: 'translateX(-50%)', zIndex: 200,
+          position: 'fixed',
+          bottom: 'calc(env(safe-area-inset-bottom) + 20px)',
+          left: '50%', transform: 'translateX(-50%)',
+          zIndex: 200,
           height: 40, padding: '0 18px',
           borderRadius: 999, border: `1px solid ${COLORS.border}`, background: COLORS.card,
           color: COLORS.silverMid, fontSize: 13, cursor: 'pointer', display: 'flex',
@@ -6507,12 +6545,15 @@ export default function App() {
       >
         🔍 Search
       </button>
+      {/* Theme toggle — fixed top-right with iOS safe area */}
       <button
         onClick={toggleTheme}
         aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
         title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
         style={{
-          position: 'fixed', top: 10, right: 12, zIndex: 200, width: 40, height: 40,
+          position: 'fixed',
+          top: 'calc(env(safe-area-inset-top) + 10px)',
+          right: 12, zIndex: 200, width: 40, height: 40,
           borderRadius: 999, border: `1px solid ${COLORS.border}`, background: COLORS.card,
           color: COLORS.silver, fontSize: 18, cursor: 'pointer', display: 'flex',
           alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 10px #00000033',
