@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
-import { getCurated, hasCurated, getCuratedQuestions } from './data/ccnaCurated.js'
+import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from './data/ccnaCurated.js'
 import { getLab, allLabs, labsForObjective, labsByDomain, normalizeCliLine, labProgress } from './data/ccnaLabs.js'
 
 /* =========================================================================
@@ -2225,7 +2225,7 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
   const [recalled, setRecalled] = useState(false) // retrieval-practice gate
   const [stage, setStage] = useState('assess') // assess | lesson — pre-assessment gates the lesson
   const testedOut = !!progress?.[objective.id]?.testedOut
-  const curated = hasCurated(objective.id) ? getCurated(objective.id) : null
+  const curated = hasCuratedReading(objective.id) ? getCurated(objective.id) : null
 
   useEffect(() => {
     setRecalled(false)
@@ -3597,38 +3597,42 @@ function quadrantOf(acc, conf) {
 function ContentCoverage({ onOpen }) {
   const rows = DOMAINS.map(d => {
     const objs = d.objectives
-    const curated = objs.filter(o => hasCurated(o.id)).length
+    const curated = objs.filter(o => hasCuratedReading(o.id)).length
+    const questionsOnly = objs.filter(o => !hasCuratedReading(o.id) && hasCuratedQuestions(o.id)).length
     const labs = objs.filter(o => labsForObjective(o.id).length > 0).length
-    return { ...d, total: objs.length, curated, labs, objs }
+    return { ...d, total: objs.length, curated, questionsOnly, labs, objs }
   })
   const totalObj = rows.reduce((s, r) => s + r.total, 0)
   const totalCurated = rows.reduce((s, r) => s + r.curated, 0)
+  const totalQuestionsOnly = rows.reduce((s, r) => s + r.questionsOnly, 0)
   const totalLabs = rows.reduce((s, r) => s + r.labs, 0)
   const [openId, setOpenId] = useState(null)
 
   return (
     <div style={{ ...styles.card }}>
       <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5, marginBottom: 4 }}>CONTENT COVERAGE</div>
-      <div style={{ ...styles.small, marginBottom: 10 }}>{totalCurated}/{totalObj} objectives curated · {totalLabs} with labs. Uncurated objectives still work via AI (hybrid).</div>
+      <div style={{ ...styles.small, marginBottom: 10 }}>{totalCurated}/{totalObj} objectives curated{totalQuestionsOnly > 0 ? ` · ${totalQuestionsOnly} with curated questions only` : ''} · {totalLabs} with labs. Uncurated objectives still work via AI (hybrid).</div>
       <ProgressBar value={totalCurated} max={totalObj} accent="mint" label="Curated (static, source-grounded)" sublabel={`${totalCurated}/${totalObj}`} height={8} />
       {rows.map(r => (
         <div key={r.id} style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 8, marginTop: 8 }}>
           <button onClick={() => setOpenId(o => o === r.id ? null : r.id)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
             <span style={{ flex: 1, fontSize: 13, color: COLORS.silver }}>{r.name}</span>
             <span style={{ ...styles.pill(r.curated === r.total ? 'mint' : r.curated > 0 ? 'amber' : 'silver'), fontSize: 10 }}>{r.curated}/{r.total} curated</span>
+            {r.questionsOnly > 0 && <span style={{ ...styles.pill('sky'), fontSize: 10 }}>{r.questionsOnly} Q-only</span>}
             {r.labs > 0 && <span style={{ ...styles.pill('sky'), fontSize: 10 }}>🧪 {r.labs}</span>}
             <span style={{ color: COLORS.silverMid, fontSize: 12 }}>{openId === r.id ? '−' : '+'}</span>
           </button>
           {openId === r.id && (
             <div style={{ marginTop: 8 }}>
               {r.objs.map(o => {
-                const c = hasCurated(o.id), l = labsForObjective(o.id).length > 0
+                const c = hasCuratedReading(o.id), q = !c && hasCuratedQuestions(o.id), l = labsForObjective(o.id).length > 0
                 return (
                   <button key={o.id} onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-                    <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : COLORS.silverDim, flexShrink: 0 }} />
-                    <span style={{ flex: 1, fontSize: 12, color: c ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
+                    <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : q ? COLORS.sky : COLORS.silverDim, flexShrink: 0 }} />
+                    <span style={{ flex: 1, fontSize: 12, color: c || q ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
                     {c && <span style={{ fontSize: 9, color: COLORS.mint }}>CURATED</span>}
-                    {!c && <span style={{ fontSize: 9, color: COLORS.silverDim }}>AI</span>}
+                    {q && <span style={{ fontSize: 9, color: COLORS.sky }}>QUESTIONS</span>}
+                    {!c && !q && <span style={{ fontSize: 9, color: COLORS.silverDim }}>AI</span>}
                     {l && <span style={{ fontSize: 11 }}>🧪</span>}
                   </button>
                 )

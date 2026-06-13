@@ -1525,15 +1525,21 @@ const CURATED = {
   [OBJ_25.objectiveId]: OBJ_25, [OBJ_34.objectiveId]: OBJ_34, [OBJ_41.objectiveId]: OBJ_41, [OBJ_55.objectiveId]: OBJ_55,
 }
 
-/** Objective IDs that have curated static content (the rest fall back to AI). */
+/** Objective IDs that have ANY curated static content (reading and/or questions). */
 export const curatedObjectiveIds = new Set(Object.keys(CURATED))
 export function hasCurated(objectiveId) { return curatedObjectiveIds.has(objectiveId) }
 export function getCurated(objectiveId) { return CURATED[objectiveId] || null }
 
+/** True if this objective has a curated reading (source-grounded explanation, no AI). */
+export function hasCuratedReading(objectiveId) { return !!CURATED[objectiveId]?.reading }
+
+/** True if this objective has curated (static, zero-API) questions. */
+export function hasCuratedQuestions(objectiveId) { return (CURATED[objectiveId]?.questions?.length || 0) > 0 }
+
 /** Curated questions reshaped to the app's quiz-bank question shape. */
 export function getCuratedQuestions(objectiveId) {
   const o = CURATED[objectiveId]
-  if (!o) return []
+  if (!o?.questions) return []
   return o.questions.map(q => ({
     question: q.question, choices: q.choices, correctIndex: q.correctIndex,
     explanation: q.explanation, type: q.type, difficulty: q.difficulty, concept: q.concept,

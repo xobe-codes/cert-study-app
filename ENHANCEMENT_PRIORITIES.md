@@ -10,7 +10,7 @@ Goal: enhance learning effectiveness AND the AI experience, in priority order. W
 
 1. ~~Import question bank — Domain 4 first (proves converter pipeline)~~ — **done** (4.1 pilot, 8→20 questions; see PROJECT_LOG.md item 9. 4.2-4.9 deferred until item 9 curation or item 3 fallback work)
 2. ~~Resolve `_V1` file naming (housekeeping, low risk — do anytime, doesn't block anything)~~ — **done**, renamed back to PROJECT_PROFILE.md/COMMANDS.md/RISKY_AREAS.md (no other doc used a version suffix)
-3. Per-content-type hybrid fallback in App.jsx (static questions usable even with AI-only reading)
+3. ~~Per-content-type hybrid fallback in App.jsx (static questions usable even with AI-only reading)~~ — **done**, see PROJECT_LOG.md item 10
 4. Onboarding + diagnostic placement test *(not blocked — can slot in as a checkpoint break)*
 5. Exam Readiness Score hero metric on Home *(not blocked — can slot in as a checkpoint break)*
 6. Domain 5 ID crosswalk decision
@@ -55,7 +55,7 @@ This is the currently-running track, working item-by-item with PROJECT_LOG.md up
 
 1. **Import question bank — Domain 4 first** — clean 1:1 ID mapping, proves the converter pipeline end-to-end. *(feeds into P0-3 and P1-7/8 by growing the real question pool)*
 2. ~~**Resolve `_V1` file naming**~~ — **done**, see MASTER SEQUENCE item 2 above.
-3. **Per-content-type hybrid fallback in App.jsx** — use static imported questions even when reading/CKUs for that objective are still AI-generated. *(directly enables P0-3 "MVP 12" curation to ship incrementally — questions and reading no longer need to land together)*
+3. ~~**Per-content-type hybrid fallback in App.jsx**~~ — **done**, see MASTER SEQUENCE item 3 above.
 4. **Domain 5 ID crosswalk decision** — question-bank numbering vs. app's DOMAINS numbering mismatch (documented in PROJECT_LOG.md). Resolve before importing Domain 5.
 5. **Import remaining clean domains (2, 3, 6)** using the proven pipeline from item 1.
 6. **Decide orphaned question sets** — QB 2.9 (WLAN operational params), QB 5.4 (password policies), excluded 3.4 multi-area-OSPF cluster (14 Qs).
