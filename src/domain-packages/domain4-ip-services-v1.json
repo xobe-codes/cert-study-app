@@ -4,7 +4,7 @@
     "domainNumber": 4,
     "domainName": "IP Services",
     "version": "1",
-    "compiledAt": "2026-06-12T20:46:58.684Z",
+    "compiledAt": "2026-06-13T10:06:17.093Z",
     "curatedObjectives": 1,
     "labs": 2
   },
@@ -288,6 +288,223 @@
           "correctIndex": 0,
           "explanation": "True — PAT tracks translations by inside global IP + port.",
           "ckuIds": [
+            "CKU-PAT"
+          ]
+        },
+        {
+          "id": "4.1-q1",
+          "concept": "nat",
+          "type": "scenario",
+          "difficulty": "easy",
+          "question": "Which method will allow you to use RFC 1918 addresses for Internet requests?",
+          "choices": [
+            "CIDR",
+            "Classful addressing",
+            "NAT",
+            "VPN"
+          ],
+          "correctIndex": 2,
+          "explanation": "The source maps this item to answer C. The correct selection is: NAT",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q2",
+          "concept": "nat",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "Using the referenced source exhibit, what is the inside local IP address?",
+          "choices": [
+            "192.168.1.2 Host A",
+            "192.168.1.1 Router A Gi0/0",
+            "179.43.44.1 Router A S0/0",
+            "198.23.53.3 web server"
+          ],
+          "correctIndex": 0,
+          "explanation": "The source maps this item to answer A. The correct selection is: 192.168.1.2 Host A",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q3",
+          "concept": "nat",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "Using the referenced source exhibit, what is the inside global IP address?",
+          "choices": [
+            "192.168.1.2 Host A",
+            "192.168.1.1 Router A Gi0/0",
+            "179.43.44.1 Router A S0/0",
+            "198.23.53.3 web server"
+          ],
+          "correctIndex": 2,
+          "explanation": "The source maps this item to answer C. The correct selection is: 179.43.44.1 Router A S0/0",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q4",
+          "concept": "nat",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "Using the referenced source exhibit, what is the outside global IP address?",
+          "choices": [
+            "192.168.1.2 Host A",
+            "192.168.1.1 Router A Gi0/0",
+            "179.43.44.1 Router A S0/0",
+            "198.23.53.3 web server"
+          ],
+          "correctIndex": 3,
+          "explanation": "The source maps this item to answer D. The correct selection is: 198.23.53.3 web server",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q5",
+          "concept": "nat",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which command can view the NAT translations active on the router?",
+          "choices": [
+            "Router#show ip nat translations",
+            "Router#show nat translations",
+            "Router#debug ip nat translations",
+            "Router#show translations nat"
+          ],
+          "correctIndex": 0,
+          "explanation": "The source maps this item to answer A. The correct selection is: Router#show ip nat translations",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q6",
+          "concept": "nat",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which command display an overview of the current number of active NAT translations on the router, as well as other overview information?",
+          "choices": [
+            "Router#show ip nat translations",
+            "Router#show ip nat summary",
+            "Router#show ip nat status",
+            "Router#show ip nat statistics"
+          ],
+          "correctIndex": 3,
+          "explanation": "The source maps this item to answer D. The correct selection is: Router#show ip nat statistics",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q7",
+          "concept": "nat",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "Using the referenced source exhibit, which command will configure static NAT for the internal web server?",
+          "choices": [
+            "RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1",
+            "RouterA(config)#nat source static 192.168.1.3 179.43.44.1",
+            "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1",
+            "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1"
+          ],
+          "correctIndex": 0,
+          "explanation": "The source maps this item to answer A. The correct selection is: RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q8",
+          "concept": "nat",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "Using the referenced source exhibit, the enterprise owns the address block of 179.43.44.0/28. Which command create a NAT pool for Dynamic NAT?",
+          "choices": [
+            "RouterA(config)#ip nat pool EntPool 179.43.44.0/28",
+            "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
+            "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
+            "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
+          ],
+          "correctIndex": 3,
+          "explanation": "The source maps this item to answer D. The correct selection is: RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q9",
+          "concept": "nat",
+          "type": "scenario",
+          "difficulty": "medium",
+          "question": "When configuring dynamic NAT, why must you configure an access list?",
+          "choices": [
+            "The access list allows incoming access from outside global addresses.",
+            "The access list allows outgoing access from inside local addresses.",
+            "The access list allows outgoing access from outside local addresses.",
+            "The access list allows outgoing access from inside global addresses."
+          ],
+          "correctIndex": 1,
+          "explanation": "The source maps this item to answer B. The correct selection is: The access list allows outgoing access from inside local addresses.",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q10",
+          "concept": "nat",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which command wipe out all current NAT translations in the NAT table?",
+          "choices": [
+            "Router#no ip nat translation",
+            "Router#clear ip nat translation",
+            "Router#clear ip nat translation *",
+            "Router#clear ip nat"
+          ],
+          "correctIndex": 2,
+          "explanation": "The source maps this item to answer C. The correct selection is: Router#clear ip nat translation *",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q11",
+          "concept": "nat",
+          "type": "application",
+          "difficulty": "medium",
+          "question": "Which command can see real-time network address translations?",
+          "choices": [
+            "Router#show ip translations",
+            "Router#debug ip nat",
+            "Router#debug ip translations",
+            "Router#show ip nat"
+          ],
+          "correctIndex": 1,
+          "explanation": "The source maps this item to answer B. The correct selection is: Router#debug ip nat",
+          "ckuIds": [
+            "CKU-NAT"
+          ]
+        },
+        {
+          "id": "4.1-q12",
+          "concept": "nat",
+          "type": "application",
+          "difficulty": "hard",
+          "question": "Using the referenced source exhibit, which command will configure Port Address Translation?",
+          "choices": [
+            "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool",
+            "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool",
+            "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload",
+            "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool"
+          ],
+          "correctIndex": 2,
+          "explanation": "The source maps this item to answer C. The correct selection is: RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool...",
+          "ckuIds": [
+            "CKU-NAT",
             "CKU-PAT"
           ]
         }
@@ -1272,7 +1489,7 @@
   ],
   "counts": {
     "ckus": 3,
-    "questions": 8,
+    "questions": 20,
     "flashcards": 6,
     "commands": 3,
     "glossary": 4,

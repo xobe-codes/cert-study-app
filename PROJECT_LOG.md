@@ -10,9 +10,9 @@ See also: [PROJECT_PROFILE_V1.md](PROJECT_PROFILE_V1.md) (structure/stack), [COM
 
 - **Curated objectives**: 11 of 53 have static, source-grounded content + questions (no AI needed): `1.5`, `1.6`, `1.8`, `1.9`, `2.1`, `2.2`, `2.5`, `3.2`, `3.4`, `4.1`, `5.5`.
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
-- **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **Decision made to exclude 14** (3.4 multi-area OSPF cluster) → **884 importable**. **Not yet imported into the app.**
+- **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **Decision made to exclude 14** (3.4 multi-area OSPF cluster) → **884 importable**. **12 imported so far** (4.1, see Timeline item 9) → 872 remaining.
 - **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files created and committed (now named `PROJECT_PROFILE_V1.md`, `COMMANDS_V1.md`, `RISKY_AREAS_V1.md` — renamed with a `_V1` suffix after initial creation).
-- **Next planned work**: Build a question-bank converter script (Domain 4 first — clean 1:1 ID match), merge into `ccnaCurated.js`, then adjust the hybrid AI-fallback condition in `App.jsx` so static questions are used per-objective even if reading/CKU content is still AI-generated.
+- **Next planned work**: MASTER SEQUENCE item 2 (resolve `_V1` file naming) or item 3 (per-content-type hybrid fallback in `App.jsx`) — see `ENHANCEMENT_PRIORITIES.md`.
 - **Predicted outcome of full rollout**: ~77% of objectives (41/53) get static questions; ~23% (12/53) remain AI-only (mostly Domain 1, which has no question-bank source yet).
 
 ---
@@ -103,20 +103,39 @@ The question bank's objective numbering **does not always match** the app's `DOM
 
 App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5.11` (segmentation) have no clean question-bank coverage.
 
+### 9. MASTER SEQUENCE item 1 — Domain 4 question-bank import (4.1 pilot)
+
+**Goal**: prove the QB → `ccnaCurated.js` converter pipeline end-to-end on one objective before scaling to other domains.
+
+**Scoping finding**: `CURATED` in `ccnaCurated.js` is all-or-nothing per objective — `hasCurated()`/`getCurated()` require a full entry (`ckus`, `reading`, `questions`, etc.). Of Domain 4's 9 objectives, only **4.1** has a curated entry; 4.2-4.9 don't exist in `ccnaCurated.js` at all and would need full curation (item 9 in the MASTER SEQUENCE), not just a question import. So this pilot is scoped to **4.1 only**.
+
+**What was done**:
+- Converted all 12 questions from `~/Downloads/domain4-ip-services-validation/objective-4.1-nat-inside-source-source-questions.json` and appended them to `OBJ_41.questions` in `ccnaCurated.js` (8 → 20 questions, IDs `4.1-q1`..`4.1-q12` vs the existing hand-authored `4.1-c-q1`..`q8`).
+- **Mapping rules applied** (approved before implementation):
+  - `questionType` → `type`: `output-interpretation`/`command-analysis` → `application`, `scenario` → `scenario`.
+  - `difficulty`: `exam-ready` → `hard` (all other values pass through).
+  - `ckuIds`: filtered to 4.1's actual curated CKUs (`CKU-NAT`, `CKU-PAT`, `CKU-NAT-TERMS`) — dropped unmapped/contaminated IDs (e.g. stray `CKU-SNMP-*`/`CKU-NTP` references in q005/006/008/012 that look like cross-extraction errors from another objective), defaulting to `['CKU-NAT']` if nothing matched.
+  - `concept`: derived from the primary mapped CKU (`'nat'`, `'pat'`, `'nat terms'`) since the QB has no usable per-question concept field.
+  - `choices`/`correctIndex`: flattened from `{id,text,isCorrect}[]` to a string array + index.
+- Ran `npm run compile:ccna` (D4 still shows `curated:1` — package count unchanged, only question count grew) and `npm run build` — both passed.
+- Preview-verified: 4.1's quiz reports "From your saved bank of 20 · no API used"; answered a question, confirmed correct/incorrect feedback, explanation text, and confidence-rating UI all render correctly for an imported question.
+
+**Outcome**: pipeline proven. 12/884 importable questions now live. Remaining 4.2-4.9 question banks (88 questions) are on hold until those objectives get full curated entries (MASTER SEQUENCE item 9 territory) or a future item defines a "questions-only" curated shape (ties into item 3's hybrid fallback work).
+
 ---
 
 ## Open Decisions / Unresolved Questions
 
 1. Domain 5 crosswalk above — confirm before importing Domain 5 questions (QB 5.8 → app 5.4 vs 5.7 is ambiguous).
 2. Whether QB 2.9 (WLAN operational params, 13 questions) and QB 5.4 (password policies, 6 questions) become supplemental/unregistered content or get merged into their closest app objective.
-3. Exact converter output format — needs Phase 1 discovery on one curated objective's `questions[]` shape before building.
+3. **4.2-4.9 (and similar uncurated objectives) question banks** — need either full curation (item 9) or a "questions-only" partial curated shape once item 3's per-content-type hybrid fallback lands.
 
-## Next Steps (in order)
+## Next Steps (in order, per ENHANCEMENT_PRIORITIES.md MASTER SEQUENCE)
 
-1. **Phase 1 discovery**: read one curated objective's `questions[]` shape (e.g. `4.1`) + the hybrid fallback condition in `App.jsx` (~line 3612).
-2. **Phase 2**: build converter script, run for **Domain 4 only** (clean 1:1 mapping, 9 objectives) → merge into `ccnaCurated.js` → `npm run compile:ccna`.
-3. **Phase 3**: `validateCurated()`, `npm run build`, preview-check Domain 4 objectives.
-4. **Phase 4**: audit (`git status`/diff), then decide on Domains 2/3/6 (clean), then Domain 5 (needs crosswalk decision), then the `App.jsx` fallback-logic change.
+1. ~~Import question bank — Domain 4 (4.1 pilot)~~ — **done**, see Timeline item 9.
+2. Resolve `_V1` file naming (housekeeping, low risk).
+3. Per-content-type hybrid fallback in `App.jsx` — would unblock 4.2-4.9 etc.
+4-5. Diagnostic placement test / Exam Readiness Score — not blocked, optional checkpoint breaks.
 
 ## Predicted Impact (full rollout)
 
