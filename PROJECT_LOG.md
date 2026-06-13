@@ -32,6 +32,37 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 
 ---
 
+### 21. Infra sweep — #12, #37, #40
+
+**Goal**: Add test/lint tooling, a cross-device setup nudge, and API cost/reliability hardening.
+
+**What was done**:
+
+- **#12 Test/lint tooling**:
+  - Installed Vitest v4 + ESLint v10 + `eslint-plugin-react` + `eslint-plugin-react-hooks`.
+  - Added `"test": "vitest run"` and `"lint": "eslint src"` scripts to `package.json`.
+  - Created `vitest.config.js` (node environment, `src/**/*.test.{js,jsx}`).
+  - Created `eslint.config.js` (flat config): `@eslint/js` recommended + React + react-hooks; pre-existing codebase patterns exempted via `react/no-unescaped-entities: off`, `react-hooks/purity: off`, `react-hooks/set-state-in-effect: off`.
+  - Extracted 12 pure utility functions into `src/netUtils.js` (exported for tests; App.jsx keeps its own copies to avoid refactor risk).
+  - Wrote `src/__tests__/smoke.test.js`: 36 tests across all 5 target function groups. `npm run test`: **36 passed**. `npm run lint`: **0 errors**.
+  - Bonus fix: removed pre-existing `no-dupe-keys` bug in LabView style object; removed unused `allLabs` import.
+
+- **#37 Cross-device setup nudge**:
+  - Added `nudgeDismissed: 'ccna_nudge_dismissed_v1'` to `STORAGE_KEYS`.
+  - HomeScreen: new `showNudge` state + `useEffect` — shows a dismissable sky-blue card when progress is empty and flag not set: "📱 New device? Export your progress from another device and import it here..." with Export/Import buttons (both open `ExportModal`). Dismiss stores the flag so nudge only shows once per device.
+
+- **#40 API cost / reliability hardening**:
+  - **Session AI call counter**: module-level `_sessionAiCalls` + lightweight pub/sub. `bumpSessionAiCalls()` called on every successful `callClaude` response and every completed `askClaudeStream`. `useAiCallCount()` hook subscribes components to live updates.
+  - **Home indicator**: `AiCallsIndicator` — hidden until first call, then shows "🤖 X AI calls this session"; turns amber + "· High usage" beyond 20.
+  - **Budget warning**: `AiBudgetWarning` — shown in ExplainTab (non-curated path) and QuizTab (no bank) once calls exceed 20; "⚠ High API usage today — consider packaging this objective offline".
+  - **`askClaudeStream` retry**: added retry loop (up to 2 retries: 1s then 3s) for 529/5xx before stream opens. Previously streaming had zero retry logic; `callClaude` already retried but streaming was a separate path.
+
+**Build**: `npm run build` passed (1,050 kB).
+
+**Outcome**: All three infra items complete. The app now has 36 smoke tests, lint enforcement, a first-run nudge for new devices, and improved API reliability and cost visibility.
+
+---
+
 ## Status Summary (as of 2026-06-13)
 
 - **Curated objectives**: **19 of 53** have full static, source-grounded content (reading + questions, no AI needed). **Domain 1 is now fully curated** (all 12 objectives).
@@ -346,11 +377,9 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ## Next Steps (per ENHANCEMENT_PRIORITIES.md MASTER LIST)
 
-**Next:** #12 — Add test/lint/typecheck tooling.
+**Next:** #15 — Socratic tutor mode toggle. **Or:** #46 — Deploy.
 
-**Ready anytime:** #46 — Deploy (`npm run build && npx wrangler pages deploy dist --project-name ccna-study-tool`).
-
-**Queued (less AI):** #11 Domain 4 `4.2`–`4.9` import · #42–#45 static-first UX fixes.
+**Queued (Better AI):** #15 Socratic tutor · #16 Session recap · #18–22 AI coaching features.
 
 See `ENHANCEMENT_PRIORITIES.md` for the full prioritized table (items 1–46).
 

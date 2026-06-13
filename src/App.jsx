@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from './data/ccnaCurated.js'
-import { getLab, allLabs, labsForObjective, labsByDomain, normalizeCliLine, labProgress } from './data/ccnaLabs.js'
+import { getLab, labsForObjective, labsByDomain, normalizeCliLine, labProgress } from './data/ccnaLabs.js'
 
 /* =========================================================================
    DESIGN TOKENS
@@ -3498,7 +3498,7 @@ function LabView({ bundle, onBack, onDone }) {
               <span style={{ fontSize: 13, fontWeight: 600 }}>{t.title}</span>
               <span style={{ ...styles.pill('purple'), fontSize: 9, marginLeft: 'auto' }}>{t.device}</span>
             </div>
-            <div style={{ fontSize: 12.5, color: COLORS.silverMid, lineHeight: 1.5, marginBottom: 6, color: COLORS.silverMid }}>{t.instruction}</div>
+            <div style={{ fontSize: 12.5, color: COLORS.silverMid, lineHeight: 1.5, marginBottom: 6 }}>{t.instruction}</div>
             <details>
               <summary style={{ fontSize: 11, color: COLORS.sky, cursor: 'pointer' }}>Show commands</summary>
               <div style={{ marginTop: 6 }}>

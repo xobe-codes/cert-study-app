@@ -10,7 +10,7 @@ Cross-tool workflow: read `PROJECT_LOG.md` first each session; update Timeline +
 
 ## MASTER LIST (prioritized — single source of truth)
 
-Start at **#12** unless you need production updated first (**#41**).
+Start at **#15** (Socratic tutor mode) unless you need production updated first (**#46**).
 
 | # | Work item | Type | Status | Suggested action |
 |---|---|---|---|---|
@@ -27,7 +27,7 @@ Start at **#12** unless you need production updated first (**#41**).
 | 10a | Wire curated flashcards → Key Terms tab | Less AI | **Done** | — (Timeline 16) |
 | 10b | Wire curated diagrams → Visual tab | Less AI | **Done** | — (Timeline 16) |
 | 11 | Import Domain 4 `4.2`–`4.9` (~88 Qs, questions-only) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
-| **12** | **Add test / lint / typecheck tooling** | Infra | **Next** | Vitest + ESLint before AI batch (#15–22) |
+| **12** | **Add test / lint / typecheck tooling** | Infra | ~~**Next**~~ — **done** (Timeline 21) | — |
 | 13 | IPv6 subnetting calculator (`1.8`) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | 14 | ACL wildcard-mask calculator (`5.5` / `5.6`) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | 15 | Socratic tutor mode toggle | Better AI | Queued | Prompt + UI toggle on tutor chat |
@@ -52,10 +52,10 @@ Start at **#12** unless you need production updated first (**#41**).
 | 34 | Mock exam history trend chart | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 35 | Troubleshooting question weighting near exam | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 36 | Adaptive question pacing within session | UX | ~~Queued~~ — **done** (Timeline 19) |
-| 37 | Auto cross-device sync / setup nudge | UX | Queued | `sync.js` needs D1 provisioning |
+| 37 | Auto cross-device sync / setup nudge | UX | ~~Queued~~ — **done** (Timeline 21) | — |
 | 38 | Voice / TTS mode for tutor | Better AI | Queued | Browser `speechSynthesis` |
 | 39 | AI "exam day" mock interview | Better AI | Queued | Late-stage exam prep |
-| 40 | API cost / reliability hardening | Infra | Queued | Turnstile/Access on proxy; usage dashboard |
+| 40 | API cost / reliability hardening | Infra | ~~Queued~~ — **done** (Timeline 21) | — |
 | 41 | Finish "MVP 12" curated objectives | Less AI | ~~In progress~~ — **done** (Timeline 20) | — |
 | 42 | Static reading stubs for Q-only objectives | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | 43 | Pre-assessment from static question bank | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
