@@ -18,6 +18,7 @@
 
 import { IMPORTED_QUESTIONS } from './ccnaQuestionImports.js'
 import { SUPPLEMENTAL_QUESTIONS } from './ccnaQuestionSupplemental.js'
+import { getSkillQuestions } from './ccnaSkillQuestions.js'
 import {
   OBJ_11, OBJ_12, OBJ_13, OBJ_14, OBJ_17, OBJ_110, OBJ_111, OBJ_112,
 } from './ccnaCuratedDomain1Rest.js'
@@ -1901,9 +1902,11 @@ export function getCuratedQuestions(objectiveId) {
   const hand = (o?.questions || []).map(q => ({
     question: q.question, choices: q.choices, correctIndex: q.correctIndex,
     explanation: q.explanation, type: q.type, difficulty: q.difficulty, concept: q.concept,
+    skill: q.skill, orderItems: q.orderItems, id: q.id,
   }))
   const imported = IMPORTED_QUESTIONS[objectiveId] || []
-  return hand.concat(imported)
+  const skill = getSkillQuestions(objectiveId)
+  return hand.concat(imported, skill)
 }
 
 /* -------------------------------------------------------------------------

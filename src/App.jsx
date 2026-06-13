@@ -1,6 +1,11 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useMemo, useCallback, useRef, useId } from 'react'
 import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from './data/ccnaCurated.js'
-import { getLab, labsForObjective, labsByDomain, normalizeCliLine, labProgress } from './data/ccnaLabs.js'
+import { getLab, labsForObjective, labsByDomain, normalizeCliLine, labProgress, troubleshootingLabs } from './data/ccnaLabs.js'
+import { allSkillQuestions } from './data/ccnaSkillQuestions.js'
+import {
+  TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
+  shuffleArrayCopy, computeBankMix, normalizeQuestionForBank, inferSkill,
+} from './questionUtils.js'
 
 /* =========================================================================
    DESIGN TOKENS
@@ -724,15 +729,7 @@ function mergeIntoBank(bank, objectiveId, questions) {
   let counter = existing.length
   const added = questions
     .filter(q => q && q.question && !seen.has(normalizeQuestionText(q.question)))
-    .map(q => ({
-      id: `${objectiveId}-${Date.now()}-${counter++}`,
-      question: q.question,
-      choices: q.choices,
-      correctIndex: q.correctIndex,
-      explanation: q.explanation,
-      ratings: [],
-      attempts: [],
-    }))
+    .map(q => normalizeQuestionForBank(q, objectiveId, counter++))
   bank[objectiveId] = [...existing, ...added]
   return bank
 }
@@ -760,10 +757,11 @@ function pickReviewSet(banked, accuracy = null) {
     : accuracy >= 0.8 ? { easy: 0.35, medium: 0, hard: -0.35 }   // doing well — favor harder
     : accuracy < 0.5 ? { easy: -0.35, medium: 0, hard: 0.35 }    // struggling — favor easier
     : {}
+  const typeBias = { troubleshooting: -0.45, ordering: -0.35 }
   // Select by review priority (adaptively biased), then present easy -> hard within the session.
   const diffRank = { easy: 0, medium: 1, hard: 2 }
   return [...banked]
-    .map(q => ({ q, p: priority(q) + (diffBias[q.difficulty] ?? 0), j: Math.random() }))
+    .map(q => ({ q, p: priority(q) + (diffBias[q.difficulty] ?? 0) + (typeBias[q.type] ?? 0), j: Math.random() }))
     .sort((a, b) => a.p - b.p || a.j - b.j)
     .slice(0, QUIZ_SESSION_SIZE)
     .sort((a, b) => (diffRank[a.q.difficulty] ?? 1) - (diffRank[b.q.difficulty] ?? 1))
@@ -1663,28 +1661,33 @@ function ProgressRing({ value, size = 72, stroke = 7, accent = 'purple', caption
   const r = (size - stroke) / 2
   const circ = 2 * Math.PI * r
   const c = accentColors(accent)
-  const gid = `ring-${accent}`
+  const gid = useId().replace(/:/g, '')
+  const pctLabel = `${Math.round(shown * 100)}%`
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, flexShrink: 0 }}>
       <div style={{ position: 'relative', width: size, height: size }}>
-        <svg width={size} height={size}>
+        <svg
+          width={size} height={size} viewBox={`0 0 ${size} ${size}`}
+          role="img" aria-label={caption ? `${caption}: ${pctLabel}` : pctLabel}
+          style={{ display: 'block', overflow: 'visible' }}
+        >
           <defs>
             <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor={c.border} /><stop offset="100%" stopColor={c.text} />
             </linearGradient>
           </defs>
-          <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={COLORS.border} strokeWidth={stroke} />
+          <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={COLORS.border} strokeWidth={stroke} opacity="0.55" />
           <circle
             cx={size / 2} cy={size / 2} r={r} fill="none" stroke={`url(#${gid})`} strokeWidth={stroke}
             strokeDasharray={circ} strokeDashoffset={circ * (1 - shown)} strokeLinecap="round"
-            transform={`rotate(-90 ${size / 2} ${size / 2})`} style={{ filter: `drop-shadow(0 0 5px ${c.text}77)` }}
+            transform={`rotate(-90 ${size / 2} ${size / 2})`} style={{ filter: `drop-shadow(0 0 4px ${c.text}55)` }}
           />
         </svg>
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: size * 0.26, fontWeight: 700, color: COLORS.silver }}>{Math.round(shown * 100)}%</span>
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+          <span style={{ fontSize: Math.max(11, size * 0.24), fontWeight: 700, color: COLORS.silver, lineHeight: 1 }}>{pctLabel}</span>
         </div>
       </div>
-      {caption && <span style={{ fontSize: 11, color: COLORS.silverMid, textAlign: 'center' }}>{caption}</span>}
+      {caption && <span style={{ fontSize: 11, color: COLORS.silverMid, textAlign: 'center', maxWidth: size + 16, lineHeight: 1.3 }}>{caption}</span>}
     </div>
   )
 }
@@ -2143,7 +2146,14 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
   const [idx, setIdx] = useState(0)
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
+  const [orderDraft, setOrderDraft] = useState([])
   const [results, setResults] = useState([]) // { concept, correct }
+
+  const q = questions[idx]
+  useEffect(() => {
+    if (q && isOrderingQuestion(q)) setOrderDraft(shuffleArrayCopy(q.orderItems))
+    else setOrderDraft([])
+  }, [q])
 
   const start = useCallback(async () => {
     setPhase('loading'); setError(null)
@@ -2177,11 +2187,19 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
   }, [objective.id, objective.title])
 
   function answer(i) {
-    if (revealed) return
+    if (revealed || !isMcQuestion(questions[idx])) return
     const q = questions[idx]
-    const correct = i === q.correctIndex
+    const correct = gradeQuestion(q, i)
     haptic(correct ? 15 : [10, 40, 10])
     setSelected(i); setRevealed(true)
+    setResults(r => [...r, { concept: q.concept, correct }])
+  }
+  function submitOrder() {
+    if (revealed || !isOrderingQuestion(questions[idx])) return
+    const q = questions[idx]
+    const correct = gradeQuestion(q, orderDraft)
+    haptic(correct ? 15 : [10, 40, 10])
+    setRevealed(true)
     setResults(r => [...r, { concept: q.concept, correct }])
   }
   function next() {
@@ -2232,23 +2250,27 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
   }
 
   // active
-  const q = questions[idx]
-  const isCorrect = revealed && selected === q.correctIndex
+  const ordering = isOrderingQuestion(q)
+  const isCorrect = revealed && (ordering ? gradeQuestion(q, orderDraft) : gradeQuestion(q, selected))
   return (
     <div>
       <div style={{ ...styles.small, marginBottom: 8 }}>Pre-assessment · {idx + 1} of {questions.length}</div>
       <div style={styles.card}>
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>{q.question}</div>
-        {q.choices.map((choice, i) => {
-          let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
-          if (revealed) {
-            if (i === q.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
-            else if (i === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
-          }
-          return <button key={i} onClick={() => answer(i)} style={{ display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8, background: bg, border: `1px solid ${border}`, color, borderRadius: 10, padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4 }}>{choice}</button>
-        })}
-        {revealed && <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}`, fontSize: 13, lineHeight: 1.5 }}>{q.explanation}</div>}
+        <QuestionMeta q={q} />
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={q.question} /></div>
+        {ordering ? (
+          <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? q.orderItems : null} />
+        ) : (
+          <McChoices q={q} selected={selected} revealed={revealed} onSelect={answer} />
+        )}
+        {revealed && (
+          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
+            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
+            <div style={{ fontSize: 13, lineHeight: 1.5 }}>{q.explanation}</div>
+          </div>
+        )}
       </div>
+      {ordering && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>}
       {revealed && <button style={styles.primaryBtn} onClick={next}>{idx + 1 >= questions.length ? 'See result' : 'Next'}</button>}
     </div>
   )
@@ -2296,40 +2318,172 @@ function StructuredExplanation({ data }) {
 }
 
 /* ---- Curated content renderers (Phase 19 — static, no AI) ---- */
-// Local zero-dependency diagram renderer. Node x/y are 0..100 (% of canvas).
-const DIAGRAM_NODE_COLOR = { router: 'mint', switch: 'purple', subnet: 'sky', process: 'amber', pc: 'sky', server: 'silver', firewall: 'rose', default: 'silver' }
-function CuratedDiagram({ diagram }) {
-  const W = 320, H = 200
-  const nodeAt = id => diagram.nodes.find(n => n.id === id)
+const DIAGRAM_NODE_COLOR = { router: 'mint', switch: 'purple', subnet: 'sky', process: 'amber', pc: 'sky', server: 'silver', firewall: 'rose', cloud: 'sky', attacker: 'rose', default: 'silver' }
+const DIAGRAM_NODE_ICON = { router: 'R', switch: 'S', pc: 'PC', server: 'SV', cloud: '☁', firewall: 'FW', attacker: '!', process: '●', subnet: 'NET', default: '·' }
+
+function splitDiagramLabel(text, max = 16) {
+  const s = String(text || '')
+  if (s.length <= max) return [s]
+  const mid = Math.floor(s.length / 2)
+  let split = s.lastIndexOf(' ', mid)
+  if (split < 4) split = s.indexOf(' ', mid)
+  if (split < 0) return [s.slice(0, max), s.slice(max)]
+  return [s.slice(0, split), s.slice(split + 1)]
+}
+
+function diagramEdgePoint(cx, cy, hw, hh, tx, ty) {
+  const dx = tx - cx, dy = ty - cy
+  if (!dx && !dy) return { x: cx, y: cy }
+  const scale = Math.min(hw / Math.abs(dx), hh / Math.abs(dy))
+  return { x: cx + dx * scale, y: cy + dy * scale }
+}
+
+function linkStroke(status) {
+  if (status === 'forwarding' || status === 'normal') return COLORS.mint
+  if (status === 'blocked' || status === 'dropped') return COLORS.rose
+  if (status === 'modified') return COLORS.sky
+  return COLORS.silverDim
+}
+
+// Responsive topology renderer — auto-fits node bounds, wraps labels, edge-aware links.
+function CuratedDiagram({ diagram, compact = false }) {
+  const uid = useId().replace(/:/g, '')
+  const layout = useMemo(() => {
+    const nodes = diagram?.nodes || []
+    if (!nodes.length) return null
+    const xs = nodes.map(n => n.x), ys = nodes.map(n => n.y)
+    const pad = 10
+    const minX = Math.max(0, Math.min(...xs) - pad)
+    const maxX = Math.min(100, Math.max(...xs) + pad)
+    const minY = Math.max(0, Math.min(...ys) - pad)
+    const maxY = Math.min(100, Math.max(...ys) + pad)
+    const spanX = Math.max(28, maxX - minX)
+    const spanY = Math.max(22, maxY - minY)
+    const W = 360
+    const H = Math.round(W * (spanY / spanX) * 0.72)
+    const clampH = compact ? Math.min(H, 150) : Math.min(Math.max(H, 130), 240)
+    const density = nodes.length
+    const nodeW = Math.min(118, Math.max(76, 108 - density * 4))
+    const nodeH = 30
+    const fontSize = compact ? 7.5 : density > 5 ? 7.5 : 8.25
+    const toX = v => ((v - minX) / spanX) * W
+    const toY = v => ((v - minY) / spanY) * clampH
+    const nodeMap = Object.fromEntries(nodes.map(n => {
+      const lines = splitDiagramLabel(n.label, compact ? 14 : 18)
+      return [n.id, { ...n, cx: toX(n.x), cy: toY(n.y), lines, hw: nodeW / 2, hh: nodeH / 2 }]
+    }))
+    return { W, H: clampH, nodeW, nodeH, fontSize, nodeMap, nodes }
+  }, [diagram, compact])
+
+  if (!layout) return null
+  const { W, H, nodeW, nodeH, fontSize, nodeMap, nodes } = layout
+  const nodeAt = id => nodeMap[id]
+  const linkStatuses = new Set((diagram.links || []).map(l => l.status).filter(Boolean))
+  const showLegend = linkStatuses.size > 1
+
   return (
-    <div style={{ ...styles.card, padding: 12 }}>
-      <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, marginBottom: 8, letterSpacing: 0.4 }}>🗺️ {diagram.title.toUpperCase()}</div>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', display: 'block' }} role="img" aria-label={diagram.title}>
-        {diagram.links.map(l => {
-          const a = nodeAt(l.source), b = nodeAt(l.target)
-          if (!a || !b) return null
-          const x1 = a.x / 100 * W, y1 = a.y / 100 * H, x2 = b.x / 100 * W, y2 = b.y / 100 * H
-          const stroke = l.status === 'forwarding' ? COLORS.mint : l.status === 'blocked' || l.status === 'dropped' ? COLORS.rose : COLORS.silverDim
-          return (
-            <g key={l.id}>
-              <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={stroke} strokeWidth="2" strokeDasharray={l.status === 'dropped' ? '4 3' : undefined} />
-              {l.label && <text x={(x1 + x2) / 2} y={(y1 + y2) / 2 - 3} fontSize="8" fill={COLORS.silverMid} textAnchor="middle">{l.label}</text>}
-            </g>
-          )
-        })}
-        {diagram.nodes.map(n => {
-          const c = accentColors(n.status === 'highlighted' ? 'mint' : DIAGRAM_NODE_COLOR[n.type] || DIAGRAM_NODE_COLOR.default)
-          const cx = n.x / 100 * W, cy = n.y / 100 * H, w = 96, h = 26
-          return (
-            <g key={n.id}>
-              <rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} rx="6" fill={c.dim} stroke={c.text} strokeWidth={n.status === 'highlighted' ? 2 : 1} />
-              <text x={cx} y={cy + 3} fontSize="8.5" fill={c.text} textAnchor="middle" fontFamily="ui-monospace, Menlo, monospace">{n.label}</text>
-            </g>
-          )
-        })}
-      </svg>
-      {diagram.annotations?.length > 0 && (
-        <ul style={{ margin: '8px 0 0', paddingLeft: 16, fontSize: 12, color: COLORS.silverMid, lineHeight: 1.5 }}>
+    <div style={{ ...styles.card, padding: compact ? 10 : 12, overflow: 'hidden' }}>
+      {!compact && (
+        <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, marginBottom: 8, letterSpacing: 0.4 }}>
+          🗺️ {diagram.title.toUpperCase()}
+        </div>
+      )}
+      <div style={{
+        width: '100%', maxHeight: compact ? 168 : 260, aspectRatio: `${W} / ${H}`,
+        borderRadius: 10, overflow: 'hidden', background: COLORS.surface,
+        border: `1px solid ${COLORS.border}`,
+      }}>
+        <svg
+          viewBox={`0 0 ${W} ${H}`}
+          preserveAspectRatio="xMidYMid meet"
+          style={{ width: '100%', height: '100%', display: 'block' }}
+          role="img"
+          aria-label={diagram.title}
+        >
+          <defs>
+            <marker id={`${uid}-fwd`} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill={COLORS.mint} />
+            </marker>
+            <marker id={`${uid}-blk`} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill={COLORS.rose} />
+            </marker>
+            <filter id={`${uid}-glow`} x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="1" stdDeviation="1.5" floodColor="var(--ccna-bg)" floodOpacity="0.9" />
+            </filter>
+          </defs>
+          <rect x="0" y="0" width={W} height={H} fill={COLORS.surface} rx="0" />
+
+          {(diagram.links || []).map(l => {
+            const a = nodeAt(l.source), b = nodeAt(l.target)
+            if (!a || !b) return null
+            const p1 = diagramEdgePoint(a.cx, a.cy, a.hw, a.hh, b.cx, b.cy)
+            const p2 = diagramEdgePoint(b.cx, b.cy, b.hw, b.hh, a.cx, a.cy)
+            const stroke = linkStroke(l.status)
+            const dashed = l.status === 'dropped' || l.status === 'blocked'
+            const showArrow = l.status === 'forwarding' || l.status === 'normal' || l.status === 'modified'
+            const markerId = dashed ? `${uid}-blk` : `${uid}-fwd`
+            const midX = (p1.x + p2.x) / 2, midY = (p1.y + p2.y) / 2
+            const labelShort = l.label && l.label.length > 22 ? `${l.label.slice(0, 20)}…` : l.label
+            return (
+              <g key={l.id}>
+                <line
+                  x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y}
+                  stroke={stroke} strokeWidth={compact ? 1.5 : 2}
+                  strokeDasharray={dashed ? '5 4' : undefined} strokeLinecap="round"
+                  markerEnd={showArrow ? `url(#${markerId})` : undefined}
+                  opacity={dashed ? 0.85 : 1}
+                />
+                {labelShort && !compact && (
+                  <g>
+                    <rect x={midX - 42} y={midY - 16} width={84} height={12} rx="4" fill={COLORS.bg} opacity="0.92" />
+                    <text x={midX} y={midY - 7} fontSize="6.5" fill={COLORS.silverMid} textAnchor="middle">{labelShort}</text>
+                  </g>
+                )}
+              </g>
+            )
+          })}
+
+          {nodes.map(n => {
+            const nd = nodeMap[n.id]
+            const accent = n.status === 'error' ? 'rose' : n.status === 'highlighted' ? 'mint' : DIAGRAM_NODE_COLOR[n.type] || DIAGRAM_NODE_COLOR.default
+            const c = accentColors(accent)
+            const icon = DIAGRAM_NODE_ICON[n.type] || DIAGRAM_NODE_ICON.default
+            const textX = nd.cx + 8
+            const lineH = fontSize + 2
+            const textY = nd.lines.length > 1 ? nd.cy - lineH / 2 + 2 : nd.cy + 3
+            return (
+              <g key={n.id} filter={`url(#${uid}-glow)`}>
+                <rect
+                  x={nd.cx - nodeW / 2} y={nd.cy - nodeH / 2} width={nodeW} height={nodeH} rx="8"
+                  fill={c.dim} stroke={c.text}
+                  strokeWidth={n.status === 'highlighted' || n.status === 'error' ? 2 : 1}
+                />
+                <circle cx={nd.cx - nodeW / 2 + 11} cy={nd.cy} r="7" fill={COLORS.bg} stroke={c.border} strokeWidth="1" />
+                <text x={nd.cx - nodeW / 2 + 11} y={nd.cy + (icon.length > 1 ? 2.5 : 3.5)} fontSize={icon.length > 1 ? 5 : 7} fill={c.text} textAnchor="middle" fontWeight="700" fontFamily="ui-monospace, Menlo, monospace">{icon}</text>
+                {nd.lines.map((line, i) => (
+                  <text
+                    key={i} x={textX} y={textY + i * lineH}
+                    fontSize={fontSize} fill={c.text} textAnchor="middle"
+                    fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+                  >{line}</text>
+                ))}
+              </g>
+            )
+          })}
+        </svg>
+      </div>
+
+      {showLegend && !compact && (
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 8, fontSize: 10, color: COLORS.silverMid }}>
+          {linkStatuses.has('forwarding') && <span><span style={{ color: COLORS.mint }}>—</span> Forwarding</span>}
+          {linkStatuses.has('blocked') && <span><span style={{ color: COLORS.rose }}>- -</span> Blocked</span>}
+          {linkStatuses.has('dropped') && <span><span style={{ color: COLORS.rose }}>- -</span> Dropped</span>}
+          {linkStatuses.has('modified') && <span><span style={{ color: COLORS.sky }}>—</span> Modified</span>}
+        </div>
+      )}
+
+      {diagram.annotations?.length > 0 && !compact && (
+        <ul style={{ margin: '8px 0 0', paddingLeft: 16, fontSize: 11, color: COLORS.silverMid, lineHeight: 1.45 }}>
           {diagram.annotations.map((a, i) => <li key={i}>{a}</li>)}
         </ul>
       )}
@@ -2761,21 +2915,135 @@ Mix the question types across the set:
 - true-false on a common misconception (1): give exactly two choices ["True","False"]
 - troubleshooting (2-3): a realistic fault scenario where the learner diagnoses the MOST LIKELY cause
 
+Tag each question with skill: design (planning/architecture), implement (configuration/deployment), or troubleshoot (diagnosis). AI-generated questions are multiple-choice only — ordering/drag-drop questions come from the curated skill bank.
+
 For troubleshooting questions, write them the way a network engineer actually troubleshoots: describe a concrete symptom (e.g. "Hosts on VLAN 20 can't reach their gateway"), include a short relevant config or "show" snippet inline using backticks for commands/output, then ask for the most likely cause. Use specific but VARIED surface details (interface names, IPs, VLAN IDs, subnet masks) so regenerated questions test the same underlying principle without being memorizable by pattern. The correct answer must be deducible from the snippet + reference notes; the distractors should be plausible real mistakes.
 
-Spread difficulty from easy to hard. Tag each question with its type, difficulty (easy/medium/hard), and the short sub-concept it tests. Each question's explanation should be 1-2 sentences on why the correct answer is right. Most questions have 4 choices; true-false questions have exactly 2.`
+Spread difficulty from easy to hard. Tag each question with its type, difficulty (easy/medium/hard), skill (design/implement/troubleshoot), and the short sub-concept it tests. Each question's explanation should be 1-2 sentences on why the correct answer is right. Most questions have 4 choices; true-false questions have exactly 2.`
+
+function BankMixDisplay({ questions }) {
+  const mix = computeBankMix(questions)
+  if (!mix.total) return null
+  return (
+    <div style={{ marginTop: 10, padding: 10, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}` }}>
+      <div style={{ ...styles.small, marginBottom: 6 }}>Question variety in your bank</div>
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 6 }}>
+        {Object.entries(mix.types).sort((a, b) => b[1] - a[1]).map(([t, n]) => (
+          <span key={t} style={{ ...styles.pill(t === 'troubleshooting' || t === 'ordering' ? 'sky' : 'silver'), fontSize: 10 }}>
+            {(TYPE_LABEL[t] || t)} · {n}
+          </span>
+        ))}
+      </div>
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+        {Object.entries(mix.skills).sort((a, b) => b[1] - a[1]).map(([s, n]) => (
+          <span key={s} style={{ ...styles.pill(s === 'troubleshoot' ? 'amber' : s === 'implement' ? 'sky' : 'mint'), fontSize: 10 }}>
+            {(SKILL_LABEL[s] || s)} · {n}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function moveOrderItem(items, from, to) {
+  const next = [...items]
+  const [item] = next.splice(from, 1)
+  next.splice(to, 0, item)
+  return next
+}
+
+function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
+  const [dragIdx, setDragIdx] = useState(null)
+
+  function reorder(from, to) {
+    if (revealed || from === to || from < 0 || to < 0 || from >= items.length || to >= items.length) return
+    onChange(moveOrderItem(items, from, to))
+  }
+
+  return (
+    <div>
+      <div style={{ ...styles.small, marginBottom: 8 }}>Drag items into order, or use ↑ ↓ on mobile.</div>
+      {items.map((item, idx) => {
+        let bg = COLORS.surface
+        let border = COLORS.border
+        let color = COLORS.silver
+        if (revealed && correctOrder) {
+          const ok = item === correctOrder[idx]
+          if (ok) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
+          else { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
+        }
+        return (
+          <div
+            key={`${idx}-${item.slice(0, 24)}`}
+            draggable={!revealed}
+            onDragStart={() => setDragIdx(idx)}
+            onDragOver={e => { e.preventDefault() }}
+            onDrop={() => { reorder(dragIdx, idx); setDragIdx(null) }}
+            onDragEnd={() => setDragIdx(null)}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, padding: '10px 12px',
+              background: bg, border: `1px solid ${border}`, borderRadius: 10, color,
+              cursor: revealed ? 'default' : 'grab', lineHeight: 1.4, fontSize: 14,
+              opacity: dragIdx === idx ? 0.55 : 1,
+            }}
+          >
+            <span style={{ ...styles.pill('purple'), fontSize: 10, flexShrink: 0, minWidth: 22, textAlign: 'center' }}>{idx + 1}</span>
+            <span style={{ flex: 1 }}>{item}</span>
+            {!revealed && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
+                <button type="button" onClick={() => reorder(idx, idx - 1)} disabled={idx === 0}
+                  style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, color: COLORS.silverMid, borderRadius: 6, width: 28, height: 22, cursor: idx === 0 ? 'default' : 'pointer', fontSize: 11, padding: 0 }}>↑</button>
+                <button type="button" onClick={() => reorder(idx, idx + 1)} disabled={idx === items.length - 1}
+                  style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, color: COLORS.silverMid, borderRadius: 6, width: 28, height: 22, cursor: idx === items.length - 1 ? 'default' : 'pointer', fontSize: 11, padding: 0 }}>↓</button>
+              </div>
+            )}
+          </div>
+        )
+      })}
+      {revealed && correctOrder && (
+        <div style={{ ...styles.small, marginTop: 4 }}>Correct order: {correctOrder.map((s, i) => `${i + 1}. ${s}`).join(' → ')}</div>
+      )}
+    </div>
+  )
+}
+
+function McChoices({ q, selected, revealed, onSelect }) {
+  if (!isMcQuestion(q)) return null
+  return q.choices.map((choice, idx) => {
+    let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
+    if (revealed) {
+      if (idx === q.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
+      else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
+    }
+    return (
+      <button
+        key={idx}
+        onClick={() => onSelect(idx)}
+        style={{
+          display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
+          background: bg, border: `1px solid ${border}`, color, borderRadius: 10,
+          padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4,
+        }}
+      >
+        {choice}
+      </button>
+    )
+  })
+}
 
 // Small type + difficulty badges shown above a question (mixed-type quizzes).
-const TYPE_LABEL = { definition: 'Definition', scenario: 'Scenario', application: 'Application', 'true-false': 'True / False', troubleshooting: 'Troubleshooting' }
 function QuestionMeta({ q }) {
-  if (!q || (!q.type && !q.difficulty)) return null
+  if (!q || (!q.type && !q.difficulty && !q.skill)) return null
+  const skill = q.skill || inferSkill(q)
   // easy = green (approachable) · medium = blue (learning) · hard = amber
   // (heads-up). Red stays reserved for wrong answers, never for difficulty.
   const dAccent = q.difficulty === 'hard' ? 'amber' : q.difficulty === 'medium' ? 'sky' : 'mint'
+  const skillAccent = skill === 'troubleshoot' ? 'amber' : skill === 'implement' ? 'sky' : 'mint'
   return (
     <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
       {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 10 }}>{q.difficulty.toUpperCase()}</span>}
-      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' ? 'sky' : 'silver'), fontSize: 10 }}>{TYPE_LABEL[q.type] || q.type}</span>}
+      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' ? 'sky' : 'silver'), fontSize: 10 }}>{TYPE_LABEL[q.type] || q.type}</span>}
+      {skill && <span style={{ ...styles.pill(skillAccent), fontSize: 10 }}>{SKILL_LABEL[skill] || skill}</span>}
       {q.concept && <span style={{ fontSize: 11, color: COLORS.silverMid, alignSelf: 'center' }}>{q.concept}</span>}
     </div>
   )
@@ -2973,12 +3241,24 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
   const missedOnce = useRef(new Set()) // question IDs missed once this session → 2nd miss = near-front re-queue
   const [streak, setStreak] = useState(0) // consecutive correct answers this session
   const [bankSize, setBankSize] = useState(0)
+  const [bankQuestions, setBankQuestions] = useState([])
+  const [orderDraft, setOrderDraft] = useState([])
 
   // Keep the idle screen honest about how many questions are stored locally.
   const refreshBankSize = useCallback(async () => {
     const bank = await loadQuizBank()
-    setBankSize((bank[objective.id] || []).length)
+    const qs = bank[objective.id] || []
+    setBankSize(qs.length)
+    setBankQuestions(qs)
   }, [objective.id])
+
+  useEffect(() => {
+    if (current && isOrderingQuestion(current)) {
+      setOrderDraft(shuffleArrayCopy(current.orderItems))
+    } else {
+      setOrderDraft([])
+    }
+  }, [current])
 
   // forceNew=true always generates a fresh set via the API and adds it to the
   // bank. Otherwise we reuse stored questions whenever the bank is big enough,
@@ -3065,26 +3345,23 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
   }, [objective.id, refreshBankSize])
 
   function selectAnswer(idx) {
-    if (revealed) return
+    if (revealed || !isMcQuestion(current)) return
     setSelected(idx)
     setRevealed(true)
-    const correct = idx === current.correctIndex
+    const correct = gradeQuestion(current, idx)
     haptic(correct ? 15 : [10, 40, 10])
-    // #16: track session quiz answers
     if (correct) bumpSessionStudy('correct')
     else bumpSessionStudy('incorrect')
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
-    // On a hot streak (≥4 correct), front-load the next troubleshooting question from the queue
     if (correct && newStreak >= 4) {
       setQueue(q => {
-        const tIdx = q.findIndex(x => x.type === 'troubleshooting')
+        const tIdx = q.findIndex(x => x.type === 'troubleshooting' || x.type === 'ordering')
         if (tIdx > 0) return [q[tIdx], ...q.slice(0, tIdx), ...q.slice(tIdx + 1)]
         return q
       })
     }
-    // Only schedule reviews once the section has cleared the mastery gate.
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
     if (!correct) {
@@ -3096,14 +3373,48 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
         selectedIndex: idx,
         explanation: current.explanation,
         concept: current.concept,
+        type: current.type,
+        skill: current.skill,
         addedAt: Date.now(),
       })
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
-        // 2nd miss this session → insert near the front (position 1) for immediate retry
         setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
       } else {
-        // 1st miss → re-queue at the end to see it again before session ends
+        missedOnce.current.add(qKey)
+        setQueue(q => [...q, current])
+      }
+    }
+  }
+
+  function submitOrder() {
+    if (revealed || !isOrderingQuestion(current)) return
+    setRevealed(true)
+    const correct = gradeQuestion(current, orderDraft)
+    haptic(correct ? 15 : [10, 40, 10])
+    if (correct) bumpSessionStudy('correct')
+    else bumpSessionStudy('incorrect')
+    setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
+    const newStreak = correct ? streak + 1 : 0
+    setStreak(newStreak)
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
+    if (!correct) {
+      onMissed({
+        objectiveId: objective.id,
+        question: current.question,
+        orderItems: current.orderItems,
+        orderAnswer: orderDraft,
+        explanation: current.explanation,
+        concept: current.concept,
+        type: current.type,
+        skill: current.skill,
+        addedAt: Date.now(),
+      })
+      const qKey = current.id || current.question
+      if (missedOnce.current.has(qKey)) {
+        setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
+      } else {
         missedOnce.current.add(qKey)
         setQueue(q => [...q, current])
       }
@@ -3136,9 +3447,10 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
       <div>
         <p style={styles.small}>
           {hasBank
-            ? `${bankSize} questions saved for this objective. Review sessions reuse them — no API call. Wrong answers and "Need practice" ratings come back first.`
-            : 'Generate a question bank for this objective. Questions are stored so future reviews cost nothing.'}
+            ? `${bankSize} questions saved for this objective. Review sessions reuse them — no API call. Wrong answers and "Need practice" ratings come back first. Includes drag-and-drop ordering for design & implementation workflows.`
+            : 'Generate a question bank for this objective. Questions are stored so future reviews cost nothing — including drag-and-drop ordering drills.'}
         </p>
+        {hasBank && <BankMixDisplay questions={bankQuestions} />}
         {!hasBank && <AiBudgetWarning />}
         <button style={styles.primaryBtn} onClick={() => startQuiz(false)}>{hasBank ? 'Review from bank' : 'Build question bank'}</button>
         {hasBank && (
@@ -3162,7 +3474,8 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
   }
 
   // active
-  const isCorrect = revealed && selected === current.correctIndex
+  const ordering = isOrderingQuestion(current)
+  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
@@ -3173,33 +3486,23 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
       <div style={styles.card}>
         <QuestionMeta q={current} />
         <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
-        {current.choices.map((choice, idx) => {
-          let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
-          if (revealed) {
-            if (idx === current.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
-            else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
-          }
-          return (
-            <button
-              key={idx}
-              onClick={() => selectAnswer(idx)}
-              style={{
-                display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
-                background: bg, border: `1px solid ${border}`, color, borderRadius: 10,
-                padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4,
-              }}
-            >
-              {choice}
-            </button>
-          )
-        })}
+        {ordering ? (
+          <OrderingQuestion
+            items={orderDraft}
+            onChange={setOrderDraft}
+            revealed={revealed}
+            correctOrder={revealed ? current.orderItems : null}
+          />
+        ) : (
+          <McChoices q={current} selected={selected} revealed={revealed} onSelect={selectAnswer} />
+        )}
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
             <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
-            {!isCorrect && (
+            {!isCorrect && isMcQuestion(current) && (
               <ExplainMistake
                 cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
                 question={current.question} choices={current.choices}
@@ -3207,16 +3510,14 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
                 explanation={current.explanation}
               />
             )}
-            {/* #18: progressive hint — only on wrong answers */}
-            {!isCorrect && selected != null && (
+            {!isCorrect && isMcQuestion(current) && selected != null && (
               <ProgressiveHint
                 questionText={current.question}
                 wrongChoice={current.choices[selected]}
                 correctChoice={current.choices[current.correctIndex]}
               />
             )}
-            {/* #20: personalized mnemonic — only on wrong answers */}
-            {!isCorrect && selected != null && (
+            {!isCorrect && isMcQuestion(current) && selected != null && (
               <PersonalizedMnemonic
                 questionId={current.id}
                 questionText={current.question}
@@ -3226,6 +3527,9 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
           </div>
         )}
       </div>
+      {ordering && !revealed && (
+        <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>
+      )}
       {revealed && (
         <div style={{ marginBottom: 10 }}>
           <div style={{ ...styles.small, marginBottom: 6 }}>How confident did you feel?</div>
@@ -3940,6 +4244,7 @@ function LabView({ bundle, onBack, onDone }) {
       <h1 style={styles.h1}>{lab.title}</h1>
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
         <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 10 }}>{lab.difficulty.toUpperCase()}</span>
+        {lab.labType === 'troubleshooting' && <span style={{ ...styles.pill('amber'), fontSize: 10 }}>TROUBLESHOOT</span>}
         <span style={{ ...styles.pill('silver'), fontSize: 10 }}>~{lab.estimatedTimeMinutes} MIN</span>
         <span style={{ ...styles.pill('silver'), fontSize: 10 }}>{lab.objectiveId}</span>
         {prog.complete && <span style={{ ...styles.pill('mint'), fontSize: 10 }}>✓ COMPLETE</span>}
@@ -3948,7 +4253,7 @@ function LabView({ bundle, onBack, onDone }) {
       <details style={{ ...styles.card, marginBottom: 10 }}>
         <summary style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, cursor: 'pointer' }}>🎯 Scenario & topology</summary>
         <div style={{ fontSize: 13, lineHeight: 1.55, marginTop: 8 }}>{lab.scenario}</div>
-        <div style={{ marginTop: 10 }}><CuratedDiagram diagram={topology} /></div>
+        <div style={{ marginTop: 10 }}><CuratedDiagram diagram={topology} compact /></div>
       </details>
 
       <div style={{ ...styles.card, padding: 0, overflow: 'hidden', border: `1px solid ${COLORS.border}` }}>
@@ -4103,30 +4408,39 @@ function LabsHub({ onBack, onOpenLab }) {
   const [done, setDone] = useState([])
   useEffect(() => { loadLabDone().then(setDone) }, [])
   const byDomain = labsByDomain()
+  const tsLabs = troubleshootingLabs()
   const domainName = (id) => DOMAINS.find(d => d.id === id)?.name || id
+  const labCard = (lab) => (
+    <button key={lab.id} className="ccna-hover" onClick={() => onOpenLab(lab.id)} style={{ ...styles.card, display: 'block', width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+        <span style={{ fontSize: 14, fontWeight: 600, color: COLORS.silver, flex: 1 }}>{lab.title}</span>
+        {done.includes(lab.id) && <span style={{ ...styles.pill('mint'), fontSize: 9 }}>✓ DONE</span>}
+      </div>
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+        <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 9 }}>{lab.difficulty.toUpperCase()}</span>
+        {lab.labType === 'troubleshooting' && <span style={{ ...styles.pill('amber'), fontSize: 9 }}>TROUBLESHOOT</span>}
+        <span style={{ ...styles.pill('silver'), fontSize: 9 }}>~{lab.estimatedTimeMinutes} MIN</span>
+        <span style={{ ...styles.pill('silver'), fontSize: 9 }}>{lab.objectiveId}</span>
+        <span style={{ fontSize: 11, color: COLORS.silverMid, alignSelf: 'center' }}>{lab.tools.slice(0, 2).join(' · ')}</span>
+      </div>
+    </button>
+  )
   return (
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>🧪 Hands-on Labs</h1>
-      <p style={{ ...styles.small, marginBottom: 14 }}>Multi-device guided labs with a topology, tasks, and deterministic command checking — no AI, works offline.</p>
+      <p style={{ ...styles.small, marginBottom: 14 }}>Guided config labs and troubleshooting scenarios — deterministic command checking, no AI, works offline.</p>
+      {tsLabs.length > 0 && (
+        <div style={{ marginBottom: 18 }}>
+          <div style={{ ...styles.small, fontWeight: 700, color: COLORS.amber, marginBottom: 8, letterSpacing: 0.4 }}>🔧 TROUBLESHOOTING SCENARIOS</div>
+          {tsLabs.map(labCard)}
+        </div>
+      )}
       {Object.keys(byDomain).length === 0 && <p style={styles.small}>No labs available yet.</p>}
       {Object.entries(byDomain).map(([domainId, labs]) => (
         <div key={domainId} style={{ marginBottom: 16 }}>
           <div style={{ ...styles.small, fontWeight: 700, color: COLORS.silver, marginBottom: 8, letterSpacing: 0.4 }}>{domainName(domainId).toUpperCase()}</div>
-          {labs.map(lab => (
-            <button key={lab.id} className="ccna-hover" onClick={() => onOpenLab(lab.id)} style={{ ...styles.card, display: 'block', width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                <span style={{ fontSize: 14, fontWeight: 600, color: COLORS.silver, flex: 1 }}>{lab.title}</span>
-                {done.includes(lab.id) && <span style={{ ...styles.pill('mint'), fontSize: 9 }}>✓ DONE</span>}
-              </div>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 9 }}>{lab.difficulty.toUpperCase()}</span>
-                <span style={{ ...styles.pill('silver'), fontSize: 9 }}>~{lab.estimatedTimeMinutes} MIN</span>
-                <span style={{ ...styles.pill('silver'), fontSize: 9 }}>{lab.objectiveId}</span>
-                <span style={{ fontSize: 11, color: COLORS.silverMid, alignSelf: 'center' }}>{lab.tools.slice(0, 2).join(' · ')}</span>
-              </div>
-            </button>
-          ))}
+          {labs.filter(l => l.labType !== 'troubleshooting').map(labCard)}
         </div>
       ))}
     </div>
@@ -5154,9 +5468,18 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
   const [current, setCurrent] = useState(null)
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
+  const [orderDraft, setOrderDraft] = useState([])
   const [stats, setStats] = useState({ correct: 0, total: 0 })
   const [total, setTotal] = useState(0)
   const [weakIds, setWeakIds] = useState([])
+
+  useEffect(() => {
+    if (current && isOrderingQuestion(current)) {
+      setOrderDraft(shuffleArrayCopy(current.orderItems))
+    } else {
+      setOrderDraft([])
+    }
+  }, [current])
 
   useEffect(() => {
     (async () => {
@@ -5176,6 +5499,9 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
         const qs = bank[id] || []
         // Prefer questions with lapses or low accuracy
         const sorted = [...qs].sort((a, b) => {
+          const typeA = (a.type === 'troubleshooting' || a.type === 'ordering') ? 1 : 0
+          const typeB = (b.type === 'troubleshooting' || b.type === 'ordering') ? 1 : 0
+          if (typeB !== typeA) return typeB - typeA
           const lapA = a.srs?.lapses || 0, lapB = b.srs?.lapses || 0
           return lapB - lapA
         })
@@ -5192,20 +5518,30 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
   }, [])
 
   function answer(idx) {
-    if (revealed) return
-    const correct = idx === current.correctIndex
+    if (revealed || !isMcQuestion(current)) return
+    const correct = gradeQuestion(current, idx)
     setSelected(idx); setRevealed(true)
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
-    if (!correct) onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, addedAt: Date.now() })
+    if (!correct) onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
+  }
+  function submitOrder() {
+    if (revealed || !isOrderingQuestion(current)) return
+    const correct = gradeQuestion(current, orderDraft)
+    setRevealed(true)
+    haptic(correct ? 15 : [10, 40, 10])
+    setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
+    recordQuizResult(current.objectiveId, current.id, { correct })
+    if (!correct) onMissed({ objectiveId: current.objectiveId, question: current.question, orderItems: current.orderItems, orderAnswer: orderDraft, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
   }
   function next() {
     if (queue.length === 0) { setPhase('done'); onDone?.(); return }
     setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setRevealed(false)
   }
 
-  const isCorrect = revealed && selected === current?.correctIndex
+  const ordering = current && isOrderingQuestion(current)
+  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
   const obj = current ? ALL_OBJECTIVES.find(o => o.id === current.objectiveId) : null
 
   if (phase === 'loading') return <div><button style={styles.backBtn} onClick={onBack}>‹ Back</button><Spinner label="Finding your weak areas..." /></div>
@@ -5238,15 +5574,13 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
       <div style={{ ...styles.small, marginBottom: 8 }}>{weakIds.length} weak objectives · drilling gaps</div>
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
+        <QuestionMeta q={current} />
         <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
-        {current.choices.map((choice, idx) => {
-          let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
-          if (revealed) {
-            if (idx === current.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
-            else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
-          }
-          return <button key={idx} onClick={() => answer(idx)} style={{ display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8, background: bg, border: `1px solid ${border}`, color, borderRadius: 10, padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4 }}>{choice}</button>
-        })}
+        {ordering ? (
+          <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
+        ) : (
+          <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
+        )}
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
@@ -5254,6 +5588,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
           </div>
         )}
       </div>
+      {ordering && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>}
       {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'Finish' : 'Next'}</button>}
     </div>
   )
@@ -5340,8 +5675,17 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
   const [current, setCurrent] = useState(null)
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
+  const [orderDraft, setOrderDraft] = useState([])
   const [stats, setStats] = useState({ correct: 0, total: 0 })
   const [total, setTotal] = useState(0)
+
+  useEffect(() => {
+    if (current && isOrderingQuestion(current)) {
+      setOrderDraft(shuffleArrayCopy(current.orderItems))
+    } else {
+      setOrderDraft([])
+    }
+  }, [current])
 
   useEffect(() => {
     (async () => {
@@ -5355,15 +5699,27 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
   const estMin = Math.max(1, Math.round(total * 0.5))
 
   function answer(idx) {
-    if (revealed) return
-    const correct = idx === current.correctIndex
+    if (revealed || !isMcQuestion(current)) return
+    const correct = gradeQuestion(current, idx)
     setSelected(idx); setRevealed(true)
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
     if (!correct) {
-      onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, addedAt: Date.now() })
+      onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
+    }
+  }
+  function submitOrder() {
+    if (revealed || !isOrderingQuestion(current)) return
+    const correct = gradeQuestion(current, orderDraft)
+    setRevealed(true)
+    haptic(correct ? 15 : [10, 40, 10])
+    setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
+    recordQuizResult(current.objectiveId, current.id, { correct })
+    logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
+    if (!correct) {
+      onMissed({ objectiveId: current.objectiveId, question: current.question, orderItems: current.orderItems, orderAnswer: orderDraft, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
     }
   }
   function next() {
@@ -5395,7 +5751,8 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
     )
   }
 
-  const isCorrect = revealed && selected === current.correctIndex
+  const ordering = isOrderingQuestion(current)
+  const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
   const obj = ALL_OBJECTIVES.find(o => o.id === current.objectiveId)
   return (
     <div>
@@ -5409,23 +5766,16 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
       <div style={styles.card}>
         <QuestionMeta q={current} />
         <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
-        {current.choices.map((choice, idx) => {
-          let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
-          if (revealed) {
-            if (idx === current.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
-            else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
-          }
-          return (
-            <button key={idx} onClick={() => answer(idx)} style={{ display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8, background: bg, border: `1px solid ${border}`, color, borderRadius: 10, padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4 }}>
-              {choice}
-            </button>
-          )
-        })}
+        {ordering ? (
+          <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
+        ) : (
+          <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
+        )}
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
-            {!isCorrect && (
+            {!isCorrect && isMcQuestion(current) && (
               <ExplainMistake
                 cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
                 question={current.question} choices={current.choices}
@@ -5444,6 +5794,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
           </div>
         )}
       </div>
+      {ordering && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>}
       {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'Finish' : 'Next'}</button>}
     </div>
   )
@@ -5456,18 +5807,23 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
    ========================================================================= */
 const DIAGNOSTIC_CAP = 18
 const DIAGNOSTIC_PER_OBJ = 2
+const DIAGNOSTIC_SKILL_MIN = 5 // ordering + troubleshooting in placement check
 
 function buildDiagnosticSet() {
-  const pool = []
+  const skillPool = allSkillQuestions().filter(q => isOrderingQuestion(q) || q.type === 'troubleshooting')
+  const mcPool = []
   for (const obj of ALL_OBJECTIVES) {
     if (!hasCuratedQuestions(obj.id)) continue
-    getCuratedQuestions(obj.id).slice(0, DIAGNOSTIC_PER_OBJ).forEach(q => pool.push({ ...q, objectiveId: obj.id }))
+    getCuratedQuestions(obj.id)
+      .filter(isMcQuestion)
+      .slice(0, DIAGNOSTIC_PER_OBJ)
+      .forEach(q => mcPool.push({ ...q, objectiveId: obj.id }))
   }
-  for (let i = pool.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[pool[i], pool[j]] = [pool[j], pool[i]]
-  }
-  return pool.slice(0, DIAGNOSTIC_CAP)
+  const skillPick = shuffleArray(skillPool).slice(0, DIAGNOSTIC_SKILL_MIN)
+  const seen = new Set(skillPick.map(q => q.id || q.question))
+  const mcPick = shuffleArray(mcPool.filter(q => !seen.has(q.id || q.question)))
+    .slice(0, Math.max(0, DIAGNOSTIC_CAP - skillPick.length))
+  return shuffleArray([...skillPick, ...mcPick]).slice(0, DIAGNOSTIC_CAP)
 }
 
 function Onboarding({ onComplete, onSkip }) {
@@ -5476,9 +5832,26 @@ function Onboarding({ onComplete, onSkip }) {
   const [current, setCurrent] = useState(null)
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
+  const [orderDraft, setOrderDraft] = useState([])
   const [results, setResults] = useState({})
   const [total, setTotal] = useState(0)
   const [answered, setAnswered] = useState(0)
+
+  useEffect(() => {
+    if (current && isOrderingQuestion(current)) {
+      setOrderDraft(shuffleArrayCopy(current.orderItems))
+    } else {
+      setOrderDraft([])
+    }
+  }, [current])
+
+  function recordResult(correct) {
+    setResults(r => {
+      const e = r[current.objectiveId] || { correct: 0, total: 0 }
+      return { ...r, [current.objectiveId]: { correct: e.correct + (correct ? 1 : 0), total: e.total + 1 } }
+    })
+    setAnswered(a => a + 1)
+  }
 
   function start() {
     const set = buildDiagnosticSet()
@@ -5491,14 +5864,17 @@ function Onboarding({ onComplete, onSkip }) {
   }
 
   function answer(idx) {
-    if (revealed) return
-    const correct = idx === current.correctIndex
+    if (revealed || !isMcQuestion(current)) return
+    const correct = gradeQuestion(current, idx)
     setSelected(idx); setRevealed(true)
-    setResults(r => {
-      const e = r[current.objectiveId] || { correct: 0, total: 0 }
-      return { ...r, [current.objectiveId]: { correct: e.correct + (correct ? 1 : 0), total: e.total + 1 } }
-    })
-    setAnswered(a => a + 1)
+    recordResult(correct)
+  }
+
+  function submitOrder() {
+    if (revealed || !isOrderingQuestion(current)) return
+    const correct = gradeQuestion(current, orderDraft)
+    setRevealed(true)
+    recordResult(correct)
   }
 
   function next() {
@@ -5512,8 +5888,8 @@ function Onboarding({ onComplete, onSkip }) {
         <div style={styles.card}>
           <h1 style={styles.h1}>Welcome 👋</h1>
           <p style={{ fontSize: 14, lineHeight: 1.6, color: COLORS.silver, marginBottom: 10 }}>
-            Quick placement check, ~5 minutes. A short mixed-domain quiz to see where you're starting from
-            — it seeds your progress so weaker areas surface first.
+            Quick placement check, ~5 minutes. A short mixed-domain quiz — including drag-and-drop ordering
+            and troubleshooting — to see where you're starting from and seed your progress.
           </p>
           <p style={styles.small}>No AI calls, no scoring pressure — you can retake real quizzes later regardless of how you do here.</p>
           <button style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={start}>Start placement check</button>
@@ -5524,7 +5900,8 @@ function Onboarding({ onComplete, onSkip }) {
   }
 
   if (phase === 'active') {
-    const isCorrect = revealed && selected === current.correctIndex
+    const ordering = isOrderingQuestion(current)
+    const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
     const obj = ALL_OBJECTIVES.find(o => o.id === current.objectiveId)
     return (
       <div>
@@ -5534,19 +5911,13 @@ function Onboarding({ onComplete, onSkip }) {
         </div>
         {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
         <div style={styles.card}>
+          <QuestionMeta q={current} />
           <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
-          {current.choices.map((choice, idx) => {
-            let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
-            if (revealed) {
-              if (idx === current.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
-              else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
-            }
-            return (
-              <button key={idx} onClick={() => answer(idx)} style={{ display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8, background: bg, border: `1px solid ${border}`, color, borderRadius: 10, padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4 }}>
-                {choice}
-              </button>
-            )
-          })}
+          {ordering ? (
+            <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
+          ) : (
+            <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
+          )}
           {revealed && (
             <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
               <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
@@ -5554,6 +5925,7 @@ function Onboarding({ onComplete, onSkip }) {
             </div>
           )}
         </div>
+        {ordering && !revealed && <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitOrder}>Check order</button>}
         {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'See results' : 'Next'}</button>}
       </div>
     )
@@ -6076,7 +6448,7 @@ function MockExam({ onExit }) {
       await Promise.all(domainCounts.map(async ({ domain, count }) => {
         // Collect all static questions for this domain
         const staticPool = shuffleArray(
-          domain.objectives.flatMap(o => getCuratedQuestions(o.id).map(q => ({ ...q, objectiveId: o.id })))
+          domain.objectives.flatMap(o => getCuratedQuestions(o.id).filter(isMcQuestion).map(q => ({ ...q, objectiveId: o.id })))
         )
         const fromStatic = staticPool.slice(0, count)
         all.push(...fromStatic)
