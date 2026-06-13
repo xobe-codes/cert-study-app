@@ -13,7 +13,7 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
 - **Question bank**: **566 imported and live** (554 in `IMPORTED_QUESTIONS` + hand-curated merges). Domain 5 bulk import complete. **12 shelved** in `SUPPLEMENTAL`.
 - **UI**: Key Terms and Visual tabs use curated flashcards/diagrams when available (no API on first load for curated objectives).
-- **Next planned work**: **MASTER LIST #12** — test/lint/typecheck tooling (`ENHANCEMENT_PRIORITIES.md`). Optional anytime: **#46** deploy to production.
+- **Next planned work**: Fix Key Terms auto-load bug (#47, urgent — missing `useEffect` from Timeline 16), then **MASTER LIST #12** test/lint tooling. Optional anytime: **#46** deploy to production.
 
 ---
 
