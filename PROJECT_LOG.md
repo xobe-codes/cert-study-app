@@ -12,7 +12,7 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
 - **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **Decision made to exclude 14** (3.4 multi-area OSPF cluster) → **884 importable**. **12 imported so far** (4.1, see Timeline item 9) → 872 remaining.
 - **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files created and committed (`PROJECT_PROFILE.md`, `COMMANDS.md`, `RISKY_AREAS.md`).
-- **Next planned work**: MASTER SEQUENCE item 6 (Domain 5 ID crosswalk decision) — see `ENHANCEMENT_PRIORITIES.md`.
+- **Next planned work**: MASTER SEQUENCE item 7 (import remaining clean domains 2, 3, 6) — see `ENHANCEMENT_PRIORITIES.md`.
 - **Predicted outcome of full rollout**: ~77% of objectives (41/53) get static questions; ~23% (12/53) remain AI-only (mostly Domain 1, which has no question-bank source yet).
 
 ---
@@ -97,7 +97,7 @@ The question bank's objective numbering **does not always match** the app's `DOM
 | 5.5 | VPN remote access/site-to-site | **5.10** |
 | 5.6 | ACLs | **5.5** |
 | 5.7 | Layer 2 security features | **5.6** |
-| 5.8 | AAA concepts | **5.7** (or 5.4 — ambiguous) |
+| 5.8 | AAA concepts (QB title: "Differentiate AAA concepts") | **5.7** ("Compare authentication, authorization, accounting") — confirmed, see Timeline item 13 |
 | 5.9 | Wireless security protocols | **5.8** |
 | 5.10 | WLC GUI WPA2-PSK | **5.9** |
 
@@ -174,11 +174,21 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 **Outcome**: Home now leads with a single readiness number and a per-domain breakdown, reusing the existing mastery/retention pipelines with no new storage or AI calls.
 
+### 13. MASTER SEQUENCE item 6 — Domain 5 ID crosswalk decision
+
+**Goal**: resolve the one ambiguous mapping in the Domain 5 question-bank → app-objective crosswalk (item 8 in this log, Open Decision #1) before importing Domain 5.
+
+**Finding**: inspected `~/Downloads/domain5-domain6-validation/objective-5.8-aaa-concepts-source-questions.json` — its `objective.objectiveTitle` is **"Differentiate AAA concepts"**, and its sample questions are conceptual ("Which technology gives selective access based on authentication?", "What is the end device called in 802.1X?", "What is the switch called in an 802.1X config?").
+
+**Decision**: QB 5.8 → app **5.7** ("Compare authentication, authorization, accounting") — both are conceptual/comparative. App **5.4** ("Configure and verify AAA with TACACS+/RADIUS") is configuration-command-focused and stays AI-only/uncovered, consistent with the existing note in this log. The Domain 5 crosswalk table above is now fully confirmed with no remaining ambiguity.
+
+**Outcome**: Domain 5 import (item 7) can proceed using the confirmed crosswalk: QB 5.1→5.1, 5.2→5.2, 5.3→5.3, 5.5→5.10, 5.6→5.5, 5.7→5.6, 5.8→5.7, 5.9→5.8, 5.10→5.9. QB 5.4 (password policies) remains an orphan for item 8's disposition decision.
+
 ---
 
 ## Open Decisions / Unresolved Questions
 
-1. Domain 5 crosswalk above — confirm before importing Domain 5 questions (QB 5.8 → app 5.4 vs 5.7 is ambiguous).
+1. ~~Domain 5 crosswalk above — confirm before importing Domain 5 questions (QB 5.8 → app 5.4 vs 5.7 is ambiguous).~~ **Resolved**, see Timeline item 13: QB 5.8 → app 5.7.
 2. Whether QB 2.9 (WLAN operational params, 13 questions) and QB 5.4 (password policies, 6 questions) become supplemental/unregistered content or get merged into their closest app objective.
 3. **4.2-4.9 (and similar uncurated objectives) question banks** — need either full curation (item 9) or a "questions-only" partial curated shape once item 3's per-content-type hybrid fallback lands.
 
@@ -189,7 +199,8 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 3. ~~Per-content-type hybrid fallback in `App.jsx`~~ — **done**, see Timeline item 10.
 4. ~~Diagnostic placement test~~ — **done**, see Timeline item 11.
 5. ~~Exam Readiness Score hero metric on Home~~ — **done**, see Timeline item 12.
-6. Domain 5 ID crosswalk decision.
+6. ~~Domain 5 ID crosswalk decision~~ — **done**, see Timeline item 13.
+7. Import remaining clean domains (2, 3, 6).
 
 ## Predicted Impact (full rollout)
 

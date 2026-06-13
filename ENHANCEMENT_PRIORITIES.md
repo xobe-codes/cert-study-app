@@ -13,7 +13,7 @@ Goal: enhance learning effectiveness AND the AI experience, in priority order. W
 3. ~~Per-content-type hybrid fallback in App.jsx (static questions usable even with AI-only reading)~~ — **done**, see PROJECT_LOG.md item 10
 4. ~~Onboarding + diagnostic placement test~~ — **done**, see PROJECT_LOG.md item 11
 5. ~~Exam Readiness Score hero metric on Home~~ — **done**, see PROJECT_LOG.md item 12
-6. Domain 5 ID crosswalk decision
+6. ~~Domain 5 ID crosswalk decision~~ — **done**, see PROJECT_LOG.md item 13 (QB 5.8 → app 5.7 confirmed)
 7. Import remaining clean domains (2, 3, 6)
 8. Decide orphaned question sets (QB 2.9, QB 5.4, excluded 3.4 OSPF cluster)
 9. Curate Domain 1 content (8/12 objectives — includes 1.6 subnetting, 1.8/1.9 IPv6)
