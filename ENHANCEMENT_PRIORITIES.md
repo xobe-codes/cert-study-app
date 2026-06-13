@@ -26,10 +26,10 @@ Start at **#12** unless you need production updated first (**#41**).
 | 10 | Import Domain 5 question bank (~144 Qs) | Less AI | **Done** | — (Timeline 16; 554 Qs in `IMPORTED_QUESTIONS`) |
 | 10a | Wire curated flashcards → Key Terms tab | Less AI | **Done** | — (Timeline 16) |
 | 10b | Wire curated diagrams → Visual tab | Less AI | **Done** | — (Timeline 16) |
-| 11 | Import Domain 4 `4.2`–`4.9` (~88 Qs, questions-only) | Less AI | Queued | Extend `convertQuestionBank.mjs`; hybrid fallback supports Q-only |
+| 11 | Import Domain 4 `4.2`–`4.9` (~88 Qs, questions-only) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | **12** | **Add test / lint / typecheck tooling** | Infra | **Next** | Vitest + ESLint before AI batch (#15–22) |
-| 13 | IPv6 subnetting calculator (`1.8`) | Less AI | Queued | Reuse existing subnetting calculator pattern |
-| 14 | ACL wildcard-mask calculator (`5.5` / `5.6`) | Less AI | Queued | Pair with #13 |
+| 13 | IPv6 subnetting calculator (`1.8`) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
+| 14 | ACL wildcard-mask calculator (`5.5` / `5.6`) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | 15 | Socratic tutor mode toggle | Better AI | Queued | Prompt + UI toggle on tutor chat |
 | 16 | Session recap on return to Home | Better AI | Queued | Wire `ccna_events_v1` + `buildLearnerSummary`; Haiku |
 | 17 | Domain weight overlay on progress bars | UX | ~~Queued~~ — **done** (Timeline 19) |
@@ -38,17 +38,17 @@ Start at **#12** unless you need production updated first (**#41**).
 | 20 | Personalized mnemonics for missed concepts | Better AI | Queued | Tie to retention-health weak bucket |
 | 21 | Confidence-calibration coaching | Better AI | Queued | Surface overconfidence quadrant |
 | 22 | Overconfidence → Daily Review weighting | Better AI | Queued | Auto-prioritize overconfident items |
-| 23 | Diagram / visual sprint (12–15 topics) | Less AI + UX | Queued | Expand static SVG beyond curated set |
-| 24 | Expand hands-on labs (47/53 have none) | Less AI | Queued | Next targets: `1.6`, `5.5`, `2.2` |
-| 25 | Subnetting drill mode (binary feedback) | Less AI | Queued | After #13; CLI-drill validator pattern |
+| 23 | Diagram / visual sprint (12–15 topics) | Less AI + UX | ~~Queued~~ — **done** (Timeline 20) | — |
+| 24 | Expand hands-on labs (47/53 have none) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
+| 25 | Subnetting drill mode (binary feedback) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | 26 | CLI lab AI feedback on failed validation | Better AI | Queued | Haiku explains why a lab command failed |
 | 27 | Global search / Cmd+K navigation | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 28 | Exam date countdown + adaptive daily plan | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 29 | Focus Mode (weak-area-only review) | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 30 | Lapse → same-session re-queue | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 31 | "Exam trap of the day" widget (Home) | UX | ~~Queued~~ — **done** (Timeline 19) |
-| 32 | Background pre-caching for uncurated objectives | Less AI | Queued | Lower urgency as static pool grows |
-| 33 | Mock exam from static pool (hybrid) | Less AI | Queued | Assemble mock from banks; AI fills gaps only |
+| 32 | Background pre-caching for uncurated objectives | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
+| 33 | Mock exam from static pool (hybrid) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | 34 | Mock exam history trend chart | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 35 | Troubleshooting question weighting near exam | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 36 | Adaptive question pacing within session | UX | ~~Queued~~ — **done** (Timeline 19) |
@@ -56,10 +56,10 @@ Start at **#12** unless you need production updated first (**#41**).
 | 38 | Voice / TTS mode for tutor | Better AI | Queued | Browser `speechSynthesis` |
 | 39 | AI "exam day" mock interview | Better AI | Queued | Late-stage exam prep |
 | 40 | API cost / reliability hardening | Infra | Queued | Turnstile/Access on proxy; usage dashboard |
-| 41 | Finish "MVP 12" curated objectives | Less AI | In progress | 7/12 done; remaining gaps fold into curation/import work |
-| 42 | Static reading stubs for Q-only objectives | Less AI | Queued | Reduce Explain-tab API for `2.3`, `6.2`, etc. |
-| 43 | Pre-assessment from static question bank | Less AI | Queued | Sample 6 Qs from `getCuratedQuestions()` before AI |
-| 44 | Fix offline packaging to skip curated assets | Less AI | Queued | `packageObjectiveOffline()` should not re-call AI |
+| 41 | Finish "MVP 12" curated objectives | Less AI | ~~In progress~~ — **done** (Timeline 20) | — |
+| 42 | Static reading stubs for Q-only objectives | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
+| 43 | Pre-assessment from static question bank | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
+| 44 | Fix offline packaging to skip curated assets | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | 45 | Show CURATED / Q-ONLY / AI badge on objective header | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 46 | Deploy to production | Infra | **Ready** | `npm run build && npx wrangler pages deploy dist --project-name ccna-study-tool` |
 | 47 | Fix Key Terms auto-load bug + cache-first for all objectives | Bug fix | ~~**Next (urgent)**~~ — **done**, see PROJECT_LOG.md item 17 |

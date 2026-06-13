@@ -6,6 +6,32 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 
 ---
 
+### 20. Less AI sweep — #11, #13, #14, #23, #24, #25, #32, #33, #41, #42, #43, #44
+
+**Goal**: Reduce AI dependency across the app — more static content, calculators, labs, and smarter AI fallback logic.
+
+**What was done**:
+- **#11**: D4 import — extended `convertQuestionBank.mjs` with 8 new entries (4.2–4.9); ran converter; 88 new questions added across `ccnaQuestionImports.js`. Total bank now ~730 Qs.
+- **#43**: Pre-assessment from static bank — `PreAssessment.start()` now samples 6 Qs from `getCuratedQuestions()` if ≥6 exist, skipping the AI call entirely. AI only fires for uncurated objectives with thin question banks.
+- **#44**: Offline packaging fix — `ensureExplanationCached`, `ensureTermsCached`, `ensureVisualCached`, `ensureQuizBankFilled` all check for curated content first and return early before calling AI. `loadOfflineReadyIds` treats curated objectives as always offline-ready.
+- **#32**: Background pre-caching — a `useEffect` in App root waits 10s after load, then quietly seeds key-terms cache for Q-only objectives (up to 5 per session, best-effort, silent on error).
+- **#33**: Mock exam from static pool — `MockExam.start()` now fills each domain's question count from the static bank first; AI only called to fill the gap if the static pool is thin. Mock exam intro shows estimated % from static bank.
+- **#13 + #14**: Calculators — `IPv6CalcTab` (address expansion/compression, prefix range) added to objective `1.8`; `ACLWildcardTab` (subnet→wildcard conversion and address+wildcard→range) added to `5.5` and `5.6`. Both are zero-API.
+- **#25**: Subnetting binary drill mode — `SubnettingTab` now has a mode toggle (Standard / Binary Drill). Binary mode shows the IP and mask in binary, and the solution panel shows the full binary AND/OR work. Reuses existing `maskFromCidr` utility.
+- **#42**: Static reading stubs — already satisfied by the `BOOK_REF` entries (all 53 objectives covered) surfaced via `BookRefPanel` on the Explain tab for non-curated objectives.
+- **#41 + #23**: Curated 3 new objectives in `ccnaCurated.js` (22 total, up from 19):
+  - `3.1` Routing table components — 3 CKUs, reading tiers, 10 questions, 6 flashcards, diagram, 2 examTraps
+  - `3.3` Static routing (IPv4 + IPv6) — 4 CKUs, reading tiers, 8 questions, 5 flashcards, diagram, 2 examTraps
+  - `5.1` Key security concepts (CIA triad) — 4 CKUs, reading tiers, 10 questions, 6 flashcards, diagram, 2 examTraps
+- **#24**: Expanded labs in `ccnaLabs.js` (8 total, up from 6):
+  - `LAB-ACL-CONFIG` (5.5) — Standard + extended ACL lab with named ACL, placement rules, 4 tasks, full validator + packet flow
+  - `LAB-IPV4-SUBNETTING` (1.6) — Subnet design + router-on-a-stick lab, /26 and /27 practice, dot1q subinterfaces
+- **Build**: `npm run build` passed (1,043 kB).
+
+**Outcome**: All Less AI items from MASTER LIST are now complete. Static question bank: ~730 Qs (D1-D6 imported). Curated objectives: 22/53. Labs: 8. Zero-API tools: IPv6 calc, ACL wildcard calc, binary subnetting drill.
+
+---
+
 ## Status Summary (as of 2026-06-13)
 
 - **Curated objectives**: **19 of 53** have full static, source-grounded content (reading + questions, no AI needed). **Domain 1 is now fully curated** (all 12 objectives).

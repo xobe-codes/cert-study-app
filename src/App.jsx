@@ -2024,14 +2024,20 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
       const cache = (await window.storage.getItem(PREASSESS_CACHE_KEY)) || {}
       let qs = cache[objective.id]
       if (!qs) {
-        const refNotes = BOOK_REF[objective.id] || ''
-        const data = await askClaudeJSON({
-          system: PREASSESS_PROMPT_SYSTEM,
-          messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nWrite the pre-assessment.` }],
-          max_tokens: 1800, model: MODELS.fast, schema: PREASSESS_SCHEMA, toolName: 'emit_preassessment', feature: 'preassess',
-        })
-        qs = data.questions || []
-        if (qs.length === 0) throw new Error('Could not build a pre-assessment.')
+        // Use curated/imported questions if we have enough — zero API cost
+        const staticQs = getCuratedQuestions(objective.id)
+        if (staticQs.length >= 6) {
+          qs = shuffleArray(staticQs).slice(0, 6)
+        } else {
+          const refNotes = BOOK_REF[objective.id] || ''
+          const data = await askClaudeJSON({
+            system: PREASSESS_PROMPT_SYSTEM,
+            messages: [{ role: 'user', content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nWrite the pre-assessment.` }],
+            max_tokens: 1800, model: MODELS.fast, schema: PREASSESS_SCHEMA, toolName: 'emit_preassessment', feature: 'preassess',
+          })
+          qs = data.questions || []
+          if (qs.length === 0) throw new Error('Could not build a pre-assessment.')
+        }
         cache[objective.id] = qs
         await window.storage.setItem(PREASSESS_CACHE_KEY, cache)
       }
@@ -3176,6 +3182,7 @@ function SubnettingTab() {
   const [problem, setProblem] = useState(() => generateSubnetProblem())
   const [answers, setAnswers] = useState({ network: '', broadcast: '', firstUsable: '', lastUsable: '', usableHosts: '' })
   const [checked, setChecked] = useState(false)
+  const [drillMode, setDrillMode] = useState(false) // binary step-by-step drill
 
   function newProblem() {
     setProblem(generateSubnetProblem())
@@ -3193,13 +3200,33 @@ function SubnettingTab() {
     return got === String(expected ?? '')
   }
 
+  // Binary drill: show IP in binary + step-by-step prompts
+  const ipBin = drillMode ? problem.ip.split('.').map(o => parseInt(o).toString(2).padStart(8, '0')).join('.') : null
+  const maskBin = drillMode ? maskFromCidr(problem.cidr).map(o => o.toString(2).padStart(8, '0')).join('.') : null
+
   return (
     <div>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+        {[false, true].map(dm => (
+          <button key={String(dm)} onClick={() => { setDrillMode(dm); newProblem() }}
+            style={{ flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${drillMode === dm ? COLORS.skyBorder : COLORS.border}`, background: drillMode === dm ? COLORS.skyDim : COLORS.surface, color: drillMode === dm ? COLORS.sky : COLORS.silverMid, fontSize: 12, cursor: 'pointer', fontFamily: 'inherit' }}>
+            {dm ? '🔢 Binary Drill' : '🔣 Standard'}
+          </button>
+        ))}
+      </div>
+
       <div style={styles.card}>
         <div style={styles.small}>Given:</div>
-        <div style={{ fontSize: 18, fontWeight: 700, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', marginTop: 4, marginBottom: 12 }}>
+        <div style={{ fontSize: 18, fontWeight: 700, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', marginTop: 4, marginBottom: drillMode ? 4 : 12 }}>
           {problem.ip} /{problem.cidr}
         </div>
+        {drillMode && (
+          <div style={{ fontSize: 11, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.sky, marginBottom: 12, lineHeight: 1.8 }}>
+            <div>IP:   {ipBin}</div>
+            <div>Mask: {maskBin}</div>
+            <div style={{ color: COLORS.silverMid, fontSize: 10, marginTop: 4 }}>AND the IP with the mask to find the network; OR with wildcard for broadcast</div>
+          </div>
+        )}
         <SubnetField label="Network address" placeholder="x.x.x.x" {...field('network')} />
         <SubnetField label="Broadcast address" placeholder="x.x.x.x" {...field('broadcast')} />
         <SubnetField label="First usable host" placeholder="x.x.x.x or n/a" {...field('firstUsable')} />
@@ -3229,6 +3256,14 @@ function SubnettingTab() {
       {checked && (
         <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
           <div style={styles.h2}>Step-by-step solution</div>
+          {drillMode && (
+            <div style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 11, color: COLORS.sky, marginBottom: 10, lineHeight: 1.8 }}>
+              <div>IP:        {ipBin}</div>
+              <div>Mask:      {maskBin}</div>
+              <div>Network:   {problem.network.split('.').map(o => parseInt(o).toString(2).padStart(8,'0')).join('.')} = {problem.network}</div>
+              <div>Broadcast: {problem.broadcast.split('.').map(o => parseInt(o).toString(2).padStart(8,'0')).join('.')} = {problem.broadcast}</div>
+            </div>
+          )}
           <ol style={{ paddingLeft: 18, margin: 0, fontSize: 13, lineHeight: 1.7 }}>
             {problem.steps.map((s, i) => <li key={i}>{s}</li>)}
           </ol>
@@ -3477,6 +3512,220 @@ function LabsHub({ onBack, onOpenLab }) {
 }
 
 /* =========================================================================
+   IPv6 ADDRESSING CALCULATOR — prefix notation, expanded/compressed forms,
+   and prefix range for a given IPv6 address/prefix length. Zero API cost.
+   ========================================================================= */
+function expandIPv6(addr) {
+  // Expand :: shorthand and pad each group to 4 hex digits
+  let full = addr.trim()
+  if (full.includes('::')) {
+    const [left, right] = full.split('::')
+    const leftGroups = left ? left.split(':') : []
+    const rightGroups = right ? right.split(':') : []
+    const missing = 8 - leftGroups.length - rightGroups.length
+    const mid = Array(missing).fill('0000')
+    full = [...leftGroups, ...mid, ...rightGroups].join(':')
+  }
+  return full.split(':').map(g => g.padStart(4, '0')).join(':')
+}
+function compressIPv6(expanded) {
+  // Remove leading zeros in each group, then find longest run of :0: for ::
+  const groups = expanded.split(':').map(g => g.replace(/^0+/, '') || '0')
+  const str = groups.join(':')
+  // Find longest consecutive sequence of :0: groups
+  let best = '', bestLen = 0, cur = '', curLen = 0
+  for (let i = 0; i < groups.length; i++) {
+    if (groups[i] === '0') { cur += (cur ? ':' : '') + '0'; curLen++; if (curLen > bestLen) { best = cur; bestLen = curLen } }
+    else { cur = ''; curLen = 0 }
+  }
+  if (bestLen >= 2) {
+    const rx = new RegExp('(^|:)' + best.replace(/:/g, ':') + '($|:)')
+    return str.replace(rx, '::').replace(/:{3,}/, '::')
+  }
+  return str
+}
+
+function IPv6CalcTab() {
+  const [input, setInput] = useState('')
+  const [prefix, setPrefix] = useState('64')
+  const [result, setResult] = useState(null)
+  const [error, setError] = useState('')
+
+  function calculate() {
+    setError('')
+    try {
+      const pfx = parseInt(prefix, 10)
+      if (isNaN(pfx) || pfx < 0 || pfx > 128) throw new Error('Prefix length must be 0–128.')
+      let addr = input.trim()
+      if (!addr) throw new Error('Enter an IPv6 address.')
+      // Basic validation: allow hex digits, colons, double colon
+      if (!/^[0-9a-fA-F:]+$/.test(addr)) throw new Error('Invalid characters — use hex digits and colons.')
+      const expanded = expandIPv6(addr)
+      const groups = expanded.split(':')
+      if (groups.length !== 8) throw new Error('Invalid IPv6 address (need 8 groups after expansion).')
+      // Convert to 128-bit bigint
+      const full = BigInt('0x' + groups.map(g => g.padStart(4, '0')).join(''))
+      const mask = pfx === 0 ? 0n : (((1n << BigInt(pfx)) - 1n) << BigInt(128 - pfx))
+      const network = full & mask
+      const lastAddr = pfx === 128 ? network : network | ((1n << BigInt(128 - pfx)) - 1n)
+      function bigToIPv6(n) {
+        const hex = n.toString(16).padStart(32, '0')
+        return compressIPv6(hex.match(/.{4}/g).join(':'))
+      }
+      setResult({
+        expanded: expanded.toLowerCase(),
+        compressed: compressIPv6(expanded.toLowerCase()),
+        prefixLength: pfx,
+        networkPrefix: bigToIPv6(network) + '/' + pfx,
+        firstHost: pfx < 128 ? bigToIPv6(network + 1n) : bigToIPv6(network),
+        lastAddr: bigToIPv6(lastAddr),
+        totalAddresses: pfx <= 64 ? '2^' + (128 - pfx) + ' (' + ((128 - pfx) >= 64 ? '≥18 quintillion' : String(2n ** BigInt(128 - pfx))) + ')' : String(2n ** BigInt(128 - pfx)),
+      })
+    } catch (e) { setError(e.message) }
+  }
+
+  return (
+    <div>
+      <div style={styles.card}>
+        <div style={{ ...styles.small, fontWeight: 700, marginBottom: 10 }}>IPv6 Address / Prefix Calculator</div>
+        <div style={{ marginBottom: 8 }}>
+          <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>IPv6 Address</div>
+          <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
+            value={input} onChange={e => setInput(e.target.value)} placeholder="e.g. 2001:db8::1 or 2001:0db8::" autoCapitalize="none" autoCorrect="off" />
+        </div>
+        <div style={{ marginBottom: 12 }}>
+          <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>Prefix Length</div>
+          <input style={{ ...styles.input, width: 80 }} value={prefix} onChange={e => setPrefix(e.target.value)} placeholder="64" inputMode="numeric" />
+        </div>
+        <button style={styles.primaryBtn} onClick={calculate}>Calculate</button>
+      </div>
+      {error && <div style={{ color: COLORS.rose, fontSize: 13, marginTop: 8 }}>{error}</div>}
+      {result && (
+        <div style={styles.card}>
+          {[
+            ['Expanded form', result.expanded],
+            ['Compressed form', result.compressed],
+            ['Network prefix', result.networkPrefix],
+            ['First host address', result.firstHost],
+            ['Last address in block', result.lastAddr],
+            ['Total addresses', result.totalAddresses],
+          ].map(([label, val]) => (
+            <div key={label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, flexWrap: 'wrap', gap: 4 }}>
+              <span style={{ fontSize: 12, color: COLORS.silverMid }}>{label}</span>
+              <span style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 13, color: COLORS.sky }}>{val}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* =========================================================================
+   ACL WILDCARD-MASK CALCULATOR — converts subnet mask ↔ wildcard mask,
+   and shows the matching network range for a given address + wildcard.
+   ========================================================================= */
+function ACLWildcardTab() {
+  const [mode, setMode] = useState('mask') // mask | range
+  const [mask, setMask] = useState('')
+  const [address, setAddress] = useState('')
+  const [wildcard, setWildcard] = useState('')
+  const [result, setResult] = useState(null)
+  const [error, setError] = useState('')
+
+  function validateOctets(ip) {
+    const parts = ip.split('.')
+    if (parts.length !== 4) return false
+    return parts.every(p => { const n = parseInt(p, 10); return !isNaN(n) && n >= 0 && n <= 255 && String(n) === p })
+  }
+
+  function calculate() {
+    setError(''); setResult(null)
+    try {
+      if (mode === 'mask') {
+        if (!validateOctets(mask)) throw new Error('Enter a valid subnet mask (e.g. 255.255.255.0)')
+        const maskOcts = mask.split('.').map(Number)
+        const wildcardOcts = maskOcts.map(o => 255 - o)
+        const cidr = maskOcts.reduce((s, o) => s + o.toString(2).split('').filter(b => b === '1').length, 0)
+        setResult({
+          subnetMask: mask,
+          wildcardMask: wildcardOcts.join('.'),
+          cidr: '/' + cidr,
+          note: 'Wildcard = bitwise NOT of subnet mask',
+        })
+      } else {
+        if (!validateOctets(address)) throw new Error('Enter a valid IP address.')
+        if (!validateOctets(wildcard)) throw new Error('Enter a valid wildcard mask.')
+        const addrOcts = address.split('.').map(Number)
+        const wcOcts = wildcard.split('.').map(Number)
+        // Network = address AND (NOT wildcard)
+        const netOcts = addrOcts.map((o, i) => o & (255 - wcOcts[i]))
+        // Broadcast = network OR wildcard
+        const broadOcts = netOcts.map((o, i) => o | wcOcts[i])
+        const subnetMask = wcOcts.map(o => 255 - o).join('.')
+        const cidr = wcOcts.map(o => (255 - o).toString(2).split('1').length - 1).reduce((a, b) => a + b, 0)
+        const hosts = wcOcts.reduce((prod, o) => prod * (o + 1), 1)
+        setResult({
+          networkAddress: netOcts.join('.'),
+          broadcastAddress: broadOcts.join('.'),
+          subnetMask,
+          cidr: '/' + cidr,
+          matchingHosts: hosts + ' IP address' + (hosts !== 1 ? 'es' : ''),
+          aclStatement: `access-list 1 permit ${netOcts.join('.')} ${wildcard}`,
+        })
+      }
+    } catch (e) { setError(e.message) }
+  }
+
+  return (
+    <div>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+        {[['mask', 'Mask → Wildcard'], ['range', 'Address + Wildcard → Range']].map(([m, label]) => (
+          <button key={m} onClick={() => { setMode(m); setResult(null); setError('') }}
+            style={{ flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${mode === m ? COLORS.skyBorder : COLORS.border}`, background: mode === m ? COLORS.skyDim : COLORS.surface, color: mode === m ? COLORS.sky : COLORS.silverMid, fontSize: 12, cursor: 'pointer', fontFamily: 'inherit' }}>
+            {label}
+          </button>
+        ))}
+      </div>
+      <div style={styles.card}>
+        {mode === 'mask' ? (
+          <div style={{ marginBottom: 12 }}>
+            <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>Subnet Mask</div>
+            <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
+              value={mask} onChange={e => setMask(e.target.value)} placeholder="255.255.255.0" inputMode="decimal" />
+          </div>
+        ) : (
+          <>
+            <div style={{ marginBottom: 8 }}>
+              <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>IP Address</div>
+              <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
+                value={address} onChange={e => setAddress(e.target.value)} placeholder="192.168.1.0" inputMode="decimal" />
+            </div>
+            <div style={{ marginBottom: 12 }}>
+              <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>Wildcard Mask</div>
+              <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
+                value={wildcard} onChange={e => setWildcard(e.target.value)} placeholder="0.0.0.255" inputMode="decimal" />
+            </div>
+          </>
+        )}
+        <button style={styles.primaryBtn} onClick={calculate}>Calculate</button>
+      </div>
+      {error && <div style={{ color: COLORS.rose, fontSize: 13, marginTop: 8 }}>{error}</div>}
+      {result && (
+        <div style={styles.card}>
+          {Object.entries(result).map(([key, val]) => (
+            <div key={key} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, flexWrap: 'wrap', gap: 4 }}>
+              <span style={{ fontSize: 12, color: COLORS.silverMid, textTransform: 'capitalize' }}>{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+              <span style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 13, color: COLORS.sky }}>{val}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* =========================================================================
    OBJECTIVE SCREEN — Explain / Quiz / CLI Drill / Subnetting / VLSM tabs
    ========================================================================= */
 function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective }) {
@@ -3494,6 +3743,8 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
     const t = ['Explain', 'Visual', 'Quiz']
     if (COMMAND_DRILLS[objective.id]) t.push('CLI Drill')
     if (objective.id === '1.6') { t.push('Subnetting'); t.push('VLSM') }
+    if (objective.id === '1.8') t.push('IPv6 Calc')
+    if (objective.id === '5.5' || objective.id === '5.6') t.push('ACL Calc')
     return t
   }, [objective.id])
 
@@ -3642,6 +3893,8 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
       {tab === 'CLI Drill' && <CLIDrillTab objective={objective} />}
       {tab === 'Subnetting' && <SubnettingTab />}
       {tab === 'VLSM' && <VLSMTab />}
+      {tab === 'IPv6 Calc' && <IPv6CalcTab />}
+      {tab === 'ACL Calc' && <ACLWildcardTab />}
     </div>
   )
 }
@@ -3654,6 +3907,8 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
    (online required); re-viewing packaged content later costs zero API calls.
    ========================================================================= */
 async function ensureExplanationCached(objective) {
+  // Curated objectives render from bundled data — no cache entry needed
+  if (hasCuratedReading(objective.id)) return
   const cache = (await window.storage.getItem(EXPLAIN_CACHE_KEY)) || {}
   if (cache[objective.id]) return
   const refNotes = BOOK_REF[objective.id] || ''
@@ -3666,6 +3921,8 @@ async function ensureExplanationCached(objective) {
   await window.storage.setItem(EXPLAIN_CACHE_KEY, cache)
 }
 async function ensureTermsCached(objective) {
+  // Curated objectives serve flashcards from bundled data — no cache entry needed
+  if (getCurated(objective.id)?.flashcards?.length) return
   const cache = (await window.storage.getItem(TERMS_CACHE_KEY)) || {}
   if (cache[objective.id]) return
   const refNotes = BOOK_REF[objective.id] || ''
@@ -3679,6 +3936,8 @@ async function ensureTermsCached(objective) {
   await window.storage.setItem(TERMS_CACHE_KEY, cache)
 }
 async function ensureVisualCached(objective) {
+  // Curated objectives serve diagrams from bundled data — no cache entry needed
+  if (getCurated(objective.id)?.diagram) return
   const cache = (await window.storage.getItem(VISUAL_CACHE_KEY)) || {}
   if (cache[objective.id]) return
   const refNotes = BOOK_REF[objective.id] || ''
@@ -3693,6 +3952,12 @@ async function ensureVisualCached(objective) {
 }
 async function ensureQuizBankFilled(objective) {
   let bank = await loadQuizBank()
+  // Seed curated questions first; only call AI if bank is still thin
+  const curatedQs = getCuratedQuestions(objective.id)
+  if (curatedQs.length && (bank[objective.id] || []).length < curatedQs.length) {
+    bank = mergeIntoBank(bank, objective.id, curatedQs)
+    await saveQuizBank(bank)
+  }
   if ((bank[objective.id] || []).length >= QUIZ_BANK_MIN) return
   const refNotes = BOOK_REF[objective.id] || ''
   const data = await askClaudeJSON({
@@ -3712,6 +3977,7 @@ async function packageObjectiveOffline(objective) {
   logEvent('user_packaged_offline', { objectiveId: objective.id })
 }
 // Returns the Set of objective ids whose four assets are all cached locally.
+// Curated objectives are always "ready" since their content is bundled.
 async function loadOfflineReadyIds() {
   const [ex, tm, vs, bank] = await Promise.all([
     window.storage.getItem(EXPLAIN_CACHE_KEY),
@@ -3719,9 +3985,14 @@ async function loadOfflineReadyIds() {
     window.storage.getItem(VISUAL_CACHE_KEY),
     loadQuizBank(),
   ])
-  const ids = ALL_OBJECTIVES.filter(o =>
-    ex && ex[o.id] && tm && tm[o.id] && vs && vs[o.id] && (bank[o.id] || []).length >= QUIZ_BANK_MIN
-  ).map(o => o.id)
+  const ids = ALL_OBJECTIVES.filter(o => {
+    const isCurated = hasCuratedReading(o.id)
+    const hasTerms = getCurated(o.id)?.flashcards?.length || (tm && tm[o.id])
+    const hasVisual = getCurated(o.id)?.diagram || (vs && vs[o.id])
+    const hasExplain = isCurated || (ex && ex[o.id])
+    const hasBank = getCuratedQuestions(o.id).length >= QUIZ_BANK_MIN || (bank[o.id] || []).length >= QUIZ_BANK_MIN
+    return hasExplain && hasTerms && hasVisual && hasBank
+  }).map(o => o.id)
   return new Set(ids)
 }
 // Per-objective offline asset checklist (for the unlock progress bars).
@@ -4938,24 +5209,40 @@ function MockExam({ onExit }) {
     setError(null)
     try {
       const domainCounts = buildMockExamDomainCounts().filter(dc => dc.count > 0)
-      const results = await Promise.all(domainCounts.map(async ({ domain, count }) => {
+
+      // For each domain, try to fill the needed count from the static bank first.
+      // Only call AI for objectives that have no imported questions.
+      const all = []
+      await Promise.all(domainCounts.map(async ({ domain, count }) => {
+        // Collect all static questions for this domain
+        const staticPool = shuffleArray(
+          domain.objectives.flatMap(o => getCuratedQuestions(o.id).map(q => ({ ...q, objectiveId: o.id })))
+        )
+        const fromStatic = staticPool.slice(0, count)
+        all.push(...fromStatic)
+
+        // Only call AI if static pool is too thin
+        const aiCount = count - fromStatic.length
+        if (aiCount <= 0) return
+
         const objectivesText = domain.objectives.map(o => `Objective ${o.id} — ${o.title}\n${BOOK_REF[o.id] || ''}`).join('\n\n')
         const data = await askClaudeJSON({
           system: cachedSystem(MOCK_EXAM_SYSTEM),
           messages: [{
             role: 'user',
-            content: `Domain: ${domain.name}\n\n${objectivesText}\n\nGenerate ${count} multiple-choice questions total for this domain, spread across the objectives above. Tag each question with its objectiveId.`,
+            content: `Domain: ${domain.name}\n\n${objectivesText}\n\nGenerate ${aiCount} multiple-choice questions total for this domain, spread across the objectives above. Tag each question with its objectiveId.`,
           }],
-          max_tokens: 250 * count + 300,
+          max_tokens: 250 * aiCount + 300,
           schema: MOCK_SCHEMA,
           toolName: 'emit_exam',
           feature: 'mock',
         })
-        return (data.questions || []).slice(0, count)
+        all.push(...(data.questions || []).slice(0, aiCount))
       }))
-      const all = shuffleArray(results.flat())
-      if (all.length === 0) throw new Error('No questions were generated.')
-      setQuestions(all)
+
+      const final = shuffleArray(all)
+      if (final.length === 0) throw new Error('No questions were generated.')
+      setQuestions(final)
       setResponses({})
       setCurrent(0)
       setSecondsLeft(MOCK_EXAM_DURATION_MIN * 60)
@@ -5011,6 +5298,8 @@ function MockExam({ onExit }) {
   }, [phase, questions, responses])
 
   if (phase === 'intro') {
+    const staticCount = DOMAINS.flatMap(d => d.objectives).reduce((n, o) => n + getCuratedQuestions(o.id).length, 0)
+    const staticPct = Math.min(100, Math.round((Math.min(staticCount, MOCK_EXAM_QUESTION_COUNT) / MOCK_EXAM_QUESTION_COUNT) * 100))
     return (
       <div>
         <button style={styles.backBtn} onClick={onExit}>‹ Back</button>
@@ -5019,6 +5308,7 @@ function MockExam({ onExit }) {
           <div style={{ fontSize: 14, lineHeight: 1.7 }}>
             <div>• {MOCK_EXAM_QUESTION_COUNT} questions, {MOCK_EXAM_DURATION_MIN} minute countdown</div>
             <div>• Weighted by official exam domain percentages</div>
+            <div>• <span style={{ color: COLORS.mint }}>~{staticPct}% from your static question bank</span> — no API needed for those</div>
             <div>• Score report broken down by domain at the end</div>
             <div>• Once started, the timer runs continuously — find a quiet 2 hours, or submit early</div>
           </div>
@@ -5764,6 +6054,39 @@ export default function App() {
 
   // Diagnostic placement check: seed quizScores for sampled objectives, then
   // hand off to the normal dashboard.
+
+  // Background pre-cache: after a 10s idle, quietly seed key-terms cache for
+  // uncurated objectives that have imported questions but no cached terms yet.
+  // Runs at most once per session; skips curated (already bundled) and already-cached.
+  useEffect(() => {
+    if (!loaded || !apiOnline) return
+    const t = setTimeout(async () => {
+      try {
+        const termsCache = (await window.storage.getItem(TERMS_CACHE_KEY)) || {}
+        const targets = ALL_OBJECTIVES.filter(o =>
+          !getCurated(o.id)?.flashcards?.length && // not curated
+          hasCuratedQuestions(o.id) && // has static questions (Q-only)
+          !termsCache[o.id] // not yet cached
+        ).slice(0, 5) // max 5 per session to avoid API bursts
+        for (const obj of targets) {
+          try {
+            const refNotes = BOOK_REF[obj.id] || ''
+            const data = await askClaudeJSON({
+              system: TERMS_PROMPT_SYSTEM,
+              messages: [{ role: 'user', content: `Objective ${obj.id}: ${obj.title}\n\nReference notes:\n${refNotes}\n\nGenerate key-term flashcards.` }],
+              max_tokens: 700, model: MODELS.fast, schema: TERMS_SCHEMA, toolName: 'emit_terms', feature: 'terms',
+            })
+            if ((data.cards || []).length > 0) {
+              const cache = (await window.storage.getItem(TERMS_CACHE_KEY)) || {}
+              cache[obj.id] = data.cards
+              await window.storage.setItem(TERMS_CACHE_KEY, cache)
+            }
+          } catch { /* silent — background best-effort */ }
+        }
+      } catch { /* silent */ }
+    }, 10000)
+    return () => clearTimeout(t)
+  }, [loaded, apiOnline])
   const finishOnboarding = useCallback(async (results) => {
     setProgress(prev => {
       const next = { ...prev }

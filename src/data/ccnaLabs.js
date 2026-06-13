@@ -910,9 +910,267 @@ const FLOWS_SSH = [
 const SSH = { lab: LAB_SSH, topology: TOPO_SSH, validator: VALIDATOR_SSH, diagram: DIAGRAM_SSH, packetFlows: FLOWS_SSH }
 
 /* -------------------------------------------------------------------------
+   LAB: Standard and Extended ACL Configuration
+   Maps to Domain 5.0 / Objective 5.5 (Access Control Lists).
+   ------------------------------------------------------------------------- */
+const LAB_ACL_DEF = {
+  id: 'LAB-ACL-CONFIG',
+  title: 'Configure Standard and Extended ACLs',
+  domainId: 'security',
+  objectiveId: '5.5',
+  ckuIds: ['CKU-STANDARD-ACL', 'CKU-EXTENDED-ACL', 'CKU-WILDCARD-MASK', 'CKU-ACL-PLACEMENT'],
+  labType: 'guided',
+  difficulty: 'intermediate',
+  estimatedTimeMinutes: 20,
+  tools: ['Packet Tracer', 'GNS3', 'CML'],
+  examRelevance: 'core',
+  scenario: 'R1 connects an office subnet (192.168.1.0/24) to a server zone (10.0.0.0/24) and the internet. Configure a standard numbered ACL to block one host from the internet, then an extended named ACL to permit HTTP/HTTPS from the office to the servers while blocking all other office-to-server traffic.',
+  learningGoals: [
+    'Configure a standard numbered ACL and apply it close to the destination.',
+    'Configure an extended named ACL and apply it close to the source.',
+    'Understand wildcard masks and the implicit deny at the end of every ACL.',
+    'Verify with show access-lists and show ip interface.',
+  ],
+  topologyId: 'TOPO-ACL',
+  prerequisites: ['CKU-IP-ADDRESSING', 'CKU-WILDCARD-MASK'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Configure interfaces', device: 'R1',
+      instruction: 'Configure R1 Gi0/0 as 192.168.1.1/24 (office) and Gi0/1 as 10.0.0.1/24 (server zone). Bring both interfaces up.',
+      expectedCommands: ['interface gi0/0', 'ip address 192.168.1.1 255.255.255.0', 'no shutdown', 'interface gi0/1', 'ip address 10.0.0.1 255.255.255.0', 'no shutdown'] },
+    { id: 't2', order: 2, title: 'Standard ACL — block host 192.168.1.50 outbound', device: 'R1',
+      instruction: 'Create standard ACL 10: deny 192.168.1.50, then permit 192.168.1.0/24. Apply OUTBOUND on Gi0/2 (internet-facing).',
+      expectedCommands: ['access-list 10 deny host 192.168.1.50', 'access-list 10 permit 192.168.1.0 0.0.0.255', 'interface gi0/2', 'ip access-group 10 out'] },
+    { id: 't3', order: 3, title: 'Named extended ACL', device: 'R1',
+      instruction: 'Create named extended ACL OFFICE_TO_SERVERS: permit TCP from 192.168.1.0/24 to 10.0.0.0/24 on ports 80 and 443; deny ip from office to servers. Apply INBOUND on Gi0/0.',
+      expectedCommands: ['ip access-list extended OFFICE_TO_SERVERS', 'permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 80', 'permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 443', 'deny ip 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255', 'interface gi0/0', 'ip access-group OFFICE_TO_SERVERS in'] },
+    { id: 't4', order: 4, title: 'Verify ACLs', device: 'R1',
+      instruction: 'Verify both ACLs are configured and show hit counts.',
+      expectedCommands: ['show access-lists', 'show ip interface gi0/0', 'show ip interface gi0/2'] },
+  ],
+  verificationCommands: ['show access-lists', 'show ip interface gi0/0', 'show ip interface gi0/2', 'show running-config | section access-list'],
+  successCriteria: [
+    'ACL 10 blocks only 192.168.1.50 from reaching the internet.',
+    'Other 192.168.1.0/24 hosts can reach the internet.',
+    'OFFICE_TO_SERVERS permits port 80 and 443 from office to servers.',
+    'Non-HTTP/HTTPS traffic from office is blocked from server zone.',
+    'show access-lists shows match counters incrementing on the correct entries.',
+  ],
+  failureCriteria: [
+    'Standard ACL on Gi0/0 inbound — blocks more traffic than intended.',
+    'Missing permit after deny — implicit deny drops all remaining traffic.',
+    'Subnet mask used instead of wildcard mask — ACL matches wrong addresses.',
+    'ACL applied on wrong interface or wrong direction.',
+  ],
+  commonMistakes: [
+    'Confusing subnet mask with wildcard mask — wildcard is bitwise inverse (255 - mask octet).',
+    'Placing standard ACL close to source — standard ACLs should go close to destination.',
+    'Forgetting explicit permit after deny — implicit deny at end drops everything else.',
+    'Wrong port keyword — eq 80=HTTP, eq 443=HTTPS, eq 23=Telnet, eq 22=SSH.',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '5.5 Access Control Lists', confidence: 0.95 },
+  metadata: { version: '1', status: 'validated', confidence: 0.95 },
+}
+const TOPO_ACL = {
+  id: 'TOPO-ACL', title: 'ACL Lab topology', objectiveId: '5.5',
+  nodes: [
+    { id: 'pc1', label: 'Office PC .10', type: 'pc', x: 12, y: 25 },
+    { id: 'blocked', label: 'Blocked PC .50', type: 'attacker', x: 12, y: 75 },
+    { id: 'r1', label: 'R1', type: 'router', x: 50, y: 50 },
+    { id: 'srv', label: 'Server 10.0.0.10', type: 'server', x: 80, y: 30 },
+    { id: 'inet', label: 'Internet (Gi0/2)', type: 'cloud', x: 80, y: 70 },
+  ],
+  links: [
+    { id: 'l1', source: 'pc1', target: 'r1', label: 'Gi0/0 OFFICE_TO_SERVERS in', status: 'forwarding' },
+    { id: 'l2', source: 'blocked', target: 'r1', label: '', status: 'dropped' },
+    { id: 'l3', source: 'r1', target: 'srv', label: 'Gi0/1 port 80/443 only', status: 'forwarding' },
+    { id: 'l4', source: 'r1', target: 'inet', label: 'Gi0/2 ACL 10 out', status: 'forwarding' },
+  ],
+  annotations: ['ACL 10 blocks .50 outbound Gi0/2', 'OFFICE_TO_SERVERS on Gi0/0 inbound'],
+}
+const VALIDATOR_ACL = {
+  labId: 'LAB-ACL-CONFIG',
+  requiredCommands: [
+    { device: 'R1', command: 'access-list 10 deny host 192.168.1.50' },
+    { device: 'R1', command: 'access-list 10 permit 192.168.1.0 0.0.0.255' },
+    { device: 'R1', command: 'ip access-group 10 out' },
+    { device: 'R1', command: 'ip access-list extended OFFICE_TO_SERVERS' },
+    { device: 'R1', command: 'permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 80' },
+    { device: 'R1', command: 'permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 443' },
+    { device: 'R1', command: 'ip access-group OFFICE_TO_SERVERS in' },
+  ],
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show access-lists', expectedResult: 'Both ACL 10 and OFFICE_TO_SERVERS listed with rules.', passCondition: 'access-list 10' },
+    { id: 'v2', device: 'R1', command: 'show ip interface gi0/0', expectedResult: 'Inbound access list is OFFICE_TO_SERVERS.', passCondition: 'OFFICE_TO_SERVERS' },
+  ],
+  failureChecks: [
+    { id: 'f1', device: 'PC1', command: 'telnet 10.0.0.10', expectedFailure: 'Connection refused', reason: 'Telnet (TCP/23) is not in the permitted ports in OFFICE_TO_SERVERS.' },
+  ],
+}
+const DIAGRAM_ACL = {
+  id: 'DIAG-ACL-placement', title: 'Standard vs Extended ACL Placement',
+  type: 'process',
+  ckuIds: ['CKU-STANDARD-ACL', 'CKU-EXTENDED-ACL'],
+  nodes: [
+    { id: 'src', label: 'Source (192.168.1.0/24)', type: 'pc', x: 10, y: 50 },
+    { id: 'r1', label: 'R1', type: 'router', x: 50, y: 50 },
+    { id: 'dst', label: 'Destination (10.0.0.0/24)', type: 'server', x: 90, y: 50 },
+    { id: 'stdacl', label: 'Standard ACL near destination', type: 'process', x: 70, y: 25, status: 'highlighted' },
+    { id: 'extacl', label: 'Extended ACL near source', type: 'process', x: 30, y: 75, status: 'highlighted' },
+  ],
+  links: [
+    { id: 'd1', source: 'src', target: 'r1', status: 'forwarding' },
+    { id: 'd2', source: 'r1', target: 'dst', status: 'forwarding' },
+    { id: 'd3', source: 'stdacl', target: 'r1', label: 'applied inbound Gi0/1' },
+    { id: 'd4', source: 'extacl', target: 'r1', label: 'applied inbound Gi0/0' },
+  ],
+  annotations: ['Standard ACL: source IP only — place near DESTINATION to avoid over-blocking', 'Extended ACL: src+dst+protocol+port — place near SOURCE to save bandwidth'],
+  sourceRefs: [{ sourceName: LAB_SOURCES.blueprint, chapter: '5.5', confidence: 1 }],
+}
+const FLOWS_ACL = [
+  {
+    id: 'FLOW-ACL-http', title: 'HTTP traffic from office to server', ckuIds: ['CKU-EXTENDED-ACL'], diagramId: 'DIAG-ACL-placement',
+    steps: [
+      { id: 's1', order: 1, title: 'Packet arrives Gi0/0', action: 'PC sends HTTP request to 10.0.0.10. Packet arrives inbound on R1 Gi0/0.', successState: 'matched' },
+      { id: 's2', order: 2, title: 'ACL checked', action: 'OFFICE_TO_SERVERS inbound. First matching rule: permit tcp ... eq 80. Match!', successState: 'matched' },
+      { id: 's3', order: 3, title: 'Forwarded', action: 'Packet is permitted and forwarded out Gi0/1 to the server.', successState: 'forwarded' },
+    ],
+  },
+]
+const ACL = { lab: LAB_ACL_DEF, topology: TOPO_ACL, validator: VALIDATOR_ACL, diagram: DIAGRAM_ACL, packetFlows: FLOWS_ACL }
+
+/* -------------------------------------------------------------------------
+   LAB: IPv4 Subnetting and Router Interface Configuration
+   Maps to Domain 1.0 / Objective 1.6 (IPv4 addressing and subnetting).
+   ------------------------------------------------------------------------- */
+const LAB_SUBNET_DEF = {
+  id: 'LAB-IPV4-SUBNETTING',
+  title: 'Subnet a Network and Configure Router Interfaces',
+  domainId: 'fundamentals',
+  objectiveId: '1.6',
+  ckuIds: ['CKU-SUBNETTING', 'CKU-IP-ADDRESSING', 'CKU-CIDR'],
+  labType: 'guided',
+  difficulty: 'intermediate',
+  estimatedTimeMinutes: 15,
+  tools: ['Packet Tracer', 'GNS3', 'CML'],
+  examRelevance: 'core',
+  scenario: 'You have 192.168.10.0/24. Divide it: Subnet A needs 50 hosts (/26), Subnet B needs 30 hosts (/27). Assign the first usable address of each subnet to the router. Configure router-on-a-stick (subinterfaces) so hosts in both subnets can communicate through R1.',
+  learningGoals: [
+    'Calculate subnets using 2^n-2 >= required hosts.',
+    'Assign network/broadcast/usable range for each subnet.',
+    'Configure subinterfaces with dot1q encapsulation.',
+    'Verify connectivity with ping across subnets.',
+  ],
+  topologyId: 'TOPO-SUBNET',
+  prerequisites: ['CKU-BINARY-MATH', 'CKU-CIDR'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Design subnets', device: 'Paper/notes',
+      instruction: 'Using 192.168.10.0/24, design: Subnet A = /26 (64 addresses, 62 usable, .0-.63), Subnet B = /27 (32 addresses, 30 usable, .64-.95). Write down network address, mask, broadcast, and usable range for each.',
+      expectedCommands: [] },
+    { id: 't2', order: 2, title: 'Configure Gi0/0.10 for Subnet A', device: 'R1',
+      instruction: 'Configure subinterface Gi0/0.10 with encapsulation dot1q VLAN 10 and 192.168.10.1/26.',
+      expectedCommands: ['interface gi0/0.10', 'encapsulation dot1q 10', 'ip address 192.168.10.1 255.255.255.192'] },
+    { id: 't3', order: 3, title: 'Configure Gi0/0.20 for Subnet B', device: 'R1',
+      instruction: 'Configure subinterface Gi0/0.20 with encapsulation dot1q VLAN 20 and 192.168.10.65/27.',
+      expectedCommands: ['interface gi0/0.20', 'encapsulation dot1q 20', 'ip address 192.168.10.65 255.255.255.224'] },
+    { id: 't4', order: 4, title: 'Configure trunk on SW1', device: 'SW1',
+      instruction: 'Set the port connecting to R1 as a trunk to allow VLANs 10 and 20.',
+      expectedCommands: ['interface gi0/0', 'switchport mode trunk', 'switchport trunk allowed vlan 10,20'] },
+    { id: 't5', order: 5, title: 'Verify', device: 'R1',
+      instruction: 'Check the routing table for connected routes and test ping from Subnet A to Subnet B.',
+      expectedCommands: ['show ip route', 'show ip interface brief'] },
+  ],
+  verificationCommands: ['show ip route', 'show ip interface brief', 'show interfaces gi0/0.10', 'show interfaces gi0/0.20'],
+  successCriteria: [
+    'Connected routes for both subnets in show ip route.',
+    'Gi0/0.10 and Gi0/0.20 are up/up in show ip interface brief.',
+    'A PC in Subnet A can ping a PC in Subnet B.',
+    'Subnet A (/26): 192.168.10.0-192.168.10.63, usable .1-.62.',
+    'Subnet B (/27): 192.168.10.64-192.168.10.95, usable .65-.94.',
+  ],
+  failureCriteria: [
+    'Subinterface down — parent Gi0/0 may need no shutdown.',
+    'Wrong encapsulation VLAN — must match VLAN on the switch port.',
+    'Miscalculated subnet — wrong mask size leads to overlap.',
+    'Trunk not configured on switch — subinterfaces drop tagged traffic.',
+  ],
+  commonMistakes: [
+    'Forgetting to bring up the parent Gi0/0 — subinterfaces require the parent to be up.',
+    'Using the network address instead of the first usable address on the router interface.',
+    'Confusing /26 (64 addresses, 62 hosts) with /27 (32 addresses, 30 hosts).',
+    'Forgetting encapsulation dot1q on the subinterface — required for router-on-a-stick.',
+  ],
+  source: { name: LAB_SOURCES.workbook, chapter: 'IPv4 Subnetting', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_SUBNET = {
+  id: 'TOPO-SUBNET', title: 'Router-on-a-stick subnetting topology', objectiveId: '1.6',
+  nodes: [
+    { id: 'r1', label: 'R1 (router-on-a-stick)', type: 'router', x: 50, y: 10 },
+    { id: 'sw1', label: 'SW1 (trunk)', type: 'switch', x: 50, y: 50 },
+    { id: 'pc1', label: 'VLAN 10 PC (.1-.62)', type: 'pc', x: 20, y: 85 },
+    { id: 'pc2', label: 'VLAN 20 PC (.65-.94)', type: 'pc', x: 80, y: 85 },
+  ],
+  links: [
+    { id: 'l1', source: 'r1', target: 'sw1', label: 'Trunk Gi0/0', status: 'forwarding' },
+    { id: 'l2', source: 'sw1', target: 'pc1', label: 'VLAN 10', status: 'forwarding' },
+    { id: 'l3', source: 'sw1', target: 'pc2', label: 'VLAN 20', status: 'forwarding' },
+  ],
+  annotations: ['Gi0/0.10 192.168.10.1/26 (VLAN 10)', 'Gi0/0.20 192.168.10.65/27 (VLAN 20)'],
+}
+const VALIDATOR_SUBNET = {
+  labId: 'LAB-IPV4-SUBNETTING',
+  requiredCommands: [
+    { device: 'R1', command: 'interface gi0/0.10' },
+    { device: 'R1', command: 'encapsulation dot1q 10' },
+    { device: 'R1', command: 'ip address 192.168.10.1 255.255.255.192' },
+    { device: 'R1', command: 'interface gi0/0.20' },
+    { device: 'R1', command: 'encapsulation dot1q 20' },
+    { device: 'R1', command: 'ip address 192.168.10.65 255.255.255.224' },
+    { device: 'SW1', command: 'switchport mode trunk' },
+  ],
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show ip route', expectedResult: 'Connected routes for 192.168.10.0/26 and 192.168.10.64/27.', passCondition: '192.168.10' },
+    { id: 'v2', device: 'R1', command: 'show ip interface brief', expectedResult: 'Gi0/0.10 and Gi0/0.20 both up/up.', passCondition: 'up' },
+  ],
+  failureChecks: [
+    { id: 'f1', device: 'R1', command: 'show interfaces gi0/0.10', expectedFailure: 'Encapsulation not set', reason: 'Missing encapsulation dot1q command on the subinterface.' },
+  ],
+}
+const DIAGRAM_SUBNET = {
+  id: 'DIAG-subnet-layout', title: 'Subnetting 192.168.10.0/24 into /26 and /27',
+  type: 'table',
+  ckuIds: ['CKU-SUBNETTING', 'CKU-CIDR'],
+  nodes: [
+    { id: 'block', label: '192.168.10.0/24 (256 addresses)', type: 'highlight', x: 50, y: 10 },
+    { id: 's1', label: '/26: .0-.63 (62 hosts)', type: 'process', x: 20, y: 55, note: 'Sales VLAN 10' },
+    { id: 's2', label: '/27: .64-.95 (30 hosts)', type: 'process', x: 55, y: 55, note: 'HR VLAN 20' },
+    { id: 's3', label: '/30: .96-.99 (2 hosts)', type: 'process', x: 83, y: 55, note: 'P2P link' },
+  ],
+  links: [
+    { id: 'l1', source: 'block', target: 's1', label: '' },
+    { id: 'l2', source: 'block', target: 's2', label: '' },
+    { id: 'l3', source: 'block', target: 's3', label: '' },
+  ],
+  annotations: ['/26: 64 addresses, 62 usable. /27: 32 addresses, 30 usable. /30: 4 addresses, 2 usable.'],
+  sourceRefs: [{ sourceName: LAB_SOURCES.workbook, chapter: 'IPv4 Subnetting', confidence: 0.9 }],
+}
+const FLOWS_SUBNET = [
+  {
+    id: 'FLOW-SUBNET-routing', title: 'PC in VLAN 10 pings PC in VLAN 20', ckuIds: ['CKU-SUBNETTING'], diagramId: 'DIAG-subnet-layout',
+    steps: [
+      { id: 's1', order: 1, title: 'PC1 sends packet', action: 'PC1 (192.168.10.2/26) sends to 192.168.10.70. Default gateway is 192.168.10.1.', successState: 'forwarded' },
+      { id: 's2', order: 2, title: 'SW1 trunks the frame', action: 'SW1 tags the frame VLAN 10 and sends up the trunk to R1 Gi0/0.10.', successState: 'forwarded' },
+      { id: 's3', order: 3, title: 'Router routes between VLANs', action: 'R1 receives on Gi0/0.10, routes to 192.168.10.64/27, forwards out Gi0/0.20 tagged VLAN 20.', successState: 'forwarded' },
+      { id: 's4', order: 4, title: 'Delivered to PC2', action: 'SW1 strips the VLAN 20 tag and delivers to PC2 (192.168.10.70).', successState: 'forwarded' },
+    ],
+  },
+]
+const SUBNET_LAB = { lab: LAB_SUBNET_DEF, topology: TOPO_SUBNET, validator: VALIDATOR_SUBNET, diagram: DIAGRAM_SUBNET, packetFlows: FLOWS_SUBNET }
+
+/* -------------------------------------------------------------------------
    REGISTRY + LOADERS
    ------------------------------------------------------------------------- */
-const LABS = { [DAI.lab.id]: DAI, [VLAN_TRUNK.lab.id]: VLAN_TRUNK, [OSPF.lab.id]: OSPF, [NAT.lab.id]: NAT, [STATIC.lab.id]: STATIC, [SSH.lab.id]: SSH }
+const LABS = { [DAI.lab.id]: DAI, [VLAN_TRUNK.lab.id]: VLAN_TRUNK, [OSPF.lab.id]: OSPF, [NAT.lab.id]: NAT, [STATIC.lab.id]: STATIC, [SSH.lab.id]: SSH, [ACL.lab.id]: ACL, [SUBNET_LAB.lab.id]: SUBNET_LAB }
 
 export const allLabs = () => Object.values(LABS).map(x => x.lab)
 export function getLab(labId) { return LABS[labId] || null }

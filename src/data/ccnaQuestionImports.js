@@ -9217,6 +9217,1836 @@ export const IMPORTED_QUESTIONS = {
       ]
     }
   ],
+  "4.2": [
+    {
+      "question": "Which command allow your router to synchronize with a time source of 129.6.15.28?",
+      "choices": [
+        "Router(config)#ntp server 129.6.15.28",
+        "Router#ntp server 129.6.15.28",
+        "Router(config)#ntp client 129.6.15.28",
+        "Router#ntp client 129.6.15.28"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Router(config)#ntp server 129.6.15.28",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER"
+      ]
+    },
+    {
+      "question": "Which command configures the router or switch to trust its internal time clock?",
+      "choices": [
+        "Router(config)#ntp server",
+        "Router(config)#ntp master",
+        "Router(config)#ntp clock source",
+        "Router(config)#ntp trusted"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Router(config)#ntp master",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-CLOCK"
+      ]
+    },
+    {
+      "question": "Which command can see if the router or switch is using NTP?",
+      "choices": [
+        "Router#show clock detail",
+        "Router#show ntp",
+        "Router#show time",
+        "Router#show time source"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Router#show clock detail",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-CLOCK"
+      ]
+    },
+    {
+      "question": "Which command can view the time details from a configured server?",
+      "choices": [
+        "Router#show clock detail",
+        "Router#show ntp detail",
+        "Router#show ntp associations detail",
+        "Router#show ntp skew"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Router#show ntp associations detail",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-CLOCK",
+        "CKU-SNMP-VIEW"
+      ]
+    },
+    {
+      "question": "Which protocol and port does NTP use for time synchronization by default?",
+      "choices": [
+        "TCP/161",
+        "TCP/123",
+        "UDP/69",
+        "UDP/123"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: UDP/123",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER"
+      ]
+    },
+    {
+      "question": "Which command help you diagnose if the router or switch is getting an answer back from an NTP server?",
+      "choices": [
+        "Router#show ntp",
+        "Router#show ip ntp",
+        "Router#debug ntp packets",
+        "Router#debug ntp messages"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Router#debug ntp packets",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER"
+      ]
+    },
+    {
+      "question": "Which is a best practice for setting up NTP?",
+      "choices": [
+        "Always configure the time source to a DNS address.",
+        "Configure all devices to a public NTP server.",
+        "Configure all devices to different NTP servers for redundancy.",
+        "Configure all devices as master servers."
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Always configure the time source to a DNS address.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-DNS"
+      ]
+    },
+    {
+      "question": "Which command can view the time drift observed by NTP?",
+      "choices": [
+        "Router#show ntp",
+        "Router#show ip ntp status",
+        "Router#show ntp status",
+        "Router#debug ntp drift"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Router#show ntp status",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-SNMP-VIEW"
+      ]
+    },
+    {
+      "question": "Which command sets the time zone of a router for Pacific Standard Time?",
+      "choices": [
+        "Router(config)#clock timezone pacific",
+        "Router(config)#clock timezone pst -8 0",
+        "Router(config)#timezone pacific",
+        "Router(config)#timezone pst -8"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Router(config)#clock timezone pst -8 0 This item is included from the source adjacency but flagged for objective-mapping review before production import.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-CLOCK",
+        "CKU-CLOCK-TIMEZONE"
+      ]
+    },
+    {
+      "question": "You are configuring NTP on your switch. You want to configure the switch so if any interface fails, NTP will still be available. Which type of interface should you use? Choose the best answer.",
+      "choices": [
+        "Tunnel interface",
+        "NTP interface",
+        "Loopback interface",
+        "Switched Virtual Interface (SVI)"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Loopback interface",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-NTP-SOURCE"
+      ]
+    },
+    {
+      "question": "Which command configure NTP to use the internal loopback interface?",
+      "choices": [
+        "Switch(config)#ntp source loopback 0",
+        "Switch(config)#ntp loopback 0",
+        "Switch(config)#ntp master loopback 0",
+        "Switch(config)#ntp clock loopback 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Switch(config)#ntp source loopback 0",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-NTP-SOURCE",
+        "CKU-CLOCK"
+      ]
+    },
+    {
+      "question": "Which command set the router’s internal clock to 2:24 August 1, 2019?",
+      "choices": [
+        "Router(config)#clock set 2:24:00 1 august 2019",
+        "Router#clock set 2:24:00 1 august 2019",
+        "Router(config)#clock set 2:24:00 august 1 2019",
+        "Router#clock 2:24:00 1 august 2019"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Router#clock set 2:24:00 1 august 2019 This item is included from the source adjacency but flagged for objective-mapping review before production import.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-CLOCK"
+      ]
+    }
+  ],
+  "4.3": [
+    {
+      "question": "Which statement is correct about reverse lookups?",
+      "choices": [
+        "A reverse lookup is when the request needs to be reversed to another DNS server.",
+        "A reverse lookup is the resolution of an IP address to FQDN.",
+        "A reverse lookup is when the DNS queried can answer the request without asking another DNS server.",
+        "A reverse lookup is the resolution of an FQDN to an IP address."
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: A reverse lookup is the resolution of an IP address to FQDN.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP"
+      ]
+    },
+    {
+      "question": "Which record type is used for an IPv4 address mapping to FQDN for DNS queries?",
+      "choices": [
+        "The A record",
+        "The CName record",
+        "The PTR record",
+        "The AAAA record"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: The PTR record",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DNS-RECORD"
+      ]
+    },
+    {
+      "question": "What gets appended to hostname queries for DNS resolution?",
+      "choices": [
+        "The DNS domain name",
+        "The DNS zone",
+        "The host header",
+        "The hostname PTR record"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: The DNS domain name",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DNS-RECORD",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME"
+      ]
+    },
+    {
+      "question": "Which is the most secure method of name resolution for routers and switches?",
+      "choices": [
+        "DNS",
+        "PTR records",
+        "Static hostname entries",
+        "LLMNR"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Static hostname entries",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DNS-RECORD",
+        "CKU-HOSTNAME"
+      ]
+    },
+    {
+      "question": "Which type of DNS record holds the IPv4 IP address for a hostname?",
+      "choices": [
+        "The A record",
+        "The CName record",
+        "The PTR record",
+        "The AAAA record"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: The A record",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DNS-RECORD",
+        "CKU-HOSTNAME"
+      ]
+    },
+    {
+      "question": "What limits the amount of time that a DNS entry is available in the DNS cache?",
+      "choices": [
+        "An A record",
+        "TTL",
+        "SOA",
+        "Default of 5 minutes"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: TTL",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DNS-RECORD",
+        "CKU-DNS-TTL"
+      ]
+    },
+    {
+      "question": "Which message is sent from the DHCP client to the DHCP server to confirm the offer of an IP address?",
+      "choices": [
+        "Acknowledgment",
+        "Discover",
+        "Offer",
+        "Request"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Acknowledgment",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DHCP",
+        "CKU-DHCP-ACK",
+        "CKU-DHCP-DISCOVER",
+        "CKU-DHCP-OFFER"
+      ]
+    },
+    {
+      "question": "What form of communication does a DHCP client use to initially acquire an IP address?",
+      "choices": [
+        "Layer 3 broadcast",
+        "Layer 3 multicast",
+        "Layer 3 802.1Q",
+        "Layer 3 unicast"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Layer 3 broadcast",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DHCP"
+      ]
+    },
+    {
+      "question": "At what point of the lease time will the client ask for a renewal of the IP address from the DHCP server?",
+      "choices": [
+        "One-quarter of the lease",
+        "One-half of the lease",
+        "Seven-eighths of the lease",
+        "End of the lease"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: One-half of the lease",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE"
+      ]
+    },
+    {
+      "question": "Which statement is correct about the DHCP process?",
+      "choices": [
+        "The DHCP server is responsible for maintaining the life cycle of an IP address.",
+        "DHCP uses multicasting between the client and server.",
+        "The DHCP client is responsible for maintaining the life cycle of an IP address.",
+        "The DHCP lease is negotiated between client and server."
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: The DHCP client is responsible for maintaining the life cycle of an IP address.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE"
+      ]
+    },
+    {
+      "question": "Which transport protocol does DHCP use?",
+      "choices": [
+        "UDP",
+        "ICMP",
+        "TCP",
+        "RARP"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: UDP",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DHCP",
+        "CKU-TRANSPORT-INPUT"
+      ]
+    },
+    {
+      "question": "What happens when a router or switch detects a duplicate IP address for a DHCP process?",
+      "choices": [
+        "The IP address is still served to the client.",
+        "The IP address is removed from the DHCP pool.",
+        "The DHCP server will halt.",
+        "The DHCP will serve the IP address in the future."
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: The IP address is removed from the DHCP pool.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-NAT-POOL",
+        "CKU-DHCP"
+      ]
+    }
+  ],
+  "4.4": [
+    {
+      "question": "Which version of SNMP offers authentication and encryption?",
+      "choices": [
+        "SNMP version 1",
+        "SNMP version 2e",
+        "SNMP version 2c",
+        "SNMP version 3"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: SNMP version 3",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-DHCP-OFFER"
+      ]
+    },
+    {
+      "question": "Identify the database of variables that SNMP uses to allow for collection of data?",
+      "choices": [
+        "Object identifiers (OIDs)",
+        "Management information base",
+        "SNMP agent",
+        "SNMP community string"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Management information base",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-OID",
+        "CKU-SNMP-INFORM",
+        "CKU-COMMUNITY-STRING"
+      ]
+    },
+    {
+      "question": "Identify the component that an SNMP agent sends information to?",
+      "choices": [
+        "Syslog",
+        "Network management station",
+        "Object identifier",
+        "Management information base"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Network management station",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-SNMP-INFORM",
+        "CKU-SYSLOG"
+      ]
+    },
+    {
+      "question": "What type of SNMP message is sent to a network management station when an interface goes down?",
+      "choices": [
+        "Get-request message",
+        "Get-response message",
+        "Set-request message",
+        "Trap message"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: Trap message",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-SNMP-TRAP"
+      ]
+    },
+    {
+      "question": "Which of the following is a hierarchical set of variables that make up the management information base?",
+      "choices": [
+        "Object identifiers (OIDs)",
+        "The SNMP community string",
+        "The SNMP agent",
+        "SNMP messages"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Object identifiers (OIDs)",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-OID",
+        "CKU-SNMP-INFORM",
+        "CKU-COMMUNITY-STRING"
+      ]
+    },
+    {
+      "question": "Identify the difference between trap messages and inform messages for SNMP?",
+      "choices": [
+        "Trap messages are always encrypted.",
+        "Inform messages do not use acknowledgments.",
+        "Trap messages always use acknowledgments.",
+        "Inform messages always use acknowledgments."
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: Inform messages always use acknowledgments.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-DHCP-ACK",
+        "CKU-SNMP-TRAP",
+        "CKU-SNMP-INFORM"
+      ]
+    },
+    {
+      "question": "Which security method does SNMP version 2c employ?",
+      "choices": [
+        "Encryption",
+        "User authentication",
+        "Community strings",
+        "Message integrity"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Community strings",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-COMMUNITY-STRING"
+      ]
+    },
+    {
+      "question": "Which of the following can be used in conjunction with an SNMP agent configuration for added security?",
+      "choices": [
+        "Encrypted communities",
+        "Access control lists",
+        "SNMP callback security",
+        "SHA-256"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Access control lists",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB"
+      ]
+    },
+    {
+      "question": "Which command(s) will configure SNMPv2c to trap messages to a network management station in the event of component failure?",
+      "choices": [
+        "Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps",
+        "Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps",
+        "Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps",
+        "Switch(config)#snmp contact trap 192.168.1.5 version 2c"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-SNMP-TRAP"
+      ]
+    },
+    {
+      "question": "Which protocol and port number does SNMP use for trap and inform messages to the NMS?",
+      "choices": [
+        "UDP/161",
+        "TCP/162",
+        "UDP/162",
+        "UDP/514"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: UDP/162",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-SNMP-TRAP",
+        "CKU-SNMP-INFORM"
+      ]
+    },
+    {
+      "question": "Which command can verify the network management station that is configured to receive trap notifications?",
+      "choices": [
+        "Switch#show snmp",
+        "Switch#show snmp community",
+        "Switch#show snmp host",
+        "Switch#show snmp notifications"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Switch#show snmp host",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-SNMP-TRAP",
+        "CKU-COMMUNITY-STRING"
+      ]
+    },
+    {
+      "question": "When you configure SNMPv3 for a restricted OID, what is the first step?",
+      "choices": [
+        "Configuring a group",
+        "Configuring a view",
+        "Configuring a user",
+        "Configuring a community"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Configuring a view",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-OID",
+        "CKU-COMMUNITY-STRING",
+        "CKU-SNMP-VIEW"
+      ]
+    }
+  ],
+  "4.5": [
+    {
+      "question": "Which protocol and port number does syslog use?",
+      "choices": [
+        "UDP/161",
+        "TCP/162",
+        "UDP/162",
+        "UDP/514"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: UDP/514",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY"
+      ]
+    },
+    {
+      "question": "Which command configure the severity level of syslog events that will be sent to the syslog server for debugging?",
+      "choices": [
+        "Router(config)#syslog debugging",
+        "Router(config)#logging debugging",
+        "Router(config)#logging trap debugging",
+        "Router(config)#log-level debugging"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Router(config)#logging trap debugging",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-SNMP-TRAP",
+        "CKU-SYSLOG-DEBUGGING"
+      ]
+    },
+    {
+      "question": "Which command send all warnings to the syslog server?",
+      "choices": [
+        "Switch(config)#logging server 4",
+        "Switch(config)#logging trap 4",
+        "Switch(config)#logging trap 5",
+        "Switch(config)#logging server 5"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Switch(config)#logging trap 4",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-SNMP-TRAP"
+      ]
+    },
+    {
+      "question": "Which command send logging with time stamps rather than sequence numbers?",
+      "choices": [
+        "Switch(config)#logging timestamps log datetime",
+        "Switch(config)#logging timestamps datetime",
+        "Switch(config)#service datetime timestamps",
+        "Switch(config)#service timestamps log datetime"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: Switch(config)#service timestamps log datetime",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-LOGGING-TIMESTAMPS"
+      ]
+    },
+    {
+      "question": "Which command limit console logging to the severity level of alerts?",
+      "choices": [
+        "Router(config)#logging console 0",
+        "Router(config-line)#logging level 0",
+        "Router(config)#logging console 7",
+        "Router(config-line)#logging level 7"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Router(config)#logging console 0",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-LOGGING-CONSOLE"
+      ]
+    },
+    {
+      "question": "Which command configure logging stored in RAM to include only logs with a severity level of emergencies and alerts?",
+      "choices": [
+        "Switch(config)#logging buffered 1",
+        "Switch(config)#logging 1",
+        "Switch(config)#logging buffered 2",
+        "Switch(config)#logging 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Switch(config)#logging buffered 1",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-LOGGING-BUFFERED"
+      ]
+    },
+    {
+      "question": "Which command can see the commands you previously entered?",
+      "choices": [
+        "Switch#show commands",
+        "Switch#show log",
+        "Switch#show history",
+        "Switch#show buffer"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Switch#show history This item is included from the source adjacency but flagged for objective-mapping review before production import.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY"
+      ]
+    },
+    {
+      "question": "What severity is being logged to in the referenced source exhibit?",
+      "choices": [
+        "Informational (6)",
+        "Notifications (5)",
+        "Warnings (4)",
+        "Debugging (7)"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Notifications (5)",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-SNMP-INFORM",
+        "CKU-SYSLOG-DEBUGGING"
+      ]
+    },
+    {
+      "question": "You need to check the current CPU utilization on a router. Which command achieve this?",
+      "choices": [
+        "Router#show cpu",
+        "Router#show cpu-stats",
+        "Router#show processes",
+        "Router#show environment cpu"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Router#show processes This item is included from the source adjacency but flagged for objective-mapping review before production import.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY"
+      ]
+    },
+    {
+      "question": "Which command direct logging to the internal log space?",
+      "choices": [
+        "Router(config)#logging buffered",
+        "Router(config)#logging internal",
+        "Router(config)#logging ram",
+        "Router(config)#logging console"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Router(config)#logging buffered",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-LOGGING-BUFFERED",
+        "CKU-LOGGING-CONSOLE"
+      ]
+    },
+    {
+      "question": "Identify the default destination to which Cisco devices send syslog messages?",
+      "choices": [
+        "Broadcasts to a syslog server",
+        "Console",
+        "TTY",
+        "NVRAM"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Console",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-NAT",
+        "CKU-LOGGING-CONSOLE"
+      ]
+    },
+    {
+      "question": "Identify the default level for syslog facility logging?",
+      "choices": [
+        "Notification (5)",
+        "Informational (6)",
+        "Warning (4)",
+        "Debugging (7)"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: Debugging (7)",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-SNMP-INFORM",
+        "CKU-SYSLOG-DEBUGGING"
+      ]
+    }
+  ],
+  "4.6": [
+    {
+      "question": "Which command can verify the active DHCP server that has assigned an IP address to the router?",
+      "choices": [
+        "Router#show dhcp lease",
+        "Router#show ip dhcp lease",
+        "Router#show ip lease",
+        "Router#show ip interface"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Router#show dhcp lease",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE"
+      ]
+    },
+    {
+      "question": "Which statement is true about the Offer packet of DHCP?",
+      "choices": [
+        "The layer 3 destination is a unicast to the DHCP client.",
+        "The layer 2 destination is the MAC address of the DHCP client.",
+        "The layer 2 source is the MAC address of the server.",
+        "The layer 3 source is a link-local address of the client."
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: The layer 2 source is the MAC address of the server.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-NAT",
+        "CKU-DHCP",
+        "CKU-DHCP-OFFER"
+      ]
+    },
+    {
+      "question": "Which command configure a DHCP relay agent on an interface to the DHCP server of 10.10.1.101?",
+      "choices": [
+        "Router(config)#ip dhcp server 10.10.1.101",
+        "Router(config-if)#ip dhcp server 10.10.1.101",
+        "Router(config-if)#ip relay-agent 10.10.1.101",
+        "Router(config-if)#ip helper-address 10.10.1.101"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: Router(config-if)#ip helper-address 10.10.1.101",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP"
+      ]
+    },
+    {
+      "question": "Which DHCP field helps a DHCP server decide which scope to serve to the DHCP relay agent?",
+      "choices": [
+        "CIADDR",
+        "GIADDR",
+        "SIADDR",
+        "CHADDR"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: GIADDR",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-GIADDR"
+      ]
+    },
+    {
+      "question": "Using the referenced source exhibit, what is required on the network to allow Host A to receive an IP address from the existing DHCP server?",
+      "choices": [
+        "A second DHCP server on the Host A network",
+        "A DHCP relay agent on Router B interface Gi0/0",
+        "A DHCP relay agent on Switch A",
+        "A DHCP relay agent on Router A interface Gi0/0"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: A DHCP relay agent on Router A interface Gi0/0",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP"
+      ]
+    },
+    {
+      "question": "Which command can diagnose DHCP relay agent messages on a router or switch?",
+      "choices": [
+        "Router#debug dhcp",
+        "Router#show ip dhcp detail",
+        "Router#debug ip dhcp server packet",
+        "Router#debug ip dhcp"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Router#debug ip dhcp server packet",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP"
+      ]
+    },
+    {
+      "question": "Identify DHCPv6 used for when a network is configured for Stateless Address Autoconfiguration (SLAAC)?",
+      "choices": [
+        "Stateful configuration of clients for IPv6 addressing",
+        "Configuration of clients with the IPv6 network IDs",
+        "Configuration of clients with IPv6 options",
+        "Stateless configuration of clients for IPv6 addressing"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Configuration of clients with IPv6 options",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCPV6"
+      ]
+    },
+    {
+      "question": "The DHCP server in the network went down. What happens to clients that have obtained IP addresses from the DHCP server?",
+      "choices": [
+        "They lose their IP address immediately.",
+        "They lose their IP address after one-half of their lease has expired.",
+        "They lose their IP address after seven-eighths of their lease has expired.",
+        "They lose their IP address after their entire lease has expired."
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: They lose their IP address after their entire lease has expired.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE"
+      ]
+    },
+    {
+      "question": "Which statement is correct about stateful DHCPv6?",
+      "choices": [
+        "Stateful DHCPv6 supplies the network ID and host ID.",
+        "Stateful DHCPv6 supplies the network ID, host ID, and default router.",
+        "Stateful DHCPv6 communicates via broadcasts.",
+        "Stateful DHCPv6 works in conjunction with SLAAC."
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Stateful DHCPv6 supplies the network ID and host ID.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCPV6"
+      ]
+    },
+    {
+      "question": "Which command configure a router interface to obtain its IP address via a stateful DHCPv6?",
+      "choices": [
+        "RouterA(config)#ipv6 address dhcp gi 0/0",
+        "RouterA(config-if)#ipv6 address dhcpv6",
+        "RouterA(config-if)#ipv6 address dhcp",
+        "RouterA(config)#ipv6 address stateless"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: RouterA(config-if)#ipv6 address dhcp",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCPV6"
+      ]
+    },
+    {
+      "question": "What happens if you delete a current lease on the DHCP server?",
+      "choices": [
+        "The server will contact the client to immediately relinquish the IP address.",
+        "The client will immediately renew its lease for the current IP address.",
+        "The server will offer the IP address to another node, which will cause a duplicate address.",
+        "The server will offer the IP address to another node, at which time the original client will relinquish the IP address."
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: The server will offer the IP address to another node, which will cause a duplicate address.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE",
+        "CKU-DHCP-OFFER"
+      ]
+    },
+    {
+      "question": "What happens at the client when the lease for an IP address reaches seven-eighths of the lease cycle?",
+      "choices": [
+        "The DHCP client will perform a DHCP rebinding.",
+        "Nothing. The DHCP client will retain the lease.",
+        "The DHCP client will renew its lease.",
+        "The DHCP client will relinquish the use of the IP address."
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: The DHCP client will perform a DHCP rebinding.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE"
+      ]
+    }
+  ],
+  "4.7": [
+    {
+      "question": "How do routers classify traffic for QoS?",
+      "choices": [
+        "Access control lists",
+        "Layer 2 ASICs",
+        "Route tables",
+        "Frame filters"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Access control lists",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING"
+      ]
+    },
+    {
+      "question": "Which measurement describes the variation of consecutive packet time from source to destination?",
+      "choices": [
+        "Bandwidth",
+        "Delay",
+        "Jitter",
+        "Loss"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Jitter",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-NAT",
+        "CKU-JITTER"
+      ]
+    },
+    {
+      "question": "Which is a true statement about the Class of Service field?",
+      "choices": [
+        "The Class of Service field is a layer 3 field.",
+        "The Class of Service field is only present in 802.1Q frames.",
+        "The Class of Service field is present from end to end of a transmission.",
+        "The Class of Service field is 6 bits."
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: The Class of Service field is only present in 802.1Q frames.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING"
+      ]
+    },
+    {
+      "question": "Identify the measurement of packets discarded due to congestion of queues?",
+      "choices": [
+        "Bandwidth",
+        "Delay",
+        "Jitter",
+        "Loss"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: Loss",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-QUEUING",
+        "CKU-JITTER",
+        "CKU-CONGESTION"
+      ]
+    },
+    {
+      "question": "Which DSCP marking has the highest priority?",
+      "choices": [
+        "DSCP AF 43",
+        "DSCP EF 46",
+        "DSCP AF 11",
+        "DSCP AF 00"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: DSCP EF 46",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-DSCP"
+      ]
+    },
+    {
+      "question": "Identify the recommended maximum delay VoIP traffic should not exceed?",
+      "choices": [
+        "10 ms",
+        "90 ms",
+        "150 ms",
+        "300 ms"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: 150 ms",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING"
+      ]
+    },
+    {
+      "question": "Which QoS queue has priority over all other queues in the scheduler?",
+      "choices": [
+        "CBWFQ",
+        "LLQ",
+        "FIFO",
+        "CIR"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: LLQ",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-QUEUING",
+        "CKU-LLQ",
+        "CKU-CBWFQ"
+      ]
+    },
+    {
+      "question": "Which method helps combat queue starvation for QoS queuing?",
+      "choices": [
+        "LLQ",
+        "Policing",
+        "CBWFQ",
+        "FIFO"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Policing",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-QUEUING",
+        "CKU-LLQ",
+        "CKU-CBWFQ",
+        "CKU-POLICING"
+      ]
+    },
+    {
+      "question": "Which statement is correct about shaping of traffic for QoS?",
+      "choices": [
+        "Shaping holds packets in the queue over the configured bit rate to cause delay.",
+        "Shaping drops packets over the configured bit rate to cause loss.",
+        "Shaping holds packets in the queue over the configured bit rate to cause jitter.",
+        "Shaping slows packets in the queue over the configured bit rate to adhere to the speed."
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Shaping holds packets in the queue over the configured bit rate to cause delay.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-QUEUING",
+        "CKU-SHAPING",
+        "CKU-JITTER"
+      ]
+    },
+    {
+      "question": "Which QoS method uses a round-robin scheduler for packet queuing?",
+      "choices": [
+        "LLQ",
+        "FIFO",
+        "CBWFQ",
+        "PQ"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: CBWFQ",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-LLQ",
+        "CKU-CBWFQ"
+      ]
+    },
+    {
+      "question": "Which statement is correct about policing of traffic for QoS?",
+      "choices": [
+        "Policing holds packets in the queue over the configured bit rate to cause delay.",
+        "Policing drops packets over the configured bit rate to cause loss.",
+        "Policing holds packets in the queue over the configured bit rate to cause jitter.",
+        "Policing slows packets in the queue over the configured bit rate to adhere to the bit rate."
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Policing drops packets over the configured bit rate to cause loss.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-QUEUING",
+        "CKU-POLICING",
+        "CKU-JITTER"
+      ]
+    },
+    {
+      "question": "Why should QoS policing be implemented?",
+      "choices": [
+        "To help police LAN applications",
+        "To maintain a contracted CIR",
+        "To help police WAN applications",
+        "To maintain a contracted burst rate"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: To maintain a contracted CIR",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-POLICING"
+      ]
+    },
+    {
+      "question": "How do congestion avoidance tools help to prevent tail drop?",
+      "choices": [
+        "When the queue depth is full, a percentage of TCP packets are dropped.",
+        "When the queue depth is empty, a percentage of TCP packets are dropped.",
+        "When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped.",
+        "When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped."
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-OID",
+        "CKU-QUEUING",
+        "CKU-CONGESTION",
+        "CKU-TAIL-DROP"
+      ]
+    },
+    {
+      "question": "If a traffic is marked with AF31 and another traffic pattern is marked with AF41, which statement explains the traffic markings?",
+      "choices": [
+        "AF31 marked traffic has a better queue than AF41 marked traffic.",
+        "AF41 marked traffic has a better queue than AF31 marked traffic.",
+        "Both AF31 and AF41 marked traffic has an equal queue.",
+        "During high congestion, AF41 queues will be dropped and AF31 queues won’t."
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: AF41 marked traffic has a better queue than AF31 marked traffic.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-PAT",
+        "CKU-QUEUING",
+        "CKU-CONGESTION"
+      ]
+    }
+  ],
+  "4.8": [
+    {
+      "question": "Identify required before generating the encryption keys for SSH on a router or switch?",
+      "choices": [
+        "Setting the time and date",
+        "Setting the hostname and domain name",
+        "Setting the key strength",
+        "Setting the key repository"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Setting the hostname and domain name",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME"
+      ]
+    },
+    {
+      "question": "Which command enable SSH version 2 for logins?",
+      "choices": [
+        "Router(config)#ip ssh version 2",
+        "Router(config-line)#version 2",
+        "Router(config-ssh)#version 2",
+        "Router(config)#ssh version 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Router(config)#ip ssh version 2",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME"
+      ]
+    },
+    {
+      "question": "Which command configure the router or switch to allow SSH as a protocol for management with a fallback of Telnet?",
+      "choices": [
+        "Switch(config)#login ssh telnet",
+        "Switch(config-line)#login ssh telnet",
+        "Switch(config-line)#transport ssh telnet",
+        "Switch(config)#transport ssh telnet"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Switch(config-line)#transport ssh telnet",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-TELNET",
+        "CKU-TRANSPORT-INPUT"
+      ]
+    },
+    {
+      "question": "Why should Telnet be replaced with SSH?",
+      "choices": [
+        "Telnet has weak encryption.",
+        "SSH allows for file copy.",
+        "SSH makes it easier to create ACLs for access.",
+        "SSH is encrypted."
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: SSH is encrypted.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-TELNET"
+      ]
+    },
+    {
+      "question": "You have created the SSH encryption keys, but you cannot enable SSH version 2. What is the problem?",
+      "choices": [
+        "The time and date need to be corrected.",
+        "The key strength needs to be 768 bits or higher.",
+        "The DNS server is not configured.",
+        "There is no host record for the switch or router."
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: The key strength needs to be 768 bits or higher.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-DNS",
+        "CKU-DNS-RECORD"
+      ]
+    },
+    {
+      "question": "Which command configure a local user for SSH access?",
+      "choices": [
+        "Router(config)#username user1 password Password20!",
+        "Router(config)#account user1 Router(config-acct)#password Password20!",
+        "Router(config)#user user1 Password20!",
+        "Router(config)#user-account user1 password Password20!"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Router(config)#username user1 password Password20!",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-LOCAL-USERNAME"
+      ]
+    },
+    {
+      "question": "Which command generate the encryption keys for SSH?",
+      "choices": [
+        "Router(config)#generate crypto key rsa",
+        "Router(config)#crypto key generate rsa",
+        "Router(config)#crypto generate key rsa",
+        "Router#crypto key generate rsa"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Router(config)#crypto key generate rsa",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-CRYPTO-KEY-GENERATE-RSA"
+      ]
+    },
+    {
+      "question": "You want to turn on local authentication so that a user must supply a username and password when managing the switch. You have created the username and password combinations on the switch. Which command direct SSH and Telnet to use this authentication model?",
+      "choices": [
+        "Switch(config)#new aaa model",
+        "Switch(config)#local authentication",
+        "Switch(config-line)#local authentication",
+        "Switch(config-line)#login local"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: Switch(config-line)#login local",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-NAT",
+        "CKU-TELNET",
+        "CKU-LOGIN-LOCAL",
+        "CKU-LOCAL-USERNAME"
+      ]
+    },
+    {
+      "question": "Which banner will be displayed first when a user connects to a Cisco device via SSH?",
+      "choices": [
+        "MOTD banner",
+        "Login banner",
+        "Exec banner",
+        "Incoming banner"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: Login banner",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-BANNERS"
+      ]
+    }
+  ],
+  "4.9": [
+    {
+      "question": "Which command restore configuration to the running-config for a device from a server?",
+      "choices": [
+        "Switch#archive tftp: running-config",
+        "Switch#restore tftp://192.168.1.2 running-config",
+        "Switch#copy tftp: running-config",
+        "Switch#copy server: running-config"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Switch#copy tftp: running-config",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "tftp",
+      "ckuIds": [
+        "CKU-TFTP",
+        "CKU-FTP",
+        "CKU-COPY-TFTP-RUNNING-CONFIG",
+        "CKU-RUNNING-CONFIG"
+      ]
+    },
+    {
+      "question": "Which command begin the upgrade of an IOS from a TFTP server?",
+      "choices": [
+        "Switch#copy tftp flash",
+        "Switch#copy tftp ios",
+        "Switch#copy tftp nvram",
+        "Switch#upgrade tftp flash"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source maps this item to answer A. The correct selection is: Switch#copy tftp flash",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "tftp",
+      "ckuIds": [
+        "CKU-TFTP",
+        "CKU-FTP",
+        "CKU-COPY-TFTP-RUNNING-CONFIG",
+        "CKU-FLASH"
+      ]
+    },
+    {
+      "question": "Which command can boot a router from a TFTP server for the image of c2900-universalk9-mz.SPA.151-4.M4.bin on the TFTP server of 192.168.1.2?",
+      "choices": [
+        "Router#boot tftp://192.168.1.2",
+        "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
+        "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
+        "Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source maps this item to answer D. The correct selection is: Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "tftp",
+      "ckuIds": [
+        "CKU-TFTP",
+        "CKU-FTP",
+        "CKU-COPY-TFTP-RUNNING-CONFIG",
+        "CKU-CRYPTO-KEY-GENERATE-RSA",
+        "CKU-BOOT-SYSTEM-TFTP"
+      ]
+    },
+    {
+      "question": "You’re upgrading the flash memory on a 2900 router with a brand-new flash card. What needs to be done to restore the IOS?",
+      "choices": [
+        "The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS.",
+        "The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.",
+        "Nothing needs to be done because the IOS is not storage on the flash memory card.",
+        "Format the flash card with the FAT operating system and copy the IOS image to the card."
+      ],
+      "correctIndex": 1,
+      "explanation": "The source maps this item to answer B. The correct selection is: The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "tftp",
+      "ckuIds": [
+        "CKU-TFTP",
+        "CKU-FTP",
+        "CKU-COPY-TFTP-RUNNING-CONFIG",
+        "CKU-FLASH",
+        "CKU-ROMMON"
+      ]
+    },
+    {
+      "question": "Which command(s) are required before you can use an FTP server for backing up configuration? Assume that the username is USER and the password is USERPASS.",
+      "choices": [
+        "Router(config)#ip ftp username USER password USERPASS",
+        "Router(config)#ftp USER password USERPASS",
+        "Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS",
+        "Router(config)#username USER password USERPASS"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source maps this item to answer C. The correct selection is: Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "tftp",
+      "ckuIds": [
+        "CKU-TFTP",
+        "CKU-FTP",
+        "CKU-COPY-TFTP-RUNNING-CONFIG",
+        "CKU-LOCAL-USERNAME"
+      ]
+    }
+  ],
   "6.1": [
     {
       "question": "Which is a reason to automate a process for the configuration of several routers?",
