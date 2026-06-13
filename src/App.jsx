@@ -1377,7 +1377,7 @@ function accentColors(accent) {
 }
 
 const styles = {
-  page: { minHeight: '100vh', background: COLORS.bg, color: COLORS.silver, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', paddingBottom: 32 },
+  page: { minHeight: '100vh', background: COLORS.bg, color: COLORS.silver, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', paddingBottom: 32, paddingTop: 'env(safe-area-inset-top)', paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' },
   container: { maxWidth: 640, margin: '0 auto', padding: '16px 16px 40px' },
   card: { background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14, padding: 16, marginBottom: 12, boxShadow: '0 4px 16px #00000033' },
   cardHover: { background: COLORS.cardHover },
@@ -6042,15 +6042,6 @@ export default function App() {
     })
   }, [])
 
-  // Cmd+K / Ctrl+K global shortcut to open search
-  useEffect(() => {
-    function handler(e) {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); setShowSearch(true) }
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [])
-
   useEffect(() => {
     (async () => {
       const [p, m, s, off, code, last, due, onboardDone] = await Promise.all([
@@ -6279,6 +6270,7 @@ export default function App() {
       <style>{`
         ${THEME_CSS}
         * { -webkit-tap-highlight-color: transparent; }
+        html, body { margin: 0; padding: 0; background-color: #07080d; }
         html { scroll-behavior: smooth; }
         body {
           background:
@@ -6286,6 +6278,7 @@ export default function App() {
             radial-gradient(760px 460px at 100% 0%, ${COLORS.glowB}, transparent 55%),
             ${COLORS.bg};
           background-attachment: fixed;
+          padding-bottom: env(safe-area-inset-bottom);
           transition: background .25s ease;
         }
         button { transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease; }
@@ -6333,18 +6326,19 @@ export default function App() {
           button:active:not(:disabled) { transform: none; }
         }
       `}</style>
-      {/* Search button — fixed top-left; Cmd+K also opens it */}
+      {/* Search button — fixed top-center */}
       <button
         onClick={() => setShowSearch(true)}
-        title="Search objectives (⌘K)"
+        title="Search objectives"
         style={{
-          position: 'fixed', top: 10, left: 12, zIndex: 200, height: 40, padding: '0 14px',
+          position: 'fixed', top: 10, left: '50%', transform: 'translateX(-50%)', zIndex: 200,
+          height: 40, padding: '0 18px',
           borderRadius: 999, border: `1px solid ${COLORS.border}`, background: COLORS.card,
           color: COLORS.silverMid, fontSize: 13, cursor: 'pointer', display: 'flex',
           alignItems: 'center', gap: 6, boxShadow: '0 2px 10px #00000033',
         }}
       >
-        🔍 <span style={{ fontSize: 11 }}>⌘K</span>
+        🔍 Search
       </button>
       <button
         onClick={toggleTheme}
