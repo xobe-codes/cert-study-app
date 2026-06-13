@@ -2992,9 +2992,9 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
             {!revealed && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
                 <button type="button" onClick={() => reorder(idx, idx - 1)} disabled={idx === 0}
-                  style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, color: COLORS.silverMid, borderRadius: 6, width: 28, height: 22, cursor: idx === 0 ? 'default' : 'pointer', fontSize: 11, padding: 0 }}>↑</button>
+                  style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, color: COLORS.silverMid, borderRadius: 8, width: 44, height: 44, cursor: idx === 0 ? 'default' : 'pointer', fontSize: 14, padding: 0 }}>↑</button>
                 <button type="button" onClick={() => reorder(idx, idx + 1)} disabled={idx === items.length - 1}
-                  style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, color: COLORS.silverMid, borderRadius: 6, width: 28, height: 22, cursor: idx === items.length - 1 ? 'default' : 'pointer', fontSize: 11, padding: 0 }}>↓</button>
+                  style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, color: COLORS.silverMid, borderRadius: 8, width: 44, height: 44, cursor: idx === items.length - 1 ? 'default' : 'pointer', fontSize: 14, padding: 0 }}>↓</button>
               </div>
             )}
           </div>
@@ -4804,7 +4804,7 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
             onClick={() => onSelectObjective?.(prevObj)}
             disabled={!prevObj}
             style={{
-              flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${COLORS.border}`,
+              flex: 1, minHeight: 44, borderRadius: 10, border: `1px solid ${COLORS.border}`,
               background: COLORS.surface, color: prevObj ? COLORS.silver : COLORS.silverDim,
               fontSize: 12, cursor: prevObj ? 'pointer' : 'default', fontFamily: 'inherit',
               padding: '6px 10px', textAlign: 'left', opacity: prevObj ? 1 : 0.35,
@@ -4816,7 +4816,7 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
             onClick={() => onSelectObjective?.(nextObj)}
             disabled={!nextObj}
             style={{
-              flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${COLORS.border}`,
+              flex: 1, minHeight: 44, borderRadius: 10, border: `1px solid ${COLORS.border}`,
               background: COLORS.surface, color: nextObj ? COLORS.silver : COLORS.silverDim,
               fontSize: 12, cursor: nextObj ? 'pointer' : 'default', fontFamily: 'inherit',
               padding: '6px 10px', textAlign: 'right', opacity: nextObj ? 1 : 0.35,
@@ -6153,7 +6153,7 @@ function SessionRecapCard() {
   )
 }
 
-function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, syncOn }) {
+function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, onImportPick, syncOn }) {
   const [openDomain, setOpenDomain] = useState(null)
   const [suggestions, setSuggestions] = useState([])
   const [retention, setRetention] = useState([])
@@ -6207,6 +6207,8 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
     return { mastered, inProgress, total: ALL_OBJECTIVES.length }
   }, [progress])
 
+  const sectionLabel = { ...styles.small, fontWeight: 700, color: COLORS.silver, marginBottom: 8, letterSpacing: 0.5 }
+
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
@@ -6235,7 +6237,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 12, position: 'relative' }}>
           <button
             onClick={dismissNudge}
-            style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 18, cursor: 'pointer', lineHeight: 1, padding: 0 }}
+            style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 18, cursor: 'pointer', lineHeight: 1, padding: 0, minWidth: 44, minHeight: 44 }}
             aria-label="Dismiss"
           >×</button>
           <div style={{ fontWeight: 700, fontSize: 14, color: COLORS.sky, marginBottom: 6 }}>📱 New device?</div>
@@ -6249,56 +6251,29 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
             >⬆ Export</button>
             <button
               style={{ ...styles.secondaryBtn, flex: 1, fontSize: 13, border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
-              onClick={onOpenExport}
+              onClick={onImportPick}
             >⬇ Import</button>
           </div>
         </div>
       )}
 
-      <div style={styles.card}>
-        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-          <ProgressRing value={readiness.score} size={88} accent="purple" caption="Exam Readiness" />
-          <div style={{ flex: 1, minWidth: 0 }}>
-            {readiness.domainStats.map(d => {
-              const c = accentColors(d.accent)
-              return (
-                <div key={d.id} style={{ marginBottom: 6 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: COLORS.silverMid, marginBottom: 2 }}>
-                    <span>{d.name}</span>
-                    <span>{Math.round(d.avg * 100)}%</span>
-                  </div>
-                  <div style={{ height: 5, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
-                    <div style={{ height: '100%', width: `${Math.round(d.avg * 100)}%`, borderRadius: 999, background: c.text }} />
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </div>
       {dueCount > 0 && (() => {
-        // Neutral, capped framing — never guilt-trip with a backlog count.
         const ready = Math.min(dueCount, REVIEW_SESSION_CAP)
         const estMin = Math.max(1, Math.round(ready * 0.5))
         return (
           <button
             className="ccna-hover"
-            style={{ ...styles.primaryBtn, marginBottom: 8, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
+            style={{ ...styles.primaryBtn, marginBottom: 12 }}
             onClick={onOpenReview}
           >
             📅 Today's Review — {ready} ready · ~{estMin} min
           </button>
         )
       })()}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
-        <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenMetrics}>📊 Metrics</button>
-        <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenLabs}>🧪 Labs</button>
-      </div>
-      <AiCallsIndicator />
 
       {suggestions.length > 0 && (
         <div style={{ marginBottom: 12 }} className="ccna-stagger">
-          <div style={{ ...styles.small, fontWeight: 700, color: COLORS.silver, marginBottom: 8, letterSpacing: 0.5 }}>FOR YOU</div>
+          <div style={sectionLabel}>FOR YOU</div>
           {suggestions.map(s => {
             const c = accentColors(s.accent)
             return (
@@ -6323,23 +6298,61 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         </div>
       )}
 
-      <ExamCountdown progress={progress} />
-
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-        <button style={styles.primaryBtn} onClick={onOpenMock}>Mock Exam</button>
-        <button style={styles.secondaryBtn} onClick={onOpenMissed}>Missed ({missedCount})</button>
-      </div>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-        <button style={styles.secondaryBtn} onClick={onOpenTutor} disabled={!apiOnline}>AI Tutor Chat</button>
-        <button style={styles.secondaryBtn} onClick={onOpenExport}>Export Reports</button>
-      </div>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-        <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenFocus}>🎯 Focus Mode</button>
-        <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenSync}>☁ Sync{syncOn ? ' ✓' : ''}</button>
-      </div>
-
-      {/* #16: session recap — shown when returning from study, above exam trap */}
       <SessionRecapCard />
+
+      <div style={styles.card}>
+        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+          <ProgressRing value={readiness.score} size={72} accent="purple" caption="Exam Readiness" />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            {readiness.domainStats.map(d => {
+              const c = accentColors(d.accent)
+              return (
+                <div key={d.id} style={{ marginBottom: 6 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: COLORS.silverMid, marginBottom: 2 }}>
+                    <span>{d.name}</span>
+                    <span>{Math.round(d.avg * 100)}%</span>
+                  </div>
+                  <div style={{ height: 5, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
+                    <div style={{ height: '100%', width: `${Math.round(d.avg * 100)}%`, borderRadius: 999, background: c.text }} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        <button
+          onClick={onOpenMetrics}
+          style={{ marginTop: 10, background: 'none', border: 'none', color: COLORS.sky, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
+        >
+          View full metrics →
+        </button>
+      </div>
+
+      <div style={{ marginBottom: 12 }}>
+        <div style={sectionLabel}>STUDY MODES</div>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+          <button style={{ ...styles.primaryBtn, flex: 1 }} onClick={onOpenMock}>Mock Exam</button>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenMissed}>Missed ({missedCount})</button>
+        </div>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenFocus}>🎯 Focus Mode</button>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenLabs}>🧪 Labs</button>
+        </div>
+      </div>
+
+      <div style={{ marginBottom: 16 }}>
+        <div style={sectionLabel}>TOOLS</div>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenMetrics}>📊 Metrics</button>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenExport}>Export Reports</button>
+        </div>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenTutor} disabled={!apiOnline}>AI Tutor</button>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenSync}>☁ Sync{syncOn ? ' ✓' : ''}</button>
+        </div>
+      </div>
+
+      <ExamCountdown progress={progress} />
       <ExamTrapWidget />
 
       {DOMAINS.map(domain => {
@@ -6927,6 +6940,17 @@ const REPORTS = [
   { key: 'raw', label: 'Raw Data (JSON)', desc: 'Backup / transfer', ext: 'json', build: repRawData },
 ]
 
+const MODAL_Z = 300
+
+async function importCcnaJsonFromFile(file, onImport) {
+  const parsed = JSON.parse(await file.text())
+  if (!parsed || typeof parsed !== 'object' || (!parsed.progress && !parsed.quizBank && !parsed.missed)) {
+    return { ok: false, message: 'That file does not look like a CCNA data export.' }
+  }
+  await onImport(parsed)
+  return { ok: true, message: 'Imported and merged ✓' }
+}
+
 function ExportModal({ progress, missed, streak, onImport, onClose }) {
   const [ctx, setCtx] = useState(null)
   const [selected, setSelected] = useState('progress')
@@ -6938,13 +6962,8 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
     const file = e.target.files?.[0]
     if (!file) return
     try {
-      const parsed = JSON.parse(await file.text())
-      if (!parsed || typeof parsed !== 'object' || (!parsed.progress && !parsed.quizBank && !parsed.missed)) {
-        setImportMsg('That file does not look like a CCNA data export.')
-      } else {
-        await onImport(parsed)
-        setImportMsg('Imported and merged ✓')
-      }
+      const result = await importCcnaJsonFromFile(file, onImport)
+      setImportMsg(result.message)
     } catch {
       setImportMsg('Could not read that file (must be a valid JSON export).')
     } finally {
@@ -6991,9 +7010,9 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
   }
 
   return (
-    <div className="ccna-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 100, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
-      <div className="ccna-sheet" style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0 }} onClick={e => e.stopPropagation()}>
-        <h2 style={styles.h2}>Export Reports</h2>
+    <div className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="export-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
+      <div className="ccna-sheet" style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
+        <h2 id="export-modal-title" style={styles.h2}>Export Reports</h2>
         <p style={{ ...styles.small, marginBottom: 12 }}>All reports are generated locally from your saved data — no API, works offline.</p>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
@@ -7056,9 +7075,9 @@ function SyncModal({ syncCode, lastSynced, busy, msg, online, onGenerate, onLink
   }
 
   return (
-    <div className="ccna-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 100, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
-      <div className="ccna-sheet" style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0 }} onClick={e => e.stopPropagation()}>
-        <h2 style={styles.h2}>Cross-Device Sync</h2>
+    <div className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="sync-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
+      <div className="ccna-sheet" style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
+        <h2 id="sync-modal-title" style={styles.h2}>Cross-Device Sync</h2>
         <p style={{ ...styles.small, marginBottom: 12 }}>
           Sync progress, quiz banks, and CLI stats across your devices with one shared code. Your data merges — nothing is overwritten or lost.
         </p>
@@ -7277,6 +7296,7 @@ export default function App() {
   const [packagingId, setPackagingId] = useState(null) // objective id currently being packaged
   const [showSync, setShowSync] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
+  const importFileRef = useRef(null)
   const [syncCode, setSyncCode] = useState(null)
   const [lastSynced, setLastSynced] = useState(null)
   const [syncBusy, setSyncBusy] = useState(false)
@@ -7451,6 +7471,20 @@ export default function App() {
     await refreshOffline()
   }, [refreshOffline])
 
+  const handleImportFile = useCallback(async (e) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    try {
+      await importCcnaJsonFromFile(file, handleImport)
+    } catch {
+      // invalid JSON — user can retry via Export modal for feedback
+    } finally {
+      if (importFileRef.current) importFileRef.current.value = ''
+    }
+  }, [handleImport])
+
+  const pickImportFile = useCallback(() => { importFileRef.current?.click() }, [])
+
   // Auto-sync once on load if this device is already linked.
   useEffect(() => {
     if (loaded && syncCode) doSync(syncCode)
@@ -7584,16 +7618,19 @@ export default function App() {
           button:active:not(:disabled) { transform: none; }
         }
       `}</style>
-      {/* Search button — fixed bottom-center, accessible from every screen */}
+      <input ref={importFileRef} type="file" accept="application/json,.json" style={{ display: 'none' }} onChange={handleImportFile} />
+      {/* Search button — hidden while modals are open so it cannot block Close */}
+      {!showExport && !showSync && !showSearch && (
       <button
         onClick={() => setShowSearch(true)}
         title="Search objectives"
+        aria-label="Search objectives"
         style={{
           position: 'fixed',
           bottom: 'calc(env(safe-area-inset-bottom) + 20px)',
           left: '50%', transform: 'translateX(-50%)',
           zIndex: 200,
-          height: 40, padding: '0 18px',
+          minHeight: 44, height: 44, padding: '0 18px',
           borderRadius: 999, border: `1px solid ${COLORS.border}`, background: COLORS.card,
           color: COLORS.silverMid, fontSize: 13, cursor: 'pointer', display: 'flex',
           alignItems: 'center', gap: 6, boxShadow: '0 2px 10px #00000033',
@@ -7601,6 +7638,7 @@ export default function App() {
       >
         🔍 Search
       </button>
+      )}
       {/* Theme toggle — fixed top-right with iOS safe area */}
       <button
         onClick={toggleTheme}
@@ -7639,6 +7677,7 @@ export default function App() {
             onOpenSync={() => setShowSync(true)}
             onOpenReview={() => setView('review')}
             onOpenFocus={() => setView('focus')}
+            onImportPick={pickImportFile}
             dueCount={dueCount}
             syncOn={!!syncCode}
           />
