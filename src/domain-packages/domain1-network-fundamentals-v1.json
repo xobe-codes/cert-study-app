@@ -4,9 +4,9 @@
     "domainNumber": 1,
     "domainName": "Network Fundamentals",
     "version": "1",
-    "compiledAt": "2026-06-13T11:57:09.785Z",
+    "compiledAt": "2026-06-13T17:29:43.618Z",
     "curatedObjectives": 12,
-    "labs": 0
+    "labs": 2
   },
   "sourceAudit": {
     "sources": {
@@ -7194,7 +7194,553 @@
       }
     }
   ],
-  "labs": [],
+  "labs": [
+    {
+      "lab": {
+        "id": "LAB-IPV4-SUBNETTING",
+        "title": "Subnet a Network and Configure Router Interfaces",
+        "domainId": "fundamentals",
+        "objectiveId": "1.6",
+        "ckuIds": [
+          "CKU-SUBNETTING",
+          "CKU-IP-ADDRESSING",
+          "CKU-CIDR"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 15,
+        "tools": [
+          "Packet Tracer",
+          "GNS3",
+          "CML"
+        ],
+        "examRelevance": "core",
+        "scenario": "You have 192.168.10.0/24. Divide it: Subnet A needs 50 hosts (/26), Subnet B needs 30 hosts (/27). Assign the first usable address of each subnet to the router. Configure router-on-a-stick (subinterfaces) so hosts in both subnets can communicate through R1.",
+        "learningGoals": [
+          "Calculate subnets using 2^n-2 >= required hosts.",
+          "Assign network/broadcast/usable range for each subnet.",
+          "Configure subinterfaces with dot1q encapsulation.",
+          "Verify connectivity with ping across subnets."
+        ],
+        "topologyId": "TOPO-SUBNET",
+        "prerequisites": [
+          "CKU-BINARY-MATH",
+          "CKU-CIDR"
+        ],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Design subnets",
+            "device": "Paper/notes",
+            "instruction": "Using 192.168.10.0/24, design: Subnet A = /26 (64 addresses, 62 usable, .0-.63), Subnet B = /27 (32 addresses, 30 usable, .64-.95). Write down network address, mask, broadcast, and usable range for each.",
+            "expectedCommands": []
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Configure Gi0/0.10 for Subnet A",
+            "device": "R1",
+            "instruction": "Configure subinterface Gi0/0.10 with encapsulation dot1q VLAN 10 and 192.168.10.1/26.",
+            "expectedCommands": [
+              "interface gi0/0.10",
+              "encapsulation dot1q 10",
+              "ip address 192.168.10.1 255.255.255.192"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Configure Gi0/0.20 for Subnet B",
+            "device": "R1",
+            "instruction": "Configure subinterface Gi0/0.20 with encapsulation dot1q VLAN 20 and 192.168.10.65/27.",
+            "expectedCommands": [
+              "interface gi0/0.20",
+              "encapsulation dot1q 20",
+              "ip address 192.168.10.65 255.255.255.224"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Configure trunk on SW1",
+            "device": "SW1",
+            "instruction": "Set the port connecting to R1 as a trunk to allow VLANs 10 and 20.",
+            "expectedCommands": [
+              "interface gi0/0",
+              "switchport mode trunk",
+              "switchport trunk allowed vlan 10,20"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Verify",
+            "device": "R1",
+            "instruction": "Check the routing table for connected routes and test ping from Subnet A to Subnet B.",
+            "expectedCommands": [
+              "show ip route",
+              "show ip interface brief"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show ip route",
+          "show ip interface brief",
+          "show interfaces gi0/0.10",
+          "show interfaces gi0/0.20"
+        ],
+        "successCriteria": [
+          "Connected routes for both subnets in show ip route.",
+          "Gi0/0.10 and Gi0/0.20 are up/up in show ip interface brief.",
+          "A PC in Subnet A can ping a PC in Subnet B.",
+          "Subnet A (/26): 192.168.10.0-192.168.10.63, usable .1-.62.",
+          "Subnet B (/27): 192.168.10.64-192.168.10.95, usable .65-.94."
+        ],
+        "failureCriteria": [
+          "Subinterface down — parent Gi0/0 may need no shutdown.",
+          "Wrong encapsulation VLAN — must match VLAN on the switch port.",
+          "Miscalculated subnet — wrong mask size leads to overlap.",
+          "Trunk not configured on switch — subinterfaces drop tagged traffic."
+        ],
+        "commonMistakes": [
+          "Forgetting to bring up the parent Gi0/0 — subinterfaces require the parent to be up.",
+          "Using the network address instead of the first usable address on the router interface.",
+          "Confusing /26 (64 addresses, 62 hosts) with /27 (32 addresses, 30 hosts).",
+          "Forgetting encapsulation dot1q on the subinterface — required for router-on-a-stick."
+        ],
+        "source": {
+          "name": "CCNA in 60 Days — Lab Workbook (Browning)",
+          "chapter": "IPv4 Subnetting",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-SUBNET",
+        "title": "Router-on-a-stick subnetting topology",
+        "objectiveId": "1.6",
+        "nodes": [
+          {
+            "id": "r1",
+            "label": "R1 (router-on-a-stick)",
+            "type": "router",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "id": "sw1",
+            "label": "SW1 (trunk)",
+            "type": "switch",
+            "x": 50,
+            "y": 50
+          },
+          {
+            "id": "pc1",
+            "label": "VLAN 10 PC (.1-.62)",
+            "type": "pc",
+            "x": 20,
+            "y": 85
+          },
+          {
+            "id": "pc2",
+            "label": "VLAN 20 PC (.65-.94)",
+            "type": "pc",
+            "x": 80,
+            "y": 85
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "r1",
+            "target": "sw1",
+            "label": "Trunk Gi0/0",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "sw1",
+            "target": "pc1",
+            "label": "VLAN 10",
+            "status": "forwarding"
+          },
+          {
+            "id": "l3",
+            "source": "sw1",
+            "target": "pc2",
+            "label": "VLAN 20",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": [
+          "Gi0/0.10 192.168.10.1/26 (VLAN 10)",
+          "Gi0/0.20 192.168.10.65/27 (VLAN 20)"
+        ]
+      },
+      "validator": {
+        "labId": "LAB-IPV4-SUBNETTING",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "interface gi0/0.10"
+          },
+          {
+            "device": "R1",
+            "command": "encapsulation dot1q 10"
+          },
+          {
+            "device": "R1",
+            "command": "ip address 192.168.10.1 255.255.255.192"
+          },
+          {
+            "device": "R1",
+            "command": "interface gi0/0.20"
+          },
+          {
+            "device": "R1",
+            "command": "encapsulation dot1q 20"
+          },
+          {
+            "device": "R1",
+            "command": "ip address 192.168.10.65 255.255.255.224"
+          },
+          {
+            "device": "SW1",
+            "command": "switchport mode trunk"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show ip route",
+            "expectedResult": "Connected routes for 192.168.10.0/26 and 192.168.10.64/27.",
+            "passCondition": "192.168.10"
+          },
+          {
+            "id": "v2",
+            "device": "R1",
+            "command": "show ip interface brief",
+            "expectedResult": "Gi0/0.10 and Gi0/0.20 both up/up.",
+            "passCondition": "up"
+          }
+        ],
+        "failureChecks": [
+          {
+            "id": "f1",
+            "device": "R1",
+            "command": "show interfaces gi0/0.10",
+            "expectedFailure": "Encapsulation not set",
+            "reason": "Missing encapsulation dot1q command on the subinterface."
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-subnet-layout",
+        "title": "Subnetting 192.168.10.0/24 into /26 and /27",
+        "type": "table",
+        "ckuIds": [
+          "CKU-SUBNETTING",
+          "CKU-CIDR"
+        ],
+        "nodes": [
+          {
+            "id": "block",
+            "label": "192.168.10.0/24 (256 addresses)",
+            "type": "highlight",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "id": "s1",
+            "label": "/26: .0-.63 (62 hosts)",
+            "type": "process",
+            "x": 20,
+            "y": 55,
+            "note": "Sales VLAN 10"
+          },
+          {
+            "id": "s2",
+            "label": "/27: .64-.95 (30 hosts)",
+            "type": "process",
+            "x": 55,
+            "y": 55,
+            "note": "HR VLAN 20"
+          },
+          {
+            "id": "s3",
+            "label": "/30: .96-.99 (2 hosts)",
+            "type": "process",
+            "x": 83,
+            "y": 55,
+            "note": "P2P link"
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "block",
+            "target": "s1",
+            "label": ""
+          },
+          {
+            "id": "l2",
+            "source": "block",
+            "target": "s2",
+            "label": ""
+          },
+          {
+            "id": "l3",
+            "source": "block",
+            "target": "s3",
+            "label": ""
+          }
+        ],
+        "annotations": [
+          "/26: 64 addresses, 62 usable. /27: 32 addresses, 30 usable. /30: 4 addresses, 2 usable."
+        ],
+        "sourceRefs": [
+          {
+            "sourceName": "CCNA in 60 Days — Lab Workbook (Browning)",
+            "chapter": "IPv4 Subnetting",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-SUBNET-routing",
+          "title": "PC in VLAN 10 pings PC in VLAN 20",
+          "ckuIds": [
+            "CKU-SUBNETTING"
+          ],
+          "diagramId": "DIAG-subnet-layout",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "PC1 sends packet",
+              "action": "PC1 (192.168.10.2/26) sends to 192.168.10.70. Default gateway is 192.168.10.1.",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "SW1 trunks the frame",
+              "action": "SW1 tags the frame VLAN 10 and sends up the trunk to R1 Gi0/0.10.",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s3",
+              "order": 3,
+              "title": "Router routes between VLANs",
+              "action": "R1 receives on Gi0/0.10, routes to 192.168.10.64/27, forwards out Gi0/0.20 tagged VLAN 20.",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s4",
+              "order": 4,
+              "title": "Delivered to PC2",
+              "action": "SW1 strips the VLAN 20 tag and delivers to PC2 (192.168.10.70).",
+              "successState": "forwarded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-TS-WRONG-MASK",
+        "title": "Troubleshoot Wrong Subnet Mask",
+        "domainId": "fundamentals",
+        "objectiveId": "3.6",
+        "ckuIds": [
+          "CKU-TROUBLESHOOTING"
+        ],
+        "labType": "troubleshooting",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 15,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "Symptom: PC1 (192.168.1.10/24) cannot ping gateway 192.168.1.1. R1 Gi0/0 has wrong mask 255.255.255.128 — fix to 255.255.255.0.",
+        "learningGoals": [
+          "Use show commands to isolate fault",
+          "Apply minimal fix commands"
+        ],
+        "topologyId": "TOPO-LAB-TS-WRONG-MASK",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Inspect interface",
+            "device": "R1",
+            "instruction": "show ip interface gi0/0 — mask is /25 instead of /24.",
+            "expectedCommands": [
+              "show ip interface gi0/0"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Correct mask",
+            "device": "R1",
+            "instruction": "Reconfigure ip address 192.168.1.1 255.255.255.0.",
+            "expectedCommands": [
+              "interface gi0/0",
+              "ip address 192.168.1.1 255.255.255.0"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Test ping",
+            "device": "PC1",
+            "instruction": "Ping 192.168.1.1.",
+            "expectedCommands": [
+              "ping 192.168.1.1"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show ip interface gi0/0"
+        ],
+        "successCriteria": [
+          "Symptom resolved after fix commands entered"
+        ],
+        "failureCriteria": [
+          "Fix applied on wrong interface or wrong direction"
+        ],
+        "commonMistakes": [
+          "Changing PC mask when router mask is wrong"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "3.6 Troubleshooting",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-TS-WRONG-MASK",
+        "title": "Troubleshoot Wrong Subnet Mask",
+        "objectiveId": "3.6",
+        "nodes": [
+          {
+            "id": "r1",
+            "label": "R1 /25 wrong",
+            "type": "router",
+            "x": 55,
+            "y": 40,
+            "status": "error"
+          },
+          {
+            "id": "pc",
+            "label": "PC /24",
+            "type": "pc",
+            "x": 55,
+            "y": 75
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "pc",
+            "target": "r1",
+            "status": "blocked"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-TS-WRONG-MASK",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "ip address 192.168.1.1 255.255.255.0"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show ip interface brief",
+            "expectedResult": "Symptom cleared",
+            "passCondition": "fixed"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-TS-WRONG-MASK",
+        "title": "Troubleshoot Wrong Subnet Mask",
+        "objectiveId": "3.6",
+        "nodes": [
+          {
+            "id": "bad",
+            "label": "Fault",
+            "type": "process",
+            "x": 30,
+            "y": 50,
+            "status": "error"
+          },
+          {
+            "id": "fix",
+            "label": "Fix applied",
+            "type": "process",
+            "x": 70,
+            "y": 50,
+            "status": "highlighted"
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "bad",
+            "target": "fix",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-TS-WRONG-MASK",
+          "title": "Isolate and fix",
+          "ckuIds": [
+            "CKU-TROUBLESHOOTING"
+          ],
+          "diagramId": "DIAG-LAB-TS-WRONG-MASK",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Symptom",
+              "action": "Symptom: PC1 (192.168.1.10/24) cannot ping gateway 192.168.1.1. R1 Gi0/0 has wro",
+              "successState": "failed"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Fix",
+              "action": "Correct command restores expected behavior",
+              "successState": "forwarded"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "counts": {
     "ckus": 47,
     "questions": 106,
@@ -7204,6 +7750,6 @@
     "mnemonics": 16,
     "examTraps": 30,
     "misconceptions": 28,
-    "labs": 0
+    "labs": 2
   }
 }

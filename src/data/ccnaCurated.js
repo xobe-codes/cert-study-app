@@ -1650,10 +1650,38 @@ const OBJ_31 = {
     annotations: ['O=OSPF, [110/20]=[AD/metric]', 'C and L routes have no [AD/metric] shown — they are always AD 0', 'L routes are /32 for the router own IPs'],
     sourceRefs: [{ sourceName: 'Cisco CCNA 200-301 v1.1 Exam Topics', chapter: '3.1', confidence: 1 }],
   },
-  examTraps: [
-    { id: '3.1-trap1', trap: 'The L route is NOT a host route to a PC. It is the router own interface IP as a /32 — so the router processes packets addressed to itself.' },
-    { id: '3.1-trap2', trap: 'In [AD/metric], AD comes FIRST. Many students read it backwards as [metric/AD].' },
+  commands: [
+    { id: '3.1-cmd1', command: 'show ip route', mode: 'privileged EXEC', purpose: 'Display the full IPv4 routing table with source codes, [AD/metric], next-hop, and interface.', example: 'R1# show ip route', ckuIds: ['CKU-ROUTING-TABLE-ENTRY', 'CKU-ROUTE-SOURCE-CODES'] },
+    { id: '3.1-cmd2', command: 'show ip route <prefix>', mode: 'privileged EXEC', purpose: 'Show details for a specific destination prefix, including which route was selected.', example: 'R1# show ip route 10.1.1.0', ckuIds: ['CKU-ROUTING-TABLE-ENTRY'] },
+    { id: '3.1-cmd3', command: 'show ip route connected', mode: 'privileged EXEC', purpose: 'Filter the routing table to connected (C) routes only.', example: 'R1# show ip route connected', ckuIds: ['CKU-CONNECTED-LOCAL-ROUTES'] },
   ],
+  glossary: [
+    { id: '3.1-g1', term: 'Source code', definition: 'A letter (C/L/S/O/D/R/B) indicating how the router learned each route.', ckuIds: ['CKU-ROUTE-SOURCE-CODES'] },
+    { id: '3.1-g2', term: 'Connected route', definition: 'A route automatically installed when an interface is up/up with an IP — AD 0.', ckuIds: ['CKU-CONNECTED-LOCAL-ROUTES'] },
+    { id: '3.1-g3', term: 'Local route', definition: 'A /32 route for the router own interface IP — lets it process traffic destined to itself.', ckuIds: ['CKU-CONNECTED-LOCAL-ROUTES'] },
+    { id: '3.1-g4', term: 'Gateway of last resort', definition: 'The default route (0.0.0.0/0) used when no more-specific route matches.', ckuIds: ['CKU-ROUTING-TABLE-ENTRY'] },
+  ],
+  mnemonics: [
+    { id: '3.1-m1', title: 'Route codes', mnemonic: 'C-L-S-O-D-R — Connected, Local, Static, OSPF, EIGRP, RIP.', explanation: 'The first letter of each entry tells you the routing source at a glance.', ckuIds: ['CKU-ROUTE-SOURCE-CODES'] },
+    { id: '3.1-m2', title: 'Bracket order', mnemonic: '[AD/metric] — Administrative Distance first, metric second.', explanation: 'Never read [20/110] backwards; AD always precedes metric in Cisco output.', ckuIds: ['CKU-ROUTING-TABLE-ENTRY'] },
+  ],
+  examTraps: [
+    { id: '3.1-trap1', trap: 'The L route is NOT a host route to a PC.', correction: 'L is the router own interface IP as a /32 — so the router processes packets addressed to itself.', ckuIds: ['CKU-CONNECTED-LOCAL-ROUTES'] },
+    { id: '3.1-trap2', trap: 'In [AD/metric], AD comes FIRST.', correction: 'Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets.', ckuIds: ['CKU-ROUTING-TABLE-ENTRY'] },
+  ],
+  misconceptions: [
+    { id: '3.1-x1', misconception: 'The L route forwards traffic to end hosts.', reality: 'L routes exist only for the router own interface IPs — not for PCs or servers.', example: 'L 10.1.1.1/32 lets R1 accept SSH to 10.1.1.1, not route to a host.', ckuIds: ['CKU-CONNECTED-LOCAL-ROUTES'] },
+    { id: '3.1-x2', misconception: 'Connected routes persist after an interface goes down.', reality: 'C and L routes are removed immediately when the interface fails.', example: 'Shut down Gi0/1 and its C/L entries vanish from the table.', ckuIds: ['CKU-CONNECTED-LOCAL-ROUTES'] },
+  ],
+  packetFlow: {
+    id: 'FLOW-3.1-read-table', title: 'Reading a routing table entry', ckuIds: ['CKU-ROUTING-TABLE-ENTRY', 'CKU-ROUTE-SOURCE-CODES'], diagramId: 'DIAG-3.1-routing-table',
+    steps: [
+      { id: 's1', order: 1, title: 'Source code', action: 'Read the leading letter (C/S/O/D) to identify how the route was learned.', successState: 'matched' },
+      { id: 's2', order: 2, title: 'Prefix', action: 'Note the destination network and prefix length.', successState: 'matched' },
+      { id: 's3', order: 3, title: 'AD/metric', action: 'Parse [AD/metric] — trust level then protocol cost.', successState: 'matched' },
+      { id: 's4', order: 4, title: 'Next-hop / interface', action: 'Identify via next-hop IP and outgoing interface for forwarding.', successState: 'forwarded' },
+    ],
+  },
 }
 
 /* =========================================================================
@@ -1755,10 +1783,39 @@ const OBJ_33 = {
     annotations: ['Floating static (AD 130) only installs if OSPF (AD 110) route disappears', 'ip route 10.0.0.0 255.255.255.0 <R3-ip> 130'],
     sourceRefs: [{ sourceName: 'Cisco CCNA 200-301 v1.1 Exam Topics', chapter: '3.3', confidence: 1 }],
   },
-  examTraps: [
-    { id: '3.3-trap1', trap: 'A floating static needs AD HIGHER than the dynamic protocol. Setting AD 90 to back up OSPF (AD 110) would always be preferred — it is the primary, not the backup.' },
-    { id: '3.3-trap2', trap: 'IPv6 static routes require `ipv6 unicast-routing` globally first — forgetting this is a common exam mistake.' },
+  commands: [
+    { id: '3.3-cmd1', command: 'ip route <net> <mask> <next-hop>', mode: 'global config', purpose: 'Configure an IPv4 static route to a destination via next-hop IP.', example: 'R1(config)# ip route 172.16.0.0 255.255.0.0 10.0.0.1', ckuIds: ['CKU-STATIC-ROUTE-SYNTAX'] },
+    { id: '3.3-cmd2', command: 'ip route 0.0.0.0 0.0.0.0 <next-hop>', mode: 'global config', purpose: 'Configure a default static route (gateway of last resort).', example: 'R1(config)# ip route 0.0.0.0 0.0.0.0 203.0.113.1', ckuIds: ['CKU-DEFAULT-STATIC-ROUTE'] },
+    { id: '3.3-cmd3', command: 'ipv6 route <prefix>/<len> <next-hop>', mode: 'global config', purpose: 'Configure an IPv6 static route (requires ipv6 unicast-routing globally).', example: 'R1(config)# ipv6 route 2001:db8::/32 2001:db8::1', ckuIds: ['CKU-IPV6-STATIC-ROUTE'] },
+    { id: '3.3-cmd4', command: 'show ip route static', mode: 'privileged EXEC', purpose: 'Verify installed IPv4 static routes.', example: 'R1# show ip route static', ckuIds: ['CKU-STATIC-ROUTE-SYNTAX'] },
   ],
+  glossary: [
+    { id: '3.3-g1', term: 'Static route', definition: 'A manually configured routing table entry — AD 1 by default.', ckuIds: ['CKU-STATIC-ROUTE-SYNTAX'] },
+    { id: '3.3-g2', term: 'Default route', definition: '0.0.0.0/0 (or ::/0) — matches any destination when nothing more specific exists.', ckuIds: ['CKU-DEFAULT-STATIC-ROUTE'] },
+    { id: '3.3-g3', term: 'Floating static', definition: 'A static route with raised AD that installs only when the primary dynamic route fails.', ckuIds: ['CKU-FLOATING-STATIC'] },
+    { id: '3.3-g4', term: 'Recursive lookup', definition: 'The router must resolve the next-hop IP via another route before installing the static.', ckuIds: ['CKU-STATIC-ROUTE-SYNTAX'] },
+  ],
+  mnemonics: [
+    { id: '3.3-m1', title: 'Default route', mnemonic: 'Quad-zero = 0.0.0.0 0.0.0.0 — catches everything.', explanation: 'Both network and mask are all zeros for the IPv4 default route.', ckuIds: ['CKU-DEFAULT-STATIC-ROUTE'] },
+    { id: '3.3-m2', title: 'Floating static', mnemonic: 'Float ABOVE — AD higher than the protocol you are backing up.', explanation: 'To back up OSPF (110), use AD > 110 such as 130.', ckuIds: ['CKU-FLOATING-STATIC'] },
+  ],
+  examTraps: [
+    { id: '3.3-trap1', trap: 'A floating static needs AD HIGHER than the dynamic protocol.', correction: 'Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup.', ckuIds: ['CKU-FLOATING-STATIC'] },
+    { id: '3.3-trap2', trap: 'IPv6 static routes require `ipv6 unicast-routing` globally first.', correction: 'Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.', ckuIds: ['CKU-IPV6-STATIC-ROUTE'] },
+  ],
+  misconceptions: [
+    { id: '3.3-x1', misconception: 'Exit-interface static routes are always preferred on Ethernet.', reality: 'Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.', example: 'ip route 10.0.0.0 255.0.0.0 Gi0/0 causes ARP storms; use a next-hop IP instead.', ckuIds: ['CKU-STATIC-ROUTE-SYNTAX'] },
+    { id: '3.3-x2', misconception: 'A static route installs even if the next-hop is unreachable.', reality: 'Recursive lookup must succeed — the next-hop must be reachable via another route.', example: 'Static via 10.99.0.1 fails if no route to 10.99.0.0/24 exists.', ckuIds: ['CKU-STATIC-ROUTE-SYNTAX'] },
+  ],
+  packetFlow: {
+    id: 'FLOW-3.3-static-install', title: 'Static route installation check', ckuIds: ['CKU-STATIC-ROUTE-SYNTAX', 'CKU-DEFAULT-STATIC-ROUTE'], diagramId: 'DIAG-3.3-static-routing',
+    steps: [
+      { id: 's1', order: 1, title: 'Configure', action: 'Enter `ip route` with destination, mask, and next-hop or interface.', successState: 'matched' },
+      { id: 's2', order: 2, title: 'Recursive lookup', action: 'Router verifies the next-hop is reachable in the routing table.', successState: 'matched' },
+      { id: 's3', order: 3, title: 'Install', action: 'Route appears as S in `show ip route` with AD 1 (or custom AD).', successState: 'forwarded' },
+      { id: 's4', order: 4, title: 'Verify', action: 'Ping a host in the destination subnet from the correct source.', successState: 'forwarded' },
+    ],
+  },
 }
 
 /* =========================================================================
@@ -1868,9 +1925,31 @@ const OBJ_51 = {
     annotations: ['C: keep data private from unauthorized parties', 'I: detect unauthorized changes (hashing)', 'A: keep systems running (redundancy, uptime)'],
     sourceRefs: [{ sourceName: 'Cisco CCNA 200-301 v1.1 Exam Topics', chapter: '5.1', confidence: 1 }],
   },
+  commands: [],
+  glossary: [
+    { id: '5.1-g1', term: 'CIA triad', definition: 'Confidentiality, Integrity, Availability — the three foundational security goals.', ckuIds: ['CKU-CIA-TRIAD'] },
+    { id: '5.1-g2', term: 'Vulnerability', definition: 'A weakness that could be exploited (unpatched software, misconfiguration).', ckuIds: ['CKU-VULN-THREAT-EXPLOIT'] },
+    { id: '5.1-g3', term: 'Defense in depth', definition: 'Layered security controls so one failure does not compromise the entire network.', ckuIds: ['CKU-MITIGATION-TECHNIQUES'] },
+  ],
+  mnemonics: [
+    { id: '5.1-m1', title: 'CIA triad', mnemonic: 'Keep Secrets (C), Catch Changes (I), Stay Online (A).', explanation: 'Confidentiality=encryption, Integrity=hashing, Availability=redundancy.', ckuIds: ['CKU-CIA-TRIAD'] },
+  ],
+  misconceptions: [
+    { id: '5.1-x1', misconception: 'Integrity means keeping data private.', reality: 'Integrity detects unauthorized changes (hashing); confidentiality keeps data private (encryption).', example: 'SHA-256 hash verifies file integrity, not secrecy.', ckuIds: ['CKU-CIA-TRIAD'] },
+    { id: '5.1-x2', misconception: 'A vulnerability alone equals a breach.', reality: 'A threat and exploit are also required — vulnerability is only the weakness.', example: 'Unpatched server is vulnerable; attacker must actually exploit it.', ckuIds: ['CKU-VULN-THREAT-EXPLOIT'] },
+  ],
+  packetFlow: {
+    id: 'FLOW-5.1-threat-chain', title: 'Threat chain: vulnerability to breach', ckuIds: ['CKU-VULN-THREAT-EXPLOIT', 'CKU-MITIGATION-TECHNIQUES'], diagramId: 'DIAG-5.1-cia-triad',
+    steps: [
+      { id: 's1', order: 1, title: 'Vulnerability', action: 'Identify weakness (unpatched OS, open port).', successState: 'matched' },
+      { id: 's2', order: 2, title: 'Threat', action: 'Actor or event that could exploit the weakness.', successState: 'matched' },
+      { id: 's3', order: 3, title: 'Exploit', action: 'Actual attack method or code used.', successState: 'matched' },
+      { id: 's4', order: 4, title: 'Mitigate', action: 'Apply defense in depth: patch, ACL, training, segmentation.', successState: 'forwarded' },
+    ],
+  },
   examTraps: [
-    { id: '5.1-trap1', trap: 'Integrity = detecting CHANGES (hashing). NOT keeping data private (that is confidentiality). Do not mix them up.' },
-    { id: '5.1-trap2', trap: 'A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal, not just an uptime concern.' },
+    { id: '5.1-trap1', trap: 'Integrity = detecting CHANGES (hashing). NOT keeping data private.', correction: 'That is confidentiality. Integrity uses hashing to detect unauthorized modification.', ckuIds: ['CKU-CIA-TRIAD'] },
+    { id: '5.1-trap2', trap: 'A DDoS attack violates AVAILABILITY, not confidentiality or integrity.', correction: 'Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.', ckuIds: ['CKU-CIA-TRIAD', 'CKU-COMMON-THREATS'] },
   ],
 }
 

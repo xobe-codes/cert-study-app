@@ -4,9 +4,9 @@
     "domainNumber": 2,
     "domainName": "Network Access",
     "version": "1",
-    "compiledAt": "2026-06-13T11:57:09.790Z",
+    "compiledAt": "2026-06-13T17:29:43.625Z",
     "curatedObjectives": 3,
-    "labs": 1
+    "labs": 3
   },
   "sourceAudit": {
     "sources": {
@@ -2108,6 +2108,442 @@
           ]
         }
       ]
+    },
+    {
+      "lab": {
+        "id": "LAB-ETHERCHANNEL",
+        "title": "Configure LACP EtherChannel Between Switches",
+        "domainId": "access",
+        "objectiveId": "2.4",
+        "ckuIds": [
+          "CKU-ETHERCHANNEL"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 15,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "SW1 and SW2 are connected via Gi0/1 and Gi0/2. Bundle both links into Port-channel 1 using LACP active mode for redundant trunk bandwidth.",
+        "learningGoals": [
+          "Match channel-group mode on both sides",
+          "Verify Po1 in show etherchannel summary"
+        ],
+        "topologyId": "TOPO-EC",
+        "prerequisites": [
+          "CKU-TRUNKING"
+        ],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "SW1 Gi0/1",
+            "device": "SW1",
+            "instruction": "Set Gi0/1 to trunk and add to channel-group 1 mode active.",
+            "expectedCommands": [
+              "interface gi0/1",
+              "switchport mode trunk",
+              "channel-group 1 mode active"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "SW1 Gi0/2",
+            "device": "SW1",
+            "instruction": "Repeat on Gi0/2 for the second member link.",
+            "expectedCommands": [
+              "interface gi0/2",
+              "channel-group 1 mode active"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "SW2 Gi0/1",
+            "device": "SW2",
+            "instruction": "Configure matching trunk + channel-group on SW2 Gi0/1.",
+            "expectedCommands": [
+              "interface gi0/1",
+              "switchport mode trunk",
+              "channel-group 1 mode active"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "SW2 Gi0/2",
+            "device": "SW2",
+            "instruction": "Add Gi0/2 to the same channel-group on SW2.",
+            "expectedCommands": [
+              "interface gi0/2",
+              "channel-group 1 mode active"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Verify",
+            "device": "SW1",
+            "instruction": "Confirm Port-channel 1 is up with two active member ports.",
+            "expectedCommands": [
+              "show etherchannel summary"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show etherchannel summary",
+          "show interfaces port-channel 1"
+        ],
+        "successCriteria": [
+          "Po1 shows (SU) — bundled and in use",
+          "Two ports listed as active members"
+        ],
+        "failureCriteria": [
+          "Mode mismatch (active vs passive on both sides may not form)",
+          "One side access, other trunk"
+        ],
+        "commonMistakes": [
+          "Configuring channel-group on only one link",
+          "Mismatched channel-group number"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "2.4 EtherChannel",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-EC",
+        "title": "EtherChannel topology",
+        "objectiveId": "2.4",
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "SW1",
+            "type": "switch",
+            "x": 30,
+            "y": 50
+          },
+          {
+            "id": "sw2",
+            "label": "SW2",
+            "type": "switch",
+            "x": 70,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "sw1",
+            "target": "sw2",
+            "label": "Gi0/1 Po1",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "sw1",
+            "target": "sw2",
+            "label": "Gi0/2 Po1",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-ETHERCHANNEL",
+        "requiredCommands": [
+          {
+            "device": "SW1",
+            "command": "channel-group 1 mode active"
+          },
+          {
+            "device": "SW2",
+            "command": "channel-group 1 mode active"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "SW1",
+            "command": "show etherchannel summary",
+            "expectedResult": "Po1 up with 2 ports",
+            "passCondition": "bundle up"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-EC",
+        "title": "Two links bundled",
+        "objectiveId": "2.4",
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "SW1 Po1",
+            "type": "switch",
+            "x": 30,
+            "y": 50
+          },
+          {
+            "id": "sw2",
+            "label": "SW2 Po1",
+            "type": "switch",
+            "x": 70,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "sw1",
+            "target": "sw2",
+            "label": "LACP",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-EC",
+          "title": "Load shared across members",
+          "ckuIds": [
+            "CKU-ETHERCHANNEL"
+          ],
+          "diagramId": "DIAG-EC",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Bundle",
+              "action": "LACP negotiates Po1 across Gi0/1 and Gi0/2",
+              "successState": "matched"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-STP-ROOT",
+        "title": "Influence STP Root Bridge Election",
+        "domainId": "access",
+        "objectiveId": "2.5",
+        "ckuIds": [
+          "CKU-STP"
+        ],
+        "labType": "guided",
+        "difficulty": "beginner",
+        "estimatedTimeMinutes": 12,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "Three switches form a triangle. SW1 should become the root bridge for VLAN 1. Lower priority wins — set SW1 as primary root.",
+        "learningGoals": [
+          "Use spanning-tree vlan root primary",
+          "Interpret show spanning-tree root"
+        ],
+        "topologyId": "TOPO-STP",
+        "prerequisites": [
+          "CKU-VLAN"
+        ],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Make SW1 root",
+            "device": "SW1",
+            "instruction": "Set SW1 as the primary root bridge for VLAN 1.",
+            "expectedCommands": [
+              "spanning-tree vlan 1 root primary"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Verify root on SW1",
+            "device": "SW1",
+            "instruction": "Confirm SW1 shows as the root bridge for VLAN 1.",
+            "expectedCommands": [
+              "show spanning-tree vlan 1"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Verify SW2 sees SW1 as root",
+            "device": "SW2",
+            "instruction": "On SW2, verify the root ID points to SW1.",
+            "expectedCommands": [
+              "show spanning-tree root"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show spanning-tree vlan 1",
+          "show spanning-tree root"
+        ],
+        "successCriteria": [
+          "SW1 Bridge ID is root for VLAN 1",
+          "SW2/ SW3 list SW1 as root"
+        ],
+        "failureCriteria": [
+          "Root not set — lowest MAC may win unpredictably"
+        ],
+        "commonMistakes": [
+          "Confusing port priority with bridge priority",
+          "Setting root on wrong VLAN"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "2.5 STP",
+          "confidence": 0.85
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.85
+        }
+      },
+      "topology": {
+        "id": "TOPO-STP",
+        "title": "STP triangle",
+        "objectiveId": "2.5",
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "SW1 (root)",
+            "type": "switch",
+            "x": 50,
+            "y": 20
+          },
+          {
+            "id": "sw2",
+            "label": "SW2",
+            "type": "switch",
+            "x": 20,
+            "y": 75
+          },
+          {
+            "id": "sw3",
+            "label": "SW3",
+            "type": "switch",
+            "x": 80,
+            "y": 75
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "sw1",
+            "target": "sw2",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "sw1",
+            "target": "sw3",
+            "status": "forwarding"
+          },
+          {
+            "id": "l3",
+            "source": "sw2",
+            "target": "sw3",
+            "status": "blocked"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-STP-ROOT",
+        "requiredCommands": [
+          {
+            "device": "SW1",
+            "command": "spanning-tree vlan 1 root primary"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "SW1",
+            "command": "show spanning-tree vlan 1",
+            "expectedResult": "This bridge is the root",
+            "passCondition": "root"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-STP",
+        "title": "Root bridge election",
+        "objectiveId": "2.5",
+        "nodes": [
+          {
+            "id": "root",
+            "label": "SW1 Root",
+            "type": "switch",
+            "x": 50,
+            "y": 25,
+            "status": "highlighted"
+          },
+          {
+            "id": "sw2",
+            "label": "SW2",
+            "type": "switch",
+            "x": 25,
+            "y": 70
+          },
+          {
+            "id": "sw3",
+            "label": "SW3",
+            "type": "switch",
+            "x": 75,
+            "y": 70
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "root",
+            "target": "sw2",
+            "status": "forwarding"
+          },
+          {
+            "id": "d2",
+            "source": "sw2",
+            "target": "sw3",
+            "label": "blocking",
+            "status": "blocked"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-STP",
+          "title": "Root elected, blocking port chosen",
+          "ckuIds": [
+            "CKU-STP"
+          ],
+          "diagramId": "DIAG-STP",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Election",
+              "action": "Lowest bridge priority/MAC becomes root",
+              "successState": "matched"
+            }
+          ]
+        }
+      ]
     }
   ],
   "counts": {
@@ -2119,6 +2555,6 @@
     "mnemonics": 3,
     "examTraps": 9,
     "misconceptions": 6,
-    "labs": 1
+    "labs": 3
   }
 }
