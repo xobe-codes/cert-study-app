@@ -10,7 +10,7 @@ Cross-tool workflow: read `PROJECT_LOG.md` first each session; update Timeline +
 
 ## MASTER LIST (prioritized — single source of truth)
 
-Start at **#15** (Socratic tutor mode) unless you need production updated first (**#46**).
+Start at **#38** (Voice / TTS mode) or **#39** (exam-day mock interview) unless you need production updated first (**#46**).
 
 | # | Work item | Type | Status | Suggested action |
 |---|---|---|---|---|
