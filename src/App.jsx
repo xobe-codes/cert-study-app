@@ -2266,9 +2266,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-            {q.answerReview
-              ? <AnswerReview q={q} selected={selected} />
-              : <div style={{ fontSize: 13, lineHeight: 1.5 }}>{q.explanation}</div>}
+            <AnswerReview q={q} selected={selected} />
           </div>
         )}
       </div>
@@ -3035,18 +3033,24 @@ function McChoices({ q, selected, revealed, onSelect }) {
 
 /* ---- Answer review (static, no API) — shows why the correct choice is right
    and why each wrong choice is wrong, with optional exam tip / memory hook.
-   Renders only when q.answerReview is present; falls back to the plain
-   q.explanation otherwise so existing questions are unaffected. ---- */
+   Uses q.answerReview when present; for questions without one (most of the
+   bank) it falls back to a generic per-choice breakdown built from
+   q.explanation + q.choices, so every MC question gets the same layout.
+   Ordering questions (no choices/correctIndex) fall back to plain text. ---- */
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
 function AnswerReview({ q, selected }) {
-  const ar = q.answerReview
-  if (!ar) return null
   const correctIdx = q.correctIndex
-  const incorrect = (ar.incorrect || []).filter(item => item.choiceIndex !== correctIdx)
+  if (!Array.isArray(q.choices) || typeof correctIdx !== 'number') {
+    return <div style={{ fontSize: 13, lineHeight: 1.5 }}>{q.explanation}</div>
+  }
+  const ar = q.answerReview
+  const incorrect = ar
+    ? (ar.incorrect || []).filter(item => item.choiceIndex !== correctIdx)
+    : q.choices.map((_, choiceIndex) => ({ choiceIndex })).filter(item => item.choiceIndex !== correctIdx)
   return (
     <div style={{ marginTop: 8 }}>
       <ExplainBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint">
-        <RichText text={(ar.correct && ar.correct.explanation) || q.explanation} />
+        <RichText text={ar?.correct?.explanation || q.explanation} />
       </ExplainBlock>
       {incorrect.map(item => (
         <ExplainBlock
@@ -3054,7 +3058,9 @@ function AnswerReview({ q, selected }) {
           icon="❌" title={`WHY ${CHOICE_LETTERS[item.choiceIndex] || item.choiceIndex} IS WRONG`} accent="rose"
           collapsible defaultOpen={item.choiceIndex === selected}
         >
-          <RichText text={item.explanation} />
+          {item.explanation
+            ? <RichText text={item.explanation} />
+            : <div style={{ fontSize: 13, lineHeight: 1.5 }}>This option doesn't fit the scenario above — see the correct-answer explanation for why.</div>}
           {item.misconceptionTested && (
             <div style={{ marginTop: 6, fontSize: 12, color: COLORS.silverMid }}>Trap tested: {item.misconceptionTested}</div>
           )}
@@ -3063,8 +3069,8 @@ function AnswerReview({ q, selected }) {
           )}
         </ExplainBlock>
       ))}
-      {ar.examTip && <ExplainBlock icon="💡" title="EXAM TIP" accent="amber"><RichText text={ar.examTip} /></ExplainBlock>}
-      {ar.memoryHook && (
+      {ar?.examTip && <ExplainBlock icon="💡" title="EXAM TIP" accent="amber"><RichText text={ar.examTip} /></ExplainBlock>}
+      {ar?.memoryHook && (
         <ExplainBlock icon="🧠" title="MEMORY HOOK" accent="purple" collapsible defaultOpen={false}>
           <RichText text={ar.memoryHook} />
         </ExplainBlock>
@@ -3543,9 +3549,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            {current.answerReview
-              ? <AnswerReview q={current} selected={selected} />
-              : <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>}
+            <AnswerReview q={current} selected={selected} />
             {!isCorrect && isMcQuestion(current) && (
               <ExplainMistake
                 cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
@@ -5628,9 +5632,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-            {current.answerReview
-              ? <AnswerReview q={current} selected={selected} />
-              : <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>}
+            <AnswerReview q={current} selected={selected} />
           </div>
         )}
       </div>
@@ -5820,9 +5822,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-            {current.answerReview
-              ? <AnswerReview q={current} selected={selected} />
-              : <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>}
+            <AnswerReview q={current} selected={selected} />
             {!isCorrect && isMcQuestion(current) && (
               <ExplainMistake
                 cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
@@ -5969,9 +5969,7 @@ function Onboarding({ onComplete, onSkip }) {
           {revealed && (
             <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
               <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-              {current.answerReview
-                ? <AnswerReview q={current} selected={selected} />
-                : <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>}
+              <AnswerReview q={current} selected={selected} />
             </div>
           )}
         </div>
