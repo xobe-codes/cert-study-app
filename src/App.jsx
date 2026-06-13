@@ -3858,12 +3858,16 @@ const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'ambe
 // Full lab runner: scenario, topology, interactive task checker, verification,
 // success/failure criteria. `bundle` = { lab, topology, validator, diagram, packetFlows }.
 function LabView({ bundle, onBack, onDone }) {
-  const { lab, topology, validator, diagram } = bundle
+  const { lab, topology, validator } = bundle
   const [entered, setEntered] = useState([])      // normalized command lines typed
   const [history, setHistory] = useState([])      // {text, kind}
   const [input, setInput] = useState('')
   const [revealVerify, setRevealVerify] = useState(false)
+  const [activeTaskIdx, setActiveTaskIdx] = useState(0)
+  const [showCommands, setShowCommands] = useState(false)
   const scrollRef = useRef(null)
+  const taskScrollRef = useRef(null)
+  const taskCompleteRef = useRef({})
 
   useEffect(() => { scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight }) }, [history])
 
@@ -3876,6 +3880,47 @@ function LabView({ bundle, onBack, onDone }) {
     }
   }, [prog.complete, lab.id, onDone])
 
+  const cmdDone = (cmd) => entered.some(e => e.includes(normalizeCliLine(cmd)))
+  const taskComplete = (t) => (t.expectedCommands || []).every(cmdDone)
+
+  const scrollToTask = useCallback((idx) => {
+    const el = taskScrollRef.current
+    if (!el) return
+    const w = el.offsetWidth
+    el.scrollTo({ left: w * idx, behavior: 'smooth' })
+  }, [])
+
+  useEffect(() => {
+    const first = lab.tasks.findIndex(t => !taskComplete(t))
+    const idx = first >= 0 ? first : 0
+    setActiveTaskIdx(idx)
+    requestAnimationFrame(() => scrollToTask(idx))
+  }, [lab.id]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    lab.tasks.forEach((t, i) => {
+      const done = taskComplete(t)
+      if (done && !taskCompleteRef.current[t.id]) {
+        const next = lab.tasks.findIndex((tt, j) => j > i && !taskComplete(tt))
+        if (next >= 0) {
+          setActiveTaskIdx(next)
+          scrollToTask(next)
+        }
+      }
+      taskCompleteRef.current[t.id] = done
+    })
+  }, [entered, lab.tasks, scrollToTask])
+
+  function onTaskScroll() {
+    const el = taskScrollRef.current
+    if (!el || !el.offsetWidth) return
+    const idx = Math.round(el.scrollLeft / el.offsetWidth)
+    if (idx !== activeTaskIdx && idx >= 0 && idx < lab.tasks.length) {
+      setActiveTaskIdx(idx)
+      setShowCommands(false)
+    }
+  }
+
   function submit() {
     const raw = input.trim()
     if (!raw) return
@@ -3884,7 +3929,10 @@ function LabView({ bundle, onBack, onDone }) {
     setEntered(e => [...e, norm])
     setInput('')
   }
-  const cmdDone = (cmd) => entered.some(e => e.includes(normalizeCliLine(cmd)))
+
+  const activeTask = lab.tasks[activeTaskIdx]
+  const activeDevice = activeTask?.device || 'R1'
+  const lineColor = { cmd: '#d9d9d9', ok: '#d4f7d4', warn: '#e0a0a0', out: '#baf0fa', info: '#8a8fa8' }
 
   return (
     <div>
@@ -3897,47 +3945,121 @@ function LabView({ bundle, onBack, onDone }) {
         {prog.complete && <span style={{ ...styles.pill('mint'), fontSize: 10 }}>✓ COMPLETE</span>}
       </div>
 
-      <div style={{ ...styles.card, borderLeft: `3px solid ${COLORS.sky}` }}>
-        <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>🎯 SCENARIO</div>
-        <div style={{ fontSize: 13, lineHeight: 1.55 }}>{lab.scenario}</div>
-      </div>
+      <details style={{ ...styles.card, marginBottom: 10 }}>
+        <summary style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, cursor: 'pointer' }}>🎯 Scenario & topology</summary>
+        <div style={{ fontSize: 13, lineHeight: 1.55, marginTop: 8 }}>{lab.scenario}</div>
+        <div style={{ marginTop: 10 }}><CuratedDiagram diagram={topology} /></div>
+      </details>
 
-      <CuratedDiagram diagram={topology} />
+      <div style={{ ...styles.card, padding: 0, overflow: 'hidden', border: `1px solid ${COLORS.border}` }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px 6px' }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.4 }}>
+            TASK {activeTaskIdx + 1} OF {lab.tasks.length}
+          </div>
+          <div style={{ fontSize: 11, color: COLORS.silverMid }}>
+            {prog.done.length}/{prog.total} commands
+          </div>
+        </div>
 
-      {/* Tasks */}
-      <div style={{ ...styles.small, fontWeight: 700, color: COLORS.silver, margin: '8px 0 6px', letterSpacing: 0.4 }}>TASKS — {prog.done.length}/{prog.total} key commands entered</div>
-      {lab.tasks.map(t => {
-        const allIn = (t.expectedCommands || []).every(cmdDone)
-        return (
-          <div key={t.id} style={{ ...styles.card, padding: 12, borderLeft: `3px solid ${allIn ? COLORS.mint : COLORS.border}` }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-              <span style={{ color: allIn ? COLORS.mint : COLORS.silverMid, fontSize: 14 }}>{allIn ? '✓' : t.order}</span>
-              <span style={{ fontSize: 13, fontWeight: 600 }}>{t.title}</span>
-              <span style={{ ...styles.pill('purple'), fontSize: 9, marginLeft: 'auto' }}>{t.device}</span>
-            </div>
-            <div style={{ fontSize: 12.5, color: COLORS.silverMid, lineHeight: 1.5, marginBottom: 6 }}>{t.instruction}</div>
-            <details>
-              <summary style={{ fontSize: 11, color: COLORS.sky, cursor: 'pointer' }}>Show commands</summary>
+        <div
+          ref={taskScrollRef}
+          onScroll={onTaskScroll}
+          style={{
+            display: 'flex', overflowX: 'auto', scrollSnapType: 'x mandatory',
+            WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none',
+          }}
+        >
+          {lab.tasks.map((t) => {
+            const allIn = taskComplete(t)
+            return (
+              <div
+                key={t.id}
+                style={{
+                  flex: '0 0 100%', scrollSnapAlign: 'start', boxSizing: 'border-box',
+                  padding: '4px 12px 10px', minHeight: 108,
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                  <span style={{ color: allIn ? COLORS.mint : COLORS.silverMid, fontSize: 14 }}>{allIn ? '✓' : t.order}</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, flex: 1, lineHeight: 1.3 }}>{t.title}</span>
+                  <span style={{ ...styles.pill('purple'), fontSize: 9 }}>{t.device}</span>
+                </div>
+                <div style={{ fontSize: 12.5, color: COLORS.silverMid, lineHeight: 1.5 }}>{t.instruction}</div>
+              </div>
+            )
+          })}
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '0 12px 8px' }}>
+          {lab.tasks.map((t, i) => (
+            <button
+              key={t.id}
+              onClick={() => { setActiveTaskIdx(i); setShowCommands(false); scrollToTask(i) }}
+              aria-label={`Task ${i + 1}: ${t.title}`}
+              style={{
+                width: i === activeTaskIdx ? 18 : 7, height: 7, borderRadius: 4, border: 'none', padding: 0,
+                background: taskComplete(t) ? COLORS.mint : i === activeTaskIdx ? COLORS.sky : COLORS.border,
+                cursor: 'pointer', transition: 'width 0.2s, background 0.2s',
+              }}
+            />
+          ))}
+        </div>
+
+        {activeTask && (
+          <div style={{ padding: '0 12px 8px' }}>
+            <button
+              onClick={() => setShowCommands(v => !v)}
+              style={{ background: 'none', border: 'none', color: COLORS.sky, fontSize: 11, cursor: 'pointer', padding: 0, minHeight: 28 }}
+            >
+              {showCommands ? 'Hide expected commands' : 'Show expected commands'}
+            </button>
+            {showCommands && (
               <div style={{ marginTop: 6 }}>
-                {(t.expectedCommands || []).map((c, i) => (
-                  <div key={i} style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12, color: cmdDone(c) ? COLORS.mint : COLORS.silver, padding: '2px 0' }}>{cmdDone(c) ? '✓' : '›'} {c}</div>
+                {(activeTask.expectedCommands || []).map((c, i) => (
+                  <div key={i} style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12, color: cmdDone(c) ? COLORS.mint : COLORS.silver, padding: '2px 0' }}>
+                    {cmdDone(c) ? '✓' : '›'} {c}
+                  </div>
                 ))}
               </div>
-            </details>
+            )}
           </div>
-        )
-      })}
+        )}
 
-      {/* Interactive terminal */}
-      <div style={{ ...styles.small, fontWeight: 700, color: COLORS.silver, margin: '8px 0 6px', letterSpacing: 0.4 }}>TERMINAL — type the config commands</div>
-      <div ref={scrollRef} style={{ background: '#05060a', border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: 12, height: 150, overflowY: 'auto', marginBottom: 8, fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12.5, lineHeight: 1.5 }}>
-        {history.length === 0 && <div style={{ color: '#6b7088' }}>Enter commands like <span style={{ color: '#baf0fa' }}>ip dhcp snooping vlan 1</span> — they’re checked against the lab.</div>}
-        {history.map((l, i) => <div key={i} style={{ color: '#d9d9d9' }}>{l.text}</div>)}
+        <div style={{ borderTop: `1px solid ${COLORS.border}`, background: '#05060a' }}>
+          <div
+            ref={scrollRef}
+            style={{
+              padding: '10px 12px', height: 160, overflowY: 'auto',
+              fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12.5, lineHeight: 1.55,
+            }}
+          >
+            {history.length === 0 && (
+              <div style={{ color: '#6b7088' }}>
+                {activeDevice}# ready — swipe tasks above, then type commands below.
+              </div>
+            )}
+            {history.map((l, i) => (
+              <div key={i} style={{ color: lineColor[l.kind] || '#d9d9d9', whiteSpace: 'pre-wrap' }}>{l.text}</div>
+            ))}
+          </div>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '8px 12px 12px', borderTop: `1px solid ${COLORS.border}` }}>
+            <span style={{ fontFamily: 'ui-monospace, monospace', fontSize: 12.5, color: '#8a8fa8', whiteSpace: 'nowrap' }}>{activeDevice}#</span>
+            <input
+              style={{ ...styles.input, flex: 1, fontFamily: 'ui-monospace, Menlo, monospace', background: '#0a0c12', border: `1px solid ${COLORS.border}`, color: '#d9d9d9' }}
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => { if (e.key === 'Enter') submit() }}
+              placeholder="command…"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+            />
+            <button style={{ ...styles.primaryBtn, width: 'auto', padding: '10px 16px', marginTop: 0 }} onClick={submit}>Run</button>
+          </div>
+        </div>
       </div>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-        <input style={{ ...styles.input, flex: 1, fontFamily: 'ui-monospace, Menlo, monospace' }} value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') submit() }} placeholder="command…" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
-        <button style={{ ...styles.primaryBtn, width: 'auto', padding: '12px 18px' }} onClick={submit}>Run</button>
-      </div>
+
+      <div style={{ fontSize: 11, color: COLORS.silverDim, textAlign: 'center', margin: '6px 0 12px' }}>Swipe ← → between tasks</div>
 
       {prog.complete && (
         <div style={{ ...styles.card, background: COLORS.mintDim, border: `1px solid ${COLORS.mintBorder}` }}>
