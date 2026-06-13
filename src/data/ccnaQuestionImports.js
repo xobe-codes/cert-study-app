@@ -13160,7 +13160,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "scenario",
       "difficulty": "medium",
       "concept": "administrative distance",
-      "ckuIds": ["CKU-STATIC-ROUTING", "CKU-ADMIN-DISTANCE", "CKU-ROUTE-SELECTION"]
+      "ckuIds": ["CKU-STATIC-ROUTING", "CKU-ADMIN-DISTANCE", "CKU-ROUTE-SELECTION"],
+      "answerReview": {
+        "correct": { "explanation": "Lower administrative distance always wins, regardless of how the route was learned. A static route's AD of 1 beats OSPF's AD of 110." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Being dynamically learned doesn't matter for route selection — AD is the deciding factor, and OSPF's AD (110) is higher than the static route's AD (1).", "misconceptionTested": "Believing dynamic routing protocols are always preferred over static routes." },
+          { "choiceIndex": 2, "explanation": "Load balancing across multiple routes only happens when those routes have EQUAL administrative distance. Here the ADs differ (1 vs 110), so only the lower-AD route is installed.", "misconceptionTested": "Assuming any two routes to the same network get load-balanced." },
+          { "choiceIndex": 3, "explanation": "Routers don't flag AD differences as a 'conflict' — they silently install the lowest-AD route.", "misconceptionTested": "Thinking the router needs a tie-breaker error when ADs differ." }
+        ],
+        "examTip": "Memorize key ADs: Connected = 0, Static = 1, OSPF = 110, RIP = 120. Lowest AD wins, no matter the source.",
+        "memoryHook": "Think 'AD = trust score' — the lower the number, the more the router trusts that source."
+      }
     },
     {
       "question": "A static route is configured pointing to a next-hop IP address rather than an exit interface. What additional step must the router perform before it can forward packets using this route?",
@@ -13175,7 +13185,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "application",
       "difficulty": "medium",
       "concept": "recursive route lookup",
-      "ckuIds": ["CKU-STATIC-ROUTING", "CKU-RECURSIVE-LOOKUP"]
+      "ckuIds": ["CKU-STATIC-ROUTING", "CKU-RECURSIVE-LOOKUP"],
+      "answerReview": {
+        "correct": { "explanation": "A next-hop static route only gives an IP address, not an outgoing interface, so the router must perform a second routing-table lookup (recursive lookup) to find the interface that reaches that next-hop IP." },
+        "incorrect": [
+          { "choiceIndex": 1, "explanation": "ARP resolves a directly connected IP to a MAC address — it doesn't determine which interface to use for a remote next hop. ARP for the next hop happens only after the recursive lookup determines the outgoing interface.", "misconceptionTested": "Confusing Layer 2 address resolution (ARP) with Layer 3 route resolution." },
+          { "choiceIndex": 2, "explanation": "DNS resolves hostnames to IP addresses; routing decisions already use IP addresses, so DNS plays no role here.", "misconceptionTested": "Mixing up name resolution with route resolution." },
+          { "choiceIndex": 3, "explanation": "Next-hop static routes are NOT installed without an extra step — unlike exit-interface static routes, they require the recursive lookup before they can be used for forwarding.", "misconceptionTested": "Assuming next-hop and exit-interface static routes behave identically." }
+        ],
+        "examTip": "Exit-interface static routes avoid the recursive lookup and are preferred on point-to-point links; next-hop routes are common on multi-access (e.g., Ethernet) segments.",
+        "memoryHook": "'Recursive' = the router has to look itself up again to find the way out."
+      }
     },
     {
       "question": "A static route's exit interface goes down. What happens to that static route in the routing table?",
@@ -13190,7 +13210,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "troubleshooting",
       "difficulty": "medium",
       "concept": "static route dependency",
-      "ckuIds": ["CKU-STATIC-ROUTING", "CKU-ROUTE-TABLE"]
+      "ckuIds": ["CKU-STATIC-ROUTING", "CKU-ROUTE-TABLE"],
+      "answerReview": {
+        "correct": { "explanation": "A static route is only valid while its exit interface (or next hop) is reachable. If that interface goes down, IOS removes the route from the table entirely until reachability is restored." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "IOS doesn't keep a visible 'inactive' static route in show ip route — if the dependency is down, the route disappears from the table.", "misconceptionTested": "Expecting an 'inactive' state to remain visible, as some other platforms show." },
+          { "choiceIndex": 2, "explanation": "Routers don't automatically substitute a default route for a failed static route — if no default route is separately configured, there's simply no route to that destination.", "misconceptionTested": "Assuming automatic fallback behavior that isn't part of IOS routing." },
+          { "choiceIndex": 3, "explanation": "A removed route can't silently keep forwarding — removal from the table IS the mechanism, not a separate 'stays active but silent' state.", "misconceptionTested": "Confusing interface-down behavior with silent packet drops on a still-active route." }
+        ],
+        "examTip": "This is exactly why floating static routes (configured with a higher AD) are used as backups — when the primary route disappears, the floating route becomes active.",
+        "memoryHook": "No interface, no route — static routes 'live or die' with their exit path."
+      }
     },
     {
       "question": "A host can ping devices on its local subnet but cannot reach any remote subnets, including the internet. The host's IP and subnet mask are correct. What is the most likely cause?",
@@ -13205,7 +13235,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "troubleshooting",
       "difficulty": "easy",
       "concept": "default gateway",
-      "ckuIds": ["CKU-DEFAULT-GATEWAY", "CKU-ROUTING-TROUBLESHOOTING"]
+      "ckuIds": ["CKU-DEFAULT-GATEWAY", "CKU-ROUTING-TROUBLESHOOTING"],
+      "answerReview": {
+        "correct": { "explanation": "Local-subnet pings working but remote pings failing is the textbook symptom of a missing or incorrect default gateway — the host has no way to route off-subnet traffic." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "A DNS issue prevents name resolution (e.g., browsing by hostname) but wouldn't explain failing pings to IP addresses on remote subnets.", "misconceptionTested": "Conflating DNS (name resolution) failures with routing (Layer 3 path) failures." },
+          { "choiceIndex": 2, "explanation": "A wrong VLAN would typically also break local-subnet connectivity (wrong broadcast domain) — but the question states local pings work fine, ruling this out.", "misconceptionTested": "Overlooking that 'local works, remote doesn't' rules out a Layer 2/VLAN misconfiguration." },
+          { "choiceIndex": 3, "explanation": "A duplicate IP usually causes intermittent or local connectivity issues, not a clean 'local works, remote fails' pattern.", "misconceptionTested": "Assuming any IP-related problem must be a duplicate-address conflict." }
+        ],
+        "examTip": "Always check the host's default gateway setting first when local connectivity works but remote/internet connectivity doesn't.",
+        "memoryHook": "Local ✅, remote ❌ → think Gateway."
+      }
     },
     {
       "question": "Which command displays the router's current routing table, including the source (static, connected, or routing protocol) of each route?",
@@ -13220,7 +13260,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "easy",
       "concept": "routing table verification",
-      "ckuIds": ["CKU-SHOW-IP-ROUTE", "CKU-ROUTE-TABLE"]
+      "ckuIds": ["CKU-SHOW-IP-ROUTE", "CKU-ROUTE-TABLE"],
+      "answerReview": {
+        "correct": { "explanation": "show ip route displays the full routing table, with a source code (C, S, O, D, etc.) for each entry showing how it was learned." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "show ip interface brief shows interface status and IP addresses, not the routing table or route sources.", "misconceptionTested": "Confusing interface-status commands with routing-table commands." },
+          { "choiceIndex": 1, "explanation": "show running-config shows the configuration as entered (including static route commands), but not the active, computed routing table with source codes.", "misconceptionTested": "Thinking the configuration file is the same as the live routing table." },
+          { "choiceIndex": 3, "explanation": "show ip protocols shows configured routing protocol parameters (timers, networks advertised), not the routing table entries themselves.", "misconceptionTested": "Mixing up routing-protocol configuration display with the routing table itself." }
+        ],
+        "examTip": "Know the common route codes: C = connected, S = static, O = OSPF, D = EIGRP, R = RIP, B = BGP.",
+        "memoryHook": "'ip route' = the actual map the router is using right now."
+      }
     },
     {
       "question": "A floating static route is configured with an administrative distance of 200 as a backup to a primary OSPF route. Under what condition does the floating static route appear as the active route in the routing table?",
@@ -13235,7 +13285,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "scenario",
       "difficulty": "medium",
       "concept": "floating static route",
-      "ckuIds": ["CKU-FLOATING-STATIC", "CKU-ADMIN-DISTANCE"]
+      "ckuIds": ["CKU-FLOATING-STATIC", "CKU-ADMIN-DISTANCE"],
+      "answerReview": {
+        "correct": { "explanation": "A floating static route's higher AD (200) keeps it out of the table while the lower-AD OSPF route (110) is present. It only becomes active once the OSPF route disappears from the table." },
+        "incorrect": [
+          { "choiceIndex": 1, "explanation": "Floating static routes don't compare metrics with OSPF — administrative distance, not metric, governs which route is installed when both sources have a route.", "misconceptionTested": "Thinking AD-based selection between sources works like metric-based tie-breaking within a single protocol." },
+          { "choiceIndex": 2, "explanation": "Two routes are only both installed for load balancing if they have EQUAL administrative distance. A floating static route (AD 200) and OSPF (AD 110) differ, so only OSPF is installed while available.", "misconceptionTested": "Assuming a backup route is always active alongside the primary." },
+          { "choiceIndex": 3, "explanation": "Floating static routes activate based on changes to the routing table (the primary route disappearing), not on a device reboot.", "misconceptionTested": "Confusing route re-evaluation with a reboot event." }
+        ],
+        "examTip": "Floating static routes are commonly used as backup WAN links — set their AD higher than the dynamic protocol's AD so they only activate on failure.",
+        "memoryHook": "'Floating' = it sits above the table until the primary route sinks out of view."
+      }
     },
     {
       "question": "show ip route shows a correct entry for a remote network via a directly connected neighbor, but pings to that neighbor's interface fail. What should be checked first?",
@@ -13250,7 +13310,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "troubleshooting",
       "difficulty": "medium",
       "concept": "routing troubleshooting layers",
-      "ckuIds": ["CKU-INTERFACE-STATUS", "CKU-ROUTING-TROUBLESHOOTING"]
+      "ckuIds": ["CKU-INTERFACE-STATUS", "CKU-ROUTING-TROUBLESHOOTING"],
+      "answerReview": {
+        "correct": { "explanation": "A correct routing table entry only confirms the control plane has a path — it says nothing about the physical link's health. Check interface up/up status, cabling, and duplex/speed first." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "The OSPF process ID is a locally-significant configuration value and doesn't affect whether pings succeed to a directly connected neighbor.", "misconceptionTested": "Assuming routing-protocol configuration explains a basic connectivity failure to a directly connected device." },
+          { "choiceIndex": 2, "explanation": "A hostname mismatch has no effect on IP reachability or ping success.", "misconceptionTested": "Confusing cosmetic/identification configuration with Layer 3 reachability." },
+          { "choiceIndex": 3, "explanation": "NTP affects time synchronization (useful for logging/certificates), not basic IP connectivity to a neighbor.", "misconceptionTested": "Treating an unrelated management protocol as the cause of a ping failure." }
+        ],
+        "examTip": "Troubleshoot bottom-up: Layer 1 (cabling/interface status) → Layer 2 (duplex, encapsulation) → Layer 3 (IP, routing) — don't jump straight to routing protocol internals.",
+        "memoryHook": "'The routing table says yes, but the cable says no.'"
+      }
     },
     {
       "question": "Two static routes are configured for the same destination network with the same administrative distance: one via 10.0.0.1 and one via 10.0.0.2. What is the result?",
@@ -13265,7 +13335,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "application",
       "difficulty": "hard",
       "concept": "equal-cost routes",
-      "ckuIds": ["CKU-STATIC-ROUTING", "CKU-LOAD-BALANCING"]
+      "ckuIds": ["CKU-STATIC-ROUTING", "CKU-LOAD-BALANCING"],
+      "answerReview": {
+        "correct": { "explanation": "Two static routes to the same destination with equal AD (and equal implicit cost) are both installed, enabling equal-cost load balancing across both next hops." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "IOS doesn't discard the second equal-AD route — it installs both for load balancing rather than keeping only the first one configured.", "misconceptionTested": "Assuming routers only ever keep a single 'winning' route, even when AD and cost are tied." },
+          { "choiceIndex": 1, "explanation": "Equal-AD routes to the same destination aren't treated as configuration errors — this is the normal mechanism for equal-cost multipath.", "misconceptionTested": "Thinking duplicate-looking routes must be a misconfiguration the router will reject." },
+          { "choiceIndex": 3, "explanation": "Route installation doesn't compare next-hop IP address values — there's no 'higher IP wins' tie-breaker in IOS for this scenario.", "misconceptionTested": "Inventing a tie-breaker rule (comparing IP values) that doesn't exist." }
+        ],
+        "examTip": "Equal-cost load balancing can be per-destination or per-packet depending on platform/switching method — both static routes and dynamic protocols support it when AD/metric are equal.",
+        "memoryHook": "Same AD, same cost → the router shares the load instead of picking a favorite."
+      }
     },
     {
       "question": "An administrator configures `ip route 0.0.0.0 0.0.0.0 203.0.113.1` on an edge router but hosts still cannot reach the internet, even though show ip route shows the route present. What is the most likely remaining issue?",
@@ -13280,7 +13360,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "troubleshooting",
       "difficulty": "hard",
       "concept": "default route troubleshooting",
-      "ckuIds": ["CKU-DEFAULT-ROUTE", "CKU-NAT", "CKU-ROUTING-TROUBLESHOOTING"]
+      "ckuIds": ["CKU-DEFAULT-ROUTE", "CKU-NAT", "CKU-ROUTING-TROUBLESHOOTING"],
+      "answerReview": {
+        "correct": { "explanation": "A route being present in the table only means the router knows where to send default traffic — it doesn't guarantee the next hop is actually reachable, or that NAT/PAT is translating internal addresses for internet use." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "0.0.0.0 0.0.0.0 IS the correct mask for a default route (it matches everything). Changing it to 255.255.255.255 would make it a host route to 0.0.0.0, breaking it entirely.", "misconceptionTested": "Believing the default route's wildcard/mask syntax is wrong when it's actually standard." },
+          { "choiceIndex": 2, "explanation": "Default routes are fully supported — and commonly required — on edge/internet-facing routers; this isn't a platform limitation.", "misconceptionTested": "Assuming edge routers have special restrictions against default routes." },
+          { "choiceIndex": 3, "explanation": "Redistribution into OSPF affects whether OTHER routers learn this route via OSPF — it has no bearing on whether THIS router can use the route itself to forward packets toward the internet.", "misconceptionTested": "Confusing route redistribution (sharing with other routers) with the local router's own forwarding behavior." }
+        ],
+        "examTip": "When 'the route is in the table but it still doesn't work,' check next-hop reachability and NAT/PAT — both are common culprits once the table itself looks correct.",
+        "memoryHook": "'In the table' ≠ 'actually gets there.' Check the next hop and NAT next."
+      }
     },
     {
       "question": "A network has two routers, R1 and R2, both running OSPF. R1's routing table is missing a network that R2 advertises. Which command on R1 would best help confirm whether R1 and R2 have formed an OSPF neighbor adjacency?",
@@ -13295,7 +13385,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "troubleshooting",
       "difficulty": "medium",
       "concept": "OSPF adjacency troubleshooting",
-      "ckuIds": ["CKU-OSPF", "CKU-OSPF-NEIGHBOR", "CKU-ROUTING-TROUBLESHOOTING"]
+      "ckuIds": ["CKU-OSPF", "CKU-OSPF-NEIGHBOR", "CKU-ROUTING-TROUBLESHOOTING"],
+      "answerReview": {
+        "correct": { "explanation": "show ip ospf neighbor shows adjacency state (e.g., FULL). If R1 and R2 haven't reached FULL, R1 won't receive R2's routes regardless of anything else." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "show ip route ospf only shows OSPF routes ALREADY in the table — if the adjacency never formed, this command simply shows nothing for that neighbor, without explaining why.", "misconceptionTested": "Re-checking the symptom (missing route) instead of the underlying cause (adjacency state)." },
+          { "choiceIndex": 2, "explanation": "show ip interface brief confirms interfaces are up/up, which is necessary but not sufficient — two interfaces can be up/up while OSPF adjacency fails due to mismatched area, timers, network type, etc.", "misconceptionTested": "Assuming interface up/up guarantees a routing protocol adjacency has formed." },
+          { "choiceIndex": 3, "explanation": "show vlan brief is a Layer 2 switching command and has no relevance to OSPF adjacency state between routers.", "misconceptionTested": "Confusing switch VLAN configuration with router-to-router OSPF state." }
+        ],
+        "examTip": "OSPF neighbors must match area ID, hello/dead intervals, network type/mask, and (if used) authentication — a mismatch on any of these prevents FULL adjacency.",
+        "memoryHook": "No FULL neighbor, no routes — check 'ospf neighbor' before chasing anything else."
+      }
     }
   ],
   "4.10": [
@@ -13312,7 +13412,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "easy",
       "concept": "cloud vs local management",
-      "ckuIds": ["CKU-CLOUD-MANAGEMENT", "CKU-LOCAL-MANAGEMENT"]
+      "ckuIds": ["CKU-CLOUD-MANAGEMENT", "CKU-LOCAL-MANAGEMENT"],
+      "answerReview": {
+        "correct": { "explanation": "Cloud-based management moves the management plane (dashboard, configuration database, analytics) to a vendor-hosted service reached over the internet, instead of a locally hosted controller or per-device CLI/SNMP management." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "On-premises devices CAN be managed remotely — via VPN, a local controller's web UI reached over the WAN, SSH, etc. 'Cannot be managed remotely at all' overstates the limitation.", "misconceptionTested": "Assuming on-premises management means no remote access is possible." },
+          { "choiceIndex": 2, "explanation": "Cloud-managed networks (e.g., Meraki) fully support VLANs — the management architecture (cloud vs local) is independent of which Layer 2/3 features are supported.", "misconceptionTested": "Confusing the management plane's location with the feature set available on the data plane." },
+          { "choiceIndex": 3, "explanation": "On-premises networks commonly use SNMP for monitoring — it's one of the classic local-management tools, not something on-prem networks lack.", "misconceptionTested": "Mixing up 'local management' with 'no standard management protocols.'" }
+        ],
+        "examTip": "Cloud vs. local management is about WHERE the management/control plane lives and is reached from — not about which network features (VLANs, routing, etc.) are supported.",
+        "memoryHook": "Cloud management = dashboard lives on the internet; local management = dashboard/controller lives in your building."
+      }
     },
     {
       "question": "A company with 50 branch offices wants a single dashboard to monitor and configure all branch switches and APs without establishing a VPN to each site individually. Which management approach best fits this requirement?",
@@ -13327,7 +13437,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "scenario",
       "difficulty": "easy",
       "concept": "cloud management use case",
-      "ckuIds": ["CKU-CLOUD-MANAGEMENT", "CKU-SINGLE-PANE-OF-GLASS"]
+      "ckuIds": ["CKU-CLOUD-MANAGEMENT", "CKU-SINGLE-PANE-OF-GLASS"],
+      "answerReview": {
+        "correct": { "explanation": "Cloud-based management platforms are built for exactly this scenario: centralized, single-pane-of-glass visibility and configuration across many geographically distributed sites without per-site VPN tunnels." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Local CLI via console cable requires physically visiting each of the 50 sites — the opposite of the single-dashboard, no-per-site-access requirement.", "misconceptionTested": "Overlooking that console access is inherently local and doesn't scale to 50 remote sites." },
+          { "choiceIndex": 2, "explanation": "SNMPv1 polling can gather monitoring data centrally, but it doesn't provide configuration management, and it still typically needs reachability/VPN to each device's management IP.", "misconceptionTested": "Treating basic SNMP monitoring as equivalent to full centralized configuration management." },
+          { "choiceIndex": 3, "explanation": "Telnet to each device individually is per-device, unencrypted, and doesn't provide a single dashboard — it's the manual approach the question is trying to avoid.", "misconceptionTested": "Assuming any remote-access protocol satisfies a 'single dashboard, no per-site VPN' requirement." }
+        ],
+        "examTip": "Look for phrases like 'single dashboard,' 'without VPN to each site,' or 'many branches' — these point to cloud-managed/single-pane-of-glass solutions.",
+        "memoryHook": "50 sites, 1 dashboard, 0 VPNs → cloud management."
+      }
     },
     {
       "question": "An organization's cloud-managed access points lose connectivity to the cloud dashboard during an ISP outage at headquarters. What is the most accurate description of the impact on the branch network?",
@@ -13342,7 +13462,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "scenario",
       "difficulty": "hard",
       "concept": "cloud management data vs control plane",
-      "ckuIds": ["CKU-CLOUD-MANAGEMENT", "CKU-CONTROL-PLANE", "CKU-DATA-PLANE"]
+      "ckuIds": ["CKU-CLOUD-MANAGEMENT", "CKU-CONTROL-PLANE", "CKU-DATA-PLANE"],
+      "answerReview": {
+        "correct": { "explanation": "Most cloud-managed architectures separate the data plane (local forwarding continues independently using the last-known configuration) from the management/control plane (cloud dashboard). A WAN outage interrupts management visibility and configuration push, but local forwarding generally continues." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Existing wireless clients aren't disconnected just because the cloud dashboard becomes unreachable — the APs keep forwarding traffic using their current configuration.", "misconceptionTested": "Assuming loss of cloud connectivity immediately disrupts all client traffic." },
+          { "choiceIndex": 2, "explanation": "APs don't factory-reset due to a temporary loss of cloud connectivity — that would make cloud-managed gear extremely fragile and impractical.", "misconceptionTested": "Overestimating how dependent the device's running configuration is on constant cloud connectivity." },
+          { "choiceIndex": 3, "explanation": "Wired switches in the branch are typically separate devices with their own (possibly also cloud-managed) data planes — an AP's cloud link being down doesn't stop switches from forwarding.", "misconceptionTested": "Assuming a single cloud-connectivity loss cascades to unrelated devices' data-plane forwarding." }
+        ],
+        "examTip": "Remember: control/management plane (cloud dashboard) ≠ data plane (actual packet forwarding). An internet outage typically affects the former, not the latter, at least for a while.",
+        "memoryHook": "Cloud goes dark, but the lights (data plane) stay on — for now."
+      }
     },
     {
       "question": "Which of the following is a typical advantage of cloud-based device management over traditional local management?",
@@ -13357,7 +13487,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "application",
       "difficulty": "medium",
       "concept": "zero-touch provisioning",
-      "ckuIds": ["CKU-CLOUD-MANAGEMENT", "CKU-ZERO-TOUCH-PROVISIONING"]
+      "ckuIds": ["CKU-CLOUD-MANAGEMENT", "CKU-ZERO-TOUCH-PROVISIONING"],
+      "answerReview": {
+        "correct": { "explanation": "A hallmark benefit of cloud management is zero-touch provisioning: a device shipped to a remote site can connect to the internet, phone home to the cloud controller, and automatically receive its configuration — no on-site CLI work needed." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Cloud management depends on round trips to the internet for configuration and analytics, so it's not generally lower-latency for management operations than a local controller — and it requires connectivity to work at all.", "misconceptionTested": "Assuming cloud-hosted services are always faster than local ones for every operation." },
+          { "choiceIndex": 2, "explanation": "Cloud-managed devices DO require an internet connection to reach the cloud dashboard for configuration and visibility — 'no internet ever required' describes local management, not cloud management.", "misconceptionTested": "Mixing up the internet-dependency characteristics of cloud vs. local management." },
+          { "choiceIndex": 3, "explanation": "Configuration changes in a cloud-managed model are pushed FROM the cloud, which inherently requires internet access — the opposite of 'never require any internet access.'", "misconceptionTested": "Describing cloud management with a property that actually belongs to local/offline management." }
+        ],
+        "examTip": "'Zero-touch provisioning' is a key cloud-management buzzword — ship the device, plug it in, it configures itself from the cloud.",
+        "memoryHook": "Zero-touch = zero CLI on day one, thanks to the cloud."
+      }
     },
     {
       "question": "Which statement correctly contrasts Cisco DNA Center with Cisco Meraki dashboard in terms of deployment model?",
@@ -13372,7 +13512,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "medium",
       "concept": "DNA Center vs Meraki",
-      "ckuIds": ["CKU-DNA-CENTER", "CKU-CLOUD-MANAGEMENT"]
+      "ckuIds": ["CKU-DNA-CENTER", "CKU-CLOUD-MANAGEMENT"],
+      "answerReview": {
+        "correct": { "explanation": "Cisco DNA Center is an on-premises (or private cloud) network controller/management platform, while Meraki's dashboard is hosted entirely in Cisco's cloud — illustrating the local-controller vs. cloud-managed distinction." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "This reverses the actual roles — DNA Center is the on-premises/private-cloud controller, and Meraki is the cloud-hosted dashboard, not the other way around.", "misconceptionTested": "Swapping which product represents the cloud model vs. the local model." },
+          { "choiceIndex": 2, "explanation": "Both DNA Center and Meraki provide graphical dashboards — they are not CLI-only tools.", "misconceptionTested": "Assuming enterprise management platforms lack a GUI." },
+          { "choiceIndex": 3, "explanation": "DNA Center runs on Cisco appliance hardware on-prem, while Meraki is accessed purely via a cloud web dashboard with no equivalent local appliance required for management — they don't share a hardware model.", "misconceptionTested": "Assuming different management architectures require identical hardware." }
+        ],
+        "examTip": "DNA Center = on-prem/private-cloud controller; Meraki = vendor-hosted cloud dashboard. Both are Cisco products but represent opposite ends of the local-vs-cloud spectrum.",
+        "memoryHook": "DNA Center stays home; Meraki lives in the cloud."
+      }
     },
     {
       "question": "From a security/compliance standpoint, what is a common reason an organization might prefer local (on-premises) device management over cloud-based management?",
@@ -13387,7 +13537,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "application",
       "difficulty": "medium",
       "concept": "on-prem management security rationale",
-      "ckuIds": ["CKU-LOCAL-MANAGEMENT", "CKU-DATA-SOVEREIGNTY"]
+      "ckuIds": ["CKU-LOCAL-MANAGEMENT", "CKU-DATA-SOVEREIGNTY"],
+      "answerReview": {
+        "correct": { "explanation": "Some organizations (e.g., due to regulatory or data-sovereignty requirements) prefer on-premises management because configuration and telemetry data never leaves their own infrastructure or transits a third-party cloud." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Local management isn't inherently 'faster to configure' — in fact it often requires more manual, per-device work than a centralized cloud dashboard. Speed isn't the security/compliance driver here.", "misconceptionTested": "Confusing a security/compliance rationale with a configuration-speed claim." },
+          { "choiceIndex": 2, "explanation": "Administrator training requirements aren't eliminated by choosing local management — if anything, local/CLI-based management often requires MORE specialized training.", "misconceptionTested": "Assuming local management reduces training needs, which isn't the security rationale." },
+          { "choiceIndex": 3, "explanation": "Choosing a management architecture (local vs. cloud) doesn't automatically encrypt user data — encryption is a separate configuration concern (e.g., VPNs, TLS) regardless of management model.", "misconceptionTested": "Treating 'local management' as an automatic encryption feature." }
+        ],
+        "examTip": "When a question mentions compliance, regulation, or data never leaving the organization's network, think local/on-prem management or data sovereignty.",
+        "memoryHook": "Data sovereignty = data stays home, so management stays home too."
+      }
     },
     {
       "question": "Which of the following is a typical characteristic of traditional local (on-premises) network management?",
@@ -13402,7 +13562,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "easy",
       "concept": "local management characteristics",
-      "ckuIds": ["CKU-LOCAL-MANAGEMENT"]
+      "ckuIds": ["CKU-LOCAL-MANAGEMENT"],
+      "answerReview": {
+        "correct": { "explanation": "Traditional on-premises management typically means administrators connect to each device (or a locally hosted controller) individually via CLI, SNMP, or a local management application — less centralized than cloud dashboards." },
+        "incorrect": [
+          { "choiceIndex": 1, "explanation": "Automatic configuration push from a vendor's GLOBAL CLOUD describes cloud management, not traditional local management.", "misconceptionTested": "Mixing up the cloud-management description with the local-management option in a 'which is local' question." },
+          { "choiceIndex": 2, "explanation": "Fully automatic firmware updates across all sites with zero admin involvement is a cloud-management capability — traditional local management usually requires admins to apply updates per device or per site.", "misconceptionTested": "Attributing a centralized-automation feature to traditional local management." },
+          { "choiceIndex": 3, "explanation": "Local management doesn't require a dedicated WAN link to every branch — administrators can manage devices on-site directly (console, local LAN), without any WAN at all.", "misconceptionTested": "Overstating the connectivity requirements of local management." }
+        ],
+        "examTip": "If an answer describes automation 'across all sites' or 'from the cloud,' it's describing cloud management — even in a question that's asking about local management's traits (by elimination).",
+        "memoryHook": "Local management = one device, one admin, one session at a time."
+      }
     },
     {
       "question": "A cloud-managed network platform automatically pushes firmware updates to all devices in an organization on a scheduled maintenance window from the vendor's cloud. What management capability does this best illustrate?",
@@ -13417,7 +13587,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "application",
       "difficulty": "medium",
       "concept": "centralized lifecycle management",
-      "ckuIds": ["CKU-CLOUD-MANAGEMENT", "CKU-LIFECYCLE-MANAGEMENT"]
+      "ckuIds": ["CKU-CLOUD-MANAGEMENT", "CKU-LIFECYCLE-MANAGEMENT"],
+      "answerReview": {
+        "correct": { "explanation": "Centralized, automated firmware/lifecycle management — pushing updates to many devices across many sites from one cloud console — is a defining capability of cloud-managed architectures, reducing manual per-device maintenance." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Local CLI scripting could update individual devices, but the scenario describes automatic, fleet-wide updates from a cloud platform — not a per-device script run by an admin.", "misconceptionTested": "Picking a manual, local technique to describe an automated, centralized cloud capability." },
+          { "choiceIndex": 2, "explanation": "Manual per-device TFTP upload is the opposite of 'automatically pushes ... to all devices' — it's the labor-intensive traditional approach.", "misconceptionTested": "Confusing a manual legacy method with the automated cloud capability being described." },
+          { "choiceIndex": 3, "explanation": "VLAN trunking configuration is an unrelated Layer 2 topic and has nothing to do with firmware/lifecycle management.", "misconceptionTested": "Selecting an unrelated networking concept that happens to sound technical." }
+        ],
+        "examTip": "Cloud platforms are valued for fleet-wide automation: firmware updates, configuration templates, and monitoring pushed/collected centrally.",
+        "memoryHook": "One click, every device — that's cloud lifecycle management."
+      }
     },
     {
       "question": "An engineer says, \"Our network uses a single pane of glass for management.\" What does this phrase mean?",
@@ -13432,7 +13612,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "easy",
       "concept": "single pane of glass",
-      "ckuIds": ["CKU-SINGLE-PANE-OF-GLASS", "CKU-CLOUD-MANAGEMENT"]
+      "ckuIds": ["CKU-SINGLE-PANE-OF-GLASS", "CKU-CLOUD-MANAGEMENT"],
+      "answerReview": {
+        "correct": { "explanation": "\"Single pane of glass\" describes a unified management interface — typically a cloud dashboard or controller — that gives administrators visibility and control over devices across the whole organization from one place." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "The phrase is about a unified MANAGEMENT VIEW, not a shared physical cable — devices don't need to share cabling to be managed from one dashboard.", "misconceptionTested": "Taking 'pane of glass' literally as a physical/cabling term." },
+          { "choiceIndex": 2, "explanation": "A single management interface can support many administrator accounts with different permissions — 'single pane of glass' is about the unified view, not the number of user accounts.", "misconceptionTested": "Confusing a unified UI with a single-user-account restriction." },
+          { "choiceIndex": 3, "explanation": "Devices can be geographically distributed across many sites and still be managed through a single dashboard — physical co-location isn't what the phrase refers to.", "misconceptionTested": "Assuming 'single pane of glass' implies physical centralization of hardware." }
+        ],
+        "examTip": "'Single pane of glass' is shorthand for unified visibility/control — a strong indicator of cloud-managed or controller-based architectures in exam scenarios.",
+        "memoryHook": "One window (pane of glass), the whole network visible through it."
+      }
     },
     {
       "question": "Which scenario is the BEST fit for traditional local management rather than cloud-based management?",
@@ -13447,7 +13637,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "scenario",
       "difficulty": "hard",
       "concept": "choosing management model",
-      "ckuIds": ["CKU-LOCAL-MANAGEMENT", "CKU-CLOUD-MANAGEMENT"]
+      "ckuIds": ["CKU-LOCAL-MANAGEMENT", "CKU-CLOUD-MANAGEMENT"],
+      "answerReview": {
+        "correct": { "explanation": "Cloud management depends on internet connectivity to a vendor's dashboard. An air-gapped, highly regulated environment with no internet access is the classic case where local/on-premises management is required instead." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "A multinational retail chain needing rapid, uniform rollout across 500 small stores is a strong fit for cloud management (centralized templates, zero-touch provisioning) — the opposite of what's being asked.", "misconceptionTested": "Picking a scenario that favors cloud management when the question asks for the BEST fit for local management." },
+          { "choiceIndex": 2, "explanation": "A startup wanting minimal on-site IT staff for new branches is a classic cloud-management use case (remote zero-touch setup), not a local-management one.", "misconceptionTested": "Confusing 'minimal on-site staff' (favors cloud) with a reason to choose local management." },
+          { "choiceIndex": 3, "explanation": "Centralized visibility across 30 campuses is exactly the single-pane-of-glass benefit that cloud management provides — it doesn't point toward local management.", "misconceptionTested": "Selecting a scenario whose described benefit (centralized visibility) actually argues FOR cloud management." }
+        ],
+        "examTip": "Air-gapped / no-internet / strict-regulatory-isolation scenarios are the strongest signal for local/on-prem management on the exam — almost everything else leans cloud.",
+        "memoryHook": "No internet allowed in → no cloud dashboard allowed in → local management."
+      }
     }
   ],
   "5.4": [
@@ -13464,7 +13664,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "easy",
       "concept": "AAA framework",
-      "ckuIds": ["CKU-AAA", "CKU-AUTHENTICATION", "CKU-AUTHORIZATION", "CKU-ACCOUNTING"]
+      "ckuIds": ["CKU-AAA", "CKU-AUTHENTICATION", "CKU-AUTHORIZATION", "CKU-ACCOUNTING"],
+      "answerReview": {
+        "correct": { "explanation": "AAA stands for Authentication (proving who you are), Authorization (what you're allowed to do), and Accounting (logging what you did)." },
+        "incorrect": [
+          { "choiceIndex": 1, "explanation": "\"Access, Audit, Administration\" isn't the AAA expansion — it swaps in unrelated terms that don't match the standard framework.", "misconceptionTested": "Guessing plausible-sounding A-words instead of recalling the specific AAA terms." },
+          { "choiceIndex": 2, "explanation": "\"Availability\" is part of the CIA security triad (Confidentiality, Integrity, Availability), not AAA — mixing the two frameworks is a common mix-up.", "misconceptionTested": "Confusing the AAA framework with the CIA triad." },
+          { "choiceIndex": 3, "explanation": "This reorders the correct words but starts with Authorization instead of Authentication — order matters because it reflects the logical sequence: identify first, then authorize, then log.", "misconceptionTested": "Knowing the three correct words but not their correct order/sequence." }
+        ],
+        "examTip": "Remember the order: Authentication happens first (who are you), then Authorization (what can you do), then Accounting (what did you do).",
+        "memoryHook": "AAA = 'Who, What, Did' — Who are you, What can you do, what did you Do."
+      }
     },
     {
       "question": "Which transport protocol and port does TACACS+ use by default?",
@@ -13479,7 +13689,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "medium",
       "concept": "TACACS+ transport",
-      "ckuIds": ["CKU-TACACS", "CKU-AAA-PORTS"]
+      "ckuIds": ["CKU-TACACS", "CKU-AAA-PORTS"],
+      "answerReview": {
+        "correct": { "explanation": "TACACS+ uses TCP port 49, giving it reliable, connection-oriented communication between the network device and the AAA server." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "UDP 1812 is RADIUS's authentication/authorization port, not TACACS+'s.", "misconceptionTested": "Swapping the TACACS+ and RADIUS port numbers." },
+          { "choiceIndex": 2, "explanation": "Port 49 is correct, but TACACS+ uses TCP, not UDP — getting the protocol right matters as much as the port number.", "misconceptionTested": "Remembering the right port number but the wrong transport protocol." },
+          { "choiceIndex": 3, "explanation": "1812 is a RADIUS port number, not TACACS+'s — this combines the wrong port with the right transport protocol (TCP).", "misconceptionTested": "Mixing the correct transport protocol with the wrong port number from RADIUS." }
+        ],
+        "examTip": "Pair them up: TACACS+ = TCP/49. RADIUS = UDP/1812 (auth) and UDP/1813 (accounting).",
+        "memoryHook": "TACACS+ → 'T' for TCP, and 49 is a 'classic' single port."
+      }
     },
     {
       "question": "Which ports does RADIUS use by default for authentication/authorization and accounting (modern standard)?",
@@ -13494,7 +13714,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "medium",
       "concept": "RADIUS transport",
-      "ckuIds": ["CKU-RADIUS", "CKU-AAA-PORTS"]
+      "ckuIds": ["CKU-RADIUS", "CKU-AAA-PORTS"],
+      "answerReview": {
+        "correct": { "explanation": "RADIUS uses UDP port 1812 for authentication and authorization, and UDP port 1813 for accounting (modern standard; older implementations used 1645/1646)." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "TCP 49/50 belong to TACACS+'s family of ideas (TACACS+ uses TCP 49) — RADIUS doesn't use TCP at all by default.", "misconceptionTested": "Mixing TACACS+'s TCP transport into a RADIUS question." },
+          { "choiceIndex": 2, "explanation": "RADIUS uses UDP, not TCP — 'TCP 1812 and TCP 1813' gets the port numbers right but the transport protocol wrong.", "misconceptionTested": "Knowing the RADIUS port numbers but forgetting RADIUS is UDP-based." },
+          { "choiceIndex": 3, "explanation": "UDP 161/162 are SNMP ports (161 for queries, 162 for traps) — an unrelated management protocol, not RADIUS.", "misconceptionTested": "Confusing RADIUS AAA ports with SNMP monitoring ports." }
+        ],
+        "examTip": "RADIUS = UDP. TACACS+ = TCP. RADIUS splits auth/authz (1812) and accounting (1813) into separate ports; TACACS+ uses one port (49) for everything.",
+        "memoryHook": "RADIUS rhymes with 'fast and loose' — UDP is connectionless ('loose'), matching RADIUS's UDP transport."
+      }
     },
     {
       "question": "What is the key encryption difference between TACACS+ and RADIUS?",
@@ -13509,7 +13739,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "medium",
       "concept": "TACACS+ vs RADIUS encryption",
-      "ckuIds": ["CKU-TACACS", "CKU-RADIUS", "CKU-AAA-COMPARISON"]
+      "ckuIds": ["CKU-TACACS", "CKU-RADIUS", "CKU-AAA-COMPARISON"],
+      "answerReview": {
+        "correct": { "explanation": "TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "This reverses the two protocols' behavior — TACACS+ is the one that encrypts the full packet body, and RADIUS is the one limited to encrypting only the password.", "misconceptionTested": "Swapping which protocol provides the stronger (full-packet) encryption." },
+          { "choiceIndex": 2, "explanation": "Both protocols DO support encryption (TACACS+ full-packet, RADIUS password-only) — neither is fully unencrypted.", "misconceptionTested": "Assuming one or both AAA protocols have no encryption at all." },
+          { "choiceIndex": 3, "explanation": "TACACS+ and RADIUS differ meaningfully in encryption scope — they are not identical in how much of the packet is protected.", "misconceptionTested": "Assuming all AAA protocols handle encryption the same way." }
+        ],
+        "examTip": "This is the #1 TACACS+ vs RADIUS exam difference: TACACS+ = encrypts whole packet body; RADIUS = encrypts only the password.",
+        "memoryHook": "TACACS+ wraps the WHOLE package; RADIUS only seals the envelope's password field."
+      }
     },
     {
       "question": "Which command is required on a Cisco IOS device before any AAA authentication, authorization, or accounting commands can take effect?",
@@ -13524,7 +13764,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "application",
       "difficulty": "easy",
       "concept": "aaa new-model",
-      "ckuIds": ["CKU-AAA-CONFIG", "CKU-AAA-NEW-MODEL"]
+      "ckuIds": ["CKU-AAA-CONFIG", "CKU-AAA-NEW-MODEL"],
+      "answerReview": {
+        "correct": { "explanation": "aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands." },
+        "incorrect": [
+          { "choiceIndex": 1, "explanation": "\"ip aaa enable\" is not a real IOS command — AAA configuration commands use the \"aaa\" keyword directly, not under \"ip\".", "misconceptionTested": "Guessing a plausible-sounding but non-existent command syntax." },
+          { "choiceIndex": 2, "explanation": "\"service aaa\" is not the command that enables AAA — \"service\" commands in IOS configure other features (e.g., service password-encryption), not the AAA model itself.", "misconceptionTested": "Confusing the 'service' command family with the 'aaa new-model' enabler." },
+          { "choiceIndex": 3, "explanation": "\"aaa start\" is not a valid IOS command — the actual enabling command is specifically \"aaa new-model\".", "misconceptionTested": "Inventing a command name based on what 'sounds right' rather than the actual IOS syntax." }
+        ],
+        "examTip": "aaa new-model must be configured before any aaa authentication, aaa authorization, or aaa accounting commands will have any effect.",
+        "memoryHook": "'New model' = switching the device from default line-password auth to the full AAA model."
+      }
     },
     {
       "question": "A switch is configured with: aaa authentication login default group tacacs+ local. What does this configuration mean?",
@@ -13539,7 +13789,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "application",
       "difficulty": "medium",
       "concept": "AAA method lists",
-      "ckuIds": ["CKU-AAA-CONFIG", "CKU-METHOD-LIST"]
+      "ckuIds": ["CKU-AAA-CONFIG", "CKU-METHOD-LIST"],
+      "answerReview": {
+        "correct": { "explanation": "The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "The presence of 'local' as a second method means login is NOT denied if TACACS+ fails — it falls back to the local database instead.", "misconceptionTested": "Ignoring the fallback method listed after the primary method." },
+          { "choiceIndex": 2, "explanation": "Method lists are tried in the order listed — 'group tacacs+ local' means TACACS+ is tried FIRST, then local, not the reverse.", "misconceptionTested": "Reversing the priority order of methods in a method list." },
+          { "choiceIndex": 3, "explanation": "This command works with TACACS+ alone — it doesn't require a RADIUS server to be configured for it to take effect.", "misconceptionTested": "Assuming an AAA method list requires every possible AAA protocol to be configured." }
+        ],
+        "examTip": "Method lists are evaluated left to right; each method is tried only if the previous one is unavailable (not just if it fails the login) — 'local' as a fallback prevents lockout if the AAA server is down.",
+        "memoryHook": "Read method lists like a sentence, left to right: 'try TACACS+, then local.'"
+      }
     },
     {
       "question": "A network device is configured to use TACACS+ for authentication, but all login attempts fail with the TACACS+ server reachable on the network. The shared secret key on the device is \"Cisco123\" and on the server is \"cisco123\". What is the most likely cause of the failure?",
@@ -13554,7 +13814,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "troubleshooting",
       "difficulty": "medium",
       "concept": "AAA shared secret mismatch",
-      "ckuIds": ["CKU-TACACS", "CKU-AAA-TROUBLESHOOTING"]
+      "ckuIds": ["CKU-TACACS", "CKU-AAA-TROUBLESHOOTING"],
+      "answerReview": {
+        "correct": { "explanation": "The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server. \"Cisco123\" vs \"cisco123\" is a case mismatch and will cause authentication to fail even though the server is reachable." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "TACACS+ DOES support (and requires) a shared secret key for encrypting communication — that's the whole point of the key configuration.", "misconceptionTested": "Assuming a feature doesn't exist when actually the question is testing a misconfiguration of that feature." },
+          { "choiceIndex": 2, "explanation": "Switching to RADIUS wouldn't fix a key mismatch — RADIUS also requires a matching shared secret, and the underlying problem (mismatched keys) would persist.", "misconceptionTested": "Treating a configuration error as a reason to change protocols instead of fixing the configuration." },
+          { "choiceIndex": 3, "explanation": "Shared secret keys must be IDENTICAL on both sides to work — TACACS+ does not require or support having different keys on each end.", "misconceptionTested": "Inventing a requirement (different keys on each side) that's the opposite of how shared secrets work." }
+        ],
+        "examTip": "When the AAA server is reachable (ping/connectivity works) but authentication still fails, suspect a shared-secret key mismatch — keys are case-sensitive and must match exactly.",
+        "memoryHook": "'Reachable but rejected' → check the shared secret key, not the network path."
+      }
     },
     {
       "question": "Which AAA component would be used to determine whether an authenticated user is permitted to enter privileged EXEC mode or run specific configuration commands?",
@@ -13569,7 +13839,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "easy",
       "concept": "authorization role",
-      "ckuIds": ["CKU-AUTHORIZATION", "CKU-AAA"]
+      "ckuIds": ["CKU-AUTHORIZATION", "CKU-AAA"],
+      "answerReview": {
+        "correct": { "explanation": "Authorization determines what an authenticated user is permitted to do — e.g., which privilege level or command set they can access — separate from verifying their identity (authentication) or logging their actions (accounting)." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Authentication only verifies WHO the user is (identity) — it doesn't determine what privilege level or commands they're permitted to use afterward.", "misconceptionTested": "Confusing 'proving identity' with 'granting permissions' — these are two separate AAA stages." },
+          { "choiceIndex": 2, "explanation": "Accounting logs what a user DID after being authenticated and authorized — it doesn't decide whether they're allowed to enter privileged EXEC mode in the first place.", "misconceptionTested": "Confusing the logging function (accounting) with the permission-granting function (authorization)." },
+          { "choiceIndex": 3, "explanation": "'Auditing' isn't one of the three AAA components (Authentication, Authorization, Accounting) — accounting covers the audit/logging role.", "misconceptionTested": "Substituting a similar-sounding but non-AAA term ('auditing') for one of the actual three A's." }
+        ],
+        "examTip": "If the question is about WHAT a user is allowed to do (privilege level, command access), the answer is Authorization — not Authentication or Accounting.",
+        "memoryHook": "Authentication = 'prove it's you.' Authorization = 'here's what you're allowed to touch.'"
+      }
     },
     {
       "question": "An organization wants a detailed log of every configuration command each administrator runs on network devices, for audit purposes. Which AAA component provides this?",
@@ -13584,7 +13864,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "scenario",
       "difficulty": "easy",
       "concept": "accounting use case",
-      "ckuIds": ["CKU-ACCOUNTING", "CKU-AAA"]
+      "ckuIds": ["CKU-ACCOUNTING", "CKU-AAA"],
+      "answerReview": {
+        "correct": { "explanation": "Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing for compliance requires." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Authentication only confirms who logged in — it doesn't produce an ongoing log of every command an administrator subsequently runs.", "misconceptionTested": "Assuming the login event itself constitutes a full activity log." },
+          { "choiceIndex": 1, "explanation": "Authorization controls what an admin is permitted to do, but it's accounting that records what they actually DID — the question asks for a log of actions, not permission rules.", "misconceptionTested": "Confusing permission settings (authorization) with activity logs (accounting)." },
+          { "choiceIndex": 3, "explanation": "Encryption protects data in transit/at rest — it doesn't produce a log of which commands were run by which administrator.", "misconceptionTested": "Selecting a security-sounding term (encryption) unrelated to the AAA logging function being asked about." }
+        ],
+        "examTip": "Whenever you see 'log,' 'audit,' 'record of actions,' or 'who did what,' the answer is Accounting.",
+        "memoryHook": "Accounting = the network's receipt printer — it records every transaction (command) after the fact."
+      }
     },
     {
       "question": "Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure devices (routers/switches)?",
@@ -13599,7 +13889,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "application",
       "difficulty": "hard",
       "concept": "TACACS+ vs RADIUS use case",
-      "ckuIds": ["CKU-TACACS", "CKU-RADIUS", "CKU-AAA-COMPARISON"]
+      "ckuIds": ["CKU-TACACS", "CKU-RADIUS", "CKU-AAA-COMPARISON"],
+      "answerReview": {
+        "correct": { "explanation": "TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.1X)." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "RADIUS absolutely can authenticate users — it's widely used for network access authentication (e.g., 802.1X, VPN). This overstates RADIUS's limitations.", "misconceptionTested": "Dismissing RADIUS entirely instead of recognizing it's used for different scenarios than TACACS+." },
+          { "choiceIndex": 2, "explanation": "RADIUS is actually the MORE common choice for wireless client authentication (802.1X) — this reverses the typical use cases of the two protocols.", "misconceptionTested": "Swapping the typical use cases: TACACS+ for device admin, RADIUS for network access (including wireless)." },
+          { "choiceIndex": 3, "explanation": "Bandwidth usage isn't the reason TACACS+ is chosen for device administration — the real reason is its granular, per-command authorization model.", "misconceptionTested": "Picking an unsubstantiated efficiency claim instead of the actual functional reason (per-command authorization)." }
+        ],
+        "examTip": "Rule of thumb: TACACS+ → device administration (router/switch CLI access control). RADIUS → network access (802.1X, VPN, wireless authentication).",
+        "memoryHook": "TACACS+ = 'T' for Terminal (device admin). RADIUS = 'R' for Radio/remote access (network access)."
+      }
     }
   ],
   "5.11": [
@@ -13616,7 +13916,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "easy",
       "concept": "segmentation purpose",
-      "ckuIds": ["CKU-SEGMENTATION", "CKU-LATERAL-MOVEMENT"]
+      "ckuIds": ["CKU-SEGMENTATION", "CKU-LATERAL-MOVEMENT"],
+      "answerReview": {
+        "correct": { "explanation": "Segmentation divides a network into smaller zones with controlled boundaries, so that if one segment is compromised, an attacker's ability to move laterally to other segments is restricted." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Segmentation is about isolating traffic into separate zones, not about increasing total available bandwidth — bandwidth isn't the security benefit being described.", "misconceptionTested": "Confusing a performance/capacity claim with the security purpose of segmentation." },
+          { "choiceIndex": 2, "explanation": "Segmentation works alongside firewalls (often using them to enforce boundaries) — it doesn't eliminate the need for them.", "misconceptionTested": "Assuming segmentation replaces other security controls rather than complementing them." },
+          { "choiceIndex": 3, "explanation": "Segmentation controls which zones can communicate with each other — it doesn't automatically encrypt traffic; encryption is a separate control (e.g., TLS, IPsec).", "misconceptionTested": "Conflating network segmentation with encryption, which are different security mechanisms." }
+        ],
+        "examTip": "When you see 'contain a breach' or 'limit lateral movement' in a question, think segmentation (VLANs, ACLs, firewalls between zones).",
+        "memoryHook": "Segmentation = building interior walls so a fire in one room doesn't burn the whole house."
+      }
     },
     {
       "question": "Which Layer 2 technology is the most common building block for network segmentation in a campus network?",
@@ -13631,7 +13941,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "easy",
       "concept": "VLAN segmentation",
-      "ckuIds": ["CKU-VLAN", "CKU-SEGMENTATION"]
+      "ckuIds": ["CKU-VLAN", "CKU-SEGMENTATION"],
+      "answerReview": {
+        "correct": { "explanation": "VLANs logically separate a switched network into multiple broadcast domains, forming the basic building block for segmenting users, devices, and traffic types at Layer 2." },
+        "incorrect": [
+          { "choiceIndex": 1, "explanation": "NAT translates IP addresses for routing between address spaces (e.g., private to public) — it's a Layer 3 address-translation tool, not a Layer 2 segmentation building block.", "misconceptionTested": "Confusing address translation (NAT) with traffic/broadcast-domain segmentation (VLANs)." },
+          { "choiceIndex": 2, "explanation": "HSRP provides gateway redundancy/failover — it's a high-availability protocol, not a segmentation mechanism.", "misconceptionTested": "Mistaking a redundancy protocol for a segmentation technology." },
+          { "choiceIndex": 3, "explanation": "CDP is a Cisco discovery protocol used to learn about directly connected neighbor devices — it has nothing to do with dividing a network into segments.", "misconceptionTested": "Selecting a neighbor-discovery protocol as if it were a segmentation tool." }
+        ],
+        "examTip": "VLANs are the foundational Layer 2 segmentation tool — almost every other segmentation concept (DMZ, guest network, voice VLAN) builds on top of VLANs.",
+        "memoryHook": "VLAN = Virtual LAN — a virtual wall dividing one physical switch into many logical networks."
+      }
     },
     {
       "question": "What is the purpose of a DMZ (demilitarized zone) in network design?",
@@ -13646,7 +13966,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "medium",
       "concept": "DMZ",
-      "ckuIds": ["CKU-DMZ", "CKU-SEGMENTATION"]
+      "ckuIds": ["CKU-DMZ", "CKU-SEGMENTATION"],
+      "answerReview": {
+        "correct": { "explanation": "A DMZ is a segmented zone that exposes services to untrusted networks (like the internet) while keeping them isolated from the trusted internal network — so a compromise of a DMZ host doesn't directly expose internal systems." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "A DMZ is specifically for services that ARE externally accessible (web, email, etc.) — internal-only servers with no external access belong on the internal network, not the DMZ.", "misconceptionTested": "Reversing the DMZ's purpose — it's for external-facing services, not internal-only ones." },
+          { "choiceIndex": 2, "explanation": "A DMZ is a network segmentation zone for hosting services, not a routing-protocol backup path mechanism.", "misconceptionTested": "Confusing a security zone (DMZ) with a routing redundancy concept." },
+          { "choiceIndex": 3, "explanation": "Configuration backups are a separate operational/management concern — a DMZ's purpose is hosting externally-reachable services securely, not storing backup files.", "misconceptionTested": "Assigning an unrelated storage/operations function to the DMZ." }
+        ],
+        "examTip": "DMZ = 'public-facing but isolated.' Anything reachable from the internet (web servers, mail relays) typically belongs in the DMZ, not the internal LAN.",
+        "memoryHook": "DMZ = the 'lobby' of the building — visitors (internet) can enter, but they can't walk into the offices (internal network)."
+      }
     },
     {
       "question": "How does microsegmentation differ from traditional VLAN-based segmentation?",
@@ -13661,7 +13991,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "medium",
       "concept": "microsegmentation",
-      "ckuIds": ["CKU-MICROSEGMENTATION", "CKU-SEGMENTATION", "CKU-ZERO-TRUST"]
+      "ckuIds": ["CKU-MICROSEGMENTATION", "CKU-SEGMENTATION", "CKU-ZERO-TRUST"],
+      "answerReview": {
+        "correct": { "explanation": "Microsegmentation enforces security policy at a much finer granularity — often per-workload or per-application — commonly used in data centers and zero-trust architectures, going beyond coarse VLAN/subnet boundaries." },
+        "incorrect": [
+          { "choiceIndex": 1, "explanation": "Microsegmentation is widely used in data centers and cloud environments (wired infrastructure), not limited to wireless networks.", "misconceptionTested": "Assuming microsegmentation is a wireless-specific feature." },
+          { "choiceIndex": 2, "explanation": "Microsegmentation INCREASES granular access control (per-workload policies) — it doesn't remove access control, it makes it more precise.", "misconceptionTested": "Assuming a more granular security model means less security enforcement." },
+          { "choiceIndex": 3, "explanation": "Microsegmentation isn't just 'VLANs with smaller subnets' — it's a fundamentally different, often VLAN-independent policy model applied per workload/application.", "misconceptionTested": "Reducing microsegmentation to a simple resizing of existing VLAN/subnet boundaries." }
+        ],
+        "examTip": "Microsegmentation = fine-grained, workload-level policy (often software-defined / zero-trust); VLAN segmentation = coarser, network-boundary-level policy.",
+        "memoryHook": "VLANs build walls between rooms; microsegmentation puts a lock on every door inside each room."
+      }
     },
     {
       "question": "Ransomware infects a single workstation on a flat, unsegmented network with no internal access controls. What is the most likely outcome compared to a properly segmented network?",
@@ -13676,7 +14016,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "scenario",
       "difficulty": "medium",
       "concept": "segmentation and malware containment",
-      "ckuIds": ["CKU-SEGMENTATION", "CKU-LATERAL-MOVEMENT"]
+      "ckuIds": ["CKU-SEGMENTATION", "CKU-LATERAL-MOVEMENT"],
+      "answerReview": {
+        "correct": { "explanation": "On a flat network, there are no internal boundaries to stop malware from reaching other hosts/servers once it's inside. Segmentation (VLANs, ACLs, firewalls between zones) contains the spread to the originating segment." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Segmentation directly changes the outcome by limiting lateral movement — a segmented network would NOT see identical impact to a flat one.", "misconceptionTested": "Assuming segmentation has no effect on malware spread, when containing spread is its core purpose." },
+          { "choiceIndex": 2, "explanation": "Segmentation is a preventive/containment control — it doesn't cause infections; the ransomware enters through some other vector (phishing, exploit, etc.).", "misconceptionTested": "Attributing the cause of infection to the security control meant to limit its impact." },
+          { "choiceIndex": 3, "explanation": "A flat network has NO internal boundaries by definition — it cannot 'automatically isolate' anything, which is precisely the problem described.", "misconceptionTested": "Contradicting the definition of a flat network by assuming it has built-in isolation." }
+        ],
+        "examTip": "Segmentation's value is most often tested through 'breach containment' or 'malware spread' scenarios — segmentation limits the blast radius.",
+        "memoryHook": "Flat network = open floor plan; one fire (infection) can spread everywhere with nothing to stop it."
+      }
     },
     {
       "question": "Which mechanism is commonly used to enforce traffic policy BETWEEN VLANs (i.e., at the segmentation boundary)?",
@@ -13691,7 +14041,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "application",
       "difficulty": "medium",
       "concept": "inter-VLAN policy enforcement",
-      "ckuIds": ["CKU-ACL", "CKU-VLAN", "CKU-SEGMENTATION"]
+      "ckuIds": ["CKU-ACL", "CKU-VLAN", "CKU-SEGMENTATION"],
+      "answerReview": {
+        "correct": { "explanation": "While VLANs provide the segmentation boundary at Layer 2, enforcing what traffic is allowed to cross between VLANs is typically done with ACLs (or firewall rules) on the Layer 3 device routing between them." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Spanning Tree Protocol prevents Layer 2 loops — it has no role in enforcing which traffic can pass between VLANs.", "misconceptionTested": "Confusing a loop-prevention protocol with a traffic-policy enforcement mechanism." },
+          { "choiceIndex": 2, "explanation": "CDP neighbor advertisements just share device/platform info with directly connected neighbors — they don't enforce or filter inter-VLAN traffic.", "misconceptionTested": "Mistaking a discovery/advertisement protocol for an access-control mechanism." },
+          { "choiceIndex": 3, "explanation": "DHCP relay forwards DHCP requests across subnet boundaries so clients can get addresses — it doesn't enforce security policy on traffic between VLANs.", "misconceptionTested": "Confusing an address-assignment helper protocol with traffic policy enforcement." }
+        ],
+        "examTip": "VLANs create the boundaries; ACLs/firewall rules on the Layer 3 device (router or multilayer switch) enforce what's allowed to cross those boundaries.",
+        "memoryHook": "VLANs are the doorways between rooms; ACLs are the security guards standing in them."
+      }
     },
     {
       "question": "Which statement best summarizes the \"zero trust\" principle as it relates to network segmentation?",
@@ -13706,7 +14066,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "definition",
       "difficulty": "medium",
       "concept": "zero trust",
-      "ckuIds": ["CKU-ZERO-TRUST", "CKU-SEGMENTATION"]
+      "ckuIds": ["CKU-ZERO-TRUST", "CKU-SEGMENTATION"],
+      "answerReview": {
+        "correct": { "explanation": "Zero trust rejects the older model of \"trusted inside, untrusted outside.\" Every access request is verified based on identity and policy, regardless of network location — segmentation/microsegmentation is a key enabler of enforcing this." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "This describes the OLD perimeter-based trust model that zero trust specifically rejects — internal location no longer implies trust under zero trust.", "misconceptionTested": "Describing the traditional 'trusted internal network' model as if it were zero trust." },
+          { "choiceIndex": 2, "explanation": "Zero trust requires MORE verification, not less — internal traffic is verified just like external traffic, not exempted from authentication.", "misconceptionTested": "Assuming 'zero trust' means 'zero authentication' rather than 'zero implicit trust.'" },
+          { "choiceIndex": 3, "explanation": "Zero trust is a general security architecture principle applied across wired, wireless, cloud, and on-prem environments — not limited to wireless.", "misconceptionTested": "Narrowing a broad architectural principle to a single network type." }
+        ],
+        "examTip": "The phrase to watch for is 'never trust, always verify' — zero trust removes the assumption that being on the internal network makes a device/user trustworthy.",
+        "memoryHook": "Zero trust: even your own employees show ID at every door, every time."
+      }
     },
     {
       "question": "A company provides a guest Wi-Fi network for visitors. From a segmentation standpoint, what is the recommended design?",
@@ -13721,7 +14091,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "scenario",
       "difficulty": "easy",
       "concept": "guest network segmentation",
-      "ckuIds": ["CKU-SEGMENTATION", "CKU-VLAN", "CKU-GUEST-NETWORK"]
+      "ckuIds": ["CKU-SEGMENTATION", "CKU-VLAN", "CKU-GUEST-NETWORK"],
+      "answerReview": {
+        "correct": { "explanation": "Guest traffic should be segmented onto its own VLAN/subnet with policies that block or heavily restrict access to internal resources, isolating untrusted guest devices from the corporate network." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Placing guest devices on the same VLAN/subnet as corporate devices removes the security boundary entirely — guests would have direct Layer 2 access to internal traffic and devices, which is the opposite of best practice.", "misconceptionTested": "Prioritizing configuration simplicity over the security risk of mixing trusted and untrusted devices." },
+          { "choiceIndex": 2, "explanation": "Disabling DHCP doesn't provide security — guests could still set static IPs, and it would just make the guest network unusable rather than secure it.", "misconceptionTested": "Confusing 'making something inconvenient' with 'making it secure.'" },
+          { "choiceIndex": 3, "explanation": "VLAN priority affects QoS/traffic prioritization, not security isolation — giving guest traffic higher priority has nothing to do with restricting its access to internal resources.", "misconceptionTested": "Confusing QoS prioritization with access-control segmentation." }
+        ],
+        "examTip": "Guest networks are a classic segmentation use case: separate VLAN/subnet, internet-only access, no route to internal corporate VLANs.",
+        "memoryHook": "Guests get their own Wi-Fi 'room' with a door to the street (internet) but no door to the offices (corporate LAN)."
+      }
     },
     {
       "question": "Which of the following is an example of segmenting a network based on traffic TYPE rather than user/department?",
@@ -13736,7 +14116,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "application",
       "difficulty": "medium",
       "concept": "traffic-type segmentation",
-      "ckuIds": ["CKU-SEGMENTATION", "CKU-VOICE-VLAN"]
+      "ckuIds": ["CKU-SEGMENTATION", "CKU-VOICE-VLAN"],
+      "answerReview": {
+        "correct": { "explanation": "A voice VLAN separates VoIP traffic from regular data traffic — this is segmentation based on traffic type/function rather than organizational grouping (department, location, etc.), though both are valid segmentation strategies." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "Sales on VLAN 10 and Engineering on VLAN 20 segments by ORGANIZATIONAL GROUP (department) — this is the example the question is asking you to distinguish FROM, not an example of traffic-type segmentation.", "misconceptionTested": "Mistaking department-based segmentation for traffic-type-based segmentation." },
+          { "choiceIndex": 2, "explanation": "A separate VLAN per floor segments by PHYSICAL LOCATION, not by the type of traffic being carried.", "misconceptionTested": "Confusing location-based segmentation with traffic-type-based segmentation." },
+          { "choiceIndex": 3, "explanation": "Assigning static IPs to printers is an addressing/management choice, not a form of network segmentation by traffic type.", "misconceptionTested": "Selecting an unrelated addressing practice instead of a segmentation strategy." }
+        ],
+        "examTip": "Segmentation can be organized by department, location, device type, or traffic type (voice, data, IoT) — voice VLANs are the classic traffic-type example.",
+        "memoryHook": "Voice VLAN = giving phone calls their own express lane, separate from regular data traffic."
+      }
     },
     {
       "question": "An organization separates its network management traffic (SSH, SNMP, syslog to network devices) onto a dedicated out-of-band management VLAN, inaccessible from general user VLANs. What security goal does this segmentation primarily achieve?",
@@ -13751,7 +14141,17 @@ export const IMPORTED_QUESTIONS = {
       "type": "scenario",
       "difficulty": "hard",
       "concept": "out-of-band management segmentation",
-      "ckuIds": ["CKU-SEGMENTATION", "CKU-OUT-OF-BAND-MANAGEMENT"]
+      "ckuIds": ["CKU-SEGMENTATION", "CKU-OUT-OF-BAND-MANAGEMENT"],
+      "answerReview": {
+        "correct": { "explanation": "An out-of-band management network isolates administrative access to infrastructure devices from general user traffic, significantly reducing the attack surface — a compromised user device can't directly reach management interfaces." },
+        "incorrect": [
+          { "choiceIndex": 0, "explanation": "The goal of an out-of-band management VLAN is isolation/security, not raw speed — 'increases speed' isn't the security benefit being tested.", "misconceptionTested": "Confusing a performance claim with the actual security purpose (attack-surface reduction)." },
+          { "choiceIndex": 2, "explanation": "Segmenting management traffic onto its own VLAN doesn't remove the need for AAA — AAA (authentication/authorization/accounting) still controls WHO can use that management access once they reach it.", "misconceptionTested": "Assuming network segmentation makes other security controls (like AAA) unnecessary." },
+          { "choiceIndex": 3, "explanation": "Out-of-band management segmentation RESTRICTS access to management interfaces — it doesn't let users bypass authentication; if anything, it makes unauthorized access harder.", "misconceptionTested": "Reversing the security effect — segmentation restricts access, it doesn't grant a bypass." }
+        ],
+        "examTip": "Out-of-band (OOB) management = a dedicated, isolated path (VLAN or physical network) for managing infrastructure devices, separate from user/production traffic.",
+        "memoryHook": "OOB management = a private back hallway for IT staff, separate from the hallways everyone else uses."
+      }
     }
   ]
 }

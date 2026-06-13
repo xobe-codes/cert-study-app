@@ -2266,7 +2266,9 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-            <div style={{ fontSize: 13, lineHeight: 1.5 }}>{q.explanation}</div>
+            {q.answerReview
+              ? <AnswerReview q={q} selected={selected} />
+              : <div style={{ fontSize: 13, lineHeight: 1.5 }}>{q.explanation}</div>}
           </div>
         )}
       </div>
@@ -3031,6 +3033,46 @@ function McChoices({ q, selected, revealed, onSelect }) {
   })
 }
 
+/* ---- Answer review (static, no API) — shows why the correct choice is right
+   and why each wrong choice is wrong, with optional exam tip / memory hook.
+   Renders only when q.answerReview is present; falls back to the plain
+   q.explanation otherwise so existing questions are unaffected. ---- */
+const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
+function AnswerReview({ q, selected }) {
+  const ar = q.answerReview
+  if (!ar) return null
+  const correctIdx = q.correctIndex
+  const incorrect = (ar.incorrect || []).filter(item => item.choiceIndex !== correctIdx)
+  return (
+    <div style={{ marginTop: 8 }}>
+      <ExplainBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint">
+        <RichText text={(ar.correct && ar.correct.explanation) || q.explanation} />
+      </ExplainBlock>
+      {incorrect.map(item => (
+        <ExplainBlock
+          key={item.choiceIndex}
+          icon="❌" title={`WHY ${CHOICE_LETTERS[item.choiceIndex] || item.choiceIndex} IS WRONG`} accent="rose"
+          collapsible defaultOpen={item.choiceIndex === selected}
+        >
+          <RichText text={item.explanation} />
+          {item.misconceptionTested && (
+            <div style={{ marginTop: 6, fontSize: 12, color: COLORS.silverMid }}>Trap tested: {item.misconceptionTested}</div>
+          )}
+          {item.needsExplanationReview && (
+            <div style={{ marginTop: 6, fontSize: 11, color: COLORS.amber }}>⚠ Explanation pending review</div>
+          )}
+        </ExplainBlock>
+      ))}
+      {ar.examTip && <ExplainBlock icon="💡" title="EXAM TIP" accent="amber"><RichText text={ar.examTip} /></ExplainBlock>}
+      {ar.memoryHook && (
+        <ExplainBlock icon="🧠" title="MEMORY HOOK" accent="purple" collapsible defaultOpen={false}>
+          <RichText text={ar.memoryHook} />
+        </ExplainBlock>
+      )}
+    </div>
+  )
+}
+
 // Small type + difficulty badges shown above a question (mixed-type quizzes).
 function QuestionMeta({ q }) {
   if (!q || (!q.type && !q.difficulty && !q.skill)) return null
@@ -3501,7 +3543,9 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
+            {current.answerReview
+              ? <AnswerReview q={current} selected={selected} />
+              : <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>}
             {!isCorrect && isMcQuestion(current) && (
               <ExplainMistake
                 cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
@@ -5584,7 +5628,9 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-            <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
+            {current.answerReview
+              ? <AnswerReview q={current} selected={selected} />
+              : <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>}
           </div>
         )}
       </div>
@@ -5774,7 +5820,9 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-            <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
+            {current.answerReview
+              ? <AnswerReview q={current} selected={selected} />
+              : <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>}
             {!isCorrect && isMcQuestion(current) && (
               <ExplainMistake
                 cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
@@ -5921,7 +5969,9 @@ function Onboarding({ onComplete, onSkip }) {
           {revealed && (
             <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
               <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
-              <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
+              {current.answerReview
+                ? <AnswerReview q={current} selected={selected} />
+                : <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>}
             </div>
           )}
         </div>

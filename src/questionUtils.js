@@ -81,6 +81,7 @@ export function normalizeQuestionForBank(q, objectiveId, counter) {
     skill: q.skill || inferSkill(q),
     ratings: q.ratings || [],
     attempts: q.attempts || [],
+    ...(q.answerReview ? { answerReview: q.answerReview } : {}),
   }
   if (isOrderingQuestion(q)) {
     return { ...base, orderItems: [...q.orderItems] }
