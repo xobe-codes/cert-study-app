@@ -9,11 +9,11 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 ## Status Summary (as of 2026-06-13)
 
 - **Curated objectives**: 11 of 53 have full static, source-grounded content (reading + questions, no AI needed): `1.5`, `1.6`, `1.8`, `1.9`, `2.1`, `2.2`, `2.5`, `3.2`, `3.4`, `4.1`, `5.5`.
-- **Question-bank-only objectives**: 14 more objectives (`2.3`, `2.4`, `2.6`, `2.7`, `2.8`, `3.1`, `3.3`, `3.5`, `6.1`-`6.6`) now have `hasCuratedQuestions=true` via bulk-imported question pools (no curated `reading`; AI still used for Explain/Visual). Total objectives with zero-API questions: **25/53**.
+- **Question-bank-only objectives**: 15 more objectives (`2.3`, `2.4`, `2.6`, `2.7`, `2.8`, `3.1`, `3.3`, `3.5`, `5.3`, `6.1`-`6.6`) now have `hasCuratedQuestions=true` via bulk-imported question pools (no curated `reading`; AI still used for Explain/Visual). Total objectives with zero-API questions: **26/53**.
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
-- **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **Decision made to exclude 12** (3.4 multi-area OSPF cluster, see Timeline item 14) → **403 imported so far** (12 from 4.1 pilot + 391 from domains 2/3/6, item 7) → 481 remaining (QB 2.9 orphan + domain 5 objectives not yet imported).
+- **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **422 imported and live** (12 from 4.1 pilot + 410 from bulk import including orphan merges in item 8). **12 shelved** in `SUPPLEMENTAL` (`supp-ospf-multiarea`, multi-area OSPF cluster). **~462 remain** unimported (Domain 5 bulk import ~144 Qs across 9 QB files, plus Domain 4 `4.2`-`4.9`, etc.).
 - **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files created and committed (`PROJECT_PROFILE.md`, `COMMANDS.md`, `RISKY_AREAS.md`).
-- **Next planned work**: MASTER SEQUENCE item 8 (decide orphaned question sets: QB 2.9, QB 5.4, excluded 3.4 OSPF cluster) — see `ENHANCEMENT_PRIORITIES.md`. Per user instruction, work stopped after item 7.
+- **Next planned work**: MASTER SEQUENCE item 9 (curate Domain 1 content) — see `ENHANCEMENT_PRIORITIES.md`. Domain 5 bulk import (~144 Qs, 9 QB files) is the next import slot when ready (see Open Decision #4 / Timeline item 15).
 - **Predicted outcome of full rollout**: ~77% of objectives (41/53) get static questions; ~23% (12/53) remain AI-only (mostly Domain 1, which has no question-bank source yet).
 
 ---
@@ -216,12 +216,45 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ---
 
+### 15. MASTER SEQUENCE item 8 — Decide orphaned question sets
+
+**Goal**: resolve disposition for three orphan/excluded question sets left after item 7: QB 2.9 (WLAN operational parameters), QB 5.4 (password policies), and the 3.4 multi-area OSPF cluster (12 questions).
+
+**Discovery** (source files under `~/Downloads/`):
+- **QB 2.9** (13 Qs): topics are SSID length/VLAN mapping, WLC GUI WLAN status, 802.11e/k, QoS profiles, WPA2/802.1X — operational WLAN parameters. App Network Access domain ends at objective `2.8` ("Configure WLAN components for client connectivity"); no `2.9` slot exists. Six questions carry `uncertainObjectiveMapping` (mostly WPAN/WLAN scope terms and QoS trust boundary — item 6 Theme C).
+- **QB 5.4** (6 Qs): password complexity, `service password-encryption`, `enable secret` scrypt, time-based tokens, smart-card MFA — overlaps app `5.3` ("Configure and verify device access control"), not app `5.4` (AAA TACACS+/RADIUS config). Crosswalk table (item 8 in this log) already flagged `5.4 → 5.3 (supplemental/overlap)`.
+- **3.4 multi-area OSPF** (12 Qs): ABRs, area 0, hierarchical design, `show ip ospf database` — out of CCNA 200-301 v1.1 single-area OSPFv2 scope (item 6 Theme A). Already excluded from `3.4`'s live import pool in item 7.
+
+**Decisions**:
+| Set | Count | Disposition | Rationale |
+|---|---|---|---|
+| QB 2.9 | 13 | **Merge → app `2.8`** | Closest live objective; operational WLAN params (SSID, security, QoS on WLC) align with 2.8's client-connectivity scope. Better served than shelved. |
+| QB 5.4 | 6 | **Merge → app `5.3`** | Password-policy content is device-access-control, not AAA-server config. Makes `5.3` a new questions-only objective. |
+| 3.4 multi-area OSPF | 12 | **`SUPPLEMENTAL` (`supp-ospf-multiarea`)** | Out of exam scope for 3.4; preserved on shelf (like `SUPP_TCPUDP`) for a possible future objective — not served in 3.4 quizzes. |
+
+**Domain 5 bulk import** (9 remaining QB files, ~144 Qs): unchanged — still deferred to a dedicated future import slot (not part of item 8).
+
+**What was done**:
+- Extended `scripts/convertQuestionBank.mjs`: QB `2.9 → 2.8`, QB `5.4 → 5.3`; generates `src/data/ccnaQuestionSupplemental.js` for shelved sets.
+- Regenerated `ccnaQuestionImports.js` (+19 questions: 2.8 now 23, new `5.3` pool of 6).
+- Added `SUPP_OSPF_MULTIAREA` to `SUPPLEMENTAL` registry in `ccnaCurated.js` (imports shelved questions; not wired to quiz flow).
+
+**Validation**:
+- `npm run compile:ccna` — passed (11 curated objectives unchanged).
+- `npm run build` — passed, 759.21 kB.
+- `validateCurated()` — `{ ok: true, errors: [] }`.
+
+**Outcome**: all three orphan sets resolved. Live import total **422** (+19). **26/53** objectives now have zero-API question pools (+1 for `5.3`). **12** multi-area OSPF questions preserved in `SUPPLEMENTAL`. Domain 5 bulk import remains the next import workstream.
+
+---
+
 ## Open Decisions / Unresolved Questions
 
 1. ~~Domain 5 crosswalk above — confirm before importing Domain 5 questions (QB 5.8 → app 5.4 vs 5.7 is ambiguous).~~ **Resolved**, see Timeline item 13: QB 5.8 → app 5.7.
-2. Whether QB 2.9 (WLAN operational params, 13 questions) and QB 5.4 (password policies, 6 questions) become supplemental/unregistered content or get merged into their closest app objective. (Item 8.)
+2. ~~Whether QB 2.9 (WLAN operational params, 13 questions) and QB 5.4 (password policies, 6 questions) become supplemental/unregistered content or get merged into their closest app objective.~~ **Resolved**, see Timeline item 15: QB 2.9 → app 2.8, QB 5.4 → app 5.3.
 3. **4.2-4.9 (and similar uncurated objectives) question banks** — need either full curation (item 9) or a "questions-only" partial curated shape once item 3's per-content-type hybrid fallback lands.
-4. **Domain 5 import** (9 objectives, ~150+ Qs via the confirmed crosswalk in item 13) was not part of item 7's scope ("2, 3, 6") — needs a future MASTER SEQUENCE slot.
+4. **Domain 5 bulk import** (9 remaining QB files, ~144 Qs via the confirmed crosswalk in item 13) — needs a dedicated MASTER SEQUENCE slot before or alongside item 9. QB 5.4 orphan resolved (merged into 5.3); remaining files are 5.1, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 5.10.
+5. ~~3.4 multi-area OSPF cluster (12 questions) — shelved or dropped?~~ **Resolved**, see Timeline item 15: `SUPPLEMENTAL` (`supp-ospf-multiarea`), not served under 3.4.
 
 ## Next Steps (in order, per ENHANCEMENT_PRIORITIES.md MASTER SEQUENCE)
 
@@ -232,7 +265,8 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 5. ~~Exam Readiness Score hero metric on Home~~ — **done**, see Timeline item 12.
 6. ~~Domain 5 ID crosswalk decision~~ — **done**, see Timeline item 13.
 7. ~~Import remaining clean domains (2, 3, 6)~~ — **done**, see Timeline item 14.
-8. Decide orphaned question sets (QB 2.9, QB 5.4, excluded 3.4 OSPF cluster) — see Open Decisions #2 and #4 above.
+8. ~~Decide orphaned question sets (QB 2.9, QB 5.4, excluded 3.4 OSPF cluster)~~ — **done**, see Timeline item 15.
+9. Curate Domain 1 content (8/12 objectives — includes 1.6 subnetting, 1.8/1.9 IPv6) — **next**.
 
 ## Predicted Impact (full rollout)
 

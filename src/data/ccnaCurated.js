@@ -17,6 +17,7 @@
    ========================================================================= */
 
 import { IMPORTED_QUESTIONS } from './ccnaQuestionImports.js'
+import { SUPPLEMENTAL_QUESTIONS } from './ccnaQuestionSupplemental.js'
 
 // Short source identifiers reused across records.
 export const CURATED_SOURCES = {
@@ -1517,9 +1518,25 @@ const OBJ_55 = {
 }
 
 /* -------------------------------------------------------------------------
+   SUPPLEMENTAL — Multi-area OSPF (out of CCNA 200-301 v1.1 single-area scope;
+   shelved from QB 3.4 import per PROJECT_LOG item 6 Theme A / item 8.)
+   ------------------------------------------------------------------------- */
+const SUPP_OSPF_MULTIAREA = {
+  objectiveId: 'supp-ospf-multiarea',
+  domainId: 'connectivity',
+  title: 'Multi-area OSPF (beyond CCNA single-area scope)',
+  shelvedReason: 'CCNA 200-301 v1.1 objective 3.4 covers single-area OSPFv2 only. These 12 QB questions are about ABRs, area 0, and hierarchical multi-area design — held for a possible future objective, not served under app 3.4.',
+  sourceQbObjectiveId: '3.4',
+  questions: SUPPLEMENTAL_QUESTIONS['supp-ospf-multiarea'] || [],
+}
+
+/* -------------------------------------------------------------------------
    REGISTRY + LOADER
    ------------------------------------------------------------------------- */
-export const SUPPLEMENTAL = { [SUPP_TCPUDP.objectiveId]: SUPP_TCPUDP }
+export const SUPPLEMENTAL = {
+  [SUPP_TCPUDP.objectiveId]: SUPP_TCPUDP,
+  [SUPP_OSPF_MULTIAREA.objectiveId]: SUPP_OSPF_MULTIAREA,
+}
 
 const CURATED = {
   [OBJ_32.objectiveId]: OBJ_32, [OBJ_16.objectiveId]: OBJ_16, [OBJ_15.objectiveId]: OBJ_15,

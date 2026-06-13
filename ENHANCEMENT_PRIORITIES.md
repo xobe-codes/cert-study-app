@@ -15,7 +15,7 @@ Goal: enhance learning effectiveness AND the AI experience, in priority order. W
 5. ~~Exam Readiness Score hero metric on Home~~ — **done**, see PROJECT_LOG.md item 12
 6. ~~Domain 5 ID crosswalk decision~~ — **done**, see PROJECT_LOG.md item 13 (QB 5.8 → app 5.7 confirmed)
 7. ~~Import remaining clean domains (2, 3, 6)~~ — **done**, see PROJECT_LOG.md item 14 (391 questions imported, 25/53 objectives now have zero-API question pools)
-8. Decide orphaned question sets (QB 2.9, QB 5.4, excluded 3.4 OSPF cluster)
+8. ~~Decide orphaned question sets (QB 2.9, QB 5.4, excluded 3.4 OSPF cluster)~~ — **done**, see PROJECT_LOG.md item 15 (QB 2.9→2.8, QB 5.4→5.3, OSPF cluster→SUPPLEMENTAL; +19 live questions, 26/53 objectives with static pools)
 9. Curate Domain 1 content (8/12 objectives — includes 1.6 subnetting, 1.8/1.9 IPv6)
 10. Add test/lint/typecheck tooling (before larger AI features land)
 11. IPv6 subnetting calculator (1.8) + ACL wildcard-mask calculator (5.5/5.6)
@@ -58,7 +58,7 @@ This is the currently-running track, working item-by-item with PROJECT_LOG.md up
 3. ~~**Per-content-type hybrid fallback in App.jsx**~~ — **done**, see MASTER SEQUENCE item 3 above.
 4. **Domain 5 ID crosswalk decision** — question-bank numbering vs. app's DOMAINS numbering mismatch (documented in PROJECT_LOG.md). Resolve before importing Domain 5.
 5. **Import remaining clean domains (2, 3, 6)** using the proven pipeline from item 1.
-6. **Decide orphaned question sets** — QB 2.9 (WLAN operational params), QB 5.4 (password policies), excluded 3.4 multi-area-OSPF cluster (14 Qs).
+6. ~~**Decide orphaned question sets**~~ — **done**, see MASTER SEQUENCE item 8 / PROJECT_LOG.md item 15.
 7. **Curate Domain 1 content** — 8/12 objectives still AI-only, no question-bank source; original authoring like the 1.5 fix. *(this is P0-3's Domain 1 slice — 1.6 subnetting and 1.8/1.9 IPv6 live here)*
 8. **Add test/lint/typecheck tooling** — currently none configured. (Recommend before larger AI-experience features in P0/P1 land, to catch regressions.)
 9. **IPv6 subnetting calculator (1.8) + ACL wildcard-mask calculator (5.5/5.6)** — match existing subnetting calculator pattern. *(same as P1-7, generalized to two calculators)*
