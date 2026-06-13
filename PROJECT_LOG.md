@@ -2,7 +2,7 @@
 
 A running log of work done, decisions made, and current state — written so anyone (or a future Claude Code session) can read this cold and pick up where things left off.
 
-See also: [PROJECT_PROFILE_V1.md](PROJECT_PROFILE_V1.md) (structure/stack), [COMMANDS_V1.md](COMMANDS_V1.md) (commands), [RISKY_AREAS_V1.md](RISKY_AREAS_V1.md) (what needs approval).
+See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.md](COMMANDS.md) (commands), [RISKY_AREAS.md](RISKY_AREAS.md) (what needs approval).
 
 ---
 
@@ -11,8 +11,8 @@ See also: [PROJECT_PROFILE_V1.md](PROJECT_PROFILE_V1.md) (structure/stack), [COM
 - **Curated objectives**: 11 of 53 have static, source-grounded content + questions (no AI needed): `1.5`, `1.6`, `1.8`, `1.9`, `2.1`, `2.2`, `2.5`, `3.2`, `3.4`, `4.1`, `5.5`.
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
 - **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **Decision made to exclude 14** (3.4 multi-area OSPF cluster) → **884 importable**. **12 imported so far** (4.1, see Timeline item 9) → 872 remaining.
-- **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files created and committed (now named `PROJECT_PROFILE_V1.md`, `COMMANDS_V1.md`, `RISKY_AREAS_V1.md` — renamed with a `_V1` suffix after initial creation).
-- **Next planned work**: MASTER SEQUENCE item 2 (resolve `_V1` file naming) or item 3 (per-content-type hybrid fallback in `App.jsx`) — see `ENHANCEMENT_PRIORITIES.md`.
+- **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files created and committed (`PROJECT_PROFILE.md`, `COMMANDS.md`, `RISKY_AREAS.md`).
+- **Next planned work**: MASTER SEQUENCE item 3 (per-content-type hybrid fallback in `App.jsx`) — see `ENHANCEMENT_PRIORITIES.md`.
 - **Predicted outcome of full rollout**: ~77% of objectives (41/53) get static questions; ~23% (12/53) remain AI-only (mostly Domain 1, which has no question-bank source yet).
 
 ---
@@ -40,8 +40,8 @@ See also: [PROJECT_PROFILE_V1.md](PROJECT_PROFILE_V1.md) (structure/stack), [COM
   - `~/.claude/skills/usage-plan/SKILL.md` — pre-implementation sizing/risk/phase planning.
   - `~/.claude/skills/phase1/SKILL.md` — discovery-only pass.
 - Ran `/project-scan` on the CCNA App project (npm/Vite/React, Cloudflare Pages, no test/lint/typecheck configured yet).
-- Created and committed project files (commit `bd31a3a`), later renamed with a `_V1` suffix (commit `2b187b4`):
-  - `PROJECT_PROFILE_V1.md`, `COMMANDS_V1.md`, `RISKY_AREAS_V1.md`.
+- Created and committed project files (commit `bd31a3a`):
+  - `PROJECT_PROFILE.md`, `COMMANDS.md`, `RISKY_AREAS.md`.
 
 ### 5. Question Bank Validation (Domains 2-6, from `~/Downloads/`)
 
@@ -133,7 +133,7 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 ## Next Steps (in order, per ENHANCEMENT_PRIORITIES.md MASTER SEQUENCE)
 
 1. ~~Import question bank — Domain 4 (4.1 pilot)~~ — **done**, see Timeline item 9.
-2. Resolve `_V1` file naming (housekeeping, low risk).
+2. ~~Resolve `_V1` file naming~~ — **done**, renamed PROJECT_PROFILE_V1.md/COMMANDS_V1.md/RISKY_AREAS_V1.md back to PROJECT_PROFILE.md/COMMANDS.md/RISKY_AREAS.md.
 3. Per-content-type hybrid fallback in `App.jsx` — would unblock 4.2-4.9 etc.
 4-5. Diagnostic placement test / Exam Readiness Score — not blocked, optional checkpoint breaks.
 
