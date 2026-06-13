@@ -4982,9 +4982,20 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
         <h1 style={styles.h1} className="ccna-grad-text">CCNA 200-301</h1>
-        {streak.count > 0 && (
-          <div style={{ ...styles.pill('mint'), whiteSpace: 'nowrap', marginRight: 48 }}>🔥 {streak.count} day{streak.count === 1 ? '' : 's'}</div>
-        )}
+        {streak.count > 0 && (() => {
+          const count = streak.count
+          const msg = count >= 30 ? 'Legendary! 🏆' : count >= 14 ? 'Unstoppable! 💪' : count >= 7 ? 'On fire! 🔥' : count >= 3 ? 'Nice momentum!' : 'Keep it going!'
+          const today = todayStr()
+          const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
+          const lastLabel = streak.lastStudyDate === today ? 'Today' : streak.lastStudyDate === yesterday ? 'Yesterday' : null
+          return (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 3, marginRight: 48, flexShrink: 0 }}>
+              <div style={{ ...styles.pill('mint'), whiteSpace: 'nowrap' }}>🔥 {count} day{count === 1 ? '' : 's'} streak</div>
+              <div style={{ fontSize: 11, color: accentColors('mint').text, fontWeight: 500, textAlign: 'right' }}>{msg}</div>
+              {lastLabel && <div style={{ fontSize: 10, color: COLORS.silverMid }}>Last studied: {lastLabel}</div>}
+            </div>
+          )
+        })()}
       </div>
       <div style={{ ...styles.small, marginBottom: 10 }}>
         {totals.mastered} mastered · {totals.inProgress} in progress · {totals.total - totals.mastered - totals.inProgress} not started
