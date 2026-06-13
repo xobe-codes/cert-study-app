@@ -342,6 +342,26 @@ function subscribeAiCalls(fn) { _aiCallListeners.add(fn); return () => _aiCallLi
 
 const AI_BUDGET_LIMIT = 20
 
+/* ---- Per-session study recap (in-memory; resets on page reload) ---- */
+// Tracks what the user did since they last visited Home. Refreshes each time
+// they navigate back (HomeScreen remounts on each view switch).
+let _sessionStudy = { correct: 0, incorrect: 0, objectives: new Set(), mastered: [] }
+let _recapDismissed = false
+function bumpSessionStudy(type, value) {
+  if (type === 'correct') _sessionStudy.correct += 1
+  else if (type === 'incorrect') _sessionStudy.incorrect += 1
+  else if (type === 'objective') { _sessionStudy.objectives.add(value); _recapDismissed = false }
+  else if (type === 'mastered') { if (!_sessionStudy.mastered.includes(value)) _sessionStudy.mastered.push(value) }
+}
+function getSessionStudy() {
+  return { correct: _sessionStudy.correct, incorrect: _sessionStudy.incorrect, objectives: [..._sessionStudy.objectives], mastered: [..._sessionStudy.mastered] }
+}
+function hasSessionStudy() {
+  return _sessionStudy.correct > 0 || _sessionStudy.incorrect > 0 || _sessionStudy.objectives.size > 0
+}
+function dismissSessionRecap() { _recapDismissed = true }
+function isRecapDismissed() { return _recapDismissed }
+
 // Hook: re-renders the consumer whenever a new AI call completes.
 function useAiCallCount() {
   const [count, setCount] = useState(() => getSessionAiCalls())
@@ -814,33 +834,55 @@ async function enableSectionReview(objectiveId) {
 // concepts never sit adjacent — forcing discrimination strengthens recall.
 async function loadDueQuestions(limit = 20) {
   const bank = await loadQuizBank()
+  const progress = await loadProgress()
   const now = Date.now()
   // If exam date is set and within 30 days, boost troubleshooting questions
   const examDate = await window.storage.getItem('ccna_exam_date_v1')
   const daysToExam = examDate ? Math.ceil((new Date(examDate) - now) / 86400000) : 999
   const nearExam = daysToExam > 0 && daysToExam <= 30
+
+  // #22: overconfidence detection — last rating 'easy' but has prior lapses
+  function isOverconfident(q) {
+    if (!q.srs || (q.srs.lapses || 0) === 0) return false
+    const lastRating = q.ratings?.length ? q.ratings[q.ratings.length - 1].value : null
+    return lastRating === 'easy'
+  }
+
+  // #22: declining accuracy — mastery >= 80% but last 3 quiz sessions got worse
+  function hasDecliningAccuracy(objId) {
+    const entry = progress[objId]
+    if (!entry) return false
+    const { score: masteryScore } = computeMastery(entry)
+    if (masteryScore < 0.8) return false
+    const scores = (entry.quizScores || []).slice(-3)
+    if (scores.length < 3) return false
+    const accs = scores.map(s => s.score / Math.max(s.total, 1))
+    return accs[0] > accs[1] && accs[1] > accs[2]
+  }
+
+  // Priority tiers: 0=troubleshooting, 1=overconfident, 2=regular due
+  function qPriority(q, overconf) {
+    if (q.type === 'troubleshooting' && (nearExam || (q.srs?.intervalIndex || 0) >= 2)) return 0
+    if (overconf) return 1
+    return 2
+  }
+
   const bySection = {}
   for (const objectiveId of Object.keys(bank)) {
+    const declining = hasDecliningAccuracy(objectiveId)
     for (const q of bank[objectiveId]) {
       if (!q.srs || (q.attempts?.length || 0) === 0) continue
-      if ((q.srs.due ?? 0) <= now) {
-        (bySection[objectiveId] ||= []).push({ ...q, objectiveId, dueAt: q.srs.due ?? 0 })
-      }
+      const due = (q.srs.due ?? 0) <= now
+      const overconf = isOverconfident(q)
+      // Include if: normally due, OR overconfident (high-confidence but lapsed), OR in a declining-accuracy objective
+      if (!due && !overconf && !declining) continue
+      const priority = qPriority(q, overconf)
+      ;(bySection[objectiveId] ||= []).push({ ...q, objectiveId, dueAt: q.srs.due ?? 0, _priority: priority })
     }
   }
-  // Within a section: soonest-due first, but float troubleshooting items that
-  // have reached a longer interval (index >= 2) to the front — at maintenance
-  // distances they're the best probe of durable, transferable understanding.
-  // Near exam (<30 days): ALL troubleshooting questions float to the front.
-  const lateTs = (q) => {
-    if (q.type === 'troubleshooting') {
-      if (nearExam) return 0 // all troubleshooting first when exam is close
-      if ((q.srs?.intervalIndex || 0) >= 2) return 0
-    }
-    return 1
-  }
+
   const queues = Object.values(bySection)
-    .map(arr => arr.sort((a, b) => lateTs(a) - lateTs(b) || a.dueAt - b.dueAt))
+    .map(arr => arr.sort((a, b) => a._priority - b._priority || a.dueAt - b.dueAt))
     .sort(() => Math.random() - 0.5)
   const interleaved = []
   let added = true
@@ -850,6 +892,8 @@ async function loadDueQuestions(limit = 20) {
       if (queue.length) { interleaved.push(queue.shift()); added = true; if (interleaved.length >= limit) break }
     }
   }
+  // Final sort preserves priority ordering across all sections
+  interleaved.sort((a, b) => (a._priority ?? 2) - (b._priority ?? 2))
   return interleaved
 }
 async function countDueQuestions() {
@@ -1665,6 +1709,7 @@ function SegmentedBar({ segments, accent = 'mint' }) {
    EXPLAIN TAB
    ========================================================================= */
 const EXPLAIN_CACHE_KEY = 'ccna_explain_cache_v2' // v2: structured sections (was prose)
+const EXPLAIN_STYLE_CACHE_KEY = 'ccna_explain_style_v1' // #19: cached style variants (exam/eli5)
 const EXPLAIN_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor. Use the provided reference notes as your primary source. If the notes don't fully cover something a CCNA candidate needs, fill the gap with accurate, exam-relevant CCNA 200-301 knowledge — but never contradict the reference notes. Produce a clear, layered explanation in the requested structured fields. Keep each field tight and scannable: short sentences, plain language. The "advanced" field holds deeper detail a learner can skip on first pass.${''}
 - definition: 1-2 sentence plain-language answer to "what is this?"
 - keyPoints: 3-5 of the most testable core facts (short phrases)
@@ -2496,7 +2541,14 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
         </div>
       )}
       {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
-      {recalled && curated && <><SectionLabel icon="📖" label="READING" /><CuratedReading data={curated} /></>}
+      {recalled && curated && (
+        <>
+          <SectionLabel icon="📖" label="READING" />
+          <CuratedReading data={curated} />
+          {/* #19: style switcher for curated objectives */}
+          <StyleSwitcher objectiveId={objective.id} objectiveTitle={objective.title} />
+        </>
+      )}
       {recalled && !curated && <AiBudgetWarning />}
       {recalled && !curated && content && !loading && (
         <>
@@ -2504,6 +2556,8 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
           <StructuredExplanation data={content} />
           <SourcesPanel objective={objective} />
           <AdjustExplanation onAdjust={(a) => fetchExplanation(true, a)} />
+          {/* #19: style switcher for AI-generated explanations */}
+          <StyleSwitcher objectiveId={objective.id} objectiveTitle={objective.title} />
         </>
       )}
     </div>
@@ -2531,6 +2585,89 @@ function AdjustExplanation({ onAdjust }) {
               <button key={o.value} onClick={() => { setOpen(false); onAdjust(o.value) }} style={{ flex: '1 1 auto', minHeight: 40, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}`, color: COLORS.silver, fontSize: 12, fontWeight: 600, padding: '8px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{o.label}</button>
             ))}
           </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* ---- Style switcher (#19) — "Explain it differently" ---- */
+// 3 style modes. Standard = existing content (no API). Exam / ELI5 call Claude
+// and cache the result in localStorage keyed by objectiveId + style.
+const STYLE_OPTIONS = [
+  { value: 'standard', label: '📖 Standard' },
+  { value: 'exam', label: '🎯 Exam-focused' },
+  { value: 'eli5', label: '🗣️ ELI5' },
+]
+const STYLE_PROMPTS = {
+  exam: 'Rewrite this explanation focused purely on what will appear on the CCNA exam — key facts, commands, numbers, and common exam traps. Be concise.',
+  eli5: 'Explain this concept as simply as possible, like explaining to someone with no networking background. Use analogies.',
+}
+
+function StyleSwitcher({ objectiveId, objectiveTitle }) {
+  const [selected, setSelected] = useState('standard')
+  const [content, setContent] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+
+  async function switchTo(style) {
+    setSelected(style)
+    if (style === 'standard') { setContent(null); return }
+    setLoading(true)
+    setError(null)
+    try {
+      const cacheKey = `${objectiveId}::${style}`
+      const cache = (await window.storage.getItem(EXPLAIN_STYLE_CACHE_KEY)) || {}
+      if (cache[cacheKey]) { setContent(cache[cacheKey]); setLoading(false); return }
+      const refNotes = BOOK_REF[objectiveId] || ''
+      const text = await askClaude({
+        system: `You are a CCNA 200-301 tutor. ${STYLE_PROMPTS[style]}`,
+        messages: [{ role: 'user', content: `Objective ${objectiveId}: ${objectiveTitle}\n\nReference notes:\n${refNotes}` }],
+        max_tokens: 700,
+        model: MODELS.fast,
+        feature: 'explain',
+      })
+      cache[cacheKey] = text
+      await window.storage.setItem(EXPLAIN_STYLE_CACHE_KEY, cache)
+      setContent(text)
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div style={{ marginTop: 16 }}>
+      <div style={{ ...styles.small, fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>EXPLAIN IT DIFFERENTLY</div>
+      <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
+        {STYLE_OPTIONS.map(opt => {
+          const active = selected === opt.value
+          return (
+            <button
+              key={opt.value}
+              onClick={() => switchTo(opt.value)}
+              style={{
+                flex: '1 1 auto', minHeight: 38, borderRadius: 10, cursor: 'pointer',
+                background: active ? COLORS.purpleDim : COLORS.surface,
+                border: `1px solid ${active ? COLORS.borderGlow : COLORS.border}`,
+                color: active ? COLORS.purpleGlow : COLORS.silverMid,
+                fontSize: 12, fontWeight: 600, padding: '8px 10px', fontFamily: 'inherit',
+              }}
+            >
+              {opt.label}
+            </button>
+          )
+        })}
+      </div>
+      {loading && <Spinner label="Rewriting explanation..." />}
+      {error && <ErrorBox message={error} onRetry={() => switchTo(selected)} />}
+      {!loading && !error && content && selected !== 'standard' && (
+        <div style={{ ...styles.card, background: COLORS.purpleDim, border: `1px solid ${COLORS.borderGlow}` }}>
+          <div style={{ ...styles.small, fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 8 }}>
+            {STYLE_OPTIONS.find(o => o.value === selected)?.label}
+          </div>
+          <div style={{ fontSize: 13, lineHeight: 1.6 }}><RichText text={content} /></div>
         </div>
       )}
     </div>
@@ -2573,6 +2710,9 @@ function QuestionMeta({ q }) {
 // choice the learner picked (not just the generic explanation). Cheap model,
 // short output, cached per question+choice so it's never paid for twice.
 const MISTAKE_CACHE_KEY = 'ccna_mistake_cache_v1'
+// #18: session-level hint cache — Map so it resets on page reload (no storage cost)
+const _hintSessionCache = new Map()
+
 const MISTAKE_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor helping a student understand a mistake they just made on a practice question. You'll be given the question, all answer choices, the correct answer, the general explanation, and the choice the student picked instead.
 
 In 2-3 short sentences: (1) name the likely misconception behind picking that specific wrong choice, and (2) clarify the distinction that makes the correct choice right. Be specific to THEIR choice, not generic. Stay strictly within CCNA 200-301 facts already implied by the question/explanation — do not introduce new facts.`
@@ -2622,6 +2762,60 @@ function ExplainMistake({ cacheKey, question, choices, correctIndex, selectedInd
     <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.purpleDim, border: `1px solid ${COLORS.borderGlow}` }}>
       <div style={{ fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 4, fontSize: 12 }}>ABOUT YOUR ANSWER</div>
       <div style={{ fontSize: 13, lineHeight: 1.5 }}><RichText text={text} /></div>
+    </div>
+  )
+}
+
+/* ---- Progressive hint (#18) — Socratic nudge after wrong answer ---- */
+const PROGRESSIVE_HINT_SYSTEM = `You are a CCNA 200-301 tutor. A student just answered a practice question incorrectly. Give a 1-2 sentence Socratic hint that guides them toward understanding the correct answer WITHOUT directly revealing it. Ask a leading question or highlight a key principle they may have overlooked. Do NOT state the correct answer.`
+
+function ProgressiveHint({ questionText, wrongChoice, correctChoice }) {
+  const [phase, setPhase] = useState('idle') // idle | loading | done | error
+  const [hint, setHint] = useState(null)
+  const [error, setError] = useState(null)
+
+  const cacheKey = `hint::${questionText}`
+
+  async function fetchHint() {
+    setPhase('loading')
+    try {
+      if (_hintSessionCache.has(cacheKey)) {
+        setHint(_hintSessionCache.get(cacheKey))
+        setPhase('done')
+        return
+      }
+      const text = await askClaude({
+        system: PROGRESSIVE_HINT_SYSTEM,
+        messages: [{
+          role: 'user',
+          content: `Question: ${questionText}\nStudent answered: "${wrongChoice}"\nCorrect answer: "${correctChoice}"\n\nProvide a brief Socratic hint.`,
+        }],
+        max_tokens: 200,
+        model: MODELS.fast,
+        feature: 'hint',
+      })
+      _hintSessionCache.set(cacheKey, text)
+      setHint(text)
+      setPhase('done')
+    } catch (err) {
+      setError(err.message)
+      setPhase('error')
+    }
+  }
+
+  if (phase === 'idle') {
+    return (
+      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 12 }} onClick={fetchHint}>
+        💡 Need a deeper hint?
+      </button>
+    )
+  }
+  if (phase === 'loading') return <Spinner label="Thinking of a hint..." />
+  if (phase === 'error') return <ErrorBox message={error} onRetry={fetchHint} />
+  return (
+    <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}` }}>
+      <div style={{ fontWeight: 700, color: COLORS.amber, marginBottom: 4, fontSize: 12 }}>💡 HINT</div>
+      <div style={{ fontSize: 13, lineHeight: 1.5 }}><RichText text={hint} /></div>
     </div>
   )
 }
@@ -2744,6 +2938,9 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
     setRevealed(true)
     const correct = idx === current.correctIndex
     haptic(correct ? 15 : [10, 40, 10])
+    // #16: track session quiz answers
+    if (correct) bumpSessionStudy('correct')
+    else bumpSessionStudy('incorrect')
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
@@ -2876,6 +3073,14 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
                 question={current.question} choices={current.choices}
                 correctIndex={current.correctIndex} selectedIndex={selected}
                 explanation={current.explanation}
+              />
+            )}
+            {/* #18: progressive hint — only on wrong answers */}
+            {!isCorrect && selected != null && (
+              <ProgressiveHint
+                questionText={current.question}
+                wrongChoice={current.choices[selected]}
+                correctChoice={current.choices[current.correctIndex]}
               />
             )}
           </div>
@@ -3861,7 +4066,11 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
       onUpdateProgress(objective.id, { reviewEligible: true })
     }
     // Celebrate a freshly-mastered topic (only on the transition, not repeats).
-    if (mastered && status !== 'mastered') { celebrate(); haptic([12, 40, 12, 40, 18]) }
+    if (mastered && status !== 'mastered') {
+      celebrate()
+      haptic([12, 40, 12, 40, 18])
+      bumpSessionStudy('mastered', objective.id) // #16: track new mastery for recap
+    }
     // On reaching mastery, auto-package the topic for offline use (online only).
     if (mastered && !isOffline && apiOnline) onPackage?.(objective)
   }
@@ -5100,6 +5309,45 @@ function ExamTrapWidget() {
   )
 }
 
+/* ---- Session recap card (#16) ---- */
+function SessionRecapCard() {
+  const [dismissed, setDismissed] = useState(isRecapDismissed())
+  // Read session data once on mount (HomeScreen remounts on each return to Home)
+  const data = useMemo(() => getSessionStudy(), [])
+
+  const total = data.correct + data.incorrect
+  if (dismissed || total === 0) return null
+
+  const parts = []
+  if (total > 0) parts.push(`${total} question${total === 1 ? '' : 's'}`)
+  if (data.objectives.length > 0) parts.push(`${data.objectives.length} objective${data.objectives.length === 1 ? '' : 's'}`)
+  if (data.mastered.length > 0) parts.push(`${data.mastered.length} mastered 🎉`)
+
+  function dismiss() { dismissSessionRecap(); setDismissed(true) }
+
+  return (
+    <div style={{
+      ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`,
+      marginBottom: 12, position: 'relative', display: 'flex', alignItems: 'center', gap: 10,
+    }}>
+      <button
+        onClick={dismiss}
+        style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 18, cursor: 'pointer', lineHeight: 1, padding: 0 }}
+        aria-label="Dismiss"
+      >×</button>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, marginBottom: 2 }}>📊 Last session</div>
+        <div style={{ fontSize: 13, color: COLORS.silver }}>{parts.join(' · ')}</div>
+        {total > 0 && (
+          <div style={{ fontSize: 11, color: COLORS.silverMid, marginTop: 2 }}>
+            {data.correct} correct · {data.incorrect} incorrect
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, syncOn }) {
   const [openDomain, setOpenDomain] = useState(null)
   const [suggestions, setSuggestions] = useState([])
@@ -5285,6 +5533,8 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenSync}>☁ Sync{syncOn ? ' ✓' : ''}</button>
       </div>
 
+      {/* #16: session recap — shown when returning from study, above exam trap */}
+      <SessionRecapCard />
       <ExamTrapWidget />
 
       {DOMAINS.map(domain => {
@@ -6459,6 +6709,7 @@ export default function App() {
   }, [])
 
   function selectObjective(obj) {
+    bumpSessionStudy('objective', obj.id) // #16: track objective visits for session recap
     setSelectedObjective(obj)
     setView('objective')
   }

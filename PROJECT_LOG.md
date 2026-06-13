@@ -367,6 +367,26 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ---
 
+### 22. Better AI sweep — #16, #18, #19, #22
+
+**Goal**: Four "Better AI" features that deepen learning quality — session feedback, Socratic hints, style-flexible explanations, and smarter review prioritization.
+
+**What was done**:
+
+- **#16 Session recap on return to Home**: Added module-level `_sessionStudy` tracker (correct, incorrect, objectives, mastered arrays). `bumpSessionStudy()` is called from `selectAnswer()` (quiz answers), `selectObjective()` (objective visits), and `handleScoreSaved()` (new mastery transitions). New `SessionRecapCard` component in `HomeScreen` reads the tracker on mount (HomeScreen remounts on each navigation back to Home) and renders a dismissable sky-blue card: "📊 Last session: N questions · N objectives · N mastered". Dismiss is session-level only (module-level `_recapDismissed` flag, reset on next objective visit). Hidden if no activity yet.
+
+- **#18 Progressive hint system in quizzes**: Added `_hintSessionCache` (session-level Map, not localStorage — resets on reload). New `ProgressiveHint` component rendered after `ExplainMistake` in `QuizTab`'s wrong-answer feedback block. Button "💡 Need a deeper hint?" calls Claude (MODELS.fast) with the question + wrong choice + correct choice, using a Socratic prompt that guides without revealing the answer. Cache key = question text; repeated taps never re-call the API. Loading + error states handled.
+
+- **#19 "Explain it differently" style switcher**: Added `EXPLAIN_STYLE_CACHE_KEY` (`ccna_explain_style_v1`) and new `StyleSwitcher` component. Three buttons — "📖 Standard" (no API, current content), "🎯 Exam-focused" (calls Claude: key facts/commands/numbers), "🗣️ ELI5" (calls Claude: analogies, no-background framing). Cache in localStorage keyed by `objectiveId::style`. Styled like existing depth-tier buttons (same pattern as CONFIDENCE_OPTIONS). Rendered after `CuratedReading` (curated path) and after `StructuredExplanation + AdjustExplanation` (AI path). Reset to Standard on objective change (component remounts).
+
+- **#22 Overconfidence → Daily Review weighting**: Rewrote `loadDueQuestions` to add two detection functions: `isOverconfident(q)` (last rating 'easy' but `srs.lapses > 0` — high self-confidence despite prior misses) and `hasDecliningAccuracy(objId)` (mastery ≥ 80% but last 3 quiz sessions show strictly declining accuracy). Overconfident questions and declining-objective questions are included in the due queue even if not technically due. Priority tiers: 0 = troubleshooting, 1 = overconfident, 2 = regular. Final `interleaved.sort((a,b) => a._priority - b._priority)` enforces the ordering across all sections while preserving the round-robin interleave for variety.
+
+**Build**: `npm run build` passed (1,056 kB).
+
+**Outcome**: All four Better AI items complete. The app now gives learners immediate feedback on each session (recap), guided recovery on wrong answers (Socratic hint), flexible explanation styles (standard/exam/ELI5), and smarter spaced-repetition prioritization that catches overconfident blind spots.
+
+---
+
 ## Open Decisions / Unresolved Questions
 
 1. ~~Domain 5 crosswalk above — confirm before importing Domain 5 questions (QB 5.8 → app 5.4 vs 5.7 is ambiguous).~~ **Resolved**, see Timeline item 13: QB 5.8 → app 5.7.

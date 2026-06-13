@@ -31,13 +31,13 @@ Start at **#15** (Socratic tutor mode) unless you need production updated first 
 | 13 | IPv6 subnetting calculator (`1.8`) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | 14 | ACL wildcard-mask calculator (`5.5` / `5.6`) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | 15 | Socratic tutor mode toggle | Better AI | Queued | Prompt + UI toggle on tutor chat |
-| 16 | Session recap on return to Home | Better AI | Queued | Wire `ccna_events_v1` + `buildLearnerSummary`; Haiku |
+| 16 | Session recap on return to Home | Better AI | ~~Queued~~ — **done** (Timeline 22) | — |
 | 17 | Domain weight overlay on progress bars | UX | ~~Queued~~ — **done** (Timeline 19) |
-| 18 | Progressive hint system in quizzes | Better AI | Queued | Pre-answer hint; reuse `explainMistake()` cache |
-| 19 | "Explain it differently" style switcher | Better AI | Queued | Extend `AdjustExplanation` |
+| 18 | Progressive hint system in quizzes | Better AI | ~~Queued~~ — **done** (Timeline 22) | — |
+| 19 | "Explain it differently" style switcher | Better AI | ~~Queued~~ — **done** (Timeline 22) | — |
 | 20 | Personalized mnemonics for missed concepts | Better AI | Queued | Tie to retention-health weak bucket |
 | 21 | Confidence-calibration coaching | Better AI | Queued | Surface overconfidence quadrant |
-| 22 | Overconfidence → Daily Review weighting | Better AI | Queued | Auto-prioritize overconfident items |
+| 22 | Overconfidence → Daily Review weighting | Better AI | ~~Queued~~ — **done** (Timeline 22) | — |
 | 23 | Diagram / visual sprint (12–15 topics) | Less AI + UX | ~~Queued~~ — **done** (Timeline 20) | — |
 | 24 | Expand hands-on labs (47/53 have none) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
 | 25 | Subnetting drill mode (binary feedback) | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |
