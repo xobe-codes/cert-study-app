@@ -2,7 +2,7 @@
 
 A running log of work done, decisions made, and current state — written so anyone (or a future Claude Code session) can read this cold and pick up where things left off.
 
-See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.md](COMMANDS.md) (commands), [RISKY_AREAS.md](RISKY_AREAS.md) (what needs approval).
+See also: [PROJECT_PROFILE_V1.md](PROJECT_PROFILE_V1.md) (structure/stack), [COMMANDS_V1.md](COMMANDS_V1.md) (commands), [RISKY_AREAS_V1.md](RISKY_AREAS_V1.md) (what needs approval).
 
 ---
 
@@ -11,7 +11,7 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 - **Curated objectives**: 11 of 53 have static, source-grounded content + questions (no AI needed): `1.5`, `1.6`, `1.8`, `1.9`, `2.1`, `2.2`, `2.5`, `3.2`, `3.4`, `4.1`, `5.5`.
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
 - **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **Decision made to exclude 14** (3.4 multi-area OSPF cluster) → **884 importable**. **Not yet imported into the app.**
-- **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files `PROJECT_PROFILE.md`, `COMMANDS.md`, `RISKY_AREAS.md` created and committed.
+- **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files created and committed (now named `PROJECT_PROFILE_V1.md`, `COMMANDS_V1.md`, `RISKY_AREAS_V1.md` — renamed with a `_V1` suffix after initial creation).
 - **Next planned work**: Build a question-bank converter script (Domain 4 first — clean 1:1 ID match), merge into `ccnaCurated.js`, then adjust the hybrid AI-fallback condition in `App.jsx` so static questions are used per-objective even if reading/CKU content is still AI-generated.
 - **Predicted outcome of full rollout**: ~77% of objectives (41/53) get static questions; ~23% (12/53) remain AI-only (mostly Domain 1, which has no question-bank source yet).
 
@@ -40,8 +40,8 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
   - `~/.claude/skills/usage-plan/SKILL.md` — pre-implementation sizing/risk/phase planning.
   - `~/.claude/skills/phase1/SKILL.md` — discovery-only pass.
 - Ran `/project-scan` on the CCNA App project (npm/Vite/React, Cloudflare Pages, no test/lint/typecheck configured yet).
-- Created and committed project files (commit `bd31a3a`):
-  - `PROJECT_PROFILE.md`, `COMMANDS.md`, `RISKY_AREAS.md`.
+- Created and committed project files (commit `bd31a3a`), later renamed with a `_V1` suffix (commit `2b187b4`):
+  - `PROJECT_PROFILE_V1.md`, `COMMANDS_V1.md`, `RISKY_AREAS_V1.md`.
 
 ### 5. Question Bank Validation (Domains 2-6, from `~/Downloads/`)
 
