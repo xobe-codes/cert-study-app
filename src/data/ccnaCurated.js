@@ -18,6 +18,9 @@
 
 import { IMPORTED_QUESTIONS } from './ccnaQuestionImports.js'
 import { SUPPLEMENTAL_QUESTIONS } from './ccnaQuestionSupplemental.js'
+import {
+  OBJ_11, OBJ_12, OBJ_13, OBJ_14, OBJ_17, OBJ_110, OBJ_111, OBJ_112,
+} from './ccnaCuratedDomain1Rest.js'
 
 // Short source identifiers reused across records.
 export const CURATED_SOURCES = {
@@ -1539,6 +1542,8 @@ export const SUPPLEMENTAL = {
 }
 
 const CURATED = {
+  [OBJ_11.objectiveId]: OBJ_11, [OBJ_12.objectiveId]: OBJ_12, [OBJ_13.objectiveId]: OBJ_13, [OBJ_14.objectiveId]: OBJ_14,
+  [OBJ_17.objectiveId]: OBJ_17, [OBJ_110.objectiveId]: OBJ_110, [OBJ_111.objectiveId]: OBJ_111, [OBJ_112.objectiveId]: OBJ_112,
   [OBJ_32.objectiveId]: OBJ_32, [OBJ_16.objectiveId]: OBJ_16, [OBJ_15.objectiveId]: OBJ_15,
   [OBJ_18.objectiveId]: OBJ_18, [OBJ_19.objectiveId]: OBJ_19, [OBJ_21.objectiveId]: OBJ_21, [OBJ_22.objectiveId]: OBJ_22,
   [OBJ_25.objectiveId]: OBJ_25, [OBJ_34.objectiveId]: OBJ_34, [OBJ_41.objectiveId]: OBJ_41, [OBJ_55.objectiveId]: OBJ_55,

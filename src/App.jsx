@@ -1645,11 +1645,20 @@ function KeyTermsCarousel({ objective }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [flipped, setFlipped] = useState(() => new Set())
+  const [fromCurated, setFromCurated] = useState(false)
+  const curatedFlashcards = useMemo(() => getCurated(objective.id)?.flashcards || null, [objective.id])
 
   const fetchTerms = useCallback(async (force) => {
     setLoading(true)
     setError(null)
+    setFromCurated(false)
     try {
+      if (!force && curatedFlashcards?.length) {
+        setCards(curatedFlashcards.map(f => ({ term: f.front, detail: f.back })))
+        setFromCurated(true)
+        setLoading(false)
+        return
+      }
       if (!force) {
         const cache = (await window.storage.getItem(TERMS_CACHE_KEY)) || {}
         if (cache[objective.id]) {
@@ -1682,15 +1691,7 @@ function KeyTermsCarousel({ objective }) {
     } finally {
       setLoading(false)
     }
-  }, [objective.id, objective.title])
-
-  useEffect(() => {
-    setCards(null)
-    setError(null)
-    setFlipped(new Set())
-    fetchTerms(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [objective.id])
+  }, [objective.id, objective.title, curatedFlashcards])
 
   const toggleFlip = (idx) => {
     setFlipped(prev => {
@@ -1708,12 +1709,15 @@ function KeyTermsCarousel({ objective }) {
   return (
     <div style={{ marginBottom: 12 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-        <div style={{ ...styles.small, fontWeight: 600 }}>Key terms — tap a card to flip</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+          <div style={{ ...styles.small, fontWeight: 600 }}>Key terms — tap a card to flip</div>
+          {fromCurated && <span style={{ ...styles.pill('mint'), fontSize: 9 }}>CURATED · NO AI</span>}
+        </div>
         <button
           style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 12, cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
           onClick={() => fetchTerms(true)}
         >
-          Refresh
+          {fromCurated ? 'Generate with AI' : 'Refresh'}
         </button>
       </div>
       <div style={{
@@ -1868,10 +1872,38 @@ function VisualAidRender({ spec }) {
   return null
 }
 
+function CuratedVisualAid({ data }) {
+  const pf = data.packetFlow
+  return (
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+        <span style={{ ...styles.pill('mint'), fontSize: 10 }}>📚 CURATED · NO AI</span>
+      </div>
+      {data.diagram && <CuratedDiagram diagram={data.diagram} />}
+      {pf?.steps?.length > 0 && (
+        <div style={{ ...styles.card, border: `1px solid ${COLORS.mintBorder}`, background: COLORS.mintDim, marginTop: 8 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.mint, marginBottom: 10 }}>{pf.title}</div>
+          {pf.steps.map((s, i) => (
+            <div key={s.id} style={{ display: 'flex', gap: 8, marginBottom: i < pf.steps.length - 1 ? 8 : 0, alignItems: 'flex-start' }}>
+              <VisualBadge accent={COLORS.mint}>{s.order}</VisualBadge>
+              <div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: COLORS.silver }}>{s.title}</div>
+                <div style={{ fontSize: 12, color: COLORS.silverMid, lineHeight: 1.45 }}>{s.action}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 function VisualAidTab({ objective }) {
   const [spec, setSpec] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const curatedData = useMemo(() => getCurated(objective.id), [objective.id])
+  const hasCuratedVisual = !!curatedData?.diagram
 
   const fetchVisual = useCallback(async (force) => {
     setLoading(true)
@@ -1915,18 +1947,24 @@ function VisualAidTab({ objective }) {
   useEffect(() => {
     setSpec(null)
     setError(null)
+    if (hasCuratedVisual) {
+      setLoading(false)
+      logEvent('user_viewed_visual_aid', { objectiveId: objective.id, cached: true, curated: true })
+      return
+    }
     fetchVisual(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [objective.id])
+  }, [objective.id, hasCuratedVisual])
 
   return (
     <div>
-      {loading && <Spinner label="Building visual aid..." />}
-      {error && <ErrorBox message={error} onRetry={() => fetchVisual(true)} />}
-      {spec && !loading && <VisualAidRender spec={spec} />}
+      {hasCuratedVisual && <CuratedVisualAid data={curatedData} />}
+      {!hasCuratedVisual && loading && <Spinner label="Building visual aid..." />}
+      {!hasCuratedVisual && error && <ErrorBox message={error} onRetry={() => fetchVisual(true)} />}
+      {!hasCuratedVisual && spec && !loading && <VisualAidRender spec={spec} />}
       {!loading && (
         <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => fetchVisual(true)}>
-          Regenerate visual
+          {hasCuratedVisual ? 'Generate AI visual instead' : 'Regenerate visual'}
         </button>
       )}
     </div>

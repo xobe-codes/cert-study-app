@@ -8,13 +8,12 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 
 ## Status Summary (as of 2026-06-13)
 
-- **Curated objectives**: 11 of 53 have full static, source-grounded content (reading + questions, no AI needed): `1.5`, `1.6`, `1.8`, `1.9`, `2.1`, `2.2`, `2.5`, `3.2`, `3.4`, `4.1`, `5.5`.
-- **Question-bank-only objectives**: 15 more objectives (`2.3`, `2.4`, `2.6`, `2.7`, `2.8`, `3.1`, `3.3`, `3.5`, `5.3`, `6.1`-`6.6`) now have `hasCuratedQuestions=true` via bulk-imported question pools (no curated `reading`; AI still used for Explain/Visual). Total objectives with zero-API questions: **26/53**.
+- **Curated objectives**: **19 of 53** have full static, source-grounded content (reading + questions, no AI needed). **Domain 1 is now fully curated** (all 12 objectives).
+- **Question-bank-only objectives**: 15 more objectives have `hasCuratedQuestions=true` via bulk import (no curated `reading`). Total objectives with zero-API questions: **~34/53** (19 curated + 15 Q-only; some overlap where curated also has imported Qs).
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
-- **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **422 imported and live** (12 from 4.1 pilot + 410 from bulk import including orphan merges in item 8). **12 shelved** in `SUPPLEMENTAL` (`supp-ospf-multiarea`, multi-area OSPF cluster). **~462 remain** unimported (Domain 5 bulk import ~144 Qs across 9 QB files, plus Domain 4 `4.2`-`4.9`, etc.).
-- **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files created and committed (`PROJECT_PROFILE.md`, `COMMANDS.md`, `RISKY_AREAS.md`).
-- **Next planned work**: MASTER SEQUENCE item 9 (curate Domain 1 content) — see `ENHANCEMENT_PRIORITIES.md`. Domain 5 bulk import (~144 Qs, 9 QB files) is the next import slot when ready (see Open Decision #4 / Timeline item 15).
-- **Predicted outcome of full rollout**: ~77% of objectives (41/53) get static questions; ~23% (12/53) remain AI-only (mostly Domain 1, which has no question-bank source yet).
+- **Question bank**: **566 imported and live** (554 in `IMPORTED_QUESTIONS` + hand-curated merges). Domain 5 bulk import complete. **12 shelved** in `SUPPLEMENTAL`.
+- **UI**: Key Terms and Visual tabs now use curated flashcards/diagrams when available (no API on first load for curated objectives).
+- **Next planned work**: Deploy build to production (item 41), then MASTER SEQUENCE item 10 (test/lint tooling) or item 9 follow-ons (Domain 4 `4.2`–`4.9` import).
 
 ---
 
@@ -248,12 +247,29 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ---
 
+### 16. Upgrades 1–5 — Deploy prep, D5 import, D1 curation, curated UI wiring
+
+**Goal**: reduce AI dependency per analysis session — deploy latest build, import Domain 5, finish Domain 1 curation, wire curated flashcards/diagrams into Key Terms and Visual tabs.
+
+**What was done**:
+- **Domain 5 bulk import**: extended `convertQuestionBank.mjs` with QB `5.1`–`5.10` (crosswalk: `5.5→5.10`, `5.6→5.5`, `5.7→5.6`, `5.8→5.7`, `5.9→5.8`, `5.10→5.9`; `5.3`+`5.4` merged into app `5.3`). Regenerated `ccnaQuestionImports.js` — **554 questions** total (+144).
+- **Domain 1 curation**: new `ccnaCuratedDomain1Rest.js` with 8 objectives (`1.1`, `1.2`, `1.3`, `1.4`, `1.7`, `1.10`, `1.11`, `1.12`) registered in `CURATED`. **Domain 1 now 12/12 curated** (19/53 app-wide).
+- **Key Terms**: `KeyTermsCarousel` uses `getCurated().flashcards` first — shows `CURATED · NO AI` badge; AI only on explicit "Generate with AI".
+- **Visual tab**: new `CuratedVisualAid` renders `diagram` + `packetFlow` from curated data — no API on load when diagram exists; optional "Generate AI visual instead".
+- **Build**: `npm run compile:ccna` (D1 `curated:12`) + `npm run build` passed (923.64 kB).
+
+**Deploy**: production deploy blocked in agent environment — run locally: `npm run build && npx wrangler pages deploy dist --project-name ccna-study-tool`
+
+**Outcome**: ~34/53 objectives have static quiz pools; 19 have full curated reading. Key Terms + Visual tabs skip API for all curated objectives.
+
+---
+
 ## Open Decisions / Unresolved Questions
 
 1. ~~Domain 5 crosswalk above — confirm before importing Domain 5 questions (QB 5.8 → app 5.4 vs 5.7 is ambiguous).~~ **Resolved**, see Timeline item 13: QB 5.8 → app 5.7.
 2. ~~Whether QB 2.9 (WLAN operational params, 13 questions) and QB 5.4 (password policies, 6 questions) become supplemental/unregistered content or get merged into their closest app objective.~~ **Resolved**, see Timeline item 15: QB 2.9 → app 2.8, QB 5.4 → app 5.3.
 3. **4.2-4.9 (and similar uncurated objectives) question banks** — need either full curation (item 9) or a "questions-only" partial curated shape once item 3's per-content-type hybrid fallback lands.
-4. **Domain 5 bulk import** (9 remaining QB files, ~144 Qs via the confirmed crosswalk in item 13) — needs a dedicated MASTER SEQUENCE slot before or alongside item 9. QB 5.4 orphan resolved (merged into 5.3); remaining files are 5.1, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 5.10.
+4. ~~**Domain 5 bulk import**~~ — **Done**, see Timeline item 16 (144 Qs imported via crosswalk).
 5. ~~3.4 multi-area OSPF cluster (12 questions) — shelved or dropped?~~ **Resolved**, see Timeline item 15: `SUPPLEMENTAL` (`supp-ospf-multiarea`), not served under 3.4.
 
 ## Next Steps (in order, per ENHANCEMENT_PRIORITIES.md MASTER SEQUENCE)
@@ -266,7 +282,8 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 6. ~~Domain 5 ID crosswalk decision~~ — **done**, see Timeline item 13.
 7. ~~Import remaining clean domains (2, 3, 6)~~ — **done**, see Timeline item 14.
 8. ~~Decide orphaned question sets (QB 2.9, QB 5.4, excluded 3.4 OSPF cluster)~~ — **done**, see Timeline item 15.
-9. Curate Domain 1 content (8/12 objectives — includes 1.6 subnetting, 1.8/1.9 IPv6) — **next**.
+9. ~~Curate Domain 1 content (8/12 objectives — includes 1.6 subnetting, 1.8/1.9 IPv6)~~ — **done**, see Timeline item 16 (D1 now 12/12 curated).
+10. Add test/lint/typecheck tooling — **next**.
 
 ## Predicted Impact (full rollout)
 

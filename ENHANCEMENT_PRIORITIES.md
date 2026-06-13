@@ -16,7 +16,7 @@ Goal: enhance learning effectiveness AND the AI experience, in priority order. W
 6. ~~Domain 5 ID crosswalk decision~~ — **done**, see PROJECT_LOG.md item 13 (QB 5.8 → app 5.7 confirmed)
 7. ~~Import remaining clean domains (2, 3, 6)~~ — **done**, see PROJECT_LOG.md item 14 (391 questions imported, 25/53 objectives now have zero-API question pools)
 8. ~~Decide orphaned question sets (QB 2.9, QB 5.4, excluded 3.4 OSPF cluster)~~ — **done**, see PROJECT_LOG.md item 15 (QB 2.9→2.8, QB 5.4→5.3, OSPF cluster→SUPPLEMENTAL; +19 live questions, 26/53 objectives with static pools)
-9. Curate Domain 1 content (8/12 objectives — includes 1.6 subnetting, 1.8/1.9 IPv6)
+9. ~~Curate Domain 1 content (8/12 objectives — includes 1.6 subnetting, 1.8/1.9 IPv6)~~ — **done**, see PROJECT_LOG.md item 16 (D1 12/12 curated, 19/53 app-wide)
 10. Add test/lint/typecheck tooling (before larger AI features land)
 11. IPv6 subnetting calculator (1.8) + ACL wildcard-mask calculator (5.5/5.6)
 12. AI-for-learning umbrella (now unblocked — real question pool exists from 1/7):
