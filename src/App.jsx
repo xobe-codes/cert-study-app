@@ -329,6 +329,41 @@ function claudeFetch(body) {
   })
 }
 
+/* ---- Per-session AI call counter (in-memory; resets on page reload) ---- */
+// Lightweight pub/sub so any component can subscribe to call-count updates.
+let _sessionAiCalls = 0
+const _aiCallListeners = new Set()
+function bumpSessionAiCalls() {
+  _sessionAiCalls += 1
+  _aiCallListeners.forEach(fn => fn(_sessionAiCalls))
+}
+function getSessionAiCalls() { return _sessionAiCalls }
+function subscribeAiCalls(fn) { _aiCallListeners.add(fn); return () => _aiCallListeners.delete(fn) }
+
+const AI_BUDGET_LIMIT = 20
+
+// Hook: re-renders the consumer whenever a new AI call completes.
+function useAiCallCount() {
+  const [count, setCount] = useState(() => getSessionAiCalls())
+  useEffect(() => subscribeAiCalls(setCount), [])
+  return count
+}
+
+// Subtle budget warning shown inside AI-powered sections once calls > 20.
+function AiBudgetWarning() {
+  const count = useAiCallCount()
+  if (count <= AI_BUDGET_LIMIT) return null
+  return (
+    <div style={{
+      background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}`,
+      borderRadius: 8, padding: '6px 10px', fontSize: 12, color: COLORS.amber,
+      marginBottom: 8,
+    }}>
+      ⚠ High API usage today ({count} calls) — consider packaging this objective offline for faster, free access.
+    </div>
+  )
+}
+
 /* ---- Token usage + cost telemetry (local; no network) ---- */
 // $ per 1M tokens. Cache reads are ~0.1x input; cache writes ~1.25x.
 const PRICING = {
@@ -390,6 +425,7 @@ async function callClaude(body, retries = 2, feature = 'other') {
 
       const data = await res.json()
       if (data?.usage) logUsage(feature, body.model, data.usage)
+      bumpSessionAiCalls()
       return data
     } catch (err) {
       lastError = err
@@ -554,6 +590,7 @@ const STORAGE_KEYS = {
   theme: 'ccna_theme_v1',
   onboardDone: 'ccna_onboard_done_v1',
   mockHistory: 'ccna_mock_history_v1',
+  nudgeDismissed: 'ccna_nudge_dismissed_v1',
 }
 
 // progress shape: { [objectiveId]: { status: 'unseen'|'in_progress'|'mastered', quizScores: [{score,total,date}], lastSeen } }
@@ -4098,19 +4135,21 @@ function ContentCoverage({ onOpen }) {
 
 function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
   const [data, setData] = useState(null)
+  const [openBankIds, setOpenBankIds] = useState(new Set())
 
   useEffect(() => {
     let cancelled = false
     ;(async () => {
-      const [summary, cli, offlineDetail, usage, retention, mockHistory] = await Promise.all([
+      const [summary, cli, offlineDetail, usage, retention, mockHistory, quizBank] = await Promise.all([
         buildLearnerSummary(progress, missed || []),
         loadCliStats(),
         loadOfflineDetail(),
         window.storage.getItem(STORAGE_KEYS.usage),
         loadRetentionHealth(),
         window.storage.getItem(STORAGE_KEYS.mockHistory),
+        loadQuizBank(),
       ])
-      if (!cancelled) setData({ summary, cli, offlineDetail, usage, retention, mockHistory: mockHistory || [] })
+      if (!cancelled) setData({ summary, cli, offlineDetail, usage, retention, mockHistory: mockHistory || [], quizBank: quizBank || {} })
     })()
     return () => { cancelled = true }
   }, [progress, missed])
@@ -4124,7 +4163,7 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
     )
   }
 
-  const { summary, cli, offlineDetail, usage, retention, mockHistory } = data
+  const { summary, cli, offlineDetail, usage, retention, mockHistory, quizBank } = data
   const objs = summary.perObjective
   const studied = objs.filter(o => o.attempts > 0)
 
@@ -4346,6 +4385,94 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
           </div>
         ))}
       </div>
+
+      {/* Banked Questions — grouped by objective, collapsible */}
+      {(() => {
+        const now = Date.now()
+        const bankedGroups = Object.entries(quizBank)
+          .map(([objId, questions]) => {
+            const qs = Array.isArray(questions) ? questions : []
+            if (qs.length === 0) return null
+            const obj = ALL_OBJECTIVES.find(x => x.id === objId)
+            const masteredCount = qs.filter(q => q.srs && (q.srs.intervalIndex || 0) >= 2 && (q.srs.lapses || 0) === 0).length
+            return { objId, obj, qs, masteredCount }
+          })
+          .filter(Boolean)
+          .sort((a, b) => b.qs.length - a.qs.length)
+
+        const toggleBank = (id) => setOpenBankIds(prev => {
+          const next = new Set(prev)
+          next.has(id) ? next.delete(id) : next.add(id)
+          return next
+        })
+
+        const srsBadge = (q) => {
+          if (!q.srs || (q.attempts?.length || 0) === 0) return { label: 'Not reviewed', accent: 'silver' }
+          if ((q.srs.intervalIndex || 0) >= 2 && (q.srs.lapses || 0) === 0) return { label: 'Mastered', accent: 'mint' }
+          if ((q.srs.due ?? 0) <= now) return { label: 'Due now', accent: 'amber' }
+          const daysLeft = Math.ceil(((q.srs.due ?? now) - now) / DAY_MS)
+          return { label: `Due in ${daysLeft}d`, accent: 'sky' }
+        }
+
+        return (
+          <div style={section}>
+            <div style={sectionTitle}>BANKED QUESTIONS</div>
+            {bankedGroups.length === 0 ? (
+              <div style={styles.small}>No questions banked yet. Complete a quiz to start building your personal question bank.</div>
+            ) : (
+              <>
+                <div style={{ ...styles.small, marginBottom: 10 }}>
+                  {bankedGroups.reduce((s, g) => s + g.qs.length, 0)} questions across {bankedGroups.length} objective{bankedGroups.length !== 1 ? 's' : ''} · {bankedGroups.reduce((s, g) => s + g.masteredCount, 0)} mastered
+                </div>
+                {bankedGroups.map(({ objId, obj, qs, masteredCount }) => {
+                  const isOpen = openBankIds.has(objId)
+                  const accent = obj?.accent || 'purple'
+                  const c = accentColors(accent)
+                  return (
+                    <div key={objId} style={{ marginBottom: 6 }}>
+                      <button
+                        onClick={() => toggleBank(objId)}
+                        style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 10, textAlign: 'left', background: isOpen ? c.dim : 'none', border: `1px solid ${isOpen ? c.border : COLORS.border}`, borderRadius: isOpen ? '10px 10px 0 0' : 10, cursor: 'pointer', padding: '10px 12px', fontFamily: 'inherit', transition: 'background 0.15s' }}
+                      >
+                        <span style={{ flex: 1 }}>
+                          <span style={{ display: 'block', fontSize: 13, fontWeight: 600, color: COLORS.silver }}>{objId}{obj ? ` ${obj.title}` : ''}</span>
+                          <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid, marginTop: 2 }}>
+                            {qs.length} question{qs.length !== 1 ? 's' : ''} · {masteredCount} mastered
+                          </span>
+                        </span>
+                        <span style={{ ...styles.pill(accent), fontSize: 10 }}>{qs.length}</span>
+                        {masteredCount > 0 && <span style={{ ...styles.pill('mint'), fontSize: 10 }}>✓ {masteredCount}</span>}
+                        <span style={{ fontSize: 12, color: COLORS.silverMid, marginLeft: 2 }}>{isOpen ? '▲' : '▼'}</span>
+                      </button>
+                      {isOpen && (
+                        <div style={{ border: `1px solid ${c.border}`, borderTop: 'none', borderRadius: '0 0 10px 10px', background: COLORS.surface, padding: '4px 0' }}>
+                          {qs.map((q, i) => {
+                            const badge = srsBadge(q)
+                            const correctAnswer = Array.isArray(q.choices) ? q.choices[q.correctIndex] : ''
+                            return (
+                              <div key={q.id || i} style={{ padding: '10px 14px', borderTop: i > 0 ? `1px solid ${COLORS.border}` : 'none' }}>
+                                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 4 }}>
+                                  <span style={{ fontSize: 12, color: COLORS.silver, flex: 1, lineHeight: 1.4 }}>{q.question}</span>
+                                  <span style={{ ...styles.pill(badge.accent), fontSize: 10, whiteSpace: 'nowrap', flexShrink: 0 }}>{badge.label}</span>
+                                </div>
+                                {correctAnswer && (
+                                  <div style={{ fontSize: 11, color: COLORS.mint, marginTop: 2 }}>
+                                    ✓ {correctAnswer}
+                                  </div>
+                                )}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </>
+            )}
+          </div>
+        )
+      })()}
 
       {/* AI usage & estimated cost */}
       <div style={section}>
@@ -4943,6 +5070,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
   const [openDomain, setOpenDomain] = useState(null)
   const [suggestions, setSuggestions] = useState([])
   const [retention, setRetention] = useState([])
+  const [showNudge, setShowNudge] = useState(false)
 
   // Recompute the "For You" cards locally whenever progress or the missed bank
   // changes. Fully deterministic — no API call.
@@ -4965,6 +5093,20 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
     })()
     return () => { cancelled = true }
   }, [progress])
+
+  // Show nudge only when: no progress on this device AND user hasn't dismissed it yet.
+  useEffect(() => {
+    const hasProgress = Object.keys(progress).length > 0
+    if (hasProgress) { setShowNudge(false); return }
+    window.storage.getItem(STORAGE_KEYS.nudgeDismissed).then(dismissed => {
+      if (!dismissed) setShowNudge(true)
+    })
+  }, [progress])
+
+  function dismissNudge() {
+    setShowNudge(false)
+    window.storage.setItem(STORAGE_KEYS.nudgeDismissed, true)
+  }
 
   const readiness = useMemo(() => computeReadinessScore(progress, retention), [progress, retention])
 
@@ -5001,6 +5143,31 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         {totals.mastered} mastered · {totals.inProgress} in progress · {totals.total - totals.mastered - totals.inProgress} not started
         {offlineReady?.size > 0 && <> · ⤓ {offlineReady.size} offline-ready</>}
       </div>
+
+      {showNudge && (
+        <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 12, position: 'relative' }}>
+          <button
+            onClick={dismissNudge}
+            style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 18, cursor: 'pointer', lineHeight: 1, padding: 0 }}
+            aria-label="Dismiss"
+          >×</button>
+          <div style={{ fontWeight: 700, fontSize: 14, color: COLORS.sky, marginBottom: 6 }}>📱 New device?</div>
+          <div style={{ fontSize: 13, color: COLORS.silver, marginBottom: 10 }}>
+            Export your progress from another device and import it here to pick up where you left off.
+          </div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button
+              style={{ ...styles.secondaryBtn, flex: 1, fontSize: 13, border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
+              onClick={onOpenExport}
+            >⬆ Export</button>
+            <button
+              style={{ ...styles.secondaryBtn, flex: 1, fontSize: 13, border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
+              onClick={onOpenExport}
+            >⬇ Import</button>
+          </div>
+        </div>
+      )}
+
       <div style={styles.card}>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           <ProgressRing value={readiness.score} size={88} accent="purple" caption="Exam Readiness" />
