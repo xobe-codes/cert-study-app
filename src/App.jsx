@@ -552,6 +552,7 @@ const STORAGE_KEYS = {
   tutorChat: 'ccna_tutor_chat_v1',
   labDone: 'ccna_lab_done_v1',
   theme: 'ccna_theme_v1',
+  onboardDone: 'ccna_onboard_done_v1',
 }
 
 // progress shape: { [objectiveId]: { status: 'unseen'|'in_progress'|'mastered', quizScores: [{score,total,date}], lastSeen } }
@@ -4025,6 +4026,142 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
 }
 
 /* =========================================================================
+   ONBOARDING — first-visit diagnostic placement check. Built entirely from
+   curated questions (zero API cost). Seeds initial mastery estimates for the
+   objectives it samples and recommends a starting point.
+   ========================================================================= */
+const DIAGNOSTIC_CAP = 18
+const DIAGNOSTIC_PER_OBJ = 2
+
+function buildDiagnosticSet() {
+  const pool = []
+  for (const obj of ALL_OBJECTIVES) {
+    if (!hasCuratedQuestions(obj.id)) continue
+    getCuratedQuestions(obj.id).slice(0, DIAGNOSTIC_PER_OBJ).forEach(q => pool.push({ ...q, objectiveId: obj.id }))
+  }
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[pool[i], pool[j]] = [pool[j], pool[i]]
+  }
+  return pool.slice(0, DIAGNOSTIC_CAP)
+}
+
+function Onboarding({ onComplete, onSkip }) {
+  const [phase, setPhase] = useState('intro') // intro | active | done
+  const [queue, setQueue] = useState([])
+  const [current, setCurrent] = useState(null)
+  const [selected, setSelected] = useState(null)
+  const [revealed, setRevealed] = useState(false)
+  const [results, setResults] = useState({})
+  const [total, setTotal] = useState(0)
+  const [answered, setAnswered] = useState(0)
+
+  function start() {
+    const set = buildDiagnosticSet()
+    if (set.length === 0) { onComplete({}); return }
+    setTotal(set.length)
+    setResults({})
+    setAnswered(0)
+    setCurrent(set[0]); setQueue(set.slice(1)); setSelected(null); setRevealed(false)
+    setPhase('active')
+  }
+
+  function answer(idx) {
+    if (revealed) return
+    const correct = idx === current.correctIndex
+    setSelected(idx); setRevealed(true)
+    setResults(r => {
+      const e = r[current.objectiveId] || { correct: 0, total: 0 }
+      return { ...r, [current.objectiveId]: { correct: e.correct + (correct ? 1 : 0), total: e.total + 1 } }
+    })
+    setAnswered(a => a + 1)
+  }
+
+  function next() {
+    if (queue.length === 0) { setPhase('done'); return }
+    setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setRevealed(false)
+  }
+
+  if (phase === 'intro') {
+    return (
+      <div>
+        <div style={styles.card}>
+          <h1 style={styles.h1}>Welcome 👋</h1>
+          <p style={{ fontSize: 14, lineHeight: 1.6, color: COLORS.silver, marginBottom: 10 }}>
+            Quick placement check, ~5 minutes. A short mixed-domain quiz to see where you're starting from
+            — it seeds your progress so weaker areas surface first.
+          </p>
+          <p style={styles.small}>No AI calls, no scoring pressure — you can retake real quizzes later regardless of how you do here.</p>
+          <button style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={start}>Start placement check</button>
+          <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onSkip}>Skip — start studying</button>
+        </div>
+      </div>
+    )
+  }
+
+  if (phase === 'active') {
+    const isCorrect = revealed && selected === current.correctIndex
+    const obj = ALL_OBJECTIVES.find(o => o.id === current.objectiveId)
+    return (
+      <div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
+          <h1 style={{ ...styles.h1, margin: 0 }}>Placement Check</h1>
+          <span style={styles.small}>{answered} of {total}</span>
+        </div>
+        {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
+        <div style={styles.card}>
+          <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
+          {current.choices.map((choice, idx) => {
+            let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
+            if (revealed) {
+              if (idx === current.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
+              else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
+            }
+            return (
+              <button key={idx} onClick={() => answer(idx)} style={{ display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8, background: bg, border: `1px solid ${border}`, color, borderRadius: 10, padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4 }}>
+                {choice}
+              </button>
+            )
+          })}
+          {revealed && (
+            <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
+              <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
+              <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
+            </div>
+          )}
+        </div>
+        {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'See results' : 'Next'}</button>}
+      </div>
+    )
+  }
+
+  // phase === 'done'
+  const rows = Object.entries(results)
+    .map(([objectiveId, r]) => ({ objectiveId, obj: ALL_OBJECTIVES.find(o => o.id === objectiveId), acc: r.correct / Math.max(r.total, 1), ...r }))
+    .sort((a, b) => a.acc - b.acc)
+  const weakest = rows[0]
+  const overall = rows.length ? rows.reduce((s, r) => s + r.acc, 0) / rows.length : 0
+
+  return (
+    <div>
+      <div style={styles.card}>
+        <h2 style={styles.h2}>Placement check complete</h2>
+        <p style={{ fontSize: 28, fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{fmtPct(overall)}</p>
+        <p style={styles.small}>Your progress for these {rows.length} objectives has been seeded. Everything else starts fresh — no penalty either way.</p>
+        {weakest && weakest.obj && (
+          <div style={{ marginTop: 10, padding: 12, borderRadius: 10, background: COLORS.purpleDim, border: `1px solid ${COLORS.purpleGlow}` }}>
+            <div style={{ fontSize: 12, color: COLORS.purpleGlow, fontWeight: 700, marginBottom: 4 }}>RECOMMENDED STARTING POINT</div>
+            <div style={{ fontSize: 14, fontWeight: 600 }}>{weakest.obj.id} {weakest.obj.title}</div>
+            <div style={styles.small}>{fmtPct(weakest.acc)} on the placement check</div>
+          </div>
+        )}
+        <button style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={() => onComplete(results)}>Go to my dashboard</button>
+      </div>
+    </div>
+  )
+}
+
+/* =========================================================================
    HOME SCREEN
    ========================================================================= */
 function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, syncOn }) {
@@ -5040,10 +5177,10 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      const [p, m, s, off, code, last, due] = await Promise.all([
+      const [p, m, s, off, code, last, due, onboardDone] = await Promise.all([
         loadProgress(), loadMissed(), loadStreak(), loadOfflineReadyIds(),
         window.storage.getItem(STORAGE_KEYS.syncCode), window.storage.getItem(STORAGE_KEYS.syncLast),
-        countDueQuestions(),
+        countDueQuestions(), window.storage.getItem(STORAGE_KEYS.onboardDone),
       ])
       setProgress(p)
       setMissed(m)
@@ -5053,9 +5190,38 @@ export default function App() {
       setLastSynced(last || null)
       setDueCount(due)
       setLoaded(true)
+      if (!onboardDone) {
+        if (Object.keys(p).length === 0) setView('onboarding')
+        else await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
+      }
       const updatedStreak = await bumpStreak()
       setStreak(updatedStreak)
     })()
+  }, [])
+
+  // Diagnostic placement check: seed quizScores for sampled objectives, then
+  // hand off to the normal dashboard.
+  const finishOnboarding = useCallback(async (results) => {
+    setProgress(prev => {
+      const next = { ...prev }
+      for (const [objectiveId, r] of Object.entries(results || {})) {
+        const entry = next[objectiveId] || { status: 'unseen', quizScores: [] }
+        const newScores = [...(entry.quizScores || []), { score: r.correct, total: r.total, date: Date.now() }]
+        const { score: masteryScore, mastered } = computeMastery({ quizScores: newScores, confidenceRatings: entry.confidenceRatings || [] })
+        next[objectiveId] = { ...entry, status: mastered ? 'mastered' : 'in_progress', quizScores: newScores, masteryScore, lastSeen: Date.now() }
+      }
+      saveProgress(next)
+      return next
+    })
+    await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
+    logEvent('user_completed_onboarding', { objectivesCovered: Object.keys(results || {}).length })
+    setView('home')
+  }, [])
+
+  const skipOnboarding = useCallback(async () => {
+    await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
+    logEvent('user_skipped_onboarding', {})
+    setView('home')
   }, [])
 
   const refreshOffline = useCallback(async () => {
@@ -5274,6 +5440,7 @@ export default function App() {
       {!apiOnline && <OfflineBanner />}
       <div style={styles.container}>
         <div className="ccna-view" key={view}>
+        {view === 'onboarding' && <Onboarding onComplete={finishOnboarding} onSkip={skipOnboarding} />}
         {view === 'home' && (
           <HomeScreen
             progress={progress}

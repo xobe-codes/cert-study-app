@@ -12,7 +12,7 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
 - **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **Decision made to exclude 14** (3.4 multi-area OSPF cluster) → **884 importable**. **12 imported so far** (4.1, see Timeline item 9) → 872 remaining.
 - **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files created and committed (`PROJECT_PROFILE.md`, `COMMANDS.md`, `RISKY_AREAS.md`).
-- **Next planned work**: MASTER SEQUENCE item 4 (onboarding + diagnostic placement test) — see `ENHANCEMENT_PRIORITIES.md`.
+- **Next planned work**: MASTER SEQUENCE item 5 (Exam Readiness Score hero metric on Home) — see `ENHANCEMENT_PRIORITIES.md`.
 - **Predicted outcome of full rollout**: ~77% of objectives (41/53) get static questions; ~23% (12/53) remain AI-only (mostly Domain 1, which has no question-bank source yet).
 
 ---
@@ -139,6 +139,24 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 **Outcome**: hybrid fallback is now per-content-type. Future imports of 4.2-4.9 question banks can land as "questions-only" curated entries (no `reading` field) and will correctly show `QUESTIONS` status + use AI only for the explanation — no longer blocked on full curation (item 9).
 
+### 11. MASTER SEQUENCE item 4 — Onboarding + diagnostic placement test
+
+**Goal**: give new users an entry point — a short, zero-API placement check on first visit that seeds initial mastery estimates and recommends a starting objective.
+
+**What was done**:
+- New `Onboarding` component (`src/App.jsx`) with three phases: `intro` (explain + Start/Skip), `active` (single-question quiz UI reused from `ReviewSession`'s pattern), `done` (overall score + recommended starting objective, sorted by weakest accuracy).
+- `buildDiagnosticSet()`: pulls up to 2 curated questions from each of the 11 curated objectives (`hasCuratedQuestions`/`getCuratedQuestions`), shuffles, caps at 18 — **zero API calls**.
+- New storage key `ccna_onboard_done_v1`. On first load, if no `onboardDone` flag and `progress` is empty, `view` starts at `'onboarding'`. Existing users with progress data are auto-marked done (no interruption).
+- `finishOnboarding(results)`: for each sampled objective, appends a `quizScores` entry `{score, total, date}` and recomputes `masteryScore`/`status` via the same `computeMastery()` used everywhere else, then routes to Home. `skipOnboarding()` just sets the flag and goes Home.
+
+**Validation**:
+- `npm run build` passed (553.61 kB; one pre-existing unrelated duplicate-key esbuild warning at line ~3260, not introduced by this change).
+- Preview-verified end-to-end with a cleared `ccna_progress_v1`/`ccna_onboard_done_v1`: intro → 18-question placement check across domains → results screen ("18%", 11 objectives seeded, recommended starting point "2.2 Configure and verify interswitch connectivity (trunking)") → Home shows "0 mastered · 11 in progress · 42 not started".
+- Preview-verified reload after completion does not re-trigger onboarding (`onboardDone: true` persisted).
+- Preview-verified the "Skip" path: lands on Home with progress still empty ("0 mastered · 0 in progress · 53 not started").
+
+**Outcome**: new users now get a guided first-run experience with seeded mastery data and a concrete starting point, at zero added AI cost.
+
 ---
 
 ## Open Decisions / Unresolved Questions
@@ -152,7 +170,8 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 1. ~~Import question bank — Domain 4 (4.1 pilot)~~ — **done**, see Timeline item 9.
 2. ~~Resolve `_V1` file naming~~ — **done**, renamed PROJECT_PROFILE_V1.md/COMMANDS_V1.md/RISKY_AREAS_V1.md back to PROJECT_PROFILE.md/COMMANDS.md/RISKY_AREAS.md.
 3. ~~Per-content-type hybrid fallback in `App.jsx`~~ — **done**, see Timeline item 10.
-4-5. Diagnostic placement test / Exam Readiness Score — not blocked, optional checkpoint breaks.
+4. ~~Diagnostic placement test~~ — **done**, see Timeline item 11.
+5. Exam Readiness Score hero metric on Home — not blocked, optional checkpoint break.
 
 ## Predicted Impact (full rollout)
 

@@ -11,7 +11,7 @@ Goal: enhance learning effectiveness AND the AI experience, in priority order. W
 1. ~~Import question bank — Domain 4 first (proves converter pipeline)~~ — **done** (4.1 pilot, 8→20 questions; see PROJECT_LOG.md item 9. 4.2-4.9 deferred until item 9 curation or item 3 fallback work)
 2. ~~Resolve `_V1` file naming (housekeeping, low risk — do anytime, doesn't block anything)~~ — **done**, renamed back to PROJECT_PROFILE.md/COMMANDS.md/RISKY_AREAS.md (no other doc used a version suffix)
 3. ~~Per-content-type hybrid fallback in App.jsx (static questions usable even with AI-only reading)~~ — **done**, see PROJECT_LOG.md item 10
-4. Onboarding + diagnostic placement test *(not blocked — can slot in as a checkpoint break)*
+4. ~~Onboarding + diagnostic placement test~~ — **done**, see PROJECT_LOG.md item 11
 5. Exam Readiness Score hero metric on Home *(not blocked — can slot in as a checkpoint break)*
 6. Domain 5 ID crosswalk decision
 7. Import remaining clean domains (2, 3, 6)
