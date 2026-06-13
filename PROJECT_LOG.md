@@ -12,8 +12,8 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 - **Question-bank-only objectives**: 15 more objectives have `hasCuratedQuestions=true` via bulk import (no curated `reading`). Total objectives with zero-API questions: **~34/53** (19 curated + 15 Q-only; some overlap where curated also has imported Qs).
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
 - **Question bank**: **566 imported and live** (554 in `IMPORTED_QUESTIONS` + hand-curated merges). Domain 5 bulk import complete. **12 shelved** in `SUPPLEMENTAL`.
-- **UI**: Key Terms and Visual tabs now use curated flashcards/diagrams when available (no API on first load for curated objectives).
-- **Next planned work**: Deploy build to production (item 41), then MASTER SEQUENCE item 10 (test/lint tooling) or item 9 follow-ons (Domain 4 `4.2`–`4.9` import).
+- **UI**: Key Terms and Visual tabs use curated flashcards/diagrams when available (no API on first load for curated objectives).
+- **Next planned work**: **MASTER LIST #12** — test/lint/typecheck tooling (`ENHANCEMENT_PRIORITIES.md`). Optional anytime: **#46** deploy to production.
 
 ---
 
@@ -264,6 +264,19 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ---
 
+### 17. MASTER LIST consolidation — single prioritized backlog
+
+**Goal**: replace fragmented MASTER SEQUENCE / ACTIVE ROADMAP / P0–P3 sections with one prioritized MASTER LIST (analysis-session upgrade list + completed work through Timeline 16).
+
+**What was done**:
+- Rewrote `ENHANCEMENT_PRIORITIES.md`: **MASTER LIST #1–46** is now the sole backlog (Type + Status + Suggested action columns). Added completed rows **10a** (Key Terms wiring) and **10b** (Visual wiring). Appended less-AI follow-ups **#42–#45** from analysis. Legacy MS crosswalk table kept for reference only.
+- Updated `PROJECT_LOG.md` Status Summary + Next Steps to point at MASTER LIST **#12** (next) and **#46** (deploy).
+- Updated `PROJECT_PROFILE.md` planning-doc roles + current counts.
+
+**Outcome**: one table to plan from; no conflicting duplicate backlogs.
+
+---
+
 ## Open Decisions / Unresolved Questions
 
 1. ~~Domain 5 crosswalk above — confirm before importing Domain 5 questions (QB 5.8 → app 5.4 vs 5.7 is ambiguous).~~ **Resolved**, see Timeline item 13: QB 5.8 → app 5.7.
@@ -272,18 +285,15 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 4. ~~**Domain 5 bulk import**~~ — **Done**, see Timeline item 16 (144 Qs imported via crosswalk).
 5. ~~3.4 multi-area OSPF cluster (12 questions) — shelved or dropped?~~ **Resolved**, see Timeline item 15: `SUPPLEMENTAL` (`supp-ospf-multiarea`), not served under 3.4.
 
-## Next Steps (in order, per ENHANCEMENT_PRIORITIES.md MASTER SEQUENCE)
+## Next Steps (per ENHANCEMENT_PRIORITIES.md MASTER LIST)
 
-1. ~~Import question bank — Domain 4 (4.1 pilot)~~ — **done**, see Timeline item 9.
-2. ~~Resolve `_V1` file naming~~ — **done**, renamed PROJECT_PROFILE_V1.md/COMMANDS_V1.md/RISKY_AREAS_V1.md back to PROJECT_PROFILE.md/COMMANDS.md/RISKY_AREAS.md.
-3. ~~Per-content-type hybrid fallback in `App.jsx`~~ — **done**, see Timeline item 10.
-4. ~~Diagnostic placement test~~ — **done**, see Timeline item 11.
-5. ~~Exam Readiness Score hero metric on Home~~ — **done**, see Timeline item 12.
-6. ~~Domain 5 ID crosswalk decision~~ — **done**, see Timeline item 13.
-7. ~~Import remaining clean domains (2, 3, 6)~~ — **done**, see Timeline item 14.
-8. ~~Decide orphaned question sets (QB 2.9, QB 5.4, excluded 3.4 OSPF cluster)~~ — **done**, see Timeline item 15.
-9. ~~Curate Domain 1 content (8/12 objectives — includes 1.6 subnetting, 1.8/1.9 IPv6)~~ — **done**, see Timeline item 16 (D1 now 12/12 curated).
-10. Add test/lint/typecheck tooling — **next**.
+**Next:** #12 — Add test/lint/typecheck tooling.
+
+**Ready anytime:** #46 — Deploy (`npm run build && npx wrangler pages deploy dist --project-name ccna-study-tool`).
+
+**Queued (less AI):** #11 Domain 4 `4.2`–`4.9` import · #42–#45 static-first UX fixes.
+
+See `ENHANCEMENT_PRIORITIES.md` for the full prioritized table (items 1–46).
 
 ## Predicted Impact (full rollout)
 

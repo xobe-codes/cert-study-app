@@ -34,7 +34,19 @@ This file is a quick-reference snapshot of the project so Claude Code (and you) 
 - `validateCurated()` and `validateLabs()` (in `ccnaCurated.js` / `ccnaLabs.js`) check structural correctness — run these after content edits.
 - Domain IDs use short keys: `fundamentals`, `access`, `connectivity`, `services`, `security`, `automation`.
 
-## Last Known State (as of this scan)
+## Planning docs
 
-- 11 curated objectives, 6 labs across all 6 domains.
+| File | Role |
+|---|---|
+| `ENHANCEMENT_PRIORITIES.md` | **MASTER LIST** — single prioritized backlog (#1–46) |
+| `PROJECT_LOG.md` | Status Summary + dated Timeline (canonical history) |
+| `COMMANDS.md` | Build/compile commands |
+| `RISKY_AREAS.md` | Paths requiring approval before edit |
+
+## Last Known State (as of 2026-06-13)
+
+- **19/53** objectives fully curated (Domain 1 complete: 12/12); **~34/53** with static quiz pools.
+- **554** questions in `IMPORTED_QUESTIONS`; **6** labs across all domains.
+- Key Terms + Visual tabs serve curated content without API for curated objectives.
 - No test, lint, or typecheck scripts configured yet.
+- Production deploy pending (MASTER LIST #46); local build at commit `5c2e9ae`+.
