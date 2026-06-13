@@ -4,9 +4,9 @@
     "domainNumber": 2,
     "domainName": "Network Access",
     "version": "1",
-    "compiledAt": "2026-06-13T17:29:43.625Z",
+    "compiledAt": "2026-06-13T17:39:38.959Z",
     "curatedObjectives": 3,
-    "labs": 3
+    "labs": 10
   },
   "sourceAudit": {
     "sources": {
@@ -2544,6 +2544,1537 @@
           ]
         }
       ]
+    },
+    {
+      "lab": {
+        "id": "LAB-INTERVLAN-SVI",
+        "title": "Inter-VLAN Routing with SVIs on a Layer 3 Switch",
+        "domainId": "access",
+        "objectiveId": "2.1",
+        "ckuIds": [
+          "CKU-VLAN",
+          "CKU-SVI",
+          "CKU-INTER-VLAN"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 18,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "SW1 is a Layer 3 switch. VLAN 10 (Sales) and VLAN 20 (Eng) need routing between them. Create VLANs, access ports, SVI gateways 192.168.10.1/24 and 192.168.20.1/24, and enable ip routing.",
+        "learningGoals": [
+          "interface vlan 10/20",
+          "ip routing on switch",
+          "Verify routes between VLANs"
+        ],
+        "topologyId": "TOPO-LAB-INTERVLAN-SVI",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Create VLANs",
+            "device": "SW1",
+            "instruction": "Create VLAN 10 and VLAN 20.",
+            "expectedCommands": [
+              "vlan 10",
+              "vlan 20"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Access ports",
+            "device": "SW1",
+            "instruction": "Fa0/1 access VLAN 10, Fa0/2 access VLAN 20.",
+            "expectedCommands": [
+              "interface fa0/1",
+              "switchport access vlan 10",
+              "interface fa0/2",
+              "switchport access vlan 20"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "SVI gateways",
+            "device": "SW1",
+            "instruction": "Configure VLAN 10 SVI 192.168.10.1/24 and VLAN 20 SVI 192.168.20.1/24.",
+            "expectedCommands": [
+              "interface vlan 10",
+              "ip address 192.168.10.1 255.255.255.0",
+              "interface vlan 20",
+              "ip address 192.168.20.1 255.255.255.0"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Enable routing",
+            "device": "SW1",
+            "instruction": "Enable ip routing globally.",
+            "expectedCommands": [
+              "ip routing"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Verify",
+            "device": "SW1",
+            "instruction": "Confirm both SVIs are up/up and routes exist.",
+            "expectedCommands": [
+              "show ip route",
+              "show ip interface brief"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show ip route",
+          "show ip interface brief"
+        ],
+        "successCriteria": [
+          "Both SVIs up",
+          "Hosts in VLAN 10 can reach VLAN 20 via L3 switch"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "Forgetting ip routing — SVIs exist but no inter-VLAN forward",
+          "SVI shutdown because VLAN has no active ports"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "2.1 Inter-VLAN SVI",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-INTERVLAN-SVI",
+        "title": "Inter-VLAN Routing with SVIs on a Layer 3 Switch",
+        "objectiveId": "2.1",
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "L3 SW1",
+            "type": "switch",
+            "x": 50,
+            "y": 35
+          },
+          {
+            "id": "pc10",
+            "label": "VLAN 10",
+            "type": "pc",
+            "x": 25,
+            "y": 75
+          },
+          {
+            "id": "pc20",
+            "label": "VLAN 20",
+            "type": "pc",
+            "x": 75,
+            "y": 75
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "sw1",
+            "target": "pc10",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "sw1",
+            "target": "pc20",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-INTERVLAN-SVI",
+        "requiredCommands": [
+          {
+            "device": "SW1",
+            "command": "interface vlan 10"
+          },
+          {
+            "device": "SW1",
+            "command": "ip address 192.168.10.1 255.255.255.0"
+          },
+          {
+            "device": "SW1",
+            "command": "interface vlan 20"
+          },
+          {
+            "device": "SW1",
+            "command": "ip routing"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "SW1",
+            "command": "show ip route",
+            "expectedResult": "C 192.168.10.0",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-INTERVLAN-SVI",
+        "title": "Inter-VLAN Routing with SVIs on a Layer 3 Switch",
+        "objectiveId": "2.1",
+        "nodes": [
+          {
+            "id": "v10",
+            "label": "SVI .10.1",
+            "type": "process",
+            "x": 30,
+            "y": 40
+          },
+          {
+            "id": "l3",
+            "label": "ip routing",
+            "type": "router",
+            "x": 50,
+            "y": 50,
+            "status": "highlighted"
+          },
+          {
+            "id": "v20",
+            "label": "SVI .20.1",
+            "type": "process",
+            "x": 70,
+            "y": 40
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "v10",
+            "target": "l3",
+            "status": "forwarded"
+          },
+          {
+            "id": "d2",
+            "source": "l3",
+            "target": "v20",
+            "status": "forwarded"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-INTERVLAN-SVI",
+          "title": "Inter-VLAN Routing with SVIs on a Layer 3 Switch",
+          "ckuIds": [
+            "CKU-VLAN",
+            "CKU-SVI",
+            "CKU-INTER-VLAN"
+          ],
+          "diagramId": "DIAG-LAB-INTERVLAN-SVI",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "PC10 → gateway",
+              "action": "Frame to VLAN 10 SVI MAC",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Route",
+              "action": "SW1 routes between SVIs to VLAN 20",
+              "successState": "forwarded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-STP-PORTFAST",
+        "title": "Enable PortFast and BPDU Guard on Access Ports",
+        "domainId": "access",
+        "objectiveId": "2.5",
+        "ckuIds": [
+          "CKU-STP",
+          "CKU-PORTFAST"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 12,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "SW1 connects end hosts on Fa0/1–3. Enable PortFast on access ports and BPDU Guard to protect against rogue switches plugged into user ports.",
+        "learningGoals": [
+          "spanning-tree portfast",
+          "spanning-tree bpduguard enable",
+          "Apply only on host-facing ports"
+        ],
+        "topologyId": "TOPO-LAB-STP-PORTFAST",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Access mode",
+            "device": "SW1",
+            "instruction": "Set Fa0/1 as access port in VLAN 10.",
+            "expectedCommands": [
+              "interface fa0/1",
+              "switchport mode access",
+              "switchport access vlan 10"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "PortFast",
+            "device": "SW1",
+            "instruction": "Enable PortFast on Fa0/1.",
+            "expectedCommands": [
+              "spanning-tree portfast"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "BPDU Guard",
+            "device": "SW1",
+            "instruction": "Enable BPDU Guard on the same port.",
+            "expectedCommands": [
+              "spanning-tree bpduguard enable"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Verify",
+            "device": "SW1",
+            "instruction": "Confirm PortFast edge status.",
+            "expectedCommands": [
+              "show spanning-tree interface fa0/1 portfast"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show spanning-tree interface fa0/1 portfast"
+        ],
+        "successCriteria": [
+          "PortFast enabled on access port",
+          "BPDU Guard enabled"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "PortFast on trunk/uplink — can cause loops",
+          "BPDU Guard on uplink to core"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "2.5 STP edge",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-STP-PORTFAST",
+        "title": "Enable PortFast and BPDU Guard on Access Ports",
+        "objectiveId": "2.5",
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "SW1",
+            "type": "switch",
+            "x": 50,
+            "y": 40
+          },
+          {
+            "id": "pc",
+            "label": "Host",
+            "type": "pc",
+            "x": 50,
+            "y": 75
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "sw1",
+            "target": "pc",
+            "label": "Fa0/1 edge",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-STP-PORTFAST",
+        "requiredCommands": [
+          {
+            "device": "SW1",
+            "command": "spanning-tree portfast"
+          },
+          {
+            "device": "SW1",
+            "command": "spanning-tree bpduguard enable"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "SW1",
+            "command": "show spanning-tree interface fa0/1 portfast",
+            "expectedResult": "PortFast is enabled",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-STP-PORTFAST",
+        "title": "Enable PortFast and BPDU Guard on Access Ports",
+        "objectiveId": "2.5",
+        "nodes": [
+          {
+            "id": "edge",
+            "label": "PortFast",
+            "type": "process",
+            "x": 40,
+            "y": 50
+          },
+          {
+            "id": "guard",
+            "label": "BPDU Guard",
+            "type": "process",
+            "x": 65,
+            "y": 50,
+            "status": "highlighted"
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "edge",
+            "target": "guard",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-STP-PORTFAST",
+          "title": "Enable PortFast and BPDU Guard on Access Ports",
+          "ckuIds": [
+            "CKU-STP",
+            "CKU-PORTFAST"
+          ],
+          "diagramId": "DIAG-LAB-STP-PORTFAST",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Fast forward",
+              "action": "Host port skips listening/learning delay",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "BPDU received",
+              "action": "Rogue switch BPDU triggers err-disable",
+              "successState": "dropped"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-WLAN-SSID",
+        "title": "Configure a WPA2-Personal WLAN on a WLC",
+        "domainId": "access",
+        "objectiveId": "2.8",
+        "ckuIds": [
+          "CKU-WLAN",
+          "CKU-WLC"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 18,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "WLC1 manages lightweight APs. Create WLAN CORP_WIFI on VLAN 20, map to dynamic interface 192.168.20.1/24, enable WPA2-PSK AES, and verify AP joins.",
+        "learningGoals": [
+          "WLAN SSID + security policy",
+          "Dynamic interface VLAN mapping",
+          "Verify AP association"
+        ],
+        "topologyId": "TOPO-LAB-WLAN-SSID",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Dynamic interface",
+            "device": "WLC1",
+            "instruction": "Create dynamic interface VLAN20 with IP 192.168.20.1/24 gateway 192.168.20.1.",
+            "expectedCommands": [
+              "interface vlan 20",
+              "ip address 192.168.20.1 255.255.255.0"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Create WLAN",
+            "device": "WLC1",
+            "instruction": "Create WLAN CORP_WIFI, SSID CORP_WIFI, status enabled.",
+            "expectedCommands": [
+              "wlan CORP_WIFI",
+              "ssid CORP_WIFI"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Security WPA2",
+            "device": "WLC1",
+            "instruction": "Set layer2 security WPA2-PSK AES with passphrase.",
+            "expectedCommands": [
+              "security wpa akm psk",
+              "security wpa wpa2 ciphers aes"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Map interface",
+            "device": "WLC1",
+            "instruction": "Bind WLAN to VLAN20 interface.",
+            "expectedCommands": [
+              "interface vlan 20"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Verify AP",
+            "device": "WLC1",
+            "instruction": "Show AP summary and WLAN status.",
+            "expectedCommands": [
+              "show ap summary",
+              "show wlan summary"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show wlan summary",
+          "show ap summary"
+        ],
+        "successCriteria": [
+          "WLAN enabled with WPA2",
+          "AP registered to WLC",
+          "Clients get VLAN 20 addresses"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "WLAN mapped to wrong dynamic interface",
+          "Open authentication left enabled"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "2.8 WLAN on WLC",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-WLAN-SSID",
+        "title": "Configure a WPA2-Personal WLAN on a WLC",
+        "objectiveId": "2.8",
+        "nodes": [
+          {
+            "id": "wlc",
+            "label": "WLC1",
+            "type": "router",
+            "x": 40,
+            "y": 35
+          },
+          {
+            "id": "ap",
+            "label": "LWAP",
+            "type": "switch",
+            "x": 70,
+            "y": 50
+          },
+          {
+            "id": "client",
+            "label": "Wi-Fi client",
+            "type": "pc",
+            "x": 70,
+            "y": 75
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "wlc",
+            "target": "ap",
+            "label": "CAPWAP",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "ap",
+            "target": "client",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-WLAN-SSID",
+        "requiredCommands": [
+          {
+            "device": "WLC1",
+            "command": "wlan CORP_WIFI"
+          },
+          {
+            "device": "WLC1",
+            "command": "ssid CORP_WIFI"
+          },
+          {
+            "device": "WLC1",
+            "command": "security wpa akm psk"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "WLC1",
+            "command": "show wlan summary",
+            "expectedResult": "CORP_WIFI",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-WLAN-SSID",
+        "title": "Configure a WPA2-Personal WLAN on a WLC",
+        "objectiveId": "2.8",
+        "nodes": [
+          {
+            "id": "wlc",
+            "label": "WLC",
+            "type": "router",
+            "x": 35,
+            "y": 45
+          },
+          {
+            "id": "wlan",
+            "label": "CORP_WIFI",
+            "type": "process",
+            "x": 55,
+            "y": 45,
+            "status": "highlighted"
+          },
+          {
+            "id": "vlan",
+            "label": "VLAN 20",
+            "type": "subnet",
+            "x": 75,
+            "y": 45
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "wlc",
+            "target": "wlan",
+            "status": "forwarded"
+          },
+          {
+            "id": "d2",
+            "source": "wlan",
+            "target": "vlan",
+            "status": "forwarded"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-WLAN-SSID",
+          "title": "Configure a WPA2-Personal WLAN on a WLC",
+          "ckuIds": [
+            "CKU-WLAN",
+            "CKU-WLC"
+          ],
+          "diagramId": "DIAG-LAB-WLAN-SSID",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Join",
+              "action": "AP registers to WLC via CAPWAP",
+              "successState": "matched"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Associate",
+              "action": "Client associates to CORP_WIFI SSID",
+              "successState": "forwarded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-TS-WLAN-VLAN",
+        "title": "Troubleshoot WLAN Wrong VLAN Mapping",
+        "domainId": "access",
+        "objectiveId": "3.6",
+        "ckuIds": [
+          "CKU-TROUBLESHOOTING"
+        ],
+        "labType": "troubleshooting",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 15,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "Symptom: Wireless clients associate to CORP_WIFI but receive 192.168.10.x instead of 192.168.20.x. WLC dynamic interface for the WLAN points to VLAN10 — change interface mapping to VLAN20 (192.168.20.1/24).",
+        "learningGoals": [
+          "Use show commands to isolate fault",
+          "Apply minimal fix commands"
+        ],
+        "topologyId": "TOPO-LAB-TS-WLAN-VLAN",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Check client subnet",
+            "device": "WLC1",
+            "instruction": "show client detail — client on wrong 192.168.10.x subnet.",
+            "expectedCommands": [
+              "show client summary"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Fix WLAN interface",
+            "device": "WLC1",
+            "instruction": "Map WLAN CORP_WIFI to VLAN20 interface.",
+            "expectedCommands": [
+              "wlan CORP_WIFI",
+              "interface vlan 20"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Verify",
+            "device": "WLC1",
+            "instruction": "Confirm new clients get 192.168.20.x.",
+            "expectedCommands": [
+              "show wlan summary"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show running-config"
+        ],
+        "successCriteria": [
+          "Symptom resolved after fix commands entered"
+        ],
+        "failureCriteria": [
+          "Fix applied on wrong interface or VLAN"
+        ],
+        "commonMistakes": [
+          "Mapping SSID to management VLAN instead of user VLAN"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "Troubleshooting",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-TS-WLAN-VLAN",
+        "title": "Troubleshoot WLAN Wrong VLAN Mapping",
+        "objectiveId": "3.6",
+        "nodes": [
+          {
+            "id": "wlc",
+            "label": "WLC wrong VLAN",
+            "type": "router",
+            "x": 50,
+            "y": 40,
+            "status": "error"
+          },
+          {
+            "id": "cli",
+            "label": "Client .10.x",
+            "type": "pc",
+            "x": 50,
+            "y": 75
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "wlc",
+            "target": "cli",
+            "status": "blocked"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-TS-WLAN-VLAN",
+        "requiredCommands": [
+          {
+            "device": "WLC1",
+            "command": "interface vlan 20"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "WLC1",
+            "command": "show running-config",
+            "expectedResult": "Fix applied",
+            "passCondition": "fixed"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-TS-WLAN-VLAN",
+        "title": "Troubleshoot WLAN Wrong VLAN Mapping",
+        "objectiveId": "3.6",
+        "nodes": [
+          {
+            "id": "bad",
+            "label": "Fault",
+            "type": "process",
+            "x": 30,
+            "y": 50,
+            "status": "error"
+          },
+          {
+            "id": "fix",
+            "label": "Fixed",
+            "type": "process",
+            "x": 70,
+            "y": 50,
+            "status": "highlighted"
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "bad",
+            "target": "fix",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-TS-WLAN-VLAN",
+          "title": "Fix fault",
+          "ckuIds": [
+            "CKU-TROUBLESHOOTING"
+          ],
+          "diagramId": "DIAG-LAB-TS-WLAN-VLAN",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Symptom",
+              "action": "Symptom: Wireless clients associate to CORP_WIFI but receive 192.168.10.x instead of 192.1",
+              "successState": "failed"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Fix",
+              "action": "Correct configuration restores service",
+              "successState": "forwarded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-LLDP",
+        "title": "Enable LLDP and Disable CDP",
+        "domainId": "access",
+        "objectiveId": "2.3",
+        "ckuIds": [
+          "CKU-LLDP",
+          "CKU-CDP"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 10,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "SW1 should use vendor-neutral LLDP instead of CDP. Disable CDP globally, enable LLDP, and verify neighbors on the trunk to SW2.",
+        "learningGoals": [
+          "no cdp run",
+          "lldp run",
+          "show lldp neighbors"
+        ],
+        "topologyId": "TOPO-LAB-LLDP",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Disable CDP",
+            "device": "SW1",
+            "instruction": "Turn off CDP globally.",
+            "expectedCommands": [
+              "no cdp run"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Enable LLDP",
+            "device": "SW1",
+            "instruction": "Enable LLDP globally.",
+            "expectedCommands": [
+              "lldp run"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Verify neighbors",
+            "device": "SW1",
+            "instruction": "Show LLDP neighbors.",
+            "expectedCommands": [
+              "show lldp neighbors"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show lldp neighbors"
+        ],
+        "successCriteria": [
+          "LLDP neighbors visible",
+          "CDP disabled"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "Leaving both CDP and LLDP on without reason",
+          "LLDP not enabled on remote switch — one-way discovery"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "2.3 LLDP",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-LLDP",
+        "title": "Enable LLDP and Disable CDP",
+        "objectiveId": "2.3",
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "SW1",
+            "type": "switch",
+            "x": 35,
+            "y": 50
+          },
+          {
+            "id": "sw2",
+            "label": "SW2",
+            "type": "switch",
+            "x": 65,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "sw1",
+            "target": "sw2",
+            "label": "trunk",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-LLDP",
+        "requiredCommands": [
+          {
+            "device": "SW1",
+            "command": "no cdp run"
+          },
+          {
+            "device": "SW1",
+            "command": "lldp run"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "SW1",
+            "command": "show lldp neighbors",
+            "expectedResult": "Device ID",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-LLDP",
+        "title": "Enable LLDP and Disable CDP",
+        "objectiveId": "2.3",
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "SW1 LLDP",
+            "type": "switch",
+            "x": 35,
+            "y": 50
+          },
+          {
+            "id": "sw2",
+            "label": "SW2",
+            "type": "switch",
+            "x": 65,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "sw1",
+            "target": "sw2",
+            "label": "LLDP",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-LLDP",
+          "title": "Enable LLDP and Disable CDP",
+          "ckuIds": [
+            "CKU-LLDP",
+            "CKU-CDP"
+          ],
+          "diagramId": "DIAG-LAB-LLDP",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Advertise",
+              "action": "LLDP TLVs exchanged on link",
+              "successState": "learned"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-ETHERCHANNEL-PAGP",
+        "title": "Configure PAgP EtherChannel (Desirable Mode)",
+        "domainId": "access",
+        "objectiveId": "2.4",
+        "ckuIds": [
+          "CKU-ETHERCHANNEL"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 14,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "Bundle SW1 Gi0/1–2 to SW2 using Port-channel 2 with PAgP desirable on SW1 and auto on SW2.",
+        "learningGoals": [
+          "channel-group mode desirable",
+          "channel-group mode auto",
+          "Cisco proprietary PAgP"
+        ],
+        "topologyId": "TOPO-LAB-ETHERCHANNEL-PAGP",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "SW1 Gi0/1",
+            "device": "SW1",
+            "instruction": "Trunk + channel-group 2 mode desirable.",
+            "expectedCommands": [
+              "interface gi0/1",
+              "switchport mode trunk",
+              "channel-group 2 mode desirable"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "SW1 Gi0/2",
+            "device": "SW1",
+            "instruction": "Add Gi0/2 to Po2 desirable.",
+            "expectedCommands": [
+              "interface gi0/2",
+              "channel-group 2 mode desirable"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "SW2 Gi0/1",
+            "device": "SW2",
+            "instruction": "Trunk + channel-group 2 mode auto on SW2.",
+            "expectedCommands": [
+              "interface gi0/1",
+              "channel-group 2 mode auto"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "SW2 Gi0/2",
+            "device": "SW2",
+            "instruction": "Gi0/2 channel-group 2 mode auto.",
+            "expectedCommands": [
+              "interface gi0/2",
+              "channel-group 2 mode auto"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Verify",
+            "device": "SW1",
+            "instruction": "show etherchannel summary — Po2 up.",
+            "expectedCommands": [
+              "show etherchannel summary"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show etherchannel summary"
+        ],
+        "successCriteria": [
+          "Po2 bundled with PAgP",
+          "Both links active"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "Both sides desirable — works; both passive/auto — fails to form",
+          "Mixing LACP active with PAgP"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "2.4 PAgP EtherChannel",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-ETHERCHANNEL-PAGP",
+        "title": "Configure PAgP EtherChannel (Desirable Mode)",
+        "objectiveId": "2.4",
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "SW1 desirable",
+            "type": "switch",
+            "x": 30,
+            "y": 50
+          },
+          {
+            "id": "sw2",
+            "label": "SW2 auto",
+            "type": "switch",
+            "x": 70,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "sw1",
+            "target": "sw2",
+            "label": "Po2",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-ETHERCHANNEL-PAGP",
+        "requiredCommands": [
+          {
+            "device": "SW1",
+            "command": "channel-group 2 mode desirable"
+          },
+          {
+            "device": "SW2",
+            "command": "channel-group 2 mode auto"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "SW1",
+            "command": "show etherchannel summary",
+            "expectedResult": "Po2",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-ETHERCHANNEL-PAGP",
+        "title": "Configure PAgP EtherChannel (Desirable Mode)",
+        "objectiveId": "2.4",
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "desirable",
+            "type": "switch",
+            "x": 35,
+            "y": 50
+          },
+          {
+            "id": "sw2",
+            "label": "auto",
+            "type": "switch",
+            "x": 65,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "sw1",
+            "target": "sw2",
+            "label": "PAgP",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-ETHERCHANNEL-PAGP",
+          "title": "Configure PAgP EtherChannel (Desirable Mode)",
+          "ckuIds": [
+            "CKU-ETHERCHANNEL"
+          ],
+          "diagramId": "DIAG-LAB-ETHERCHANNEL-PAGP",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Negotiate",
+              "action": "PAgP forms Po2",
+              "successState": "matched"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-L3-ETHERCHANNEL",
+        "title": "Configure Layer 3 EtherChannel Between Routers",
+        "domainId": "access",
+        "objectiveId": "2.4",
+        "ckuIds": [
+          "CKU-ETHERCHANNEL",
+          "CKU-ROUTED-PORT"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 16,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "R1 and R2 connect via Gi0/1 and Gi0/2. Build routed Port-channel 1 with LACP, assign 10.0.12.1/30 and .2/30, enable OSPF over the bundle.",
+        "learningGoals": [
+          "no switchport",
+          "channel-group mode active",
+          "IP on Port-channel"
+        ],
+        "topologyId": "TOPO-LAB-L3-ETHERCHANNEL",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "R1 Gi0/1 routed",
+            "device": "R1",
+            "instruction": "no switchport + channel-group 1 mode active on Gi0/1.",
+            "expectedCommands": [
+              "interface gi0/1",
+              "no switchport",
+              "channel-group 1 mode active"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "R1 Gi0/2",
+            "device": "R1",
+            "instruction": "Add Gi0/2 to same bundle.",
+            "expectedCommands": [
+              "interface gi0/2",
+              "no switchport",
+              "channel-group 1 mode active"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "R1 Po1 IP",
+            "device": "R1",
+            "instruction": "interface Port-channel 1 ip address 10.0.12.1 255.255.255.252.",
+            "expectedCommands": [
+              "interface port-channel 1",
+              "ip address 10.0.12.1 255.255.255.252"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "R2 bundle",
+            "device": "R2",
+            "instruction": "Mirror L3 EtherChannel on R2 with .2/30 on Po1.",
+            "expectedCommands": [
+              "interface gi0/1",
+              "no switchport",
+              "channel-group 1 mode active",
+              "interface port-channel 1",
+              "ip address 10.0.12.2 255.255.255.252"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Verify",
+            "device": "R1",
+            "instruction": "show etherchannel summary and ping 10.0.12.2.",
+            "expectedCommands": [
+              "show etherchannel summary",
+              "ping 10.0.12.2"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show etherchannel summary",
+          "show ip interface brief"
+        ],
+        "successCriteria": [
+          "Routed Po1 up with IP",
+          "Ping across bundle works"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "Forgetting no switchport on router ports",
+          "IP on physical member instead of Port-channel"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "2.4 L3 EtherChannel",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-L3-ETHERCHANNEL",
+        "title": "Configure Layer 3 EtherChannel Between Routers",
+        "objectiveId": "2.4",
+        "nodes": [
+          {
+            "id": "r1",
+            "label": "R1 Po1",
+            "type": "router",
+            "x": 30,
+            "y": 50
+          },
+          {
+            "id": "r2",
+            "label": "R2 Po1",
+            "type": "router",
+            "x": 70,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "r1",
+            "target": "r2",
+            "label": "L3 Po1",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-L3-ETHERCHANNEL",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "no switchport"
+          },
+          {
+            "device": "R1",
+            "command": "channel-group 1 mode active"
+          },
+          {
+            "device": "R1",
+            "command": "interface port-channel 1"
+          },
+          {
+            "device": "R1",
+            "command": "ip address 10.0.12.1 255.255.255.252"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show etherchannel summary",
+            "expectedResult": "Po1",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-L3-ETHERCHANNEL",
+        "title": "Configure Layer 3 EtherChannel Between Routers",
+        "objectiveId": "2.4",
+        "nodes": [
+          {
+            "id": "po",
+            "label": "Port-channel 1",
+            "type": "process",
+            "x": 50,
+            "y": 45,
+            "status": "highlighted"
+          },
+          {
+            "id": "ip",
+            "label": "10.0.12.0/30",
+            "type": "subnet",
+            "x": 50,
+            "y": 65
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "po",
+            "target": "ip",
+            "status": "forwarded"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-L3-ETHERCHANNEL",
+          "title": "Configure Layer 3 EtherChannel Between Routers",
+          "ckuIds": [
+            "CKU-ETHERCHANNEL",
+            "CKU-ROUTED-PORT"
+          ],
+          "diagramId": "DIAG-LAB-L3-ETHERCHANNEL",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Bundle",
+              "action": "LACP forms routed Po1",
+              "successState": "matched"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Route",
+              "action": "OSPF or static uses single logical interface",
+              "successState": "forwarded"
+            }
+          ]
+        }
+      ]
     }
   ],
   "counts": {
@@ -2555,6 +4086,6 @@
     "mnemonics": 3,
     "examTraps": 9,
     "misconceptions": 6,
-    "labs": 3
+    "labs": 10
   }
 }

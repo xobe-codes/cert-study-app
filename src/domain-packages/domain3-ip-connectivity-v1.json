@@ -4,9 +4,9 @@
     "domainNumber": 3,
     "domainName": "IP Connectivity",
     "version": "1",
-    "compiledAt": "2026-06-13T17:29:43.626Z",
+    "compiledAt": "2026-06-13T17:39:38.961Z",
     "curatedObjectives": 4,
-    "labs": 8
+    "labs": 10
   },
   "sourceAudit": {
     "sources": {
@@ -4594,6 +4594,477 @@
           ]
         }
       ]
+    },
+    {
+      "lab": {
+        "id": "LAB-IPV6-STATIC",
+        "title": "Configure IPv6 Addressing and Static Routes",
+        "domainId": "connectivity",
+        "objectiveId": "3.3",
+        "ckuIds": [
+          "CKU-IPV6-STATIC-ROUTE",
+          "CKU-IPV6-ADDRESSING"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 15,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "R1 connects to R2 on 2001:db8:12::/64. R2 has LAN 2001:db8:20::/64. Enable IPv6 routing on both routers, assign interface addresses, and add static routes so R1 reaches the remote LAN.",
+        "learningGoals": [
+          "ipv6 unicast-routing",
+          "ipv6 address on interfaces",
+          "ipv6 route static"
+        ],
+        "topologyId": "TOPO-LAB-IPV6-STATIC",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Enable IPv6 routing R1",
+            "device": "R1",
+            "instruction": "Enable ipv6 unicast-routing on R1.",
+            "expectedCommands": [
+              "ipv6 unicast-routing"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "R1 link address",
+            "device": "R1",
+            "instruction": "Gi0/0 2001:db8:12::1/64.",
+            "expectedCommands": [
+              "interface gi0/0",
+              "ipv6 address 2001:db8:12::1/64",
+              "no shutdown"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Static to remote LAN",
+            "device": "R1",
+            "instruction": "ipv6 route 2001:db8:20::/64 via 2001:db8:12::2.",
+            "expectedCommands": [
+              "ipv6 route 2001:db8:20::/64 2001:db8:12::2"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Verify",
+            "device": "R1",
+            "instruction": "Show IPv6 route table.",
+            "expectedCommands": [
+              "show ipv6 route static"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show ipv6 route",
+          "show ipv6 interface brief"
+        ],
+        "successCriteria": [
+          "IPv6 static route installed",
+          "Reachability to remote /64"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "Forgetting ipv6 unicast-routing",
+          "Using link-local as static next-hop without understanding scope"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "3.3 IPv6 static",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-IPV6-STATIC",
+        "title": "Configure IPv6 Addressing and Static Routes",
+        "objectiveId": "3.3",
+        "nodes": [
+          {
+            "id": "r1",
+            "label": "R1",
+            "type": "router",
+            "x": 30,
+            "y": 50
+          },
+          {
+            "id": "r2",
+            "label": "R2",
+            "type": "router",
+            "x": 70,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "r1",
+            "target": "r2",
+            "label": "2001:db8:12::/64",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-IPV6-STATIC",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "ipv6 unicast-routing"
+          },
+          {
+            "device": "R1",
+            "command": "ipv6 address 2001:db8:12::1/64"
+          },
+          {
+            "device": "R1",
+            "command": "ipv6 route 2001:db8:20::/64 2001:db8:12::2"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show ipv6 route",
+            "expectedResult": "2001:db8:20::/64",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-IPV6-STATIC",
+        "title": "Configure IPv6 Addressing and Static Routes",
+        "objectiveId": "3.3",
+        "nodes": [
+          {
+            "id": "r1",
+            "label": "R1",
+            "type": "router",
+            "x": 30,
+            "y": 50
+          },
+          {
+            "id": "rt",
+            "label": "S ::/64 via ::2",
+            "type": "process",
+            "x": 55,
+            "y": 50,
+            "status": "highlighted"
+          },
+          {
+            "id": "lan",
+            "label": "db8:20::/64",
+            "type": "cloud",
+            "x": 80,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "r1",
+            "target": "rt",
+            "status": "matched"
+          },
+          {
+            "id": "d2",
+            "source": "rt",
+            "target": "lan",
+            "status": "forwarded"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-IPV6-STATIC",
+          "title": "Configure IPv6 Addressing and Static Routes",
+          "ckuIds": [
+            "CKU-IPV6-STATIC-ROUTE",
+            "CKU-IPV6-ADDRESSING"
+          ],
+          "diagramId": "DIAG-LAB-IPV6-STATIC",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Lookup",
+              "action": "Longest match for 2001:db8:20::/64",
+              "successState": "matched"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Forward",
+              "action": "Packet sent to next-hop 2001:db8:12::2",
+              "successState": "forwarded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-OSPF-DEFAULT",
+        "title": "Advertise a Default Route with OSPF",
+        "domainId": "connectivity",
+        "objectiveId": "3.4",
+        "ckuIds": [
+          "CKU-OSPF",
+          "CKU-DEFAULT-ROUTE"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 16,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "R1 is the edge router with Internet default via 203.0.113.1. R2 is internal. Configure OSPF on both, then originate default route from R1 into OSPF area 0 so R2 learns 0.0.0.0/0.",
+        "learningGoals": [
+          "router ospf",
+          "default-information originate",
+          "Verify O E2 default on R2"
+        ],
+        "topologyId": "TOPO-LAB-OSPF-DEFAULT",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Default static R1",
+            "device": "R1",
+            "instruction": "Add default route to ISP.",
+            "expectedCommands": [
+              "ip route 0.0.0.0 0.0.0.0 203.0.113.1"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "OSPF R1",
+            "device": "R1",
+            "instruction": "Enable OSPF 1, advertise LAN and link into area 0.",
+            "expectedCommands": [
+              "router ospf 1",
+              "network 10.0.12.0 0.0.0.3 area 0"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Originate default",
+            "device": "R1",
+            "instruction": "Inside OSPF, default-information originate.",
+            "expectedCommands": [
+              "default-information originate"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "OSPF R2",
+            "device": "R2",
+            "instruction": "Enable OSPF on R2 for shared link and LAN.",
+            "expectedCommands": [
+              "router ospf 1",
+              "network 10.0.12.0 0.0.0.3 area 0",
+              "network 10.0.2.0 0.0.0.255 area 0"
+            ]
+          },
+          {
+            "id": "t5",
+            "order": 5,
+            "title": "Verify R2",
+            "device": "R2",
+            "instruction": "Confirm O*E2 default in routing table.",
+            "expectedCommands": [
+              "show ip route ospf"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show ip route",
+          "show ip ospf neighbor"
+        ],
+        "successCriteria": [
+          "R2 receives OSPF external default",
+          "R1 originates only with existing default/static"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "originate without default route present",
+          "Area mismatch prevents learning default"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "3.4 OSPF default originate",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-OSPF-DEFAULT",
+        "title": "Advertise a Default Route with OSPF",
+        "objectiveId": "3.4",
+        "nodes": [
+          {
+            "id": "r2",
+            "label": "R2 internal",
+            "type": "router",
+            "x": 25,
+            "y": 50
+          },
+          {
+            "id": "r1",
+            "label": "R1 edge",
+            "type": "router",
+            "x": 55,
+            "y": 50
+          },
+          {
+            "id": "isp",
+            "label": "ISP",
+            "type": "cloud",
+            "x": 85,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "r2",
+            "target": "r1",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "r1",
+            "target": "isp",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-OSPF-DEFAULT",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "ip route 0.0.0.0 0.0.0.0 203.0.113.1"
+          },
+          {
+            "device": "R1",
+            "command": "default-information originate"
+          },
+          {
+            "device": "R2",
+            "command": "router ospf 1"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show ip route",
+            "expectedResult": "0.0.0.0/0",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-OSPF-DEFAULT",
+        "title": "Advertise a Default Route with OSPF",
+        "objectiveId": "3.4",
+        "nodes": [
+          {
+            "id": "def",
+            "label": "Static 0.0.0.0/0",
+            "type": "process",
+            "x": 55,
+            "y": 30
+          },
+          {
+            "id": "ospf",
+            "label": "default-information originate",
+            "type": "process",
+            "x": 55,
+            "y": 55,
+            "status": "highlighted"
+          },
+          {
+            "id": "r2",
+            "label": "R2 O*E2",
+            "type": "router",
+            "x": 25,
+            "y": 55
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "def",
+            "target": "ospf",
+            "status": "forwarded"
+          },
+          {
+            "id": "d2",
+            "source": "ospf",
+            "target": "r2",
+            "status": "forwarded"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-OSPF-DEFAULT",
+          "title": "Advertise a Default Route with OSPF",
+          "ckuIds": [
+            "CKU-OSPF",
+            "CKU-DEFAULT-ROUTE"
+          ],
+          "diagramId": "DIAG-LAB-OSPF-DEFAULT",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Edge default",
+              "action": "R1 has static default to ISP",
+              "successState": "matched"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Redistribute",
+              "action": "OSPF advertises default into area 0",
+              "successState": "learned"
+            }
+          ]
+        }
+      ]
     }
   ],
   "counts": {
@@ -4605,6 +5076,6 @@
     "mnemonics": 8,
     "examTraps": 11,
     "misconceptions": 9,
-    "labs": 8
+    "labs": 10
   }
 }

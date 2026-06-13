@@ -19,6 +19,7 @@ export const LAB_SOURCES = {
 }
 
 import { EXTENDED_LAB_BUNDLES } from './ccnaLabsExtended.js'
+import { PHASE_LAB_BUNDLES } from './ccnaLabsPhases.js'
 
 /* -------------------------------------------------------------------------
    LAB: Dynamic ARP Inspection with DHCP Snooping
@@ -1173,7 +1174,11 @@ const SUBNET_LAB = { lab: LAB_SUBNET_DEF, topology: TOPO_SUBNET, validator: VALI
    REGISTRY + LOADERS
    ------------------------------------------------------------------------- */
 const CORE_LABS = { [DAI.lab.id]: DAI, [VLAN_TRUNK.lab.id]: VLAN_TRUNK, [OSPF.lab.id]: OSPF, [NAT.lab.id]: NAT, [STATIC.lab.id]: STATIC, [SSH.lab.id]: SSH, [ACL.lab.id]: ACL, [SUBNET_LAB.lab.id]: SUBNET_LAB }
-const LABS = { ...CORE_LABS, ...Object.fromEntries(EXTENDED_LAB_BUNDLES.map(b => [b.lab.id, b])) }
+const LABS = {
+  ...CORE_LABS,
+  ...Object.fromEntries(EXTENDED_LAB_BUNDLES.map(b => [b.lab.id, b])),
+  ...Object.fromEntries(PHASE_LAB_BUNDLES.map(b => [b.lab.id, b])),
+}
 
 export const allLabs = () => Object.values(LABS).map(x => x.lab)
 export function getLab(labId) { return LABS[labId] || null }

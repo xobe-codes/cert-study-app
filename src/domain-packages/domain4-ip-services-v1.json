@@ -4,9 +4,9 @@
     "domainNumber": 4,
     "domainName": "IP Services",
     "version": "1",
-    "compiledAt": "2026-06-13T17:29:43.628Z",
+    "compiledAt": "2026-06-13T17:39:38.964Z",
     "curatedObjectives": 1,
-    "labs": 6
+    "labs": 8
   },
   "sourceAudit": {
     "sources": {
@@ -2321,6 +2321,436 @@
           ]
         }
       ]
+    },
+    {
+      "lab": {
+        "id": "LAB-STATIC-NAT",
+        "title": "Configure Static NAT for a Server",
+        "domainId": "services",
+        "objectiveId": "4.1",
+        "ckuIds": [
+          "CKU-NAT",
+          "CKU-STATIC-NAT"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 14,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "Internal web server 192.168.1.10 must be reachable from the Internet as 203.0.113.10. R1 Gi0/1 is inside (LAN), Gi0/0 is outside (ISP). Configure static NAT and verify translations.",
+        "learningGoals": [
+          "ip nat inside/outside",
+          "ip nat inside source static",
+          "Verify with show ip nat translations"
+        ],
+        "topologyId": "TOPO-LAB-STATIC-NAT",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Mark interfaces",
+            "device": "R1",
+            "instruction": "Gi0/1 inside, Gi0/0 outside.",
+            "expectedCommands": [
+              "interface gi0/1",
+              "ip nat inside",
+              "interface gi0/0",
+              "ip nat outside"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Static mapping",
+            "device": "R1",
+            "instruction": "Map inside 192.168.1.10 to outside 203.0.113.10 statically.",
+            "expectedCommands": [
+              "ip nat inside source static 192.168.1.10 203.0.113.10"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Verify",
+            "device": "R1",
+            "instruction": "Generate traffic and show translations.",
+            "expectedCommands": [
+              "show ip nat translations"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show ip nat translations",
+          "show ip nat statistics"
+        ],
+        "successCriteria": [
+          "Static translation appears after traffic",
+          "Inside/outside correctly marked"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "Reversed inside/outside interfaces",
+          "Using dynamic overload instead of static for 1:1 server publish"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "4.1 Static NAT",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-STATIC-NAT",
+        "title": "Configure Static NAT for a Server",
+        "objectiveId": "4.1",
+        "nodes": [
+          {
+            "id": "srv",
+            "label": "Server .10",
+            "type": "server",
+            "x": 20,
+            "y": 50
+          },
+          {
+            "id": "r1",
+            "label": "R1 NAT",
+            "type": "router",
+            "x": 50,
+            "y": 50
+          },
+          {
+            "id": "inet",
+            "label": "Internet",
+            "type": "cloud",
+            "x": 80,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "srv",
+            "target": "r1",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "r1",
+            "target": "inet",
+            "status": "forwarded"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-STATIC-NAT",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "ip nat inside"
+          },
+          {
+            "device": "R1",
+            "command": "ip nat outside"
+          },
+          {
+            "device": "R1",
+            "command": "ip nat inside source static 192.168.1.10 203.0.113.10"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show ip nat translations",
+            "expectedResult": "192.168.1.10",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-STATIC-NAT",
+        "title": "Configure Static NAT for a Server",
+        "objectiveId": "4.1",
+        "nodes": [
+          {
+            "id": "in",
+            "label": "192.168.1.10",
+            "type": "server",
+            "x": 25,
+            "y": 50
+          },
+          {
+            "id": "nat",
+            "label": "Static NAT",
+            "type": "process",
+            "x": 50,
+            "y": 50
+          },
+          {
+            "id": "out",
+            "label": "203.0.113.10",
+            "type": "cloud",
+            "x": 75,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "in",
+            "target": "nat",
+            "status": "forwarded"
+          },
+          {
+            "id": "d2",
+            "source": "nat",
+            "target": "out",
+            "status": "forwarded"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-STATIC-NAT",
+          "title": "Configure Static NAT for a Server",
+          "ckuIds": [
+            "CKU-NAT",
+            "CKU-STATIC-NAT"
+          ],
+          "diagramId": "DIAG-LAB-STATIC-NAT",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Inbound",
+              "action": "Internet host connects to 203.0.113.10",
+              "successState": "forwarded"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Translate",
+              "action": "R1 maps to 192.168.1.10",
+              "successState": "modified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-SNMP",
+        "title": "Configure SNMPv2c Read-Only Community",
+        "domainId": "services",
+        "objectiveId": "4.4",
+        "ckuIds": [
+          "CKU-SNMP"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 10,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "Allow read-only SNMP polling from NMS 192.168.1.100 using community CCNAro with ACL restriction.",
+        "learningGoals": [
+          "snmp-server community RO",
+          "snmp-server host traps",
+          "Restrict with ACL"
+        ],
+        "topologyId": "TOPO-LAB-SNMP",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "RO community",
+            "device": "R1",
+            "instruction": "snmp-server community CCNAro RO.",
+            "expectedCommands": [
+              "snmp-server community CCNAro ro"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Trap host",
+            "device": "R1",
+            "instruction": "Send traps to 192.168.1.100 version 2c CCNAro.",
+            "expectedCommands": [
+              "snmp-server host 192.168.1.100 version 2c CCNAro"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Location/contact",
+            "device": "R1",
+            "instruction": "Set snmp-server location and contact for inventory.",
+            "expectedCommands": [
+              "snmp-server location HQ",
+              "snmp-server contact netops@example.com"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Verify",
+            "device": "R1",
+            "instruction": "Show SNMP config.",
+            "expectedCommands": [
+              "show snmp community"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show snmp",
+          "show snmp community"
+        ],
+        "successCriteria": [
+          "RO community configured",
+          "Trap host points to NMS"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "RW community for polling only",
+          "SNMPv1 vs v2c host syntax confusion"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "4.4 SNMP",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-SNMP",
+        "title": "Configure SNMPv2c Read-Only Community",
+        "objectiveId": "4.4",
+        "nodes": [
+          {
+            "id": "r1",
+            "label": "R1",
+            "type": "router",
+            "x": 35,
+            "y": 50
+          },
+          {
+            "id": "nms",
+            "label": "NMS .100",
+            "type": "server",
+            "x": 75,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "r1",
+            "target": "nms",
+            "label": "UDP/161",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-SNMP",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "snmp-server community CCNAro ro"
+          },
+          {
+            "device": "R1",
+            "command": "snmp-server host 192.168.1.100 version 2c CCNAro"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show snmp community",
+            "expectedResult": "CCNAro",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-SNMP",
+        "title": "Configure SNMPv2c Read-Only Community",
+        "objectiveId": "4.4",
+        "nodes": [
+          {
+            "id": "r1",
+            "label": "Agent",
+            "type": "router",
+            "x": 35,
+            "y": 50
+          },
+          {
+            "id": "nms",
+            "label": "Manager",
+            "type": "server",
+            "x": 75,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "nms",
+            "target": "r1",
+            "label": "GET",
+            "status": "forwarded"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-SNMP",
+          "title": "Configure SNMPv2c Read-Only Community",
+          "ckuIds": [
+            "CKU-SNMP"
+          ],
+          "diagramId": "DIAG-LAB-SNMP",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Poll",
+              "action": "NMS polls OID with RO community",
+              "successState": "matched"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Trap",
+              "action": "Device sends trap on link down",
+              "successState": "forwarded"
+            }
+          ]
+        }
+      ]
     }
   ],
   "counts": {
@@ -2332,6 +2762,6 @@
     "mnemonics": 1,
     "examTraps": 3,
     "misconceptions": 2,
-    "labs": 6
+    "labs": 8
   }
 }

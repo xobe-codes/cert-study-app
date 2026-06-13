@@ -4,9 +4,9 @@
     "domainNumber": 5,
     "domainName": "Security Fundamentals",
     "version": "1",
-    "compiledAt": "2026-06-13T17:29:43.630Z",
+    "compiledAt": "2026-06-13T17:39:38.965Z",
     "curatedObjectives": 2,
-    "labs": 5
+    "labs": 7
   },
   "sourceAudit": {
     "sources": {
@@ -2624,6 +2624,465 @@
           ]
         }
       ]
+    },
+    {
+      "lab": {
+        "id": "LAB-PORT-SECURITY",
+        "title": "Configure Port Security on an Access Port",
+        "domainId": "security",
+        "objectiveId": "5.6",
+        "ckuIds": [
+          "CKU-PORT-SECURITY",
+          "CKU-LAYER-2-SECURITY"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 14,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "SW1 Fa0/5 connects a single corporate PC. Limit the port to one MAC address, enable sticky learning, and set violation mode to shutdown.",
+        "learningGoals": [
+          "switchport port-security maximum",
+          "sticky MAC learning",
+          "violation shutdown"
+        ],
+        "topologyId": "TOPO-LAB-PORT-SECURITY",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Access VLAN",
+            "device": "SW1",
+            "instruction": "Set Fa0/5 as access port in VLAN 10.",
+            "expectedCommands": [
+              "interface fa0/5",
+              "switchport mode access",
+              "switchport access vlan 10"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Enable port-security",
+            "device": "SW1",
+            "instruction": "Enable port-security with max 1 MAC and sticky.",
+            "expectedCommands": [
+              "switchport port-security",
+              "switchport port-security maximum 1",
+              "switchport port-security mac-address sticky"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Violation mode",
+            "device": "SW1",
+            "instruction": "Set violation mode to shutdown (err-disable the port).",
+            "expectedCommands": [
+              "switchport port-security violation shutdown"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Verify",
+            "device": "SW1",
+            "instruction": "Confirm port-security is active on Fa0/5.",
+            "expectedCommands": [
+              "show port-security interface fa0/5"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show port-security",
+          "show port-security interface fa0/5"
+        ],
+        "successCriteria": [
+          "Port-security enabled on Fa0/5",
+          "Maximum 1 sticky MAC",
+          "Violation mode shutdown"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "Port-security on a trunk port",
+          "Forgetting sticky — MAC table clears on reload",
+          "restrict mode vs shutdown confusion"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "5.6 Port Security",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-PORT-SECURITY",
+        "title": "Configure Port Security on an Access Port",
+        "objectiveId": "5.6",
+        "nodes": [
+          {
+            "id": "sw1",
+            "label": "SW1",
+            "type": "switch",
+            "x": 50,
+            "y": 40
+          },
+          {
+            "id": "pc",
+            "label": "PC",
+            "type": "pc",
+            "x": 50,
+            "y": 75
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "sw1",
+            "target": "pc",
+            "label": "Fa0/5",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-PORT-SECURITY",
+        "requiredCommands": [
+          {
+            "device": "SW1",
+            "command": "switchport port-security"
+          },
+          {
+            "device": "SW1",
+            "command": "switchport port-security maximum 1"
+          },
+          {
+            "device": "SW1",
+            "command": "switchport port-security mac-address sticky"
+          },
+          {
+            "device": "SW1",
+            "command": "switchport port-security violation shutdown"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "SW1",
+            "command": "show port-security interface fa0/5",
+            "expectedResult": "Port Security: Enabled",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-PORT-SECURITY",
+        "title": "Configure Port Security on an Access Port",
+        "objectiveId": "5.6",
+        "nodes": [
+          {
+            "id": "sw",
+            "label": "SW1 Fa0/5",
+            "type": "switch",
+            "x": 40,
+            "y": 50
+          },
+          {
+            "id": "mac",
+            "label": "1 sticky MAC",
+            "type": "process",
+            "x": 70,
+            "y": 50,
+            "status": "highlighted"
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "sw",
+            "target": "mac",
+            "status": "forwarding"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-PORT-SECURITY",
+          "title": "Configure Port Security on an Access Port",
+          "ckuIds": [
+            "CKU-PORT-SECURITY",
+            "CKU-LAYER-2-SECURITY"
+          ],
+          "diagramId": "DIAG-LAB-PORT-SECURITY",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Learn",
+              "action": "First host MAC learned as sticky secure address",
+              "successState": "learned"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Violate",
+              "action": "Second MAC triggers shutdown violation",
+              "successState": "dropped"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lab": {
+        "id": "LAB-EXTENDED-ACL-BUILD",
+        "title": "Build and Apply an Extended Named ACL",
+        "domainId": "security",
+        "objectiveId": "5.5",
+        "ckuIds": [
+          "CKU-EXTENDED-ACL",
+          "CKU-ACL-PLACEMENT"
+        ],
+        "labType": "guided",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 16,
+        "tools": [
+          "Packet Tracer",
+          "GNS3"
+        ],
+        "examRelevance": "core",
+        "scenario": "R1 connects office 192.168.1.0/24 (Gi0/0) to servers 10.0.0.0/24 (Gi0/1). Create named ACL WEB_ONLY permitting HTTP/HTTPS from office to servers, deny other office-to-server IP, apply inbound on Gi0/0.",
+        "learningGoals": [
+          "ip access-list extended",
+          "permit tcp eq 80/443",
+          "Apply extended ACL near source"
+        ],
+        "topologyId": "TOPO-LAB-EXTENDED-ACL-BUILD",
+        "prerequisites": [],
+        "tasks": [
+          {
+            "id": "t1",
+            "order": 1,
+            "title": "Create ACL",
+            "device": "R1",
+            "instruction": "Create extended ACL WEB_ONLY with permit tcp 80 and 443 from office to servers.",
+            "expectedCommands": [
+              "ip access-list extended WEB_ONLY",
+              "permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 80",
+              "permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 443"
+            ]
+          },
+          {
+            "id": "t2",
+            "order": 2,
+            "title": "Explicit deny",
+            "device": "R1",
+            "instruction": "Add deny ip from office to server subnet, then end ACL.",
+            "expectedCommands": [
+              "deny ip 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255"
+            ]
+          },
+          {
+            "id": "t3",
+            "order": 3,
+            "title": "Apply inbound",
+            "device": "R1",
+            "instruction": "Apply WEB_ONLY inbound on Gi0/0 (office-facing).",
+            "expectedCommands": [
+              "interface gi0/0",
+              "ip access-group WEB_ONLY in"
+            ]
+          },
+          {
+            "id": "t4",
+            "order": 4,
+            "title": "Verify",
+            "device": "R1",
+            "instruction": "Show ACL entries and hit counts.",
+            "expectedCommands": [
+              "show access-lists WEB_ONLY"
+            ]
+          }
+        ],
+        "verificationCommands": [
+          "show access-lists",
+          "show ip interface gi0/0"
+        ],
+        "successCriteria": [
+          "HTTP/HTTPS permitted office→servers",
+          "ACL applied inbound Gi0/0"
+        ],
+        "failureCriteria": [
+          "Misconfigured interface or wrong VLAN"
+        ],
+        "commonMistakes": [
+          "Subnet mask instead of wildcard",
+          "Applying outbound on server interface for source filtering",
+          "Missing deny — relies only on implicit deny for wrong protocols"
+        ],
+        "source": {
+          "name": "Cisco CCNA 200-301 v1.1 Exam Topics",
+          "chapter": "5.5 Extended ACL",
+          "confidence": 0.9
+        },
+        "metadata": {
+          "version": "1",
+          "status": "validated",
+          "confidence": 0.9
+        }
+      },
+      "topology": {
+        "id": "TOPO-LAB-EXTENDED-ACL-BUILD",
+        "title": "Build and Apply an Extended Named ACL",
+        "objectiveId": "5.5",
+        "nodes": [
+          {
+            "id": "pc",
+            "label": "Office",
+            "type": "pc",
+            "x": 20,
+            "y": 50
+          },
+          {
+            "id": "r1",
+            "label": "R1",
+            "type": "router",
+            "x": 50,
+            "y": 50
+          },
+          {
+            "id": "srv",
+            "label": "Servers",
+            "type": "server",
+            "x": 80,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "l1",
+            "source": "pc",
+            "target": "r1",
+            "label": "Gi0/0 in",
+            "status": "forwarding"
+          },
+          {
+            "id": "l2",
+            "source": "r1",
+            "target": "srv",
+            "label": "Gi0/1",
+            "status": "forwarding"
+          }
+        ]
+      },
+      "validator": {
+        "labId": "LAB-EXTENDED-ACL-BUILD",
+        "requiredCommands": [
+          {
+            "device": "R1",
+            "command": "ip access-list extended WEB_ONLY"
+          },
+          {
+            "device": "R1",
+            "command": "permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 80"
+          },
+          {
+            "device": "R1",
+            "command": "ip access-group WEB_ONLY in"
+          }
+        ],
+        "verificationChecks": [
+          {
+            "id": "v1",
+            "device": "R1",
+            "command": "show access-lists WEB_ONLY",
+            "expectedResult": "WEB_ONLY",
+            "passCondition": "ok"
+          }
+        ]
+      },
+      "diagram": {
+        "id": "DIAG-LAB-EXTENDED-ACL-BUILD",
+        "title": "Build and Apply an Extended Named ACL",
+        "objectiveId": "5.5",
+        "nodes": [
+          {
+            "id": "src",
+            "label": "Office",
+            "type": "pc",
+            "x": 20,
+            "y": 50
+          },
+          {
+            "id": "acl",
+            "label": "WEB_ONLY in",
+            "type": "process",
+            "x": 50,
+            "y": 50,
+            "status": "highlighted"
+          },
+          {
+            "id": "dst",
+            "label": "Servers",
+            "type": "server",
+            "x": 80,
+            "y": 50
+          }
+        ],
+        "links": [
+          {
+            "id": "d1",
+            "source": "src",
+            "target": "acl",
+            "status": "forwarded"
+          },
+          {
+            "id": "d2",
+            "source": "acl",
+            "target": "dst",
+            "status": "forwarded"
+          }
+        ],
+        "annotations": []
+      },
+      "packetFlows": [
+        {
+          "id": "FLOW-LAB-EXTENDED-ACL-BUILD",
+          "title": "Build and Apply an Extended Named ACL",
+          "ckuIds": [
+            "CKU-EXTENDED-ACL",
+            "CKU-ACL-PLACEMENT"
+          ],
+          "diagramId": "DIAG-LAB-EXTENDED-ACL-BUILD",
+          "steps": [
+            {
+              "id": "s1",
+              "order": 1,
+              "title": "Match permit",
+              "action": "TCP 80/443 matches first permit lines",
+              "successState": "matched"
+            },
+            {
+              "id": "s2",
+              "order": 2,
+              "title": "Deny other",
+              "action": "Other IP traffic hits explicit deny",
+              "successState": "dropped"
+            }
+          ]
+        }
+      ]
     }
   ],
   "counts": {
@@ -2635,6 +3094,6 @@
     "mnemonics": 3,
     "examTraps": 6,
     "misconceptions": 4,
-    "labs": 5
+    "labs": 7
   }
 }
