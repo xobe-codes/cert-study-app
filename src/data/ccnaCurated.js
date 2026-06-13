@@ -16,6 +16,8 @@
    @typedef {{ sourceName: string, chapter?: string, page?: string, confidence: number, notes?: string }} SourceRef
    ========================================================================= */
 
+import { IMPORTED_QUESTIONS } from './ccnaQuestionImports.js'
+
 // Short source identifiers reused across records.
 export const CURATED_SOURCES = {
   blueprint: 'Cisco CCNA 200-301 v1.1 Exam Topics',
@@ -1533,17 +1535,20 @@ export function getCurated(objectiveId) { return CURATED[objectiveId] || null }
 /** True if this objective has a curated reading (source-grounded explanation, no AI). */
 export function hasCuratedReading(objectiveId) { return !!CURATED[objectiveId]?.reading }
 
-/** True if this objective has curated (static, zero-API) questions. */
-export function hasCuratedQuestions(objectiveId) { return (CURATED[objectiveId]?.questions?.length || 0) > 0 }
+/** True if this objective has curated (static, zero-API) questions, hand-curated or bulk-imported. */
+export function hasCuratedQuestions(objectiveId) {
+  return (CURATED[objectiveId]?.questions?.length || 0) > 0 || (IMPORTED_QUESTIONS[objectiveId]?.length || 0) > 0
+}
 
-/** Curated questions reshaped to the app's quiz-bank question shape. */
+/** Curated + bulk-imported questions reshaped to the app's quiz-bank question shape. */
 export function getCuratedQuestions(objectiveId) {
   const o = CURATED[objectiveId]
-  if (!o?.questions) return []
-  return o.questions.map(q => ({
+  const hand = (o?.questions || []).map(q => ({
     question: q.question, choices: q.choices, correctIndex: q.correctIndex,
     explanation: q.explanation, type: q.type, difficulty: q.difficulty, concept: q.concept,
   }))
+  const imported = IMPORTED_QUESTIONS[objectiveId] || []
+  return hand.concat(imported)
 }
 
 /* -------------------------------------------------------------------------

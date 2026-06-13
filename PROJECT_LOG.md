@@ -8,11 +8,12 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 
 ## Status Summary (as of 2026-06-13)
 
-- **Curated objectives**: 11 of 53 have static, source-grounded content + questions (no AI needed): `1.5`, `1.6`, `1.8`, `1.9`, `2.1`, `2.2`, `2.5`, `3.2`, `3.4`, `4.1`, `5.5`.
+- **Curated objectives**: 11 of 53 have full static, source-grounded content (reading + questions, no AI needed): `1.5`, `1.6`, `1.8`, `1.9`, `2.1`, `2.2`, `2.5`, `3.2`, `3.4`, `4.1`, `5.5`.
+- **Question-bank-only objectives**: 14 more objectives (`2.3`, `2.4`, `2.6`, `2.7`, `2.8`, `3.1`, `3.3`, `3.5`, `6.1`-`6.6`) now have `hasCuratedQuestions=true` via bulk-imported question pools (no curated `reading`; AI still used for Explain/Visual). Total objectives with zero-API questions: **25/53**.
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
-- **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **Decision made to exclude 14** (3.4 multi-area OSPF cluster) → **884 importable**. **12 imported so far** (4.1, see Timeline item 9) → 872 remaining.
+- **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **Decision made to exclude 12** (3.4 multi-area OSPF cluster, see Timeline item 14) → **403 imported so far** (12 from 4.1 pilot + 391 from domains 2/3/6, item 7) → 481 remaining (QB 2.9 orphan + domain 5 objectives not yet imported).
 - **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files created and committed (`PROJECT_PROFILE.md`, `COMMANDS.md`, `RISKY_AREAS.md`).
-- **Next planned work**: MASTER SEQUENCE item 7 (import remaining clean domains 2, 3, 6) — see `ENHANCEMENT_PRIORITIES.md`.
+- **Next planned work**: MASTER SEQUENCE item 8 (decide orphaned question sets: QB 2.9, QB 5.4, excluded 3.4 OSPF cluster) — see `ENHANCEMENT_PRIORITIES.md`. Per user instruction, work stopped after item 7.
 - **Predicted outcome of full rollout**: ~77% of objectives (41/53) get static questions; ~23% (12/53) remain AI-only (mostly Domain 1, which has no question-bank source yet).
 
 ---
@@ -182,15 +183,45 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 **Decision**: QB 5.8 → app **5.7** ("Compare authentication, authorization, accounting") — both are conceptual/comparative. App **5.4** ("Configure and verify AAA with TACACS+/RADIUS") is configuration-command-focused and stays AI-only/uncovered, consistent with the existing note in this log. The Domain 5 crosswalk table above is now fully confirmed with no remaining ambiguity.
 
-**Outcome**: Domain 5 import (item 7) can proceed using the confirmed crosswalk: QB 5.1→5.1, 5.2→5.2, 5.3→5.3, 5.5→5.10, 5.6→5.5, 5.7→5.6, 5.8→5.7, 5.9→5.8, 5.10→5.9. QB 5.4 (password policies) remains an orphan for item 8's disposition decision.
+**Outcome**: a future Domain 5 import can proceed using the confirmed crosswalk: QB 5.1→5.1, 5.2→5.2, 5.3→5.3, 5.5→5.10, 5.6→5.5, 5.7→5.6, 5.8→5.7, 5.9→5.8, 5.10→5.9. QB 5.4 (password policies) remains an orphan for item 8's disposition decision. (Domain 5 itself is not part of item 7's scope — "2, 3, 6" — and remains a future item.)
+
+---
+
+### 14. MASTER SEQUENCE item 7 — Import remaining clean domains (2, 3, 6)
+
+**Goal**: bulk-import the validated question banks for Domains 2 (`2.3`-`2.8`), 3 (`3.1`-`3.5`), and 6 (`6.1`-`6.7`) using the converter pipeline proven in item 9 (4.1 pilot), at a scale (403 questions across 19 source files) too large for hand-curation.
+
+**Approach**: wrote `scripts/convertQuestionBank.mjs`, a one-time bulk converter that reads the QB source JSON from `~/Downloads/{domain2-rest-2.3-to-2.9-validation,domain3-ip-connectivity-validation,domain5-domain6-validation}/`, applies the conversion-mapping rules below, and writes `src/data/ccnaQuestionImports.js` (`IMPORTED_QUESTIONS`, keyed by app objectiveId). `ccnaCurated.js`'s `hasCuratedQuestions`/`getCuratedQuestions` now merge `IMPORTED_QUESTIONS[id]` alongside any hand-curated `CURATED[id].questions` — a 2-line addition each, leaving the hand-curated content untouched.
+
+**Mapping rules** (extends item 9's rules with the dominant new `multiple-choice-single` type):
+- `questionType`: `scenario`→`scenario`, `output-interpretation`/`command-analysis`→`application`, `multiple-choice-single`→`definition` (cosmetic only — `App.jsx`'s `TYPE_LABEL` falls back to the raw string for unmapped types).
+- `difficulty`: `exam-ready`→`hard`, `medium`/`easy` passthrough.
+- `choices`/`correctChoiceIds` → flattened `choices[]` (text only) + `correctIndex`.
+- `concept` derived from `ckuIds[0]` (`CKU-` prefix stripped, lowercased, hyphens→spaces); `ckuIds` passed through as-is.
+
+**Decisions applied**:
+- **3.4 exclusion set**: inspected the file directly — exactly **12** questions (not 14 as item 6 estimated) carry `qualityFlags.uncertainObjectiveMapping: true` and are about multi-area OSPF/ABRs (ids `obj-3.4-source-q007/008/009/011/038/039/040/043/044/045/059/062`). Used these 12 as the "multi-area OSPF cluster" exclusion (51 of 63 imported). The 12-vs-14 discrepancy from item 6 is noted but not further chased — 12 is the actual flagged set.
+- **QB 2.9** (WLAN operational parameters, 13 questions): app's Network Access domain only has objectives 2.1-2.8 — no corresponding app objective exists. Skipped entirely; left for item 8's orphan disposition.
+- **QB 6.6 + 6.7 → app 6.6**: app 6.6 ("Interpret JSON data and configuration management tools") covers two QB objectives — 6.6 ("Recognize capabilities of Puppet, Chef, Ansible", 18 Qs) and 6.7 ("Interpret JSON encoded data", 12 Qs). Both merged into app `6.6` (30 questions total).
+- All other QB objectiveIds (`2.3`-`2.8`, `3.1`-`3.3`, `3.5`, `6.1`-`6.5`) map 1:1 to the same app objectiveId — confirmed by reading each file's `objective.objectiveId`/`objectiveTitle` against `App.jsx`'s `DOMAINS`.
+
+**Per-objective question counts imported**: 2.3:15, 2.4:15, 2.5:46 (added to existing curated), 2.6:10, 2.7:7, 2.8:10, 3.1:27, 3.2:37 (added to existing curated), 3.3:43, 3.4:51 (added to existing curated), 3.5:30, 6.1:6, 6.2:9, 6.3:24, 6.4:11, 6.5:20, 6.6:30 (18+12 merged). **Total: 391 questions** (403 read - 12 excluded).
+
+**Validation**:
+- `npm run compile:ccna` — 11 curated objectives unchanged (imports are a separate registry, not part of `CURATED`).
+- `npm run build` — passed, 749.94 kB (up from 554.84 kB, expected given +391 questions of static data).
+- Preview: objective `2.3` (previously zero curated content) → Quiz tab → "Build question bank" → **"From your saved bank of 15 · no API used"**, confirming the merge point works for questions-only objectives.
+
+**Outcome**: 25/53 objectives now have zero-API question pools (11 fully curated + 14 questions-only). 403/884 importable questions now live (12 from 4.1 pilot + 391 here). 481 remain: QB 2.9 (13, orphan), QB 5.4 (6, orphan), and Domain 5's other 9 objectives (not in item 7's scope).
 
 ---
 
 ## Open Decisions / Unresolved Questions
 
 1. ~~Domain 5 crosswalk above — confirm before importing Domain 5 questions (QB 5.8 → app 5.4 vs 5.7 is ambiguous).~~ **Resolved**, see Timeline item 13: QB 5.8 → app 5.7.
-2. Whether QB 2.9 (WLAN operational params, 13 questions) and QB 5.4 (password policies, 6 questions) become supplemental/unregistered content or get merged into their closest app objective.
+2. Whether QB 2.9 (WLAN operational params, 13 questions) and QB 5.4 (password policies, 6 questions) become supplemental/unregistered content or get merged into their closest app objective. (Item 8.)
 3. **4.2-4.9 (and similar uncurated objectives) question banks** — need either full curation (item 9) or a "questions-only" partial curated shape once item 3's per-content-type hybrid fallback lands.
+4. **Domain 5 import** (9 objectives, ~150+ Qs via the confirmed crosswalk in item 13) was not part of item 7's scope ("2, 3, 6") — needs a future MASTER SEQUENCE slot.
 
 ## Next Steps (in order, per ENHANCEMENT_PRIORITIES.md MASTER SEQUENCE)
 
@@ -200,7 +231,8 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 4. ~~Diagnostic placement test~~ — **done**, see Timeline item 11.
 5. ~~Exam Readiness Score hero metric on Home~~ — **done**, see Timeline item 12.
 6. ~~Domain 5 ID crosswalk decision~~ — **done**, see Timeline item 13.
-7. Import remaining clean domains (2, 3, 6).
+7. ~~Import remaining clean domains (2, 3, 6)~~ — **done**, see Timeline item 14.
+8. Decide orphaned question sets (QB 2.9, QB 5.4, excluded 3.4 OSPF cluster) — see Open Decisions #2 and #4 above.
 
 ## Predicted Impact (full rollout)
 
