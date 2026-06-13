@@ -1411,6 +1411,14 @@ const styles = {
   backBtn: { background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 15, cursor: 'pointer', padding: '10px 0', minHeight: 44, display: 'flex', alignItems: 'center', gap: 6 },
 }
 
+function SectionLabel({ icon, label }) {
+  return (
+    <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9, marginBottom: 12, display: 'flex', alignItems: 'center', gap: 5 }}>
+      <span>{icon}</span><span>{label}</span>
+    </div>
+  )
+}
+
 function StatusDot({ status }) {
   const color = status === 'mastered' ? COLORS.mint : status === 'in_progress' ? COLORS.purpleGlow : COLORS.silverDim
   return <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: 999, background: color, marginRight: 8, flexShrink: 0 }} />
@@ -1730,7 +1738,10 @@ function KeyTermsCarousel({ objective }) {
     <div style={{ marginBottom: 12 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-          <div style={{ ...styles.small, fontWeight: 600 }}>Key terms — tap a card to flip</div>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9 }}>🃏 KEY TERMS</div>
+            <div style={{ ...styles.small, fontSize: 11, marginTop: 1 }}>Tap a card to flip</div>
+          </div>
           {fromCurated && <span style={{ ...styles.pill('mint'), fontSize: 9 }}>CURATED · NO AI</span>}
         </div>
         <button
@@ -2416,9 +2427,10 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
         </div>
       )}
       {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
-      {recalled && curated && <CuratedReading data={curated} />}
+      {recalled && curated && <><SectionLabel icon="📖" label="READING" /><CuratedReading data={curated} /></>}
       {recalled && !curated && content && !loading && (
         <>
+          <SectionLabel icon="📖" label="READING" />
           <StructuredExplanation data={content} />
           <SourcesPanel objective={objective} />
           <AdjustExplanation onAdjust={(a) => fetchExplanation(true, a)} />
@@ -3887,14 +3899,14 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
         </button>
       )}
 
-      {tab === 'Explain' && <ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} />}
-      {tab === 'Visual' && <VisualAidTab objective={objective} />}
-      {tab === 'Quiz' && <QuizTab objective={objective} progress={progress} missed={missed} onMissed={onMissed} onScoreSaved={handleScoreSaved} />}
-      {tab === 'CLI Drill' && <CLIDrillTab objective={objective} />}
-      {tab === 'Subnetting' && <SubnettingTab />}
-      {tab === 'VLSM' && <VLSMTab />}
-      {tab === 'IPv6 Calc' && <IPv6CalcTab />}
-      {tab === 'ACL Calc' && <ACLWildcardTab />}
+      {tab === 'Explain' && <div><SectionLabel icon="📖" label="EXPLANATION" /><ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} /></div>}
+      {tab === 'Visual' && <div><SectionLabel icon="🖼" label="VISUAL AID" /><VisualAidTab objective={objective} /></div>}
+      {tab === 'Quiz' && <div><SectionLabel icon="❓" label="QUIZ" /><QuizTab objective={objective} progress={progress} missed={missed} onMissed={onMissed} onScoreSaved={handleScoreSaved} /></div>}
+      {tab === 'CLI Drill' && <div><SectionLabel icon="💻" label="CLI DRILL" /><CLIDrillTab objective={objective} /></div>}
+      {tab === 'Subnetting' && <div><SectionLabel icon="🧮" label="SUBNETTING PRACTICE" /><SubnettingTab /></div>}
+      {tab === 'VLSM' && <div><SectionLabel icon="🧮" label="VLSM PRACTICE" /><VLSMTab /></div>}
+      {tab === 'IPv6 Calc' && <div><SectionLabel icon="🔢" label="IPv6 CALCULATOR" /><IPv6CalcTab /></div>}
+      {tab === 'ACL Calc' && <div><SectionLabel icon="🔒" label="ACL WILDCARD CALCULATOR" /><ACLWildcardTab /></div>}
     </div>
   )
 }
