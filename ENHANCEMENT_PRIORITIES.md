@@ -32,7 +32,7 @@ Start at **#12** unless you need production updated first (**#41**).
 | 14 | ACL wildcard-mask calculator (`5.5` / `5.6`) | Less AI | Queued | Pair with #13 |
 | 15 | Socratic tutor mode toggle | Better AI | Queued | Prompt + UI toggle on tutor chat |
 | 16 | Session recap on return to Home | Better AI | Queued | Wire `ccna_events_v1` + `buildLearnerSummary`; Haiku |
-| 17 | Domain weight overlay on progress bars | UX | Queued | Weight bars by exam % (e.g. D4 = 25%) |
+| 17 | Domain weight overlay on progress bars | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 18 | Progressive hint system in quizzes | Better AI | Queued | Pre-answer hint; reuse `explainMistake()` cache |
 | 19 | "Explain it differently" style switcher | Better AI | Queued | Extend `AdjustExplanation` |
 | 20 | Personalized mnemonics for missed concepts | Better AI | Queued | Tie to retention-health weak bucket |
@@ -42,16 +42,16 @@ Start at **#12** unless you need production updated first (**#41**).
 | 24 | Expand hands-on labs (47/53 have none) | Less AI | Queued | Next targets: `1.6`, `5.5`, `2.2` |
 | 25 | Subnetting drill mode (binary feedback) | Less AI | Queued | After #13; CLI-drill validator pattern |
 | 26 | CLI lab AI feedback on failed validation | Better AI | Queued | Haiku explains why a lab command failed |
-| 27 | Global search / Cmd+K navigation | UX | Queued | Defer until nav pain increases |
-| 28 | Exam date countdown + adaptive daily plan | UX | Queued | Tie readiness + SRS + weak domains |
-| 29 | Focus Mode (weak-area-only review) | UX | Queued | Filter Daily Review to weak bucket |
-| 30 | Lapse → same-session re-queue | UX | Queued | Immediate re-test on 2nd miss |
-| 31 | "Exam trap of the day" widget (Home) | UX | Queued | Surface `commonMistakes` / exam-trap data |
+| 27 | Global search / Cmd+K navigation | UX | ~~Queued~~ — **done** (Timeline 19) |
+| 28 | Exam date countdown + adaptive daily plan | UX | ~~Queued~~ — **done** (Timeline 19) |
+| 29 | Focus Mode (weak-area-only review) | UX | ~~Queued~~ — **done** (Timeline 19) |
+| 30 | Lapse → same-session re-queue | UX | ~~Queued~~ — **done** (Timeline 19) |
+| 31 | "Exam trap of the day" widget (Home) | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 32 | Background pre-caching for uncurated objectives | Less AI | Queued | Lower urgency as static pool grows |
 | 33 | Mock exam from static pool (hybrid) | Less AI | Queued | Assemble mock from banks; AI fills gaps only |
-| 34 | Mock exam history trend chart | UX | Queued | Score-over-time per domain |
-| 35 | Troubleshooting question weighting near exam | UX | Queued | Skew quiz mix as exam approaches |
-| 36 | Adaptive question pacing within session | UX | Queued | Live difficulty from streak |
+| 34 | Mock exam history trend chart | UX | ~~Queued~~ — **done** (Timeline 19) |
+| 35 | Troubleshooting question weighting near exam | UX | ~~Queued~~ — **done** (Timeline 19) |
+| 36 | Adaptive question pacing within session | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 37 | Auto cross-device sync / setup nudge | UX | Queued | `sync.js` needs D1 provisioning |
 | 38 | Voice / TTS mode for tutor | Better AI | Queued | Browser `speechSynthesis` |
 | 39 | AI "exam day" mock interview | Better AI | Queued | Late-stage exam prep |
@@ -60,7 +60,7 @@ Start at **#12** unless you need production updated first (**#41**).
 | 42 | Static reading stubs for Q-only objectives | Less AI | Queued | Reduce Explain-tab API for `2.3`, `6.2`, etc. |
 | 43 | Pre-assessment from static question bank | Less AI | Queued | Sample 6 Qs from `getCuratedQuestions()` before AI |
 | 44 | Fix offline packaging to skip curated assets | Less AI | Queued | `packageObjectiveOffline()` should not re-call AI |
-| 45 | Show CURATED / Q-ONLY / AI badge on objective header | UX | Queued | Surface coverage before user burns an API call |
+| 45 | Show CURATED / Q-ONLY / AI badge on objective header | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 46 | Deploy to production | Infra | **Ready** | `npm run build && npx wrangler pages deploy dist --project-name ccna-study-tool` |
 | 47 | Fix Key Terms auto-load bug + cache-first for all objectives | Bug fix | ~~**Next (urgent)**~~ — **done**, see PROJECT_LOG.md item 17 |
 | 48 | Static key info block on Explain tab (all objectives) | Less AI | ~~Queued~~ — **done**, see PROJECT_LOG.md item 17 |

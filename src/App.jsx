@@ -553,6 +553,7 @@ const STORAGE_KEYS = {
   labDone: 'ccna_lab_done_v1',
   theme: 'ccna_theme_v1',
   onboardDone: 'ccna_onboard_done_v1',
+  mockHistory: 'ccna_mock_history_v1',
 }
 
 // progress shape: { [objectiveId]: { status: 'unseen'|'in_progress'|'mastered', quizScores: [{score,total,date}], lastSeen } }
@@ -745,6 +746,10 @@ async function enableSectionReview(objectiveId) {
 async function loadDueQuestions(limit = 20) {
   const bank = await loadQuizBank()
   const now = Date.now()
+  // If exam date is set and within 30 days, boost troubleshooting questions
+  const examDate = await window.storage.getItem('ccna_exam_date_v1')
+  const daysToExam = examDate ? Math.ceil((new Date(examDate) - now) / 86400000) : 999
+  const nearExam = daysToExam > 0 && daysToExam <= 30
   const bySection = {}
   for (const objectiveId of Object.keys(bank)) {
     for (const q of bank[objectiveId]) {
@@ -757,7 +762,14 @@ async function loadDueQuestions(limit = 20) {
   // Within a section: soonest-due first, but float troubleshooting items that
   // have reached a longer interval (index >= 2) to the front — at maintenance
   // distances they're the best probe of durable, transferable understanding.
-  const lateTs = (q) => (q.type === 'troubleshooting' && (q.srs?.intervalIndex || 0) >= 2) ? 0 : 1
+  // Near exam (<30 days): ALL troubleshooting questions float to the front.
+  const lateTs = (q) => {
+    if (q.type === 'troubleshooting') {
+      if (nearExam) return 0 // all troubleshooting first when exam is close
+      if ((q.srs?.intervalIndex || 0) >= 2) return 0
+    }
+    return 1
+  }
   const queues = Object.values(bySection)
     .map(arr => arr.sort((a, b) => lateTs(a) - lateTs(b) || a.dueAt - b.dueAt))
     .sort(() => Math.random() - 0.5)
@@ -2544,6 +2556,8 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
   const [stats, setStats] = useState({ correct: 0, total: 0, missedCount: 0 })
   const [sourceLabel, setSourceLabel] = useState(null) // where this session's questions came from
   const sessionRatings = useRef([])
+  const missedOnce = useRef(new Set()) // question IDs missed once this session → 2nd miss = near-front re-queue
+  const [streak, setStreak] = useState(0) // consecutive correct answers this session
   const [bankSize, setBankSize] = useState(0)
 
   // Keep the idle screen honest about how many questions are stored locally.
@@ -2630,7 +2644,9 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
     setSelected(null)
     setRevealed(false)
     setRating(null)
+    setStreak(0)
     sessionRatings.current = []
+    missedOnce.current = new Set()
     refreshBankSize()
   }, [objective.id, refreshBankSize])
 
@@ -2641,6 +2657,16 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
     const correct = idx === current.correctIndex
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
+    const newStreak = correct ? streak + 1 : 0
+    setStreak(newStreak)
+    // On a hot streak (≥4 correct), front-load the next troubleshooting question from the queue
+    if (correct && newStreak >= 4) {
+      setQueue(q => {
+        const tIdx = q.findIndex(x => x.type === 'troubleshooting')
+        if (tIdx > 0) return [q[tIdx], ...q.slice(0, tIdx), ...q.slice(tIdx + 1)]
+        return q
+      })
+    }
     // Only schedule reviews once the section has cleared the mastery gate.
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
@@ -2655,8 +2681,15 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
         concept: current.concept,
         addedAt: Date.now(),
       })
-      // spaced repetition: re-queue this question once more later in the session
-      setQueue(q => [...q, current])
+      const qKey = current.id || current.question
+      if (missedOnce.current.has(qKey)) {
+        // 2nd miss this session → insert near the front (position 1) for immediate retry
+        setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
+      } else {
+        // 1st miss → re-queue at the end to see it again before session ends
+        missedOnce.current.add(qKey)
+        setQueue(q => [...q, current])
+      }
     }
   }
 
@@ -2714,7 +2747,10 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
   const isCorrect = revealed && selected === current.correctIndex
   return (
     <div>
-      <div style={{ ...styles.small, marginBottom: 4 }}>Question {stats.total + 1}{queue.length > 0 ? ` · ${queue.length} remaining` : ''}</div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+        <div style={styles.small}>Question {stats.total + 1}{queue.length > 0 ? ` · ${queue.length} remaining` : ''}</div>
+        {streak >= 3 && <span style={{ ...styles.pill('mint'), fontSize: 10 }}>🔥 {streak} streak</span>}
+      </div>
       {sourceLabel && <div style={{ fontSize: 11, color: COLORS.silverMid, marginBottom: 8 }}>{sourceLabel}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
@@ -3510,9 +3546,14 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
   return (
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <div style={{ marginBottom: 6 }}>
+      <div style={{ marginBottom: 6, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
         <span style={styles.pill(objective.accent)}>{objective.id}</span>
-        <span style={{ marginLeft: 8 }}><StatusLabel status={status} /></span>
+        <span><StatusLabel status={status} /></span>
+        {(() => {
+          if (hasCuratedReading(objective.id)) return <span style={{ ...styles.pill('mint'), fontSize: 9 }}>CURATED</span>
+          if (hasCuratedQuestions(objective.id)) return <span style={{ ...styles.pill('sky'), fontSize: 9 }}>Q-ONLY</span>
+          return <span style={{ ...styles.pill('purple'), fontSize: 9 }}>AI</span>
+        })()}
       </div>
       <h1 style={styles.h1}>{objective.title}</h1>
       <div style={{ ...styles.small, marginBottom: 10 }}>{objective.domainName}</div>
@@ -3778,14 +3819,15 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
   useEffect(() => {
     let cancelled = false
     ;(async () => {
-      const [summary, cli, offlineDetail, usage, retention] = await Promise.all([
+      const [summary, cli, offlineDetail, usage, retention, mockHistory] = await Promise.all([
         buildLearnerSummary(progress, missed || []),
         loadCliStats(),
         loadOfflineDetail(),
         window.storage.getItem(STORAGE_KEYS.usage),
         loadRetentionHealth(),
+        window.storage.getItem(STORAGE_KEYS.mockHistory),
       ])
-      if (!cancelled) setData({ summary, cli, offlineDetail, usage, retention })
+      if (!cancelled) setData({ summary, cli, offlineDetail, usage, retention, mockHistory: mockHistory || [] })
     })()
     return () => { cancelled = true }
   }, [progress, missed])
@@ -3799,7 +3841,7 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
     )
   }
 
-  const { summary, cli, offlineDetail, usage, retention } = data
+  const { summary, cli, offlineDetail, usage, retention, mockHistory } = data
   const objs = summary.perObjective
   const studied = objs.filter(o => o.attempts > 0)
 
@@ -3875,6 +3917,33 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
 
       {/* Content coverage — curated (static) vs AI-fallback per domain */}
       <ContentCoverage onOpen={open} />
+
+      {/* Mock exam history trend */}
+      {mockHistory.length > 0 && (
+        <div style={section}>
+          <div style={sectionTitle}>MOCK EXAM HISTORY</div>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 4, height: 60, marginBottom: 8 }}>
+            {mockHistory.slice(-12).map((h, i) => {
+              const color = h.pct >= 80 ? COLORS.mint : h.pct >= 70 ? COLORS.sky : COLORS.rose
+              return (
+                <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                  <div style={{ fontSize: 9, color: COLORS.silverMid, textAlign: 'center' }}>{h.pct}%</div>
+                  <div style={{ width: '100%', borderRadius: '3px 3px 0 0', background: color, height: `${Math.max(4, h.pct * 0.55)}px` }} />
+                </div>
+              )
+            })}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: COLORS.silverMid }}>
+            <span>{new Date(mockHistory[Math.max(0, mockHistory.length - 12)].date).toLocaleDateString()}</span>
+            <span>{mockHistory.length} attempt{mockHistory.length !== 1 ? 's' : ''} total</span>
+            <span>{new Date(mockHistory[mockHistory.length - 1].date).toLocaleDateString()}</span>
+          </div>
+          {mockHistory.length >= 2 && (() => {
+            const trend = mockHistory[mockHistory.length - 1].pct - mockHistory[mockHistory.length - 2].pct
+            return <div style={{ ...styles.small, marginTop: 6 }}>Last attempt: <strong style={{ color: mockHistory[mockHistory.length - 1].pct >= 70 ? COLORS.mint : COLORS.rose }}>{mockHistory[mockHistory.length - 1].pct}%</strong>{trend !== 0 && <> · {trend > 0 ? `+${trend}` : trend}pp vs prior</>}</div>
+          })()}
+        </div>
+      )}
 
       {/* Retention health — spaced-review state per section */}
       <div style={section}>
@@ -4036,6 +4105,197 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
    pulled across every objective. Answering advances each card's schedule.
    ========================================================================= */
 const REVIEW_SESSION_CAP = 20
+/* =========================================================================
+   FOCUS MODE — review session scoped to weak-area objectives only.
+   Pulls questions from the local quiz bank for objectives where mastery < 50%,
+   so the learner can drill gaps without wading through material they already know.
+   ========================================================================= */
+function FocusModeSession({ progress, onBack, onMissed, onDone }) {
+  const [phase, setPhase] = useState('loading')
+  const [queue, setQueue] = useState([])
+  const [current, setCurrent] = useState(null)
+  const [selected, setSelected] = useState(null)
+  const [revealed, setRevealed] = useState(false)
+  const [stats, setStats] = useState({ correct: 0, total: 0 })
+  const [total, setTotal] = useState(0)
+  const [weakIds, setWeakIds] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      const bank = await loadQuizBank()
+      // Identify weak objectives: studied but mastery < 50%, or have misses but no mastery
+      const weak = ALL_OBJECTIVES.filter(o => {
+        const p = progress[o.id]
+        if (!p) return false
+        const { score } = computeMastery(p)
+        return score < 0.5
+      }).map(o => o.id)
+      setWeakIds(weak)
+      if (weak.length === 0) { setPhase('empty'); return }
+      // Collect questions from weak objectives
+      const questions = []
+      for (const id of weak) {
+        const qs = bank[id] || []
+        // Prefer questions with lapses or low accuracy
+        const sorted = [...qs].sort((a, b) => {
+          const lapA = a.srs?.lapses || 0, lapB = b.srs?.lapses || 0
+          return lapB - lapA
+        })
+        sorted.slice(0, 3).forEach(q => questions.push({ ...q, objectiveId: id }))
+      }
+      const shuffled = shuffleArray(questions).slice(0, REVIEW_SESSION_CAP)
+      if (shuffled.length === 0) { setPhase('empty'); return }
+      setTotal(shuffled.length)
+      setCurrent(shuffled[0])
+      setQueue(shuffled.slice(1))
+      setPhase('active')
+    })()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  function answer(idx) {
+    if (revealed) return
+    const correct = idx === current.correctIndex
+    setSelected(idx); setRevealed(true)
+    haptic(correct ? 15 : [10, 40, 10])
+    setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
+    recordQuizResult(current.objectiveId, current.id, { correct })
+    if (!correct) onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, addedAt: Date.now() })
+  }
+  function next() {
+    if (queue.length === 0) { setPhase('done'); onDone?.(); return }
+    setCurrent(queue[0]); setQueue(q => q.slice(1)); setSelected(null); setRevealed(false)
+  }
+
+  const isCorrect = revealed && selected === current?.correctIndex
+  const obj = current ? ALL_OBJECTIVES.find(o => o.id === current.objectiveId) : null
+
+  if (phase === 'loading') return <div><button style={styles.backBtn} onClick={onBack}>‹ Back</button><Spinner label="Finding your weak areas..." /></div>
+  if (phase === 'empty') return (
+    <div>
+      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <h1 style={styles.h1}>Focus Mode</h1>
+      <p style={styles.small}>No weak areas found! All studied objectives are above 50% mastery. Keep quizzing to identify gaps, or take a mock exam to find where to focus.</p>
+    </div>
+  )
+  if (phase === 'done') return (
+    <div>
+      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <div style={styles.card}>
+        <h2 style={styles.h2}>Focus session complete</h2>
+        <p style={{ fontSize: 28, fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
+        <p style={styles.small}>{weakIds.length} weak objective{weakIds.length !== 1 ? 's' : ''} targeted. Keep drilling these until they reach 50%+.</p>
+        <button style={{ ...styles.primaryBtn, marginTop: 10 }} onClick={onBack}>Done</button>
+      </div>
+    </div>
+  )
+
+  return (
+    <div>
+      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
+        <h1 style={{ ...styles.h1, margin: 0 }}>Focus Mode</h1>
+        <span style={styles.small}>{total - queue.length} of {total}</span>
+      </div>
+      <div style={{ ...styles.small, marginBottom: 8 }}>{weakIds.length} weak objectives · drilling gaps</div>
+      {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
+      <div style={styles.card}>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
+        {current.choices.map((choice, idx) => {
+          let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
+          if (revealed) {
+            if (idx === current.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
+            else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
+          }
+          return <button key={idx} onClick={() => answer(idx)} style={{ display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8, background: bg, border: `1px solid ${border}`, color, borderRadius: 10, padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4 }}>{choice}</button>
+        })}
+        {revealed && (
+          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
+            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
+            <div style={{ fontSize: 13, lineHeight: 1.5 }}>{current.explanation}</div>
+          </div>
+        )}
+      </div>
+      {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'Finish' : 'Next'}</button>}
+    </div>
+  )
+}
+
+/* =========================================================================
+   GLOBAL SEARCH — Cmd+K (desktop) or a persistent search button opens a
+   full-screen modal that filters all 53 objectives in real time.
+   ========================================================================= */
+function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
+  const [query, setQuery] = useState('')
+  const inputRef = useRef(null)
+
+  useEffect(() => { inputRef.current?.focus() }, [])
+
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return ALL_OBJECTIVES.slice(0, 12) // show first 12 when empty
+    return ALL_OBJECTIVES.filter(o =>
+      o.id.toLowerCase().includes(q) || o.title.toLowerCase().includes(q)
+    ).slice(0, 15)
+  }, [query])
+
+  function pick(obj) {
+    const domain = DOMAINS.find(d => d.objectives.some(o => o.id === obj.id))
+    onSelectObjective({ ...obj, domainId: domain?.id, domainName: domain?.name, accent: domain?.accent })
+    onClose()
+  }
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 9999, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 60, padding: '60px 16px 16px' }}
+      onClick={e => { if (e.target === e.currentTarget) onClose() }}
+    >
+      <div style={{ width: '100%', maxWidth: 540, background: COLORS.card, borderRadius: 16, border: `1px solid ${COLORS.borderGlow}`, overflow: 'hidden' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', borderBottom: `1px solid ${COLORS.border}` }}>
+          <span style={{ fontSize: 16, color: COLORS.silverMid }}>🔍</span>
+          <input
+            ref={inputRef}
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Search objectives — e.g. 'OSPF' or '3.4'"
+            style={{ flex: 1, background: 'none', border: 'none', outline: 'none', fontSize: 15, color: COLORS.silver, fontFamily: 'inherit' }}
+          />
+          <button onClick={onClose} style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 13, cursor: 'pointer', padding: '4px 8px' }}>ESC</button>
+        </div>
+        <div style={{ maxHeight: 360, overflowY: 'auto' }}>
+          {results.map(o => {
+            const status = progress[o.id]?.status || 'unseen'
+            const domain = DOMAINS.find(d => d.objectives.some(x => x.id === o.id))
+            return (
+              <button
+                key={o.id}
+                onClick={() => pick(o)}
+                style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', padding: '12px 16px', background: 'none', border: 'none', borderBottom: `1px solid ${COLORS.border}`, color: COLORS.silver, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}
+              >
+                <StatusDot status={status} />
+                <span style={{ ...styles.pill(domain?.accent || 'purple'), fontSize: 10, flexShrink: 0 }}>{o.id}</span>
+                <span style={{ flex: 1, fontSize: 13, lineHeight: 1.4 }}>{o.title}</span>
+                {hasCuratedReading(o.id) && <span style={{ ...styles.pill('mint'), fontSize: 8, flexShrink: 0 }}>C</span>}
+              </button>
+            )
+          })}
+          {results.length === 0 && (
+            <div style={{ padding: 20, textAlign: 'center', color: COLORS.silverMid, fontSize: 13 }}>No objectives match "{query}"</div>
+          )}
+        </div>
+        {!query && <div style={{ padding: '8px 16px', fontSize: 11, color: COLORS.silverDim, borderTop: `1px solid ${COLORS.border}` }}>Showing first 12 of {ALL_OBJECTIVES.length} objectives — type to filter</div>}
+      </div>
+    </div>
+  )
+}
+
 function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
   const [phase, setPhase] = useState('loading') // loading | active | empty | done
   const [queue, setQueue] = useState([])
@@ -4290,7 +4550,113 @@ function Onboarding({ onComplete, onSkip }) {
 /* =========================================================================
    HOME SCREEN
    ========================================================================= */
-function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, syncOn }) {
+/* ---- Exam trap of the day ---- */
+const ALL_EXAM_TRAPS = (() => {
+  const traps = []
+  ALL_OBJECTIVES.forEach(o => {
+    const data = getCurated(o.id)
+    if (data?.examTraps?.length) {
+      data.examTraps.forEach(t => traps.push({ ...t, objectiveId: o.id, objectiveTitle: o.title, accent: o.accent }))
+    }
+  })
+  return traps
+})()
+
+/* =========================================================================
+   EXAM DATE COUNTDOWN — user sets their target exam date once; stored locally.
+   Shows days remaining and a simple daily target (objectives to study per day).
+   ========================================================================= */
+function ExamCountdown({ progress }) {
+  const [examDate, setExamDate] = useState(null)
+  const [editing, setEditing] = useState(false)
+  const [inputVal, setInputVal] = useState('')
+
+  useEffect(() => {
+    ;(async () => {
+      const saved = await window.storage.getItem('ccna_exam_date_v1')
+      if (saved) setExamDate(saved)
+    })()
+  }, [])
+
+  async function save() {
+    if (!inputVal) return
+    await window.storage.setItem('ccna_exam_date_v1', inputVal)
+    setExamDate(inputVal); setEditing(false)
+  }
+  async function clear() {
+    await window.storage.removeItem?.('ccna_exam_date_v1') || window.storage.setItem('ccna_exam_date_v1', null)
+    setExamDate(null); setEditing(false)
+  }
+
+  if (editing || !examDate) {
+    return (
+      <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.border}` }}>
+        <div style={{ fontSize: 12, fontWeight: 600, color: COLORS.silver, marginBottom: 8 }}>📅 Set your exam date</div>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+          <input
+            type="date"
+            value={inputVal}
+            onChange={e => setInputVal(e.target.value)}
+            style={{ flex: 1, minWidth: 140, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 8, padding: '8px 10px', color: COLORS.silver, fontFamily: 'inherit', fontSize: 13 }}
+          />
+          <button style={{ ...styles.primaryBtn, flex: 0 }} onClick={save}>Set</button>
+          {examDate && <button style={{ ...styles.secondaryBtn, flex: 0 }} onClick={() => setEditing(false)}>Cancel</button>}
+        </div>
+      </div>
+    )
+  }
+
+  const target = new Date(examDate)
+  const now = new Date()
+  const daysLeft = Math.ceil((target - now) / 86400000)
+  if (daysLeft < 0) return (
+    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.mintBorder}` }}>
+      <div style={{ fontSize: 13, color: COLORS.mint, fontWeight: 600 }}>🎓 Exam date passed — good luck with results!</div>
+      <button style={{ fontSize: 11, color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginTop: 4 }} onClick={() => setEditing(true)}>Update date</button>
+    </div>
+  )
+
+  const unstudied = ALL_OBJECTIVES.filter(o => !progress[o.id] || progress[o.id].status === 'unseen').length
+  const objPerDay = daysLeft > 0 ? Math.ceil(unstudied / Math.max(daysLeft, 1)) : unstudied
+  const urgency = daysLeft <= 7 ? 'rose' : daysLeft <= 30 ? 'amber' : 'mint'
+
+  return (
+    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${accentColors(urgency).border}`, background: accentColors(urgency).dim }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <div>
+          <div style={{ fontSize: 22, fontWeight: 700, color: accentColors(urgency).text }}>{daysLeft} day{daysLeft !== 1 ? 's' : ''}</div>
+          <div style={{ fontSize: 12, color: COLORS.silverMid }}>until exam · {target.toLocaleDateString()}</div>
+        </div>
+        <button style={{ fontSize: 11, color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0' }} onClick={() => setEditing(true)}>Edit</button>
+      </div>
+      {unstudied > 0 && daysLeft > 0 && (
+        <div style={{ marginTop: 8, fontSize: 12, color: COLORS.silver }}>
+          {unstudied} objectives not started · aim for ~{objPerDay}/day to cover all before exam
+        </div>
+      )}
+      {unstudied === 0 && <div style={{ marginTop: 8, fontSize: 12, color: COLORS.mint }}>All objectives started — focus on mastery and daily reviews.</div>}
+    </div>
+  )
+}
+
+function ExamTrapWidget() {
+  if (!ALL_EXAM_TRAPS.length) return null
+  // Deterministic daily pick — changes each calendar day, consistent within the day
+  const dayIndex = Math.floor(Date.now() / 86400000)
+  const trap = ALL_EXAM_TRAPS[dayIndex % ALL_EXAM_TRAPS.length]
+  return (
+    <div style={{ ...styles.card, border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim, marginBottom: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+        <span style={{ ...styles.pill('rose'), fontSize: 9 }}>⚠️ EXAM TRAP OF THE DAY</span>
+        <span style={{ fontSize: 10, color: COLORS.silverMid }}>{trap.objectiveId}</span>
+      </div>
+      <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.rose, marginBottom: 6, lineHeight: 1.4 }}>{trap.trap}</div>
+      <div style={{ fontSize: 12, color: COLORS.silver, lineHeight: 1.5 }}>{trap.correction}</div>
+    </div>
+  )
+}
+
+function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, syncOn }) {
   const [openDomain, setOpenDomain] = useState(null)
   const [suggestions, setSuggestions] = useState([])
   const [retention, setRetention] = useState([])
@@ -4408,6 +4774,8 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         </div>
       )}
 
+      <ExamCountdown progress={progress} />
+
       <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
         <button style={styles.primaryBtn} onClick={onOpenMock}>Mock Exam</button>
         <button style={styles.secondaryBtn} onClick={onOpenMissed}>Missed ({missedCount})</button>
@@ -4416,7 +4784,12 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         <button style={styles.secondaryBtn} onClick={onOpenTutor} disabled={!apiOnline}>AI Tutor Chat</button>
         <button style={styles.secondaryBtn} onClick={onOpenExport}>Export Reports</button>
       </div>
-      <button style={{ ...styles.secondaryBtn, marginBottom: 16 }} onClick={onOpenSync}>☁ Sync across devices{syncOn ? ' ✓' : ''}</button>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+        <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenFocus}>🎯 Focus Mode</button>
+        <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenSync}>☁ Sync{syncOn ? ' ✓' : ''}</button>
+      </div>
+
+      <ExamTrapWidget />
 
       {DOMAINS.map(domain => {
         const isOpen = openDomain === domain.id
@@ -4430,9 +4803,18 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
               style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: 0, textAlign: 'left' }}
             >
               <div style={{ flex: 1, minWidth: 0, marginRight: 10 }}>
-                <div style={{ fontSize: 15, fontWeight: 600 }}>{domain.name}</div>
-                <div style={{ ...styles.small, marginBottom: 6 }}>{domain.weight}% of exam · {masteredCount}/{objs.length} mastered</div>
-                <ProgressBar value={masteredCount} max={objs.length} accent={domain.accent} height={5} />
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2 }}>
+                  <div style={{ fontSize: 15, fontWeight: 600 }}>{domain.name}</div>
+                  <span style={{ ...styles.pill(domain.accent), fontSize: 9 }}>{domain.weight}% exam weight</span>
+                </div>
+                <div style={{ ...styles.small, marginBottom: 6 }}>{masteredCount}/{objs.length} mastered</div>
+                {/* Outer bar width = exam weight (so D4@25% appears wider than D1@20%); fill = mastery */}
+                <div style={{ width: '100%', height: 6, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
+                  <div style={{ width: `${domain.weight}%`, height: '100%', borderRadius: 999, background: COLORS.surface, position: 'relative', display: 'inline-block' }}>
+                    <div style={{ width: `${Math.round(masteredCount / objs.length * 100)}%`, height: '100%', borderRadius: 999, background: accent.text }} />
+                  </div>
+                  <div style={{ display: 'inline-block', width: `${100 - domain.weight}%`, height: '100%', background: COLORS.border, borderRadius: 999 }} />
+                </div>
               </div>
               <span style={{ ...styles.pill(domain.accent), flexShrink: 0 }}>{isOpen ? '−' : '+'}</span>
             </button>
@@ -4450,6 +4832,11 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
                       <div style={{ flex: 1 }}>
                         <div style={{ fontSize: 13 }}>{o.id} {o.title}</div>
                       </div>
+                      {(() => {
+                        if (hasCuratedReading(o.id)) return <span style={{ ...styles.pill('mint'), fontSize: 9, marginLeft: 6, flexShrink: 0 }}>C</span>
+                        if (hasCuratedQuestions(o.id)) return <span style={{ ...styles.pill('sky'), fontSize: 9, marginLeft: 6, flexShrink: 0 }}>Q</span>
+                        return null
+                      })()}
                       {offlineReady?.has(o.id) && <span style={{ color: COLORS.mint, fontSize: 13, marginLeft: 8, flexShrink: 0 }}>⤓</span>}
                     </button>
                   )
@@ -4613,7 +5000,14 @@ function MockExam({ onExit }) {
         correct++
       }
     })
-    return { correct, total: questions.length, byDomain }
+    const result = { correct, total: questions.length, byDomain }
+    // Persist to history
+    ;(async () => {
+      const hist = (await window.storage.getItem(STORAGE_KEYS.mockHistory)) || []
+      hist.push({ date: Date.now(), pct: Math.round((correct / Math.max(questions.length, 1)) * 100), correct, total: questions.length })
+      await window.storage.setItem(STORAGE_KEYS.mockHistory, hist.slice(-30)) // keep last 30 attempts
+    })()
+    return result
   }, [phase, questions, responses])
 
   if (phase === 'intro') {
@@ -5301,7 +5695,7 @@ function TutorChat({ progress, missed, onBack }) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics
+  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | focus
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -5312,6 +5706,7 @@ export default function App() {
   const [offlineReady, setOfflineReady] = useState(() => new Set())
   const [packagingId, setPackagingId] = useState(null) // objective id currently being packaged
   const [showSync, setShowSync] = useState(false)
+  const [showSearch, setShowSearch] = useState(false)
   const [syncCode, setSyncCode] = useState(null)
   const [lastSynced, setLastSynced] = useState(null)
   const [syncBusy, setSyncBusy] = useState(false)
@@ -5332,6 +5727,15 @@ export default function App() {
       window.storage.setItem(STORAGE_KEYS.theme, next)
       return next
     })
+  }, [])
+
+  // Cmd+K / Ctrl+K global shortcut to open search
+  useEffect(() => {
+    function handler(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); setShowSearch(true) }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
   }, [])
 
   useEffect(() => {
@@ -5583,6 +5987,19 @@ export default function App() {
           button:active:not(:disabled) { transform: none; }
         }
       `}</style>
+      {/* Search button — fixed top-left; Cmd+K also opens it */}
+      <button
+        onClick={() => setShowSearch(true)}
+        title="Search objectives (⌘K)"
+        style={{
+          position: 'fixed', top: 10, left: 12, zIndex: 200, height: 40, padding: '0 14px',
+          borderRadius: 999, border: `1px solid ${COLORS.border}`, background: COLORS.card,
+          color: COLORS.silverMid, fontSize: 13, cursor: 'pointer', display: 'flex',
+          alignItems: 'center', gap: 6, boxShadow: '0 2px 10px #00000033',
+        }}
+      >
+        🔍 <span style={{ fontSize: 11 }}>⌘K</span>
+      </button>
       <button
         onClick={toggleTheme}
         aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
@@ -5617,6 +6034,7 @@ export default function App() {
             onOpenLabs={() => setView('labs')}
             onOpenSync={() => setShowSync(true)}
             onOpenReview={() => setView('review')}
+            onOpenFocus={() => setView('focus')}
             dueCount={dueCount}
             syncOn={!!syncCode}
           />
@@ -5644,9 +6062,11 @@ export default function App() {
         {view === 'labs' && <LabsHub onBack={() => setView('home')} onOpenLab={(id) => openLab(id, 'labs')} />}
         {view === 'lab' && selectedLab && <LabView bundle={getLab(selectedLab)} onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')} />}
         {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
+        {view === 'focus' && <FocusModeSession progress={progress} onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} />}
         </div>
       </div>
       {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}
+      {showSearch && <GlobalSearchModal progress={progress} onSelectObjective={selectObjective} onClose={() => setShowSearch(false)} />}
       {showSync && (
         <SyncModal
           syncCode={syncCode}

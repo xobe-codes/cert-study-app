@@ -277,7 +277,26 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ---
 
-### 18. MASTER LIST #47, #48, #49 — Key Terms bug fix, static Explain panel, prev/next nav
+### 19. MASTER LIST UX sweep — #17, #27, #28, #29, #30, #31, #34, #35, #36, #45
+
+**Goal**: Ship all queued UX items in one session.
+
+**What was done**:
+- **#45 CURATED/Q-ONLY/AI badge**: `ObjectiveScreen` header + Home domain list show CURATED (mint), Q-ONLY (sky), or AI (purple) badge per objective.
+- **#31 Exam trap of the day**: `ExamTrapWidget` picks a deterministic daily trap from all `examTraps` arrays in curated data. Shown on Home above domain list.
+- **#17 Domain weight overlay**: Domain bars now render a dual-layer bar — outer width scaled to exam weight % (D4=25% wider than D1=20%), inner fill = mastery. Pill badge shows `XX% exam weight`.
+- **#30 Lapse re-queue**: `missedOnce` ref tracks first miss; 2nd miss in session inserts question near-front (position 1) instead of end for immediate retry.
+- **#29 Focus Mode**: New `FocusModeSession` component + `focus` view. Button on Home. Loads quiz bank, filters to objectives with mastery < 50%, pulls up to 3 questions per weak objective (sorted by lapses), runs same quiz UI as ReviewSession.
+- **#34 Mock exam history**: Saves each mock result (`date, pct, correct, total`) to `ccna_mock_history_v1` (last 30 attempts). MetricsDashboard shows a bar-chart trend with date labels and trend delta.
+- **#36 Adaptive pacing**: `streak` state in `QuizTab` tracks consecutive correct answers. At streak ≥ 3 shows 🔥 badge. At streak ≥ 4, front-loads next troubleshooting question from the queue.
+- **#27 Global search / Cmd+K**: `GlobalSearchModal` filters all 53 objectives in real time by ID or title. Fixed `🔍 ⌘K` button top-left. Cmd+K / Ctrl+K global listener. Esc to close.
+- **#28 Exam date countdown**: `ExamCountdown` on Home — user sets exam date once (stored as `ccna_exam_date_v1`). Shows days left + suggested objectives/day. Color urgency tiers (mint → amber → rose at ≤30, ≤7 days).
+- **#35 Troubleshooting weighting**: `loadDueQuestions` reads exam date; when ≤30 days out, ALL troubleshooting questions float to the front of each section's review queue.
+- **Build**: `npm run build` passed (939 kB).
+
+**Outcome**: All UX items from MASTER LIST are now complete. 37 sync excluded (needs D1 infra).
+
+--- — Key Terms bug fix, static Explain panel, prev/next nav
 
 **Goal**: Fix Key Terms not loading, add instant reference notes on Explain tab, add within-domain prev/next navigation.
 
