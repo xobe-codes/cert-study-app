@@ -1710,6 +1710,8 @@ function SegmentedBar({ segments, accent = 'mint' }) {
    ========================================================================= */
 const EXPLAIN_CACHE_KEY = 'ccna_explain_cache_v2' // v2: structured sections (was prose)
 const EXPLAIN_STYLE_CACHE_KEY = 'ccna_explain_style_v1' // #19: cached style variants (exam/eli5)
+const SOCRATIC_MODE_KEY = 'ccna_socratic_mode'         // #15: Socratic tutor toggle preference
+const SOCRATIC_CACHE_KEY = 'ccna_socratic_cache_v1'    // #15: guiding questions per objective
 const EXPLAIN_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor. Use the provided reference notes as your primary source. If the notes don't fully cover something a CCNA candidate needs, fill the gap with accurate, exam-relevant CCNA 200-301 knowledge — but never contradict the reference notes. Produce a clear, layered explanation in the requested structured fields. Keep each field tight and scannable: short sentences, plain language. The "advanced" field holds deeper detail a learner can skip on first pass.${''}
 - definition: 1-2 sentence plain-language answer to "what is this?"
 - keyPoints: 3-5 of the most testable core facts (short phrases)
@@ -2609,6 +2611,50 @@ function StyleSwitcher({ objectiveId, objectiveTitle }) {
   const [content, setContent] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  // #15: Socratic mode toggle
+  const [socraticOn, setSocraticOn] = useState(false)
+  const [socraticContent, setSocraticContent] = useState(null)
+  const [socraticLoading, setSocraticLoading] = useState(false)
+  const [socraticError, setSocraticError] = useState(null)
+
+  // Load persisted Socratic preference on mount
+  useEffect(() => {
+    window.storage.getItem(SOCRATIC_MODE_KEY).then(val => { if (val) setSocraticOn(true) })
+  }, [])
+
+  // Auto-fetch guiding questions whenever Socratic mode is ON or objectiveId changes
+  useEffect(() => {
+    if (!socraticOn) { setSocraticContent(null); setSocraticError(null); return }
+    let cancelled = false
+    ;(async () => {
+      setSocraticLoading(true)
+      setSocraticError(null)
+      try {
+        const cache = (await window.storage.getItem(SOCRATIC_CACHE_KEY)) || {}
+        if (cache[objectiveId]) { if (!cancelled) setSocraticContent(cache[objectiveId]); setSocraticLoading(false); return }
+        const text = await askClaude({
+          system: 'You are a Socratic tutor. Instead of explaining directly, ask 2-3 short guiding questions that help the learner discover the answer to the given CCNA topic themselves. Be concise — one question per line.',
+          messages: [{ role: 'user', content: `Topic: ${objectiveId}: ${objectiveTitle}` }],
+          max_tokens: 300, model: MODELS.fast, feature: 'explain',
+        })
+        cache[objectiveId] = text
+        await window.storage.setItem(SOCRATIC_CACHE_KEY, cache)
+        if (!cancelled) setSocraticContent(text)
+      } catch (err) {
+        if (!cancelled) setSocraticError(err.message)
+      } finally {
+        if (!cancelled) setSocraticLoading(false)
+      }
+    })()
+    return () => { cancelled = true }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [socraticOn, objectiveId])
+
+  async function toggleSocratic() {
+    const next = !socraticOn
+    setSocraticOn(next)
+    await window.storage.setItem(SOCRATIC_MODE_KEY, next || null)
+  }
 
   async function switchTo(style) {
     setSelected(style)
@@ -2659,6 +2705,19 @@ function StyleSwitcher({ objectiveId, objectiveTitle }) {
             </button>
           )
         })}
+        {/* #15: Socratic mode toggle */}
+        <button
+          onClick={toggleSocratic}
+          style={{
+            flex: '1 1 auto', minHeight: 38, borderRadius: 10, cursor: 'pointer',
+            background: socraticOn ? COLORS.amberDim : COLORS.surface,
+            border: `1px solid ${socraticOn ? COLORS.amberBorder : COLORS.border}`,
+            color: socraticOn ? COLORS.amber : COLORS.silverMid,
+            fontSize: 12, fontWeight: 600, padding: '8px 10px', fontFamily: 'inherit',
+          }}
+        >
+          🧠 Socratic Mode
+        </button>
       </div>
       {loading && <Spinner label="Rewriting explanation..." />}
       {error && <ErrorBox message={error} onRetry={() => switchTo(selected)} />}
@@ -2668,6 +2727,22 @@ function StyleSwitcher({ objectiveId, objectiveTitle }) {
             {STYLE_OPTIONS.find(o => o.value === selected)?.label}
           </div>
           <div style={{ fontSize: 13, lineHeight: 1.6 }}><RichText text={content} /></div>
+        </div>
+      )}
+      {/* #15: Socratic guiding questions box */}
+      {socraticOn && (
+        <div style={{ marginTop: 8 }}>
+          <div style={{ fontSize: 11, color: COLORS.amber, fontWeight: 600, marginBottom: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
+            ❓ Guiding questions mode
+          </div>
+          {socraticLoading && <Spinner label="Generating guiding questions..." />}
+          {socraticError && <ErrorBox message={socraticError} onRetry={() => setSocraticOn(s => s)} />}
+          {!socraticLoading && !socraticError && socraticContent && (
+            <div style={{ ...styles.card, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}` }}>
+              <div style={{ ...styles.small, fontWeight: 700, color: COLORS.amber, marginBottom: 8 }}>🧠 Think it through first</div>
+              <div style={{ fontSize: 13, lineHeight: 1.7 }}><RichText text={socraticContent} /></div>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -2712,6 +2787,8 @@ function QuestionMeta({ q }) {
 const MISTAKE_CACHE_KEY = 'ccna_mistake_cache_v1'
 // #18: session-level hint cache — Map so it resets on page reload (no storage cost)
 const _hintSessionCache = new Map()
+const _mnemonicSessionCache = new Map()  // #20: personalized mnemonics
+const _cliFailSessionCache = new Map()   // #26: CLI lab failure explanations
 
 const MISTAKE_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor helping a student understand a mistake they just made on a practice question. You'll be given the question, all answer choices, the correct answer, the general explanation, and the choice the student picked instead.
 
@@ -2816,6 +2893,61 @@ function ProgressiveHint({ questionText, wrongChoice, correctChoice }) {
     <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}` }}>
       <div style={{ fontWeight: 700, color: COLORS.amber, marginBottom: 4, fontSize: 12 }}>💡 HINT</div>
       <div style={{ fontSize: 13, lineHeight: 1.5 }}><RichText text={hint} /></div>
+    </div>
+  )
+}
+
+/* ---- Personalized mnemonic (#20) — memory aid after wrong answer ---- */
+function PersonalizedMnemonic({ questionId, questionText, correctChoice }) {
+  const [phase, setPhase] = useState('idle') // idle | loading | done | error
+  const [mnemonic, setMnemonic] = useState(null)
+  const [error, setError] = useState(null)
+
+  const cacheKey = `ccna_mnemonic_${questionId || questionText.slice(0, 40)}`
+
+  async function fetchMnemonic() {
+    setPhase('loading')
+    try {
+      if (_mnemonicSessionCache.has(cacheKey)) {
+        setMnemonic(_mnemonicSessionCache.get(cacheKey))
+        setPhase('done')
+        return
+      }
+      const stored = sessionStorage.getItem(cacheKey)
+      if (stored) {
+        _mnemonicSessionCache.set(cacheKey, stored)
+        setMnemonic(stored)
+        setPhase('done')
+        return
+      }
+      const text = await askClaude({
+        system: 'You are a CCNA 200-301 tutor. Create a memorable mnemonic, acronym, or analogy to help a student remember a networking concept. Keep it to 1-2 sentences — short, catchy, and relevant.',
+        messages: [{ role: 'user', content: `Create a mnemonic to help remember: "${correctChoice}" — in the context of: ${questionText}` }],
+        max_tokens: 150, model: MODELS.fast, feature: 'hint',
+      })
+      sessionStorage.setItem(cacheKey, text)
+      _mnemonicSessionCache.set(cacheKey, text)
+      setMnemonic(text)
+      setPhase('done')
+    } catch (err) {
+      setError(err.message)
+      setPhase('error')
+    }
+  }
+
+  if (phase === 'idle') {
+    return (
+      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 12 }} onClick={fetchMnemonic}>
+        🧠 Give me a mnemonic
+      </button>
+    )
+  }
+  if (phase === 'loading') return <Spinner label="Crafting a memory aid..." />
+  if (phase === 'error') return <ErrorBox message={error} onRetry={fetchMnemonic} />
+  return (
+    <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}` }}>
+      <div style={{ fontWeight: 700, color: COLORS.amber, marginBottom: 4, fontSize: 12 }}>🧠 MNEMONIC</div>
+      <div style={{ fontSize: 13, lineHeight: 1.5 }}><RichText text={mnemonic} /></div>
     </div>
   )
 }
@@ -3083,6 +3215,14 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
                 correctChoice={current.choices[current.correctIndex]}
               />
             )}
+            {/* #20: personalized mnemonic — only on wrong answers */}
+            {!isCorrect && selected != null && (
+              <PersonalizedMnemonic
+                questionId={current.id}
+                questionText={current.question}
+                correctChoice={current.choices[current.correctIndex]}
+              />
+            )}
           </div>
         )}
       </div>
@@ -3121,6 +3261,61 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
    ========================================================================= */
 function normalizeCmd(s) {
   return s.trim().toLowerCase().replace(/\s+/g, ' ')
+}
+
+/* ---- CLI failure explainer (#26) — "Why did this fail?" button ---- */
+function CliFailureExplainer({ objectiveId, userCommand, correctCommand, taskDescription }) {
+  const [phase, setPhase] = useState('idle') // idle | loading | done | error
+  const [explanation, setExplanation] = useState(null)
+  const [error, setError] = useState(null)
+
+  const cacheKey = `ccna_clifail_${objectiveId}_${userCommand}`
+
+  async function fetchExplanation() {
+    setPhase('loading')
+    try {
+      if (_cliFailSessionCache.has(cacheKey)) {
+        setExplanation(_cliFailSessionCache.get(cacheKey))
+        setPhase('done')
+        return
+      }
+      const stored = sessionStorage.getItem(cacheKey)
+      if (stored) {
+        _cliFailSessionCache.set(cacheKey, stored)
+        setExplanation(stored)
+        setPhase('done')
+        return
+      }
+      const text = await askClaude({
+        system: 'You are a Cisco IOS CLI tutor. Explain in 1-2 concise sentences why the student\'s command was wrong and what the correct command does differently. Be specific about syntax or mode issues.',
+        messages: [{ role: 'user', content: `Task: ${taskDescription}\nStudent entered: ${userCommand}\nCorrect command: ${correctCommand}\n\nWhy was the student's command wrong?` }],
+        max_tokens: 150, model: MODELS.fast, feature: 'hint',
+      })
+      sessionStorage.setItem(cacheKey, text)
+      _cliFailSessionCache.set(cacheKey, text)
+      setExplanation(text)
+      setPhase('done')
+    } catch (err) {
+      setError(err.message)
+      setPhase('error')
+    }
+  }
+
+  if (phase === 'idle') {
+    return (
+      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 12 }} onClick={fetchExplanation}>
+        💡 Why did this fail?
+      </button>
+    )
+  }
+  if (phase === 'loading') return <Spinner label="Analyzing your command..." />
+  if (phase === 'error') return <ErrorBox message={error} onRetry={fetchExplanation} />
+  return (
+    <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
+      <div style={{ fontWeight: 700, color: COLORS.sky, marginBottom: 4, fontSize: 12 }}>💡 COMMAND FEEDBACK</div>
+      <div style={{ fontSize: 13, lineHeight: 1.5 }}><RichText text={explanation} /></div>
+    </div>
+  )
 }
 
 /* =========================================================================
@@ -3264,12 +3459,13 @@ function CLIDrillTab({ objective }) {
   const [statuses, setStatuses] = useState(() => drills.map(() => false))
   const [hintIdx, setHintIdx] = useState(null)
   const [done, setDone] = useState(false)
+  const [lastFail, setLastFail] = useState(null) // #26: { userCommand, correctCommand, taskDescription }
   const counters = useRef({ commandsEntered: 0, syntaxErrors: 0, wrongModeErrors: 0, hintsUsed: 0 })
   const scrollRef = useRef(null)
 
   const reset = useCallback(() => {
     setMode('user'); setInput(''); setHistory([]); setStatuses(drills.map(() => false))
-    setHintIdx(null); setDone(false)
+    setHintIdx(null); setDone(false); setLastFail(null)
     counters.current = { commandsEntered: 0, syntaxErrors: 0, wrongModeErrors: 0, hintsUsed: 0 }
   }, [drills])
 
@@ -3345,10 +3541,13 @@ function CLIDrillTab({ objective }) {
         if (nav) setMode(nav.to) // mode-changing objective (interface/vlan/router/…)
         completeObjective(matchIdx, next)
         setStatuses(next)
+        setLastFail(null) // clear failure after a success
       } else {
         counters.current.wrongModeErrors += 1
         push(`% Wrong mode. That command belongs in ${CLI_MODE_HINT[req] || req}.`, 'warn')
         logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'mode' })
+        // #26: track wrong-mode failure
+        setLastFail({ userCommand: raw, correctCommand: drills[matchIdx].answer[0], taskDescription: drills[matchIdx].prompt })
       }
       return
     }
@@ -3380,6 +3579,9 @@ function CLIDrillTab({ objective }) {
     if (near) push(`% Incomplete or incorrect syntax. Expected pattern: ${near.answer[0]}`, 'warn')
     else push('% Invalid input detected. Type "hint" for the next objective, or "?" for help.', 'warn')
     logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'syntax' })
+    // #26: track the failed command so the AI explainer can reference it
+    const nextDrill = drills[statuses.findIndex(s => !s)]
+    if (nextDrill) setLastFail({ userCommand: raw, correctCommand: nextDrill.answer[0], taskDescription: nextDrill.prompt })
   }
 
   const completed = statuses.filter(Boolean).length
@@ -3447,6 +3649,16 @@ function CLIDrillTab({ objective }) {
         </div>
       ) : (
         <button style={styles.primaryBtn} onClick={reset}>Restart lab</button>
+      )}
+      {/* #26: show AI failure explainer after a wrong command */}
+      {lastFail && !done && (
+        <CliFailureExplainer
+          key={`${lastFail.userCommand}`}
+          objectiveId={objective.id}
+          userCommand={lastFail.userCommand}
+          correctCommand={lastFail.correctCommand}
+          taskDescription={lastFail.taskDescription}
+        />
       )}
     </div>
   )
@@ -4585,6 +4797,57 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
           </div>
         )}
       </div>
+
+      {/* #21: Confidence-calibration coaching */}
+      {(() => {
+        const hasData = studied.length > 0
+        const overconfident = quads.hidden // acc < 0.7 && conf >= 0.6
+        const underconfident = quads.reassure // acc >= 0.7 && conf < 0.6
+        return (
+          <div style={section}>
+            <div style={sectionTitle}>🎯 CONFIDENCE REPORT</div>
+            {!hasData ? (
+              <div style={styles.small}>Keep studying — your calibration profile builds as you answer questions.</div>
+            ) : (
+              <>
+                {overconfident.length > 0 && (
+                  <div style={{ marginBottom: 14 }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.rose, marginBottom: 6 }}>You overestimate your knowledge on:</div>
+                    {overconfident.map(o => (
+                      <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                        <span style={{ fontSize: 14 }}>⚠️</span>
+                        <span style={{ flex: 1 }}>
+                          <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{o.id} {o.title}</span>
+                          <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
+                        </span>
+                        <span style={{ ...styles.pill('rose'), fontSize: 10 }}>Overconfident</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {underconfident.length > 0 && (
+                  <div style={{ marginBottom: 6 }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>You know more than you think about:</div>
+                    {underconfident.map(o => (
+                      <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                        <span style={{ fontSize: 14 }}>💪</span>
+                        <span style={{ flex: 1 }}>
+                          <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{o.id} {o.title}</span>
+                          <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
+                        </span>
+                        <span style={{ ...styles.pill('sky'), fontSize: 10 }}>Trust yourself</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {overconfident.length === 0 && underconfident.length === 0 && (
+                  <div style={styles.small}>Your confidence and accuracy are well-calibrated. Keep it up!</div>
+                )}
+              </>
+            )}
+          </div>
+        )
+      })()}
 
       {/* CLI skills tracker */}
       <div style={section}>

@@ -387,6 +387,21 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ---
 
+### 23. Better AI — Socratic tutor, CLI feedback, mnemonics, confidence coaching — #15 #20 #21 #26
+
+**Goal**: Deepen AI-powered learning interactions.
+
+**What was done**:
+- #15: Socratic tutor mode toggle in ExplainTab — new "🧠 Socratic Mode" button added to the "EXPLAIN IT DIFFERENTLY" button row in `StyleSwitcher`. When toggled ON (persisted to `ccna_socratic_mode` localStorage), fetches 2-3 guiding questions from Claude Haiku (system prompt: Socratic tutor, discover-the-answer approach). Responses cached per objective in `ccna_socratic_cache_v1`. Shows "❓ Guiding questions mode" label and an amber card with the questions.
+- #26: CLI lab AI feedback on failed validation — `CLIDrillTab.submit()` now tracks the last failed command in `lastFail` state (userCommand + correctCommand + taskDescription) for both syntax errors (step 5) and wrong-mode errors (step 2). A new `CliFailureExplainer` component renders "💡 Why did this fail?" below the terminal input when `lastFail` is set; it calls Claude Haiku with a 1-2 sentence explanation. Cached in sessionStorage per (objectiveId + userCommand).
+- #20: Personalized mnemonics after incorrect quiz answers — new `PersonalizedMnemonic` component rendered alongside `ProgressiveHint` in `QuizTab`'s wrong-answer feedback block. Shows "🧠 Give me a mnemonic" button; calls Claude Haiku for a memorable mnemonic/acronym for the correct answer concept. Cached per question ID in sessionStorage.
+- #21: Confidence-calibration coaching panel in MetricsDashboard — new "🎯 CONFIDENCE REPORT" section using the existing `quads.hidden` (overconfident: high confidence + low accuracy) and `quads.reassure` (underconfident: low confidence + high accuracy) data already computed from SRS/mastery data. Displays "You overestimate your knowledge on:" and "You know more than you think about:" lists with clickable objective rows. No AI call.
+- **Build**: `npm run build` passed (1,063.50 kB).
+
+**Outcome**: AI tutor now has 5 interaction styles (standard, exam-focused, ELI5, Socratic, mnemonic). CLI labs give targeted failure explanations. MetricsDashboard shows calibration profile.
+
+---
+
 ## Open Decisions / Unresolved Questions
 
 1. ~~Domain 5 crosswalk above — confirm before importing Domain 5 questions (QB 5.8 → app 5.4 vs 5.7 is ambiguous).~~ **Resolved**, see Timeline item 13: QB 5.8 → app 5.7.
@@ -397,9 +412,9 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ## Next Steps (per ENHANCEMENT_PRIORITIES.md MASTER LIST)
 
-**Next:** #15 — Socratic tutor mode toggle. **Or:** #46 — Deploy.
+**Next:** #46 — Deploy to production. **Or:** #38 — Voice/TTS mode.
 
-**Queued (Better AI):** #15 Socratic tutor · #16 Session recap · #18–22 AI coaching features.
+**Queued (Better AI):** #38 Voice/TTS · #39 Exam mock interview.
 
 See `ENHANCEMENT_PRIORITIES.md` for the full prioritized table (items 1–46).
 
