@@ -1257,14 +1257,14 @@ function generateLocalSuggestions(summary) {
     })
   }
 
-  // Fallback for a brand-new learner
+  // Fallback for a brand-new learner — open Quiz so they baseline quickly, then use Explain for gaps
   if (cards.length === 0) {
     const first = perObjective.find(o => o.status === 'unseen') || perObjective[0]
     if (first) {
       add({
-        key: 'start', chip: 'START HERE', accent: 'purple', objective: first, tab: 'Explain',
+        key: 'start', chip: 'START HERE', accent: 'purple', objective: first, tab: 'Quiz',
         title: `${first.id} ${first.title}`,
-        body: `New here? Begin with the fundamentals and build from the ground up.`,
+        body: `New here? Take a short quiz to baseline this topic, then read the explanation for anything you miss.`,
       })
     }
   }
@@ -3275,7 +3275,73 @@ const CONFIDENCE_OPTIONS = [
   { value: 'practice', label: 'Need practice', accent: COLORS.rose, dim: COLORS.roseDim, border: COLORS.roseBorder },
 ]
 
-function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
+function QuizCompleteCard({
+  title = 'Quiz complete',
+  stats,
+  objectiveId,
+  progress,
+  nextObjective,
+  missedCountGlobal = 0,
+  onReviewAgain,
+  onGenerateNew,
+  onOpenMissed,
+  onSelectObjective,
+  onSwitchTab,
+  footnote,
+}) {
+  const pct = stats.total ? Math.round((stats.correct / stats.total) * 100) : 0
+  const mastery = computeMastery(progress?.[objectiveId] || {})
+  const sessionMissed = stats.missedCount || 0
+  const scoreColor = pct >= 80 ? COLORS.mint : pct >= 60 ? COLORS.sky : COLORS.rose
+
+  let primaryLabel
+  let primaryAction
+  if (sessionMissed > 0) {
+    primaryLabel = missedCountGlobal > 0 ? `Review missed questions (${missedCountGlobal})` : 'Review missed questions'
+    primaryAction = onOpenMissed
+  } else if (nextObjective) {
+    primaryLabel = `Next objective: ${nextObjective.id}`
+    primaryAction = () => onSelectObjective?.({ ...nextObjective, __initialTab: 'Quiz' })
+  } else {
+    primaryLabel = 'Review again from bank'
+    primaryAction = onReviewAgain
+  }
+
+  return (
+    <div style={styles.card}>
+      <h2 style={styles.h2}>{title}</h2>
+      <p style={{ fontSize: 28, fontWeight: 700, color: scoreColor, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
+      <p style={{ ...styles.small, marginBottom: 4 }}>
+        {pct}% this session · Topic mastery {Math.round(mastery.score * 100)}%
+        {mastery.mastered ? ' · Mastered ✓' : ''}
+      </p>
+      {sessionMissed > 0 && (
+        <p style={{ ...styles.small, marginBottom: 10, color: COLORS.rose }}>
+          {sessionMissed} answer{sessionMissed === 1 ? '' : 's'} missed this session — saved to your review bank.
+        </p>
+      )}
+      {footnote && <p style={{ ...styles.small, marginBottom: 10 }}>{footnote}</p>}
+      <button style={{ ...styles.primaryBtn, marginTop: 4 }} onClick={primaryAction}>{primaryLabel}</button>
+      {sessionMissed > 0 && nextObjective && (
+        <button
+          style={{ ...styles.secondaryBtn, marginTop: 8 }}
+          onClick={() => onSelectObjective?.({ ...nextObjective, __initialTab: 'Quiz' })}
+        >
+          Continue to {nextObjective.id} instead
+        </button>
+      )}
+      <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => onSwitchTab?.('Explain')}>
+        Read explanation
+      </button>
+      {primaryAction !== onReviewAgain && (
+        <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onReviewAgain}>Review again from bank</button>
+      )}
+      <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onGenerateNew}>Generate new questions</button>
+    </div>
+  )
+}
+
+function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onSwitchTab }) {
   const [phase, setPhase] = useState('idle') // idle | loading | active | done | error
   const [error, setError] = useState(null)
   const [queue, setQueue] = useState([]) // remaining questions
@@ -3510,14 +3576,20 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved }) {
   if (phase === 'loading') return <Spinner label="Generating quiz questions..." />
   if (phase === 'error') return <ErrorBox message={error} onRetry={() => startQuiz(false)} />
   if (phase === 'done') {
+    const missedCountGlobal = (missed || []).length
     return (
-      <div style={styles.card}>
-        <h2 style={styles.h2}>Quiz complete</h2>
-        <p style={{ fontSize: 28, fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
-        <p style={styles.small}>{stats.missedCount} answer{stats.missedCount === 1 ? '' : 's'} missed and saved for review.</p>
-        <button style={{ ...styles.primaryBtn, marginTop: 10 }} onClick={() => startQuiz(false)}>Review again from bank</button>
-        <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => startQuiz(true)}>Generate new questions</button>
-      </div>
+      <QuizCompleteCard
+        stats={stats}
+        objectiveId={objective.id}
+        progress={progress}
+        nextObjective={nextObjective}
+        missedCountGlobal={missedCountGlobal}
+        onReviewAgain={() => startQuiz(false)}
+        onGenerateNew={() => startQuiz(true)}
+        onOpenMissed={onOpenMissed}
+        onSelectObjective={onSelectObjective}
+        onSwitchTab={onSwitchTab}
+      />
     )
   }
 
@@ -4712,7 +4784,7 @@ function ACLWildcardTab() {
 /* =========================================================================
    OBJECTIVE SCREEN — Explain / Quiz / CLI Drill / Subnetting / VLSM tabs
    ========================================================================= */
-function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective }) {
+function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed }) {
   const objLabs = labsForObjective(objective.id)
 
   // Siblings within the same domain for prev/next navigation
@@ -4877,7 +4949,22 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
 
       {tab === 'Explain' && <div><SectionLabel icon="📖" label="EXPLANATION" /><ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} /></div>}
       {tab === 'Visual' && <div><SectionLabel icon="🖼" label="VISUAL AID" /><VisualAidTab objective={objective} /></div>}
-      {tab === 'Quiz' && <div><SectionLabel icon="❓" label="QUIZ" /><QuizTab objective={objective} progress={progress} missed={missed} onMissed={onMissed} onScoreSaved={handleScoreSaved} /></div>}
+      {tab === 'Quiz' && (
+        <div>
+          <SectionLabel icon="❓" label="QUIZ" />
+          <QuizTab
+            objective={objective}
+            progress={progress}
+            missed={missed}
+            onMissed={onMissed}
+            onScoreSaved={handleScoreSaved}
+            nextObjective={nextObj}
+            onSelectObjective={onSelectObjective}
+            onOpenMissed={onOpenMissed}
+            onSwitchTab={setTab}
+          />
+        </div>
+      )}
       {tab === 'CLI Drill' && <div><SectionLabel icon="💻" label="CLI DRILL" /><CLIDrillTab objective={objective} /></div>}
       {tab === 'Subnetting' && <div><SectionLabel icon="🧮" label="SUBNETTING PRACTICE" /><SubnettingTab /></div>}
       {tab === 'VLSM' && <div><SectionLabel icon="🧮" label="VLSM PRACTICE" /><VLSMTab /></div>}
@@ -7696,6 +7783,7 @@ export default function App() {
             missed={missed}
             onOpenLab={(id) => openLab(id, 'objective')}
             onSelectObjective={selectObjective}
+            onOpenMissed={() => setView('missed')}
           />
         )}
         {view === 'mock' && <MockExam onExit={() => setView('home')} />}
