@@ -62,9 +62,9 @@ Start at **#12** unless you need production updated first (**#41**).
 | 44 | Fix offline packaging to skip curated assets | Less AI | Queued | `packageObjectiveOffline()` should not re-call AI |
 | 45 | Show CURATED / Q-ONLY / AI badge on objective header | UX | Queued | Surface coverage before user burns an API call |
 | 46 | Deploy to production | Infra | **Ready** | `npm run build && npx wrangler pages deploy dist --project-name ccna-study-tool` |
-| 47 | Fix Key Terms auto-load bug + cache-first for all objectives | Bug fix | **Next (urgent)** | Missing `useEffect` from Timeline 16 means cards never auto-load; also ensure curated flashcards serve instantly, AI only caches once for non-curated |
-| 48 | Static key info block on Explain tab (all objectives) | Less AI | Queued | Show BOOK_REF notes or CKU summaries instantly before/instead of waiting for AI explanation on non-curated objectives |
-| 49 | Objective navigation — prev/next + domain quick-jump | UX | Queued | Prev/next buttons within a domain; one-tap return to domain list; complements #27 (Cmd+K global search) |
+| 47 | Fix Key Terms auto-load bug + cache-first for all objectives | Bug fix | ~~**Next (urgent)**~~ — **done**, see PROJECT_LOG.md item 17 |
+| 48 | Static key info block on Explain tab (all objectives) | Less AI | ~~Queued~~ — **done**, see PROJECT_LOG.md item 17 |
+| 49 | Objective navigation — prev/next + domain quick-jump | UX | ~~Queued~~ — **done**, see PROJECT_LOG.md item 17 |
 
 ### Legacy MASTER SEQUENCE crosswalk (do not use for planning — reference only)
 

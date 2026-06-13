@@ -13,7 +13,7 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
 - **Question bank**: **566 imported and live** (554 in `IMPORTED_QUESTIONS` + hand-curated merges). Domain 5 bulk import complete. **12 shelved** in `SUPPLEMENTAL`.
 - **UI**: Key Terms and Visual tabs use curated flashcards/diagrams when available (no API on first load for curated objectives).
-- **Next planned work**: Fix Key Terms auto-load bug (#47, urgent — missing `useEffect` from Timeline 16), then **MASTER LIST #12** test/lint tooling. Optional anytime: **#46** deploy to production.
+- **Next planned work**: **MASTER LIST #12** — test/lint/typecheck tooling. Optional anytime: **#46** deploy to production.
 
 ---
 
@@ -274,6 +274,20 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 - Updated `PROJECT_PROFILE.md` planning-doc roles + current counts.
 
 **Outcome**: one table to plan from; no conflicting duplicate backlogs.
+
+---
+
+### 18. MASTER LIST #47, #48, #49 — Key Terms bug fix, static Explain panel, prev/next nav
+
+**Goal**: Fix Key Terms not loading, add instant reference notes on Explain tab, add within-domain prev/next navigation.
+
+**What was done**:
+- **#47 Key Terms auto-load fix**: restored missing `useEffect` in `KeyTermsCarousel` (accidentally dropped in Timeline 16). Cards now load on every objective navigation. Curated objectives serve flashcards instantly from `getCurated().flashcards` (no API); non-curated check localStorage cache first then fall back to AI.
+- **#48 Static Explain panel**: new `BookRefPanel` component renders `BOOK_REF[objective.id]` content (already in the bundle for all 53 objectives) as an `⚡ QUICK REFERENCE · NO AI` card — shown immediately on non-curated Explain tabs before "Reveal explanation". Zero API cost, instant.
+- **#49 Prev/next navigation**: `ObjectiveScreen` now accepts `onSelectObjective` prop and computes domain siblings from `DOMAINS`. Prev/next buttons appear in the objective header — lets you move through a domain's objectives without going back to Home.
+- **Build**: `npm run build` passed (925 kB).
+
+**Outcome**: Key Terms now load correctly; non-curated objectives show reference content instantly on the Explain tab; navigation within a domain is one tap.
 
 ---
 

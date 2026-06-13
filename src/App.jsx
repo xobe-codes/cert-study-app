@@ -1693,6 +1693,14 @@ function KeyTermsCarousel({ objective }) {
     }
   }, [objective.id, objective.title, curatedFlashcards])
 
+  useEffect(() => {
+    setCards(null)
+    setError(null)
+    setFlipped(new Set())
+    fetchTerms(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [objective.id])
+
   const toggleFlip = (idx) => {
     setFlipped(prev => {
       const next = new Set(prev)
@@ -2279,6 +2287,23 @@ function SourcesPanel({ objective }) {
   )
 }
 
+/* ---- Quick-reference panel: shows BOOK_REF notes instantly for any objective
+   (no AI, no wait). Shown on non-curated objectives before Reveal explanation. ---- */
+function BookRefPanel({ objective }) {
+  const notes = BOOK_REF[objective.id]
+  if (!notes) return null
+  return (
+    <div style={{ ...styles.card, border: `1px solid ${COLORS.border}`, marginBottom: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+        <span style={{ ...styles.pill('amber'), fontSize: 9 }}>⚡ QUICK REFERENCE · NO AI</span>
+      </div>
+      <div style={{ fontSize: 13, color: COLORS.silver, lineHeight: 1.65 }}>
+        <RichText text={notes} />
+      </div>
+    </div>
+  )
+}
+
 function ExplainTab({ objective, progress, onUpdateProgress }) {
   const [content, setContent] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -2353,6 +2378,8 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
     <div>
       {testedOut && <div style={{ ...styles.pill('mint'), fontSize: 11, marginBottom: 10, display: 'inline-block' }}>✓ Tested out — scheduled for review</div>}
       <KeyTermsCarousel objective={objective} />
+
+      {!curated && <BookRefPanel objective={objective} />}
 
       {!recalled && !error && (
         <div style={{ ...styles.card, border: `1px solid ${COLORS.purpleGlow}`, background: COLORS.purpleDim }}>
@@ -3416,8 +3443,17 @@ function LabsHub({ onBack, onOpenLab }) {
 /* =========================================================================
    OBJECTIVE SCREEN — Explain / Quiz / CLI Drill / Subnetting / VLSM tabs
    ========================================================================= */
-function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab }) {
+function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective }) {
   const objLabs = labsForObjective(objective.id)
+
+  // Siblings within the same domain for prev/next navigation
+  const siblings = useMemo(() => {
+    const domain = DOMAINS.find(d => d.id === objective.domainId)
+    return domain ? domain.objectives.map(o => ({ ...o, domainId: domain.id, domainName: domain.name, accent: domain.accent })) : []
+  }, [objective.domainId])
+  const sibIdx = siblings.findIndex(o => o.id === objective.id)
+  const prevObj = sibIdx > 0 ? siblings[sibIdx - 1] : null
+  const nextObj = sibIdx < siblings.length - 1 ? siblings[sibIdx + 1] : null
   const tabs = useMemo(() => {
     const t = ['Explain', 'Visual', 'Quiz']
     if (COMMAND_DRILLS[objective.id]) t.push('CLI Drill')
@@ -3480,6 +3516,36 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
       </div>
       <h1 style={styles.h1}>{objective.title}</h1>
       <div style={{ ...styles.small, marginBottom: 10 }}>{objective.domainName}</div>
+
+      {/* Prev / Next navigation within domain */}
+      {(prevObj || nextObj) && (
+        <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+          <button
+            onClick={() => onSelectObjective?.(prevObj)}
+            disabled={!prevObj}
+            style={{
+              flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${COLORS.border}`,
+              background: COLORS.surface, color: prevObj ? COLORS.silver : COLORS.silverDim,
+              fontSize: 12, cursor: prevObj ? 'pointer' : 'default', fontFamily: 'inherit',
+              padding: '6px 10px', textAlign: 'left', opacity: prevObj ? 1 : 0.35,
+            }}
+          >
+            ‹ {prevObj ? prevObj.id : ''}
+          </button>
+          <button
+            onClick={() => onSelectObjective?.(nextObj)}
+            disabled={!nextObj}
+            style={{
+              flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${COLORS.border}`,
+              background: COLORS.surface, color: nextObj ? COLORS.silver : COLORS.silverDim,
+              fontSize: 12, cursor: nextObj ? 'pointer' : 'default', fontFamily: 'inherit',
+              padding: '6px 10px', textAlign: 'right', opacity: nextObj ? 1 : 0.35,
+            }}
+          >
+            {nextObj ? nextObj.id : ''} ›
+          </button>
+        </div>
+      )}
 
       <div style={{ marginBottom: 14 }}>
         {isOffline ? (
@@ -5568,6 +5634,7 @@ export default function App() {
             onMissed={handleMissed}
             missed={missed}
             onOpenLab={(id) => openLab(id, 'objective')}
+            onSelectObjective={selectObjective}
           />
         )}
         {view === 'mock' && <MockExam onExit={() => setView('home')} />}
