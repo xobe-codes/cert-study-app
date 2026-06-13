@@ -860,6 +860,28 @@ function computeMastery(entry) {
   const mastered = acc >= 0.8 && conf >= 0.5 && recent.some(r => r.total >= 3)
   return { score, mastered }
 }
+// Per-domain mastery average, weighted by official exam domain percentages.
+function computeDomainStats(progress) {
+  return DOMAINS.map(d => {
+    const objs = d.objectives
+    const avg = objs.reduce((s, o) => s + computeMastery(progress[o.id]).score, 0) / Math.max(objs.length, 1)
+    const mastered = objs.filter(o => progress[o.id]?.status === 'mastered').length
+    return { id: d.id, name: d.name, accent: d.accent, weight: d.weight, mastered, total: objs.length, avg }
+  })
+}
+
+// Exam Readiness Score: domain-weighted mastery, lightly adjusted by retention
+// health (sections in the "weak"/STUDY state pull the score down a bit).
+// Returns a 0-1 score plus the domain breakdown used to compute it.
+function computeReadinessScore(progress, retention) {
+  const domainStats = computeDomainStats(progress)
+  const masteryReadiness = domainStats.reduce((s, d) => s + (d.weight / 100) * d.avg, 0)
+  if (!retention || retention.length === 0) return { score: masteryReadiness, domainStats }
+  const strong = retention.filter(r => r.state === 'strong').length
+  const retentionFactor = strong / retention.length
+  return { score: masteryReadiness * 0.85 + retentionFactor * 0.15, domainStats }
+}
+
 // Separate accuracy vs confidence (for the confidence-vs-accuracy quadrant).
 function masteryBreakdown(entry) {
   const scores = entry?.quizScores || []
@@ -4167,6 +4189,7 @@ function Onboarding({ onComplete, onSkip }) {
 function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, syncOn }) {
   const [openDomain, setOpenDomain] = useState(null)
   const [suggestions, setSuggestions] = useState([])
+  const [retention, setRetention] = useState([])
 
   // Recompute the "For You" cards locally whenever progress or the missed bank
   // changes. Fully deterministic — no API call.
@@ -4179,6 +4202,19 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
     return () => { cancelled = true }
   }, [progress, missed])
 
+  // Retention health feeds the Exam Readiness score below — reload whenever
+  // progress changes (a finished quiz can shift a section's SRS state).
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      const r = await loadRetentionHealth()
+      if (!cancelled) setRetention(r)
+    })()
+    return () => { cancelled = true }
+  }, [progress])
+
+  const readiness = useMemo(() => computeReadinessScore(progress, retention), [progress, retention])
+
   const totals = useMemo(() => {
     let mastered = 0, inProgress = 0
     ALL_OBJECTIVES.forEach(o => {
@@ -4186,8 +4222,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
       if (s === 'mastered') mastered++
       else if (s === 'in_progress') inProgress++
     })
-    const overall = ALL_OBJECTIVES.reduce((s, o) => s + computeMastery(progress[o.id]).score, 0) / ALL_OBJECTIVES.length
-    return { mastered, inProgress, total: ALL_OBJECTIVES.length, overall }
+    return { mastered, inProgress, total: ALL_OBJECTIVES.length }
   }, [progress])
 
   return (
@@ -4202,7 +4237,27 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         {totals.mastered} mastered · {totals.inProgress} in progress · {totals.total - totals.mastered - totals.inProgress} not started
         {offlineReady?.size > 0 && <> · ⤓ {offlineReady.size} offline-ready</>}
       </div>
-      <ProgressBar value={totals.overall} max={1} accent="purple" label="Course mastery" sublabel={`${Math.round(totals.overall * 100)}%`} height={9} />
+      <div style={styles.card}>
+        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+          <ProgressRing value={readiness.score} size={88} accent="purple" caption="Exam Readiness" />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            {readiness.domainStats.map(d => {
+              const c = accentColors(d.accent)
+              return (
+                <div key={d.id} style={{ marginBottom: 6 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: COLORS.silverMid, marginBottom: 2 }}>
+                    <span>{d.name}</span>
+                    <span>{Math.round(d.avg * 100)}%</span>
+                  </div>
+                  <div style={{ height: 5, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
+                    <div style={{ height: '100%', width: `${Math.round(d.avg * 100)}%`, borderRadius: 999, background: c.text }} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
       {dueCount > 0 && (() => {
         // Neutral, capped framing — never guilt-trip with a backlog count.
         const ready = Math.min(dueCount, REVIEW_SESSION_CAP)

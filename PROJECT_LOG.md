@@ -12,7 +12,7 @@ See also: [PROJECT_PROFILE.md](PROJECT_PROFILE.md) (structure/stack), [COMMANDS.
 - **Hands-on labs**: 6 labs across 6 domains — VLAN/Trunking (2.1), OSPF (3.4), NAT (4.1), Static/Floating routing (3.3), SSH (4.8), DAI (5.6).
 - **Question bank**: 898 questions extracted/validated from Domains 2-6 (see "Question Bank Validation" below). **Decision made to exclude 14** (3.4 multi-area OSPF cluster) → **884 importable**. **12 imported so far** (4.1, see Timeline item 9) → 872 remaining.
 - **Command Center setup**: Global rules + 3 skills (`/project-scan`, `/usage-plan`, `/phase1`) installed at `~/.claude/`. Project files created and committed (`PROJECT_PROFILE.md`, `COMMANDS.md`, `RISKY_AREAS.md`).
-- **Next planned work**: MASTER SEQUENCE item 5 (Exam Readiness Score hero metric on Home) — see `ENHANCEMENT_PRIORITIES.md`.
+- **Next planned work**: MASTER SEQUENCE item 6 (Domain 5 ID crosswalk decision) — see `ENHANCEMENT_PRIORITIES.md`.
 - **Predicted outcome of full rollout**: ~77% of objectives (41/53) get static questions; ~23% (12/53) remain AI-only (mostly Domain 1, which has no question-bank source yet).
 
 ---
@@ -157,6 +157,23 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 **Outcome**: new users now get a guided first-run experience with seeded mastery data and a concrete starting point, at zero added AI cost.
 
+### 12. MASTER SEQUENCE item 5 — Exam Readiness Score hero metric on Home
+
+**Goal**: a single 0-100% "Exam Readiness" number on Home combining mastery + retention health, with a per-domain breakdown.
+
+**What was done**:
+- `computeDomainStats(progress)`: per-domain average `computeMastery().score` across each domain's objectives (reuses existing logic, same shape as `buildLearnerSummary`'s `domainStats` but synchronous — no event log needed).
+- `computeReadinessScore(progress, retention)`: domain-weighted mastery average (same formula already used by `repCertReadiness`'s "Overall Readiness"), adjusted by retention health — sections in the "STUDY"/weak retention state pull the score down slightly (`mastery*0.85 + retentionStrongFraction*0.15`). No penalty if nothing is in spaced review yet.
+- `HomeScreen`: added a `useEffect` to load `loadRetentionHealth()` (re-runs when `progress` changes), and replaced the old "Course mastery" `ProgressBar` with a hero card: `ProgressRing` showing the readiness % + per-domain mini progress bars (using each domain's accent color and weight).
+- Removed the now-unused `totals.overall` calculation.
+
+**Validation**:
+- `npm run build` passed (554.84 kB).
+- Preview-verified empty state: "0% Exam Readiness" + all 6 domains at 0%.
+- Preview-verified with seeded progress (2.1 mastered, 1.5 in-progress at 46%): readiness "3%", Network Fundamentals "4%", Network Access "13%" — matches the weighted formula (20%×4% + 20%×13% ≈ 3.4%).
+
+**Outcome**: Home now leads with a single readiness number and a per-domain breakdown, reusing the existing mastery/retention pipelines with no new storage or AI calls.
+
 ---
 
 ## Open Decisions / Unresolved Questions
@@ -171,7 +188,8 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 2. ~~Resolve `_V1` file naming~~ — **done**, renamed PROJECT_PROFILE_V1.md/COMMANDS_V1.md/RISKY_AREAS_V1.md back to PROJECT_PROFILE.md/COMMANDS.md/RISKY_AREAS.md.
 3. ~~Per-content-type hybrid fallback in `App.jsx`~~ — **done**, see Timeline item 10.
 4. ~~Diagnostic placement test~~ — **done**, see Timeline item 11.
-5. Exam Readiness Score hero metric on Home — not blocked, optional checkpoint break.
+5. ~~Exam Readiness Score hero metric on Home~~ — **done**, see Timeline item 12.
+6. Domain 5 ID crosswalk decision.
 
 ## Predicted Impact (full rollout)
 

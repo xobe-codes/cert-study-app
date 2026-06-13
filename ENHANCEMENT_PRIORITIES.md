@@ -12,7 +12,7 @@ Goal: enhance learning effectiveness AND the AI experience, in priority order. W
 2. ~~Resolve `_V1` file naming (housekeeping, low risk — do anytime, doesn't block anything)~~ — **done**, renamed back to PROJECT_PROFILE.md/COMMANDS.md/RISKY_AREAS.md (no other doc used a version suffix)
 3. ~~Per-content-type hybrid fallback in App.jsx (static questions usable even with AI-only reading)~~ — **done**, see PROJECT_LOG.md item 10
 4. ~~Onboarding + diagnostic placement test~~ — **done**, see PROJECT_LOG.md item 11
-5. Exam Readiness Score hero metric on Home *(not blocked — can slot in as a checkpoint break)*
+5. ~~Exam Readiness Score hero metric on Home~~ — **done**, see PROJECT_LOG.md item 12
 6. Domain 5 ID crosswalk decision
 7. Import remaining clean domains (2, 3, 6)
 8. Decide orphaned question sets (QB 2.9, QB 5.4, excluded 3.4 OSPF cluster)
