@@ -10,7 +10,7 @@ Branch: `cursor/promote-shelved-a-grade-coverage`
 | 0 | P0: reading×21, legacy×4, E2E smoke | `done` | `9e55408` |
 | 1 | P1: KB 2/5/6, Visual×10, App split, 2.1/2.2 | `done` | `b41ffb0` |
 | 2 | P2: traps 3/5, mock exam, onboarding, CI | `done` | `3b286a8` |
-| 3 | P3: perf, a11y | `done` | `0e8aefa` |
+| 3 | P3: perf, a11y | `done` | `32425e9` |
 
 ## Session notes
 
