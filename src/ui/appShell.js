@@ -88,20 +88,23 @@ export function buildAppShellCss(colors) {
       z-index: 120;
       background: linear-gradient(to top, ${colors.bg} 70%, transparent);
     }
+    [data-theme="dark"] .app-shell .app-chrome-bottom {
+      background: linear-gradient(to top, color-mix(in srgb, ${colors.bg} 88%, transparent) 70%, transparent);
+    }
     .app-chrome-search {
       min-height: 44px;
       height: 44px;
       padding: 0 18px;
       border-radius: 999px;
       border: 1px solid ${colors.border};
-      background: ${colors.card};
+      background: ${colors.surface};
       color: ${colors.silverMid};
       font-size: 13px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 2px 10px #00000033;
+      box-shadow: ${colors.cardShadow || '0 2px 10px #00000033'};
       font-family: inherit;
     }
     .app-chrome-theme {
@@ -109,15 +112,26 @@ export function buildAppShellCss(colors) {
       height: 40px;
       border-radius: 999px;
       border: 1px solid ${colors.border};
-      background: ${colors.card};
+      background: ${colors.surface};
       color: ${colors.silver};
       font-size: 18px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 10px #00000033;
+      box-shadow: ${colors.cardShadow || '0 2px 10px #00000033'};
       flex-shrink: 0;
+    }
+    [data-theme="dark"] .app-shell .app-chrome-search,
+    [data-theme="dark"] .app-shell .app-chrome-theme,
+    [data-theme="dark"] .app-shell .app-chrome-bottom {
+      backdrop-filter: blur(14px) saturate(1.1);
+      -webkit-backdrop-filter: blur(14px) saturate(1.1);
+    }
+    [data-theme="dark"] .app-shell .route-inner textarea,
+    [data-theme="dark"] .app-shell .route-inner input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     .route-shell {
       flex: 1;
