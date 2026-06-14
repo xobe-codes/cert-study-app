@@ -7,10 +7,12 @@ import {
 } from './questionUtils.js'
 import { computeCkuWeakness, computeTrapWeakness } from './weaknessUtils.js'
 import { getKnowledgeForObjective, hasKnowledgeBase } from './data/knowledgeStudy.js'
+import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
 import { getShelvedStats } from './data/shelvedStudy.js'
 import ExtraStudyMode from './ExtraStudyMode.jsx'
 import ExamTrapStudyMode from './ExamTrapStudyMode.jsx'
 import RoutingDecoderMode from './RoutingDecoderMode.jsx'
+import { buildMockExamDomainCounts, MOCK_EXAM_QUESTION_COUNT, MOCK_EXAM_DURATION_MIN, MOCK_EXAM_AI_CAP } from './mockExamConfig.js'
 
 /* =========================================================================
    DESIGN TOKENS
@@ -1474,27 +1476,6 @@ function generateVLSMProblem() {
 /* =========================================================================
    MOCK EXAM — domain-weighted question selection
    ========================================================================= */
-const MOCK_EXAM_QUESTION_COUNT = 30
-const MOCK_EXAM_DURATION_MIN = 120
-
-// Returns one entry per domain with how many of the 30 questions should come
-// from it, weighted by that domain's exam percentage (last domain absorbs
-// any rounding remainder so the total is always MOCK_EXAM_QUESTION_COUNT).
-function buildMockExamDomainCounts() {
-  const counts = []
-  let allocated = 0
-  DOMAINS.forEach((domain, idx) => {
-    let count
-    if (idx === DOMAINS.length - 1) {
-      count = MOCK_EXAM_QUESTION_COUNT - allocated
-    } else {
-      count = Math.round((domain.weight / 100) * MOCK_EXAM_QUESTION_COUNT)
-      allocated += count
-    }
-    counts.push({ domain, count })
-  })
-  return counts
-}
 
 function shuffleArray(arr) {
   const a = [...arr]
@@ -3121,7 +3102,12 @@ function McChoices({ q, selected, revealed, onSelect }) {
     return (
       <button
         key={idx}
+        type="button"
+        role="radio"
+        aria-checked={selected === idx}
+        aria-label={`Choice ${String.fromCharCode(65 + idx)}: ${choice}`}
         onClick={() => onSelect(idx)}
+        onKeyDown={e => { if (!revealed && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onSelect(idx) } }}
         style={{
           display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
           background: bg, border: `1px solid ${border}`, color, borderRadius: 10,
@@ -3539,6 +3525,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     setError(null)
     sessionRatings.current = []
     try {
+      await preloadCleanBank()
       let bank = await loadQuizBank()
       let banked = bank[objective.id] || []
       let usedApi = false
@@ -6953,11 +6940,13 @@ function MockExam({ onExit }) {
     setPhase('loading')
     setError(null)
     try {
-      const domainCounts = buildMockExamDomainCounts().filter(dc => dc.count > 0)
+      await preloadCleanBank()
+      const domainCounts = buildMockExamDomainCounts(DOMAINS).filter(dc => dc.count > 0)
 
       // For each domain, try to fill the needed count from the static bank first.
       // Only call AI for objectives that have no imported questions.
       const all = []
+      let aiUsed = 0
       await Promise.all(domainCounts.map(async ({ domain, count }) => {
         // Collect all static questions for this domain
         const staticPool = shuffleArray(
@@ -6966,9 +6955,10 @@ function MockExam({ onExit }) {
         const fromStatic = staticPool.slice(0, count)
         all.push(...fromStatic)
 
-        // Only call AI if static pool is too thin
-        const aiCount = count - fromStatic.length
+        // Only call AI if static pool is too thin (capped per exam)
+        const aiCount = Math.min(count - fromStatic.length, Math.max(0, MOCK_EXAM_AI_CAP - aiUsed))
         if (aiCount <= 0) return
+        aiUsed += aiCount
 
         const objectivesText = domain.objectives.map(o => `Objective ${o.id} — ${o.title}\n${BOOK_REF[o.id] || ''}`).join('\n\n')
         const data = await askClaudeJSON({

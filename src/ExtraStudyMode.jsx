@@ -33,7 +33,13 @@ export default function ExtraStudyMode({
       <div>
         <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
         <h1 style={styles.h1}>Extra Study</h1>
-        <div style={styles.small}>No shelved questions in this filter. Run npm run build:clean-bank to refresh.</div>
+        <div style={{ ...styles.card, marginTop: 12 }}>
+          <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 8, color: COLORS.mint }}>All clear — 0 shelved questions</div>
+          <div style={{ fontSize: 13, lineHeight: 1.55 }}>
+            Every question in the work-in-progress bank has been promoted into the main clean bank.
+            Use domain quizzes and Mock Exam for scored practice.
+          </div>
+        </div>
       </div>
     )
   }
