@@ -15,4 +15,5 @@ export const STORAGE_KEYS = {
   onboardDone: 'ccna_onboard_done_v1',
   mockHistory: 'ccna_mock_history_v1',
   nudgeDismissed: 'ccna_nudge_dismissed_v1',
+  quizSessionSize: 'ccna_quiz_session_size_v1',
 }

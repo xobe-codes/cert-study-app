@@ -30,6 +30,7 @@ import {
 import ExtraStudyMode from './ExtraStudyMode.jsx'
 import ExamTrapStudyMode from './ExamTrapStudyMode.jsx'
 import RoutingDecoderMode from './RoutingDecoderMode.jsx'
+import { QUIZ_SESSION_OPTIONS, DEFAULT_QUIZ_SESSION_SIZE, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
 
 
 /* =========================================================================
@@ -583,7 +584,8 @@ function mergeIntoBank(bank, objectiveId, questions) {
 // material); a struggling learner gets pulled toward easier/medium ones. This
 // only breaks near-ties in review priority — never-seen or just-missed
 // questions are still reviewed first regardless of difficulty.
-function pickReviewSet(banked, accuracy = null) {
+function pickReviewSet(banked, accuracy = null, sessionSize = QUIZ_SESSION_SIZE) {
+  const limit = Math.min(Math.max(1, sessionSize), banked.length)
   const priority = (q) => {
     const lastRating = q.ratings.length ? q.ratings[q.ratings.length - 1].value : null
     const lastAttempt = q.attempts.length ? q.attempts[q.attempts.length - 1] : null
@@ -603,7 +605,7 @@ function pickReviewSet(banked, accuracy = null) {
   return [...banked]
     .map(q => ({ q, p: priority(q) + (diffBias[q.difficulty] ?? 0) + (typeBias[q.type] ?? 0), j: Math.random() }))
     .sort((a, b) => a.p - b.p || a.j - b.j)
-    .slice(0, QUIZ_SESSION_SIZE)
+    .slice(0, limit)
     .sort((a, b) => (diffRank[a.q.difficulty] ?? 1) - (diffRank[b.q.difficulty] ?? 1))
     .map(x => x.q)
 }
@@ -3012,6 +3014,16 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
   const [bankSize, setBankSize] = useState(0)
   const [bankQuestions, setBankQuestions] = useState([])
   const [orderDraft, setOrderDraft] = useState([])
+  const [sessionSize, setSessionSize] = useState(DEFAULT_QUIZ_SESSION_SIZE)
+
+  useEffect(() => {
+    loadQuizSessionSize().then(setSessionSize)
+  }, [])
+
+  async function chooseSessionSize(size) {
+    setSessionSize(size)
+    await saveQuizSessionSize(size)
+  }
 
   // Keep the idle screen honest about how many questions are stored locally.
   const refreshBankSize = useCallback(async () => {
@@ -3083,7 +3095,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
       }
 
       const breakdown = masteryBreakdown(progress?.[objective.id])
-      const set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null)
+      const set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null, sessionSize)
       if (set.length === 0) throw new Error('No questions available for this objective yet.')
       setBankSize(banked.length)
       setSourceLabel(usedApi ? 'Freshly generated · added to your bank' : `From your saved bank of ${banked.length} · no API used`)
@@ -3099,7 +3111,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
       setError(err.message.includes('JSON') ? 'Claude returned an unexpected format. Please try again.' : err.message)
       setPhase('error')
     }
-  }, [objective.id, objective.title, progress, missed])
+  }, [objective.id, objective.title, progress, missed, sessionSize])
 
   useEffect(() => {
     setPhase('idle')
@@ -3201,7 +3213,34 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
         </p>
         {hasBank && <BankMixDisplay questions={bankQuestions} />}
         {!hasBank && <AiBudgetWarning />}
-        <button style={styles.primaryBtn} onClick={() => startQuiz(false)}>{hasBank ? 'Review from bank' : 'Build question bank'}</button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 12, color: COLORS.silverMid }}>Session length</span>
+          <div style={{ display: 'flex', gap: 4 }} role="group" aria-label="Quiz session length">
+            {QUIZ_SESSION_OPTIONS.map(n => {
+              const disabled = hasBank && bankSize < n
+              return (
+                <button
+                  key={n}
+                  type="button"
+                  disabled={disabled}
+                  aria-pressed={sessionSize === n}
+                  onClick={() => chooseSessionSize(n)}
+                  style={{
+                    ...styles.pill(sessionSize === n ? 'sky' : 'silver'),
+                    cursor: disabled ? 'default' : 'pointer',
+                    border: 'none',
+                    fontFamily: 'inherit',
+                    opacity: disabled ? 0.35 : 1,
+                    fontSize: 11,
+                    padding: '2px 9px',
+                    minHeight: 28,
+                  }}
+                >{n}</button>
+              )
+            })}
+          </div>
+        </div>
+        <button style={styles.primaryBtn} onClick={() => startQuiz(false)}>{hasBank ? `Review ${Math.min(sessionSize, bankSize)} questions` : 'Build question bank'}</button>
         {hasBank && (
           <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => startQuiz(true)}>Generate new questions</button>
         )}
