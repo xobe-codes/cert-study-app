@@ -30,12 +30,12 @@ Prioritized follow-ups — top 3 implemented in session after phases 0–3.
 | 3 | Expand Visual tab to ~20 objectives | done (this session) |
 | 4 | Fix duplicate `package.json` script | done (this session) |
 | 5 | Sync `docs/IMPROVEMENT_LOG.md` with implementation log | pending |
-| 6 | Finish `App.jsx` split (HomeScreen, MockExam, objective shell) | pending |
-| 7 | Mock exam static-only when pool is full | done (this session) |
-| 8 | CI: `kb:full` or domain-1 validate in workflow | pending |
-| 9 | Exam traps D1/D2/D6 (or all-domains mode) | done (this session) |
-| 10 | Quiz radiogroup + 1–4 / arrow keyboard nav | done (this session) |
-| 11 | Preload clean bank on `requestIdleCallback` after Home | pending |
+| 6 | Finish `App.jsx` split (HomeScreen, MockExam, objective shell) | done (this session) |
+| 7 | Mock exam static-only when pool is full | done |
+| 8 | CI: `kb:full` or domain-1 validate in workflow | done (this session) |
+| 9 | Exam traps D1/D2/D6 (or all-domains mode) | done |
+| 10 | Quiz radiogroup + 1–4 / arrow keyboard nav | done |
+| 11 | Preload clean bank on `requestIdleCallback` after Home | done (this session) |
 | 12 | Voice/TTS tutor (#38 master list) | pending |
 | 13 | Exam-day mock interview (#39) | pending |
 | 14 | `docs/ux-audit/` screenshot set | pending |

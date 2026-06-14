@@ -1,0 +1,18 @@
+export const STORAGE_KEYS = {
+  progress: 'ccna_progress_v1',
+  missed: 'ccna_missed_v1',
+  streak: 'ccna_streak_v1',
+  quizBank: 'ccna_quiz_bank_v1',
+  visualCache: 'ccna_visual_cache_v1',
+  events: 'ccna_events_v1',
+  cliStats: 'ccna_cli_stats_v1',
+  syncCode: 'ccna_sync_code_v1',
+  syncLast: 'ccna_sync_last_v1',
+  usage: 'ccna_usage_v1',
+  tutorChat: 'ccna_tutor_chat_v1',
+  labDone: 'ccna_lab_done_v1',
+  theme: 'ccna_theme_v1',
+  onboardDone: 'ccna_onboard_done_v1',
+  mockHistory: 'ccna_mock_history_v1',
+  nudgeDismissed: 'ccna_nudge_dismissed_v1',
+}

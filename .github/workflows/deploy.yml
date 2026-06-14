@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm run validate:clean-bank
+      - run: npm run validate:pipeline
       - run: npm test
       - run: npm run build
         env:

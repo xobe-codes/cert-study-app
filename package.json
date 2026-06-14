@@ -12,6 +12,8 @@
     "build:clean-bank": "node scripts/buildCleanBank.mjs all",
     "build:clean-bank:domain": "node scripts/buildCleanBank.mjs",
     "validate:clean-bank": "node scripts/validateCleanBank.mjs",
+    "validate:compiled": "node scripts/validateCompiledModules.mjs",
+    "validate:pipeline": "npm run validate:clean-bank && npm run validate:compiled",
     "build:kb": "node scripts/buildKnowledgeBase.mjs",
     "compile:clean-questions": "node scripts/compileCleanQuestionsModule.mjs",
     "compile:shelved-questions": "node scripts/compileShelvedQuestionsModule.mjs",

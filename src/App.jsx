@@ -8,56 +8,29 @@ import {
 import { computeCkuWeakness, computeTrapWeakness } from './weaknessUtils.js'
 import { getKnowledgeForObjective, hasKnowledgeBase } from './data/knowledgeStudy.js'
 import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
-import { getShelvedStats } from './data/shelvedStudy.js'
+import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
+import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme.js'
+import { STORAGE_KEYS } from './storageKeys.js'
+import McChoices from './components/McChoices.jsx'
+import Spinner from './components/Spinner.jsx'
+import ErrorBox from './components/ErrorBox.jsx'
+import StatusDot from './components/StatusDot.jsx'
+import StatusLabel from './components/StatusLabel.jsx'
+import HomeScreen from './HomeScreen.jsx'
+import ObjectiveScreen from './ObjectiveScreen.jsx'
+import MockExam from './MockExam.jsx'
+import StudyNextStrip from './home/StudyNextStrip.jsx'
+import { bumpSessionStudy } from './home/sessionRecap.js'
+import {
+  buildLearnerSummary,
+  generateLocalSuggestions,
+  loadRetentionHealth,
+  pickStudyNext,
+} from './home/learnerHome.js'
 import ExtraStudyMode from './ExtraStudyMode.jsx'
 import ExamTrapStudyMode from './ExamTrapStudyMode.jsx'
 import RoutingDecoderMode from './RoutingDecoderMode.jsx'
-import { buildMockExamDomainCounts, MOCK_EXAM_QUESTION_COUNT, MOCK_EXAM_DURATION_MIN, MOCK_EXAM_AI_CAP, staticMockExamReady, buildStaticMockExamPool } from './mockExamConfig.js'
 
-/* =========================================================================
-   DESIGN TOKENS
-   ========================================================================= */
-// Semantic color system — each token carries one cognitive meaning and is
-// defined for BOTH themes. Components consume `COLORS.x` which resolves to a
-// CSS custom property (`var(--ccna-x)`), so flipping `data-theme` on the root
-// re-themes the whole app instantly without re-rendering. Semantic roles:
-//   sky = LEARN (definition/focus) · amber = KEY (must-remember) ·
-//   rose = WARNING (mistakes/errors) · mint = SUCCESS (correct/mastery) ·
-//   purple = APPLIED (real-world/scenario) · silver = NEUTRAL (meta/sources)
-// Hue tokens flip their text/dim/border values per theme so e.g. `mint` is a
-// light green on dark and a dark green on light — always readable (WCAG AA+).
-const PALETTES = {
-  dark: {
-    bg: '#07080d', surface: '#0d0e18', card: '#111220', cardHover: '#161728',
-    border: '#1e2035', borderGlow: '#2e2050',
-    purple: '#7c3aed', purpleM: '#9333ea', purpleGlow: '#c084fc', purpleDim: '#2d1f5e',
-    mint: '#d4f7d4', mintDim: '#1a3320', mintBorder: '#3a6640',
-    sky: '#baf0fa', skyDim: '#0d2a35', skyBorder: '#1a5060',
-    blush: '#fde8e8', blushDim: '#2a1520', blushBorder: '#5a2530',
-    rose: '#e0a0a0', roseDim: '#2a1010', roseBorder: '#7a3535',
-    amber: '#fcd980', amberDim: '#2a2410', amberBorder: '#6b5618',
-    silver: '#d9d9d9', silverMid: '#8a8fa8', silverDim: '#3a3f55',
-    glowA: '#2d1f5e88', glowB: '#0d2a3588', focus: '#c084fc55', shimmerLine: '#ffffff22',
-  },
-  light: {
-    bg: '#eef0f6', surface: '#e6e9f2', card: '#ffffff', cardHover: '#f4f6fb',
-    border: '#d5d9e6', borderGlow: '#b3a3e6',
-    purple: '#6d28d9', purpleM: '#7c3aed', purpleGlow: '#6d28d9', purpleDim: '#ece9fb',
-    mint: '#1f7a35', mintDim: '#e4f3df', mintBorder: '#86bf57',
-    sky: '#0e5aa0', skyDim: '#e1f0fb', skyBorder: '#8cc0ec',
-    blush: '#9a3b3b', blushDim: '#fdeaea', blushBorder: '#f0b0b0',
-    rose: '#a32d2d', roseDim: '#fcebeb', roseBorder: '#ef9595',
-    amber: '#8a5208', amberDim: '#fbeedb', amberBorder: '#eaa53a',
-    silver: '#1e2130', silverMid: '#5b6178', silverDim: '#c4c8d8',
-    glowA: '#dcd6f7aa', glowB: '#dcebfaaa', focus: '#6d28d955', shimmerLine: '#00000014',
-  },
-}
-const COLOR_KEYS = Object.keys(PALETTES.dark)
-const COLORS = Object.fromEntries(COLOR_KEYS.map(k => [k, `var(--ccna-${k})`]))
-// CSS that publishes each palette under its [data-theme] selector.
-const THEME_CSS = Object.entries(PALETTES)
-  .map(([name, p]) => `[data-theme="${name}"]{${Object.entries(p).map(([k, v]) => `--ccna-${k}:${v};`).join('')}}`)
-  .join('\n')
 
 /* =========================================================================
    BOOK_REF — condensed notes grounded on Jeremy's IT Lab CCNA course,
@@ -124,96 +97,6 @@ const BOOK_REF = {
   '6.6': `JSON and configuration management: JSON (JavaScript Object Notation) represents data as key-value pairs ({"key": "value"}), arrays ([ ]), strings, numbers, booleans, and null — used heavily by REST APIs for both requests and responses; readable by both humans and machines. Configuration management tools automate device configuration: Ansible (agentless, uses SSH, configs written in YAML 'playbooks'), Puppet and Chef (agent-based, use a pull model where devices check in with a master server). All let engineers define desired device state in code/templates and apply it consistently across many devices — key to network automation (6.1).`,
 }
 
-/* =========================================================================
-   DOMAINS — 6 domains, 53 objectives, with official exam weights
-   ========================================================================= */
-const DOMAINS = [
-  {
-    id: 'fundamentals', name: 'Network Fundamentals', accent: 'mint', weight: 20,
-    objectives: [
-      { id: '1.1', title: 'Network components (routers, switches, firewalls, APs, controllers)' },
-      { id: '1.2', title: 'Network topology architectures' },
-      { id: '1.3', title: 'Physical interface and cabling types' },
-      { id: '1.4', title: 'Identify interface and cable issues' },
-      { id: '1.5', title: 'Switching concepts (MAC table, frame forwarding)' },
-      { id: '1.6', title: 'Configure and verify IPv4 addressing and subnetting' },
-      { id: '1.7', title: 'Describe private IPv4 addressing' },
-      { id: '1.8', title: 'Configure and verify IPv6 addressing and prefix' },
-      { id: '1.9', title: 'Compare IPv6 address types' },
-      { id: '1.10', title: 'Verify IP parameters for client OS' },
-      { id: '1.11', title: 'Describe wireless principles' },
-      { id: '1.12', title: 'Explain virtualization fundamentals' },
-    ],
-  },
-  {
-    id: 'access', name: 'Network Access', accent: 'purple', weight: 20,
-    objectives: [
-      { id: '2.1', title: 'Configure and verify VLANs' },
-      { id: '2.2', title: 'Configure and verify interswitch connectivity (trunking)' },
-      { id: '2.3', title: 'Configure and verify Layer 2 discovery protocols (CDP/LLDP)' },
-      { id: '2.4', title: 'Configure and verify EtherChannel (LACP)' },
-      { id: '2.5', title: 'Describe Spanning Tree Protocol concepts' },
-      { id: '2.6', title: 'Compare Cisco wireless architectures and AP modes' },
-      { id: '2.7', title: 'Describe physical infrastructure connections of WLAN components' },
-      { id: '2.8', title: 'Configure WLAN components for client connectivity' },
-    ],
-  },
-  {
-    id: 'connectivity', name: 'IP Connectivity', accent: 'blush', weight: 25,
-    objectives: [
-      { id: '3.1', title: 'Interpret the components of a routing table' },
-      { id: '3.2', title: 'Determine how a router makes a forwarding decision by default' },
-      { id: '3.3', title: 'Configure and verify IPv4 and IPv6 static routing' },
-      { id: '3.4', title: 'Configure and verify single area OSPFv2' },
-      { id: '3.5', title: 'Describe and configure first hop redundancy protocols (HSRP)' },
-      { id: '3.6', title: 'Troubleshoot routing issues' },
-    ],
-  },
-  {
-    id: 'services', name: 'IP Services', accent: 'sky', weight: 10,
-    objectives: [
-      { id: '4.1', title: 'Configure and verify inside source NAT' },
-      { id: '4.2', title: 'Configure and verify NTP' },
-      { id: '4.3', title: 'Explain the role of DHCP and DNS' },
-      { id: '4.4', title: 'Explain the function of SNMP' },
-      { id: '4.5', title: 'Describe the use of syslog features' },
-      { id: '4.6', title: 'Configure and verify DHCP client and relay' },
-      { id: '4.7', title: 'Explain QoS forwarding per-hop behavior' },
-      { id: '4.8', title: 'Configure network devices for remote access using SSH' },
-      { id: '4.9', title: 'Describe TFTP and FTP capabilities' },
-      { id: '4.10', title: 'Compare local and cloud-based device management' },
-    ],
-  },
-  {
-    id: 'security', name: 'Security Fundamentals', accent: 'rose', weight: 15,
-    objectives: [
-      { id: '5.1', title: 'Define key security concepts' },
-      { id: '5.2', title: 'Describe security program elements' },
-      { id: '5.3', title: 'Configure and verify device access control' },
-      { id: '5.4', title: 'Configure and verify AAA with TACACS+/RADIUS' },
-      { id: '5.5', title: 'Configure and verify access control lists' },
-      { id: '5.6', title: 'Configure Layer 2 security features' },
-      { id: '5.7', title: 'Compare authentication, authorization, accounting' },
-      { id: '5.8', title: 'Describe wireless security protocols' },
-      { id: '5.9', title: 'Configure WLAN using WPA2 PSK' },
-      { id: '5.10', title: 'Differentiate types of VPN and security concepts' },
-      { id: '5.11', title: 'Describe security concepts of network segmentation' },
-    ],
-  },
-  {
-    id: 'automation', name: 'Automation & Programmability', accent: 'silver', weight: 10,
-    objectives: [
-      { id: '6.1', title: 'Explain how automation impacts network management' },
-      { id: '6.2', title: 'Compare traditional networks with controller-based networking' },
-      { id: '6.3', title: 'Describe controller-based and software defined architectures' },
-      { id: '6.4', title: 'Compare traditional campus management with Cisco DNA Center' },
-      { id: '6.5', title: 'Describe characteristics of REST-based APIs' },
-      { id: '6.6', title: 'Interpret JSON data and configuration management tools' },
-    ],
-  },
-]
-
-const ALL_OBJECTIVES = DOMAINS.flatMap(d => d.objectives.map(o => ({ ...o, domainId: d.id, domainName: d.name, accent: d.accent })))
 
 /* =========================================================================
    COMMAND_DRILLS — CLI config drills for 14 config-heavy objectives
@@ -360,26 +243,6 @@ function subscribeAiCalls(fn) { _aiCallListeners.add(fn); return () => _aiCallLi
 
 const AI_BUDGET_LIMIT = 20
 
-/* ---- Per-session study recap (in-memory; resets on page reload) ---- */
-// Tracks what the user did since they last visited Home. Refreshes each time
-// they navigate back (HomeScreen remounts on each view switch).
-let _sessionStudy = { correct: 0, incorrect: 0, objectives: new Set(), mastered: [] }
-let _recapDismissed = false
-function bumpSessionStudy(type, value) {
-  if (type === 'correct') _sessionStudy.correct += 1
-  else if (type === 'incorrect') _sessionStudy.incorrect += 1
-  else if (type === 'objective') { _sessionStudy.objectives.add(value); _recapDismissed = false }
-  else if (type === 'mastered') { if (!_sessionStudy.mastered.includes(value)) _sessionStudy.mastered.push(value) }
-}
-function getSessionStudy() {
-  return { correct: _sessionStudy.correct, incorrect: _sessionStudy.incorrect, objectives: [..._sessionStudy.objectives], mastered: [..._sessionStudy.mastered] }
-}
-function hasSessionStudy() {
-  return _sessionStudy.correct > 0 || _sessionStudy.incorrect > 0 || _sessionStudy.objectives.size > 0
-}
-function dismissSessionRecap() { _recapDismissed = true }
-function isRecapDismissed() { return _recapDismissed }
-
 // Hook: re-renders the consumer whenever a new AI call completes.
 function useAiCallCount() {
   const [count, setCount] = useState(() => getSessionAiCalls())
@@ -494,25 +357,6 @@ async function callClaude(body, retries = 2, feature = 'other') {
     }
   }
   throw lastError || new Error('Unknown error contacting Claude API.')
-}
-
-// Text completion. `model` lets callers pick a tier (defaults to Sonnet).
-async function askClaude({ system, messages, max_tokens = 1000, model = MODEL, retries = 2, feature = 'other' }) {
-  const data = await callClaude({ model, max_tokens, system, messages }, retries, feature)
-  const text = data?.content?.find(b => b.type === 'text')?.text
-  if (!text) throw new Error('Claude API returned an empty response.')
-  return text
-}
-
-// Structured output via a forced tool call: Claude must return data matching
-// `schema`, so we get a guaranteed-shaped object instead of parsing JSON out of
-// prose. Eliminates the whole "unexpected format" failure class.
-async function askClaudeJSON({ system, messages, max_tokens = 1500, model = MODEL, schema, toolName = 'emit_result', retries = 2, feature = 'other' }) {
-  const tool = { name: toolName, description: 'Return the result as structured data.', input_schema: schema }
-  const data = await callClaude({
-    model, max_tokens, system, messages,
-    tools: [tool], tool_choice: { type: 'tool', name: toolName },
-  }, retries, feature)
   const block = data?.content?.find(b => b.type === 'tool_use')
   if (!block || !block.input) throw new Error('Claude returned no structured result. Please try again.')
   return block.input
@@ -644,24 +488,6 @@ async function checkApiReachable() {
 /* =========================================================================
    PERSISTENCE — all reads/writes go through window.storage
    ========================================================================= */
-const STORAGE_KEYS = {
-  progress: 'ccna_progress_v1',
-  missed: 'ccna_missed_v1',
-  streak: 'ccna_streak_v1',
-  quizBank: 'ccna_quiz_bank_v1',
-  visualCache: 'ccna_visual_cache_v1',
-  events: 'ccna_events_v1',
-  cliStats: 'ccna_cli_stats_v1',
-  syncCode: 'ccna_sync_code_v1',
-  syncLast: 'ccna_sync_last_v1',
-  usage: 'ccna_usage_v1',
-  tutorChat: 'ccna_tutor_chat_v1',
-  labDone: 'ccna_lab_done_v1',
-  theme: 'ccna_theme_v1',
-  onboardDone: 'ccna_onboard_done_v1',
-  mockHistory: 'ccna_mock_history_v1',
-  nudgeDismissed: 'ccna_nudge_dismissed_v1',
-}
 
 // progress shape: { [objectiveId]: { status: 'unseen'|'in_progress'|'mastered', quizScores: [{score,total,date}], lastSeen } }
 async function loadProgress() {
@@ -920,37 +746,6 @@ async function countDueQuestions() {
   return n
 }
 
-/* ---- Retention health: per-section state derived from each question's
-   spaced-repetition schedule + lapses. Strong (all items in long intervals) /
-   Fading (due soon or lightly lapsed) / Study (multiple lapses → revisit the
-   Explain page). Weak deliberately maps to the blue "study" color, never red. */
-function sectionRetention(list) {
-  const scheduled = (list || []).filter(q => q.srs && (q.attempts?.length || 0) > 0)
-  if (scheduled.length === 0) return null
-  const now = Date.now()
-  const dueNow = scheduled.filter(q => (q.srs.due ?? 0) <= now).length
-  const heavyLapse = scheduled.filter(q => (q.srs.lapses || 0) >= 2).length
-  const inLong = scheduled.filter(q => (q.srs.intervalIndex || 0) >= 2).length
-  let state
-  if (heavyLapse >= 2 || heavyLapse / scheduled.length >= 0.34) state = 'weak'
-  else if (inLong === scheduled.length && dueNow === 0) state = 'strong'
-  else state = 'fading'
-  return { count: scheduled.length, dueNow, heavyLapse, inLong, state }
-}
-async function loadRetentionHealth() {
-  const bank = await loadQuizBank()
-  const rows = []
-  for (const objectiveId of Object.keys(bank)) {
-    const r = sectionRetention(bank[objectiveId])
-    if (!r) continue
-    const o = ALL_OBJECTIVES.find(x => x.id === objectiveId)
-    if (!o) continue
-    rows.push({ ...r, id: objectiveId, title: o.title, objective: o })
-  }
-  // Surface the most at-risk sections first: weak, then fading, then strong.
-  const order = { weak: 0, fading: 1, strong: 2 }
-  return rows.sort((a, b) => order[a.state] - order[b.state] || b.dueNow - a.dueNow)
-}
 const RETENTION_META = {
   strong: { accent: 'mint', label: 'STRONG', icon: '🛡️', note: () => 'All items in long intervals' },
   fading: { accent: 'amber', label: 'FADING', icon: '⏳', note: (r) => r.dueNow > 0 ? `${r.dueNow} item${r.dueNow === 1 ? '' : 's'} due soon` : 'Building strength' },
@@ -996,27 +791,6 @@ function computeMastery(entry) {
   // mastered requires strong accuracy, decent confidence, and at least one full session
   const mastered = acc >= 0.8 && conf >= 0.5 && recent.some(r => r.total >= 3)
   return { score, mastered }
-}
-// Per-domain mastery average, weighted by official exam domain percentages.
-function computeDomainStats(progress) {
-  return DOMAINS.map(d => {
-    const objs = d.objectives
-    const avg = objs.reduce((s, o) => s + computeMastery(progress[o.id]).score, 0) / Math.max(objs.length, 1)
-    const mastered = objs.filter(o => progress[o.id]?.status === 'mastered').length
-    return { id: d.id, name: d.name, accent: d.accent, weight: d.weight, mastered, total: objs.length, avg }
-  })
-}
-
-// Exam Readiness Score: domain-weighted mastery, lightly adjusted by retention
-// health (sections in the "weak"/STUDY state pull the score down a bit).
-// Returns a 0-1 score plus the domain breakdown used to compute it.
-function computeReadinessScore(progress, retention) {
-  const domainStats = computeDomainStats(progress)
-  const masteryReadiness = domainStats.reduce((s, d) => s + (d.weight / 100) * d.avg, 0)
-  if (!retention || retention.length === 0) return { score: masteryReadiness, domainStats }
-  const strong = retention.filter(r => r.state === 'strong').length
-  const retentionFactor = strong / retention.length
-  return { score: masteryReadiness * 0.85 + retentionFactor * 0.15, domainStats }
 }
 
 // Separate accuracy vs confidence (for the confidence-vs-accuracy quadrant).
@@ -1159,154 +933,6 @@ async function pushSync(code, data) {
    the "For You" suggestion cards and the behaviour context the AI tutor reads.
    No AI and no network — recommendations are business logic, generated locally.
    ========================================================================= */
-function daysSinceTs(ts) {
-  return ts ? Math.floor((Date.now() - ts) / 86400000) : null
-}
-async function buildLearnerSummary(progress, missed = []) {
-  const events = (await window.storage.getItem(STORAGE_KEYS.events)) || []
-
-  const perObjective = ALL_OBJECTIVES.map(o => {
-    const p = progress[o.id]
-    const status = p?.status || 'unseen'
-    const { score } = computeMastery(p)
-    const ratings = (p?.confidenceRatings || []).slice(-4)
-    const hardCount = ratings.filter(r => r === 'hard' || r === 'practice').length
-    return {
-      ...o,
-      status,
-      mastery: score,
-      hardCount,
-      attempts: (p?.quizScores || []).length,
-      daysSince: daysSinceTs(p?.lastSeen),
-    }
-  })
-
-  const missedByObj = {}
-  missed.forEach(m => { missedByObj[m.objectiveId] = (missedByObj[m.objectiveId] || 0) + 1 })
-
-  const domainStats = DOMAINS.map(d => {
-    const objs = perObjective.filter(o => o.domainId === d.id)
-    const mastered = objs.filter(o => o.status === 'mastered').length
-    const avg = objs.reduce((s, o) => s + o.mastery, 0) / Math.max(objs.length, 1)
-    return { id: d.id, name: d.name, weight: d.weight, mastered, total: objs.length, avg }
-  })
-
-  const recentTopics = [...new Set(
-    events.filter(e => e.type === 'user_viewed_topic').slice(-10).map(e => e.objectiveId).reverse()
-  )].slice(0, 4)
-
-  return { perObjective, missedByObj, domainStats, recentTopics }
-}
-
-// Suggestion-card descriptors. Each card is fully actionable and distinct from
-// normal content (reference: contextual recommendation cards).
-function generateLocalSuggestions(summary) {
-  const { perObjective, missedByObj } = summary
-  const cards = []
-  const used = new Set()
-  const add = (card) => {
-    const id = card.objective?.id
-    if (id && used.has(id)) return
-    if (id) used.add(id)
-    cards.push(card)
-  }
-  const inProgress = perObjective.filter(o => o.status === 'in_progress' && o.attempts > 0)
-
-  // 1. Weakest active topic
-  const weakest = [...inProgress].sort((a, b) => a.mastery - b.mastery)[0]
-  if (weakest && weakest.mastery < 0.6) {
-    add({
-      key: 'weak', chip: 'WEAK SPOT', accent: 'rose', objective: weakest, tab: 'Explain',
-      title: `${weakest.id} ${weakest.title}`,
-      body: `Your weakest active topic at ${Math.round(weakest.mastery * 100)}% mastery. A focused review will move the needle most.`,
-    })
-  }
-
-  // 2. Low confidence on a topic that has a hands-on CLI lab
-  const cliStruggle = [...inProgress]
-    .filter(o => o.hardCount >= 2 && COMMAND_DRILLS[o.id])
-    .sort((a, b) => b.hardCount - a.hardCount)[0]
-  if (cliStruggle) {
-    add({
-      key: 'cli', chip: 'HANDS-ON', accent: 'sky', objective: cliStruggle, tab: 'CLI Drill',
-      title: `${cliStruggle.id} ${cliStruggle.title}`,
-      body: `You rated several questions here tough. Reinforce it with the CLI drill — muscle memory beats re-reading.`,
-    })
-  }
-
-  // 3. A topic that's close to mastered — worth locking in
-  const near = [...inProgress]
-    .filter(o => o.mastery >= 0.6 && o.mastery < 0.85)
-    .sort((a, b) => b.mastery - a.mastery)[0]
-  if (near) {
-    add({
-      key: 'near', chip: 'ALMOST THERE', accent: 'mint', objective: near, tab: 'Quiz',
-      title: `${near.id} ${near.title}`,
-      body: `Nearly mastered at ${Math.round(near.mastery * 100)}%. One more quiz set from your bank could lock it in.`,
-    })
-  }
-
-  // 4. A concept you keep missing
-  const missedTop = Object.entries(missedByObj).sort((a, b) => b[1] - a[1])[0]
-  if (missedTop && missedTop[1] >= 2) {
-    const o = perObjective.find(x => x.id === missedTop[0])
-    if (o) {
-      add({
-        key: 'missed', chip: 'RECURRING MISS', accent: 'rose', objective: o, tab: 'Quiz',
-        title: `${o.id} ${o.title}`,
-        body: `You've missed ${missedTop[1]} questions here. Re-quiz from the bank — wrong answers come back first.`,
-      })
-    }
-  }
-
-  // 5. Spaced repetition — a mastered topic going stale
-  const stale = perObjective
-    .filter(o => o.status === 'mastered' && o.daysSince != null && o.daysSince >= 7)
-    .sort((a, b) => b.daysSince - a.daysSince)[0]
-  if (stale) {
-    add({
-      key: 'stale', chip: 'REVIEW', accent: 'purple', objective: stale, tab: 'Quiz',
-      title: `${stale.id} ${stale.title}`,
-      body: `Mastered but not reviewed in ${stale.daysSince} days. A quick pass keeps retention from slipping.`,
-    })
-  }
-
-  // Fallback for a brand-new learner — open Quiz so they baseline quickly, then use Explain for gaps
-  if (cards.length === 0) {
-    const first = perObjective.find(o => o.status === 'unseen') || perObjective[0]
-    if (first) {
-      add({
-        key: 'start', chip: 'START HERE', accent: 'purple', objective: first, tab: 'Quiz',
-        title: `${first.id} ${first.title}`,
-        body: `New here? Take a short quiz to baseline this topic, then read the explanation for anything you miss.`,
-      })
-    }
-  }
-
-  return cards.slice(0, 3)
-}
-
-// Top study action from the same local rules as Metrics / For You (no API).
-function pickStudyNext(summary, dueCount) {
-  if (dueCount > 0) {
-    const ready = Math.min(dueCount, REVIEW_SESSION_CAP)
-    return {
-      kind: 'review',
-      accent: 'purple',
-      shortTitle: `Today's Review — ${ready} due · ~${Math.max(1, Math.round(ready * 0.5))} min`,
-    }
-  }
-  if (!summary) return null
-  const top = generateLocalSuggestions(summary)[0]
-  if (!top) return null
-  return {
-    kind: 'objective',
-    accent: top.accent,
-    shortTitle: top.title,
-    objective: top.objective,
-    tab: top.tab,
-  }
-}
 
 // Compact behaviour context for the tutor's system prompt (string block).
 function summarizeForTutor(summary) {
@@ -1486,56 +1112,6 @@ function shuffleArray(arr) {
   return a
 }
 
-/* =========================================================================
-   SHARED STYLE HELPERS & SMALL UI PIECES
-   ========================================================================= */
-function accentColors(accent) {
-  switch (accent) {
-    case 'mint': return { dim: COLORS.mintDim, border: COLORS.mintBorder, text: COLORS.mint }
-    case 'sky': return { dim: COLORS.skyDim, border: COLORS.skyBorder, text: COLORS.sky }
-    case 'amber': return { dim: COLORS.amberDim, border: COLORS.amberBorder, text: COLORS.amber }
-    case 'blush': return { dim: COLORS.blushDim, border: COLORS.blushBorder, text: COLORS.blush }
-    case 'rose': return { dim: COLORS.roseDim, border: COLORS.roseBorder, text: COLORS.rose }
-    case 'silver': return { dim: COLORS.silverDim, border: COLORS.silverDim, text: COLORS.silver }
-    case 'purple':
-    default: return { dim: COLORS.purpleDim, border: COLORS.purpleDim, text: COLORS.purpleGlow }
-  }
-}
-
-const styles = {
-  page: { minHeight: '100vh', background: COLORS.bg, color: COLORS.silver, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', paddingBottom: 'calc(env(safe-area-inset-bottom) + 80px)', paddingTop: 'env(safe-area-inset-top)', paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' },
-  container: { maxWidth: 640, margin: '0 auto', padding: '16px 16px 40px' },
-  card: { background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14, padding: 16, marginBottom: 12, boxShadow: '0 4px 16px #00000033' },
-  cardHover: { background: COLORS.cardHover },
-  h1: { fontSize: 22, fontWeight: 700, color: COLORS.silver, margin: '4px 0 4px' },
-  h2: { fontSize: 17, fontWeight: 600, color: COLORS.silver, margin: '0 0 8px' },
-  small: { fontSize: 13, color: COLORS.silverMid },
-  primaryBtn: {
-    background: `linear-gradient(135deg, ${COLORS.purple}, ${COLORS.purpleM})`,
-    color: '#fff', border: 'none', borderRadius: 12, padding: '12px 18px',
-    fontSize: 15, fontWeight: 600, minHeight: 44, cursor: 'pointer', width: '100%',
-  },
-  secondaryBtn: {
-    background: COLORS.card, color: COLORS.silver, border: `1px solid ${COLORS.border}`,
-    borderRadius: 12, padding: '12px 18px', fontSize: 15, fontWeight: 600, minHeight: 44, cursor: 'pointer', width: '100%',
-  },
-  input: {
-    width: '100%', boxSizing: 'border-box', background: COLORS.surface, color: COLORS.silver,
-    border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: '12px 14px', fontSize: 15,
-    minHeight: 44, fontFamily: 'inherit',
-  },
-  pill: (accent) => {
-    const c = accentColors(accent)
-    return { display: 'inline-block', background: c.dim, border: `1px solid ${c.border}`, color: c.text, borderRadius: 999, padding: '3px 10px', fontSize: 12, fontWeight: 600 }
-  },
-  tabBar: { display: 'flex', gap: 6, marginBottom: 14, flexWrap: 'wrap' },
-  tabBtn: (active) => ({
-    flex: '1 1 auto', minHeight: 44, borderRadius: 10, border: `1px solid ${active ? COLORS.purpleGlow : COLORS.border}`,
-    background: active ? COLORS.purpleDim : COLORS.surface, color: active ? COLORS.purpleGlow : COLORS.silverMid,
-    fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: '10px 8px',
-  }),
-  backBtn: { background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 15, cursor: 'pointer', padding: '10px 0', minHeight: 44, display: 'flex', alignItems: 'center', gap: 6 },
-}
 
 function SectionLabel({ icon, label }) {
   return (
@@ -1545,43 +1121,6 @@ function SectionLabel({ icon, label }) {
   )
 }
 
-function StatusDot({ status }) {
-  const color = status === 'mastered' ? COLORS.mint : status === 'in_progress' ? COLORS.purpleGlow : COLORS.silverDim
-  return <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: 999, background: color, marginRight: 8, flexShrink: 0 }} />
-}
-
-function StatusLabel({ status }) {
-  const map = { mastered: 'Mastered', in_progress: 'In Progress', unseen: 'Not Started' }
-  const color = status === 'mastered' ? COLORS.mint : status === 'in_progress' ? COLORS.purpleGlow : COLORS.silverMid
-  return <span style={{ fontSize: 12, color, fontWeight: 600 }}>{map[status] || 'Not Started'}</span>
-}
-
-function Spinner({ label }) {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '20px 0', color: COLORS.sky }}>
-      <div style={{
-        width: 18, height: 18, borderRadius: '50%',
-        border: `2px solid ${COLORS.skyBorder}`, borderTopColor: COLORS.sky,
-        animation: 'ccna-spin 0.8s linear infinite',
-      }} />
-      <span style={{ fontSize: 14 }}>{label || 'Asking Claude...'}</span>
-      <style>{`@keyframes ccna-spin { to { transform: rotate(360deg); } }`}</style>
-    </div>
-  )
-}
-
-function ErrorBox({ message, onRetry }) {
-  return (
-    <div style={{ background: COLORS.roseDim, border: `1px solid ${COLORS.roseBorder}`, borderRadius: 12, padding: 14, marginTop: 10 }}>
-      <div style={{ color: COLORS.rose, fontSize: 14, marginBottom: onRetry ? 10 : 0 }}>{message}</div>
-      {onRetry && (
-        <button style={{ ...styles.secondaryBtn, width: 'auto', padding: '8px 16px', minHeight: 40 }} onClick={onRetry}>
-          Try again
-        </button>
-      )}
-    </div>
-  )
-}
 
 /* =========================================================================
    PROGRESS PRIMITIVES — local, data-driven, no API. Every bar is fed real
@@ -3091,84 +2630,6 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
   )
 }
 
-function McChoices({ q, selected, revealed, onSelect }) {
-  const groupRef = useRef(null)
-  const isMc = isMcQuestion(q)
-  const choiceCount = q?.choices?.length || 0
-
-  useEffect(() => {
-    const root = groupRef.current
-    if (!root || !isMc || revealed) return
-
-    function onGroupKeyDown(e) {
-      const digit = parseInt(e.key, 10)
-      if (digit >= 1 && digit <= choiceCount) {
-        e.preventDefault()
-        onSelect(digit - 1)
-        return
-      }
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-        e.preventDefault()
-        onSelect(selected == null ? 0 : (selected + 1) % choiceCount)
-      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-        e.preventDefault()
-        onSelect(selected == null ? choiceCount - 1 : (selected - 1 + choiceCount) % choiceCount)
-      }
-    }
-
-    root.addEventListener('keydown', onGroupKeyDown)
-    return () => root.removeEventListener('keydown', onGroupKeyDown)
-  }, [isMc, revealed, selected, choiceCount, onSelect])
-
-  if (!isMc) return null
-
-  return (
-    <div
-      ref={groupRef}
-      role="radiogroup"
-      aria-label="Answer choices"
-      tabIndex={revealed ? -1 : 0}
-      style={{ outline: 'none' }}
-    >
-      {q.choices.map((choice, idx) => {
-        let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
-        if (revealed) {
-          if (idx === q.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
-          else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
-        } else if (selected === idx) {
-          bg = COLORS.purpleDim
-          border = COLORS.purpleGlow
-          color = COLORS.purpleGlow
-        }
-        return (
-          <button
-            key={idx}
-            type="button"
-            role="radio"
-            aria-checked={selected === idx}
-            tabIndex={-1}
-            aria-label={`Choice ${String.fromCharCode(65 + idx)}: ${choice}`}
-            onClick={() => onSelect(idx)}
-            onKeyDown={e => { if (!revealed && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onSelect(idx) } }}
-            style={{
-              display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
-              background: bg, border: `1px solid ${border}`, color, borderRadius: 10,
-              padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4,
-            }}
-          >
-            <span aria-hidden="true" style={{ fontWeight: 700, marginRight: 8, color: COLORS.silverMid }}>
-              {String.fromCharCode(65 + idx)}.
-            </span>
-            {choice}
-          </button>
-        )
-      })}
-      {!revealed && (
-        <div style={{ ...styles.small, marginTop: 4 }}>Tip: press 1–{Math.min(choiceCount, 4)} or arrow keys to select</div>
-      )}
-    </div>
-  )
-}
 
 /* ---- Answer review (static, no API) — shows why the correct choice is right
    and why each wrong choice is wrong, with optional exam tip / memory hook.
@@ -4957,253 +4418,6 @@ function ACLWildcardTab() {
   )
 }
 
-/* =========================================================================
-   OBJECTIVE SCREEN — Explain / Quiz / CLI Drill / Subnetting / VLSM tabs
-   ========================================================================= */
-function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed }) {
-  const objLabs = labsForObjective(objective.id)
-
-  // Siblings within the same domain for prev/next navigation
-  const siblings = useMemo(() => {
-    const domain = DOMAINS.find(d => d.id === objective.domainId)
-    return domain ? domain.objectives.map(o => ({ ...o, domainId: domain.id, domainName: domain.name, accent: domain.accent })) : []
-  }, [objective.domainId])
-  const sibIdx = siblings.findIndex(o => o.id === objective.id)
-  const prevObj = sibIdx > 0 ? siblings[sibIdx - 1] : null
-  const nextObj = sibIdx < siblings.length - 1 ? siblings[sibIdx + 1] : null
-  const tabs = useMemo(() => {
-    const t = ['Explain', 'Visual', 'Quiz']
-    if (COMMAND_DRILLS[objective.id]) t.push('CLI Drill')
-    if (objective.id === '1.6') { t.push('Subnetting'); t.push('VLSM') }
-    if (objective.id === '1.8') t.push('IPv6 Calc')
-    if (objective.id === '5.5' || objective.id === '5.6') t.push('ACL Calc')
-    return t
-  }, [objective.id])
-
-  // Honor a deep-link tab hint (e.g. a "For You" card opening the CLI Drill tab).
-  const initialTab = (objective.__initialTab && tabs.includes(objective.__initialTab)) ? objective.__initialTab : tabs[0]
-  const [tab, setTab] = useState(initialTab)
-  useEffect(() => { setTab(initialTab) }, [objective.id, tabs, initialTab])
-
-  const status = progress[objective.id]?.status || 'unseen'
-  const isOffline = offlineReady?.has(objective.id)
-  const isPackaging = packagingId === objective.id
-
-  function handleScoreSaved(stats) {
-    const entry = progress[objective.id] || {}
-    const newScores = [...(entry.quizScores || []), { score: stats.correct, total: stats.total, date: Date.now() }]
-    const newRatings = [...(entry.confidenceRatings || []), ...(stats.ratings || [])].slice(-30)
-    const { score: masteryScore, mastered } = computeMastery({ quizScores: newScores, confidenceRatings: newRatings })
-    onUpdateProgress(objective.id, {
-      status: mastered ? 'mastered' : 'in_progress',
-      quizScores: newScores,
-      confidenceRatings: newRatings,
-      masteryScore,
-      lastSeen: Date.now(),
-    })
-    logEvent('user_completed_quiz', { objectiveId: objective.id, correct: stats.correct, total: stats.total, masteryScore })
-    // Mastery gate: once this session clears MASTERY_GATE, open the section for
-    // spaced review and seed its answered questions into the queue (one-time).
-    const sessionAcc = stats.total ? stats.correct / stats.total : 0
-    if (sessionAcc >= MASTERY_GATE && !entry.reviewEligible) {
-      enableSectionReview(objective.id)
-      onUpdateProgress(objective.id, { reviewEligible: true })
-    }
-    // Celebrate a freshly-mastered topic (only on the transition, not repeats).
-    if (mastered && status !== 'mastered') {
-      celebrate()
-      haptic([12, 40, 12, 40, 18])
-      bumpSessionStudy('mastered', objective.id) // #16: track new mastery for recap
-    }
-    // On reaching mastery, auto-package the topic for offline use (online only).
-    if (mastered && !isOffline && apiOnline) onPackage?.(objective)
-  }
-
-  // Mark "in progress" the first time an objective is opened
-  useEffect(() => {
-    if (status === 'unseen') {
-      onUpdateProgress(objective.id, { status: 'in_progress', lastSeen: Date.now() })
-    } else {
-      onUpdateProgress(objective.id, { lastSeen: Date.now() })
-    }
-    logEvent('user_viewed_topic', { objectiveId: objective.id })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [objective.id])
-
-  return (
-    <div>
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <div style={{ marginBottom: 6, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
-        <span style={styles.pill(objective.accent)}>{objective.id}</span>
-        <span><StatusLabel status={status} /></span>
-        {(() => {
-          if (hasCuratedReading(objective.id)) return <span style={{ ...styles.pill('mint'), fontSize: 9 }}>CURATED</span>
-          if (hasCuratedQuestions(objective.id)) return <span style={{ ...styles.pill('sky'), fontSize: 9 }}>Q-ONLY</span>
-          return <span style={{ ...styles.pill('purple'), fontSize: 9 }}>AI</span>
-        })()}
-      </div>
-      <h1 style={styles.h1}>{objective.title}</h1>
-      <div style={{ ...styles.small, marginBottom: 10 }}>{objective.domainName}</div>
-
-      {/* Prev / Next navigation within domain */}
-      {(prevObj || nextObj) && (
-        <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-          <button
-            onClick={() => onSelectObjective?.(prevObj)}
-            disabled={!prevObj}
-            style={{
-              flex: 1, minHeight: 44, borderRadius: 10, border: `1px solid ${COLORS.border}`,
-              background: COLORS.surface, color: prevObj ? COLORS.silver : COLORS.silverDim,
-              fontSize: 12, cursor: prevObj ? 'pointer' : 'default', fontFamily: 'inherit',
-              padding: '6px 10px', textAlign: 'left', opacity: prevObj ? 1 : 0.35,
-            }}
-          >
-            ‹ {prevObj ? prevObj.id : ''}
-          </button>
-          <button
-            onClick={() => onSelectObjective?.(nextObj)}
-            disabled={!nextObj}
-            style={{
-              flex: 1, minHeight: 44, borderRadius: 10, border: `1px solid ${COLORS.border}`,
-              background: COLORS.surface, color: nextObj ? COLORS.silver : COLORS.silverDim,
-              fontSize: 12, cursor: nextObj ? 'pointer' : 'default', fontFamily: 'inherit',
-              padding: '6px 10px', textAlign: 'right', opacity: nextObj ? 1 : 0.35,
-            }}
-          >
-            {nextObj ? nextObj.id : ''} ›
-          </button>
-        </div>
-      )}
-
-      <div style={{ marginBottom: 14 }}>
-        {isOffline ? (
-          <span style={{ ...styles.pill('mint'), fontSize: 11 }}>⤓ Available offline</span>
-        ) : isPackaging ? (
-          <span style={{ ...styles.pill('sky'), fontSize: 11 }}>Downloading for offline…</span>
-        ) : (
-          <button
-            onClick={() => onPackage?.(objective)}
-            disabled={!apiOnline}
-            style={{
-              background: 'none', border: `1px solid ${COLORS.border}`, borderRadius: 999,
-              color: apiOnline ? COLORS.silverMid : COLORS.silverDim, fontSize: 11, fontWeight: 600,
-              padding: '4px 12px', minHeight: 32, cursor: apiOnline ? 'pointer' : 'default', fontFamily: 'inherit',
-            }}
-          >
-            {apiOnline ? '⤓ Make available offline' : 'Offline — connect to download'}
-          </button>
-        )}
-      </div>
-
-      {(progress[objective.id]?.quizScores || []).length > 0 && (
-        <ProgressBar
-          value={computeMastery(progress[objective.id]).score}
-          max={1}
-          accent={objective.accent}
-          label="Topic mastery"
-          sublabel={`${Math.round(computeMastery(progress[objective.id]).score * 100)}%`}
-          height={7}
-        />
-      )}
-
-      <div role="tablist" aria-label={`${objective.id} study activities`} style={styles.tabBar}>
-        {tabs.map((t, idx) => (
-          <button
-            key={t}
-            type="button"
-            role="tab"
-            id={objectiveTabId(objective.id, t)}
-            aria-selected={tab === t}
-            aria-controls={objectivePanelId(objective.id, t)}
-            tabIndex={tab === t ? 0 : -1}
-            style={styles.tabBtn(tab === t)}
-            onClick={() => setTab(t)}
-            onKeyDown={(e) => {
-              if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return
-              e.preventDefault()
-              let next = idx
-              if (e.key === 'ArrowRight') next = (idx + 1) % tabs.length
-              else if (e.key === 'ArrowLeft') next = (idx - 1 + tabs.length) % tabs.length
-              else if (e.key === 'Home') next = 0
-              else if (e.key === 'End') next = tabs.length - 1
-              setTab(tabs[next])
-            }}
-          >{t}</button>
-        ))}
-      </div>
-
-      {objLabs.length > 0 && (
-        <button className="ccna-hover" onClick={() => onOpenLab?.(objLabs[0].id)} style={{ ...styles.card, display: 'flex', alignItems: 'center', gap: 10, width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', borderLeft: `3px solid ${COLORS.mint}` }}>
-          <span style={{ fontSize: 18 }} aria-hidden="true">🧪</span>
-          <span style={{ flex: 1 }}>
-            <span style={{ display: 'block', fontSize: 13, fontWeight: 600, color: COLORS.silver }}>{objLabs.length === 1 ? objLabs[0].title : `${objLabs.length} hands-on labs`}</span>
-            <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Guided multi-device lab · ~{objLabs[0].estimatedTimeMinutes} min</span>
-          </span>
-          <span style={{ color: COLORS.sky, fontSize: 13 }}>→</span>
-        </button>
-      )}
-
-      {tab === 'Explain' && (
-        <div role="tabpanel" id={objectivePanelId(objective.id, 'Explain')} aria-labelledby={objectiveTabId(objective.id, 'Explain')}>
-          <SectionLabel icon="📖" label="EXPLANATION" />
-          <ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} />
-        </div>
-      )}
-      {tab === 'Visual' && (
-        <div role="tabpanel" id={objectivePanelId(objective.id, 'Visual')} aria-labelledby={objectiveTabId(objective.id, 'Visual')}>
-          <SectionLabel icon="🖼" label="VISUAL AID" />
-          <VisualAidTab objective={objective} />
-        </div>
-      )}
-      {tab === 'Quiz' && (
-        <div role="tabpanel" id={objectivePanelId(objective.id, 'Quiz')} aria-labelledby={objectiveTabId(objective.id, 'Quiz')}>
-          <SectionLabel icon="❓" label="QUIZ" />
-          <QuizTab
-            objective={objective}
-            progress={progress}
-            missed={missed}
-            onMissed={onMissed}
-            onScoreSaved={handleScoreSaved}
-            nextObjective={nextObj}
-            onSelectObjective={onSelectObjective}
-            onOpenMissed={onOpenMissed}
-            onSwitchTab={setTab}
-          />
-        </div>
-      )}
-      {tab === 'CLI Drill' && (
-        <div role="tabpanel" id={objectivePanelId(objective.id, 'CLI Drill')} aria-labelledby={objectiveTabId(objective.id, 'CLI Drill')}>
-          <SectionLabel icon="💻" label="CLI DRILL" />
-          <CLIDrillTab objective={objective} />
-        </div>
-      )}
-      {tab === 'Subnetting' && (
-        <div role="tabpanel" id={objectivePanelId(objective.id, 'Subnetting')} aria-labelledby={objectiveTabId(objective.id, 'Subnetting')}>
-          <SectionLabel icon="🧮" label="SUBNETTING PRACTICE" />
-          <SubnettingTab />
-        </div>
-      )}
-      {tab === 'VLSM' && (
-        <div role="tabpanel" id={objectivePanelId(objective.id, 'VLSM')} aria-labelledby={objectiveTabId(objective.id, 'VLSM')}>
-          <SectionLabel icon="🧮" label="VLSM PRACTICE" />
-          <VLSMTab />
-        </div>
-      )}
-      {tab === 'IPv6 Calc' && (
-        <div role="tabpanel" id={objectivePanelId(objective.id, 'IPv6 Calc')} aria-labelledby={objectiveTabId(objective.id, 'IPv6 Calc')}>
-          <SectionLabel icon="🔢" label="IPv6 CALCULATOR" />
-          <IPv6CalcTab />
-        </div>
-      )}
-      {tab === 'ACL Calc' && (
-        <div role="tabpanel" id={objectivePanelId(objective.id, 'ACL Calc')} aria-labelledby={objectiveTabId(objective.id, 'ACL Calc')}>
-          <SectionLabel icon="🔒" label="ACL WILDCARD CALCULATOR" />
-          <ACLWildcardTab />
-        </div>
-      )}
-    </div>
-  )
-}
 
 /* =========================================================================
    OFFLINE PACKAGING
@@ -5339,30 +4553,6 @@ function quadrantOf(acc, conf) {
 // Content coverage — shows which objectives have CURATED static content / a
 // LAB vs which still use the AI fallback. The "waypoint" that makes scaling
 // the content library a visible checklist you can chip away at over time.
-function StudyNextStrip({ next, onSelectObjective, onOpenReview, sticky = false }) {
-  if (!next) return null
-  const c = accentColors(next.accent)
-  const onClick = next.kind === 'review'
-    ? onOpenReview
-    : () => onSelectObjective?.({ ...next.objective, __initialTab: next.tab })
-  return (
-    <button
-      type="button"
-      className="ccna-hover"
-      onClick={onClick}
-      style={{
-        display: 'flex', alignItems: 'center', gap: 8, width: '100%', textAlign: 'left',
-        cursor: 'pointer', fontFamily: 'inherit',
-        background: c.dim, border: `1px solid ${c.border}`, borderRadius: 12,
-        padding: '10px 12px', marginBottom: sticky ? 0 : 10,
-      }}
-    >
-      <span style={{ ...styles.pill(next.accent), fontSize: 10, flexShrink: 0 }}>STUDY NEXT</span>
-      <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: COLORS.silver, lineHeight: 1.35 }}>{next.shortTitle}</span>
-      <span style={{ color: c.text, fontSize: 16, lineHeight: 1 }} aria-hidden="true">›</span>
-    </button>
-  )
-}
 
 function MetricsCollapsibleSection({ title, summary, defaultOpen = false, children }) {
   const [open, setOpen] = useState(defaultOpen)
@@ -5508,7 +4698,7 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
   }), { runs: 0, syntax: 0, mode: 0 })
 
   // ---- Review readiness ----
-  const reviewCards = generateLocalSuggestions(summary)
+  const reviewCards = generateLocalSuggestions(summary, COMMAND_DRILLS)
 
   // ---- Offline unlock progress (topics 1-3 of 4 done) ----
   const offlineInProgress = ALL_OBJECTIVES
@@ -6447,461 +5637,6 @@ function Onboarding({ onComplete, onSkip }) {
   )
 }
 
-/* =========================================================================
-   HOME SCREEN
-   ========================================================================= */
-/* ---- Exam trap of the day ---- */
-const ALL_EXAM_TRAPS = (() => {
-  const traps = []
-  ALL_OBJECTIVES.forEach(o => {
-    const data = getCurated(o.id)
-    if (data?.examTraps?.length) {
-      data.examTraps.forEach(t => traps.push({ ...t, objectiveId: o.id, objectiveTitle: o.title, accent: o.accent }))
-    }
-  })
-  return traps
-})()
-
-function HomeExtrasSection({ progress }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <div style={{ marginBottom: 12 }}>
-      <button
-        type="button"
-        onClick={() => setOpen(o => !o)}
-        aria-expanded={open}
-        style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%',
-          background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14,
-          padding: '12px 14px', cursor: 'pointer', fontFamily: 'inherit', marginBottom: open ? 8 : 0,
-        }}
-      >
-        <span style={{ flex: 1, textAlign: 'left' }}>
-          <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>EXAM PREP EXTRAS</span>
-          <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid, marginTop: 2 }}>Countdown · daily trap</span>
-        </span>
-        <span style={{ fontSize: 12, color: COLORS.silverMid, flexShrink: 0 }}>{open ? '▲' : '▼'}</span>
-      </button>
-      {open && (
-        <div>
-          <ExamCountdown progress={progress} />
-          <ExamTrapWidget />
-        </div>
-      )}
-    </div>
-  )
-}
-
-/* =========================================================================
-   EXAM DATE COUNTDOWN — user sets their target exam date once; stored locally.
-   Shows days remaining and a simple daily target (objectives to study per day).
-   ========================================================================= */
-function ExamCountdown({ progress }) {
-  const [examDate, setExamDate] = useState(null)
-  const [editing, setEditing] = useState(false)
-  const [inputVal, setInputVal] = useState('')
-
-  useEffect(() => {
-    ;(async () => {
-      const saved = await window.storage.getItem('ccna_exam_date_v1')
-      if (saved) setExamDate(saved)
-    })()
-  }, [])
-
-  async function save() {
-    if (!inputVal) return
-    await window.storage.setItem('ccna_exam_date_v1', inputVal)
-    setExamDate(inputVal); setEditing(false)
-  }
-  async function clear() {
-    await window.storage.removeItem?.('ccna_exam_date_v1') || window.storage.setItem('ccna_exam_date_v1', null)
-    setExamDate(null); setEditing(false)
-  }
-
-  if (editing || !examDate) {
-    return (
-      <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.border}` }}>
-        <div style={{ fontSize: 12, fontWeight: 600, color: COLORS.silver, marginBottom: 8 }}>📅 Set your exam date</div>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-          <input
-            type="date"
-            value={inputVal}
-            onChange={e => setInputVal(e.target.value)}
-            style={{ flex: 1, minWidth: 140, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 8, padding: '8px 10px', color: COLORS.silver, fontFamily: 'inherit', fontSize: 13 }}
-          />
-          <button style={{ ...styles.primaryBtn, flex: 0 }} onClick={save}>Set</button>
-          {examDate && <button style={{ ...styles.secondaryBtn, flex: 0 }} onClick={() => setEditing(false)}>Cancel</button>}
-        </div>
-      </div>
-    )
-  }
-
-  const target = new Date(examDate)
-  const now = new Date()
-  const daysLeft = Math.ceil((target - now) / 86400000)
-  if (daysLeft < 0) return (
-    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.mintBorder}` }}>
-      <div style={{ fontSize: 13, color: COLORS.mint, fontWeight: 600 }}>🎓 Exam date passed — good luck with results!</div>
-      <button style={{ fontSize: 11, color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginTop: 4 }} onClick={() => setEditing(true)}>Update date</button>
-    </div>
-  )
-
-  const unstudied = ALL_OBJECTIVES.filter(o => !progress[o.id] || progress[o.id].status === 'unseen').length
-  const objPerDay = daysLeft > 0 ? Math.ceil(unstudied / Math.max(daysLeft, 1)) : unstudied
-  const urgency = daysLeft <= 7 ? 'rose' : daysLeft <= 30 ? 'amber' : 'mint'
-
-  return (
-    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${accentColors(urgency).border}`, background: accentColors(urgency).dim }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <div>
-          <div style={{ fontSize: 22, fontWeight: 700, color: accentColors(urgency).text }}>{daysLeft} day{daysLeft !== 1 ? 's' : ''}</div>
-          <div style={{ fontSize: 12, color: COLORS.silverMid }}>until exam · {target.toLocaleDateString()}</div>
-        </div>
-        <button style={{ fontSize: 11, color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0' }} onClick={() => setEditing(true)}>Edit</button>
-      </div>
-      {unstudied > 0 && daysLeft > 0 && (
-        <div style={{ marginTop: 8, fontSize: 12, color: COLORS.silver }}>
-          {unstudied} objectives not started · aim for ~{objPerDay}/day to cover all before exam
-        </div>
-      )}
-      {unstudied === 0 && <div style={{ marginTop: 8, fontSize: 12, color: COLORS.mint }}>All objectives started — focus on mastery and daily reviews.</div>}
-    </div>
-  )
-}
-
-function ExamTrapWidget() {
-  if (!ALL_EXAM_TRAPS.length) return null
-  // Deterministic daily pick — changes each calendar day, consistent within the day
-  const dayIndex = Math.floor(Date.now() / 86400000)
-  const trap = ALL_EXAM_TRAPS[dayIndex % ALL_EXAM_TRAPS.length]
-  return (
-    <div style={{ ...styles.card, border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim, marginBottom: 12 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-        <span style={{ ...styles.pill('rose'), fontSize: 9 }}>⚠️ EXAM TRAP OF THE DAY</span>
-        <span style={{ fontSize: 10, color: COLORS.silverMid }}>{trap.objectiveId}</span>
-      </div>
-      <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.rose, marginBottom: 6, lineHeight: 1.4 }}>{trap.trap}</div>
-      <div style={{ fontSize: 12, color: COLORS.silver, lineHeight: 1.5 }}>{trap.correction}</div>
-    </div>
-  )
-}
-
-/* ---- Session recap card (#16) ---- */
-function SessionRecapCard() {
-  const [dismissed, setDismissed] = useState(isRecapDismissed())
-  // Read session data once on mount (HomeScreen remounts on each return to Home)
-  const data = useMemo(() => getSessionStudy(), [])
-
-  const total = data.correct + data.incorrect
-  if (dismissed || total === 0) return null
-
-  const parts = []
-  if (total > 0) parts.push(`${total} question${total === 1 ? '' : 's'}`)
-  if (data.objectives.length > 0) parts.push(`${data.objectives.length} objective${data.objectives.length === 1 ? '' : 's'}`)
-  if (data.mastered.length > 0) parts.push(`${data.mastered.length} mastered 🎉`)
-
-  function dismiss() { dismissSessionRecap(); setDismissed(true) }
-
-  return (
-    <div style={{
-      ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`,
-      marginBottom: 12, position: 'relative', display: 'flex', alignItems: 'center', gap: 10,
-    }}>
-      <button
-        onClick={dismiss}
-        style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 18, cursor: 'pointer', lineHeight: 1, padding: 0 }}
-        aria-label="Dismiss"
-      >×</button>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, marginBottom: 2 }}>📊 Last session</div>
-        <div style={{ fontSize: 13, color: COLORS.silver }}>{parts.join(' · ')}</div>
-        {total > 0 && (
-          <div style={{ fontSize: 11, color: COLORS.silverMid, marginTop: 2 }}>
-            {data.correct} correct · {data.incorrect} incorrect
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
-
-function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onOpenSubnet, onOpenRouting, onOpenExtraStudy, onImportPick, syncOn }) {
-  const [suggestions, setSuggestions] = useState([])
-  const [learnerSummary, setLearnerSummary] = useState(null)
-  const [retention, setRetention] = useState([])
-  const [showNudge, setShowNudge] = useState(false)
-
-  // Recompute the "For You" cards locally whenever progress or the missed bank
-  // changes. Fully deterministic — no API call.
-  useEffect(() => {
-    let cancelled = false
-    ;(async () => {
-      const summary = await buildLearnerSummary(progress, missed || [])
-      if (!cancelled) {
-        setLearnerSummary(summary)
-        setSuggestions(generateLocalSuggestions(summary))
-      }
-    })()
-    return () => { cancelled = true }
-  }, [progress, missed])
-
-  // Retention health feeds the Exam Readiness score below — reload whenever
-  // progress changes (a finished quiz can shift a section's SRS state).
-  useEffect(() => {
-    let cancelled = false
-    ;(async () => {
-      const r = await loadRetentionHealth()
-      if (!cancelled) setRetention(r)
-    })()
-    return () => { cancelled = true }
-  }, [progress])
-
-  // Show nudge only when: no progress on this device AND user hasn't dismissed it yet.
-  useEffect(() => {
-    const hasProgress = Object.keys(progress).length > 0
-    if (hasProgress) { setShowNudge(false); return }
-    window.storage.getItem(STORAGE_KEYS.nudgeDismissed).then(dismissed => {
-      if (!dismissed) setShowNudge(true)
-    })
-  }, [progress])
-
-  function dismissNudge() {
-    setShowNudge(false)
-    window.storage.setItem(STORAGE_KEYS.nudgeDismissed, true)
-  }
-
-  const readiness = useMemo(() => computeReadinessScore(progress, retention), [progress, retention])
-  const studyNext = useMemo(() => pickStudyNext(learnerSummary, dueCount), [learnerSummary, dueCount])
-
-  const totals = useMemo(() => {
-    let mastered = 0, inProgress = 0
-    ALL_OBJECTIVES.forEach(o => {
-      const s = progress[o.id]?.status
-      if (s === 'mastered') mastered++
-      else if (s === 'in_progress') inProgress++
-    })
-    return { mastered, inProgress, total: ALL_OBJECTIVES.length }
-  }, [progress])
-
-  const sectionLabel = { ...styles.small, fontWeight: 700, color: COLORS.silver, marginBottom: 8, letterSpacing: 0.5 }
-
-  return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
-        <h1 style={styles.h1} className="ccna-grad-text">CCNA 200-301</h1>
-        {streak.count > 0 && (() => {
-          const count = streak.count
-          const msg = count >= 30 ? 'Legendary! 🏆' : count >= 14 ? 'Unstoppable! 💪' : count >= 7 ? 'On fire! 🔥' : count >= 3 ? 'Nice momentum!' : 'Keep it going!'
-          const today = todayStr()
-          const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
-          const lastLabel = streak.lastStudyDate === today ? 'Today' : streak.lastStudyDate === yesterday ? 'Yesterday' : null
-          return (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 3, marginRight: 48, flexShrink: 0 }}>
-              <div style={{ ...styles.pill('mint'), whiteSpace: 'nowrap' }}>🔥 {count} day{count === 1 ? '' : 's'} streak</div>
-              <div style={{ fontSize: 11, color: accentColors('mint').text, fontWeight: 500, textAlign: 'right' }}>{msg}</div>
-              {lastLabel && <div style={{ fontSize: 10, color: COLORS.silverMid }}>Last studied: {lastLabel}</div>}
-            </div>
-          )
-        })()}
-      </div>
-      <div style={{ ...styles.small, marginBottom: 10 }}>
-        {totals.mastered} mastered · {totals.inProgress} in progress · {totals.total - totals.mastered - totals.inProgress} not started
-        {offlineReady?.size > 0 && <> · ⤓ {offlineReady.size} offline-ready</>}
-      </div>
-
-      <StudyNextStrip next={studyNext} onSelectObjective={onSelectObjective} onOpenReview={onOpenReview} />
-
-      {showNudge && (
-        <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 12, position: 'relative' }}>
-          <button
-            onClick={dismissNudge}
-            style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 18, cursor: 'pointer', lineHeight: 1, padding: 0, minWidth: 44, minHeight: 44 }}
-            aria-label="Dismiss"
-          >×</button>
-          <div style={{ fontWeight: 700, fontSize: 14, color: COLORS.sky, marginBottom: 6 }}>📱 New device?</div>
-          <div style={{ fontSize: 13, color: COLORS.silver, marginBottom: 10 }}>
-            Export your progress from another device and import it here to pick up where you left off.
-          </div>
-          <div style={{ display: 'flex', gap: 8 }}>
-            <button
-              style={{ ...styles.secondaryBtn, flex: 1, fontSize: 13, border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
-              onClick={onOpenExport}
-            >⬆ Export</button>
-            <button
-              style={{ ...styles.secondaryBtn, flex: 1, fontSize: 13, border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
-              onClick={onImportPick}
-            >⬇ Import</button>
-          </div>
-        </div>
-      )}
-
-      {dueCount > 0 && (() => {
-        const ready = Math.min(dueCount, REVIEW_SESSION_CAP)
-        const estMin = Math.max(1, Math.round(ready * 0.5))
-        return (
-          <button
-            className="ccna-hover"
-            style={{ ...styles.primaryBtn, marginBottom: 12 }}
-            onClick={onOpenReview}
-          >
-            📅 Today's Review — {ready} ready · ~{estMin} min
-          </button>
-        )
-      })()}
-
-      {suggestions.length > 0 && (
-        <div style={{ marginBottom: 12 }} className="ccna-stagger">
-          <div style={sectionLabel}>FOR YOU</div>
-          {suggestions.map(s => {
-            const c = accentColors(s.accent)
-            return (
-              <button
-                key={s.key}
-                className="ccna-hover"
-                onClick={() => onSelectObjective({ ...s.objective, __initialTab: s.tab })}
-                style={{
-                  display: 'block', width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit',
-                  background: c.dim, border: `1px solid ${c.border}`, borderRadius: 14, padding: 14, marginBottom: 10,
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                  <span style={{ ...styles.pill(s.accent), fontSize: 11 }}>{s.chip}</span>
-                  <span style={{ color: c.text, fontSize: 16, lineHeight: 1 }}>›</span>
-                </div>
-                <div style={{ fontWeight: 600, fontSize: 14, color: COLORS.silver, marginBottom: 4, lineHeight: 1.4 }}>{s.title}</div>
-                <div style={{ ...styles.small, lineHeight: 1.5 }}>{s.body}</div>
-              </button>
-            )
-          })}
-        </div>
-      )}
-
-      <SessionRecapCard />
-
-      <div style={styles.card}>
-        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-          <ProgressRing value={readiness.score} size={72} accent="purple" caption="Exam Readiness" />
-          <div style={{ flex: 1, minWidth: 0 }}>
-            {readiness.domainStats.map(d => {
-              const c = accentColors(d.accent)
-              return (
-                <div key={d.id} style={{ marginBottom: 6 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: COLORS.silverMid, marginBottom: 2 }}>
-                    <span>{d.name}</span>
-                    <span>{Math.round(d.avg * 100)}%</span>
-                  </div>
-                  <div style={{ height: 5, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
-                    <div style={{ height: '100%', width: `${Math.round(d.avg * 100)}%`, borderRadius: 999, background: c.text }} />
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-        <button
-          onClick={onOpenMetrics}
-          style={{ marginTop: 10, background: 'none', border: 'none', color: COLORS.sky, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
-        >
-          View full metrics →
-        </button>
-      </div>
-
-      <div style={{ marginBottom: 12 }}>
-        <div style={sectionLabel}>STUDY MODES</div>
-        <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-          <button style={{ ...styles.primaryBtn, flex: 1 }} onClick={onOpenMock}>Mock Exam</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenMissed}>Missed ({missedCount})</button>
-        </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenFocus}>🎯 Focus Mode</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenLabs}>🧪 Labs</button>
-        </div>
-        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenExamTraps}>⚠️ Exam Traps</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenSubnet}>🔢 Subnetting</button>
-        </div>
-        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenRouting}>🛣 Routing Decoder</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenExtraStudy}>📚 Extra Study ({getShelvedStats().total})</button>
-        </div>
-      </div>
-
-      <div style={{ marginBottom: 16 }}>
-        <div style={sectionLabel}>TOOLS</div>
-        <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenMetrics}>📊 Metrics</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenExport}>Export Reports</button>
-        </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenTutor} disabled={!apiOnline}>AI Tutor</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenSync}>☁ Sync{syncOn ? ' ✓' : ''}</button>
-        </div>
-      </div>
-
-      <HomeExtrasSection progress={progress} />
-
-      <div role="group" aria-label="Course domains">
-      {DOMAINS.map(domain => {
-        const isOpen = openDomain === domain.id
-        const objs = domain.objectives
-        const masteredCount = objs.filter(o => progress[o.id]?.status === 'mastered').length
-        const accent = accentColors(domain.accent)
-        return (
-          <div key={domain.id} className="ccna-hover" style={styles.card}>
-            <button
-              onClick={() => onOpenDomain(isOpen ? null : domain.id)}
-              aria-expanded={isOpen}
-              aria-controls={`domain-panel-${domain.id}`}
-              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: 0, textAlign: 'left' }}
-            >
-              <div style={{ flex: 1, minWidth: 0, marginRight: 10 }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2 }}>
-                  <div style={{ fontSize: 15, fontWeight: 600 }}>{domain.name}</div>
-                  <span style={{ ...styles.pill(domain.accent), fontSize: 9 }}>{domain.weight}% exam weight</span>
-                </div>
-                <div style={{ ...styles.small, marginBottom: 6 }}>{masteredCount}/{objs.length} mastered</div>
-                {/* Outer bar width = exam weight (so D4@25% appears wider than D1@20%); fill = mastery */}
-                <div style={{ width: '100%', height: 6, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
-                  <div style={{ width: `${domain.weight}%`, height: '100%', borderRadius: 999, background: COLORS.surface, position: 'relative', display: 'inline-block' }}>
-                    <div style={{ width: `${Math.round(masteredCount / objs.length * 100)}%`, height: '100%', borderRadius: 999, background: accent.text }} />
-                  </div>
-                  <div style={{ display: 'inline-block', width: `${100 - domain.weight}%`, height: '100%', background: COLORS.border, borderRadius: 999 }} />
-                </div>
-              </div>
-              <span style={{ ...styles.pill(domain.accent), flexShrink: 0 }}>{isOpen ? '−' : '+'}</span>
-            </button>
-            {isOpen && (
-              <div id={`domain-panel-${domain.id}`} role="region" aria-label={`${domain.name} objectives`} style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>
-                {objs.map(o => {
-                  const status = progress[o.id]?.status || 'unseen'
-                  return (
-                    <button
-                      key={o.id}
-                      onClick={() => onSelectObjective({ ...o, domainId: domain.id, domainName: domain.name, accent: domain.accent })}
-                      style={{ display: 'flex', alignItems: 'center', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: '8px 0', textAlign: 'left', borderBottom: `1px solid ${COLORS.border}` }}
-                    >
-                      <StatusDot status={status} />
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: 13 }}>{o.id} {o.title}</div>
-                      </div>
-                      {(() => {
-                        if (hasCuratedReading(o.id)) return <span style={{ ...styles.pill('mint'), fontSize: 9, marginLeft: 6, flexShrink: 0 }}>C</span>
-                        if (hasCuratedQuestions(o.id)) return <span style={{ ...styles.pill('sky'), fontSize: 9, marginLeft: 6, flexShrink: 0 }}>Q</span>
-                        return null
-                      })()}
-                      {offlineReady?.has(o.id) && <span style={{ color: COLORS.mint, fontSize: 13, marginLeft: 8, flexShrink: 0 }}>⤓</span>}
-                    </button>
-                  )
-                })}
-              </div>
-            )}
-          </div>
-        )
-      })}
-      </div>
-    </div>
-  )
-}
 
 /* =========================================================================
    MISSED QUESTIONS REVIEW
@@ -6964,257 +5699,6 @@ function MissedReview({ missed, onBack, onRemove }) {
   )
 }
 
-/* =========================================================================
-   MOCK EXAM
-   ========================================================================= */
-const MOCK_EXAM_SYSTEM = `You are a CCNA 200-301 exam question generator. Ground every question strictly in the provided reference notes for each objective — do not introduce facts that contradict them. Generate multiple-choice questions (4 choices each, exactly one correct) at official CCNA exam difficulty, distributed across the listed objectives.
-
-Respond with ONLY valid JSON (no markdown fences, no commentary), in this exact shape:
-{"questions":[{"objectiveId":"x.x","question":"...","choices":["...","...","...","..."],"correctIndex":0,"explanation":"..."}]}`
-
-function formatSeconds(total) {
-  const m = Math.floor(total / 60)
-  const s = total % 60
-  return `${m}:${String(s).padStart(2, '0')}`
-}
-
-function MockExam({ onExit }) {
-  const [phase, setPhase] = useState('intro') // intro | loading | active | done | error
-  const [error, setError] = useState(null)
-  const [questions, setQuestions] = useState([])
-  const [current, setCurrent] = useState(0)
-  const [responses, setResponses] = useState({}) // qIndex -> selectedIndex
-  const [secondsLeft, setSecondsLeft] = useState(MOCK_EXAM_DURATION_MIN * 60)
-  const [staticOnly, setStaticOnly] = useState(true)
-  const [bankReady, setBankReady] = useState(false)
-
-  useEffect(() => {
-    preloadCleanBank().then(() => setBankReady(true))
-  }, [])
-
-  const getMcForObjective = useCallback((objectiveId) => (
-    getCuratedQuestions(objectiveId).filter(isMcQuestion)
-  ), [])
-
-  const canUseStaticOnly = useMemo(() => (
-    bankReady && staticMockExamReady(DOMAINS, getMcForObjective)
-  ), [bankReady, getMcForObjective])
-
-  useEffect(() => {
-    if (canUseStaticOnly) setStaticOnly(true)
-    else setStaticOnly(false)
-  }, [canUseStaticOnly])
-
-  const start = useCallback(async () => {
-    setPhase('loading')
-    setError(null)
-    try {
-      await preloadCleanBank()
-      const getMc = (id) => getCuratedQuestions(id).filter(isMcQuestion)
-
-      if (staticOnly) {
-        if (!staticMockExamReady(DOMAINS, getMc)) {
-          throw new Error('Not enough static questions for a full exam. Turn off static-only or add more questions to the bank.')
-        }
-        const final = buildStaticMockExamPool(DOMAINS, getMc, shuffleArray)
-        setQuestions(final)
-        setResponses({})
-        setCurrent(0)
-        setSecondsLeft(MOCK_EXAM_DURATION_MIN * 60)
-        setPhase('active')
-        return
-      }
-
-      const domainCounts = buildMockExamDomainCounts(DOMAINS).filter(dc => dc.count > 0)
-
-      const all = []
-      let aiUsed = 0
-      await Promise.all(domainCounts.map(async ({ domain, count }) => {
-        const staticPool = shuffleArray(
-          domain.objectives.flatMap(o => getCuratedQuestions(o.id).filter(isMcQuestion).map(q => ({ ...q, objectiveId: o.id }))),
-        )
-        const fromStatic = staticPool.slice(0, count)
-        all.push(...fromStatic)
-
-        const aiCount = Math.min(count - fromStatic.length, Math.max(0, MOCK_EXAM_AI_CAP - aiUsed))
-        if (aiCount <= 0) return
-        aiUsed += aiCount
-
-        const objectivesText = domain.objectives.map(o => `Objective ${o.id} — ${o.title}\n${BOOK_REF[o.id] || ''}`).join('\n\n')
-        const data = await askClaudeJSON({
-          system: cachedSystem(MOCK_EXAM_SYSTEM),
-          messages: [{
-            role: 'user',
-            content: `Domain: ${domain.name}\n\n${objectivesText}\n\nGenerate ${aiCount} multiple-choice questions total for this domain, spread across the objectives above. Tag each question with its objectiveId.`,
-          }],
-          max_tokens: 250 * aiCount + 300,
-          schema: MOCK_SCHEMA,
-          toolName: 'emit_exam',
-          feature: 'mock',
-        })
-        all.push(...(data.questions || []).slice(0, aiCount))
-      }))
-
-      const final = shuffleArray(all)
-      if (final.length === 0) throw new Error('No questions were generated.')
-      setQuestions(final)
-      setResponses({})
-      setCurrent(0)
-      setSecondsLeft(MOCK_EXAM_DURATION_MIN * 60)
-      setPhase('active')
-    } catch (err) {
-      setError(err.message.includes('JSON') ? 'Claude returned an unexpected format while building the exam. Please try again.' : err.message)
-      setPhase('error')
-    }
-  }, [staticOnly])
-
-  // Countdown timer
-  useEffect(() => {
-    if (phase !== 'active') return
-    const id = setInterval(() => {
-      setSecondsLeft(s => {
-        if (s <= 1) {
-          clearInterval(id)
-          setPhase('done')
-          return 0
-        }
-        return s - 1
-      })
-    }, 1000)
-    return () => clearInterval(id)
-  }, [phase])
-
-  function selectChoice(idx) {
-    setResponses(r => ({ ...r, [current]: idx }))
-  }
-
-  const report = useMemo(() => {
-    if (phase !== 'done') return null
-    const byDomain = {}
-    DOMAINS.forEach(d => { byDomain[d.id] = { name: d.name, correct: 0, total: 0 } })
-    let correct = 0
-    questions.forEach((q, idx) => {
-      const domainIdx = parseInt((q.objectiveId || '1.1').split('.')[0], 10) - 1
-      const domain = DOMAINS[domainIdx] || DOMAINS[0]
-      byDomain[domain.id].total++
-      if (responses[idx] === q.correctIndex) {
-        byDomain[domain.id].correct++
-        correct++
-      }
-    })
-    const result = { correct, total: questions.length, byDomain }
-    // Persist to history
-    ;(async () => {
-      const hist = (await window.storage.getItem(STORAGE_KEYS.mockHistory)) || []
-      hist.push({ date: Date.now(), pct: Math.round((correct / Math.max(questions.length, 1)) * 100), correct, total: questions.length })
-      await window.storage.setItem(STORAGE_KEYS.mockHistory, hist.slice(-30)) // keep last 30 attempts
-    })()
-    return result
-  }, [phase, questions, responses])
-
-  if (phase === 'intro') {
-    const staticCount = bankReady
-      ? DOMAINS.flatMap(d => d.objectives).reduce((n, o) => n + getMcForObjective(o.id).length, 0)
-      : 0
-    const staticPct = Math.min(100, Math.round((Math.min(staticCount, MOCK_EXAM_QUESTION_COUNT) / MOCK_EXAM_QUESTION_COUNT) * 100))
-    return (
-      <div>
-        <button style={styles.backBtn} onClick={onExit}>‹ Back</button>
-        <h1 style={styles.h1}>Mock Exam</h1>
-        <div style={styles.card}>
-          <div style={{ fontSize: 14, lineHeight: 1.7 }}>
-            <div>• {MOCK_EXAM_QUESTION_COUNT} questions, {MOCK_EXAM_DURATION_MIN} minute countdown</div>
-            <div>• Weighted by official exam domain percentages</div>
-            <div>• <span style={{ color: COLORS.mint }}>{canUseStaticOnly ? '100% from your static bank' : `~${staticPct}% from your static question bank`}</span>{canUseStaticOnly ? ' — no API needed' : ' — hybrid fills gaps with AI'}</div>
-            <div>• Score report broken down by domain at the end</div>
-            <div>• Once started, the timer runs continuously — find a quiet 2 hours, or submit early</div>
-          </div>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontSize: 14, cursor: 'pointer' }}>
-            <input
-              type="checkbox"
-              checked={staticOnly}
-              onChange={e => setStaticOnly(e.target.checked)}
-              disabled={!canUseStaticOnly && staticOnly}
-              style={{ width: 18, height: 18, accentColor: COLORS.purple }}
-            />
-            <span>
-              Static bank only (no API)
-              {!canUseStaticOnly && !bankReady && <span style={{ color: COLORS.silverMid }}> — loading bank…</span>}
-            </span>
-          </label>
-        </div>
-        <button style={styles.primaryBtn} onClick={start}>Start Mock Exam</button>
-      </div>
-    )
-  }
-  if (phase === 'loading') return <Spinner label="Building your exam..." />
-  if (phase === 'error') return <ErrorBox message={error} onRetry={start} />
-
-  if (phase === 'done') {
-    const pct = report.total > 0 ? Math.round((report.correct / report.total) * 100) : 0
-    return (
-      <div>
-        <button style={styles.backBtn} onClick={onExit}>‹ Back to Home</button>
-        <h1 style={styles.h1}>Exam Results</h1>
-        <div style={styles.card}>
-          <div style={{ fontSize: 32, fontWeight: 700, color: pct >= 70 ? COLORS.mint : COLORS.rose }}>{pct}%</div>
-          <div style={styles.small}>{report.correct} / {report.total} correct</div>
-        </div>
-        <div style={styles.card}>
-          <h2 style={styles.h2}>By Domain</h2>
-          {DOMAINS.map(d => {
-            const r = report.byDomain[d.id]
-            if (!r || r.total === 0) return null
-            const dpct = Math.round((r.correct / r.total) * 100)
-            return (
-              <div key={d.id} style={{ marginBottom: 10 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 4 }}>
-                  <span>{d.name}</span>
-                  <span style={{ color: dpct >= 70 ? COLORS.mint : COLORS.rose, fontWeight: 600 }}>{r.correct}/{r.total} ({dpct}%)</span>
-                </div>
-                <div style={{ height: 6, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: `${dpct}%`, background: dpct >= 70 ? COLORS.mint : COLORS.rose }} />
-                </div>
-              </div>
-            )
-          })}
-        </div>
-        <button style={styles.primaryBtn} onClick={start}>Retake mock exam</button>
-      </div>
-    )
-  }
-
-  // active
-  const q = questions[current]
-  const selected = responses[current]
-  const answeredCount = Object.keys(responses).length
-  return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-        <div style={styles.small}>Question {current + 1} / {questions.length}</div>
-        <div style={{ ...styles.pill(secondsLeft < 600 ? 'rose' : 'sky') }}>{formatSeconds(secondsLeft)}</div>
-      </div>
-      <div style={styles.card}>
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>{q.question}</div>
-        <McChoices q={q} selected={selected ?? null} revealed={false} onSelect={selectChoice} />
-      </div>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-        <button style={styles.secondaryBtn} disabled={current === 0} onClick={() => setCurrent(c => Math.max(0, c - 1))}>Previous</button>
-        {current < questions.length - 1 ? (
-          <button style={styles.primaryBtn} onClick={() => setCurrent(c => Math.min(questions.length - 1, c + 1))}>Next</button>
-        ) : (
-          <button style={styles.primaryBtn} onClick={() => setPhase('done')}>Submit Exam</button>
-        )}
-      </div>
-      <div style={{ ...styles.small, textAlign: 'center' }}>{answeredCount} / {questions.length} answered</div>
-      {current === questions.length - 1 ? null : (
-        <button style={{ ...styles.secondaryBtn, marginTop: 8, background: 'none', border: 'none', color: COLORS.silverMid }} onClick={() => setPhase('done')}>
-          Submit exam now
-        </button>
-      )}
-    </div>
-  )
-}
 
 /* =========================================================================
    PROGRESS EXPORT
@@ -7896,6 +6380,17 @@ export default function App() {
     })
   }, [])
 
+  // Preload clean-question chunk during idle time so first quiz/mock is instant.
+  useEffect(() => {
+    const run = () => { preloadCleanBank().catch(() => {}) }
+    if (typeof requestIdleCallback === 'function') {
+      const id = requestIdleCallback(run, { timeout: 4000 })
+      return () => cancelIdleCallback(id)
+    }
+    const t = setTimeout(run, 1500)
+    return () => clearTimeout(t)
+  }, [])
+
   useEffect(() => {
     (async () => {
       const [p, m, s, off, code, last, due, onboardDone] = await Promise.all([
@@ -8322,6 +6817,7 @@ export default function App() {
             syncOn={!!syncCode}
             openDomain={openDomain}
             onOpenDomain={setOpenDomain}
+            commandDrills={COMMAND_DRILLS}
           />
         )}
         {view === 'objective' && selectedObjective && (
@@ -8339,9 +6835,31 @@ export default function App() {
             onOpenLab={(id) => openLab(id, 'objective')}
             onSelectObjective={selectObjective}
             onOpenMissed={() => setView('missed')}
+            ExplainTab={ExplainTab}
+            VisualAidTab={VisualAidTab}
+            QuizTab={QuizTab}
+            CLIDrillTab={CLIDrillTab}
+            SubnettingTab={SubnettingTab}
+            VLSMTab={VLSMTab}
+            IPv6CalcTab={IPv6CalcTab}
+            ACLCalcTab={ACLWildcardTab}
+            SectionLabel={SectionLabel}
+            StatusLabel={StatusLabel}
+            StatusDot={StatusDot}
+            ProgressBar={ProgressBar}
+            objectiveTabId={objectiveTabId}
+            objectivePanelId={objectivePanelId}
+            commandDrills={COMMAND_DRILLS}
+            computeMastery={computeMastery}
+            logEvent={logEvent}
+            masteryGate={MASTERY_GATE}
+            enableSectionReview={enableSectionReview}
+            bumpSessionStudy={bumpSessionStudy}
+            celebrate={celebrate}
+            haptic={haptic}
           />
         )}
-        {view === 'mock' && <MockExam onExit={() => setView('home')} />}
+        {view === 'mock' && <MockExam onExit={() => setView('home')} askClaudeJSON={askClaudeJSON} cachedSystem={cachedSystem} mockSchema={MOCK_SCHEMA} bookRef={BOOK_REF} />}
         {view === 'missed' && <MissedReview missed={missed} onBack={() => setView('home')} onRemove={removeMissed} />}
         {view === 'tutor' && <TutorChat progress={progress} missed={missed} onBack={() => setView('home')} />}
         {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} dueCount={dueCount} onBack={() => setView('home')} onSelectObjective={selectObjective} onOpenReview={() => setView('review')} />}
