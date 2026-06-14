@@ -73,7 +73,8 @@ describe('clean question bank (all domains)', () => {
 
 describe('cleanQuestionAdapter', () => {
   it('clean bank replaces imports for migrated objectives', async () => {
-    const { CLEAN_BANK_ENABLED, hasCleanBank, getLegacyImportObjectives } = await import('../data/cleanQuestionAdapter.js')
+    const { CLEAN_BANK_ENABLED, hasCleanBank, getLegacyImportObjectives, preloadCleanBank } = await import('../data/cleanQuestionAdapter.js')
+    await preloadCleanBank()
     expect(CLEAN_BANK_ENABLED).toBe(true)
     expect(hasCleanBank('4.3')).toBe(true)
     expect(hasCleanBank('3.2')).toBe(true)

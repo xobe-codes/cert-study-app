@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeAll } from 'vitest'
 import { hasCuratedReading, hasCuratedQuestions, validateCurated } from '../data/ccnaCurated.js'
-import { getLegacyImportObjectives, getCleanBankStats } from '../data/cleanQuestionAdapter.js'
-import { CLEAN_BANK_OBJECTIVES } from '../data/ccnaCleanQuestions.js'
+import { getLegacyImportObjectives, getCleanBankStats, preloadCleanBank } from '../data/cleanQuestionAdapter.js'
+import { CLEAN_BANK_OBJECTIVES } from '../data/ccnaCleanBankMeta.js'
 import { getShelvedStats } from '../data/shelvedStudy.js'
 
 const ALL_OBJECTIVE_IDS = [
@@ -14,6 +14,10 @@ const ALL_OBJECTIVE_IDS = [
 ]
 
 describe('e2e smoke — exam coverage invariants', () => {
+  beforeAll(async () => {
+    await preloadCleanBank()
+  })
+
   it('all 53 objectives have quiz questions', () => {
     const missing = ALL_OBJECTIVE_IDS.filter(id => !hasCuratedQuestions(id))
     expect(missing, `missing quiz: ${missing.join(', ')}`).toEqual([])
@@ -34,6 +38,7 @@ describe('e2e smoke — exam coverage invariants', () => {
     expect(getLegacyImportObjectives()).toEqual([])
     expect(CLEAN_BANK_OBJECTIVES.size).toBe(53)
     const stats = getCleanBankStats()
+    expect(stats.loaded).toBe(true)
     expect(stats.questions).toBeGreaterThan(850)
   })
 
