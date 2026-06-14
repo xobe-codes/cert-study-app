@@ -12,7 +12,7 @@ import { DOMAIN_4_OBJECTIVES } from './lib/cleanBankUtils.mjs'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const KB_DIR = join(ROOT, 'data', 'knowledge-base')
-const CLEAN_DIR = join(ROOT, 'data', 'clean-question-bank', 'domain-4')
+const CLEAN_DIR = join(ROOT, 'data', 'clean-question-bank')
 
 function loadCleanQuestions(objectiveId) {
   for (const domainNum of [2, 3, 4, 5, 6]) {
