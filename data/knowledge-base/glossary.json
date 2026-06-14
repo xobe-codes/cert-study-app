@@ -1,0 +1,38 @@
+[
+  {
+    "id": "4.1-g1",
+    "term": "NAT",
+    "definition": "Network Address Translation — maps private to public IP addresses.",
+    "ckuIds": [
+      "CKU-NAT"
+    ],
+    "objectiveId": "4.1"
+  },
+  {
+    "id": "4.1-g2",
+    "term": "PAT",
+    "definition": "Port Address Translation (NAT overload) — many hosts share one public IP via ports.",
+    "ckuIds": [
+      "CKU-PAT"
+    ],
+    "objectiveId": "4.1"
+  },
+  {
+    "id": "4.1-g3",
+    "term": "Inside local",
+    "definition": "The private IP of an inside host.",
+    "ckuIds": [
+      "CKU-NAT-TERMS"
+    ],
+    "objectiveId": "4.1"
+  },
+  {
+    "id": "4.1-g4",
+    "term": "Inside global",
+    "definition": "The public IP an inside host is translated to.",
+    "ckuIds": [
+      "CKU-NAT-TERMS"
+    ],
+    "objectiveId": "4.1"
+  }
+]

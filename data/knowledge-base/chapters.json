@@ -1,0 +1,20 @@
+[
+  {
+    "chapterId": "ch4-ip-services",
+    "chapterNumber": 4,
+    "chapterTitle": "IP Services (Domain 4)",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.1",
+      "4.2",
+      "4.3",
+      "4.4",
+      "4.5",
+      "4.6",
+      "4.7",
+      "4.8",
+      "4.9"
+    ],
+    "summary": "NAT/PAT, NTP, DHCP/DNS, SNMP, Syslog, DHCP relay, QoS, SSH, TFTP/FTP — core CCNA IP Services objectives."
+  }
+]

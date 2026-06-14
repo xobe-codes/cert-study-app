@@ -1,0 +1,29 @@
+[
+  {
+    "id": "4.1-t1",
+    "trap": "Forgetting the inside/outside interface tags.",
+    "correction": "Without `ip nat inside`/`outside`, NAT translates nothing.",
+    "ckuIds": [
+      "CKU-NAT-TERMS"
+    ],
+    "objectiveId": "4.1"
+  },
+  {
+    "id": "4.1-t2",
+    "trap": "Mixing up inside local and inside global.",
+    "correction": "Inside local = private host; inside global = its public mapping.",
+    "ckuIds": [
+      "CKU-NAT-TERMS"
+    ],
+    "objectiveId": "4.1"
+  },
+  {
+    "id": "4.1-t3",
+    "trap": "Expecting static NAT to serve many hosts.",
+    "correction": "Static NAT is 1:1; use PAT/overload for many-to-one.",
+    "ckuIds": [
+      "CKU-NAT"
+    ],
+    "objectiveId": "4.1"
+  }
+]

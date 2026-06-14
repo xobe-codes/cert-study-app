@@ -1,0 +1,72 @@
+[
+  {
+    "ckuId": "CKU-NAT",
+    "title": "NAT",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.1"
+    ],
+    "summary": "Network Address Translation maps private (inside local) IPs to public (inside global) IPs so internal hosts can reach the internet.",
+    "keyTerms": [
+      "network address translation"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "4.1-c-q1",
+      "4.1-c-q3",
+      "4.1-c-q7",
+      "4.1-q1",
+      "4.1-q5",
+      "4.1-q6",
+      "4.1-q9",
+      "4.1-q10",
+      "4.1-q11"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-PAT",
+    "title": "PAT (NAT Overload)",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.1"
+    ],
+    "summary": "Maps many inside addresses to ONE public IP using different source port numbers — the common home/SOHO method.",
+    "keyTerms": [
+      "overload",
+      "port address translation"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "4.1-c-q2",
+      "4.1-c-q5",
+      "4.1-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-NAT-TERMS",
+    "title": "NAT Inside/Outside Terminology",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.1"
+    ],
+    "summary": "Inside local = private host IP; inside global = its translated public IP; outside global = the public destination. Mark interfaces `ip nat inside`/`outside`.",
+    "keyTerms": [
+      "inside local",
+      "inside global"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "4.1-c-q4",
+      "4.1-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  }
+]

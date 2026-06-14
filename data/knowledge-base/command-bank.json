@@ -1,0 +1,35 @@
+[
+  {
+    "id": "4.1-cmd1",
+    "command": "ip nat inside source static <local> <global>",
+    "mode": "global config",
+    "purpose": "Create a permanent one-to-one NAT mapping.",
+    "example": "R1(config)# ip nat inside source static 192.168.1.10 203.0.113.10",
+    "ckuIds": [
+      "CKU-NAT"
+    ],
+    "objectiveId": "4.1"
+  },
+  {
+    "id": "4.1-cmd2",
+    "command": "ip nat inside source list <acl> interface <if> overload",
+    "mode": "global config",
+    "purpose": "Configure PAT (overload) to the outside interface.",
+    "example": "R1(config)# ip nat inside source list 1 interface g0/0 overload",
+    "ckuIds": [
+      "CKU-PAT"
+    ],
+    "objectiveId": "4.1"
+  },
+  {
+    "id": "4.1-cmd3",
+    "command": "show ip nat translations",
+    "mode": "privileged EXEC",
+    "purpose": "Display current NAT translations.",
+    "example": "R1# show ip nat translations",
+    "ckuIds": [
+      "CKU-NAT"
+    ],
+    "objectiveId": "4.1"
+  }
+]

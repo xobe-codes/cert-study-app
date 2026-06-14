@@ -1,0 +1,22 @@
+[
+  {
+    "id": "4.1-x1",
+    "misconception": "NAT provides security/encryption.",
+    "reality": "NAT hides addresses but does not encrypt; it is not a security control by itself.",
+    "example": "Traffic is still cleartext after translation.",
+    "ckuIds": [
+      "CKU-NAT"
+    ],
+    "objectiveId": "4.1"
+  },
+  {
+    "id": "4.1-x2",
+    "misconception": "Every inside host needs its own public IP.",
+    "reality": "PAT lets thousands of hosts share one public IP via ports.",
+    "example": "A home network uses a single ISP address.",
+    "ckuIds": [
+      "CKU-PAT"
+    ],
+    "objectiveId": "4.1"
+  }
+]
