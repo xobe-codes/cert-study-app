@@ -21,7 +21,33 @@ const DHCP_RELAY_EXHIBIT = `Network layout:
 - Router R1 Gi0/0: 192.168.10.1 — needs ip helper-address toward remote DHCP
 - Remote DHCP server: 10.0.0.5 on another subnet`
 
+const ROUTING_TABLE_EXHIBIT = `Routing table excerpt:
+O    192.168.10.0/24 [110/20] via 10.0.0.2, 00:05:00, GigabitEthernet0/0
+Codes: C=connected, S=static, O=OSPF. Bracket shows [AD/metric].`
+
+const RUNNING_CONFIG_EXHIBIT = `Running-config excerpt:
+ip route 192.168.4.0 255.255.255.0 10.0.0.1
+ip route 192.168.5.0 255.255.255.0 10.0.0.2
+! Destination 192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1`
+
 const EXHIBIT_HANDLERS = [
+  {
+    match: q => /routing table/i.test(q.question || '') && /exhibit|following exhibit/i.test(q.question || ''),
+    convert(q) {
+      const stem = (q.question || '')
+        .replace(/You review a routing table and see the entry in the following exhibit\.?\s*/i, '')
+        .replace(/in the following exhibit/i, 'in the routing table below')
+        .replace(/referenced source exhibit/i, 'routing table below')
+      return { ...q, question: `${ROUTING_TABLE_EXHIBIT}\n\n${stem.trim()}`, exhibitConverted: true }
+    },
+  },
+  {
+    match: q => /running-config/i.test(q.question || '') && /exhibit/i.test(q.question || ''),
+    convert(q) {
+      const stem = (q.question || '').replace(/In the following exhibit is a copy of the running-config\.?\s*/i, '')
+      return { ...q, question: `${RUNNING_CONFIG_EXHIBIT}\n\n${stem.trim()}`, exhibitConverted: true }
+    },
+  },
   {
     match: q => /^4\.1-q/.test(q.id || '') || (q.objectiveId === '4.1' && /inside local|inside global|outside global|static NAT|PAT|Port Address|NAT pool/i.test(q.question || '')),
     convert(q) {

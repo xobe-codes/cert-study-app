@@ -1,130 +1,342 @@
 [
   {
-    "id": "obj-3.1-source-q002",
-    "objectiveId": "3.1",
-    "question": "You review a routing table and see the entry in the following exhibit. What does the 4 in the underlined number represent?",
-    "reason": "exhibit-dependent",
-    "shelvedAt": "2026-06-14",
-    "notes": ""
-  },
-  {
     "id": "obj-3.1-source-q006",
     "objectiveId": "3.1",
+    "reason": "exhibit-dependent",
+    "notes": "",
+    "shelvedAt": "2026-06-14",
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
     "question": "Using the referenced source exhibit, what does the top line of the output represent?",
-    "reason": "exhibit-dependent",
-    "shelvedAt": "2026-06-14",
-    "notes": ""
-  },
-  {
-    "id": "obj-3.1-source-q007",
-    "objectiveId": "3.1",
-    "question": "You review a routing table and see the entry in the following exhibit. What does the underlined number represent?",
-    "reason": "exhibit-dependent",
-    "shelvedAt": "2026-06-14",
-    "notes": ""
-  },
-  {
-    "id": "obj-3.1-source-q008",
-    "objectiveId": "3.1",
-    "question": "In the following exhibit is a copy of the running-config. What is the next hop for a destination address of 192.168.4.85?",
-    "reason": "exhibit-dependent",
-    "shelvedAt": "2026-06-14",
-    "notes": ""
+    "choices": [
+      "The 10.0.0.0/8 is a route in the routing table.",
+      "The 10.0.0.0/8 is a summarization of the routes in the table.",
+      "The 10.0.0.0/8 is the router’s network address.",
+      "The 10.0.0.0/8 has been populated from another router."
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "routing table",
+    "ckuIds": [
+      "CKU-ROUTING-TABLE",
+      "CKU-ROUTE-CODE",
+      "CKU-PREFIX",
+      "CKU-DR-BDR"
+    ]
   },
   {
     "id": "obj-3.3-source-q019",
     "objectiveId": "3.3",
-    "question": "Using the referenced source exhibit, which route statement needs to be configured on Router A to allow routing to Network B?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, which route statement needs to be configured on Router A to allow routing to Network B?",
+    "choices": [
+      "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1",
+      "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1",
+      "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2",
+      "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1"
+    ],
+    "correctIndex": 2,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "static routing",
+    "ckuIds": [
+      "CKU-STATIC-ROUTING",
+      "CKU-IPV4-STATIC-ROUTE",
+      "CKU-IPV6-STATIC-ROUTE",
+      "CKU-ROUTE-STATEMENT"
+    ]
   },
   {
     "id": "obj-3.3-source-q028",
     "objectiveId": "3.3",
-    "question": "Using the referenced source exhibit, which network is routable?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, which network is routable?",
+    "choices": [
+      "The 172.30.0/16 network",
+      "The 192.168.128.0/24 network",
+      "The 192.168.0.0/16 network",
+      "The 192.168.4.0/24 network"
+    ],
+    "correctIndex": 3,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "static routing",
+    "ckuIds": [
+      "CKU-STATIC-ROUTING",
+      "CKU-IPV4-STATIC-ROUTE",
+      "CKU-IPV6-STATIC-ROUTE"
+    ]
   },
   {
     "id": "obj-3.3-source-q029",
     "objectiveId": "3.3",
-    "question": "Using the referenced source exhibit, what must be configured on Router B to allow routing to Network A?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, what must be configured on Router B to allow routing to Network A?",
+    "choices": [
+      "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9",
+      "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10",
+      "RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0",
+      "RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1"
+    ],
+    "correctIndex": 3,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "static routing",
+    "ckuIds": [
+      "CKU-STATIC-ROUTING",
+      "CKU-IPV4-STATIC-ROUTE",
+      "CKU-IPV6-STATIC-ROUTE"
+    ]
   },
   {
     "id": "obj-3.3-source-q033",
     "objectiveId": "3.3",
-    "question": "Using the referenced source exhibit, which interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, which interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
+    "choices": [
+      "IP address of 192.168.4.2",
+      "IP address of 192.168.4.5",
+      "Interface Serial 0/0/1",
+      "Interface Serial 0/2/0"
+    ],
+    "correctIndex": 0,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "static routing",
+    "ckuIds": [
+      "CKU-STATIC-ROUTING",
+      "CKU-IPV4-STATIC-ROUTE",
+      "CKU-IPV6-STATIC-ROUTE",
+      "CKU-DR-BDR"
+    ]
   },
   {
     "id": "obj-3.3-source-q041",
     "objectiveId": "3.3",
-    "question": "Using the referenced source exhibit, which command on Router B will allow hosts on Network B to reach the Internet?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, which command on Router B will allow hosts on Network B to reach the Internet?",
+    "choices": [
+      "RouterB(config-if )#ipv6 address default",
+      "RouterB(config)#ip route ::/0 serial 0/3/0",
+      "RouterB(config-if)#ipv6 address autoconfig default",
+      "RouterB(config-if)#ipv6 address slaac"
+    ],
+    "correctIndex": 2,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "static routing",
+    "ckuIds": [
+      "CKU-STATIC-ROUTING",
+      "CKU-IPV4-STATIC-ROUTE",
+      "CKU-IPV6-STATIC-ROUTE",
+      "CKU-DEFAULT-ROUTE",
+      "CKU-DR-BDR"
+    ]
   },
   {
     "id": "obj-3.4-source-q047",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, Router A and Router B will not form an adjacency. What is the cause of the problem?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, Router A and Router B will not form an adjacency. What is the cause of the problem?",
+    "choices": [
+      "The hello and dead timers do not match.",
+      "The link is a point-to-point connection.",
+      "The process IDs do not match.",
+      "The area IP addresses do not match."
+    ],
+    "correctIndex": 0,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-OSPF-HELLO",
+      "CKU-DR-BDR"
+    ]
   },
   {
     "id": "obj-3.4-source-q049",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, which is a correct statement about the neighbor ID of 192.168.2.2?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, which is a correct statement about the neighbor ID of 192.168.2.2?",
+    "choices": [
+      "The neighbor is having a problem forming an adjacency.",
+      "The neighbor’s OSPF process is recalculating cost.",
+      "This router’s OSPF process is recalculating cost.",
+      "Both routers have formed an adjacency."
+    ],
+    "correctIndex": 3,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-OSPF-NEIGHBORSHIP",
+      "CKU-OSPF-COST"
+    ]
   },
   {
     "id": "obj-3.4-source-q051",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, which is a correct statement about router ID 192.168.2.2?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, which is a correct statement about router ID 192.168.2.2?",
+    "choices": [
+      "It is in the process of forming an adjacency.",
+      "It is the designated router.",
+      "It is not participating in this OSPF area.",
+      "It will only form an adjacency with the DR or BDR."
+    ],
+    "correctIndex": 3,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-DR-BDR"
+    ]
   },
   {
     "id": "obj-3.4-source-q052",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, You want to make Router D the DR. Which command will assure that it becomes the DR?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, You want to make Router D the DR. Which command will assure that it becomes the DR?",
+    "choices": [
+      "RouterD(config-router)#ospf priority",
+      "RouterD(config-if)#ip ospf priority 10",
+      "RouterD(config-if)#ip address 192.168.5.2 255.255.255.0",
+      "RouterD(config-if)#ip ospf cost 15"
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-DR-BDR",
+      "CKU-OSPF-COST",
+      "CKU-PRIORITY"
+    ]
   },
   {
     "id": "obj-3.4-source-q054",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, Router A will not form an adjacency with Router B. What is the problem?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, Router A will not form an adjacency with Router B. What is the problem?",
+    "choices": [
+      "The hello and dead timers do not match.",
+      "There is no designated router on the network.",
+      "The process IDs do not match.",
+      "The area IDs do not match."
+    ],
+    "correctIndex": 3,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-OSPF-HELLO"
+    ]
   },
   {
     "id": "obj-3.4-source-q055",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, you have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, you have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
+    "choices": [
+      "RouterA(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0",
+      "RouterA(config-router)#default-route originate",
+      "RouterA(config-router)#default-information originate",
+      "RouterA(config-router)#network 0.0.0.0 0.0.0.0 area 0"
+    ],
+    "correctIndex": 2,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-DEFAULT-ROUTE"
+    ]
   },
   {
     "id": "obj-3.5-source-q026",
     "objectiveId": "3.5",
-    "question": "Using the referenced source exhibit, You are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, You are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
+    "choices": [
+      "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1",
+      "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1",
+      "RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1",
+      "RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking"
+    ],
+    "correctIndex": 2,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "fhrp",
+    "ckuIds": [
+      "CKU-FHRP",
+      "CKU-HSRP",
+      "CKU-VRRP"
+    ]
   }
 ]

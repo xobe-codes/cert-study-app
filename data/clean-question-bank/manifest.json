@@ -1,11 +1,11 @@
 {
-  "builtAt": "2026-06-14T01:49:36.227Z",
+  "builtAt": "2026-06-14T01:59:59.678Z",
   "domains": {
     "2": {
       "schemaVersion": "ccna-clean-question-bank-v1",
       "domain": "2",
       "domainName": "Network Access",
-      "builtAt": "2026-06-14T01:49:36.238Z",
+      "builtAt": "2026-06-14T01:59:59.686Z",
       "objectives": {
         "2.3": {
           "active": 14
@@ -35,10 +35,10 @@
       "schemaVersion": "ccna-clean-question-bank-v1",
       "domain": "3",
       "domainName": "IP Connectivity",
-      "builtAt": "2026-06-14T01:49:36.257Z",
+      "builtAt": "2026-06-14T01:59:59.702Z",
       "objectives": {
         "3.1": {
-          "active": 31
+          "active": 34
         },
         "3.2": {
           "active": 49
@@ -54,15 +54,15 @@
         }
       },
       "totals": {
-        "active": 209,
-        "shelved": 30
+        "active": 212,
+        "shelved": 27
       }
     },
     "4": {
       "schemaVersion": "ccna-clean-question-bank-v1",
       "domain": "4",
       "domainName": "IP Services",
-      "builtAt": "2026-06-14T01:49:36.280Z",
+      "builtAt": "2026-06-14T01:59:59.722Z",
       "objectives": {
         "4.1": {
           "active": 32
@@ -101,7 +101,7 @@
       "schemaVersion": "ccna-clean-question-bank-v1",
       "domain": "5",
       "domainName": "Security Fundamentals",
-      "builtAt": "2026-06-14T01:49:36.302Z",
+      "builtAt": "2026-06-14T01:59:59.734Z",
       "objectives": {
         "5.1": {
           "active": 24
@@ -140,7 +140,7 @@
       "schemaVersion": "ccna-clean-question-bank-v1",
       "domain": "6",
       "domainName": "Automation & Programmability",
-      "builtAt": "2026-06-14T01:49:36.338Z",
+      "builtAt": "2026-06-14T01:59:59.750Z",
       "objectives": {
         "6.1": {
           "active": 6

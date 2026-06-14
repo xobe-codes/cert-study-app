@@ -475,6 +475,57 @@
       }
     },
     {
+      "id": "obj-3.1-source-q002",
+      "question": "Routing table excerpt:\nO    192.168.10.0/24 [110/20] via 10.0.0.2, 00:05:00, GigabitEthernet0/0\nCodes: C=connected, S=static, O=OSPF. Bracket shows [AD/metric].\n\nWhat does the 4 in the underlined number represent?",
+      "choices": [
+        "The 4 represents the administrative distance.",
+        "The 4 represents the protocol.",
+        "The 4 represents the metric.",
+        "The 4 represents the position in the routing table."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-METRIC"
+      ],
+      "objectiveId": "3.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The 4 represents the metric.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The 4 represents the administrative distance.\" is incorrect because the scenario requires: The correct answer is \"The 4 represents the metric.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The 4 represents the protocol.\" is incorrect because the scenario requires: The correct answer is \"The 4 represents the metric.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The 4 represents the position in the routing table.\" is incorrect because the scenario requires: The correct answer is \"The 4 represents the metric.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-3.1-source-q003",
       "question": "Which command will allow you to verify routes line by line in a subset of the general route statement?",
       "choices": [
@@ -616,6 +667,106 @@
           {
             "choiceIndex": 3,
             "explanation": "\"S 203.80.53.22/19 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 203.80.32.0/19 is directly connected, Serial 0/0/0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q007",
+      "question": "Routing table excerpt:\nO    192.168.10.0/24 [110/20] via 10.0.0.2, 00:05:00, GigabitEthernet0/0\nCodes: C=connected, S=static, O=OSPF. Bracket shows [AD/metric].\n\nWhat does the underlined number represent?",
+      "choices": [
+        "The number represents the current time.",
+        "The number represents the delay in microseconds of the connection.",
+        "The number represents the time the route has been in the routing table.",
+        "The number represents the time the interface has been up."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX"
+      ],
+      "objectiveId": "3.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The number represents the time the route has been in the routing table.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The number represents the current time.\" is incorrect because the scenario requires: The correct answer is \"The number represents the time the route has been in the routing table.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The number represents the delay in microseconds of the connection.\" is incorrect because the scenario requires: The correct answer is \"The number represents the time the route has been in the routing table.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The number represents the time the interface has been up.\" is incorrect because the scenario requires: The correct answer is \"The number represents the time the route has been in the routing table.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q008",
+      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n! Destination 192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1\n\nWhat is the next hop for a destination address of 192.168.4.85?",
+      "choices": [
+        "Interface Serial 0/2/0",
+        "IP address 192.168.4.2",
+        "Interface Serial 0/0/1",
+        "IP address 198.22.34.3"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-NEXT-HOP",
+        "CKU-DR-BDR"
+      ],
+      "objectiveId": "3.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Interface Serial 0/0/1\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Interface Serial 0/2/0\" is incorrect because the scenario requires: The correct answer is \"Interface Serial 0/0/1\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"IP address 192.168.4.2\" is incorrect because the scenario requires: The correct answer is \"Interface Serial 0/0/1\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"IP address 198.22.34.3\" is incorrect because the scenario requires: The correct answer is \"Interface Serial 0/0/1\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

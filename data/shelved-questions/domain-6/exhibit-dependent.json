@@ -2,33 +2,102 @@
   {
     "id": "obj-6.7-source-q007",
     "objectiveId": "6.6",
-    "question": "Using the referenced source exhibit, what is wrong with this JSON file? { \"interface\": \"Fa0/1\", \"bandwidth\": \"100mb\", \"status\": \"up\", \"address\": { \"ipaddress\": \"192.168.1.5\", \"subnetmask\": \"255.255.255.0\", \"default gateway\": \"192.168.1.1\", }",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, what is wrong with this JSON file? { \"interface\": \"Fa0/1\", \"bandwidth\": \"100mb\", \"status\": \"up\", \"address\": { \"ipaddress\": \"192.168.1.5\", \"subnetmask\": \"255.255.255.0\", \"default gateway\": \"192.168.1.1\", }",
+    "choices": [
+      "The interface of Fa0/1 is capitalized.",
+      "The address should have a square bracket.",
+      "There is a missing curly bracket.",
+      "Nothing is wrong."
+    ],
+    "correctIndex": 2,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "hard",
+    "concept": "json",
+    "ckuIds": [
+      "CKU-JSON",
+      "CKU-YAML",
+      "CKU-XML",
+      "CKU-API"
+    ]
   },
   {
     "id": "obj-6.7-source-q010",
     "objectiveId": "6.6",
-    "question": "Using the following exhibit, which statement best represents the JSON data? { \"ipaddress\": \"192.168.1.2\", \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\", \"routes\": [ { \"route\": \"10.0.0.0/8 via 192.168.1.10\" \"route\": \"0.0.0.0/0 via 192.168.1.1\" } ] }",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the following exhibit, which statement best represents the JSON data? { \"ipaddress\": \"192.168.1.2\", \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\", \"routes\": [ { \"route\": \"10.0.0.0/8 via 192.168.1.10\" \"route\": \"0.0.0.0/0 via 192.168.1.1\" } ] }",
+    "choices": [
+      "The interface data is incorrect because it is missing a comma after the routes.",
+      "The interface data is incorrect because it is missing a set of square brackets around the second route.",
+      "The interface data is incorrect because it contains an illegal underscore character.",
+      "Nothing is wrong with the exhibit."
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "hard",
+    "concept": "json",
+    "ckuIds": [
+      "CKU-JSON",
+      "CKU-YAML",
+      "CKU-XML"
+    ]
   },
   {
     "id": "obj-6.7-source-q011",
     "objectiveId": "6.6",
-    "question": "Using the following exhibit, which statement best represents the JSON data? { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] ], \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\" }",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the following exhibit, which statement best represents the JSON data? { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] ], \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\" }",
+    "choices": [
+      "The interface data is incorrect because it is missing a comma after defaultgw.",
+      "The interface data is incorrect because it is missing a subnet mask for the second IP address.",
+      "The interface data is incorrect because it contains an illegal underscore character.",
+      "Nothing is wrong with the exhibit."
+    ],
+    "correctIndex": 3,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "hard",
+    "concept": "json",
+    "ckuIds": [
+      "CKU-JSON",
+      "CKU-YAML",
+      "CKU-XML"
+    ]
   },
   {
     "id": "obj-6.7-source-q012",
     "objectiveId": "6.6",
-    "question": "Using the following exhibit, which statement best represents the JSON data? { \"interface\": { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] \"subnet_mask\": [ \"255.255.255.0\", [ \"255.255.255.0\" ] ], \"defaultgw\": \"192.168.1.1\" }",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Using the following exhibit, which statement best represents the JSON data? { \"interface\": { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] \"subnet_mask\": [ \"255.255.255.0\", [ \"255.255.255.0\" ] ], \"defaultgw\": \"192.168.1.1\" }",
+    "choices": [
+      "The interface data is incorrect because it is missing a comma after defaultgw.",
+      "The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.",
+      "The interface data is incorrect because it contains an illegal underscore character.",
+      "Nothing is wrong with the exhibit."
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "hard",
+    "concept": "json",
+    "ckuIds": [
+      "CKU-JSON",
+      "CKU-YAML",
+      "CKU-XML"
+    ]
   }
 ]

@@ -7,6 +7,8 @@ import {
 } from './questionUtils.js'
 import { computeCkuWeakness, computeTrapWeakness } from './weaknessUtils.js'
 import { getKnowledgeForObjective, hasKnowledgeBase, getAllDomain4ExamTraps } from './data/knowledgeStudy.js'
+import { getShelvedStats } from './data/shelvedStudy.js'
+import ExtraStudyMode from './ExtraStudyMode.jsx'
 
 /* =========================================================================
    DESIGN TOKENS
@@ -6672,7 +6674,7 @@ function SessionRecapCard() {
   )
 }
 
-function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onOpenSubnet, onOpenRouting, onImportPick, syncOn }) {
+function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onOpenSubnet, onOpenRouting, onOpenExtraStudy, onImportPick, syncOn }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -6869,6 +6871,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         </div>
         <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
           <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenRouting}>🛣 Routing Decoder</button>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenExtraStudy}>📚 Extra Study ({getShelvedStats().total})</button>
         </div>
       </div>
 
@@ -7868,7 +7871,7 @@ function syncAppHash(view, objective) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | focus | examtraps | subnet | routing
+  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | focus | examtraps | subnet | routing | extrastudy
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -8327,6 +8330,7 @@ export default function App() {
             onOpenExamTraps={() => setView('examtraps')}
             onOpenSubnet={() => setView('subnet')}
             onOpenRouting={() => setView('routing')}
+            onOpenExtraStudy={() => setView('extrastudy')}
             onImportPick={pickImportFile}
             dueCount={dueCount}
             syncOn={!!syncCode}
@@ -8362,6 +8366,17 @@ export default function App() {
         {view === 'examtraps' && <ExamTrapStudyMode onBack={() => setView('home')} />}
         {view === 'subnet' && <SubnetPracticeHome onBack={() => setView('home')} />}
         {view === 'routing' && <RoutingTableDecoderMode onBack={() => setView('home')} />}
+        {view === 'extrastudy' && (
+          <ExtraStudyMode
+            styles={styles}
+            COLORS={COLORS}
+            accentColors={accentColors}
+            AnswerReview={AnswerReview}
+            QuestionMeta={QuestionMeta}
+            McChoices={McChoices}
+            onBack={() => setView('home')}
+          />
+        )}
         </div>
       </div>
       {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}

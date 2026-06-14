@@ -2,113 +2,362 @@
   {
     "id": "obj-3.1-source-q015",
     "objectiveId": "3.1",
-    "question": "Which must be configured so that EIGRP can calculate the best route?",
     "reason": "out-of-scope",
+    "notes": "uncertainObjectiveMapping",
     "shelvedAt": "2026-06-14",
-    "notes": "uncertainObjectiveMapping"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which must be configured so that EIGRP can calculate the best route?",
+    "choices": [
+      "Bandwidth",
+      "Delay",
+      "Reliability",
+      "Load"
+    ],
+    "correctIndex": 0,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "medium",
+    "concept": "routing table",
+    "ckuIds": [
+      "CKU-ROUTING-TABLE",
+      "CKU-ROUTE-CODE",
+      "CKU-PREFIX",
+      "CKU-BANDWIDTH",
+      "CKU-EIGRP"
+    ]
   },
   {
     "id": "obj-3.1-source-q018",
     "objectiveId": "3.1",
-    "question": "You have a network with varied bandwidths and need to choose a dynamic routing protocol. Which would you choose for optimal performance?",
     "reason": "out-of-scope",
+    "notes": "uncertainObjectiveMapping",
     "shelvedAt": "2026-06-14",
-    "notes": "uncertainObjectiveMapping"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "You have a network with varied bandwidths and need to choose a dynamic routing protocol. Which would you choose for optimal performance?",
+    "choices": [
+      "RIPv1",
+      "RIPv2",
+      "EIGRP",
+      "BGP"
+    ],
+    "correctIndex": 2,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "easy",
+    "concept": "routing table",
+    "ckuIds": [
+      "CKU-ROUTING-TABLE",
+      "CKU-ROUTE-CODE",
+      "CKU-PREFIX",
+      "CKU-BANDWIDTH",
+      "CKU-RIP",
+      "CKU-EIGRP"
+    ]
   },
   {
     "id": "obj-3.4-source-q007",
     "objectiveId": "3.4",
-    "question": "You have several sites, each with a different administrative unit, in your company. Which routing protocol should you choose?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "You have several sites, each with a different administrative unit, in your company. Which routing protocol should you choose?",
+    "choices": [
+      "BGP",
+      "OSPF",
+      "RIPv2",
+      "EGP"
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "easy",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-RIP"
+    ]
   },
   {
     "id": "obj-3.4-source-q008",
     "objectiveId": "3.4",
-    "question": "Which area must be present when using the OSPF routing protocol with multiple areas?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which area must be present when using the OSPF routing protocol with multiple areas?",
+    "choices": [
+      "Area 0",
+      "Area 1",
+      "Area 10",
+      "Area 4"
+    ],
+    "correctIndex": 0,
+    "explanation": "",
+    "type": "definition",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID"
+    ]
   },
   {
     "id": "obj-3.4-source-q009",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, what is Router A called in OSPF terminology?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, what is Router A called in OSPF terminology?",
+    "choices": [
+      "Area border router",
+      "Autonomous system router",
+      "Autonomous system boundary router",
+      "Area backup router"
+    ],
+    "correctIndex": 2,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID"
+    ]
   },
   {
     "id": "obj-3.4-source-q011",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, what are Routers C, D, and E called in OSPF terminology?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, what are Routers C, D, and E called in OSPF terminology?",
+    "choices": [
+      "Area border routers",
+      "Autonomous system routers",
+      "Autonomous system boundary routers",
+      "Area backup routers"
+    ],
+    "correctIndex": 0,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID"
+    ]
   },
   {
     "id": "obj-3.4-source-q038",
     "objectiveId": "3.4",
-    "question": "Which statement about OSPF area border routers is correct?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which statement about OSPF area border routers is correct?",
+    "choices": [
+      "ABRs sit between an autonomous system and OSPF.",
+      "ABRs exchange Type 1 link-state advertisements between areas.",
+      "ABRs exchange Type 2 link-state advertisements between areas.",
+      "ABRs exchange Type 3 link-state advertisements between areas."
+    ],
+    "correctIndex": 3,
+    "explanation": "",
+    "type": "definition",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID"
+    ]
   },
   {
     "id": "obj-3.4-source-q039",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, you have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, you have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
+    "choices": [
+      "Router(config-router)#network 128.24.0.0/22 area 0 Router(config-router)#network 128.24.0.0/22 area 1",
+      "Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1",
+      "Router(config-router)#network 128.24.0.0 0.0.254.255 area 0 Router(config-router)#network 128.24.0.0 255.254.255 area 1",
+      "Router(config-router)#network 128.24.0.0 0.0.255.255"
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID"
+    ]
   },
   {
     "id": "obj-3.4-source-q040",
     "objectiveId": "3.4",
-    "question": "Which command will allow you to see the summary of OSPF link- state advertisements?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which command will allow you to see the summary of OSPF link- state advertisements?",
+    "choices": [
+      "Router#show ip ospf database",
+      "Router#show ip ospf states",
+      "Router#show ip ospf neighbors",
+      "Router#show ip ospf topology"
+    ],
+    "correctIndex": 0,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "medium",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-OSPF-NEIGHBORSHIP"
+    ]
   },
   {
     "id": "obj-3.4-source-q043",
     "objectiveId": "3.4",
-    "question": "Which is a direct benefit of a hierarchical OSPF design?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which is a direct benefit of a hierarchical OSPF design?",
+    "choices": [
+      "Fast convergence",
+      "Reduction of configuration complexity",
+      "Increased bandwidth",
+      "Better security"
+    ],
+    "correctIndex": 0,
+    "explanation": "",
+    "type": "definition",
+    "difficulty": "easy",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-BANDWIDTH"
+    ]
   },
   {
     "id": "obj-3.4-source-q044",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, which router is the DR?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, which router is the DR?",
+    "choices": [
+      "Router C",
+      "Router B",
+      "Router D",
+      "Router E"
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-DR-BDR"
+    ]
   },
   {
     "id": "obj-3.4-source-q045",
     "objectiveId": "3.4",
-    "question": "Using the referenced source exhibit, what is Router B called in this hierarchy?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Using the referenced source exhibit, what is Router B called in this hierarchy?",
+    "choices": [
+      "ASBR",
+      "ABR",
+      "DR",
+      "BDR"
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-DR-BDR"
+    ]
   },
   {
     "id": "obj-3.4-source-q059",
     "objectiveId": "3.4",
-    "question": "Which is a correct statement about support for OSPF on an MPLS network?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which is a correct statement about support for OSPF on an MPLS network?",
+    "choices": [
+      "The provider edge (PE) routers can only host area 0.",
+      "The customer edge (CE) routers can only host area 0.",
+      "The customer edge (CE) routers must use GRE for OSPF.",
+      "Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0."
+    ],
+    "correctIndex": 3,
+    "explanation": "",
+    "type": "definition",
+    "difficulty": "easy",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID"
+    ]
   },
   {
     "id": "obj-3.4-source-q062",
     "objectiveId": "3.4",
-    "question": "Two routers, called Router A and Router B, are configured in the same area on Frame Relay. However, they cannot form an adjacency. What could the problem be?",
     "reason": "out-of-scope",
+    "notes": "excluded cluster",
     "shelvedAt": "2026-06-14",
-    "notes": "excluded cluster"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Two routers, called Router A and Router B, are configured in the same area on Frame Relay. However, they cannot form an adjacency. What could the problem be?",
+    "choices": [
+      "The two routers do not have the same hello timer of 30 seconds.",
+      "Router A is configured with multiple area IDs.",
+      "Router A is configured with a hello timer of 10.",
+      "Router B is configured with a hello timer of 10."
+    ],
+    "correctIndex": 0,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "medium",
+    "concept": "ospfv2",
+    "ckuIds": [
+      "CKU-OSPFV2",
+      "CKU-SINGLE-AREA-OSPF",
+      "CKU-ROUTER-ID",
+      "CKU-OSPF-HELLO"
+    ]
   }
 ]

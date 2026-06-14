@@ -168,12 +168,26 @@ export function validateCleanQuestion(q, objectiveId) {
 }
 
 export function shelvedRecord(q, objectiveId, reason, notes = '') {
+  const promoteHint = reason === 'exhibit-dependent'
+    ? 'Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved'
+    : reason === 'out-of-scope'
+      ? 'Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved'
+      : 'Review in Extra Study, then promote via script when ready'
   return {
     id: q.id,
     objectiveId,
-    question: q.question || q.stem,
     reason,
-    shelvedAt: new Date().toISOString().slice(0, 10),
     notes,
+    shelvedAt: new Date().toISOString().slice(0, 10),
+    promoteHint,
+    question: q.question,
+    choices: q.choices,
+    correctIndex: q.correctIndex,
+    explanation: q.explanation || '',
+    type: q.type,
+    difficulty: q.difficulty,
+    concept: q.concept,
+    ...(q.ckuIds?.length ? { ckuIds: q.ckuIds } : {}),
+    ...(q.skill ? { skill: q.skill } : {}),
   }
 }

@@ -2,25 +2,79 @@
   {
     "id": "obj-2.3-source-q013",
     "objectiveId": "2.3",
-    "question": "The following exhibit shows the output of the CDP details. Which statement is correct about what is displayed?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "The following exhibit shows the output of the CDP details. Which statement is correct about what is displayed?",
+    "choices": [
+      "The advertisement was seen 162 seconds ago.",
+      "Switch B interface Gi0/1 connects to Switch A.",
+      "Switch B interface Gi0/2 connects to Switch A.",
+      "The IP address of Switch B is 192.168.1.1."
+    ],
+    "correctIndex": 2,
+    "explanation": "CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "cdp",
+    "ckuIds": [
+      "CKU-CDP",
+      "CKU-LLDP",
+      "CKU-LAYER2-DISCOVERY",
+      "CKU-CDP-OUTPUT-INTERPRETATION"
+    ]
   },
   {
     "id": "obj-2.9-source-q010",
     "objectiveId": "2.8",
-    "question": "You were just notified by your maintenance department that they lost all wireless connectivity. Earlier you had a contractor working on the WLC. You log into the WLC and click on the WLAN of MaintDept shown in the exhibit below. What can you do to correct the problem?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "You were just notified by your maintenance department that they lost all wireless connectivity. Earlier you had a contractor working on the WLC. You log into the WLC and click on the WLAN of MaintDept shown in the exhibit below. What can you do to correct the problem?",
+    "choices": [
+      "Enable the status",
+      "Change the radio policy",
+      "Enable Multicast VLAN Feature",
+      "Enable Broadcast SSID"
+    ],
+    "correctIndex": 0,
+    "explanation": "If a WLAN is disabled in the GUI, enabling status restores client access.",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "wlan",
+    "ckuIds": [
+      "CKU-WLAN",
+      "CKU-SSID",
+      "CKU-WLAN-GUI",
+      "CKU-WLAN-STATUS"
+    ]
   },
   {
     "id": "obj-2.9-source-q011",
     "objectiveId": "2.8",
-    "question": "Which statement is true about the WLAN in the following exhibit?",
     "reason": "exhibit-dependent",
+    "notes": "",
     "shelvedAt": "2026-06-14",
-    "notes": ""
+    "promoteHint": "Add an inline exhibit in scripts/lib/exhibitConverters.mjs, then run: npm run promote:shelved",
+    "question": "Which statement is true about the WLAN in the following exhibit?",
+    "choices": [
+      "WPA is enabled.",
+      "WPA2 enterprise is enabled.",
+      "WPA2 personal is enabled.",
+      "802.1X is enabled."
+    ],
+    "correctIndex": 2,
+    "explanation": "The  WPA2 personal/PSK security.",
+    "type": "application",
+    "difficulty": "hard",
+    "concept": "wlan",
+    "ckuIds": [
+      "CKU-WLAN",
+      "CKU-SSID",
+      "CKU-WLAN-GUI",
+      "CKU-WPA2-PSK"
+    ]
   }
 ]

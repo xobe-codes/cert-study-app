@@ -2,10 +2,10 @@
   "schemaVersion": "ccna-clean-question-bank-v1",
   "domain": "3",
   "domainName": "IP Connectivity",
-  "builtAt": "2026-06-14T01:49:36.257Z",
+  "builtAt": "2026-06-14T01:59:59.702Z",
   "objectives": {
     "3.1": {
-      "active": 31
+      "active": 34
     },
     "3.2": {
       "active": 49
@@ -21,7 +21,7 @@
     }
   },
   "totals": {
-    "active": 209,
+    "active": 212,
     "shelved": 0
   }
 }

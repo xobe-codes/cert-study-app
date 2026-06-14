@@ -2,57 +2,193 @@
   {
     "id": "obj-5.5-source-q002",
     "objectiveId": "5.10",
-    "question": "Which tunnel protocol is a Cisco proprietary protocol?",
     "reason": "out-of-scope",
+    "notes": "uncertainObjectiveMapping",
     "shelvedAt": "2026-06-14",
-    "notes": "uncertainObjectiveMapping"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which tunnel protocol is a Cisco proprietary protocol?",
+    "choices": [
+      "GRE",
+      "PPP",
+      "IPsec",
+      "SSL"
+    ],
+    "correctIndex": 0,
+    "explanation": "",
+    "type": "definition",
+    "difficulty": "medium",
+    "concept": "vpn",
+    "ckuIds": [
+      "CKU-VPN",
+      "CKU-GRE",
+      "CKU-IPSEC",
+      "CKU-IPS"
+    ]
   },
   {
     "id": "obj-5.8-source-q008",
     "objectiveId": "5.7",
-    "question": "Which protocol and port does RADIUS authentication use?",
     "reason": "out-of-scope",
+    "notes": "uncertainObjectiveMapping",
     "shelvedAt": "2026-06-14",
-    "notes": "uncertainObjectiveMapping"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which protocol and port does RADIUS authentication use?",
+    "choices": [
+      "UDP/1845",
+      "UDP/1645",
+      "TCP/1645",
+      "UDP/1911"
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "definition",
+    "difficulty": "medium",
+    "concept": "aaa",
+    "ckuIds": [
+      "CKU-AAA",
+      "CKU-AUTHENTICATION",
+      "CKU-AUTHORIZATION",
+      "CKU-RADIUS"
+    ]
   },
   {
     "id": "obj-5.8-source-q009",
     "objectiveId": "5.7",
-    "question": "Which is an authentication protocol for AAA servers to secure Telnet authentication?",
     "reason": "out-of-scope",
+    "notes": "uncertainObjectiveMapping",
     "shelvedAt": "2026-06-14",
-    "notes": "uncertainObjectiveMapping"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which is an authentication protocol for AAA servers to secure Telnet authentication?",
+    "choices": [
+      "802.1X",
+      "TACACS+",
+      "AD",
+      "EAP"
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "definition",
+    "difficulty": "medium",
+    "concept": "aaa",
+    "ckuIds": [
+      "CKU-AAA",
+      "CKU-AUTHENTICATION",
+      "CKU-AUTHORIZATION",
+      "CKU-TELNET",
+      "CKU-TACACS",
+      "CKU-802.1X",
+      "CKU-EAP"
+    ]
   },
   {
     "id": "obj-5.9-source-q002",
     "objectiveId": "5.8",
-    "question": "Which is a requirement of WPA2-Enterprise?",
     "reason": "out-of-scope",
+    "notes": "uncertainObjectiveMapping",
     "shelvedAt": "2026-06-14",
-    "notes": "uncertainObjectiveMapping"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which is a requirement of WPA2-Enterprise?",
+    "choices": [
+      "Creation of a PSK",
+      "Certificate infrastructure",
+      "192-bit key strength",
+      "802.11ac"
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "definition",
+    "difficulty": "medium",
+    "concept": "wireless security",
+    "ckuIds": [
+      "CKU-WIRELESS-SECURITY",
+      "CKU-WPA",
+      "CKU-WPA2",
+      "CKU-PSK"
+    ]
   },
   {
     "id": "obj-5.9-source-q012",
     "objectiveId": "5.8",
-    "question": "Which protocol will restrict you from achieving high throughput rates?",
     "reason": "out-of-scope",
+    "notes": "uncertainObjectiveMapping",
     "shelvedAt": "2026-06-14",
-    "notes": "uncertainObjectiveMapping"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which protocol will restrict you from achieving high throughput rates?",
+    "choices": [
+      "AES",
+      "TKIP",
+      "CCMP",
+      "PSK"
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "hard",
+    "concept": "wireless security",
+    "ckuIds": [
+      "CKU-WIRELESS-SECURITY",
+      "CKU-WPA",
+      "CKU-WPA2",
+      "CKU-PSK",
+      "CKU-AES-CCMP",
+      "CKU-TKIP"
+    ]
   },
   {
     "id": "obj-5.10-source-q003",
     "objectiveId": "5.9",
-    "question": "You are configuring a WPA2 WLAN. Which security configuration should you use for the highest level of security?",
     "reason": "out-of-scope",
+    "notes": "uncertainObjectiveMapping",
     "shelvedAt": "2026-06-14",
-    "notes": "uncertainObjectiveMapping"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "You are configuring a WPA2 WLAN. Which security configuration should you use for the highest level of security?",
+    "choices": [
+      "WPA-AES",
+      "WPA2-TKIP",
+      "WPA2-RC4",
+      "WPA2-AES"
+    ],
+    "correctIndex": 3,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "hard",
+    "concept": "wlc gui wlan",
+    "ckuIds": [
+      "CKU-WLC-GUI-WLAN",
+      "CKU-WPA2-PSK",
+      "CKU-WLAN-STATUS",
+      "CKU-WPA2",
+      "CKU-WPA",
+      "CKU-AES-CCMP",
+      "CKU-TKIP"
+    ]
   },
   {
     "id": "obj-5.10-source-q004",
     "objectiveId": "5.9",
-    "question": "You are setting up a wireless network for a client. Their requirements are to minimize the infrastructure and support the highest security. Which wireless encryption standard should be configured to satisfy the requirements?",
     "reason": "out-of-scope",
+    "notes": "uncertainObjectiveMapping",
     "shelvedAt": "2026-06-14",
-    "notes": "uncertainObjectiveMapping"
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "You are setting up a wireless network for a client. Their requirements are to minimize the infrastructure and support the highest security. Which wireless encryption standard should be configured to satisfy the requirements?",
+    "choices": [
+      "WPA-Enterprise",
+      "WPA2-Personal",
+      "WPA3-Enterprise",
+      "WPA-Personal"
+    ],
+    "correctIndex": 1,
+    "explanation": "",
+    "type": "scenario",
+    "difficulty": "hard",
+    "concept": "wlc gui wlan",
+    "ckuIds": [
+      "CKU-WLC-GUI-WLAN",
+      "CKU-WPA2-PSK",
+      "CKU-WLAN-STATUS",
+      "CKU-WPA3",
+      "CKU-WPA2",
+      "CKU-WPA"
+    ]
   }
 ]

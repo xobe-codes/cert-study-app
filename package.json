@@ -14,8 +14,10 @@
     "validate:clean-bank": "node scripts/validateCleanBank.mjs",
     "build:kb": "node scripts/buildKnowledgeBase.mjs",
     "compile:clean-questions": "node scripts/compileCleanQuestionsModule.mjs",
+    "compile:shelved-questions": "node scripts/compileShelvedQuestionsModule.mjs",
+    "promote:shelved": "node scripts/promoteShelved.mjs",
     "compile:kb-module": "node scripts/compileKnowledgeBaseModule.mjs",
-    "kb:full": "npm run import:source-bank && npm run build:clean-bank && npm run validate:clean-bank && npm run build:kb && npm run compile:kb-module && npm run compile:clean-questions && npm run compile:ccna",
+    "kb:full": "npm run import:source-bank && npm run build:clean-bank && npm run validate:clean-bank && npm run build:kb && npm run compile:kb-module && npm run compile:clean-questions && npm run compile:shelved-questions && npm run compile:ccna",
     "kb:domain4": "node scripts/buildCleanBank.mjs 4 && npm run validate:clean-bank && npm run compile:clean-questions",
     "test": "vitest run",
     "lint": "eslint src"
