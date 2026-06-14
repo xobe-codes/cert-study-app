@@ -1,0 +1,225 @@
+{
+  "objectiveId": "4.2",
+  "title": "Configure and verify NTP operating in client and server mode",
+  "questions": [
+    {
+      "id": "obj-4.2-source-q001",
+      "question": "Which command allow your router to synchronize with a time source of 129.6.15.28?",
+      "choices": [
+        "Router(config)#ntp server 129.6.15.28",
+        "Router#ntp server 129.6.15.28",
+        "Router(config)#ntp client 129.6.15.28",
+        "Router#ntp client 129.6.15.28"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.2-source-q002",
+      "question": "Which command configures the router or switch to trust its internal time clock?",
+      "choices": [
+        "Router(config)#ntp server",
+        "Router(config)#ntp master",
+        "Router(config)#ntp clock source",
+        "Router(config)#ntp trusted"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-CLOCK"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.2-source-q003",
+      "question": "Which command can see if the router or switch is using NTP?",
+      "choices": [
+        "Router#show clock detail",
+        "Router#show ntp",
+        "Router#show time",
+        "Router#show time source"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-CLOCK"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.2-source-q004",
+      "question": "Which command can view the time details from a configured server?",
+      "choices": [
+        "Router#show clock detail",
+        "Router#show ntp detail",
+        "Router#show ntp associations detail",
+        "Router#show ntp skew"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-CLOCK",
+        "CKU-SNMP-VIEW"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.2-source-q005",
+      "question": "Which protocol and port does NTP use for time synchronization by default?",
+      "choices": [
+        "TCP/161",
+        "TCP/123",
+        "UDP/69",
+        "UDP/123"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.2-source-q006",
+      "question": "Which command help you diagnose if the router or switch is getting an answer back from an NTP server?",
+      "choices": [
+        "Router#show ntp",
+        "Router#show ip ntp",
+        "Router#debug ntp packets",
+        "Router#debug ntp messages"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.2-source-q007",
+      "question": "Which is a best practice for setting up NTP?",
+      "choices": [
+        "Always configure the time source to a DNS address.",
+        "Configure all devices to a public NTP server.",
+        "Configure all devices to different NTP servers for redundancy.",
+        "Configure all devices as master servers."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-DNS"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.2-source-q008",
+      "question": "Which command can view the time drift observed by NTP?",
+      "choices": [
+        "Router#show ntp",
+        "Router#show ip ntp status",
+        "Router#show ntp status",
+        "Router#debug ntp drift"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-SNMP-VIEW"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.2-source-q010",
+      "question": "You are configuring NTP on your switch. You want to configure the switch so if any interface fails, NTP will still be available. Which type of interface should you use? Choose the best answer.",
+      "choices": [
+        "Tunnel interface",
+        "NTP interface",
+        "Loopback interface",
+        "Switched Virtual Interface (SVI)"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-NTP-SOURCE"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.2-source-q011",
+      "question": "Which command configure NTP to use the internal loopback interface?",
+      "choices": [
+        "Switch(config)#ntp source loopback 0",
+        "Switch(config)#ntp loopback 0",
+        "Switch(config)#ntp master loopback 0",
+        "Switch(config)#ntp clock loopback 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-NTP-SOURCE",
+        "CKU-CLOCK"
+      ],
+      "needsExplanationReview": true
+    }
+  ]
+}

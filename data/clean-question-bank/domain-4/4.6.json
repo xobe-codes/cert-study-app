@@ -1,0 +1,259 @@
+{
+  "objectiveId": "4.6",
+  "title": "Configure and verify DHCP client and relay",
+  "questions": [
+    {
+      "id": "obj-4.6-source-q001",
+      "question": "Which command can verify the active DHCP server that has assigned an IP address to the router?",
+      "choices": [
+        "Router#show dhcp lease",
+        "Router#show ip dhcp lease",
+        "Router#show ip lease",
+        "Router#show ip interface"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.6-source-q002",
+      "question": "Which statement is true about the Offer packet of DHCP?",
+      "choices": [
+        "The layer 3 destination is a unicast to the DHCP client.",
+        "The layer 2 destination is the MAC address of the DHCP client.",
+        "The layer 2 source is the MAC address of the server.",
+        "The layer 3 source is a link-local address of the client."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-NAT",
+        "CKU-DHCP",
+        "CKU-DHCP-OFFER"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.6-source-q003",
+      "question": "Which command configure a DHCP relay agent on an interface to the DHCP server of 10.10.1.101?",
+      "choices": [
+        "Router(config)#ip dhcp server 10.10.1.101",
+        "Router(config-if)#ip dhcp server 10.10.1.101",
+        "Router(config-if)#ip relay-agent 10.10.1.101",
+        "Router(config-if)#ip helper-address 10.10.1.101"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.6-source-q004",
+      "question": "Which DHCP field helps a DHCP server decide which scope to serve to the DHCP relay agent?",
+      "choices": [
+        "CIADDR",
+        "GIADDR",
+        "SIADDR",
+        "CHADDR"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-GIADDR"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.6-source-q006",
+      "question": "Which command can diagnose DHCP relay agent messages on a router or switch?",
+      "choices": [
+        "Router#debug dhcp",
+        "Router#show ip dhcp detail",
+        "Router#debug ip dhcp server packet",
+        "Router#debug ip dhcp"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.6-source-q007",
+      "question": "Identify DHCPv6 used for when a network is configured for Stateless Address Autoconfiguration (SLAAC)?",
+      "choices": [
+        "Stateful configuration of clients for IPv6 addressing",
+        "Configuration of clients with the IPv6 network IDs",
+        "Configuration of clients with IPv6 options",
+        "Stateless configuration of clients for IPv6 addressing"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCPV6"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.6-source-q008",
+      "question": "The DHCP server in the network went down. What happens to clients that have obtained IP addresses from the DHCP server?",
+      "choices": [
+        "They lose their IP address immediately.",
+        "They lose their IP address after one-half of their lease has expired.",
+        "They lose their IP address after seven-eighths of their lease has expired.",
+        "They lose their IP address after their entire lease has expired."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.6-source-q009",
+      "question": "Which statement is correct about stateful DHCPv6?",
+      "choices": [
+        "Stateful DHCPv6 supplies the network ID and host ID.",
+        "Stateful DHCPv6 supplies the network ID, host ID, and default router.",
+        "Stateful DHCPv6 communicates via broadcasts.",
+        "Stateful DHCPv6 works in conjunction with SLAAC."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCPV6"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.6-source-q010",
+      "question": "Which command configure a router interface to obtain its IP address via a stateful DHCPv6?",
+      "choices": [
+        "RouterA(config)#ipv6 address dhcp gi 0/0",
+        "RouterA(config-if)#ipv6 address dhcpv6",
+        "RouterA(config-if)#ipv6 address dhcp",
+        "RouterA(config)#ipv6 address stateless"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCPV6"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.6-source-q011",
+      "question": "What happens if you delete a current lease on the DHCP server?",
+      "choices": [
+        "The server will contact the client to immediately relinquish the IP address.",
+        "The client will immediately renew its lease for the current IP address.",
+        "The server will offer the IP address to another node, which will cause a duplicate address.",
+        "The server will offer the IP address to another node, at which time the original client will relinquish the IP address."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE",
+        "CKU-DHCP-OFFER"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.6-source-q012",
+      "question": "What happens at the client when the lease for an IP address reaches seven-eighths of the lease cycle?",
+      "choices": [
+        "The DHCP client will perform a DHCP rebinding.",
+        "Nothing. The DHCP client will retain the lease.",
+        "The DHCP client will renew its lease.",
+        "The DHCP client will relinquish the use of the IP address."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE"
+      ],
+      "needsExplanationReview": true
+    }
+  ]
+}

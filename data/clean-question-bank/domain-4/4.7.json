@@ -1,0 +1,329 @@
+{
+  "objectiveId": "4.7",
+  "title": "Explain the forwarding per-hop behavior for QoS",
+  "questions": [
+    {
+      "id": "obj-4.7-source-q001",
+      "question": "How do routers classify traffic for QoS?",
+      "choices": [
+        "Access control lists",
+        "Layer 2 ASICs",
+        "Route tables",
+        "Frame filters"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q002",
+      "question": "Which measurement describes the variation of consecutive packet time from source to destination?",
+      "choices": [
+        "Bandwidth",
+        "Delay",
+        "Jitter",
+        "Loss"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-NAT",
+        "CKU-JITTER"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q003",
+      "question": "Which is a true statement about the Class of Service field?",
+      "choices": [
+        "The Class of Service field is a layer 3 field.",
+        "The Class of Service field is only present in 802.1Q frames.",
+        "The Class of Service field is present from end to end of a transmission.",
+        "The Class of Service field is 6 bits."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q004",
+      "question": "Identify the measurement of packets discarded due to congestion of queues?",
+      "choices": [
+        "Bandwidth",
+        "Delay",
+        "Jitter",
+        "Loss"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-QUEUING",
+        "CKU-JITTER",
+        "CKU-CONGESTION"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q005",
+      "question": "Which DSCP marking has the highest priority?",
+      "choices": [
+        "DSCP AF 43",
+        "DSCP EF 46",
+        "DSCP AF 11",
+        "DSCP AF 00"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-DSCP"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q006",
+      "question": "Identify the recommended maximum delay VoIP traffic should not exceed?",
+      "choices": [
+        "10 ms",
+        "90 ms",
+        "150 ms",
+        "300 ms"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q007",
+      "question": "Which QoS queue has priority over all other queues in the scheduler?",
+      "choices": [
+        "CBWFQ",
+        "LLQ",
+        "FIFO",
+        "CIR"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-QUEUING",
+        "CKU-LLQ",
+        "CKU-CBWFQ"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q008",
+      "question": "Which method helps combat queue starvation for QoS queuing?",
+      "choices": [
+        "LLQ",
+        "Policing",
+        "CBWFQ",
+        "FIFO"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-QUEUING",
+        "CKU-LLQ",
+        "CKU-CBWFQ",
+        "CKU-POLICING"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q009",
+      "question": "Which statement is correct about shaping of traffic for QoS?",
+      "choices": [
+        "Shaping holds packets in the queue over the configured bit rate to cause delay.",
+        "Shaping drops packets over the configured bit rate to cause loss.",
+        "Shaping holds packets in the queue over the configured bit rate to cause jitter.",
+        "Shaping slows packets in the queue over the configured bit rate to adhere to the speed."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-QUEUING",
+        "CKU-SHAPING",
+        "CKU-JITTER"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q010",
+      "question": "Which QoS method uses a round-robin scheduler for packet queuing?",
+      "choices": [
+        "LLQ",
+        "FIFO",
+        "CBWFQ",
+        "PQ"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-LLQ",
+        "CKU-CBWFQ"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q011",
+      "question": "Which statement is correct about policing of traffic for QoS?",
+      "choices": [
+        "Policing holds packets in the queue over the configured bit rate to cause delay.",
+        "Policing drops packets over the configured bit rate to cause loss.",
+        "Policing holds packets in the queue over the configured bit rate to cause jitter.",
+        "Policing slows packets in the queue over the configured bit rate to adhere to the bit rate."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-QUEUING",
+        "CKU-POLICING",
+        "CKU-JITTER"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q012",
+      "question": "Why should QoS policing be implemented?",
+      "choices": [
+        "To help police LAN applications",
+        "To maintain a contracted CIR",
+        "To help police WAN applications",
+        "To maintain a contracted burst rate"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-POLICING"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q013",
+      "question": "How do congestion avoidance tools help to prevent tail drop?",
+      "choices": [
+        "When the queue depth is full, a percentage of TCP packets are dropped.",
+        "When the queue depth is empty, a percentage of TCP packets are dropped.",
+        "When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped.",
+        "When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-OID",
+        "CKU-QUEUING",
+        "CKU-CONGESTION",
+        "CKU-TAIL-DROP"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.7-source-q014",
+      "question": "If a traffic is marked with AF31 and another traffic pattern is marked with AF41, which statement explains the traffic markings?",
+      "choices": [
+        "AF31 marked traffic has a better queue than AF41 marked traffic.",
+        "AF41 marked traffic has a better queue than AF31 marked traffic.",
+        "Both AF31 and AF41 marked traffic has an equal queue.",
+        "During high congestion, AF41 queues will be dropped and AF31 queues won’t."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "qos",
+      "ckuIds": [
+        "CKU-QOS",
+        "CKU-CLASSIFICATION",
+        "CKU-MARKING",
+        "CKU-PAT",
+        "CKU-QUEUING",
+        "CKU-CONGESTION"
+      ],
+      "needsExplanationReview": true
+    }
+  ]
+}

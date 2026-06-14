@@ -1,0 +1,207 @@
+{
+  "objectiveId": "4.8",
+  "title": "Configure network devices for remote access using SSH",
+  "questions": [
+    {
+      "id": "obj-4.8-source-q001",
+      "question": "Identify required before generating the encryption keys for SSH on a router or switch?",
+      "choices": [
+        "Setting the time and date",
+        "Setting the hostname and domain name",
+        "Setting the key strength",
+        "Setting the key repository"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.8-source-q002",
+      "question": "Which command enable SSH version 2 for logins?",
+      "choices": [
+        "Router(config)#ip ssh version 2",
+        "Router(config-line)#version 2",
+        "Router(config-ssh)#version 2",
+        "Router(config)#ssh version 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.8-source-q003",
+      "question": "Which command configure the router or switch to allow SSH as a protocol for management with a fallback of Telnet?",
+      "choices": [
+        "Switch(config)#login ssh telnet",
+        "Switch(config-line)#login ssh telnet",
+        "Switch(config-line)#transport ssh telnet",
+        "Switch(config)#transport ssh telnet"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-TELNET",
+        "CKU-TRANSPORT-INPUT"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.8-source-q004",
+      "question": "Why should Telnet be replaced with SSH?",
+      "choices": [
+        "Telnet has weak encryption.",
+        "SSH allows for file copy.",
+        "SSH makes it easier to create ACLs for access.",
+        "SSH is encrypted."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-TELNET"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.8-source-q005",
+      "question": "You have created the SSH encryption keys, but you cannot enable SSH version 2. What is the problem?",
+      "choices": [
+        "The time and date need to be corrected.",
+        "The key strength needs to be 768 bits or higher.",
+        "The DNS server is not configured.",
+        "There is no host record for the switch or router."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-DNS",
+        "CKU-DNS-RECORD"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.8-source-q006",
+      "question": "Which command configure a local user for SSH access?",
+      "choices": [
+        "Router(config)#username user1 password Password20!",
+        "Router(config)#account user1 Router(config-acct)#password Password20!",
+        "Router(config)#user user1 Password20!",
+        "Router(config)#user-account user1 password Password20!"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-LOCAL-USERNAME"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.8-source-q007",
+      "question": "Which command generate the encryption keys for SSH?",
+      "choices": [
+        "Router(config)#generate crypto key rsa",
+        "Router(config)#crypto key generate rsa",
+        "Router(config)#crypto generate key rsa",
+        "Router#crypto key generate rsa"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-CRYPTO-KEY-GENERATE-RSA"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.8-source-q008",
+      "question": "You want to turn on local authentication so that a user must supply a username and password when managing the switch. You have created the username and password combinations on the switch. Which command direct SSH and Telnet to use this authentication model?",
+      "choices": [
+        "Switch(config)#new aaa model",
+        "Switch(config)#local authentication",
+        "Switch(config-line)#local authentication",
+        "Switch(config-line)#login local"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-NAT",
+        "CKU-TELNET",
+        "CKU-LOGIN-LOCAL",
+        "CKU-LOCAL-USERNAME"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.8-source-q009",
+      "question": "Which banner will be displayed first when a user connects to a Cisco device via SSH?",
+      "choices": [
+        "MOTD banner",
+        "Login banner",
+        "Exec banner",
+        "Incoming banner"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "ssh",
+      "ckuIds": [
+        "CKU-SSH",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME",
+        "CKU-BANNERS"
+      ],
+      "needsExplanationReview": true
+    }
+  ]
+}

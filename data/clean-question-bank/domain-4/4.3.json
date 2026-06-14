@@ -1,0 +1,281 @@
+{
+  "objectiveId": "4.3",
+  "title": "Explain the role of DHCP and DNS within the network",
+  "questions": [
+    {
+      "id": "obj-4.3-source-q001",
+      "question": "Which statement is correct about reverse lookups?",
+      "choices": [
+        "A reverse lookup is when the request needs to be reversed to another DNS server.",
+        "A reverse lookup is the resolution of an IP address to FQDN.",
+        "A reverse lookup is when the DNS queried can answer the request without asking another DNS server.",
+        "A reverse lookup is the resolution of an FQDN to an IP address."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q002",
+      "question": "Which record type is used for an IPv4 address mapping to FQDN for DNS queries?",
+      "choices": [
+        "The A record",
+        "The CName record",
+        "The PTR record",
+        "The AAAA record"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DNS-RECORD"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q003",
+      "question": "What gets appended to hostname queries for DNS resolution?",
+      "choices": [
+        "The DNS domain name",
+        "The DNS zone",
+        "The host header",
+        "The hostname PTR record"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DNS-RECORD",
+        "CKU-HOSTNAME",
+        "CKU-DOMAIN-NAME"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q004",
+      "question": "Which is the most secure method of name resolution for routers and switches?",
+      "choices": [
+        "DNS",
+        "PTR records",
+        "Static hostname entries",
+        "LLMNR"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DNS-RECORD",
+        "CKU-HOSTNAME"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q005",
+      "question": "Which type of DNS record holds the IPv4 IP address for a hostname?",
+      "choices": [
+        "The A record",
+        "The CName record",
+        "The PTR record",
+        "The AAAA record"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DNS-RECORD",
+        "CKU-HOSTNAME"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q006",
+      "question": "What limits the amount of time that a DNS entry is available in the DNS cache?",
+      "choices": [
+        "An A record",
+        "TTL",
+        "SOA",
+        "Default of 5 minutes"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DNS-RECORD",
+        "CKU-DNS-TTL"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q007",
+      "question": "Which message is sent from the DHCP client to the DHCP server to confirm the offer of an IP address?",
+      "choices": [
+        "Acknowledgment",
+        "Discover",
+        "Offer",
+        "Request"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DHCP",
+        "CKU-DHCP-ACK",
+        "CKU-DHCP-DISCOVER",
+        "CKU-DHCP-OFFER"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q008",
+      "question": "What form of communication does a DHCP client use to initially acquire an IP address?",
+      "choices": [
+        "Layer 3 broadcast",
+        "Layer 3 multicast",
+        "Layer 3 802.1Q",
+        "Layer 3 unicast"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DHCP"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q009",
+      "question": "At what point of the lease time will the client ask for a renewal of the IP address from the DHCP server?",
+      "choices": [
+        "One-quarter of the lease",
+        "One-half of the lease",
+        "Seven-eighths of the lease",
+        "End of the lease"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q010",
+      "question": "Which statement is correct about the DHCP process?",
+      "choices": [
+        "The DHCP server is responsible for maintaining the life cycle of an IP address.",
+        "DHCP uses multicasting between the client and server.",
+        "The DHCP client is responsible for maintaining the life cycle of an IP address.",
+        "The DHCP lease is negotiated between client and server."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DHCP",
+        "CKU-DHCP-LEASE"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q011",
+      "question": "Which transport protocol does DHCP use?",
+      "choices": [
+        "UDP",
+        "ICMP",
+        "TCP",
+        "RARP"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-DHCP",
+        "CKU-TRANSPORT-INPUT"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.3-source-q012",
+      "question": "What happens when a router or switch detects a duplicate IP address for a DHCP process?",
+      "choices": [
+        "The IP address is still served to the client.",
+        "The IP address is removed from the DHCP pool.",
+        "The DHCP server will halt.",
+        "The DHCP will serve the IP address in the future."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "dns",
+      "ckuIds": [
+        "CKU-DNS",
+        "CKU-DNS-A-RECORD",
+        "CKU-DNS-REVERSE-LOOKUP",
+        "CKU-NAT-POOL",
+        "CKU-DHCP"
+      ],
+      "needsExplanationReview": true
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "obj-4.2-source-q009",
+    "objectiveId": "4.2",
+    "question": "Which command sets the time zone of a router for Pacific Standard Time?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-4.2-source-q012",
+    "objectiveId": "4.2",
+    "question": "Which command set the router’s internal clock to 2:24 August 1, 2019?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-4.5-source-q007",
+    "objectiveId": "4.5",
+    "question": "Which command can see the commands you previously entered?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-4.5-source-q009",
+    "objectiveId": "4.5",
+    "question": "You need to check the current CPU utilization on a router. Which command achieve this?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  }
+]

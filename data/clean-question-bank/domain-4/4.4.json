@@ -1,0 +1,280 @@
+{
+  "objectiveId": "4.4",
+  "title": "Explain the function of SNMP in network operations",
+  "questions": [
+    {
+      "id": "obj-4.4-source-q001",
+      "question": "Which version of SNMP offers authentication and encryption?",
+      "choices": [
+        "SNMP version 1",
+        "SNMP version 2e",
+        "SNMP version 2c",
+        "SNMP version 3"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-DHCP-OFFER"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q002",
+      "question": "Identify the database of variables that SNMP uses to allow for collection of data?",
+      "choices": [
+        "Object identifiers (OIDs)",
+        "Management information base",
+        "SNMP agent",
+        "SNMP community string"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-OID",
+        "CKU-SNMP-INFORM",
+        "CKU-COMMUNITY-STRING"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q003",
+      "question": "Identify the component that an SNMP agent sends information to?",
+      "choices": [
+        "Syslog",
+        "Network management station",
+        "Object identifier",
+        "Management information base"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-SNMP-INFORM",
+        "CKU-SYSLOG"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q004",
+      "question": "What type of SNMP message is sent to a network management station when an interface goes down?",
+      "choices": [
+        "Get-request message",
+        "Get-response message",
+        "Set-request message",
+        "Trap message"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-SNMP-TRAP"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q005",
+      "question": "Which of the following is a hierarchical set of variables that make up the management information base?",
+      "choices": [
+        "Object identifiers (OIDs)",
+        "The SNMP community string",
+        "The SNMP agent",
+        "SNMP messages"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-OID",
+        "CKU-SNMP-INFORM",
+        "CKU-COMMUNITY-STRING"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q006",
+      "question": "Identify the difference between trap messages and inform messages for SNMP?",
+      "choices": [
+        "Trap messages are always encrypted.",
+        "Inform messages do not use acknowledgments.",
+        "Trap messages always use acknowledgments.",
+        "Inform messages always use acknowledgments."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-DHCP-ACK",
+        "CKU-SNMP-TRAP",
+        "CKU-SNMP-INFORM"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q007",
+      "question": "Which security method does SNMP version 2c employ?",
+      "choices": [
+        "Encryption",
+        "User authentication",
+        "Community strings",
+        "Message integrity"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-COMMUNITY-STRING"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q008",
+      "question": "Which of the following can be used in conjunction with an SNMP agent configuration for added security?",
+      "choices": [
+        "Encrypted communities",
+        "Access control lists",
+        "SNMP callback security",
+        "SHA-256"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q009",
+      "question": "Which command(s) will configure SNMPv2c to trap messages to a network management station in the event of component failure?",
+      "choices": [
+        "Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps",
+        "Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps",
+        "Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps",
+        "Switch(config)#snmp contact trap 192.168.1.5 version 2c"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-SNMP-TRAP"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q010",
+      "question": "Which protocol and port number does SNMP use for trap and inform messages to the NMS?",
+      "choices": [
+        "UDP/161",
+        "TCP/162",
+        "UDP/162",
+        "UDP/514"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-SNMP-TRAP",
+        "CKU-SNMP-INFORM"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q011",
+      "question": "Which command can verify the network management station that is configured to receive trap notifications?",
+      "choices": [
+        "Switch#show snmp",
+        "Switch#show snmp community",
+        "Switch#show snmp host",
+        "Switch#show snmp notifications"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-SNMP-TRAP",
+        "CKU-COMMUNITY-STRING"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.4-source-q012",
+      "question": "When you configure SNMPv3 for a restricted OID, what is the first step?",
+      "choices": [
+        "Configuring a group",
+        "Configuring a view",
+        "Configuring a user",
+        "Configuring a community"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "snmp",
+      "ckuIds": [
+        "CKU-SNMP",
+        "CKU-SNMPV3",
+        "CKU-MIB",
+        "CKU-OID",
+        "CKU-COMMUNITY-STRING",
+        "CKU-SNMP-VIEW"
+      ],
+      "needsExplanationReview": true
+    }
+  ]
+}

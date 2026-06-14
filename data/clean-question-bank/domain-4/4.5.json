@@ -1,0 +1,207 @@
+{
+  "objectiveId": "4.5",
+  "title": "Describe the use of syslog features including facilities and levels",
+  "questions": [
+    {
+      "id": "obj-4.5-source-q001",
+      "question": "Which protocol and port number does syslog use?",
+      "choices": [
+        "UDP/161",
+        "TCP/162",
+        "UDP/162",
+        "UDP/514"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.5-source-q002",
+      "question": "Which command configure the severity level of syslog events that will be sent to the syslog server for debugging?",
+      "choices": [
+        "Router(config)#syslog debugging",
+        "Router(config)#logging debugging",
+        "Router(config)#logging trap debugging",
+        "Router(config)#log-level debugging"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-SNMP-TRAP",
+        "CKU-SYSLOG-DEBUGGING"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.5-source-q003",
+      "question": "Which command send all warnings to the syslog server?",
+      "choices": [
+        "Switch(config)#logging server 4",
+        "Switch(config)#logging trap 4",
+        "Switch(config)#logging trap 5",
+        "Switch(config)#logging server 5"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-SNMP-TRAP"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.5-source-q004",
+      "question": "Which command send logging with time stamps rather than sequence numbers?",
+      "choices": [
+        "Switch(config)#logging timestamps log datetime",
+        "Switch(config)#logging timestamps datetime",
+        "Switch(config)#service datetime timestamps",
+        "Switch(config)#service timestamps log datetime"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-LOGGING-TIMESTAMPS"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.5-source-q005",
+      "question": "Which command limit console logging to the severity level of alerts?",
+      "choices": [
+        "Router(config)#logging console 0",
+        "Router(config-line)#logging level 0",
+        "Router(config)#logging console 7",
+        "Router(config-line)#logging level 7"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-LOGGING-CONSOLE"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.5-source-q006",
+      "question": "Which command configure logging stored in RAM to include only logs with a severity level of emergencies and alerts?",
+      "choices": [
+        "Switch(config)#logging buffered 1",
+        "Switch(config)#logging 1",
+        "Switch(config)#logging buffered 2",
+        "Switch(config)#logging 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-LOGGING-BUFFERED"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.5-source-q010",
+      "question": "Which command direct logging to the internal log space?",
+      "choices": [
+        "Router(config)#logging buffered",
+        "Router(config)#logging internal",
+        "Router(config)#logging ram",
+        "Router(config)#logging console"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-LOGGING-BUFFERED",
+        "CKU-LOGGING-CONSOLE"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.5-source-q011",
+      "question": "Identify the default destination to which Cisco devices send syslog messages?",
+      "choices": [
+        "Broadcasts to a syslog server",
+        "Console",
+        "TTY",
+        "NVRAM"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-NAT",
+        "CKU-LOGGING-CONSOLE"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.5-source-q012",
+      "question": "Identify the default level for syslog facility logging?",
+      "choices": [
+        "Notification (5)",
+        "Informational (6)",
+        "Warning (4)",
+        "Debugging (7)"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-SNMP-INFORM",
+        "CKU-SYSLOG-DEBUGGING"
+      ],
+      "needsExplanationReview": true
+    }
+  ]
+}

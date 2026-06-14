@@ -1,0 +1,118 @@
+{
+  "objectiveId": "4.9",
+  "title": "Describe the capabilities and function of TFTP/FTP in the network",
+  "questions": [
+    {
+      "id": "obj-4.9-source-q001",
+      "question": "Which command restore configuration to the running-config for a device from a server?",
+      "choices": [
+        "Switch#archive tftp: running-config",
+        "Switch#restore tftp://192.168.1.2 running-config",
+        "Switch#copy tftp: running-config",
+        "Switch#copy server: running-config"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "tftp",
+      "ckuIds": [
+        "CKU-TFTP",
+        "CKU-FTP",
+        "CKU-COPY-TFTP-RUNNING-CONFIG",
+        "CKU-RUNNING-CONFIG"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.9-source-q002",
+      "question": "Which command begin the upgrade of an IOS from a TFTP server?",
+      "choices": [
+        "Switch#copy tftp flash",
+        "Switch#copy tftp ios",
+        "Switch#copy tftp nvram",
+        "Switch#upgrade tftp flash"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "tftp",
+      "ckuIds": [
+        "CKU-TFTP",
+        "CKU-FTP",
+        "CKU-COPY-TFTP-RUNNING-CONFIG",
+        "CKU-FLASH"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.9-source-q003",
+      "question": "Which command can boot a router from a TFTP server for the image of c2900-universalk9-mz.SPA.151-4.M4.bin on the TFTP server of 192.168.1.2?",
+      "choices": [
+        "Router#boot tftp://192.168.1.2",
+        "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
+        "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
+        "Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "tftp",
+      "ckuIds": [
+        "CKU-TFTP",
+        "CKU-FTP",
+        "CKU-COPY-TFTP-RUNNING-CONFIG",
+        "CKU-CRYPTO-KEY-GENERATE-RSA",
+        "CKU-BOOT-SYSTEM-TFTP"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.9-source-q004",
+      "question": "You’re upgrading the flash memory on a 2900 router with a brand-new flash card. What needs to be done to restore the IOS?",
+      "choices": [
+        "The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS.",
+        "The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.",
+        "Nothing needs to be done because the IOS is not storage on the flash memory card.",
+        "Format the flash card with the FAT operating system and copy the IOS image to the card."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "tftp",
+      "ckuIds": [
+        "CKU-TFTP",
+        "CKU-FTP",
+        "CKU-COPY-TFTP-RUNNING-CONFIG",
+        "CKU-FLASH",
+        "CKU-ROMMON"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "obj-4.9-source-q005",
+      "question": "Which command(s) are required before you can use an FTP server for backing up configuration? Assume that the username is USER and the password is USERPASS.",
+      "choices": [
+        "Router(config)#ip ftp username USER password USERPASS",
+        "Router(config)#ftp USER password USERPASS",
+        "Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS",
+        "Router(config)#username USER password USERPASS"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "tftp",
+      "ckuIds": [
+        "CKU-TFTP",
+        "CKU-FTP",
+        "CKU-COPY-TFTP-RUNNING-CONFIG",
+        "CKU-LOCAL-USERNAME"
+      ],
+      "needsExplanationReview": true
+    }
+  ]
+}

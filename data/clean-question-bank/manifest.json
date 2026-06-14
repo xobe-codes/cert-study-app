@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "domain": "4",
+  "domainName": "IP Services",
+  "builtAt": "2026-06-14T01:38:22.740Z",
+  "objectives": {
+    "4.1": {
+      "active": 14,
+      "shelved": 6,
+      "source": "curated"
+    },
+    "4.2": {
+      "active": 10,
+      "shelved": 2,
+      "source": "source-json"
+    },
+    "4.3": {
+      "active": 12,
+      "shelved": 0,
+      "source": "source-json"
+    },
+    "4.4": {
+      "active": 12,
+      "shelved": 0,
+      "source": "source-json"
+    },
+    "4.5": {
+      "active": 9,
+      "shelved": 3,
+      "source": "source-json"
+    },
+    "4.6": {
+      "active": 11,
+      "shelved": 1,
+      "source": "source-json"
+    },
+    "4.7": {
+      "active": 14,
+      "shelved": 0,
+      "source": "source-json"
+    },
+    "4.8": {
+      "active": 9,
+      "shelved": 0,
+      "source": "source-json"
+    },
+    "4.9": {
+      "active": 5,
+      "shelved": 0,
+      "source": "source-json"
+    }
+  },
+  "totals": {
+    "active": 96,
+    "shelved": 12,
+    "needsExplanationReview": 88
+  }
+}

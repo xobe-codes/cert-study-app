@@ -1,0 +1,262 @@
+{
+  "objectiveId": "4.1",
+  "title": "Configure and verify inside source NAT using static and pools",
+  "questions": [
+    {
+      "id": "4.1-c-q1",
+      "question": "What does NAT primarily do?",
+      "choices": [
+        "Encrypts traffic",
+        "Maps private IPs to public IPs",
+        "Routes between VLANs",
+        "Assigns DHCP addresses"
+      ],
+      "correctIndex": 1,
+      "explanation": "NAT maps inside local (private) to inside global (public) addresses.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "nat purpose",
+      "ckuIds": [
+        "CKU-NAT"
+      ]
+    },
+    {
+      "id": "4.1-c-q2",
+      "question": "Many home devices share a single public IP. Which NAT type is this?",
+      "choices": [
+        "Static NAT",
+        "Dynamic NAT",
+        "PAT (overload)",
+        "No NAT"
+      ],
+      "correctIndex": 2,
+      "explanation": "PAT/overload maps many inside hosts to one public IP using ports.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "pat",
+      "ckuIds": [
+        "CKU-PAT"
+      ]
+    },
+    {
+      "id": "4.1-c-q3",
+      "question": "Which command creates a permanent 1:1 mapping for a server?",
+      "choices": [
+        "ip nat inside source static 192.168.1.10 203.0.113.10",
+        "ip nat pool",
+        "ip nat inside source list 1 interface g0/0 overload",
+        "ip nat outside"
+      ],
+      "correctIndex": 0,
+      "explanation": "Static NAT uses `ip nat inside source static <local> <global>`.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ]
+    },
+    {
+      "id": "4.1-c-q4",
+      "question": "NAT is configured but nothing is translated. What is most often missing?",
+      "choices": [
+        "A default route",
+        "The ip nat inside / ip nat outside interface tags",
+        "A loopback",
+        "DNS"
+      ],
+      "correctIndex": 1,
+      "explanation": "Interfaces must be marked `ip nat inside` and `ip nat outside`.",
+      "type": "troubleshooting",
+      "difficulty": "hard",
+      "concept": "interface tags",
+      "ckuIds": [
+        "CKU-NAT-TERMS"
+      ]
+    },
+    {
+      "id": "4.1-c-q5",
+      "question": "Which command configures PAT to the outside interface?",
+      "choices": [
+        "ip nat inside source list 1 interface g0/0 overload",
+        "ip nat inside source static",
+        "ip nat pool MYPOOL",
+        "ip nat outside source list 1"
+      ],
+      "correctIndex": 0,
+      "explanation": "PAT: `ip nat inside source list <ACL> interface <if> overload`.",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "overload command",
+      "ckuIds": [
+        "CKU-PAT"
+      ]
+    },
+    {
+      "id": "4.1-c-q6",
+      "question": "A host’s private address as seen inside the network is called its…",
+      "choices": [
+        "Inside global",
+        "Inside local",
+        "Outside global",
+        "Outside local"
+      ],
+      "correctIndex": 1,
+      "explanation": "Inside local = the private address of an inside host.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "terminology",
+      "ckuIds": [
+        "CKU-NAT-TERMS"
+      ]
+    },
+    {
+      "id": "4.1-c-q7",
+      "question": "Which command shows active NAT translations?",
+      "choices": [
+        "show ip route",
+        "show ip nat translations",
+        "show running-config",
+        "show ip nat inside"
+      ],
+      "correctIndex": 1,
+      "explanation": "`show ip nat translations` lists the current mappings.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "verify",
+      "ckuIds": [
+        "CKU-NAT"
+      ]
+    },
+    {
+      "id": "4.1-c-q8",
+      "question": "True or False: PAT distinguishes multiple inside hosts behind one public IP using port numbers.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — PAT tracks translations by inside global IP + port.",
+      "type": "true-false",
+      "difficulty": "medium",
+      "concept": "pat ports",
+      "ckuIds": [
+        "CKU-PAT"
+      ]
+    },
+    {
+      "id": "4.1-q1",
+      "question": "Which method will allow you to use RFC 1918 addresses for Internet requests?",
+      "choices": [
+        "CIDR",
+        "Classful addressing",
+        "NAT",
+        "VPN"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "4.1-q5",
+      "question": "Which command can view the NAT translations active on the router?",
+      "choices": [
+        "Router#show ip nat translations",
+        "Router#show nat translations",
+        "Router#debug ip nat translations",
+        "Router#show translations nat"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "4.1-q6",
+      "question": "Which command display an overview of the current number of active NAT translations on the router, as well as other overview information?",
+      "choices": [
+        "Router#show ip nat translations",
+        "Router#show ip nat summary",
+        "Router#show ip nat status",
+        "Router#show ip nat statistics"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "4.1-q9",
+      "question": "When configuring dynamic NAT, why must you configure an access list?",
+      "choices": [
+        "The access list allows incoming access from outside global addresses.",
+        "The access list allows outgoing access from inside local addresses.",
+        "The access list allows outgoing access from outside local addresses.",
+        "The access list allows outgoing access from inside global addresses."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "4.1-q10",
+      "question": "Which command wipe out all current NAT translations in the NAT table?",
+      "choices": [
+        "Router#no ip nat translation",
+        "Router#clear ip nat translation",
+        "Router#clear ip nat translation *",
+        "Router#clear ip nat"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "needsExplanationReview": true
+    },
+    {
+      "id": "4.1-q11",
+      "question": "Which command can see real-time network address translations?",
+      "choices": [
+        "Router#show ip translations",
+        "Router#debug ip nat",
+        "Router#debug ip translations",
+        "Router#show ip nat"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "needsExplanationReview": true
+    }
+  ]
+}
