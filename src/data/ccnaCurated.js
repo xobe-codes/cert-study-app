@@ -16,7 +16,7 @@
    @typedef {{ sourceName: string, chapter?: string, page?: string, confidence: number, notes?: string }} SourceRef
    ========================================================================= */
 
-import { IMPORTED_QUESTIONS } from './ccnaQuestionImports.js'
+
 import { SUPPLEMENTAL_QUESTIONS } from './ccnaQuestionSupplemental.js'
 import { getSkillQuestions } from './ccnaSkillQuestions.js'
 import { hasCleanBank, getImportedOrCleanQuestions } from './cleanQuestionAdapter.js'
@@ -1985,7 +1985,6 @@ export function hasCuratedReading(objectiveId) { return !!CURATED[objectiveId]?.
 /** True if this objective has curated (static, zero-API) questions, hand-curated or bulk-imported. */
 export function hasCuratedQuestions(objectiveId) {
   return (CURATED[objectiveId]?.questions?.length || 0) > 0
-    || (IMPORTED_QUESTIONS[objectiveId]?.length || 0) > 0
     || CLEAN_BANK_OBJECTIVES.has(objectiveId)
 }
 

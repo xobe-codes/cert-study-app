@@ -2,7 +2,6 @@
  * Clean question bank adapter — lazy-loads the large questions module on first use.
  */
 import { CLEAN_BANK_OBJECTIVES } from './ccnaCleanBankMeta.js'
-import { IMPORTED_QUESTIONS } from './ccnaQuestionImports.js'
 
 export const CLEAN_BANK_ENABLED = true
 
@@ -33,12 +32,12 @@ export function hasCleanBank(objectiveId) {
     && cleanModule.CLEAN_QUESTIONS[objectiveId].length > 0
 }
 
-/** Clean bank when loaded and available; legacy imports as fallback. */
+/** Clean bank when loaded; empty array if not yet loaded or unmigrated. */
 export function getImportedOrCleanQuestions(objectiveId) {
   if (hasCleanBank(objectiveId)) {
     return cleanModule.CLEAN_QUESTIONS[objectiveId]
   }
-  return IMPORTED_QUESTIONS[objectiveId] || []
+  return []
 }
 
 export function getCleanBankStats() {
@@ -53,11 +52,10 @@ export function getCleanBankStats() {
   return { enabled: true, objectives: CLEAN_BANK_OBJECTIVES.size, questions, loaded: true }
 }
 
-/** Objectives still served from legacy ccnaQuestionImports.js */
+/** Objectives not yet in clean bank (empty when fully migrated). */
 export function getLegacyImportObjectives() {
-  const legacy = Object.keys(IMPORTED_QUESTIONS).filter(id => !CLEAN_BANK_OBJECTIVES.has(id))
-  if (!cleanModule) return legacy
-  return legacy.filter(id => !hasCleanBank(id))
+  if (!cleanModule) return []
+  return [...CLEAN_BANK_OBJECTIVES].filter(id => !hasCleanBank(id))
 }
 
 export { CLEAN_BANK_OBJECTIVES }

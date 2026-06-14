@@ -9,7 +9,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('ccnaQuestionImports')) return 'question-imports'
           if (id.includes('ccnaCleanQuestions')) return 'clean-questions'
           if (id.includes('ccnaShelvedQuestions')) return 'shelved-questions'
           if (id.includes('ccnaSkillQuestions')) return 'skill-questions'

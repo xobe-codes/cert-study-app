@@ -3,6 +3,7 @@ import { hasCuratedReading, hasCuratedQuestions, validateCurated } from '../data
 import { getLegacyImportObjectives, getCleanBankStats, preloadCleanBank } from '../data/cleanQuestionAdapter.js'
 import { CLEAN_BANK_OBJECTIVES } from '../data/ccnaCleanBankMeta.js'
 import { getShelvedStats } from '../data/shelvedStudy.js'
+import { VISUAL_DIAGRAMS } from '../data/visualDiagramSupplement.js'
 
 const ALL_OBJECTIVE_IDS = [
   '1.1', '1.2', '1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9', '1.10', '1.11', '1.12',
@@ -50,5 +51,9 @@ describe('e2e smoke — exam coverage invariants', () => {
     for (const id of ['2.1', '2.2', '3.6', '4.10', '5.4', '5.11']) {
       expect(CLEAN_BANK_OBJECTIVES.has(id), id).toBe(true)
     }
+  })
+
+  it('visual supplement covers at least 20 high-weight objectives', () => {
+    expect(Object.keys(VISUAL_DIAGRAMS).length).toBeGreaterThanOrEqual(20)
   })
 })
