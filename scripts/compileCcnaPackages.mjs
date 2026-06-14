@@ -4,14 +4,17 @@
    labs into one portable JSON per domain, plus a source audit trail and
    coverage summary. Pure data — no AI, no app runtime. Run: npm run compile:ccna
    ========================================================================= */
-import { writeFileSync, mkdirSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { curatedObjectiveIds, getCurated, validateCurated, CURATED_SOURCES } from '../src/data/ccnaCurated.js'
 import { allLabs, getLab, labsByDomain, validateLabs, LAB_SOURCES } from '../src/data/ccnaLabs.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const OUT_DIR = join(__dirname, '..', 'src', 'domain-packages')
+const ROOT = join(__dirname, '..')
+const OUT_DIR = join(ROOT, 'src', 'domain-packages')
+const CLEAN_MANIFEST = join(ROOT, 'data', 'clean-question-bank', 'manifest.json')
+const KB_OBJECTIVES = join(ROOT, 'data', 'knowledge-base', 'objectives.json')
 
 const DOMAIN_META = {
   fundamentals: { num: 1, name: 'Network Fundamentals', slug: 'network-fundamentals' },
@@ -20,6 +23,10 @@ const DOMAIN_META = {
   services: { num: 4, name: 'IP Services', slug: 'ip-services' },
   security: { num: 5, name: 'Security Fundamentals', slug: 'security-fundamentals' },
   automation: { num: 6, name: 'Automation & Programmability', slug: 'automation-programmability' },
+}
+
+function loadJson(path) {
+  return existsSync(path) ? JSON.parse(readFileSync(path, 'utf-8')) : null
 }
 
 function main() {
@@ -54,6 +61,10 @@ function main() {
         curatedObjectives: objectives.length, labs: labs.length,
       },
       sourceAudit: { sources: { ...CURATED_SOURCES, ...LAB_SOURCES }, note: 'Content is original/paraphrased from the cited sources; questions are original. Verify command syntax against official Cisco docs.' },
+      knowledgeBase: domainId === 'services' ? {
+        cleanBankManifest: loadJson(CLEAN_MANIFEST),
+        objectives: loadJson(KB_OBJECTIVES)?.filter(o => o.domainId === 'services') || [],
+      } : undefined,
       objectives,
       labs,
       counts: {

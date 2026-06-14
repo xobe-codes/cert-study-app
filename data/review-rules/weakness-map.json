@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "id": "cku-weak-3",
+      "when": { "ckuMissedCountGte": 3 },
+      "suggest": "Review the linked CKU summary and glossary, then retry 5 quiz questions on that objective."
+    },
+    {
+      "id": "trap-repeat-2",
+      "when": { "sameTrapMissedGte": 2 },
+      "suggest": "Open Exam Trap Study for Domain 4 and drill the repeated misconception."
+    },
+    {
+      "id": "placeholder-explanation",
+      "when": { "needsExplanationReview": true },
+      "suggest": "Question explanation pending human review — use curated reading or CLI drill if available."
+    }
+  ]
+}

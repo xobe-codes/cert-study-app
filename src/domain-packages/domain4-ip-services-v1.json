@@ -4,7 +4,7 @@
     "domainNumber": 4,
     "domainName": "IP Services",
     "version": "1",
-    "compiledAt": "2026-06-13T17:39:38.964Z",
+    "compiledAt": "2026-06-14T01:38:25.326Z",
     "curatedObjectives": 1,
     "labs": 8
   },
@@ -16,6 +16,260 @@
       "workbook": "CCNA in 60 Days — Lab Workbook (Browning)"
     },
     "note": "Content is original/paraphrased from the cited sources; questions are original. Verify command syntax against official Cisco docs."
+  },
+  "knowledgeBase": {
+    "cleanBankManifest": {
+      "schemaVersion": "ccna-clean-question-bank-v1",
+      "domain": "4",
+      "domainName": "IP Services",
+      "builtAt": "2026-06-14T01:38:22.740Z",
+      "objectives": {
+        "4.1": {
+          "active": 14,
+          "shelved": 6,
+          "source": "curated"
+        },
+        "4.2": {
+          "active": 10,
+          "shelved": 2,
+          "source": "source-json"
+        },
+        "4.3": {
+          "active": 12,
+          "shelved": 0,
+          "source": "source-json"
+        },
+        "4.4": {
+          "active": 12,
+          "shelved": 0,
+          "source": "source-json"
+        },
+        "4.5": {
+          "active": 9,
+          "shelved": 3,
+          "source": "source-json"
+        },
+        "4.6": {
+          "active": 11,
+          "shelved": 1,
+          "source": "source-json"
+        },
+        "4.7": {
+          "active": 14,
+          "shelved": 0,
+          "source": "source-json"
+        },
+        "4.8": {
+          "active": 9,
+          "shelved": 0,
+          "source": "source-json"
+        },
+        "4.9": {
+          "active": 5,
+          "shelved": 0,
+          "source": "source-json"
+        }
+      },
+      "totals": {
+        "active": 96,
+        "shelved": 12,
+        "needsExplanationReview": 88
+      }
+    },
+    "objectives": [
+      {
+        "objectiveId": "4.1",
+        "title": "Configure and verify inside source NAT using static and pools",
+        "domainId": "services",
+        "summary": "**NAT** maps private **inside local** IPs to public **inside global** IPs. **PAT (overload)** shares one public IP across many hosts using ports. Interfaces are marked `ip nat inside` / `ip nat outside`.",
+        "keyPoints": [
+          "Static NAT = permanent 1:1 (servers): `ip nat inside source static <local> <global>`.",
+          "Dynamic NAT = pool of public addresses.",
+          "PAT/overload = many→one via source ports (home/SOHO).",
+          "Mark interfaces `ip nat inside` and `ip nat outside`.",
+          "Inside local = private host; inside global = its public address.",
+          "Verify: `show ip nat translations`, `show ip nat statistics`."
+        ],
+        "ckuIds": [
+          "CKU-NAT",
+          "CKU-PAT",
+          "CKU-NAT-TERMS"
+        ],
+        "estimatedReadMinutes": 7,
+        "tiers": {
+          "beginner": "Private IP addresses (like 192.168.x.x) can’t travel on the internet, so a router swaps them for a public address on the way out — that’s NAT. At home, one public address is shared by every device using different port numbers; that flavor is called PAT (or “overload”). The router remembers each translation so replies come back to the right device.",
+          "intermediate": "NAT translates inside local (private) addresses to inside global (public) addresses. Static NAT is a fixed one-to-one mapping (for servers); dynamic NAT draws from a pool of public addresses; PAT (overload) maps many private hosts to one public IP using unique source ports — the typical SOHO setup. You mark the internal interface `ip nat inside` and the internet-facing one `ip nat outside`, then define what to translate (often an ACL). Verify with `show ip nat translations`.",
+          "examReady": "NAT maps inside local ↔ inside global. Types: Static (`ip nat inside source static <local> <global>` — permanent 1:1, for servers); Dynamic (`ip nat pool` + `ip nat inside source list <ACL> pool <name>`); PAT/overload (`ip nat inside source list <ACL> interface <if> overload` — many-to-one via ports). Mark interfaces `ip nat inside` / `ip nat outside`. Terms: inside local (private host), inside global (its public mapping), outside local/global (the destination). Verify: `show ip nat translations`, `show ip nat statistics`."
+        }
+      },
+      {
+        "objectiveId": "4.2",
+        "title": "4.2",
+        "domainId": "services",
+        "summary": "",
+        "keyPoints": [],
+        "ckuIds": [
+          "CKU-NTP",
+          "CKU-NTP-CLIENT",
+          "CKU-NTP-SERVER",
+          "CKU-CLOCK",
+          "CKU-SNMP-VIEW",
+          "CKU-DNS",
+          "CKU-NTP-SOURCE"
+        ],
+        "needsReview": true
+      },
+      {
+        "objectiveId": "4.3",
+        "title": "4.3",
+        "domainId": "services",
+        "summary": "",
+        "keyPoints": [],
+        "ckuIds": [
+          "CKU-DNS",
+          "CKU-DNS-A-RECORD",
+          "CKU-DNS-REVERSE-LOOKUP",
+          "CKU-DNS-RECORD",
+          "CKU-HOSTNAME",
+          "CKU-DOMAIN-NAME",
+          "CKU-DNS-TTL",
+          "CKU-DHCP",
+          "CKU-DHCP-ACK",
+          "CKU-DHCP-DISCOVER",
+          "CKU-DHCP-OFFER",
+          "CKU-DHCP-LEASE",
+          "CKU-TRANSPORT-INPUT",
+          "CKU-NAT-POOL"
+        ],
+        "needsReview": true
+      },
+      {
+        "objectiveId": "4.4",
+        "title": "4.4",
+        "domainId": "services",
+        "summary": "",
+        "keyPoints": [],
+        "ckuIds": [
+          "CKU-SNMP",
+          "CKU-SNMPV3",
+          "CKU-MIB",
+          "CKU-DHCP-OFFER",
+          "CKU-OID",
+          "CKU-SNMP-INFORM",
+          "CKU-COMMUNITY-STRING",
+          "CKU-SYSLOG",
+          "CKU-SNMP-TRAP",
+          "CKU-DHCP-ACK",
+          "CKU-SNMP-VIEW"
+        ],
+        "needsReview": true
+      },
+      {
+        "objectiveId": "4.5",
+        "title": "4.5",
+        "domainId": "services",
+        "summary": "",
+        "keyPoints": [],
+        "ckuIds": [
+          "CKU-SYSLOG",
+          "CKU-SYSLOG-UDP-514",
+          "CKU-SYSLOG-SEVERITY",
+          "CKU-SNMP-TRAP",
+          "CKU-SYSLOG-DEBUGGING",
+          "CKU-LOGGING-TIMESTAMPS",
+          "CKU-LOGGING-CONSOLE",
+          "CKU-LOGGING-BUFFERED",
+          "CKU-NAT",
+          "CKU-SNMP-INFORM"
+        ],
+        "needsReview": true
+      },
+      {
+        "objectiveId": "4.6",
+        "title": "4.6",
+        "domainId": "services",
+        "summary": "",
+        "keyPoints": [],
+        "ckuIds": [
+          "CKU-DHCP-CLIENT",
+          "CKU-DHCP-RELAY",
+          "CKU-IP-HELPER-ADDRESS",
+          "CKU-DHCP",
+          "CKU-DHCP-LEASE",
+          "CKU-NAT",
+          "CKU-DHCP-OFFER",
+          "CKU-GIADDR",
+          "CKU-DHCPV6"
+        ],
+        "needsReview": true
+      },
+      {
+        "objectiveId": "4.7",
+        "title": "4.7",
+        "domainId": "services",
+        "summary": "",
+        "keyPoints": [],
+        "ckuIds": [
+          "CKU-QOS",
+          "CKU-CLASSIFICATION",
+          "CKU-MARKING",
+          "CKU-NAT",
+          "CKU-JITTER",
+          "CKU-QUEUING",
+          "CKU-CONGESTION",
+          "CKU-DSCP",
+          "CKU-LLQ",
+          "CKU-CBWFQ",
+          "CKU-POLICING",
+          "CKU-SHAPING",
+          "CKU-OID",
+          "CKU-TAIL-DROP",
+          "CKU-PAT"
+        ],
+        "needsReview": true
+      },
+      {
+        "objectiveId": "4.8",
+        "title": "4.8",
+        "domainId": "services",
+        "summary": "",
+        "keyPoints": [],
+        "ckuIds": [
+          "CKU-SSH",
+          "CKU-HOSTNAME",
+          "CKU-DOMAIN-NAME",
+          "CKU-TELNET",
+          "CKU-TRANSPORT-INPUT",
+          "CKU-DNS",
+          "CKU-DNS-RECORD",
+          "CKU-LOCAL-USERNAME",
+          "CKU-CRYPTO-KEY-GENERATE-RSA",
+          "CKU-NAT",
+          "CKU-LOGIN-LOCAL",
+          "CKU-BANNERS"
+        ],
+        "needsReview": true
+      },
+      {
+        "objectiveId": "4.9",
+        "title": "4.9",
+        "domainId": "services",
+        "summary": "",
+        "keyPoints": [],
+        "ckuIds": [
+          "CKU-TFTP",
+          "CKU-FTP",
+          "CKU-COPY-TFTP-RUNNING-CONFIG",
+          "CKU-RUNNING-CONFIG",
+          "CKU-FLASH",
+          "CKU-CRYPTO-KEY-GENERATE-RSA",
+          "CKU-BOOT-SYSTEM-TFTP",
+          "CKU-ROMMON",
+          "CKU-LOCAL-USERNAME"
+        ],
+        "needsReview": true
+      }
+    ]
   },
   "objectives": [
     {
