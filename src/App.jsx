@@ -711,6 +711,7 @@ async function bumpStreak() {
    ========================================================================= */
 const QUIZ_BANK_MIN = 5   // questions needed before we can run a no-API session
 const QUIZ_SESSION_SIZE = 5
+const REVIEW_SESSION_CAP = 20
 
 async function loadQuizBank() {
   return (await window.storage.getItem(STORAGE_KEYS.quizBank)) || {}
@@ -1270,6 +1271,28 @@ function generateLocalSuggestions(summary) {
   }
 
   return cards.slice(0, 3)
+}
+
+// Top study action from the same local rules as Metrics / For You (no API).
+function pickStudyNext(summary, dueCount) {
+  if (dueCount > 0) {
+    const ready = Math.min(dueCount, REVIEW_SESSION_CAP)
+    return {
+      kind: 'review',
+      accent: 'purple',
+      shortTitle: `Today's Review — ${ready} due · ~${Math.max(1, Math.round(ready * 0.5))} min`,
+    }
+  }
+  if (!summary) return null
+  const top = generateLocalSuggestions(summary)[0]
+  if (!top) return null
+  return {
+    kind: 'objective',
+    accent: top.accent,
+    shortTitle: top.title,
+    objective: top.objective,
+    tab: top.tab,
+  }
 }
 
 // Compact behaviour context for the tutor's system prompt (string block).
@@ -5108,7 +5131,58 @@ function quadrantOf(acc, conf) {
 // Content coverage — shows which objectives have CURATED static content / a
 // LAB vs which still use the AI fallback. The "waypoint" that makes scaling
 // the content library a visible checklist you can chip away at over time.
-function ContentCoverage({ onOpen }) {
+function StudyNextStrip({ next, onSelectObjective, onOpenReview, sticky = false }) {
+  if (!next) return null
+  const c = accentColors(next.accent)
+  const onClick = next.kind === 'review'
+    ? onOpenReview
+    : () => onSelectObjective?.({ ...next.objective, __initialTab: next.tab })
+  return (
+    <button
+      type="button"
+      className="ccna-hover"
+      onClick={onClick}
+      style={{
+        display: 'flex', alignItems: 'center', gap: 8, width: '100%', textAlign: 'left',
+        cursor: 'pointer', fontFamily: 'inherit',
+        background: c.dim, border: `1px solid ${c.border}`, borderRadius: 12,
+        padding: '10px 12px', marginBottom: sticky ? 0 : 10,
+      }}
+    >
+      <span style={{ ...styles.pill(next.accent), fontSize: 10, flexShrink: 0 }}>STUDY NEXT</span>
+      <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: COLORS.silver, lineHeight: 1.35 }}>{next.shortTitle}</span>
+      <span style={{ color: c.text, fontSize: 16, lineHeight: 1 }} aria-hidden="true">›</span>
+    </button>
+  )
+}
+
+function MetricsCollapsibleSection({ title, summary, defaultOpen = false, children }) {
+  const [open, setOpen] = useState(defaultOpen)
+  return (
+    <div style={styles.card}>
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        style={{
+          display: 'flex', alignItems: 'center', gap: 10, width: '100%', textAlign: 'left',
+          background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit',
+        }}
+      >
+        <span style={{ flex: 1, minWidth: 0 }}>
+          <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>{title}</span>
+          {!open && summary && (
+            <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid, marginTop: 4, lineHeight: 1.35 }}>{summary}</span>
+          )}
+        </span>
+        <span style={{ fontSize: 12, color: COLORS.silverMid, flexShrink: 0 }} aria-hidden="true">{open ? '▲' : '▼'}</span>
+      </button>
+      {open && <div style={{ marginTop: 12 }}>{children}</div>}
+    </div>
+  )
+}
+
+function ContentCoverage({ onOpen, bare = false }) {
   const rows = DOMAINS.map(d => {
     const objs = d.objectives
     const curated = objs.filter(o => hasCuratedReading(o.id)).length
@@ -5122,9 +5196,9 @@ function ContentCoverage({ onOpen }) {
   const totalLabs = rows.reduce((s, r) => s + r.labs, 0)
   const [openId, setOpenId] = useState(null)
 
-  return (
-    <div style={{ ...styles.card }}>
-      <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5, marginBottom: 4 }}>CONTENT COVERAGE</div>
+  const body = (
+    <>
+      {!bare && <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5, marginBottom: 4 }}>CONTENT COVERAGE</div>}
       <div style={{ ...styles.small, marginBottom: 10 }}>{totalCurated}/{totalObj} objectives curated{totalQuestionsOnly > 0 ? ` · ${totalQuestionsOnly} with curated questions only` : ''} · {totalLabs} with labs. Uncurated objectives still work via AI (hybrid).</div>
       <ProgressBar value={totalCurated} max={totalObj} accent="mint" label="Curated (static, source-grounded)" sublabel={`${totalCurated}/${totalObj}`} height={8} />
       {rows.map(r => (
@@ -5155,11 +5229,14 @@ function ContentCoverage({ onOpen }) {
           )}
         </div>
       ))}
-    </div>
+    </>
   )
+
+  if (bare) return body
+  return <div style={{ ...styles.card }}>{body}</div>
 }
 
-function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
+function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObjective, onOpenReview }) {
   const [data, setData] = useState(null)
   const [openBankIds, setOpenBankIds] = useState(new Set())
 
@@ -5230,8 +5307,22 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
     .sort((a, b) => b.d.count - a.d.count)
     .slice(0, 5)
 
-  const section = { ...styles.card }
-  const sectionTitle = { fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5, marginBottom: 12 }
+  const studyNext = pickStudyNext(summary, dueCount)
+  const coverageCurated = ALL_OBJECTIVES.filter(o => hasCuratedReading(o.id)).length
+  const coverageLabs = ALL_OBJECTIVES.filter(o => labsForObjective(o.id).length > 0).length
+  const retentionSummary = retention.length === 0
+    ? 'No sections in spaced review yet'
+    : `${retention.filter(r => r.state === 'strong').length} strong · ${retention.filter(r => r.state === 'fading').length} fading · ${retention.filter(r => r.state === 'weak').length} weak`
+  const weakSummary = weak.length === 0
+    ? 'Take quizzes to surface gaps'
+    : `${weak[0].id} lowest at ${Math.round(weak[0].mastery * 100)}%`
+  const overconfident = quads.hidden
+  const underconfident = quads.reassure
+  const confidenceReportSummary = studied.length === 0
+    ? 'Answer questions to build your profile'
+    : overconfident.length || underconfident.length
+      ? `${overconfident.length} overconfident · ${underconfident.length} underconfident`
+      : 'Well calibrated'
   const open = (o) => onSelectObjective({ ...o, domainId: o.domainId, domainName: o.domainName, accent: o.accent })
   const quadCell = (key, label, accent, hint) => (
     <div style={{ flex: '1 1 45%', background: accentColors(accent).dim, border: `1px solid ${accentColors(accent).border}`, borderRadius: 10, padding: 10 }}>
@@ -5245,11 +5336,19 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>Learner Metrics</h1>
-      <div style={{ ...styles.small, marginBottom: 14 }}>Everything below is computed locally from your activity — no API calls.</div>
+      <div style={{ ...styles.small, marginBottom: 10 }}>Everything below is computed locally from your activity — no API calls.</div>
 
-      {/* Mastery overview */}
-      <div style={section}>
-        <div style={sectionTitle}>MASTERY OVERVIEW</div>
+      {studyNext && (
+        <div style={{ position: 'sticky', top: 0, zIndex: 5, background: COLORS.bg, paddingBottom: 10, marginBottom: 4 }}>
+          <StudyNextStrip next={studyNext} onSelectObjective={onSelectObjective} onOpenReview={onOpenReview} sticky />
+        </div>
+      )}
+
+      <MetricsCollapsibleSection
+        title="MASTERY OVERVIEW"
+        summary={`${Math.round(overall * 100)}% course · ${masteredCount}/${objs.length} mastered`}
+        defaultOpen
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12 }}>
           <ProgressRing value={overall} size={84} accent="purple" caption="Course mastery" />
           <div style={{ flex: 1 }}>
@@ -5261,15 +5360,20 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
         {summary.domainStats.map(d => (
           <ProgressBar key={d.id} value={d.avg} max={1} accent="purple" label={d.name} sublabel={`${Math.round(d.avg * 100)}% · ${d.mastered}/${d.total}`} height={6} />
         ))}
-      </div>
+      </MetricsCollapsibleSection>
 
-      {/* Content coverage — curated (static) vs AI-fallback per domain */}
-      <ContentCoverage onOpen={open} />
+      <MetricsCollapsibleSection
+        title="CONTENT COVERAGE"
+        summary={`${coverageCurated}/${ALL_OBJECTIVES.length} curated · ${coverageLabs} with labs`}
+      >
+        <ContentCoverage onOpen={open} bare />
+      </MetricsCollapsibleSection>
 
-      {/* Mock exam history trend */}
       {mockHistory.length > 0 && (
-        <div style={section}>
-          <div style={sectionTitle}>MOCK EXAM HISTORY</div>
+        <MetricsCollapsibleSection
+          title="MOCK EXAM HISTORY"
+          summary={`Last ${mockHistory[mockHistory.length - 1].pct}% · ${mockHistory.length} attempt${mockHistory.length !== 1 ? 's' : ''}`}
+        >
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 4, height: 60, marginBottom: 8 }}>
             {mockHistory.slice(-12).map((h, i) => {
               const color = h.pct >= 80 ? COLORS.mint : h.pct >= 70 ? COLORS.sky : COLORS.rose
@@ -5290,12 +5394,10 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
             const trend = mockHistory[mockHistory.length - 1].pct - mockHistory[mockHistory.length - 2].pct
             return <div style={{ ...styles.small, marginTop: 6 }}>Last attempt: <strong style={{ color: mockHistory[mockHistory.length - 1].pct >= 70 ? COLORS.mint : COLORS.rose }}>{mockHistory[mockHistory.length - 1].pct}%</strong>{trend !== 0 && <> · {trend > 0 ? `+${trend}` : trend}pp vs prior</>}</div>
           })()}
-        </div>
+        </MetricsCollapsibleSection>
       )}
 
-      {/* Retention health — spaced-review state per section */}
-      <div style={section}>
-        <div style={sectionTitle}>RETENTION HEALTH</div>
+      <MetricsCollapsibleSection title="RETENTION HEALTH" summary={retentionSummary}>
         {retention.length === 0 ? (
           <div style={styles.small}>No sections in spaced review yet. Score ≥70% on a section's quiz and its questions start coming back on a forgetting-curve schedule — their retention state will show here.</div>
         ) : (
@@ -5329,11 +5431,9 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
             })}
           </>
         )}
-      </div>
+      </MetricsCollapsibleSection>
 
-      {/* Weak areas */}
-      <div style={section}>
-        <div style={sectionTitle}>WEAK AREAS — IMPROVEMENT MAP</div>
+      <MetricsCollapsibleSection title="WEAK AREAS — IMPROVEMENT MAP" summary={weakSummary}>
         {weak.length === 0 && <div style={styles.small}>Take a few quizzes and your weakest topics will surface here.</div>}
         {weak.map(o => (
           <button key={o.id} onClick={() => open(o)} style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginBottom: 4, fontFamily: 'inherit' }}>
@@ -5349,11 +5449,12 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
             })}
           </div>
         )}
-      </div>
+      </MetricsCollapsibleSection>
 
-      {/* Confidence vs accuracy */}
-      <div style={section}>
-        <div style={sectionTitle}>CONFIDENCE vs ACCURACY</div>
+      <MetricsCollapsibleSection
+        title="CONFIDENCE vs ACCURACY"
+        summary={`Accuracy ${Math.round(avgAcc * 100)}% · Confidence ${Math.round(avgConf * 100)}%`}
+      >
         <ProgressBar value={avgAcc} max={1} accent="sky" label="Avg accuracy" sublabel={`${Math.round(avgAcc * 100)}%`} height={7} />
         <ProgressBar value={avgConf} max={1} accent="mint" label="Avg confidence" sublabel={`${Math.round(avgConf * 100)}%`} height={7} />
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 8 }}>
@@ -5367,62 +5468,54 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
             Hidden weakness: {quads.hidden.slice(0, 3).map(o => `${o.id}`).join(', ')} — you feel confident but accuracy is low. Re-quiz these.
           </div>
         )}
-      </div>
+      </MetricsCollapsibleSection>
 
-      {/* #21: Confidence-calibration coaching */}
-      {(() => {
-        const hasData = studied.length > 0
-        const overconfident = quads.hidden // acc < 0.7 && conf >= 0.6
-        const underconfident = quads.reassure // acc >= 0.7 && conf < 0.6
-        return (
-          <div style={section}>
-            <div style={sectionTitle}>🎯 CONFIDENCE REPORT</div>
-            {!hasData ? (
-              <div style={styles.small}>Keep studying — your calibration profile builds as you answer questions.</div>
-            ) : (
-              <>
-                {overconfident.length > 0 && (
-                  <div style={{ marginBottom: 14 }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.rose, marginBottom: 6 }}>You overestimate your knowledge on:</div>
-                    {overconfident.map(o => (
-                      <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-                        <span style={{ fontSize: 14 }}>⚠️</span>
-                        <span style={{ flex: 1 }}>
-                          <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{o.id} {o.title}</span>
-                          <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
-                        </span>
-                        <span style={{ ...styles.pill('rose'), fontSize: 10 }}>Overconfident</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {underconfident.length > 0 && (
-                  <div style={{ marginBottom: 6 }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>You know more than you think about:</div>
-                    {underconfident.map(o => (
-                      <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-                        <span style={{ fontSize: 14 }}>💪</span>
-                        <span style={{ flex: 1 }}>
-                          <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{o.id} {o.title}</span>
-                          <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
-                        </span>
-                        <span style={{ ...styles.pill('sky'), fontSize: 10 }}>Trust yourself</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {overconfident.length === 0 && underconfident.length === 0 && (
-                  <div style={styles.small}>Your confidence and accuracy are well-calibrated. Keep it up!</div>
-                )}
-              </>
+      <MetricsCollapsibleSection title="🎯 CONFIDENCE REPORT" summary={confidenceReportSummary}>
+        {studied.length === 0 ? (
+          <div style={styles.small}>Keep studying — your calibration profile builds as you answer questions.</div>
+        ) : (
+          <>
+            {overconfident.length > 0 && (
+              <div style={{ marginBottom: 14 }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.rose, marginBottom: 6 }}>You overestimate your knowledge on:</div>
+                {overconfident.map(o => (
+                  <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                    <span style={{ fontSize: 14 }}>⚠️</span>
+                    <span style={{ flex: 1 }}>
+                      <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{o.id} {o.title}</span>
+                      <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
+                    </span>
+                    <span style={{ ...styles.pill('rose'), fontSize: 10 }}>Overconfident</span>
+                  </button>
+                ))}
+              </div>
             )}
-          </div>
-        )
-      })()}
+            {underconfident.length > 0 && (
+              <div style={{ marginBottom: 6 }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>You know more than you think about:</div>
+                {underconfident.map(o => (
+                  <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                    <span style={{ fontSize: 14 }}>💪</span>
+                    <span style={{ flex: 1 }}>
+                      <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{o.id} {o.title}</span>
+                      <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
+                    </span>
+                    <span style={{ ...styles.pill('sky'), fontSize: 10 }}>Trust yourself</span>
+                  </button>
+                ))}
+              </div>
+            )}
+            {overconfident.length === 0 && underconfident.length === 0 && (
+              <div style={styles.small}>Your confidence and accuracy are well-calibrated. Keep it up!</div>
+            )}
+          </>
+        )}
+      </MetricsCollapsibleSection>
 
-      {/* CLI skills tracker */}
-      <div style={section}>
-        <div style={sectionTitle}>CISCO CLI SKILLS</div>
+      <MetricsCollapsibleSection
+        title="CISCO CLI SKILLS"
+        summary={cliRows.length === 0 ? 'No CLI labs completed yet' : `${cliRows.length} objectives · ${cliTotals.runs} lab${cliTotals.runs === 1 ? '' : 's'}`}
+      >
         {cliRows.length === 0 && <div style={styles.small}>Complete a CLI lab to start tracking command skills.</div>}
         {cliRows.map(r => (
           <ProgressBar key={r.id} value={(r.bestScore || 0) / 100} max={1} accent="sky" label={`${r.id} ${r.title}`} sublabel={`${r.bestScore || 0}%`} height={7} />
@@ -5432,11 +5525,12 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
             {cliTotals.runs} lab{cliTotals.runs === 1 ? '' : 's'} completed · {cliTotals.syntax} syntax error{cliTotals.syntax === 1 ? '' : 's'} · {cliTotals.mode} wrong-mode error{cliTotals.mode === 1 ? '' : 's'}
           </div>
         )}
-      </div>
+      </MetricsCollapsibleSection>
 
-      {/* Review readiness queue */}
-      <div style={section}>
-        <div style={sectionTitle}>REVIEW READINESS QUEUE</div>
+      <MetricsCollapsibleSection
+        title="REVIEW READINESS QUEUE"
+        summary={reviewCards.length === 0 ? 'All caught up' : `${reviewCards.length} suggestion${reviewCards.length === 1 ? '' : 's'} · ${reviewCards[0].chip}`}
+      >
         {reviewCards.length === 0 && <div style={styles.small}>You're all caught up. Start a new topic to populate your queue.</div>}
         {reviewCards.map(s => (
           <button key={s.key} onClick={() => onSelectObjective({ ...s.objective, __initialTab: s.tab })} style={{ display: 'block', width: '100%', textAlign: 'left', background: accentColors(s.accent).dim, border: `1px solid ${accentColors(s.accent).border}`, borderRadius: 10, padding: 10, marginBottom: 8, cursor: 'pointer', fontFamily: 'inherit' }}>
@@ -5445,11 +5539,12 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
             <div style={{ ...styles.small, lineHeight: 1.4 }}>{s.body}</div>
           </button>
         ))}
-      </div>
+      </MetricsCollapsibleSection>
 
-      {/* Offline unlock progress */}
-      <div style={section}>
-        <div style={sectionTitle}>OFFLINE UNLOCK PROGRESS</div>
+      <MetricsCollapsibleSection
+        title="OFFLINE UNLOCK PROGRESS"
+        summary={`${offlineCount} offline-ready · ${offlineInProgress.length} in progress`}
+      >
         <div style={{ ...styles.small, marginBottom: 10 }}>{offlineCount} topic{offlineCount === 1 ? '' : 's'} fully offline-ready. Closest to unlocking:</div>
         {offlineInProgress.length === 0 && <div style={styles.small}>Open a topic's tabs (or tap "Make available offline") to start downloading assets.</div>}
         {offlineInProgress.map(({ o, d }) => (
@@ -5461,7 +5556,7 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
             <SegmentedBar segments={d.reqs} accent="mint" />
           </div>
         ))}
-      </div>
+      </MetricsCollapsibleSection>
 
       {/* Banked Questions — grouped by objective, collapsible */}
       {(() => {
@@ -5491,15 +5586,20 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
           return { label: `Due in ${daysLeft}d`, accent: 'sky' }
         }
 
+        const bankedTotal = bankedGroups.reduce((s, g) => s + g.qs.length, 0)
+        const bankedMastered = bankedGroups.reduce((s, g) => s + g.masteredCount, 0)
+
         return (
-          <div style={section}>
-            <div style={sectionTitle}>BANKED QUESTIONS</div>
+          <MetricsCollapsibleSection
+            title="BANKED QUESTIONS"
+            summary={bankedGroups.length === 0 ? 'No questions banked yet' : `${bankedTotal} questions · ${bankedMastered} mastered`}
+          >
             {bankedGroups.length === 0 ? (
               <div style={styles.small}>No questions banked yet. Complete a quiz to start building your personal question bank.</div>
             ) : (
               <>
                 <div style={{ ...styles.small, marginBottom: 10 }}>
-                  {bankedGroups.reduce((s, g) => s + g.qs.length, 0)} questions across {bankedGroups.length} objective{bankedGroups.length !== 1 ? 's' : ''} · {bankedGroups.reduce((s, g) => s + g.masteredCount, 0)} mastered
+                  {bankedTotal} questions across {bankedGroups.length} objective{bankedGroups.length !== 1 ? 's' : ''} · {bankedMastered} mastered
                 </div>
                 {bankedGroups.map(({ objId, obj, qs, masteredCount }) => {
                   const isOpen = openBankIds.has(objId)
@@ -5547,13 +5647,14 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
                 })}
               </>
             )}
-          </div>
+          </MetricsCollapsibleSection>
         )
       })()}
 
-      {/* AI usage & estimated cost */}
-      <div style={section}>
-        <div style={sectionTitle}>AI USAGE & ESTIMATED COST</div>
+      <MetricsCollapsibleSection
+        title="AI USAGE & ESTIMATED COST"
+        summary={!usage || !usage.calls ? 'No AI calls yet' : `$${usage.costUSD.toFixed(3)} · ${usage.calls} calls`}
+      >
         {!usage || !usage.calls ? (
           <div style={styles.small}>No AI calls recorded yet. Generate an explanation or quiz to start tracking spend.</div>
         ) : (
@@ -5582,7 +5683,7 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
             <div style={{ ...styles.small, marginTop: 8, fontSize: 11 }}>Estimate based on public token pricing; cached/free reuse isn't billed.</div>
           </>
         )}
-      </div>
+      </MetricsCollapsibleSection>
     </div>
   )
 }
@@ -5591,7 +5692,6 @@ function MetricsDashboard({ progress, missed, onBack, onSelectObjective }) {
    REVIEW SESSION — spaced-repetition review of all questions due today,
    pulled across every objective. Answering advances each card's schedule.
    ========================================================================= */
-const REVIEW_SESSION_CAP = 20
 /* =========================================================================
    FOCUS MODE — review session scoped to weak-area objectives only.
    Pulls questions from the local quiz bank for objectives where mastery < 50%,
@@ -6243,6 +6343,7 @@ function SessionRecapCard() {
 function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, onImportPick, syncOn }) {
   const [openDomain, setOpenDomain] = useState(null)
   const [suggestions, setSuggestions] = useState([])
+  const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
   const [showNudge, setShowNudge] = useState(false)
 
@@ -6252,7 +6353,10 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
     let cancelled = false
     ;(async () => {
       const summary = await buildLearnerSummary(progress, missed || [])
-      if (!cancelled) setSuggestions(generateLocalSuggestions(summary))
+      if (!cancelled) {
+        setLearnerSummary(summary)
+        setSuggestions(generateLocalSuggestions(summary))
+      }
     })()
     return () => { cancelled = true }
   }, [progress, missed])
@@ -6283,6 +6387,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
   }
 
   const readiness = useMemo(() => computeReadinessScore(progress, retention), [progress, retention])
+  const studyNext = useMemo(() => pickStudyNext(learnerSummary, dueCount), [learnerSummary, dueCount])
 
   const totals = useMemo(() => {
     let mastered = 0, inProgress = 0
@@ -6319,6 +6424,8 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         {totals.mastered} mastered · {totals.inProgress} in progress · {totals.total - totals.mastered - totals.inProgress} not started
         {offlineReady?.size > 0 && <> · ⤓ {offlineReady.size} offline-ready</>}
       </div>
+
+      <StudyNextStrip next={studyNext} onSelectObjective={onSelectObjective} onOpenReview={onOpenReview} />
 
       {showNudge && (
         <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 12, position: 'relative' }}>
@@ -7789,7 +7896,7 @@ export default function App() {
         {view === 'mock' && <MockExam onExit={() => setView('home')} />}
         {view === 'missed' && <MissedReview missed={missed} onBack={() => setView('home')} onRemove={removeMissed} />}
         {view === 'tutor' && <TutorChat progress={progress} missed={missed} onBack={() => setView('home')} />}
-        {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} onBack={() => setView('home')} onSelectObjective={selectObjective} />}
+        {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} dueCount={dueCount} onBack={() => setView('home')} onSelectObjective={selectObjective} onOpenReview={() => setView('review')} />}
         {view === 'labs' && <LabsHub onBack={() => setView('home')} onOpenLab={(id) => openLab(id, 'labs')} />}
         {view === 'lab' && selectedLab && <LabView bundle={getLab(selectedLab)} onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')} />}
         {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
