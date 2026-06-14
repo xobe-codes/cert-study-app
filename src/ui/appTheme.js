@@ -46,8 +46,8 @@ function accentColors(accent) {
 }
 
 const styles = {
-  page: { minHeight: '100dvh', background: COLORS.bg, color: COLORS.silver, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', paddingBottom: 'calc(env(safe-area-inset-bottom) + 80px)', paddingTop: 'env(safe-area-inset-top)', paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' },
-  container: { width: '100%', maxWidth: 680, margin: '0 auto', padding: '10px max(16px, env(safe-area-inset-left)) 24px max(16px, env(safe-area-inset-right))', boxSizing: 'border-box' },
+  page: { width: '100%', height: '100%', overflow: 'hidden' },
+  container: { width: '100%', maxWidth: 680, margin: '0 auto', padding: '8px max(16px, env(safe-area-inset-left)) 16px max(16px, env(safe-area-inset-right))', boxSizing: 'border-box' },
   card: { background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14, padding: 14, marginBottom: 10, boxShadow: '0 4px 16px #00000033' },
   cardHover: { background: COLORS.cardHover },
   h1: { fontSize: 20, fontWeight: 700, color: COLORS.silver, margin: '2px 0 4px', lineHeight: 1.25 },

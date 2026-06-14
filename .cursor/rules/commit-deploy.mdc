@@ -1,0 +1,28 @@
+---
+description: Chat shortcut — commit & deploy (aliases c&d, ship it)
+alwaysApply: true
+---
+
+# Commit & deploy (`c&d`)
+
+When the user says **commit & deploy**, **c&d**, or **ship it**, run this workflow end-to-end without asking unless blocked.
+
+## Steps (in order)
+
+1. `git status`, `git diff`, `git log -3 --oneline` — if nothing to commit, say so and still build + deploy.
+2. `npm test && npm run build` — fix failures before committing.
+3. Stage only app-relevant changes. **Do not** add `docs/ux-audit/`, `.env*`, or secrets unless the user asks.
+4. Commit with a concise HEREDOC message (1–2 sentences, focus on why).
+5. `git push origin master` (request approval if the environment blocks protected-branch push).
+6. Deploy: `npx wrangler pages deploy dist --project-name ccna-study-tool --branch master --commit-dirty=true`
+
+## Report back
+
+- Commit hash + message (if committed)
+- Live URL: https://master.ccna-study-tool.pages.dev
+- Note if deploy was skipped (no changes / tests failed)
+
+## Do not
+
+- Force-push, amend, or skip hooks unless the user explicitly asks
+- Push or deploy without runnable tests and a successful build

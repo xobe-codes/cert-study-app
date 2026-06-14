@@ -80,7 +80,8 @@ export default function ObjectiveScreen({
   }, [objective.id])
 
   return (
-    <div>
+    <div className="objective-shell">
+      <div className="objective-header">
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <div style={{ marginBottom: 6, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
         <span style={styles.pill(objective.accent)}>{objective.id}</span>
@@ -192,6 +193,8 @@ export default function ObjectiveScreen({
         </button>
       )}
 
+      </div>
+      <div className="objective-body internal-scroll">
       {tab === 'Explain' && (
         <div role="tabpanel" id={objectivePanelId(objective.id, 'Explain')} aria-labelledby={objectiveTabId(objective.id, 'Explain')}>
           <SectionLabel icon="📖" label="EXPLANATION" />
@@ -250,6 +253,7 @@ export default function ObjectiveScreen({
           <ACLCalcTab />
         </div>
       )}
+      </div>
     </div>
   )
 }

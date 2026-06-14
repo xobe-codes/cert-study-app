@@ -10,6 +10,8 @@ import { getKnowledgeForObjective, hasKnowledgeBase } from './data/knowledgeStud
 import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme.js'
+import { buildAppShellCss } from './ui/appShell.js'
+import RouteShell from './components/RouteShell.jsx'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import Spinner from './components/Spinner.jsx'
@@ -6281,15 +6283,15 @@ function TutorChat({ progress, missed, onBack }) {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 32px)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div className="tutor-shell">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
         <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
         {messages.length > 0 && (
           <button style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 36, padding: '6px 14px', fontSize: 12 }} onClick={clearChat}>Clear chat</button>
         )}
       </div>
       <h1 style={styles.h1}>AI Tutor Chat</h1>
-      <div ref={scrollRef} style={{ flex: 1, overflowY: 'auto', marginBottom: 10 }}>
+      <div ref={scrollRef} className="tutor-messages internal-scroll" style={{ marginBottom: 10 }}>
         {messages.length === 0 && (
           <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
             <div style={{ fontSize: 13, lineHeight: 1.6 }}>
@@ -6326,7 +6328,7 @@ function TutorChat({ progress, missed, onBack }) {
           </div>
         )}
       </div>
-      <div style={{ display: 'flex', gap: 8 }}>
+      <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
         <input
           style={{ ...styles.input, flex: 1 }}
           value={input}
@@ -6731,25 +6733,24 @@ export default function App() {
   }
 
   if (!loaded) {
-    return <div style={styles.page}><div style={styles.container}><Spinner label="Loading your progress..." /></div></div>
+    return (
+      <div className="app-shell">
+        <style>{`${buildAppShellCss(COLORS)}\n${THEME_CSS}`}</style>
+        <RouteShell>
+          <Spinner label="Loading your progress..." />
+        </RouteShell>
+      </div>
+    )
   }
 
+  const routeScrolls = view !== 'objective' && view !== 'tutor'
+
   return (
-    <div style={styles.page}>
+    <div className="app-shell">
       <style>{`
+        ${buildAppShellCss(COLORS)}
         ${THEME_CSS}
         * { -webkit-tap-highlight-color: transparent; }
-        html, body { margin: 0; padding: 0; background-color: #07080d; }
-        html { scroll-behavior: smooth; }
-        body {
-          background:
-            radial-gradient(1100px 560px at 50% -12%, ${COLORS.glowA}, transparent 60%),
-            radial-gradient(760px 460px at 100% 0%, ${COLORS.glowB}, transparent 55%),
-            ${COLORS.bg};
-          background-attachment: fixed;
-          padding-bottom: env(safe-area-inset-bottom);
-          transition: background .25s ease;
-        }
         button { transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease; }
         button:active:not(:disabled) { transform: scale(0.97); }
         button:disabled { opacity: 0.5; cursor: default !important; }
@@ -6792,65 +6793,42 @@ export default function App() {
         .ccna-overlay { animation: ccna-overlay-in .2s ease both; }
         .ccna-sheet { animation: ccna-sheet-in .3s cubic-bezier(.2,.8,.2,1) both; }
         @media (min-width: 768px) {
-          .ccna-container { max-width: 720px; padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); }
+          .route-inner.ccna-container { max-width: 720px; }
         }
         .ccna-quiz-idle {
-          display: flex; flex-direction: column; gap: 8px;
-          justify-content: center;
-          min-height: min(72dvh, 640px);
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
         }
         @media (max-height: 740px) {
-          .ccna-quiz-idle { min-height: 0; justify-content: flex-start; }
           .mc-choices-tip { display: none; }
         }
         @media (max-width: 480px) {
           .ccna-compact-p { font-size: 12px !important; line-height: 1.4 !important; }
         }
-          html { scroll-behavior: auto; }
+        @media (prefers-reduced-motion: reduce) {
           .ccna-view, .ccna-overlay, .ccna-sheet, .ccna-stagger > *, .ccna-quiz-reveal, .ccna-shimmer::after, .ccna-skeleton, .ccna-pulse { animation: none; }
           button:active:not(:disabled) { transform: none; }
         }
       `}</style>
       <input ref={importFileRef} type="file" accept="application/json,.json" style={{ display: 'none' }} onChange={handleImportFile} />
-      {/* Search button — hidden while modals are open so it cannot block Close */}
-      {!showExport && !showSync && !showSearch && (
-      <button
-        onClick={() => setShowSearch(true)}
-        title="Search objectives (⌘K)"
-        aria-label="Search objectives"
-        style={{
-          position: 'fixed',
-          bottom: 'calc(env(safe-area-inset-bottom) + 20px)',
-          left: '50%', transform: 'translateX(-50%)',
-          zIndex: 200,
-          minHeight: 44, height: 44, padding: '0 18px',
-          borderRadius: 999, border: `1px solid ${COLORS.border}`, background: COLORS.card,
-          color: COLORS.silverMid, fontSize: 13, cursor: 'pointer', display: 'flex',
-          alignItems: 'center', gap: 6, boxShadow: '0 2px 10px #00000033',
-        }}
-      >
-        🔍 Search
-      </button>
+      {!apiOnline && (
+        <div className="app-chrome-top">
+          <OfflineBanner />
+        </div>
       )}
-      {/* Theme toggle — fixed top-right with iOS safe area */}
-      <button
-        onClick={toggleTheme}
-        aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-        title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
-        style={{
-          position: 'fixed',
-          top: 'calc(env(safe-area-inset-top) + 10px)',
-          right: 'max(12px, env(safe-area-inset-right))', zIndex: 200, width: 40, height: 40,
-          borderRadius: 999, border: `1px solid ${COLORS.border}`, background: COLORS.card,
-          color: COLORS.silver, fontSize: 18, cursor: 'pointer', display: 'flex',
-          alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 10px #00000033',
-        }}
-      >
-        {theme === 'dark' ? '☀️' : '🌙'}
-      </button>
-      {!apiOnline && <OfflineBanner />}
-      <div className="ccna-container" style={styles.container} ref={mainRef}>
-        <div className="ccna-view">
+      <div className="app-chrome-top app-chrome-toolbar">
+        <button
+          type="button"
+          className="app-chrome-theme"
+          onClick={toggleTheme}
+          aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+        >
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
+      </div>
+      <RouteShell scroll={routeScrolls} ref={mainRef}>
         {view === 'onboarding' && <Onboarding onComplete={finishOnboarding} onSkip={skipOnboarding} />}
         {view === 'home' && (
           <HomeScreen
@@ -6943,8 +6921,20 @@ export default function App() {
             onBack={() => setView('home')}
           />
         )}
+      </RouteShell>
+      {!showExport && !showSync && !showSearch && (
+        <div className="app-chrome-bottom">
+          <button
+            type="button"
+            className="app-chrome-search"
+            onClick={() => setShowSearch(true)}
+            title="Search objectives (⌘K)"
+            aria-label="Search objectives"
+          >
+            🔍 Search
+          </button>
         </div>
-      </div>
+      )}
       {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}
       {showSearch && <GlobalSearchModal progress={progress} onSelectObjective={selectObjective} onClose={() => setShowSearch(false)} />}
       {showSync && (
