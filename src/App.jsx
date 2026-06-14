@@ -11,9 +11,6 @@ import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme.js'
 import { buildAppShellCss } from './ui/appShell.js'
-import DifficultyPill from './components/DifficultyPill.jsx'
-import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
-import { getCkuDifficulty, getCuratedPreview } from './curatedDisplay.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import Spinner from './components/Spinner.jsx'
@@ -21,6 +18,7 @@ import ErrorBox from './components/ErrorBox.jsx'
 import StatusDot from './components/StatusDot.jsx'
 import StatusLabel from './components/StatusLabel.jsx'
 import HomeScreen from './HomeScreen.jsx'
+import StatsPage from './StatsPage.jsx'
 import ObjectiveScreen from './ObjectiveScreen.jsx'
 import MockExam from './MockExam.jsx'
 import StudyNextStrip from './home/StudyNextStrip.jsx'
@@ -1433,7 +1431,7 @@ function KeyTermsCarousel({ objective }) {
             <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9 }}>🃏 KEY TERMS</div>
             <div style={{ ...styles.small, fontSize: 'var(--ccna-type-xs)', marginTop: 1 }}>Tap a card to flip</div>
           </div>
-          {fromCurated && <CuratedStaticBadge objectiveId={objective.id} fontSize={9} />}
+          {fromCurated && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>CURATED · NO AI</span>}
         </div>
         <button
           style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
@@ -1600,7 +1598,7 @@ function CuratedVisualAid({ data }) {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
-        <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
+        <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-xs)' }}>📚 CURATED · NO AI</span>
       </div>
       {data.diagram && <CuratedDiagram diagram={data.diagram} />}
       {pf?.steps?.length > 0 && (
@@ -2105,7 +2103,7 @@ function CuratedReading({ data }) {
   return (
     <div className="ccna-stagger">
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
-        <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
+        <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-xs)' }}>📚 CURATED · NO AI</span>
         <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{srcNames.join(' · ')}</span>
       </div>
       <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
@@ -4739,28 +4737,15 @@ function ContentCoverage({ onOpen, bare = false }) {
             <div style={{ marginTop: 8 }}>
               {r.objs.map(o => {
                 const c = hasCuratedReading(o.id), q = !c && hasCuratedQuestions(o.id), l = labsForObjective(o.id).length > 0
-                const curated = getCurated(o.id)
-                const ckus = curated?.ckus || []
                 return (
-                  <div key={o.id} style={{ marginBottom: ckus.length ? 4 : 0 }}>
-                    <button onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-                      <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : q ? COLORS.sky : COLORS.silverDim, flexShrink: 0 }} />
-                      <span style={{ flex: 1, fontSize: 'var(--ccna-type-xs)', color: c || q ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
-                      {(c || q) && <CuratedStaticBadge objectiveId={o.id} fontSize={8} noApiLabel="no API" />}
-                      {!c && !q && <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverDim }}>AI</span>}
-                      {l && <span style={{ fontSize: 'var(--ccna-type-xs)' }}>🧪</span>}
-                    </button>
-                    {ckus.length > 0 && (
-                      <div style={{ paddingLeft: 14, marginBottom: 4 }}>
-                        {ckus.map(cku => (
-                          <div key={cku.id} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '2px 0' }}>
-                            <span style={{ flex: 1, fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>{cku.title}</span>
-                            <DifficultyPill difficulty={getCkuDifficulty(o.id, cku.id)} fontSize={8} style={{ marginLeft: 0 }} />
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                  <button key={o.id} onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                    <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : q ? COLORS.sky : COLORS.silverDim, flexShrink: 0 }} />
+                    <span style={{ flex: 1, fontSize: 'var(--ccna-type-xs)', color: c || q ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
+                    {c && <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.mint }}>CURATED</span>}
+                    {q && <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.sky }}>QUESTIONS</span>}
+                    {!c && !q && <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverDim }}>AI</span>}
+                    {l && <span style={{ fontSize: 'var(--ccna-type-xs)' }}>🧪</span>}
+                  </button>
                 )
               })}
             </div>
@@ -4774,7 +4759,7 @@ function ContentCoverage({ onOpen, bare = false }) {
   return <div style={{ ...styles.card }}>{body}</div>
 }
 
-function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObjective, onOpenReview }) {
+function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObjective, onOpenReview, onOpenStats }) {
   const [data, setData] = useState(null)
   const [openBankIds, setOpenBankIds] = useState(new Set())
 
@@ -4875,7 +4860,23 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
   return (
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Learner Metrics</h1>
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10, marginBottom: 6 }}>
+        <h1 style={{ ...styles.h1, margin: 0 }}>Learner Metrics</h1>
+        {onOpenStats && (
+          <button
+            type="button"
+            onClick={onOpenStats}
+            style={{
+              flexShrink: 0, minHeight: 36, padding: '6px 12px', borderRadius: 999,
+              border: `1px solid ${COLORS.border}`, background: COLORS.surface,
+              color: COLORS.silverMid, fontSize: 'var(--ccna-type-caption)', fontWeight: 600,
+              cursor: 'pointer', fontFamily: 'inherit',
+            }}
+          >
+            Stats →
+          </button>
+        )}
+      </div>
       <div style={{ ...styles.small, marginBottom: 10 }}>Everything below is computed locally from your activity — no API calls.</div>
 
       {studyNext && (
@@ -5473,8 +5474,6 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
           {results.map(o => {
             const status = progress[o.id]?.status || 'unseen'
             const domain = DOMAINS.find(d => d.objectives.some(x => x.id === o.id))
-            const preview = status === 'mastered' ? getCuratedPreview(o.id) : null
-            const isStatic = hasCuratedReading(o.id) || hasCuratedQuestions(o.id)
             return (
               <button
                 key={o.id}
@@ -5483,11 +5482,8 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
               >
                 <StatusDot status={status} />
                 <span style={{ ...styles.pill(domain?.accent || 'purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{o.id}</span>
-                <span style={{ flex: 1, minWidth: 0 }}>
-                  <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }}>{o.title}</span>
-                  {preview && <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2, lineHeight: 1.35 }}>{preview}</span>}
-                </span>
-                {isStatic && <CuratedStaticBadge objectiveId={o.id} fontSize={8} noApiLabel="no API" />}
+                <span style={{ flex: 1, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }}>{o.title}</span>
+                {hasCuratedReading(o.id) && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>C</span>}
               </button>
             )
           })}
@@ -6500,7 +6496,7 @@ function parseAppHash() {
     }
   }
   const simple = raw.replace(/^\//, '')
-  if (['mock', 'metrics', 'review', 'missed', 'labs', 'focus', 'tutor'].includes(simple)) {
+  if (['mock', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor'].includes(simple)) {
     return { view: simple }
   }
   return null
@@ -6535,7 +6531,7 @@ function AppShell({ view, compactTopChrome, children }) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | focus | examtraps | subnet | routing | extrastudy
+  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | examtraps | subnet | routing | extrastudy
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -6995,6 +6991,7 @@ export default function App() {
             onOpenTutor={() => setView('tutor')}
             onOpenExport={() => setShowExport(true)}
             onOpenMetrics={() => setView('metrics')}
+            onOpenStats={() => setView('stats')}
             onOpenLabs={() => setView('labs')}
             onOpenSync={() => setShowSync(true)}
             onOpenReview={() => setView('review')}
@@ -7053,7 +7050,15 @@ export default function App() {
         {view === 'mock' && <MockExam onExit={() => setView('home')} askClaudeJSON={askClaudeJSON} cachedSystem={cachedSystem} mockSchema={MOCK_SCHEMA} bookRef={BOOK_REF} />}
         {view === 'missed' && <MissedReview missed={missed} onBack={() => setView('home')} onRemove={removeMissed} />}
         {view === 'tutor' && <TutorChat progress={progress} missed={missed} onBack={() => setView('home')} />}
-        {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} dueCount={dueCount} onBack={() => setView('home')} onSelectObjective={selectObjective} onOpenReview={() => setView('review')} />}
+        {view === 'stats' && (
+          <StatsPage
+            progress={progress}
+            streak={streak}
+            onBack={() => setView('home')}
+            onOpenMetrics={() => setView('metrics')}
+          />
+        )}
+        {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} dueCount={dueCount} onBack={() => setView('home')} onSelectObjective={selectObjective} onOpenReview={() => setView('review')} onOpenStats={() => setView('stats')} />}
         {view === 'labs' && <LabsHub onBack={() => setView('home')} onOpenLab={(id) => openLab(id, 'labs')} />}
         {view === 'lab' && selectedLab && <LabView bundle={getLab(selectedLab)} onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')} />}
         {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}

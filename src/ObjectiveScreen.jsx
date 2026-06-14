@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { DOMAINS } from './data/ccnaDomains.js'
 import { hasCuratedReading, hasCuratedQuestions } from './data/ccnaCurated.js'
-import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import StudyBlockStrip from './components/StudyBlockStrip.jsx'
 import StudyBlockCompleteCard from './components/StudyBlockCompleteCard.jsx'
 import { useStudyBlock } from './components/StudyBlockProvider.jsx'
@@ -152,10 +151,9 @@ export default function ObjectiveScreen({
         <span style={styles.pill(objective.accent)}>{objective.id}</span>
         <span><StatusLabel status={status} /></span>
         {(() => {
-          if (hasCuratedQuestions(objective.id) || hasCuratedReading(objective.id)) {
-            return <CuratedStaticBadge objectiveId={objective.id} fontSize={9} />
-          }
-          return <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-caption)' }}>AI</span>
+          if (hasCuratedReading(objective.id)) return <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>CURATED</span>
+          if (hasCuratedQuestions(objective.id)) return <span style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-micro)' }}>Q-ONLY</span>
+          return <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)' }}>AI</span>
         })()}
       </div>
       <h1 style={styles.h1}>{objective.title}</h1>

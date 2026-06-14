@@ -492,7 +492,17 @@ export function buildAppShellCss(colors) {
       min-width: 0;
       overflow-x: hidden;
     }
-    .tutor-shell {
+    .stats-bottom-bar {
+      margin-bottom: 8px;
+    }
+    .stats-chart-card {
+      overflow: hidden;
+    }
+    .stats-combo-chart {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
       flex: 1;
       min-height: 0;
       display: flex;
