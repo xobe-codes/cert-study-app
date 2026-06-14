@@ -1,5 +1,7 @@
 /** Viewport-locked app shell — document never scrolls; routes use internal panels. */
 
+export const SITE_COLUMN_MAX = 720
+
 export function buildAppShellCss(colors) {
   return `
     html, body, #root {
@@ -13,14 +15,17 @@ export function buildAppShellCss(colors) {
       display: flex;
       flex-direction: column;
       min-height: 0;
+      align-items: center;
     }
     .app-shell {
       width: 100%;
+      max-width: ${SITE_COLUMN_MAX}px;
       height: 100vh;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       min-height: 0;
+      margin: 0 auto;
       background:
         radial-gradient(1100px 560px at 50% -12%, ${colors.glowA}, transparent 60%),
         radial-gradient(760px 460px at 100% 0%, ${colors.glowB}, transparent 55%),
@@ -28,27 +33,48 @@ export function buildAppShellCss(colors) {
       color: ${colors.silver};
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       position: relative;
+      box-sizing: border-box;
     }
     @supports (height: 100dvh) {
       .app-shell { height: 100dvh; }
     }
+    .site-column {
+      width: 100%;
+      max-width: ${SITE_COLUMN_MAX}px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+      box-sizing: border-box;
+    }
+    @media (min-width: 768px) {
+      .site-column {
+        padding-left: max(24px, env(safe-area-inset-left));
+        padding-right: max(24px, env(safe-area-inset-right));
+      }
+    }
     .app-chrome-top {
       flex-shrink: 0;
       z-index: 120;
+      width: 100%;
     }
     .app-chrome-toolbar {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       gap: 8px;
-      padding: calc(env(safe-area-inset-top) + 6px) max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left));
+      padding-top: calc(env(safe-area-inset-top) + 6px);
+      padding-bottom: 6px;
       min-height: 0;
+      width: 100%;
     }
     .app-chrome-bottom {
       flex-shrink: 0;
       display: flex;
       justify-content: center;
-      padding: 8px max(16px, env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 10px) max(16px, env(safe-area-inset-left));
+      width: 100%;
+      padding-top: 8px;
+      padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
       z-index: 120;
       background: linear-gradient(to top, ${colors.bg} 70%, transparent);
     }
@@ -107,17 +133,9 @@ export function buildAppShellCss(colors) {
     }
     .route-inner.ccna-container {
       width: 100%;
-      max-width: 680px;
       margin: 0 auto;
-      padding: 8px max(16px, env(safe-area-inset-left)) 16px max(16px, env(safe-area-inset-right));
+      padding: 8px 0 16px;
       box-sizing: border-box;
-    }
-    @media (min-width: 768px) {
-      .route-inner.ccna-container {
-        max-width: 720px;
-        padding-left: max(24px, env(safe-area-inset-left));
-        padding-right: max(24px, env(safe-area-inset-right));
-      }
     }
     .page-fill {
       height: 100%;

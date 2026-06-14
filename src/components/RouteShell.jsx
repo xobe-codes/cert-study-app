@@ -6,7 +6,7 @@ import React, { forwardRef } from 'react'
 const RouteShell = forwardRef(function RouteShell({ children, scroll = true, innerClassName = '' }, ref) {
   if (!scroll) {
     return (
-      <div className="route-shell route-shell--fill">
+      <div className="route-shell route-shell--fill site-column">
         <div className={`route-inner ccna-container page-fill ${innerClassName}`.trim()}>
           {children}
         </div>
@@ -14,7 +14,7 @@ const RouteShell = forwardRef(function RouteShell({ children, scroll = true, inn
     )
   }
   return (
-    <div className="route-shell">
+    <div className="route-shell site-column">
       <div className="route-scroll internal-scroll" ref={ref}>
         <div className={`route-inner ccna-container ccna-view ${innerClassName}`.trim()}>
           {children}

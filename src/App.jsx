@@ -6792,8 +6792,12 @@ export default function App() {
         @keyframes ccna-sheet-in { from { transform: translateY(100%); } to { transform: none; } }
         .ccna-overlay { animation: ccna-overlay-in .2s ease both; }
         .ccna-sheet { animation: ccna-sheet-in .3s cubic-bezier(.2,.8,.2,1) both; }
-        @media (min-width: 768px) {
-          .route-inner.ccna-container { max-width: 720px; }
+        @media (max-width: 480px) {
+          .ccna-compact-p { font-size: 12px !important; line-height: 1.4 !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .ccna-view, .ccna-overlay, .ccna-sheet, .ccna-stagger > *, .ccna-quiz-reveal, .ccna-shimmer::after, .ccna-skeleton, .ccna-pulse { animation: none; }
+          button:active:not(:disabled) { transform: none; }
         }
         .ccna-quiz-idle {
           display: flex;
@@ -6803,21 +6807,14 @@ export default function App() {
         @media (max-height: 740px) {
           .mc-choices-tip { display: none; }
         }
-        @media (max-width: 480px) {
-          .ccna-compact-p { font-size: 12px !important; line-height: 1.4 !important; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .ccna-view, .ccna-overlay, .ccna-sheet, .ccna-stagger > *, .ccna-quiz-reveal, .ccna-shimmer::after, .ccna-skeleton, .ccna-pulse { animation: none; }
-          button:active:not(:disabled) { transform: none; }
-        }
       `}</style>
       <input ref={importFileRef} type="file" accept="application/json,.json" style={{ display: 'none' }} onChange={handleImportFile} />
       {!apiOnline && (
-        <div className="app-chrome-top">
+        <div className="app-chrome-top site-column">
           <OfflineBanner />
         </div>
       )}
-      <div className="app-chrome-top app-chrome-toolbar">
+      <div className="app-chrome-top app-chrome-toolbar site-column">
         <button
           type="button"
           className="app-chrome-theme"
@@ -6923,7 +6920,7 @@ export default function App() {
         )}
       </RouteShell>
       {!showExport && !showSync && !showSearch && (
-        <div className="app-chrome-bottom">
+        <div className="app-chrome-bottom site-column">
           <button
             type="button"
             className="app-chrome-search"
