@@ -18,7 +18,7 @@ export default function RoutingDecoderMode({ styles, COLORS, onBack }) {
     <div>
       <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>Routing Table Decoder</h1>
-      <div style={styles.small}>Read the route line — static KB drill, no API.</div>
+      <div style={styles.small}>Read the route line — static KB drill, no API used.</div>
       <div style={{ ...styles.card, marginTop: 12, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)' }}>
         {problem.line}
       </div>

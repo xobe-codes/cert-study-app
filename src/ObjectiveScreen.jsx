@@ -111,9 +111,17 @@ export default function ObjectiveScreen({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [objective.id])
 
-  const topRow = (
-    <div className="objective-top-row">
-      <button type="button" className="objective-back-btn" style={styles.backBtn} onClick={onBack}>‹ Back</button>
+  const backRow = (
+    <div className="objective-wayfind-row">
+      <button type="button" className="objective-back-btn" onClick={onBack} aria-label="Back to topics">
+        <span className="objective-back-btn__icon" aria-hidden="true">←</span>
+        <span className="objective-back-btn__label">Topics</span>
+      </button>
+    </div>
+  )
+
+  const studyBlockRow = (
+    <div className="objective-study-row">
       <StudyBlockStrip objectiveId={objective.id} />
     </div>
   )
@@ -155,40 +163,50 @@ export default function ObjectiveScreen({
           if (hasCuratedQuestions(objective.id) || hasCuratedReading(objective.id)) {
             return <CuratedStaticBadge objectiveId={objective.id} fontSize={9} />
           }
-          return <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)' }}>AI</span>
+          return <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)' }}>API on demand</span>
         })()}
       </div>
-      <h1 style={styles.h1}>{objective.title}</h1>
-      <div className="objective-domain" style={{ ...styles.small, marginBottom: 8 }}>{objective.domainName}</div>
+      <h1 className="objective-title">{objective.title}</h1>
+      <div className="objective-domain" style={{ ...styles.small, marginBottom: 6 }}>{objective.domainName}</div>
 
-      {(prevObj || nextObj) && (
-        <div className="objective-nav-row" style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-          <button
-            onClick={() => handleSelectSibling(prevObj)}
-            disabled={!prevObj}
-            style={{
-              flex: 1, minHeight: 44, borderRadius: 10, border: `1px solid ${COLORS.border}`,
-              background: COLORS.surface, color: prevObj ? COLORS.silver : COLORS.silverDim,
-              fontSize: 'var(--ccna-type-xs)', cursor: prevObj ? 'pointer' : 'default', fontFamily: 'inherit',
-              padding: '6px 10px', textAlign: 'left', opacity: prevObj ? 1 : 0.35,
-            }}
-          >
-            ‹ {prevObj ? prevObj.id : ''}
-          </button>
-          <button
-            onClick={() => handleSelectSibling(nextObj)}
-            disabled={!nextObj}
-            style={{
-              flex: 1, minHeight: 44, borderRadius: 10, border: `1px solid ${COLORS.border}`,
-              background: COLORS.surface, color: nextObj ? COLORS.silver : COLORS.silverDim,
-              fontSize: 'var(--ccna-type-xs)', cursor: nextObj ? 'pointer' : 'default', fontFamily: 'inherit',
-              padding: '6px 10px', textAlign: 'right', opacity: nextObj ? 1 : 0.35,
-            }}
-          >
-            {nextObj ? nextObj.id : ''} ›
-          </button>
+      <div className="objective-actions-row">
+        {(prevObj || nextObj) && (
+          <div className="objective-nav-row">
+            <button
+              type="button"
+              className="objective-sibling-btn"
+              onClick={() => handleSelectSibling(prevObj)}
+              disabled={!prevObj}
+            >
+              ‹ {prevObj ? prevObj.id : '—'}
+            </button>
+            <button
+              type="button"
+              className="objective-sibling-btn objective-sibling-btn--next"
+              onClick={() => handleSelectSibling(nextObj)}
+              disabled={!nextObj}
+            >
+              {nextObj ? nextObj.id : '—'} ›
+            </button>
+          </div>
+        )}
+        <div className="objective-offline-action">
+          {isOffline ? (
+            <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-xs)' }}>⤓ Offline</span>
+          ) : isPackaging ? (
+            <span style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-xs)' }}>Downloading…</span>
+          ) : (
+            <button
+              type="button"
+              className="objective-offline-btn"
+              onClick={() => onPackage?.(objective)}
+              disabled={!apiOnline}
+            >
+              {apiOnline ? '⤓ Save offline' : 'Offline only'}
+            </button>
+          )}
         </div>
-      )}
+      </div>
 
       {switchPrompt && (
         <div className="study-block-switch-prompt" style={{ ...styles.card, marginBottom: 10, borderColor: COLORS.amberBorder }}>
@@ -202,26 +220,6 @@ export default function ObjectiveScreen({
           </div>
         </div>
       )}
-
-      <div style={{ marginBottom: 10 }}>
-        {isOffline ? (
-          <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-xs)' }}>⤓ Available offline</span>
-        ) : isPackaging ? (
-          <span style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-xs)' }}>Downloading for offline…</span>
-        ) : (
-          <button
-            onClick={() => onPackage?.(objective)}
-            disabled={!apiOnline}
-            style={{
-              background: 'none', border: `1px solid ${COLORS.border}`, borderRadius: 999,
-              color: apiOnline ? COLORS.silverMid : COLORS.silverDim, fontSize: 'var(--ccna-type-xs)', fontWeight: 600,
-              padding: '4px 12px', minHeight: 32, cursor: apiOnline ? 'pointer' : 'default', fontFamily: 'inherit',
-            }}
-          >
-            {apiOnline ? '⤓ Make available offline' : 'Offline — connect to download'}
-          </button>
-        )}
-      </div>
 
       {(progress[objective.id]?.quizScores || []).length > 0 && (
         <ProgressBar
@@ -243,31 +241,32 @@ export default function ObjectiveScreen({
           <>
             <div className="objective-header-scroll">{headerDetails}</div>
             <div className="objective-sticky-chrome">
-              {topRow}
+              {backRow}
+              {studyBlockRow}
               {tabBar}
             </div>
           </>
         ) : (
           <>
-            {topRow}
+            {backRow}
+            {studyBlockRow}
             {headerDetails}
             {tabBar}
           </>
         )}
+      </div>
 
+      <div className="objective-body internal-scroll">
         {objLabs.length > 0 && (
-          <button className="ccna-hover" onClick={() => onOpenLab?.(objLabs[0].id)} style={{ ...styles.card, display: 'flex', alignItems: 'center', gap: 10, width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', borderLeft: `3px solid ${COLORS.mint}` }}>
+          <button type="button" className="objective-lab-cta ccna-hover" onClick={() => onOpenLab?.(objLabs[0].id)}>
             <span style={{ fontSize: 'var(--ccna-type-lg)' }} aria-hidden="true">🧪</span>
             <span style={{ flex: 1 }}>
               <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver }}>{objLabs.length === 1 ? objLabs[0].title : `${objLabs.length} hands-on labs`}</span>
-              <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Guided multi-device lab · ~{objLabs[0].estimatedTimeMinutes} min</span>
+              <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Guided lab · ~{objLabs[0].estimatedTimeMinutes} min · no API used</span>
             </span>
             <span style={{ color: COLORS.sky, fontSize: 'var(--ccna-type-sm)' }}>→</span>
           </button>
         )}
-      </div>
-
-      <div className="objective-body internal-scroll">
         <StudyBlockCompleteCard
           objectiveId={objective.id}
           masteryPct={masteryPct}
@@ -275,19 +274,16 @@ export default function ObjectiveScreen({
         />
         {tab === 'Explain' && (
           <div className="objective-reading-prose" role="tabpanel" id={objectivePanelId(objective.id, 'Explain')} aria-labelledby={objectiveTabId(objective.id, 'Explain')}>
-            <SectionLabel icon="📖" label="EXPLANATION" />
             <ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} />
           </div>
         )}
         {tab === 'Visual' && (
           <div role="tabpanel" id={objectivePanelId(objective.id, 'Visual')} aria-labelledby={objectiveTabId(objective.id, 'Visual')}>
-            <SectionLabel icon="🖼" label="VISUAL AID" />
             <VisualAidTab objective={objective} />
           </div>
         )}
         {tab === 'Quiz' && (
           <div role="tabpanel" id={objectivePanelId(objective.id, 'Quiz')} aria-labelledby={objectiveTabId(objective.id, 'Quiz')}>
-            <SectionLabel icon="❓" label="QUIZ" />
             <QuizTab
               objective={objective}
               progress={progress}

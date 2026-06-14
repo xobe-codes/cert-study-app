@@ -203,10 +203,15 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
           <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.7 }}>
             <div>• {MOCK_EXAM_QUESTION_COUNT} questions, {MOCK_EXAM_DURATION_MIN} minute countdown</div>
             <div>• Weighted by official exam domain percentages</div>
-            <div>• <span style={{ color: COLORS.mint }}>{canUseStaticOnly ? '100% from your static bank' : `~${staticPct}% from your static question bank`}</span>{canUseStaticOnly ? ' — no API needed' : ' — hybrid fills gaps with AI'}</div>
+            <div>• <span style={{ color: COLORS.mint }}>{canUseStaticOnly ? '100% from your static bank' : `~${staticPct}% from your static question bank`}</span>{canUseStaticOnly ? ' — no API used' : ' — hybrid fills gaps with API'}</div>
             <div>• Score report broken down by domain at the end</div>
             <div>• Once started, the timer runs continuously — find a quiet 2 hours, or submit early</div>
           </div>
+          {bankReady && staticCount > 0 && (
+            <div style={{ ...styles.small, marginTop: 8, color: COLORS.silverMid }}>
+              {staticCount} multiple-choice questions in static bank for this exam
+            </div>
+          )}
           <label style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontSize: 'var(--ccna-type-md)', cursor: 'pointer' }}>
             <input
               type="checkbox"
@@ -216,7 +221,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
               style={{ width: 18, height: 18, accentColor: COLORS.brand }}
             />
             <span>
-              Static bank only (no API)
+              Static bank only (no API used)
               {!canUseStaticOnly && !bankReady && <span style={{ color: COLORS.silverMid }}> — loading bank…</span>}
             </span>
           </label>

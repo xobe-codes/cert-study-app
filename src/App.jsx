@@ -1703,6 +1703,8 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
   const showNavHint = useNavHint()
   const resultHintFired = useRef(false)
   const [showConfetti, setShowConfetti] = useState(false)
+  const quizPoolSize = useMemo(() => getCuratedQuestions(objective.id).length, [objective.id])
+  const preassessCount = 6
 
   const q = questions[idx]
   useEffect(() => {
@@ -1787,7 +1789,12 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
     return (
       <div style={{ ...styles.card, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
         <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>📋 PRE-ASSESSMENT</div>
-        <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.5, marginBottom: 12 }}>Already know this section? Take a quick 6-question check — score 85%+ and you can skip straight ahead.</div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.5, marginBottom: 6 }}>Already know this section? Take a quick {preassessCount}-question check — score 85%+ and you can skip straight ahead.</div>
+        <div style={{ ...styles.small, marginBottom: 12 }}>
+          {preassessCount} questions in this check
+          {quizPoolSize > 0 && <> · <strong style={{ color: COLORS.silver }}>{quizPoolSize}</strong> in full quiz bank</>}
+          {quizPoolSize >= preassessCount && ' · no API used'}
+        </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button style={styles.primaryBtn} onClick={start}>Test out</button>
           <button style={styles.secondaryBtn} onClick={onStudy}>Study it</button>
@@ -2181,7 +2188,7 @@ function BookRefPanel({ objective }) {
   return (
     <div style={{ ...styles.card, border: `1px solid ${COLORS.border}`, marginBottom: 12 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-        <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>⚡ QUICK REFERENCE · NO AI</span>
+        <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>⚡ QUICK REFERENCE · no API used</span>
       </div>
       <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.65 }}>
         <RichText text={notes} />
@@ -3161,6 +3168,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
   const [bankQuestions, setBankQuestions] = useState([])
   const [orderDraft, setOrderDraft] = useState([])
   const [sessionSize, setSessionSize] = useState(DEFAULT_QUIZ_SESSION_SIZE)
+  const curatedPoolSize = useMemo(() => getCuratedQuestions(objective.id).length, [objective.id])
 
   useEffect(() => {
     loadQuizSessionSize().then(setSessionSize)
@@ -3391,51 +3399,56 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
 
   if (phase === 'idle') {
     const hasBank = bankSize >= QUIZ_BANK_MIN
+    const poolMax = hasBank ? bankSize : (curatedPoolSize > 0 ? curatedPoolSize : MAX_QUIZ_SESSION_SIZE)
     const sessionMax = hasBank ? bankSize : MAX_QUIZ_SESSION_SIZE
     const reviewCount = hasBank ? Math.min(sessionSize, bankSize) : sessionSize
     return (
       <div className="ccna-quiz-idle">
-        <p style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, color: COLORS.silver, margin: '0 0 6px', lineHeight: 1.35 }}>
+        <p style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, color: COLORS.silver, margin: '0 0 4px', lineHeight: 1.35 }}>
           How many questions do you want?
         </p>
-        {hasBank ? (
-          <p style={{ ...styles.small, marginBottom: 8 }}>
-            You have <strong style={{ color: COLORS.silver }}>{bankSize}</strong> question{bankSize === 1 ? '' : 's'} to choose from — review reuses your bank with no API call. Missed and weak items come back first.
-          </p>
-        ) : (
-          <p style={{ ...styles.small, marginBottom: 8 }}>
-            Build a local question bank for this objective (one-time AI generation). Your session size applies once questions are saved.
-          </p>
-        )}
-        {hasBank && <BankMixDisplay questions={bankQuestions} />}
-        {!hasBank && <AiBudgetWarning />}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-          <label htmlFor={`quiz-session-size-${objective.id}`} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>This session</label>
-          <input
-            id={`quiz-session-size-${objective.id}`}
-            type="number"
-            min={1}
-            max={sessionMax}
-            inputMode="numeric"
-            value={sessionSize}
-            onChange={onSessionSizeInput}
-            onBlur={onSessionSizeBlur}
-            aria-label={`How many questions this session${hasBank ? `, up to ${bankSize} available` : ''}`}
-            style={{
-              ...styles.input,
-              width: 56,
-              padding: '4px 8px',
-              fontSize: 'var(--ccna-type-sm)',
-              textAlign: 'center',
-            }}
-          />
-          {hasBank && (
-            <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
-              of {bankSize} available
-            </span>
+        <p style={{ ...styles.small, marginBottom: 10, color: COLORS.silverMid }}>
+          {hasBank ? (
+            <>
+              <strong style={{ color: COLORS.silver }}>{bankSize}</strong> question{bankSize === 1 ? '' : 's'} available in your bank — review reuses saved questions, no API used.
+            </>
+          ) : curatedPoolSize > 0 ? (
+            <>
+              <strong style={{ color: COLORS.silver }}>{curatedPoolSize}</strong> curated question{curatedPoolSize === 1 ? '' : 's'} for this topic — first session seeds your bank, no API used.
+            </>
+          ) : (
+            <>Build a local bank for this topic (one-time API generation if the static pool is thin).</>
           )}
+        </p>
+        {hasBank && <BankMixDisplay questions={bankQuestions} />}
+        {!hasBank && curatedPoolSize === 0 && <AiBudgetWarning />}
+        <div style={{ marginBottom: 4 }}>
+          <label htmlFor={`quiz-session-size-${objective.id}`} style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 6 }}>This session</label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+            <input
+              id={`quiz-session-size-${objective.id}`}
+              type="number"
+              min={1}
+              max={sessionMax}
+              inputMode="numeric"
+              value={sessionSize}
+              onChange={onSessionSizeInput}
+              onBlur={onSessionSizeBlur}
+              aria-label={`How many questions this session, up to ${poolMax} available`}
+              style={{
+                ...styles.input,
+                width: 56,
+                padding: '4px 8px',
+                fontSize: 'var(--ccna-type-sm)',
+                textAlign: 'center',
+              }}
+            />
+            <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
+              of {poolMax} available
+            </span>
+          </div>
         </div>
-        <button style={styles.primaryBtn} onClick={() => startQuiz(false)}>{hasBank ? `Review ${reviewCount} question${reviewCount === 1 ? '' : 's'}` : 'Build question bank'}</button>
+        <button style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={() => startQuiz(false)}>{hasBank ? `Review ${reviewCount} question${reviewCount === 1 ? '' : 's'}` : 'Start quiz'}</button>
         {hasBank && (
           <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => startQuiz(true)}>Generate new questions</button>
         )}
@@ -4423,7 +4436,7 @@ function LabsHub({ onBack, onOpenLab }) {
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>🧪 Hands-on Labs</h1>
-      <p style={{ ...styles.small, marginBottom: 14 }}>Guided config labs and troubleshooting scenarios — deterministic command checking, no AI, works offline.</p>
+      <p style={{ ...styles.small, marginBottom: 14 }}>Guided config labs and troubleshooting scenarios — deterministic command checking, no API used, works offline.</p>
       {tsLabs.length > 0 && (
         <div style={{ marginBottom: 18 }}>
           <div style={{ ...styles.small, fontWeight: 700, color: COLORS.amber, marginBottom: 8, letterSpacing: 0.4 }}>🔧 TROUBLESHOOTING SCENARIOS</div>
@@ -4853,7 +4866,7 @@ function ContentCoverage({ onOpen, bare = false }) {
                   <button key={o.id} onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                     <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : q ? COLORS.sky : COLORS.silverDim, flexShrink: 0 }} />
                     <span style={{ flex: 1, fontSize: 'var(--ccna-type-xs)', color: c || q ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
-                    {(c || q) && <CuratedStaticBadge objectiveId={o.id} fontSize={8} noApiLabel="no API" />}
+                    {(c || q) && <CuratedStaticBadge objectiveId={o.id} fontSize={8} />}
                     {!c && !q && <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverDim }}>AI</span>}
                     {l && <span style={{ fontSize: 'var(--ccna-type-xs)' }}>🧪</span>}
                   </button>
@@ -5492,7 +5505,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
         <h1 style={{ ...styles.h1, margin: 0 }}>Weak Areas</h1>
         <span style={styles.small}>{total - queue.length} of {total}</span>
       </div>
-      <div style={{ ...styles.small, marginBottom: 8 }}>{weakIds.length} weak objectives · drilling gaps</div>
+      <div style={{ ...styles.small, marginBottom: 8 }}>{weakIds.length} weak objective{weakIds.length !== 1 ? 's' : ''} · {total} question{total === 1 ? '' : 's'} in this drill</div>
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
@@ -5595,7 +5608,7 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
                 <span style={{ ...styles.pill(domain?.accent || 'purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{o.id}</span>
                 <span style={{ flex: 1, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }}>{o.title}</span>
                 {(hasCuratedReading(o.id) || hasCuratedQuestions(o.id)) && (
-                  <CuratedStaticBadge objectiveId={o.id} fontSize={8} noApiLabel="no API" />
+                  <CuratedStaticBadge objectiveId={o.id} fontSize={8} />
                 )}
               </button>
             )
@@ -6317,7 +6330,7 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
     <div ref={dialogRef} className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="export-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
       <div className="ccna-sheet" style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
         <h2 id="export-modal-title" style={styles.h2}>Export Reports</h2>
-        <p style={{ ...styles.small, marginBottom: 12 }}>All reports are generated locally from your saved data — no API, works offline.</p>
+        <p style={{ ...styles.small, marginBottom: 12 }}>All reports are generated locally from your saved data — no API used, works offline.</p>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
           {REPORTS.map(r => {

@@ -278,6 +278,122 @@ export function buildAppShellCss(colors) {
     .objective-header {
       flex-shrink: 0;
     }
+    .objective-wayfind-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+      min-width: 0;
+    }
+    .objective-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 44px;
+      padding: 0 12px 0 4px;
+      margin: 0;
+      border: 1px solid ${colors.border};
+      border-radius: 10px;
+      background: ${colors.surface};
+      color: ${colors.silver};
+      font-size: var(--ccna-type-sm);
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .objective-back-btn__icon {
+      font-size: var(--ccna-type-md);
+      line-height: 1;
+      color: ${colors.silverMid};
+    }
+    .objective-study-row {
+      margin-bottom: 8px;
+      min-width: 0;
+    }
+    .objective-study-row .study-block-strip {
+      flex: none;
+      width: 100%;
+    }
+    .objective-title {
+      margin: 0 0 4px;
+      font-size: var(--ccna-type-xl);
+      font-weight: 700;
+      line-height: 1.25;
+      color: ${colors.silver};
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .objective-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .objective-nav-row {
+      display: flex;
+      gap: 6px;
+      flex: 1;
+      min-width: 0;
+    }
+    .objective-sibling-btn {
+      flex: 1;
+      min-height: 36px;
+      border-radius: 8px;
+      border: 1px solid ${colors.border};
+      background: ${colors.surface};
+      color: ${colors.silver};
+      font-size: var(--ccna-type-xs);
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 4px 10px;
+      text-align: left;
+    }
+    .objective-sibling-btn--next {
+      text-align: right;
+    }
+    .objective-sibling-btn:disabled {
+      color: ${colors.silverDim};
+      opacity: 0.35;
+      cursor: default;
+    }
+    .objective-offline-action {
+      flex-shrink: 0;
+    }
+    .objective-offline-btn {
+      background: none;
+      border: 1px solid ${colors.border};
+      border-radius: 999px;
+      color: ${colors.silverMid};
+      font-size: var(--ccna-type-xs);
+      font-weight: 600;
+      padding: 4px 12px;
+      min-height: 32px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .objective-offline-btn:disabled {
+      color: ${colors.silverDim};
+      cursor: default;
+    }
+    .objective-lab-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      margin-bottom: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid ${colors.border};
+      border-left: 3px solid ${colors.mint};
+      background: ${colors.card};
+    }
     .objective-top-row {
       display: flex;
       align-items: center;
@@ -405,6 +521,7 @@ export function buildAppShellCss(colors) {
       padding-bottom: 4px;
       margin-bottom: 4px;
       background: linear-gradient(to bottom, color-mix(in srgb, ${colors.bg} 94%, transparent) 75%, transparent);
+      box-shadow: 0 4px 14px #00000018;
     }
     .objective-sticky-chrome .objective-tab-bar {
       margin-bottom: 0 !important;
@@ -466,13 +583,13 @@ export function buildAppShellCss(colors) {
       .app-shell--compact-top .objective-header {
         padding-right: 44px;
       }
-      .app-shell--compact-top .objective-top-row .objective-back-btn {
-        padding: 2px 0 4px;
-        min-height: 36px;
+      .app-shell--compact-top .objective-wayfind-row .objective-back-btn {
+        min-height: 40px;
+        padding: 0 10px 0 2px;
       }
-      .app-shell--compact-top .objective-header h1 {
-        margin-top: 0;
-        line-height: 1.2;
+      .app-shell--compact-top .objective-title {
+        font-size: var(--ccna-type-lg);
+        -webkit-line-clamp: 2;
       }
       .app-shell--compact-top .objective-domain {
         margin-bottom: 4px !important;
