@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { DOMAINS } from './data/ccnaDomains.js'
 import { hasCuratedReading, hasCuratedQuestions } from './data/ccnaCurated.js'
+import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
+import { useNavHint } from './components/NavHintProvider.jsx'
+import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 import { labsForObjective } from './data/ccnaLabs.js'
 import { COLORS, styles } from './ui/appTheme.js'
 
@@ -10,6 +13,7 @@ export default function ObjectiveScreen({
   SectionLabel, StatusLabel, StatusDot, ProgressBar, objectiveTabId, objectivePanelId, commandDrills,
   computeMastery, logEvent, masteryGate, enableSectionReview, bumpSessionStudy, celebrate, haptic,
 }) {
+  const showNavHint = useNavHint()
   const objLabs = labsForObjective(objective.id)
 
   // Siblings within the same domain for prev/next navigation
@@ -58,14 +62,17 @@ export default function ObjectiveScreen({
       enableSectionReview(objective.id)
       onUpdateProgress(objective.id, { reviewEligible: true })
     }
+    const justMastered = mastered && status !== 'mastered'
     // Celebrate a freshly-mastered topic (only on the transition, not repeats).
-    if (mastered && status !== 'mastered') {
+    if (justMastered) {
       celebrate()
       haptic([12, 40, 12, 40, 18])
       bumpSessionStudy('mastered', objective.id) // #16: track new mastery for recap
+      showNavHint(NAV_HINT_KEYS.QUIZ_MASTERED, { nextId: nextObj?.id })
     }
     // On reaching mastery, auto-package the topic for offline use (online only).
     if (mastered && !isOffline && apiOnline) onPackage?.(objective)
+    return justMastered
   }
 
   // Mark "in progress" the first time an objective is opened
@@ -87,8 +94,9 @@ export default function ObjectiveScreen({
         <span style={styles.pill(objective.accent)}>{objective.id}</span>
         <span><StatusLabel status={status} /></span>
         {(() => {
-          if (hasCuratedReading(objective.id)) return <span style={{ ...styles.pill('mint'), fontSize: 9 }}>CURATED</span>
-          if (hasCuratedQuestions(objective.id)) return <span style={{ ...styles.pill('sky'), fontSize: 9 }}>Q-ONLY</span>
+          if (hasCuratedQuestions(objective.id) || hasCuratedReading(objective.id)) {
+            return <CuratedStaticBadge objectiveId={objective.id} fontSize={9} />
+          }
           return <span style={{ ...styles.pill('purple'), fontSize: 9 }}>AI</span>
         })()}
       </div>

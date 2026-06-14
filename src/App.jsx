@@ -11,7 +11,9 @@ import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme.js'
 import { buildAppShellCss } from './ui/appShell.js'
-import RouteShell from './components/RouteShell.jsx'
+import DifficultyPill from './components/DifficultyPill.jsx'
+import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
+import { getCkuDifficulty, getCuratedPreview } from './curatedDisplay.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import Spinner from './components/Spinner.jsx'
@@ -33,6 +35,9 @@ import ExtraStudyMode from './ExtraStudyMode.jsx'
 import ExamTrapStudyMode from './ExamTrapStudyMode.jsx'
 import RoutingDecoderMode from './RoutingDecoderMode.jsx'
 import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
+import { NavHintProvider, useNavHint } from './components/NavHintProvider.jsx'
+import SvgConfetti from './components/SvgConfetti.jsx'
+import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 
 
 /* =========================================================================
@@ -1153,7 +1158,7 @@ function haptic(pattern) {
 function celebrate() {
   if (typeof document === 'undefined') return
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  const colors = ['#7c3aed', '#c084fc', '#baf0fa', '#d4f7d4', '#fde8e8']
+  const colors = ['#EE4540', '#C72B40', '#7F1437', '#baf0fa', '#d4f7d4', '#fcd980']
   const canvas = document.createElement('canvas')
   canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999'
   canvas.width = window.innerWidth; canvas.height = window.innerHeight
@@ -1407,7 +1412,7 @@ function KeyTermsCarousel({ objective }) {
             <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9 }}>🃏 KEY TERMS</div>
             <div style={{ ...styles.small, fontSize: 11, marginTop: 1 }}>Tap a card to flip</div>
           </div>
-          {fromCurated && <span style={{ ...styles.pill('mint'), fontSize: 9 }}>CURATED · NO AI</span>}
+          {fromCurated && <CuratedStaticBadge objectiveId={objective.id} fontSize={9} />}
         </div>
         <button
           style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 12, cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
@@ -1417,8 +1422,9 @@ function KeyTermsCarousel({ objective }) {
         </button>
       </div>
       <div style={{
-        display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6,
+        display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6, width: '100%', maxWidth: '100%',
         scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch',
+        overscrollBehaviorX: 'contain', touchAction: 'pan-x pan-y',
       }}>
         {cards.map((c, idx) => {
           const isFlipped = flipped.has(idx)
@@ -1572,8 +1578,8 @@ function CuratedVisualAid({ data }) {
   const pf = data.packetFlow
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
-        <span style={{ ...styles.pill('mint'), fontSize: 10 }}>📚 CURATED · NO AI</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
+        <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
       </div>
       {data.diagram && <CuratedDiagram diagram={data.diagram} />}
       {pf?.steps?.length > 0 && (
@@ -1694,12 +1700,36 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
   const [revealed, setRevealed] = useState(false)
   const [orderDraft, setOrderDraft] = useState([])
   const [results, setResults] = useState([]) // { concept, correct }
+  const showNavHint = useNavHint()
+  const resultHintFired = useRef(false)
+  const [showConfetti, setShowConfetti] = useState(false)
 
   const q = questions[idx]
   useEffect(() => {
     if (q && isOrderingQuestion(q)) setOrderDraft(shuffleArrayCopy(q.orderItems))
     else setOrderDraft([])
   }, [q])
+
+  useEffect(() => {
+    if (phase !== 'result') {
+      resultHintFired.current = false
+      setShowConfetti(false)
+      return
+    }
+    if (resultHintFired.current || results.length === 0) return
+    resultHintFired.current = true
+    const correct = results.filter(r => r.correct).length
+    const pct = correct / results.length
+    if (pct >= 0.85) {
+      setShowConfetti(true)
+      haptic([12, 40, 12, 40, 18])
+      showNavHint(NAV_HINT_KEYS.PREASSESS_PASS)
+    } else if (pct >= 0.6) {
+      showNavHint(NAV_HINT_KEYS.PREASSESS_PARTIAL)
+    } else {
+      showNavHint(NAV_HINT_KEYS.PREASSESS_FAIL)
+    }
+  }, [phase, results, showNavHint])
 
   const start = useCallback(async () => {
     setPhase('loading'); setError(null)
@@ -1778,7 +1808,9 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
     // than guides; red is reserved for actual errors/warnings.
     const accent = tier === 'ready' ? { c: COLORS.mint, dim: COLORS.mintDim, b: COLORS.mintBorder } : tier === 'partial' ? { c: COLORS.amber, dim: COLORS.amberDim, b: COLORS.amberBorder } : { c: COLORS.sky, dim: COLORS.skyDim, b: COLORS.skyBorder }
     return (
-      <div style={{ ...styles.card, border: `1px solid ${accent.b}`, background: accent.dim }}>
+      <>
+        {showConfetti && <SvgConfetti active onComplete={() => setShowConfetti(false)} />}
+        <div style={{ ...styles.card, border: `1px solid ${accent.b}`, background: accent.dim }}>
         <div style={{ fontSize: 26, fontWeight: 700, color: accent.c }}>{correct}/{results.length} · {Math.round(pct * 100)}%</div>
         <div style={{ fontSize: 14, fontWeight: 600, margin: '4px 0 8px' }}>
           {tier === 'ready' ? "You're ready — you can skip this section." : tier === 'partial' ? 'You know some of this.' : 'Recommend studying this section first.'}
@@ -1791,7 +1823,8 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
             ? <><button style={styles.primaryBtn} onClick={() => onTestedOut(questions, pct)}>Skip section</button><button style={styles.secondaryBtn} onClick={onStudy}>Review anyway</button></>
             : <button style={styles.primaryBtn} onClick={onStudy}>{tier === 'partial' ? 'Review weak areas' : 'Start lesson'}</button>}
         </div>
-      </div>
+        </div>
+      </>
     )
   }
 
@@ -1803,7 +1836,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
       <div style={{ ...styles.small, marginBottom: 8 }}>Pre-assessment · {idx + 1} of {questions.length}</div>
       <div style={styles.card}>
         <QuestionMeta q={q} />
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={q.question} /></div>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={q.question} /></div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? q.orderItems : null} />
         ) : (
@@ -1844,7 +1877,7 @@ function RichText({ text }) {
   if (text == null) return null
   const parts = String(text).split(/`([^`]+)`/)
   return parts.map((p, i) => i % 2 === 1
-    ? <code key={i} style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 5, padding: '1px 5px', fontSize: 13, color: COLORS.sky }}>{p}</code>
+    ? <code key={i} style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 5, padding: '1px 5px', fontSize: 13, color: COLORS.sky, overflowWrap: 'anywhere', wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{p}</code>
     : <span key={i}>{p}</span>)
 }
 function Bullets({ items }) {
@@ -2051,7 +2084,7 @@ function CuratedReading({ data }) {
   return (
     <div className="ccna-stagger">
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
-        <span style={{ ...styles.pill('mint'), fontSize: 10 }}>📚 CURATED · NO AI</span>
+        <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
         <span style={{ fontSize: 11, color: COLORS.silverMid }}>{srcNames.join(' · ')}</span>
       </div>
       <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
@@ -2095,7 +2128,7 @@ function CuratedSources({ data }) {
               <span style={{ color: COLORS.silverDim }}> confidence {Math.round(s.confidence * 100)}%</span>
             </div>
           ))}
-          <div style={{ marginTop: 6, fontSize: 11, color: COLORS.silverDim }}>Curated and paraphrased from the cited sources — no AI generation on this objective.</div>
+          <div style={{ marginTop: 6, fontSize: 11, color: COLORS.silverDim }}>Paraphrased from the cited sources — no API used on this objective.</div>
         </div>
       )}
     </div>
@@ -2464,9 +2497,9 @@ function StyleSwitcher({ objectiveId, objectiveTitle }) {
               onClick={() => switchTo(opt.value)}
               style={{
                 flex: '1 1 auto', minHeight: 38, borderRadius: 10, cursor: 'pointer',
-                background: active ? COLORS.purpleDim : COLORS.surface,
-                border: `1px solid ${active ? COLORS.borderGlow : COLORS.border}`,
-                color: active ? COLORS.purpleGlow : COLORS.silverMid,
+                background: active ? COLORS.brandDim : COLORS.surface,
+                border: `1px solid ${active ? COLORS.brandGlow : COLORS.border}`,
+                color: active ? COLORS.brandGlow : COLORS.silverMid,
                 fontSize: 12, fontWeight: 600, padding: '8px 10px', fontFamily: 'inherit',
               }}
             >
@@ -2593,7 +2626,7 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
             }}
           >
             <span style={{ ...styles.pill('purple'), fontSize: 10, flexShrink: 0, minWidth: 22, textAlign: 'center' }}>{idx + 1}</span>
-            <span style={{ flex: 1 }}>{item}</span>
+            <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{item}</span>
             {!revealed && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
                 <button type="button" onClick={() => reorder(idx, idx - 1)} disabled={idx === 0}
@@ -2978,6 +3011,9 @@ function QuizCompleteCard({
 }
 
 function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onSwitchTab }) {
+  const showNavHint = useNavHint()
+  const doneHintFired = useRef(false)
+  const justMasteredRef = useRef(false)
   const [phase, setPhase] = useState('idle') // idle | loading | active | done | error
   const [error, setError] = useState(null)
   const [queue, setQueue] = useState([]) // remaining questions
@@ -2998,6 +3034,23 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
   useEffect(() => {
     loadQuizSessionSize().then(setSessionSize)
   }, [])
+
+  useEffect(() => {
+    if (phase !== 'done') {
+      doneHintFired.current = false
+      justMasteredRef.current = false
+      return
+    }
+    if (doneHintFired.current) return
+    doneHintFired.current = true
+    if (justMasteredRef.current) return
+    const pct = stats.total ? stats.correct / stats.total : 0
+    if ((stats.missedCount || 0) > 0 || pct < 0.6) {
+      showNavHint(NAV_HINT_KEYS.QUIZ_FAIL)
+    } else {
+      showNavHint(NAV_HINT_KEYS.QUIZ_PASS, { nextId: nextObjective?.id })
+    }
+  }, [phase, stats, nextObjective?.id, showNavHint])
 
   useEffect(() => {
     if (bankSize > 0 && sessionSize > bankSize) {
@@ -3193,8 +3246,8 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
 
   function next() {
     if (queue.length === 0) {
+      justMasteredRef.current = onScoreSaved({ ...stats, ratings: [...sessionRatings.current] }) === true
       setPhase('done')
-      onScoreSaved({ ...stats, ratings: [...sessionRatings.current] })
       return
     }
     setCurrent(queue[0])
@@ -3289,7 +3342,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
       {sourceLabel && <div style={{ fontSize: 11, color: COLORS.silverMid, marginBottom: 8 }}>{sourceLabel}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
         {ordering ? (
           <OrderingQuestion
             items={orderDraft}
@@ -3969,6 +4022,7 @@ const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'ambe
 // success/failure criteria. `bundle` = { lab, topology, validator, diagram, packetFlows }.
 function LabView({ bundle, onBack, onDone }) {
   const { lab, topology, validator } = bundle
+  const showNavHint = useNavHint()
   const [entered, setEntered] = useState([])      // normalized command lines typed
   const [history, setHistory] = useState([])      // {text, kind}
   const [input, setInput] = useState('')
@@ -3987,8 +4041,9 @@ function LabView({ bundle, onBack, onDone }) {
     if (prog.complete && !justCompleted.current) {
       justCompleted.current = true
       markLabDone(lab.id); onDone?.(); celebrate(); haptic([12, 40, 12])
+      showNavHint(NAV_HINT_KEYS.LAB_DONE)
     }
-  }, [prog.complete, lab.id, onDone])
+  }, [prog.complete, lab.id, onDone, showNavHint])
 
   const cmdDone = (cmd) => entered.some(e => e.includes(normalizeCliLine(cmd)))
   const taskComplete = (t) => (t.expectedCommands || []).every(cmdDone)
@@ -4078,6 +4133,7 @@ function LabView({ bundle, onBack, onDone }) {
           style={{
             display: 'flex', overflowX: 'auto', scrollSnapType: 'x mandatory',
             WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none',
+            width: '100%', maxWidth: '100%', overscrollBehaviorX: 'contain', touchAction: 'pan-x pan-y',
           }}
         >
           {lab.tasks.map((t) => {
@@ -4661,15 +4717,28 @@ function ContentCoverage({ onOpen, bare = false }) {
             <div style={{ marginTop: 8 }}>
               {r.objs.map(o => {
                 const c = hasCuratedReading(o.id), q = !c && hasCuratedQuestions(o.id), l = labsForObjective(o.id).length > 0
+                const curated = getCurated(o.id)
+                const ckus = curated?.ckus || []
                 return (
-                  <button key={o.id} onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-                    <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : q ? COLORS.sky : COLORS.silverDim, flexShrink: 0 }} />
-                    <span style={{ flex: 1, fontSize: 12, color: c || q ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
-                    {c && <span style={{ fontSize: 9, color: COLORS.mint }}>CURATED</span>}
-                    {q && <span style={{ fontSize: 9, color: COLORS.sky }}>QUESTIONS</span>}
-                    {!c && !q && <span style={{ fontSize: 9, color: COLORS.silverDim }}>AI</span>}
-                    {l && <span style={{ fontSize: 11 }}>🧪</span>}
-                  </button>
+                  <div key={o.id} style={{ marginBottom: ckus.length ? 4 : 0 }}>
+                    <button onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                      <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : q ? COLORS.sky : COLORS.silverDim, flexShrink: 0 }} />
+                      <span style={{ flex: 1, fontSize: 12, color: c || q ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
+                      {(c || q) && <CuratedStaticBadge objectiveId={o.id} fontSize={8} noApiLabel="no API" />}
+                      {!c && !q && <span style={{ fontSize: 9, color: COLORS.silverDim }}>AI</span>}
+                      {l && <span style={{ fontSize: 11 }}>🧪</span>}
+                    </button>
+                    {ckus.length > 0 && (
+                      <div style={{ paddingLeft: 14, marginBottom: 4 }}>
+                        {ckus.map(cku => (
+                          <div key={cku.id} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '2px 0' }}>
+                            <span style={{ flex: 1, fontSize: 10, color: COLORS.silverMid }}>{cku.title}</span>
+                            <DifficultyPill difficulty={getCkuDifficulty(o.id, cku.id)} fontSize={8} style={{ marginLeft: 0 }} />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 )
               })}
             </div>
@@ -5169,6 +5238,8 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
    so the learner can drill gaps without wading through material they already know.
    ========================================================================= */
 function FocusModeSession({ progress, onBack, onMissed, onDone }) {
+  const showNavHint = useNavHint()
+  const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('loading')
   const [queue, setQueue] = useState([])
   const [current, setCurrent] = useState(null)
@@ -5186,6 +5257,16 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
       setOrderDraft([])
     }
   }, [current])
+
+  useEffect(() => {
+    if (phase !== 'done') {
+      doneHintFired.current = false
+      return
+    }
+    if (doneHintFired.current) return
+    doneHintFired.current = true
+    showNavHint(NAV_HINT_KEYS.FOCUS_DONE)
+  }, [phase, showNavHint])
 
   useEffect(() => {
     (async () => {
@@ -5281,7 +5362,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
         ) : (
@@ -5370,6 +5451,8 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
           {results.map(o => {
             const status = progress[o.id]?.status || 'unseen'
             const domain = DOMAINS.find(d => d.objectives.some(x => x.id === o.id))
+            const preview = status === 'mastered' ? getCuratedPreview(o.id) : null
+            const isStatic = hasCuratedReading(o.id) || hasCuratedQuestions(o.id)
             return (
               <button
                 key={o.id}
@@ -5378,8 +5461,11 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
               >
                 <StatusDot status={status} />
                 <span style={{ ...styles.pill(domain?.accent || 'purple'), fontSize: 10, flexShrink: 0 }}>{o.id}</span>
-                <span style={{ flex: 1, fontSize: 13, lineHeight: 1.4 }}>{o.title}</span>
-                {hasCuratedReading(o.id) && <span style={{ ...styles.pill('mint'), fontSize: 8, flexShrink: 0 }}>C</span>}
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  <span style={{ display: 'block', fontSize: 13, lineHeight: 1.4 }}>{o.title}</span>
+                  {preview && <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid, marginTop: 2, lineHeight: 1.35 }}>{preview}</span>}
+                </span>
+                {isStatic && <CuratedStaticBadge objectiveId={o.id} fontSize={8} noApiLabel="no API" />}
               </button>
             )
           })}
@@ -5394,6 +5480,8 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
 }
 
 function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
+  const showNavHint = useNavHint()
+  const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('loading') // loading | active | empty | done
   const [queue, setQueue] = useState([])
   const [current, setCurrent] = useState(null)
@@ -5410,6 +5498,16 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
       setOrderDraft([])
     }
   }, [current])
+
+  useEffect(() => {
+    if (phase !== 'done') {
+      doneHintFired.current = false
+      return
+    }
+    if (doneHintFired.current) return
+    doneHintFired.current = true
+    showNavHint(NAV_HINT_KEYS.REVIEW_DONE)
+  }, [phase, showNavHint])
 
   useEffect(() => {
     (async () => {
@@ -5489,7 +5587,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
         ) : (
@@ -5554,6 +5652,8 @@ async function buildDiagnosticSet() {
 }
 
 function Onboarding({ onComplete, onSkip }) {
+  const showNavHint = useNavHint()
+  const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | active | done
   const [queue, setQueue] = useState([])
   const [current, setCurrent] = useState(null)
@@ -5571,6 +5671,19 @@ function Onboarding({ onComplete, onSkip }) {
       setOrderDraft([])
     }
   }, [current])
+
+  useEffect(() => {
+    if (phase !== 'done') {
+      doneHintFired.current = false
+      return
+    }
+    if (doneHintFired.current) return
+    doneHintFired.current = true
+    const rows = Object.entries(results)
+      .map(([objectiveId, r]) => ({ objectiveId, acc: r.correct / Math.max(r.total, 1) }))
+      .sort((a, b) => a.acc - b.acc)
+    showNavHint(NAV_HINT_KEYS.PLACEMENT_DONE, { weakestId: rows[0]?.objectiveId })
+  }, [phase, results, showNavHint])
 
   function recordResult(correct) {
     setResults(r => {
@@ -5641,7 +5754,7 @@ function Onboarding({ onComplete, onSkip }) {
         {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
         <div style={styles.card}>
           <QuestionMeta q={current} />
-          <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}><RichText text={current.question} /></div>
+          <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
           {ordering ? (
             <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
           ) : (
@@ -6085,9 +6198,9 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
                 title={r.desc}
                 style={{
                   flex: '1 1 auto', minHeight: 40, borderRadius: 10, cursor: 'pointer', fontFamily: 'inherit',
-                  background: active ? COLORS.purpleDim : COLORS.surface,
-                  border: `1px solid ${active ? COLORS.purpleGlow : COLORS.border}`,
-                  color: active ? COLORS.purpleGlow : COLORS.silverMid,
+                background: active ? COLORS.brandDim : COLORS.surface,
+                border: `1px solid ${active ? COLORS.brandGlow : COLORS.border}`,
+                color: active ? COLORS.brandGlow : COLORS.silverMid,
                   fontSize: 12, fontWeight: 600, padding: '8px 10px', whiteSpace: 'nowrap',
                 }}
               >{r.label}</button>
@@ -6734,18 +6847,21 @@ export default function App() {
 
   if (!loaded) {
     return (
-      <div className="app-shell">
-        <style>{`${buildAppShellCss(COLORS)}\n${THEME_CSS}`}</style>
-        <RouteShell>
-          <Spinner label="Loading your progress..." />
-        </RouteShell>
-      </div>
+      <NavHintProvider>
+        <div className="app-shell">
+          <style>{`${buildAppShellCss(COLORS)}\n${THEME_CSS}`}</style>
+          <RouteShell>
+            <Spinner label="Loading your progress..." />
+          </RouteShell>
+        </div>
+      </NavHintProvider>
     )
   }
 
   const routeScrolls = view !== 'objective' && view !== 'tutor'
 
   return (
+    <NavHintProvider>
     <div className="app-shell">
       <style>{`
         ${buildAppShellCss(COLORS)}
@@ -6755,13 +6871,13 @@ export default function App() {
         button:active:not(:disabled) { transform: scale(0.97); }
         button:disabled { opacity: 0.5; cursor: default !important; }
         input:focus, textarea:focus { outline: none; box-shadow: 0 0 0 2px ${COLORS.focus}; }
-        :focus-visible { outline: 2px solid ${COLORS.purpleGlow}; outline-offset: 2px; }
+        :focus-visible { outline: 2px solid ${COLORS.brandGlow}; outline-offset: 2px; }
         * { scrollbar-width: thin; scrollbar-color: ${COLORS.silverDim} transparent; }
         *::-webkit-scrollbar { width: 8px; height: 8px; }
         *::-webkit-scrollbar-thumb { background: ${COLORS.silverDim}; border-radius: 8px; }
         *::-webkit-scrollbar-track { background: transparent; }
         .ccna-grad-text {
-          background: linear-gradient(90deg, ${COLORS.purpleGlow}, ${COLORS.sky});
+          background: linear-gradient(90deg, ${COLORS.brandGlow}, ${COLORS.sky});
           -webkit-background-clip: text; background-clip: text; color: transparent;
         }
         @media (hover: hover) {
@@ -6949,5 +7065,6 @@ export default function App() {
         />
       )}
     </div>
+    </NavHintProvider>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { DOMAINS } from './data/ccnaDomains.js'
 import { getCuratedQuestions } from './data/ccnaCurated.js'
 import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
@@ -16,6 +16,8 @@ import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
+import { useNavHint } from './components/NavHintProvider.jsx'
+import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 
 function shuffleArray(arr) {
   const a = [...arr]
@@ -37,6 +39,8 @@ function formatSeconds(total) {
 }
 
 export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSchema, bookRef = {} }) {
+  const showNavHint = useNavHint()
+  const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | loading | active | done | error
   const [error, setError] = useState(null)
   const [questions, setQuestions] = useState([])
@@ -146,6 +150,22 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
     setResponses(r => ({ ...r, [current]: idx }))
   }
 
+  useEffect(() => {
+    if (phase !== 'done') {
+      doneHintFired.current = false
+      return
+    }
+    if (doneHintFired.current || questions.length === 0) return
+    doneHintFired.current = true
+    let correct = 0
+    questions.forEach((q, idx) => {
+      if (responses[idx] === q.correctIndex) correct++
+    })
+    const pct = correct / questions.length
+    if (pct >= 0.7) showNavHint(NAV_HINT_KEYS.MOCK_PASS)
+    else showNavHint(NAV_HINT_KEYS.MOCK_FAIL)
+  }, [phase, questions, responses, showNavHint])
+
   const report = useMemo(() => {
     if (phase !== 'done') return null
     const byDomain = {}
@@ -193,7 +213,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
               checked={staticOnly}
               onChange={e => setStaticOnly(e.target.checked)}
               disabled={!canUseStaticOnly && staticOnly}
-              style={{ width: 18, height: 18, accentColor: COLORS.purple }}
+              style={{ width: 18, height: 18, accentColor: COLORS.brand }}
             />
             <span>
               Static bank only (no API)
@@ -253,7 +273,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
         <div style={{ ...styles.pill(secondsLeft < 600 ? 'rose' : 'sky') }}>{formatSeconds(secondsLeft)}</div>
       </div>
       <div style={styles.card}>
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>{q.question}</div>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{q.question}</div>
         <McChoices q={q} selected={selected ?? null} revealed={false} onSelect={selectChoice} />
       </div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>

@@ -2,7 +2,11 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from './ui/appTheme.js'
 import { STORAGE_KEYS } from './storageKeys.js'
-import { getCurated, hasCuratedReading, hasCuratedQuestions } from './data/ccnaCurated.js'
+import { getCurated } from './data/ccnaCurated.js'
+import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
+import { getCkuDifficulty, getCuratedPreview } from './curatedDisplay.js'
+import DifficultyPill from './components/DifficultyPill.jsx'
+import { hasCuratedReading, hasCuratedQuestions } from './data/ccnaCurated.js'
 import { getShelvedStats } from './data/shelvedStudy.js'
 import { REVIEW_SESSION_CAP } from './home/homeConstants.js'
 import {
@@ -442,23 +446,42 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
               <div id={`domain-panel-${domain.id}`} role="region" aria-label={`${domain.name} objectives`} style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>
                 {objs.map(o => {
                   const status = progress[o.id]?.status || 'unseen'
+                  const curated = getCurated(o.id)
+                  const preview = status === 'mastered' ? getCuratedPreview(o.id) : null
+                  const ckus = curated?.ckus || []
+                  const isStatic = hasCuratedReading(o.id) || hasCuratedQuestions(o.id)
                   return (
-                    <button
-                      key={o.id}
-                      onClick={() => onSelectObjective({ ...o, domainId: domain.id, domainName: domain.name, accent: domain.accent })}
-                      style={{ display: 'flex', alignItems: 'center', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: '8px 0', textAlign: 'left', borderBottom: `1px solid ${COLORS.border}` }}
-                    >
-                      <StatusDot status={status} />
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: 13 }}>{o.id} {o.title}</div>
-                      </div>
-                      {(() => {
-                        if (hasCuratedReading(o.id)) return <span style={{ ...styles.pill('mint'), fontSize: 9, marginLeft: 6, flexShrink: 0 }}>C</span>
-                        if (hasCuratedQuestions(o.id)) return <span style={{ ...styles.pill('sky'), fontSize: 9, marginLeft: 6, flexShrink: 0 }}>Q</span>
-                        return null
-                      })()}
-                      {offlineReady?.has(o.id) && <span style={{ color: COLORS.mint, fontSize: 13, marginLeft: 8, flexShrink: 0 }}>⤓</span>}
-                    </button>
+                    <div key={o.id} style={{ borderBottom: `1px solid ${COLORS.border}` }}>
+                      <button
+                        onClick={() => onSelectObjective({ ...o, domainId: domain.id, domainName: domain.name, accent: domain.accent })}
+                        style={{ display: 'flex', alignItems: 'center', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: '8px 0', textAlign: 'left' }}
+                      >
+                        <StatusDot status={status} />
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontSize: 13 }}>{o.id} {o.title}</div>
+                          {preview && (
+                            <div style={{ fontSize: 11, color: COLORS.silverMid, marginTop: 3, lineHeight: 1.35 }}>{preview}</div>
+                          )}
+                        </div>
+                        {isStatic
+                          ? <CuratedStaticBadge objectiveId={o.id} fontSize={9} />
+                          : null}
+                        {offlineReady?.has(o.id) && <span style={{ color: COLORS.mint, fontSize: 13, marginLeft: 8, flexShrink: 0 }}>⤓</span>}
+                      </button>
+                      {ckus.length > 0 && (
+                        <div style={{ paddingLeft: 22, paddingBottom: 6 }}>
+                          {ckus.map(cku => (
+                            <div
+                              key={cku.id}
+                              style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0', minHeight: 32 }}
+                            >
+                              <span style={{ flex: 1, fontSize: 11, color: COLORS.silverMid, lineHeight: 1.35 }}>{cku.title}</span>
+                              <DifficultyPill difficulty={getCkuDifficulty(o.id, cku.id)} fontSize={8} style={{ marginLeft: 0 }} />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   )
                 })}
               </div>

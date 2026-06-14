@@ -50,9 +50,9 @@ export default function McChoices({ q, selected, revealed, onSelect }) {
             bg = COLORS.roseDim; border = COLORS.rose; color = COLORS.rose; borderWidth = 2; fontWeight = 700
           }
         } else if (selected === idx) {
-          bg = COLORS.purpleDim
-          border = COLORS.purpleGlow
-          color = COLORS.purpleGlow
+          bg = COLORS.brandDim
+          border = COLORS.brandGlow
+          color = COLORS.brandGlow
         }
         return (
           <button
@@ -65,16 +65,16 @@ export default function McChoices({ q, selected, revealed, onSelect }) {
             onClick={() => onSelect(idx)}
             onKeyDown={e => { if (!revealed && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onSelect(idx) } }}
             style={{
-              display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
+              display: 'block', width: '100%', maxWidth: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
               background: bg, border: `${borderWidth}px solid ${border}`, color, borderRadius: 10,
               padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4,
-              fontWeight, fontFamily: 'inherit',
+              fontWeight, fontFamily: 'inherit', boxSizing: 'border-box', overflowWrap: 'anywhere', wordBreak: 'break-word',
             }}
           >
             <span aria-hidden="true" style={{ fontWeight: 700, marginRight: 8, color: revealed && idx === selected && idx !== q.correctIndex ? COLORS.rose : COLORS.silverMid }}>
               {revealed && idx === selected && idx !== q.correctIndex ? '✗ ' : ''}{String.fromCharCode(65 + idx)}.
             </span>
-            {choice}
+            <span style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{choice}</span>
           </button>
         )
       })}
