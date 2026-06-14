@@ -1,0 +1,528 @@
+{
+  "objectiveId": "5.10",
+  "title": "Describe remote access and site-to-site VPNs",
+  "questions": [
+    {
+      "id": "obj-5.5-source-q001",
+      "question": "Which statement is correct about Generic Routing Encapsulation (GRE) tunnels?",
+      "choices": [
+        "GRE uses IPsec security.",
+        "GRE uses a protocol of 57.",
+        "GRE provides per-packet authentication.",
+        "GRE provides packet-in-packet encapsulation."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC",
+        "CKU-IPS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"GRE provides packet-in-packet encapsulation.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"GRE uses IPsec security.\" is incorrect because the scenario requires: The correct answer is \"GRE provides packet-in-packet encapsulation.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"GRE uses a protocol of 57.\" is incorrect because the scenario requires: The correct answer is \"GRE provides packet-in-packet encapsulation.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"GRE provides per-packet authentication.\" is incorrect because the scenario requires: The correct answer is \"GRE provides packet-in-packet encapsulation.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q003",
+      "question": "Which layer 3 protocol does GRE use?",
+      "choices": [
+        "Protocol 4",
+        "Protocol 43",
+        "Protocol 47",
+        "Protocol 57"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Protocol 47\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Protocol 4\" is incorrect because the scenario requires: The correct answer is \"Protocol 47\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Protocol 43\" is incorrect because the scenario requires: The correct answer is \"Protocol 47\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Protocol 57\" is incorrect because the scenario requires: The correct answer is \"Protocol 47\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q006",
+      "question": "Identify the default MTU of a GRE tunnel?",
+      "choices": [
+        "MTU 1476",
+        "MTU 1492",
+        "MTU 1500",
+        "MTU 1528"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"MTU 1476\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"MTU 1492\" is incorrect because the scenario requires: The correct answer is \"MTU 1476\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"MTU 1500\" is incorrect because the scenario requires: The correct answer is \"MTU 1476\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"MTU 1528\" is incorrect because the scenario requires: The correct answer is \"MTU 1476\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q007",
+      "question": "Which command help you verify the source and destination of a GRE tunnel?",
+      "choices": [
+        "Router#show ip tunnel 0",
+        "Router#show interface tunnel 0",
+        "Router#show ip gre",
+        "Router#show ip route"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router#show interface tunnel 0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ip tunnel 0\" is incorrect because the scenario requires: The correct answer is \"Router#show interface tunnel 0\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show ip gre\" is incorrect because the scenario requires: The correct answer is \"Router#show interface tunnel 0\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ip route\" is incorrect because the scenario requires: The correct answer is \"Router#show interface tunnel 0\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q010",
+      "question": "Which protocol helps resolve and direct traffic for DMVPN connections?",
+      "choices": [
+        "HSRP",
+        "NHRP",
+        "ARP",
+        "GRE"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC",
+        "CKU-NHRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"NHRP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"HSRP\" is incorrect because the scenario requires: The correct answer is \"NHRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ARP\" is incorrect because the scenario requires: The correct answer is \"NHRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"GRE\" is incorrect because the scenario requires: The correct answer is \"NHRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q012",
+      "question": "DMVPN is an example of which topology?",
+      "choices": [
+        "Point-to-point",
+        "Hub-and-spoke",
+        "Full-mesh",
+        "Dual-homed"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Hub-and-spoke\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Point-to-point\" is incorrect because the scenario requires: The correct answer is \"Hub-and-spoke\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Full-mesh\" is incorrect because the scenario requires: The correct answer is \"Hub-and-spoke\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Dual-homed\" is incorrect because the scenario requires: The correct answer is \"Hub-and-spoke\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q013",
+      "question": "Which benefit of using a secure VPN allows verification that a packet was not tampered with in transit?",
+      "choices": [
+        "Authentication",
+        "Data integrity",
+        "Anti-replay",
+        "Confidentiality"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Data integrity\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Authentication\" is incorrect because the scenario requires: The correct answer is \"Data integrity\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Anti-replay\" is incorrect because the scenario requires: The correct answer is \"Data integrity\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Confidentiality\" is incorrect because the scenario requires: The correct answer is \"Data integrity\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q014",
+      "question": "Which Cisco technology is often used to create VPN tunnels between sites?",
+      "choices": [
+        "Catalyst switches",
+        "Cisco routers",
+        "Cisco FTD",
+        "Policy-based routing"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Cisco FTD\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Catalyst switches\" is incorrect because the scenario requires: The correct answer is \"Cisco FTD\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Cisco routers\" is incorrect because the scenario requires: The correct answer is \"Cisco FTD\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Policy-based routing\" is incorrect because the scenario requires: The correct answer is \"Cisco FTD\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q015",
+      "question": "You have several remote workers who enter patient information and require a high level of security. Which technology would best suit the connectivity for these workers?",
+      "choices": [
+        "GRE tunnels",
+        "Wireless WAN",
+        "Client SSL/VPN",
+        "Site-to-site VPN"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Client SSL/VPN\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"GRE tunnels\" is incorrect because the scenario requires: The correct answer is \"Client SSL/VPN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Wireless WAN\" is incorrect because the scenario requires: The correct answer is \"Client SSL/VPN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Site-to-site VPN\" is incorrect because the scenario requires: The correct answer is \"Client SSL/VPN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q016",
+      "question": "Which protocol does IPsec use to encrypt data packets?",
+      "choices": [
+        "AH",
+        "ESP",
+        "IKE",
+        "ISAKMP"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC",
+        "CKU-IPS",
+        "CKU-ESP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"ESP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"AH\" is incorrect because the scenario requires: The correct answer is \"ESP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"IKE\" is incorrect because the scenario requires: The correct answer is \"ESP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ISAKMP\" is incorrect because the scenario requires: The correct answer is \"ESP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q017",
+      "question": "Identify a benefit of site-to-site IPsec VPNs?",
+      "choices": [
+        "Lower bandwidth requirements",
+        "Lower latency",
+        "Scalability",
+        "Support for multicast"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC",
+        "CKU-IPS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Scalability\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Lower bandwidth requirements\" is incorrect because the scenario requires: The correct answer is \"Scalability\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Lower latency\" is incorrect because the scenario requires: The correct answer is \"Scalability\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Support for multicast\" is incorrect because the scenario requires: The correct answer is \"Scalability\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

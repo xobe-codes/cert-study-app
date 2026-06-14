@@ -1,0 +1,104 @@
+{
+  "objectiveId": "5.9",
+  "title": "Configure WLAN using WLC GUI with WPA2 PSK",
+  "questions": [
+    {
+      "id": "obj-5.10-source-q001",
+      "question": "After configuring a WLAN, your users complain that they do not see the SSID. What could be wrong?",
+      "choices": [
+        "SSID beaconing is enabled.",
+        "Multicast support is disabled.",
+        "Radio Policy is configured to all.",
+        "Status is disabled."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "wlc gui wlan",
+      "ckuIds": [
+        "CKU-WLC-GUI-WLAN",
+        "CKU-WPA2-PSK",
+        "CKU-WLAN-STATUS",
+        "CKU-SSID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Status is disabled.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SSID beaconing is enabled.\" is incorrect because the scenario requires: The correct answer is \"Status is disabled.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Multicast support is disabled.\" is incorrect because the scenario requires: The correct answer is \"Status is disabled.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Radio Policy is configured to all.\" is incorrect because the scenario requires: The correct answer is \"Status is disabled.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.10-source-q002",
+      "question": "How many pre-shared keys can be configured for a specific WPA2 WLAN?",
+      "choices": [
+        "One PSK (one hex or one ASCII)",
+        "Two PSKs (one hex and one ASCII)",
+        "Four PSKs (two hex and two ASCII)",
+        "Unlimited number of PSKs"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "wlc gui wlan",
+      "ckuIds": [
+        "CKU-WLC-GUI-WLAN",
+        "CKU-WPA2-PSK",
+        "CKU-WLAN-STATUS",
+        "CKU-WPA2",
+        "CKU-WPA",
+        "CKU-PSK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"One PSK (one hex or one ASCII)\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Two PSKs (one hex and one ASCII)\" is incorrect because the scenario requires: The correct answer is \"One PSK (one hex or one ASCII)\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Four PSKs (two hex and two ASCII)\" is incorrect because the scenario requires: The correct answer is \"One PSK (one hex or one ASCII)\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Unlimited number of PSKs\" is incorrect because the scenario requires: The correct answer is \"One PSK (one hex or one ASCII)\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

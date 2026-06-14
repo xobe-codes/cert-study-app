@@ -2,60 +2,67 @@ import { describe, it, expect, beforeAll } from 'vitest'
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
-  DOMAIN_4_OBJECTIVES,
   hasLeakText,
   isExhibitDependent,
   validateCleanQuestion,
 } from '../../scripts/lib/cleanBankUtils.mjs'
+import { DOMAIN_META } from '../../scripts/lib/sourceBankConfig.mjs'
+import { generateAnswerReview } from '../../scripts/lib/generateAnswerReview.mjs'
 
 const ROOT = join(import.meta.dirname, '..', '..')
-const CLEAN_DIR = join(ROOT, 'data', 'clean-question-bank', 'domain-4')
-const MANIFEST = join(ROOT, 'data', 'clean-question-bank', 'manifest.json')
-const SHELVED = join(ROOT, 'data', 'shelved-questions', 'domain-4', 'exhibit-dependent.json')
+const CLEAN_ROOT = join(ROOT, 'data', 'clean-question-bank')
+const MANIFEST = join(CLEAN_ROOT, 'manifest.json')
 
 const bankBuilt = existsSync(MANIFEST)
 
-describe('clean question bank (Domain 4)', () => {
+describe('clean question bank (all domains)', () => {
   beforeAll(() => {
-    if (!bankBuilt) {
-      console.warn('Clean bank not built — run: npm run kb:domain4')
-    }
+    if (!bankBuilt) console.warn('Clean bank not built — run: npm run kb:full')
   })
 
   it('manifest exists after build', () => {
     expect(bankBuilt).toBe(true)
   })
 
-  it('has all Domain 4 objective files with questions', () => {
+  it('has objective files for domains 2–6', () => {
     if (!bankBuilt) return
-    for (const id of DOMAIN_4_OBJECTIVES) {
-      const path = join(CLEAN_DIR, `${id}.json`)
-      expect(existsSync(path), `missing ${id}.json`).toBe(true)
-      const { questions } = JSON.parse(readFileSync(path, 'utf-8'))
-      expect(questions.length, `${id} empty`).toBeGreaterThan(0)
+    for (const [domainNum, meta] of Object.entries(DOMAIN_META)) {
+      for (const id of meta.objectives) {
+        const path = join(CLEAN_ROOT, `domain-${domainNum}`, `${id}.json`)
+        expect(existsSync(path), `missing domain-${domainNum}/${id}.json`).toBe(true)
+        const { questions } = JSON.parse(readFileSync(path, 'utf-8'))
+        expect(questions.length, `${id} empty`).toBeGreaterThan(0)
+      }
     }
   })
 
-  it('active bank has no source leaks or exhibit stems', () => {
+  it('active bank has no leaks, exhibits, and includes answerReview', () => {
     if (!bankBuilt) return
     const errors = []
-    for (const id of DOMAIN_4_OBJECTIVES) {
-      const { questions } = JSON.parse(readFileSync(join(CLEAN_DIR, `${id}.json`), 'utf-8'))
-      for (const q of questions) {
-        if (isExhibitDependent(q)) errors.push(`${id}/${q.id}: exhibit in active bank`)
-        errors.push(...validateCleanQuestion(q, id))
+    for (const [domainNum, meta] of Object.entries(DOMAIN_META)) {
+      for (const id of meta.objectives) {
+        const { questions } = JSON.parse(readFileSync(join(CLEAN_ROOT, `domain-${domainNum}`, `${id}.json`), 'utf-8'))
+        for (const q of questions) {
+          if (isExhibitDependent(q)) errors.push(`${id}/${q.id}: exhibit in active bank`)
+          if (!q.answerReview) errors.push(`${id}/${q.id}: missing answerReview`)
+          errors.push(...validateCleanQuestion(q, id))
+        }
       }
     }
     expect(errors).toEqual([])
   })
 
-  it('shelved exhibit bucket is separate from active bank', () => {
-    if (!bankBuilt) return
-    const shelved = JSON.parse(readFileSync(SHELVED, 'utf-8'))
-    expect(shelved.length).toBeGreaterThan(0)
-    for (const s of shelved) {
-      expect(s.reason).toBe('exhibit-dependent')
+  it('generateAnswerReview produces incorrect entries for each wrong choice', () => {
+    const q = {
+      question: 'Test?',
+      choices: ['A', 'B', 'C', 'D'],
+      correctIndex: 1,
+      explanation: 'B is correct because…',
+      concept: 'nat',
     }
+    const ar = generateAnswerReview(q)
+    expect(ar.incorrect).toHaveLength(3)
+    expect(ar.correct.explanation).toContain('B')
   })
 
   it('detects leak patterns in utility', () => {
@@ -65,9 +72,12 @@ describe('clean question bank (Domain 4)', () => {
 })
 
 describe('cleanQuestionAdapter', () => {
-  it('clean bank can be enabled after validation', async () => {
-    const { CLEAN_BANK_ENABLED, hasCleanBank } = await import('../data/cleanQuestionAdapter.js')
+  it('clean bank replaces imports for migrated objectives', async () => {
+    const { CLEAN_BANK_ENABLED, hasCleanBank, getLegacyImportObjectives } = await import('../data/cleanQuestionAdapter.js')
     expect(CLEAN_BANK_ENABLED).toBe(true)
     expect(hasCleanBank('4.3')).toBe(true)
+    expect(hasCleanBank('3.2')).toBe(true)
+    const legacy = getLegacyImportObjectives()
+    expect(legacy.length).toBeLessThan(40)
   })
 })

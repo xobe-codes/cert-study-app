@@ -1,0 +1,1111 @@
+{
+  "objectiveId": "5.1",
+  "title": "Explain key security concepts",
+  "questions": [
+    {
+      "id": "5.1-q1",
+      "question": "Encryption of data in transit primarily supports which CIA triad element?",
+      "choices": [
+        "Availability",
+        "Integrity",
+        "Confidentiality",
+        "Authentication"
+      ],
+      "correctIndex": 2,
+      "explanation": "Encryption protects confidentiality. Integrity is addressed by hashing; availability by redundancy.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "CIA triad confidentiality",
+      "ckuIds": [
+        "CKU-CIA-TRIAD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Encryption protects confidentiality. Integrity is addressed by hashing; availability by redundancy."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Availability\" is incorrect because the scenario requires: Encryption protects confidentiality. Integrity is addressed by hashing; availability by redundancy.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Integrity\" is incorrect because the scenario requires: Encryption protects confidentiality. Integrity is addressed by hashing; availability by redundancy.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Authentication\" is incorrect because the scenario requires: Encryption protects confidentiality. Integrity is addressed by hashing; availability by redundancy.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.1-q2",
+      "question": "Hashing a file to detect unauthorized modifications primarily addresses which CIA element?",
+      "choices": [
+        "Confidentiality",
+        "Availability",
+        "Integrity",
+        "Non-repudiation"
+      ],
+      "correctIndex": 2,
+      "explanation": "Integrity ensures data has not been altered without detection. Hashing creates a fingerprint — if the hash changes, the data was modified.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "CIA triad integrity",
+      "ckuIds": [
+        "CKU-CIA-TRIAD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Integrity ensures data has not been altered without detection. Hashing creates a fingerprint — if the hash changes, the data was modified."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Confidentiality\" is incorrect because the scenario requires: Integrity ensures data has not been altered without detection. Hashing creates a fingerprint — if the hash changes, the …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Availability\" is incorrect because the scenario requires: Integrity ensures data has not been altered without detection. Hashing creates a fingerprint — if the hash changes, the …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Non-repudiation\" is incorrect because the scenario requires: Integrity ensures data has not been altered without detection. Hashing creates a fingerprint — if the hash changes, the …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.1-q3",
+      "question": "An unpatched web server running software with a known security flaw is best described as a:",
+      "choices": [
+        "Threat",
+        "Exploit",
+        "Vulnerability",
+        "Risk"
+      ],
+      "correctIndex": 2,
+      "explanation": "A vulnerability is a weakness (unpatched software). A threat is a potential danger. An exploit is the actual attack.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "vulnerability definition",
+      "ckuIds": [
+        "CKU-VULN-THREAT-EXPLOIT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "A vulnerability is a weakness (unpatched software). A threat is a potential danger. An exploit is the actual attack."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Threat\" is incorrect because the scenario requires: A vulnerability is a weakness (unpatched software). A threat is a potential danger. An exploit is the actual attack.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Exploit\" is incorrect because the scenario requires: A vulnerability is a weakness (unpatched software). A threat is a potential danger. An exploit is the actual attack.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Risk\" is incorrect because the scenario requires: A vulnerability is a weakness (unpatched software). A threat is a potential danger. An exploit is the actual attack.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.1-q4",
+      "question": "Which malware type encrypts files and demands payment for the decryption key?",
+      "choices": [
+        "Virus",
+        "Worm",
+        "Trojan",
+        "Ransomware"
+      ],
+      "correctIndex": 3,
+      "explanation": "Ransomware encrypts files and demands a ransom. A virus attaches to files; a worm self-propagates; a Trojan disguises itself as legitimate software.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "ransomware",
+      "ckuIds": [
+        "CKU-COMMON-THREATS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "Ransomware encrypts files and demands a ransom. A virus attaches to files; a worm self-propagates; a Trojan disguises itself as legitimate software."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Virus\" is incorrect because the scenario requires: Ransomware encrypts files and demands a ransom. A virus attaches to files; a worm self-propagates; a Trojan disguises it…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Worm\" is incorrect because the scenario requires: Ransomware encrypts files and demands a ransom. A virus attaches to files; a worm self-propagates; a Trojan disguises it…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Trojan\" is incorrect because the scenario requires: Ransomware encrypts files and demands a ransom. A virus attaches to files; a worm self-propagates; a Trojan disguises it…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.1-q5",
+      "question": "An attacker sends a fraudulent email appearing to be from IT, asking users to click a link and enter credentials. This is:",
+      "choices": [
+        "A worm attack",
+        "Phishing",
+        "A DoS attack",
+        "IP spoofing"
+      ],
+      "correctIndex": 1,
+      "explanation": "Phishing is social engineering via deceptive email to trick users into revealing credentials or clicking malicious links.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "phishing",
+      "ckuIds": [
+        "CKU-COMMON-THREATS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Phishing is social engineering via deceptive email to trick users into revealing credentials or clicking malicious links."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"A worm attack\" is incorrect because the scenario requires: Phishing is social engineering via deceptive email to trick users into revealing credentials or clicking malicious links…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A DoS attack\" is incorrect because the scenario requires: Phishing is social engineering via deceptive email to trick users into revealing credentials or clicking malicious links…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"IP spoofing\" is incorrect because the scenario requires: Phishing is social engineering via deceptive email to trick users into revealing credentials or clicking malicious links…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.1-q6",
+      "question": "A website is flooded with millions of requests from a botnet, making it unavailable. Which CIA element is violated?",
+      "choices": [
+        "Confidentiality",
+        "Integrity",
+        "Availability",
+        "Authentication"
+      ],
+      "correctIndex": 2,
+      "explanation": "A DDoS attack violates availability — legitimate users cannot access services because resources are exhausted.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "DDoS and availability",
+      "ckuIds": [
+        "CKU-CIA-TRIAD",
+        "CKU-COMMON-THREATS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "A DDoS attack violates availability — legitimate users cannot access services because resources are exhausted."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Confidentiality\" is incorrect because the scenario requires: A DDoS attack violates availability — legitimate users cannot access services because resources are exhausted.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Integrity\" is incorrect because the scenario requires: A DDoS attack violates availability — legitimate users cannot access services because resources are exhausted.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Authentication\" is incorrect because the scenario requires: A DDoS attack violates availability — legitimate users cannot access services because resources are exhausted.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.1-q7",
+      "question": "Using firewalls, user training, antivirus, and network segmentation together is called:",
+      "choices": [
+        "Multi-factor authentication",
+        "Defense in depth",
+        "Zero-trust networking",
+        "AAA framework"
+      ],
+      "correctIndex": 1,
+      "explanation": "Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect. No single control is sufficient.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "defense in depth",
+      "ckuIds": [
+        "CKU-MITIGATION-TECHNIQUES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect. No single control is sufficient."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Multi-factor authentication\" is incorrect because the scenario requires: Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect. No single control …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Zero-trust networking\" is incorrect because the scenario requires: Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect. No single control …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"AAA framework\" is incorrect because the scenario requires: Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect. No single control …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.1-q8",
+      "question": "An attacker intercepts traffic between two hosts and reads (or modifies) it without either host knowing. This is:",
+      "choices": [
+        "A DoS attack",
+        "A man-in-the-middle attack",
+        "IP spoofing",
+        "A replay attack"
+      ],
+      "correctIndex": 1,
+      "explanation": "A man-in-the-middle (MITM) attack positions the attacker between two communicating parties to eavesdrop or alter traffic. TLS encryption mitigates this.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "MITM",
+      "ckuIds": [
+        "CKU-COMMON-THREATS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "A man-in-the-middle (MITM) attack positions the attacker between two communicating parties to eavesdrop or alter traffic. TLS encryption mitigates this."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"A DoS attack\" is incorrect because the scenario requires: A man-in-the-middle (MITM) attack positions the attacker between two communicating parties to eavesdrop or alter traffic…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"IP spoofing\" is incorrect because the scenario requires: A man-in-the-middle (MITM) attack positions the attacker between two communicating parties to eavesdrop or alter traffic…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A replay attack\" is incorrect because the scenario requires: A man-in-the-middle (MITM) attack positions the attacker between two communicating parties to eavesdrop or alter traffic…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.1-q9",
+      "question": "Which malware self-replicates across networks WITHOUT needing to attach to an existing file?",
+      "choices": [
+        "Virus",
+        "Worm",
+        "Spyware",
+        "Adware"
+      ],
+      "correctIndex": 1,
+      "explanation": "A worm self-propagates without a host file — it spreads by exploiting vulnerabilities. A virus requires attaching to a file.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "worm vs virus",
+      "ckuIds": [
+        "CKU-COMMON-THREATS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "A worm self-propagates without a host file — it spreads by exploiting vulnerabilities. A virus requires attaching to a file."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Virus\" is incorrect because the scenario requires: A worm self-propagates without a host file — it spreads by exploiting vulnerabilities. A virus requires attaching to a f…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Spyware\" is incorrect because the scenario requires: A worm self-propagates without a host file — it spreads by exploiting vulnerabilities. A virus requires attaching to a f…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Adware\" is incorrect because the scenario requires: A worm self-propagates without a host file — it spreads by exploiting vulnerabilities. A virus requires attaching to a f…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.1-q10",
+      "question": "The most effective mitigation against phishing and social engineering is:",
+      "choices": [
+        "Firewalls",
+        "Antivirus software",
+        "User security awareness training",
+        "Encryption"
+      ],
+      "correctIndex": 2,
+      "explanation": "Social engineering exploits human trust. User security awareness training is the primary defense — teaching people to recognize and report suspicious emails and requests.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "social engineering mitigation",
+      "ckuIds": [
+        "CKU-MITIGATION-TECHNIQUES",
+        "CKU-COMMON-THREATS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Social engineering exploits human trust. User security awareness training is the primary defense — teaching people to recognize and report suspicious emails and requests."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Firewalls\" is incorrect because the scenario requires: Social engineering exploits human trust. User security awareness training is the primary defense — teaching people to re…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Antivirus software\" is incorrect because the scenario requires: Social engineering exploits human trust. User security awareness training is the primary defense — teaching people to re…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Encryption\" is incorrect because the scenario requires: Social engineering exploits human trust. User security awareness training is the primary defense — teaching people to re…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q001",
+      "question": "Which term describes the outside of the corporate firewall?",
+      "choices": [
+        "DMZ",
+        "Perimeter",
+        "Internal",
+        "Trusted"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-PERIMETER",
+        "CKU-DMZ"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Perimeter\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"DMZ\" is incorrect because the scenario requires: The correct answer is \"Perimeter\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Internal\" is incorrect because the scenario requires: The correct answer is \"Perimeter\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Trusted\" is incorrect because the scenario requires: The correct answer is \"Perimeter\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q002",
+      "question": "Which term describes the area accessible to the Internet yet protected by the corporate firewall?",
+      "choices": [
+        "DMZ",
+        "Perimeter",
+        "Internal",
+        "Trusted"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-PERIMETER",
+        "CKU-DMZ"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"DMZ\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Perimeter\" is incorrect because the scenario requires: The correct answer is \"DMZ\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Internal\" is incorrect because the scenario requires: The correct answer is \"DMZ\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Trusted\" is incorrect because the scenario requires: The correct answer is \"DMZ\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q003",
+      "question": "Which type of device can prevent an intrusion on your network?",
+      "choices": [
+        "Honey pots",
+        "IDS",
+        "IPS",
+        "HIDS"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-IDS",
+        "CKU-IPS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"IPS\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Honey pots\" is incorrect because the scenario requires: The correct answer is \"IPS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"IDS\" is incorrect because the scenario requires: The correct answer is \"IPS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"HIDS\" is incorrect because the scenario requires: The correct answer is \"IPS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q004",
+      "question": "When dealing with firewalls, the term trusted network is used to describe what?",
+      "choices": [
+        "Internal network",
+        "The Internet",
+        "The DMZ",
+        "A network with SSL"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-DMZ"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Internal network\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The Internet\" is incorrect because the scenario requires: The correct answer is \"Internal network\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The DMZ\" is incorrect because the scenario requires: The correct answer is \"Internal network\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A network with SSL\" is incorrect because the scenario requires: The correct answer is \"Internal network\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q005",
+      "question": "Which is a common attack method used to overwhelm services with traffic from multiple Internet sources?",
+      "choices": [
+        "Denial of service",
+        "Distributed denial of service",
+        "IP address spoofing",
+        "Session hijacking"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-DOS",
+        "CKU-SPOOFING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Distributed denial of service\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Denial of service\" is incorrect because the scenario requires: The correct answer is \"Distributed denial of service\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"IP address spoofing\" is incorrect because the scenario requires: The correct answer is \"Distributed denial of service\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Session hijacking\" is incorrect because the scenario requires: The correct answer is \"Distributed denial of service\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q006",
+      "question": "Which type of device can detect an intrusion on your network?",
+      "choices": [
+        "Honey pots",
+        "IDS",
+        "IPS",
+        "HIDS"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-IDS",
+        "CKU-IPS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"IDS\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Honey pots\" is incorrect because the scenario requires: The correct answer is \"IDS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"IPS\" is incorrect because the scenario requires: The correct answer is \"IDS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"HIDS\" is incorrect because the scenario requires: The correct answer is \"IDS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q007",
+      "question": "Which method can be used to stop ping sweep scans?",
+      "choices": [
+        "Deploying host intrusion detection systems",
+        "Deploying network intrusion detection systems",
+        "Blocking RFC 1918 addresses at the perimeter",
+        "Blocking ICMP echo requests and echo replies at the perimeter"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-PERIMETER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Blocking ICMP echo requests and echo replies at the perimeter\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Deploying host intrusion detection systems\" is incorrect because the scenario requires: The correct answer is \"Blocking ICMP echo requests and echo replies at the perimeter\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Deploying network intrusion detection systems\" is incorrect because the scenario requires: The correct answer is \"Blocking ICMP echo requests and echo replies at the perimeter\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Blocking RFC 1918 addresses at the perimeter\" is incorrect because the scenario requires: The correct answer is \"Blocking ICMP echo requests and echo replies at the perimeter\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q008",
+      "question": "Which appliance can be used to mitigate denial of service attacks?",
+      "choices": [
+        "Honey pots",
+        "IDS",
+        "IPS",
+        "HIDS"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-IDS",
+        "CKU-IPS",
+        "CKU-DOS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"IPS\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Honey pots\" is incorrect because the scenario requires: The correct answer is \"IPS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"IDS\" is incorrect because the scenario requires: The correct answer is \"IPS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"HIDS\" is incorrect because the scenario requires: The correct answer is \"IPS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q009",
+      "question": "Which is a common attack method used to attempt to gain access to a system using a false identity?",
+      "choices": [
+        "Denial of service",
+        "Distributed denial of service",
+        "IP address spoofing",
+        "Session hijacking"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-DOS",
+        "CKU-SPOOFING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"IP address spoofing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Denial of service\" is incorrect because the scenario requires: The correct answer is \"IP address spoofing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Distributed denial of service\" is incorrect because the scenario requires: The correct answer is \"IP address spoofing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Session hijacking\" is incorrect because the scenario requires: The correct answer is \"IP address spoofing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q010",
+      "question": "Which method would prevent tampering of data in transit?",
+      "choices": [
+        "Access control lists (ACLs)",
+        "Spoofing mitigation",
+        "SSL",
+        "Encryption of the data"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-SPOOFING",
+        "CKU-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"SSL\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Access control lists (ACLs)\" is incorrect because the scenario requires: The correct answer is \"SSL\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Spoofing mitigation\" is incorrect because the scenario requires: The correct answer is \"SSL\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Encryption of the data\" is incorrect because the scenario requires: The correct answer is \"SSL\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q011",
+      "question": "A rogue wireless access point (WAP) is created with the same SSID as the corporate SSID. The attacker has employees connect to the SSID and watches the information as it’s relayed to the original SSID. What type of attack is described here?",
+      "choices": [
+        "Smurf attack",
+        "Compromised key attack",
+        "Sniffer attack",
+        "Man in the middle attack"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-MITM",
+        "CKU-SSID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Man in the middle attack\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Smurf attack\" is incorrect because the scenario requires: The correct answer is \"Man in the middle attack\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Compromised key attack\" is incorrect because the scenario requires: The correct answer is \"Man in the middle attack\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Sniffer attack\" is incorrect because the scenario requires: The correct answer is \"Man in the middle attack\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q012",
+      "question": "What can you use to protect against spoofing of internal IP addresses on the perimeter of your network?",
+      "choices": [
+        "ACLs",
+        "Intrusion detection systems",
+        "SSL",
+        "Host intrusion detection systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-PERIMETER",
+        "CKU-SPOOFING",
+        "CKU-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"ACLs\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Intrusion detection systems\" is incorrect because the scenario requires: The correct answer is \"ACLs\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SSL\" is incorrect because the scenario requires: The correct answer is \"ACLs\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Host intrusion detection systems\" is incorrect because the scenario requires: The correct answer is \"ACLs\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q013",
+      "question": "What attack vector can be used for a man in the middle attack?",
+      "choices": [
+        "DHCP",
+        "DNS",
+        "Wireless",
+        "All of the above"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES",
+        "CKU-MITM"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"All of the above\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"DHCP\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"DNS\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Wireless\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.1-source-q014",
+      "question": "Why should you always change the native VLAN?",
+      "choices": [
+        "The native VLAN contains frames from all VLANs.",
+        "The native VLAN is configured on all switches for logging.",
+        "The native VLAN is the default on all switch ports.",
+        "The native VLAN provides no encryption."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "security concepts",
+      "ckuIds": [
+        "CKU-SECURITY-CONCEPTS",
+        "CKU-THREATS",
+        "CKU-VULNERABILITIES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The native VLAN is the default on all switch ports.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The native VLAN contains frames from all VLANs.\" is incorrect because the scenario requires: The correct answer is \"The native VLAN is the default on all switch ports.\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The native VLAN is configured on all switches for logging.\" is incorrect because the scenario requires: The correct answer is \"The native VLAN is the default on all switch ports.\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The native VLAN provides no encryption.\" is incorrect because the scenario requires: The correct answer is \"The native VLAN is the default on all switch ports.\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

@@ -21,7 +21,33 @@
         "CKU-HOSTNAME",
         "CKU-DOMAIN-NAME"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Setting the hostname and domain name\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Setting the time and date\" is incorrect because the scenario requires: The correct answer is \"Setting the hostname and domain name\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Setting the key strength\" is incorrect because the scenario requires: The correct answer is \"Setting the hostname and domain name\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Setting the key repository\" is incorrect because the scenario requires: The correct answer is \"Setting the hostname and domain name\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.8-source-q002",
@@ -42,7 +68,33 @@
         "CKU-HOSTNAME",
         "CKU-DOMAIN-NAME"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config)#ip ssh version 2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-line)#version 2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ssh version 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-ssh)#version 2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ssh version 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#ssh version 2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ssh version 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.8-source-q003",
@@ -65,7 +117,33 @@
         "CKU-TELNET",
         "CKU-TRANSPORT-INPUT"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Switch(config-line)#transport ssh telnet\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#login ssh telnet\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#transport ssh telnet\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config-line)#login ssh telnet\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#transport ssh telnet\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config)#transport ssh telnet\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#transport ssh telnet\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.8-source-q004",
@@ -87,7 +165,33 @@
         "CKU-DOMAIN-NAME",
         "CKU-TELNET"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"SSH is encrypted.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Telnet has weak encryption.\" is incorrect because the scenario requires: The correct answer is \"SSH is encrypted.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SSH allows for file copy.\" is incorrect because the scenario requires: The correct answer is \"SSH is encrypted.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SSH makes it easier to create ACLs for access.\" is incorrect because the scenario requires: The correct answer is \"SSH is encrypted.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.8-source-q005",
@@ -110,7 +214,33 @@
         "CKU-DNS",
         "CKU-DNS-RECORD"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The key strength needs to be 768 bits or higher.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The time and date need to be corrected.\" is incorrect because the scenario requires: The correct answer is \"The key strength needs to be 768 bits or higher.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The DNS server is not configured.\" is incorrect because the scenario requires: The correct answer is \"The key strength needs to be 768 bits or higher.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"There is no host record for the switch or router.\" is incorrect because the scenario requires: The correct answer is \"The key strength needs to be 768 bits or higher.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.8-source-q006",
@@ -132,7 +262,33 @@
         "CKU-DOMAIN-NAME",
         "CKU-LOCAL-USERNAME"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config)#username user1 password Password20!\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#account user1 Router(config-acct)#password Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#username user1 password Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#user user1 Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#username user1 password Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#user-account user1 password Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#username user1 password Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.8-source-q007",
@@ -154,7 +310,33 @@
         "CKU-DOMAIN-NAME",
         "CKU-CRYPTO-KEY-GENERATE-RSA"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config)#crypto key generate rsa\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#generate crypto key rsa\" is incorrect because the scenario requires: The correct answer is \"Router(config)#crypto key generate rsa\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#crypto generate key rsa\" is incorrect because the scenario requires: The correct answer is \"Router(config)#crypto key generate rsa\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#crypto key generate rsa\" is incorrect because the scenario requires: The correct answer is \"Router(config)#crypto key generate rsa\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.8-source-q008",
@@ -179,7 +361,33 @@
         "CKU-LOGIN-LOCAL",
         "CKU-LOCAL-USERNAME"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Switch(config-line)#login local\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#new aaa model\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#login local\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#local authentication\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#login local\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config-line)#local authentication\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#login local\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.8-source-q009",
@@ -201,7 +409,33 @@
         "CKU-DOMAIN-NAME",
         "CKU-BANNERS"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Login banner\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"MOTD banner\" is incorrect because the scenario requires: The correct answer is \"Login banner\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Exec banner\" is incorrect because the scenario requires: The correct answer is \"Login banner\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Incoming banner\" is incorrect because the scenario requires: The correct answer is \"Login banner\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     }
   ]
 }

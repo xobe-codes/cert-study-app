@@ -4,7 +4,7 @@
     "domainNumber": 4,
     "domainName": "IP Services",
     "version": "1",
-    "compiledAt": "2026-06-14T01:38:25.326Z",
+    "compiledAt": "2026-06-14T01:50:23.765Z",
     "curatedObjectives": 1,
     "labs": 8
   },
@@ -19,61 +19,173 @@
   },
   "knowledgeBase": {
     "cleanBankManifest": {
-      "schemaVersion": "ccna-clean-question-bank-v1",
-      "domain": "4",
-      "domainName": "IP Services",
-      "builtAt": "2026-06-14T01:38:22.740Z",
-      "objectives": {
-        "4.1": {
-          "active": 14,
-          "shelved": 6,
-          "source": "curated"
+      "builtAt": "2026-06-14T01:49:36.227Z",
+      "domains": {
+        "2": {
+          "schemaVersion": "ccna-clean-question-bank-v1",
+          "domain": "2",
+          "domainName": "Network Access",
+          "builtAt": "2026-06-14T01:49:36.238Z",
+          "objectives": {
+            "2.3": {
+              "active": 14
+            },
+            "2.4": {
+              "active": 15
+            },
+            "2.5": {
+              "active": 41
+            },
+            "2.6": {
+              "active": 10
+            },
+            "2.7": {
+              "active": 7
+            },
+            "2.8": {
+              "active": 16
+            }
+          },
+          "totals": {
+            "active": 103,
+            "shelved": 21
+          }
         },
-        "4.2": {
-          "active": 10,
-          "shelved": 2,
-          "source": "source-json"
+        "3": {
+          "schemaVersion": "ccna-clean-question-bank-v1",
+          "domain": "3",
+          "domainName": "IP Connectivity",
+          "builtAt": "2026-06-14T01:49:36.257Z",
+          "objectives": {
+            "3.1": {
+              "active": 31
+            },
+            "3.2": {
+              "active": 49
+            },
+            "3.3": {
+              "active": 46
+            },
+            "3.4": {
+              "active": 54
+            },
+            "3.5": {
+              "active": 29
+            }
+          },
+          "totals": {
+            "active": 209,
+            "shelved": 30
+          }
         },
-        "4.3": {
-          "active": 12,
-          "shelved": 0,
-          "source": "source-json"
+        "4": {
+          "schemaVersion": "ccna-clean-question-bank-v1",
+          "domain": "4",
+          "domainName": "IP Services",
+          "builtAt": "2026-06-14T01:49:36.280Z",
+          "objectives": {
+            "4.1": {
+              "active": 32
+            },
+            "4.2": {
+              "active": 10
+            },
+            "4.3": {
+              "active": 12
+            },
+            "4.4": {
+              "active": 12
+            },
+            "4.5": {
+              "active": 10
+            },
+            "4.6": {
+              "active": 12
+            },
+            "4.7": {
+              "active": 14
+            },
+            "4.8": {
+              "active": 9
+            },
+            "4.9": {
+              "active": 5
+            }
+          },
+          "totals": {
+            "active": 116,
+            "shelved": 4
+          }
         },
-        "4.4": {
-          "active": 12,
-          "shelved": 0,
-          "source": "source-json"
+        "5": {
+          "schemaVersion": "ccna-clean-question-bank-v1",
+          "domain": "5",
+          "domainName": "Security Fundamentals",
+          "builtAt": "2026-06-14T01:49:36.302Z",
+          "objectives": {
+            "5.1": {
+              "active": 24
+            },
+            "5.2": {
+              "active": 7
+            },
+            "5.3": {
+              "active": 24
+            },
+            "5.10": {
+              "active": 11
+            },
+            "5.5": {
+              "active": 34
+            },
+            "5.6": {
+              "active": 26
+            },
+            "5.7": {
+              "active": 11
+            },
+            "5.8": {
+              "active": 10
+            },
+            "5.9": {
+              "active": 2
+            }
+          },
+          "totals": {
+            "active": 149,
+            "shelved": 20
+          }
         },
-        "4.5": {
-          "active": 9,
-          "shelved": 3,
-          "source": "source-json"
-        },
-        "4.6": {
-          "active": 11,
-          "shelved": 1,
-          "source": "source-json"
-        },
-        "4.7": {
-          "active": 14,
-          "shelved": 0,
-          "source": "source-json"
-        },
-        "4.8": {
-          "active": 9,
-          "shelved": 0,
-          "source": "source-json"
-        },
-        "4.9": {
-          "active": 5,
-          "shelved": 0,
-          "source": "source-json"
+        "6": {
+          "schemaVersion": "ccna-clean-question-bank-v1",
+          "domain": "6",
+          "domainName": "Automation & Programmability",
+          "builtAt": "2026-06-14T01:49:36.338Z",
+          "objectives": {
+            "6.1": {
+              "active": 6
+            },
+            "6.2": {
+              "active": 6
+            },
+            "6.3": {
+              "active": 20
+            },
+            "6.4": {
+              "active": 10
+            },
+            "6.5": {
+              "active": 18
+            },
+            "6.6": {
+              "active": 24
+            }
+          },
+          "totals": {
+            "active": 84,
+            "shelved": 16
+          }
         }
-      },
-      "totals": {
-        "active": 96,
-        "shelved": 12,
-        "needsExplanationReview": 88
       }
     },
     "objectives": [
@@ -179,8 +291,8 @@
           "CKU-LOGGING-TIMESTAMPS",
           "CKU-LOGGING-CONSOLE",
           "CKU-LOGGING-BUFFERED",
-          "CKU-NAT",
-          "CKU-SNMP-INFORM"
+          "CKU-SNMP-INFORM",
+          "CKU-NAT"
         ],
         "needsReview": true
       },

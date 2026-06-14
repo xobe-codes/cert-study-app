@@ -21,7 +21,33 @@
         "CKU-SYSLOG-UDP-514",
         "CKU-SYSLOG-SEVERITY"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"UDP/514\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"UDP/161\" is incorrect because the scenario requires: The correct answer is \"UDP/514\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"TCP/162\" is incorrect because the scenario requires: The correct answer is \"UDP/514\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"UDP/162\" is incorrect because the scenario requires: The correct answer is \"UDP/514\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
     },
     {
       "id": "obj-4.5-source-q002",
@@ -44,7 +70,33 @@
         "CKU-SNMP-TRAP",
         "CKU-SYSLOG-DEBUGGING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config)#logging trap debugging\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#syslog debugging\" is incorrect because the scenario requires: The correct answer is \"Router(config)#logging trap debugging\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#logging debugging\" is incorrect because the scenario requires: The correct answer is \"Router(config)#logging trap debugging\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#log-level debugging\" is incorrect because the scenario requires: The correct answer is \"Router(config)#logging trap debugging\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
     },
     {
       "id": "obj-4.5-source-q003",
@@ -66,7 +118,33 @@
         "CKU-SYSLOG-SEVERITY",
         "CKU-SNMP-TRAP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Switch(config)#logging trap 4\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#logging server 4\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#logging trap 4\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config)#logging trap 5\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#logging trap 4\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config)#logging server 5\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#logging trap 4\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
     },
     {
       "id": "obj-4.5-source-q004",
@@ -88,7 +166,33 @@
         "CKU-SYSLOG-SEVERITY",
         "CKU-LOGGING-TIMESTAMPS"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Switch(config)#service timestamps log datetime\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#logging timestamps log datetime\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#service timestamps log datetime\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#logging timestamps datetime\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#service timestamps log datetime\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config)#service datetime timestamps\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#service timestamps log datetime\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
     },
     {
       "id": "obj-4.5-source-q005",
@@ -110,7 +214,33 @@
         "CKU-SYSLOG-SEVERITY",
         "CKU-LOGGING-CONSOLE"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config)#logging console 0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-line)#logging level 0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#logging console 0\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#logging console 7\" is incorrect because the scenario requires: The correct answer is \"Router(config)#logging console 0\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config-line)#logging level 7\" is incorrect because the scenario requires: The correct answer is \"Router(config)#logging console 0\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
     },
     {
       "id": "obj-4.5-source-q006",
@@ -132,7 +262,84 @@
         "CKU-SYSLOG-SEVERITY",
         "CKU-LOGGING-BUFFERED"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Switch(config)#logging buffered 1\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#logging 1\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#logging buffered 1\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config)#logging buffered 2\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#logging buffered 1\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config)#logging 2\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#logging buffered 1\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
+    },
+    {
+      "id": "obj-4.5-source-q008",
+      "question": "Syslog configuration excerpt:\nlogging trap informational\nlogging host 192.168.1.100\n! informational = severity level 6\n\nWhat severity is being logged to in the configuration below?",
+      "choices": [
+        "Informational (6)",
+        "Notifications (5)",
+        "Warnings (4)",
+        "Debugging (7)"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY",
+        "CKU-SNMP-INFORM",
+        "CKU-SYSLOG-DEBUGGING"
+      ],
+      "objectiveId": "4.5",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Notifications (5)\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Informational (6)\" is incorrect because the scenario requires: The correct answer is \"Notifications (5)\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Warnings (4)\" is incorrect because the scenario requires: The correct answer is \"Notifications (5)\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Debugging (7)\" is incorrect because the scenario requires: The correct answer is \"Notifications (5)\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
     },
     {
       "id": "obj-4.5-source-q010",
@@ -155,7 +362,33 @@
         "CKU-LOGGING-BUFFERED",
         "CKU-LOGGING-CONSOLE"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config)#logging buffered\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#logging internal\" is incorrect because the scenario requires: The correct answer is \"Router(config)#logging buffered\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#logging ram\" is incorrect because the scenario requires: The correct answer is \"Router(config)#logging buffered\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#logging console\" is incorrect because the scenario requires: The correct answer is \"Router(config)#logging buffered\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
     },
     {
       "id": "obj-4.5-source-q011",
@@ -178,7 +411,33 @@
         "CKU-NAT",
         "CKU-LOGGING-CONSOLE"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Console\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Broadcasts to a syslog server\" is incorrect because the scenario requires: The correct answer is \"Console\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"TTY\" is incorrect because the scenario requires: The correct answer is \"Console\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"NVRAM\" is incorrect because the scenario requires: The correct answer is \"Console\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
     },
     {
       "id": "obj-4.5-source-q012",
@@ -201,7 +460,33 @@
         "CKU-SNMP-INFORM",
         "CKU-SYSLOG-DEBUGGING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Debugging (7)\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Notification (5)\" is incorrect because the scenario requires: The correct answer is \"Debugging (7)\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Informational (6)\" is incorrect because the scenario requires: The correct answer is \"Debugging (7)\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Warning (4)\" is incorrect because the scenario requires: The correct answer is \"Debugging (7)\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
     }
   ]
 }

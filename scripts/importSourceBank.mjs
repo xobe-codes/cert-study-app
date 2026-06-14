@@ -1,38 +1,23 @@
 #!/usr/bin/env node
 /**
- * Copy private source-mapped validation JSON into data/source-question-bank/.
- * Reads from ~/Downloads/ as import source; does not modify originals.
+ * Copy all validation packages into data/source-question-bank/.
  */
 import { cpSync, existsSync, mkdirSync, readdirSync, statSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { DOMAIN_4_SOURCE_FILES } from './lib/cleanBankUtils.mjs'
+import { SOURCE_BANK_FOLDERS } from './lib/sourceBankConfig.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const OUT = join(ROOT, 'data', 'source-question-bank')
 const DL = join(homedir(), 'Downloads')
 
-function copyFile(relPath) {
-  const src = join(DL, relPath)
-  const dest = join(OUT, relPath)
-  if (!existsSync(src)) {
-    console.warn(`  skip (missing): ${relPath}`)
-    return false
-  }
-  mkdirSync(dirname(dest), { recursive: true })
-  cpSync(src, dest)
-  console.log(`  copied: ${relPath}`)
-  return true
-}
-
-function copyDomainFolder() {
-  const folder = 'domain4-ip-services-validation'
+function copyFolder(folder) {
   const srcDir = join(DL, folder)
   const destDir = join(OUT, folder)
   if (!existsSync(srcDir)) {
-    console.warn(`  skip folder (missing): ${folder}`)
+    console.warn(`  skip (missing): ${folder}`)
     return 0
   }
   mkdirSync(destDir, { recursive: true })
@@ -49,21 +34,14 @@ function copyDomainFolder() {
 
 function main() {
   mkdirSync(OUT, { recursive: true })
-  console.log('Importing Domain 4 source bank into data/source-question-bank/ …')
-  let copied = copyDomainFolder()
-
-  if (copied === 0) {
-    console.log('Falling back to per-file copy …')
-    for (const entry of DOMAIN_4_SOURCE_FILES) {
-      if (copyFile(entry.file)) copied++
-    }
-  }
-
-  if (copied === 0) {
-    console.error('✗ No source files copied. Run from a machine with ~/Downloads/domain4-ip-services-validation/')
+  console.log('Importing source question banks …')
+  let total = 0
+  for (const folder of SOURCE_BANK_FOLDERS) total += copyFolder(folder)
+  if (total === 0) {
+    console.error('✗ No source files copied.')
     process.exit(1)
   }
-  console.log(`✓ Imported ${copied} file(s). Source files in ~/Downloads/ were not modified.`)
+  console.log(`✓ Imported ${total} file(s).`)
 }
 
 main()

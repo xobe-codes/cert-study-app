@@ -15,9 +15,11 @@ const KB_DIR = join(ROOT, 'data', 'knowledge-base')
 const CLEAN_DIR = join(ROOT, 'data', 'clean-question-bank', 'domain-4')
 
 function loadCleanQuestions(objectiveId) {
-  const path = join(CLEAN_DIR, `${objectiveId}.json`)
-  if (!existsSync(path)) return []
-  return JSON.parse(readFileSync(path, 'utf-8')).questions || []
+  for (const domainNum of [2, 3, 4, 5, 6]) {
+    const path = join(CLEAN_DIR, `domain-${domainNum}`, `${objectiveId}.json`)
+    if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf-8')).questions || []
+  }
+  return []
 }
 
 function main() {

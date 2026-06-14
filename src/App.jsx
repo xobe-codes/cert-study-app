@@ -1399,6 +1399,19 @@ function generateSubnetProblem() {
   }
 }
 
+const ROUTING_DRILL_ITEMS = [
+  { line: 'C    192.168.1.0/24 is directly connected, GigabitEthernet0/0', question: 'What is the routing source code for this entry?', answer: 'C', hint: 'Connected routes use code C.' },
+  { line: 'S    10.0.0.0/8 [1/0] via 203.0.113.1', question: 'What is the administrative distance for this static route?', answer: '1', hint: 'Static routes default to AD 1.' },
+  { line: 'O    172.16.0.0/16 [110/20] via 10.1.1.2, 00:05:00, GigabitEthernet0/1', question: 'What is the OSPF administrative distance?', answer: '110', hint: 'OSPF AD is 110.' },
+  { line: 'O    172.16.0.0/16 [110/20] via 10.1.1.2, 00:05:00, GigabitEthernet0/1', question: 'What is the outgoing interface?', answer: 'GigabitEthernet0/1', hint: 'Last field in the route line.' },
+  { line: 'S*   0.0.0.0/0 [1/0] via 203.0.113.1', question: 'What does the asterisk (*) indicate?', answer: 'default route', accept: ['default', 'default route'], hint: '0.0.0.0/0 is the default route.' },
+]
+
+function generateRoutingProblem() {
+  const item = ROUTING_DRILL_ITEMS[Math.floor(Math.random() * ROUTING_DRILL_ITEMS.length)]
+  return { ...item }
+}
+
 // VLSM: given a base network and a list of required host counts, allocate
 // subnets in descending order of size (largest-first allocation).
 function generateVLSMProblem() {
@@ -2676,6 +2689,69 @@ function KnowledgeStudyPanel({ objectiveId }) {
   )
 }
 
+function DeeperHelpSection({ children }) {
+  const [open, setOpen] = useState(false)
+  if (!children) return null
+  return (
+    <div style={{ marginTop: 10 }}>
+      <button type="button" onClick={() => setOpen(o => !o)} style={{ ...styles.secondaryBtn, fontSize: 12, padding: '6px 10px' }}>
+        {open ? '▲ Hide deeper help' : '▼ Need deeper help? (optional AI)'}
+      </button>
+      {open && <div style={{ marginTop: 8 }}>{children}</div>}
+    </div>
+  )
+}
+
+function RoutingTableDecoderMode({ onBack }) {
+  const [problem, setProblem] = useState(() => generateRoutingProblem())
+  const [answer, setAnswer] = useState('')
+  const [checked, setChecked] = useState(false)
+  const accepted = [problem.answer, ...(problem.accept || [])].map(a => a.toLowerCase())
+  const correct = accepted.includes((answer || '').trim().toLowerCase())
+
+  function next() {
+    setProblem(generateRoutingProblem())
+    setAnswer('')
+    setChecked(false)
+  }
+
+  return (
+    <div>
+      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <h1 style={styles.h1}>Routing Table Decoder</h1>
+      <div style={styles.small}>Read the route line — static KB drill, no API.</div>
+      <div style={{ ...styles.card, marginTop: 12, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 13 }}>
+        {problem.line}
+      </div>
+      <div style={{ ...styles.card, marginTop: 10 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>{problem.question}</div>
+        <input style={styles.input} value={answer} onChange={e => setAnswer(e.target.value)} placeholder="Your answer" />
+        {problem.hint && <div style={{ ...styles.small, marginTop: 6 }}>Hint: {problem.hint}</div>}
+        <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
+          <button style={styles.primaryBtn} onClick={() => setChecked(true)}>Check</button>
+          <button style={styles.secondaryBtn} onClick={next}>Next</button>
+        </div>
+        {checked && (
+          <div style={{ marginTop: 10, fontSize: 13, color: correct ? COLORS.mint : COLORS.rose }}>
+            {correct ? '✓ Correct' : `✗ Expected: ${problem.answer}`}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function SubnetPracticeHome({ onBack }) {
+  return (
+    <div>
+      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <h1 style={styles.h1}>Subnetting Drill</h1>
+      <div style={styles.small}>Practice network/broadcast/range calculations — works offline.</div>
+      <SubnettingTab />
+    </div>
+  )
+}
+
 function ExamTrapStudyMode({ onBack }) {
   const traps = useMemo(() => getAllDomain4ExamTraps(), [])
   const [idx, setIdx] = useState(0)
@@ -3768,26 +3844,28 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
             </div>
             <AnswerReview q={current} selected={selected} />
             {!isCorrect && isMcQuestion(current) && (
-              <ExplainMistake
-                cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
-                question={current.question} choices={current.choices}
-                correctIndex={current.correctIndex} selectedIndex={selected}
-                explanation={current.explanation}
-              />
-            )}
-            {!isCorrect && isMcQuestion(current) && selected != null && (
-              <ProgressiveHint
-                questionText={current.question}
-                wrongChoice={current.choices[selected]}
-                correctChoice={current.choices[current.correctIndex]}
-              />
-            )}
-            {!isCorrect && isMcQuestion(current) && selected != null && (
-              <PersonalizedMnemonic
-                questionId={current.id}
-                questionText={current.question}
-                correctChoice={current.choices[current.correctIndex]}
-              />
+              <DeeperHelpSection>
+                <ExplainMistake
+                  cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
+                  question={current.question} choices={current.choices}
+                  correctIndex={current.correctIndex} selectedIndex={selected}
+                  explanation={current.explanation}
+                />
+                {selected != null && (
+                  <ProgressiveHint
+                    questionText={current.question}
+                    wrongChoice={current.choices[selected]}
+                    correctChoice={current.choices[current.correctIndex]}
+                  />
+                )}
+                {selected != null && (
+                  <PersonalizedMnemonic
+                    questionId={current.id}
+                    questionText={current.question}
+                    correctChoice={current.choices[current.correctIndex]}
+                  />
+                )}
+              </DeeperHelpSection>
             )}
           </div>
         )}
@@ -6230,12 +6308,14 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={current} selected={selected} />
             {!isCorrect && isMcQuestion(current) && (
-              <ExplainMistake
-                cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
-                question={current.question} choices={current.choices}
-                correctIndex={current.correctIndex} selectedIndex={selected}
-                explanation={current.explanation}
-              />
+              <DeeperHelpSection>
+                <ExplainMistake
+                  cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
+                  question={current.question} choices={current.choices}
+                  correctIndex={current.correctIndex} selectedIndex={selected}
+                  explanation={current.explanation}
+                />
+              </DeeperHelpSection>
             )}
             {obj && (
               <button
@@ -6592,7 +6672,7 @@ function SessionRecapCard() {
   )
 }
 
-function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onImportPick, syncOn }) {
+function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onOpenSubnet, onOpenRouting, onImportPick, syncOn }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -6785,6 +6865,10 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         </div>
         <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
           <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenExamTraps}>⚠️ Exam Traps</button>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenSubnet}>🔢 Subnetting</button>
+        </div>
+        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenRouting}>🛣 Routing Decoder</button>
         </div>
       </div>
 
@@ -7784,7 +7868,7 @@ function syncAppHash(view, objective) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | focus | examtraps
+  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | focus | examtraps | subnet | routing
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -8241,6 +8325,8 @@ export default function App() {
             onOpenReview={() => setView('review')}
             onOpenFocus={() => setView('focus')}
             onOpenExamTraps={() => setView('examtraps')}
+            onOpenSubnet={() => setView('subnet')}
+            onOpenRouting={() => setView('routing')}
             onImportPick={pickImportFile}
             dueCount={dueCount}
             syncOn={!!syncCode}
@@ -8274,6 +8360,8 @@ export default function App() {
         {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
         {view === 'focus' && <FocusModeSession progress={progress} onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} />}
         {view === 'examtraps' && <ExamTrapStudyMode onBack={() => setView('home')} />}
+        {view === 'subnet' && <SubnetPracticeHome onBack={() => setView('home')} />}
+        {view === 'routing' && <RoutingTableDecoderMode onBack={() => setView('home')} />}
         </div>
       </div>
       {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}

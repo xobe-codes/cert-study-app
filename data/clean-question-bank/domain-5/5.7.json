@@ -1,0 +1,551 @@
+{
+  "objectiveId": "5.7",
+  "title": "Differentiate AAA concepts",
+  "questions": [
+    {
+      "id": "obj-5.8-source-q001",
+      "question": "Which technology will give selective access to the network based upon authentication?",
+      "choices": [
+        "802.1Q",
+        "ACLs",
+        "802.1X",
+        "Firewall"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-ACL",
+        "CKU-802.1X"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"802.1X\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.1Q\" is incorrect because the scenario requires: The correct answer is \"802.1X\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"ACLs\" is incorrect because the scenario requires: The correct answer is \"802.1X\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Firewall\" is incorrect because the scenario requires: The correct answer is \"802.1X\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q002",
+      "question": "Identify the end device that sends credentials for 802.1X called?",
+      "choices": [
+        "Authenticator",
+        "Supplicant",
+        "AAA server",
+        "RADIUS server"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-RADIUS",
+        "CKU-802.1X",
+        "CKU-SUPPLICANT",
+        "CKU-AUTHENTICATOR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Supplicant\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Authenticator\" is incorrect because the scenario requires: The correct answer is \"Supplicant\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"AAA server\" is incorrect because the scenario requires: The correct answer is \"Supplicant\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RADIUS server\" is incorrect because the scenario requires: The correct answer is \"Supplicant\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q003",
+      "question": "Identify the switch called in an 802.1X configuration?",
+      "choices": [
+        "Authenticator",
+        "Supplicant",
+        "AAA server",
+        "RADIUS server"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-RADIUS",
+        "CKU-802.1X",
+        "CKU-SUPPLICANT",
+        "CKU-AUTHENTICATOR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Authenticator\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Supplicant\" is incorrect because the scenario requires: The correct answer is \"Authenticator\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"AAA server\" is incorrect because the scenario requires: The correct answer is \"Authenticator\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RADIUS server\" is incorrect because the scenario requires: The correct answer is \"Authenticator\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q004",
+      "question": "What protocol does the supplicant communicate to the authenticator for 802.1X?",
+      "choices": [
+        "802.1X EAP",
+        "UDP",
+        "TCP",
+        "IP"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-802.1X",
+        "CKU-SUPPLICANT",
+        "CKU-AUTHENTICATOR",
+        "CKU-EAP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"802.1X EAP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"UDP\" is incorrect because the scenario requires: The correct answer is \"802.1X EAP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"TCP\" is incorrect because the scenario requires: The correct answer is \"802.1X EAP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"IP\" is incorrect because the scenario requires: The correct answer is \"802.1X EAP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q005",
+      "question": "Which protocol is used by 802.1X for supplicant to authenticator and authenticator to authentication server?",
+      "choices": [
+        "802.1X authentication headers",
+        "IPsec",
+        "EAP",
+        "RADIUS"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-IPS",
+        "CKU-IPSEC",
+        "CKU-RADIUS",
+        "CKU-802.1X",
+        "CKU-SUPPLICANT",
+        "CKU-AUTHENTICATOR",
+        "CKU-EAP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"EAP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.1X authentication headers\" is incorrect because the scenario requires: The correct answer is \"EAP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"IPsec\" is incorrect because the scenario requires: The correct answer is \"EAP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RADIUS\" is incorrect because the scenario requires: The correct answer is \"EAP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q006",
+      "question": "Which device is the supplicant during the 802.1X authentication process?",
+      "choices": [
+        "The device requesting access",
+        "The server that is providing authentication",
+        "The device that is controlling access via 802.1X",
+        "The device connecting the layer 3 network"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-802.1X",
+        "CKU-SUPPLICANT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The device requesting access\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The server that is providing authentication\" is incorrect because the scenario requires: The correct answer is \"The device requesting access\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The device that is controlling access via 802.1X\" is incorrect because the scenario requires: The correct answer is \"The device requesting access\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The device connecting the layer 3 network\" is incorrect because the scenario requires: The correct answer is \"The device requesting access\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q007",
+      "question": "Which server will centralize authentication for all Cisco routers and switches?",
+      "choices": [
+        "Active Directory server",
+        "AAA server",
+        "802.1X server",
+        "Terminal server"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-802.1X"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"AAA server\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Active Directory server\" is incorrect because the scenario requires: The correct answer is \"AAA server\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"802.1X server\" is incorrect because the scenario requires: The correct answer is \"AAA server\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Terminal server\" is incorrect because the scenario requires: The correct answer is \"AAA server\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q010",
+      "question": "Which command configure the router to use a TACACS+ server and a backup of local for authentication of logins?",
+      "choices": [
+        "Router(config)#aaa authentication login default group tacacs+ local",
+        "Router(config)#authentication login group tacacs+ local",
+        "Router(config)#aaa-authentication login default tacacs+ local",
+        "Router(config)#aaa authentication login tacacs+ local"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-TACACS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config)#aaa authentication login default group tacacs+ local\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#authentication login group tacacs+ local\" is incorrect because the scenario requires: The correct answer is \"Router(config)#aaa authentication login default group tacacs+ local\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#aaa-authentication login default tacacs+ local\" is incorrect because the scenario requires: The correct answer is \"Router(config)#aaa authentication login default group tacacs+ local\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#aaa authentication login tacacs+ local\" is incorrect because the scenario requires: The correct answer is \"Router(config)#aaa authentication login default group tacacs+ local\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q011",
+      "question": "You configured the AAA authentication for login to default local but forgot to create a local AAA user. What will happen when you log out?",
+      "choices": [
+        "The enable secret will work.",
+        "The console will still be available.",
+        "The router will lock you out.",
+        "Nothing, since a username and password have not been set."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-ENABLE-SECRET",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The router will lock you out.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The enable secret will work.\" is incorrect because the scenario requires: The correct answer is \"The router will lock you out.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The console will still be available.\" is incorrect because the scenario requires: The correct answer is \"The router will lock you out.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Nothing, since a username and password have not been set.\" is incorrect because the scenario requires: The correct answer is \"The router will lock you out.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q012",
+      "question": "You were routinely looking at logs and found that a security incident occurred. Which type of incident detection is described?",
+      "choices": [
+        "Passive",
+        "Active",
+        "Proactive",
+        "Auditing"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Passive\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Active\" is incorrect because the scenario requires: The correct answer is \"Passive\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Proactive\" is incorrect because the scenario requires: The correct answer is \"Passive\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Auditing\" is incorrect because the scenario requires: The correct answer is \"Passive\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q013",
+      "question": "A RADIUS server is an example of which type of server?",
+      "choices": [
+        "DNS",
+        "Email",
+        "Proxy",
+        "Authentication"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-RADIUS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Authentication\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"DNS\" is incorrect because the scenario requires: The correct answer is \"Authentication\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Email\" is incorrect because the scenario requires: The correct answer is \"Authentication\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Proxy\" is incorrect because the scenario requires: The correct answer is \"Authentication\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

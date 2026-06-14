@@ -1,0 +1,994 @@
+{
+  "objectiveId": "6.3",
+  "title": "Describe controller-based and software-defined architectures",
+  "questions": [
+    {
+      "id": "obj-6.3-source-q001",
+      "question": "Which type of architecture is used with controller-based networks?",
+      "choices": [
+        "Three tier",
+        "Spine/Leaf",
+        "Collapsed core",
+        "SAN fabric"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-CONTROLLER-BASED-NETWORKING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Spine/Leaf\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Three tier\" is incorrect because the scenario requires: The correct answer is \"Spine/Leaf\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Collapsed core\" is incorrect because the scenario requires: The correct answer is \"Spine/Leaf\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SAN fabric\" is incorrect because the scenario requires: The correct answer is \"Spine/Leaf\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q002",
+      "question": "Which is a correct statement about Spine/Leaf architecture?",
+      "choices": [
+        "The Leaf switches connect to other Leaf switches.",
+        "There is only one Spine switch per network.",
+        "Spine switches provide access to hosts.",
+        "The Leaf switches never connect to other Leaf switches, only Spine switches."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The Leaf switches connect to other Leaf switches.\" is incorrect because the scenario requires: The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"There is only one Spine switch per network.\" is incorrect because the scenario requires: The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Spine switches provide access to hosts.\" is incorrect because the scenario requires: The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q003",
+      "question": "Identify the flow of traffic in a Spine/Leaf network?",
+      "choices": [
+        "Leaf to Spine to Leaf",
+        "Leaf to Leaf to Spine",
+        "Spine to Leaf to Spine",
+        "Leaf to Leaf"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Leaf to Spine to Leaf\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Leaf to Leaf to Spine\" is incorrect because the scenario requires: The correct answer is \"Leaf to Spine to Leaf\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Spine to Leaf to Spine\" is incorrect because the scenario requires: The correct answer is \"Leaf to Spine to Leaf\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Leaf to Leaf\" is incorrect because the scenario requires: The correct answer is \"Leaf to Spine to Leaf\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q005",
+      "question": "Your company has an application they need remote office/branch office employees to directly access. Which Cisco SDN solution should you implement?",
+      "choices": [
+        "Cisco APIC-EM",
+        "Cisco SD-WAN",
+        "Cisco Prime Infrastructure",
+        "OpenDaylight"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-API",
+        "CKU-SDN",
+        "CKU-SD-WAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Cisco SD-WAN\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Cisco APIC-EM\" is incorrect because the scenario requires: The correct answer is \"Cisco SD-WAN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Cisco Prime Infrastructure\" is incorrect because the scenario requires: The correct answer is \"Cisco SD-WAN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"OpenDaylight\" is incorrect because the scenario requires: The correct answer is \"Cisco SD-WAN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q006",
+      "question": "Identify the name of the networking model that incorporates a distribution layer?",
+      "choices": [
+        "Spine/Leaf",
+        "Campus",
+        "CLOS",
+        "SDN"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-SDN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Campus\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Spine/Leaf\" is incorrect because the scenario requires: The correct answer is \"Campus\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"CLOS\" is incorrect because the scenario requires: The correct answer is \"Campus\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SDN\" is incorrect because the scenario requires: The correct answer is \"Campus\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q007",
+      "question": "Which statement is correct about the SDN controller?",
+      "choices": [
+        "The SDN controller configures the management plane of network devices.",
+        "The SDN controller monitors data plane traffic.",
+        "The SDN controller replaces the control plane of the SDN.",
+        "The SDN controller complements the control plane of the SDN device."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-DATA-PLANE",
+        "CKU-MANAGEMENT-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The SDN controller replaces the control plane of the SDN.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The SDN controller configures the management plane of network devices.\" is incorrect because the scenario requires: The correct answer is \"The SDN controller replaces the control plane of the SDN.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The SDN controller monitors data plane traffic.\" is incorrect because the scenario requires: The correct answer is \"The SDN controller replaces the control plane of the SDN.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The SDN controller complements the control plane of the SDN device.\" is incorrect because the scenario requires: The correct answer is \"The SDN controller replaces the control plane of the SDN.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q009",
+      "question": "Which network plane is used for Spanning Tree Protocol (STP)?",
+      "choices": [
+        "Data plane",
+        "Control plane",
+        "Management plane",
+        "Switch plane"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-DATA-PLANE",
+        "CKU-MANAGEMENT-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Control plane\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Data plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Management plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q010",
+      "question": "Which network plane is used by syslog for delivering messages from the router or switch?",
+      "choices": [
+        "Data plane",
+        "Control plane",
+        "Management plane",
+        "Switch plane"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-DATA-PLANE",
+        "CKU-MANAGEMENT-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Management plane\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Data plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Control plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q011",
+      "question": "When a network packet is routed in a router, which network plane is facilitating the traffic?",
+      "choices": [
+        "Data plane",
+        "Control plane",
+        "Management plane",
+        "Switch plane"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-DATA-PLANE",
+        "CKU-MANAGEMENT-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Data plane\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Control plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Management plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q012",
+      "question": "On which network plane would a routing protocol perform?",
+      "choices": [
+        "Data plane",
+        "Control plane",
+        "Management plane",
+        "Routing plane"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-DATA-PLANE",
+        "CKU-MANAGEMENT-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Control plane\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Data plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Management plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Routing plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q013",
+      "question": "On which SDN plane does CDP function?",
+      "choices": [
+        "Data plane",
+        "Control plane",
+        "Network plane",
+        "Management plane"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-SDN",
+        "CKU-DATA-PLANE",
+        "CKU-MANAGEMENT-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Management plane\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Data plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Control plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Network plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q014",
+      "question": "Which is used for communication directly to the SDN devices in the network?",
+      "choices": [
+        "The northbound interface (NBI)",
+        "The southbound interface (SBI)",
+        "The core of the controller",
+        "Applications hosted on the controller"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-NORTHBOUND-API",
+        "CKU-SOUTHBOUND-API"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The southbound interface (SBI)\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The northbound interface (NBI)\" is incorrect because the scenario requires: The correct answer is \"The southbound interface (SBI)\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The core of the controller\" is incorrect because the scenario requires: The correct answer is \"The southbound interface (SBI)\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Applications hosted on the controller\" is incorrect because the scenario requires: The correct answer is \"The southbound interface (SBI)\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q015",
+      "question": "Identify an application program interface (API)?",
+      "choices": [
+        "An API is a program that allows for data transfer.",
+        "An API is a programming language for network programmability.",
+        "An API is a programming interface or standard allowing one program to communicate with another program.",
+        "An API allows for programs to be virtualized."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-API"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another program.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"An API is a program that allows for data transfer.\" is incorrect because the scenario requires: The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another pr…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"An API is a programming language for network programmability.\" is incorrect because the scenario requires: The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another pr…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"An API allows for programs to be virtualized.\" is incorrect because the scenario requires: The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another pr…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q016",
+      "question": "When an application communicates with an SDN controller, which mechanism does it use to communicate?",
+      "choices": [
+        "The southbound interface (SBI)",
+        "The core of the controller",
+        "The northbound interface (NBI)",
+        "Simple Network Management Protocol (SNMP)"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-SNMP",
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-NORTHBOUND-API",
+        "CKU-SOUTHBOUND-API"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The northbound interface (NBI)\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The southbound interface (SBI)\" is incorrect because the scenario requires: The correct answer is \"The northbound interface (NBI)\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The core of the controller\" is incorrect because the scenario requires: The correct answer is \"The northbound interface (NBI)\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Simple Network Management Protocol (SNMP)\" is incorrect because the scenario requires: The correct answer is \"The northbound interface (NBI)\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q017",
+      "question": "Which networking plane is responsible for routing of packets to specific destinations?",
+      "choices": [
+        "Control plane",
+        "Data plane",
+        "Management plane",
+        "Routing plane"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-ESP",
+        "CKU-DATA-PLANE",
+        "CKU-MANAGEMENT-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Data plane\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Control plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Management plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Routing plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q019",
+      "question": "Which component of an SDN is where the MTU is set?",
+      "choices": [
+        "Overlay",
+        "Tunnel",
+        "Leaf",
+        "Underlay"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-SDN",
+        "CKU-OVERLAY",
+        "CKU-UNDERLAY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Underlay\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Overlay\" is incorrect because the scenario requires: The correct answer is \"Underlay\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Tunnel\" is incorrect because the scenario requires: The correct answer is \"Underlay\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Leaf\" is incorrect because the scenario requires: The correct answer is \"Underlay\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q020",
+      "question": "You are connecting to a router and configuring ACLs through the web interface. Which plane are you affecting?",
+      "choices": [
+        "Management plane",
+        "Configuration plane",
+        "Data plane",
+        "Control plane"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-ACL",
+        "CKU-DATA-PLANE",
+        "CKU-MANAGEMENT-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Control plane\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Management plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Configuration plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Data plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q021",
+      "question": "Which WAN technology uses the overlay to connect remote offices?",
+      "choices": [
+        "DMVPN",
+        "VXLAN",
+        "VLAN",
+        "ECMP"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-VPN",
+        "CKU-OVERLAY",
+        "CKU-VXLAN",
+        "CKU-ECMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"DMVPN\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"VXLAN\" is incorrect because the scenario requires: The correct answer is \"DMVPN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"VLAN\" is incorrect because the scenario requires: The correct answer is \"DMVPN\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ECMP\" is incorrect because the scenario requires: The correct answer is \"DMVPN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q022",
+      "question": "Which protocol allows for the tunneling of layer 2 traffic over a layer 3 network?",
+      "choices": [
+        "ECMP",
+        "DMVPN",
+        "VXLAN",
+        "EIGRP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-VPN",
+        "CKU-VXLAN",
+        "CKU-ECMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"VXLAN\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"ECMP\" is incorrect because the scenario requires: The correct answer is \"VXLAN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"DMVPN\" is incorrect because the scenario requires: The correct answer is \"VXLAN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"EIGRP\" is incorrect because the scenario requires: The correct answer is \"VXLAN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q023",
+      "question": "Which is a protocol used on the management plane?",
+      "choices": [
+        "SNMP",
+        "CDP",
+        "ICMP",
+        "VTP"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-SNMP",
+        "CKU-MANAGEMENT-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"SNMP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"CDP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ICMP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"VTP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

@@ -1,0 +1,726 @@
+{
+  "objectiveId": "2.8",
+  "title": "Describe AP and WLC management access connections",
+  "questions": [
+    {
+      "id": "obj-2.8-source-q001",
+      "question": "Which application provides terminal emulation over a network?",
+      "choices": [
+        "SNMP",
+        "Telnet",
+        "HTTP",
+        "TFTP"
+      ],
+      "correctIndex": 1,
+      "explanation": "Telnet provides terminal emulation over a network but is not encrypted.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "management access",
+      "ckuIds": [
+        "CKU-MANAGEMENT-ACCESS",
+        "CKU-TELNET",
+        "CKU-SSH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Telnet provides terminal emulation over a network but is not encrypted."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SNMP\" is incorrect because the scenario requires: Telnet provides terminal emulation over a network but is not encrypted.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"HTTP\" is incorrect because the scenario requires: Telnet provides terminal emulation over a network but is not encrypted.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"TFTP\" is incorrect because the scenario requires: Telnet provides terminal emulation over a network but is not encrypted.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.8-source-q002",
+      "question": "You need to make a Telnet connection to a remote router from a router you are configuring. Which command will allow you to do this?",
+      "choices": [
+        "Router#198.56.33.3",
+        "Router#connect 198.56.33.3",
+        "Router#remote 198.56.33.3",
+        "Router#vty 198.56.33.3"
+      ],
+      "correctIndex": 0,
+      "explanation": "Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "management access",
+      "ckuIds": [
+        "CKU-MANAGEMENT-ACCESS",
+        "CKU-TELNET",
+        "CKU-SSH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Entering an IP address or hostname from privileged EXEC can initiate a Telnet session."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#connect 198.56.33.3\" is incorrect because the scenario requires: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#remote 198.56.33.3\" is incorrect because the scenario requires: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#vty 198.56.33.3\" is incorrect because the scenario requires: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.8-source-q003",
+      "question": "Which port and protocol does TACACS+ use?",
+      "choices": [
+        "UDP/69",
+        "TCP/74",
+        "UDP/47",
+        "TCP/49"
+      ],
+      "correctIndex": 3,
+      "explanation": "TACACS+ uses TCP port 49.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "management access",
+      "ckuIds": [
+        "CKU-MANAGEMENT-ACCESS",
+        "CKU-TELNET",
+        "CKU-SSH",
+        "CKU-TACACS",
+        "CKU-TCP-49"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "TACACS+ uses TCP port 49."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"UDP/69\" is incorrect because the scenario requires: TACACS+ uses TCP port 49.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"TCP/74\" is incorrect because the scenario requires: TACACS+ uses TCP port 49.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"UDP/47\" is incorrect because the scenario requires: TACACS+ uses TCP port 49.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.8-source-q004",
+      "question": "Which management access method should be configured on network devices for encryption of the session?",
+      "choices": [
+        "RADIUS",
+        "HTTP",
+        "SSH",
+        "SFTP"
+      ],
+      "correctIndex": 2,
+      "explanation": "SSH provides encrypted management access.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "management access",
+      "ckuIds": [
+        "CKU-MANAGEMENT-ACCESS",
+        "CKU-TELNET",
+        "CKU-SSH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "SSH provides encrypted management access."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RADIUS\" is incorrect because the scenario requires: SSH provides encrypted management access.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"HTTP\" is incorrect because the scenario requires: SSH provides encrypted management access.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SFTP\" is incorrect because the scenario requires: SSH provides encrypted management access.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.8-source-q005",
+      "question": "Which technology is used to facilitate encryption for the SSH protocol?",
+      "choices": [
+        "Symmetrical encryption",
+        "Code block ciphers",
+        "At-rest encryption",
+        "Asymmetrical encryption"
+      ],
+      "correctIndex": 3,
+      "explanation": "SSH uses public/private key asymmetric encryption.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "management access",
+      "ckuIds": [
+        "CKU-MANAGEMENT-ACCESS",
+        "CKU-TELNET",
+        "CKU-SSH",
+        "CKU-ASYMMETRIC-ENCRYPTION"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "SSH uses public/private key asymmetric encryption."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Symmetrical encryption\" is incorrect because the scenario requires: SSH uses public/private key asymmetric encryption.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Code block ciphers\" is incorrect because the scenario requires: SSH uses public/private key asymmetric encryption.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"At-rest encryption\" is incorrect because the scenario requires: SSH uses public/private key asymmetric encryption.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.8-source-q006",
+      "question": "When debugging a WAP, where is the debug information displayed by default?",
+      "choices": [
+        "Console",
+        "SSH",
+        "Logging server",
+        "Local storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "WAP debug output appears on the console by default.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "management access",
+      "ckuIds": [
+        "CKU-MANAGEMENT-ACCESS",
+        "CKU-TELNET",
+        "CKU-SSH",
+        "CKU-CONSOLE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "WAP debug output appears on the console by default."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SSH\" is incorrect because the scenario requires: WAP debug output appears on the console by default.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Logging server\" is incorrect because the scenario requires: WAP debug output appears on the console by default.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Local storage\" is incorrect because the scenario requires: WAP debug output appears on the console by default.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.8-source-q007",
+      "question": "Which authentication system is an open standard originally proposed by the Internet Engineering Task Force (IETF)?",
+      "choices": [
+        "RADIUS",
+        "TACACS+",
+        "Kerberos",
+        "LDAP"
+      ],
+      "correctIndex": 0,
+      "explanation": "RADIUS is an open standard originally proposed by the IETF.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "management access",
+      "ckuIds": [
+        "CKU-MANAGEMENT-ACCESS",
+        "CKU-TELNET",
+        "CKU-SSH",
+        "CKU-RADIUS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "RADIUS is an open standard originally proposed by the IETF."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"TACACS+\" is incorrect because the scenario requires: RADIUS is an open standard originally proposed by the IETF.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Kerberos\" is incorrect because the scenario requires: RADIUS is an open standard originally proposed by the IETF.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"LDAP\" is incorrect because the scenario requires: RADIUS is an open standard originally proposed by the IETF.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.8-source-q008",
+      "question": "Which management method can use Advanced Encryption Standard (AES) encryption for encryption of user credentials and session data?",
+      "choices": [
+        "SSH",
+        "TACACS+",
+        "HTTPS",
+        "RADIUS"
+      ],
+      "correctIndex": 0,
+      "explanation": "SSH can use AES for encrypted credentials and session data.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "management access",
+      "ckuIds": [
+        "CKU-MANAGEMENT-ACCESS",
+        "CKU-TELNET",
+        "CKU-SSH",
+        "CKU-AES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "SSH can use AES for encrypted credentials and session data."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"TACACS+\" is incorrect because the scenario requires: SSH can use AES for encrypted credentials and session data.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"HTTPS\" is incorrect because the scenario requires: SSH can use AES for encrypted credentials and session data.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RADIUS\" is incorrect because the scenario requires: SSH can use AES for encrypted credentials and session data.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.8-source-q009",
+      "question": "You are setting up an autonomous WAP for the first time. How must you connect to the device?",
+      "choices": [
+        "HTTPS",
+        "SSH",
+        "Console",
+        "Telnet"
+      ],
+      "correctIndex": 2,
+      "explanation": "A first-time autonomous AP setup commonly uses the console connection.",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "management access",
+      "ckuIds": [
+        "CKU-MANAGEMENT-ACCESS",
+        "CKU-TELNET",
+        "CKU-SSH",
+        "CKU-CONSOLE",
+        "CKU-AUTONOMOUS-AP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "A first-time autonomous AP setup commonly uses the console connection."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"HTTPS\" is incorrect because the scenario requires: A first-time autonomous AP setup commonly uses the console connection.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SSH\" is incorrect because the scenario requires: A first-time autonomous AP setup commonly uses the console connection.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Telnet\" is incorrect because the scenario requires: A first-time autonomous AP setup commonly uses the console connection.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.8-source-q010",
+      "question": "What is the connection speed for console access to Cisco equipment?",
+      "choices": [
+        "19.2 kb/s",
+        "9600 kb/s",
+        "9600 baud",
+        "19200 baud"
+      ],
+      "correctIndex": 2,
+      "explanation": "Cisco console access commonly uses 9600 baud.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "management access",
+      "ckuIds": [
+        "CKU-MANAGEMENT-ACCESS",
+        "CKU-TELNET",
+        "CKU-SSH",
+        "CKU-CONSOLE-SPEED"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Cisco console access commonly uses 9600 baud."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"19.2 kb/s\" is incorrect because the scenario requires: Cisco console access commonly uses 9600 baud.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"9600 kb/s\" is incorrect because the scenario requires: Cisco console access commonly uses 9600 baud.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"19200 baud\" is incorrect because the scenario requires: Cisco console access commonly uses 9600 baud.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q002",
+      "question": "You are running a WLC for a WLAN. You want to allow for guests to be segmented to the guest VLAN. What is the simplest implementation you can configure on the WLC?",
+      "choices": [
+        "Access control lists for one SSID",
+        "Two SSIDs, one configured to the production VLAN and another configured to the guest VLAN",
+        "Dynamic VLANs for the SSID",
+        "Access control lists for two SSIDs"
+      ],
+      "correctIndex": 1,
+      "explanation": "A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-VLAN-SEGMENTATION"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Access control lists for one SSID\" is incorrect because the scenario requires: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Dynamic VLANs for the SSID\" is incorrect because the scenario requires: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Access control lists for two SSIDs\" is incorrect because the scenario requires: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q006",
+      "question": "Which IEEE specification defines WLAN QoS for wireless data?",
+      "choices": [
+        "802.11e",
+        "802.11r",
+        "802.1p",
+        "802.11k"
+      ],
+      "correctIndex": 0,
+      "explanation": "802.11e defines wireless QoS.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-802.11E"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "802.11e defines wireless QoS."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"802.11r\" is incorrect because the scenario requires: 802.11e defines wireless QoS.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"802.1p\" is incorrect because the scenario requires: 802.11e defines wireless QoS.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.11k\" is incorrect because the scenario requires: 802.11e defines wireless QoS.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q007",
+      "question": "You are creating a WLAN in the GUI of the WLC. You need to make sure that only corporate hosts can connect to the newly formed WLAN. How can you achieve this?",
+      "choices": [
+        "Disable SSID broadcasting",
+        "Set a unique PSK",
+        "Use MAC filtering",
+        "Add an LDAP server"
+      ],
+      "correctIndex": 2,
+      "explanation": "MAC filtering can restrict WLAN access to known corporate hosts.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-MAC-FILTERING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "MAC filtering can restrict WLAN access to known corporate hosts."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Disable SSID broadcasting\" is incorrect because the scenario requires: MAC filtering can restrict WLAN access to known corporate hosts.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Set a unique PSK\" is incorrect because the scenario requires: MAC filtering can restrict WLAN access to known corporate hosts.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Add an LDAP server\" is incorrect because the scenario requires: MAC filtering can restrict WLAN access to known corporate hosts.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q008",
+      "question": "Which protocol should be enabled on a WLAN to allow a client device to download a list of neighboring WAPs?",
+      "choices": [
+        "802.11r",
+        "802.11e",
+        "802.11k",
+        "802.11ac"
+      ],
+      "correctIndex": 2,
+      "explanation": "802.11k lets clients learn neighboring AP information.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-802.11K"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "802.11k lets clients learn neighboring AP information."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.11r\" is incorrect because the scenario requires: 802.11k lets clients learn neighboring AP information.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"802.11e\" is incorrect because the scenario requires: 802.11k lets clients learn neighboring AP information.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.11ac\" is incorrect because the scenario requires: 802.11k lets clients learn neighboring AP information.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q009",
+      "question": "You are planning to implement wireless VoIP phones in your wireless network. Which QoS profile should you associate with the wireless network for the VoIP phones?",
+      "choices": [
+        "Bronze",
+        "Silver",
+        "Gold",
+        "Platinum"
+      ],
+      "correctIndex": 3,
+      "explanation": "Platinum is the WLC QoS profile appropriate for voice.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-QOS-PROFILES",
+        "CKU-PLATINUM"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "Platinum is the WLC QoS profile appropriate for voice."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Bronze\" is incorrect because the scenario requires: Platinum is the WLC QoS profile appropriate for voice.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Silver\" is incorrect because the scenario requires: Platinum is the WLC QoS profile appropriate for voice.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Gold\" is incorrect because the scenario requires: Platinum is the WLC QoS profile appropriate for voice.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q012",
+      "question": "You need to set up a WLAN for connectivity to send and receive large files to roaming clients. The WLAN will exist with other WLAN traffic. Which QoS profile should the new WLAN be associated with?",
+      "choices": [
+        "Bronze",
+        "Gold",
+        "Platinum",
+        "Silver"
+      ],
+      "correctIndex": 0,
+      "explanation": "Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-QOS-PROFILES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Gold\" is incorrect because the scenario requires: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Platinum\" is incorrect because the scenario requires: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Silver\" is incorrect because the scenario requires: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

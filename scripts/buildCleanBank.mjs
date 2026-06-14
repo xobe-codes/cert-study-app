@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 /**
- * Build student-facing clean question bank for Domain 4 (IP Services) pilot.
- * - 4.1: prefers hand-curated questions from ccnaCurated.js (merged at build)
- * - 4.2–4.9: converted from data/source-question-bank/ (fallback: ~/Downloads/)
- * - Exhibit-dependent questions → data/shelved-questions/domain-4/
+ * Build clean question bank — domain-by-domain or all domains.
+ * Usage: node scripts/buildCleanBank.mjs [2|3|4|5|6|all]
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { homedir } from 'node:os'
@@ -12,20 +10,28 @@ import { fileURLToPath } from 'node:url'
 import { getCurated } from '../src/data/ccnaCurated.js'
 import {
   SCHEMA_VERSION,
-  DOMAIN_4_OBJECTIVES,
-  DOMAIN_4_SOURCE_FILES,
   cleanAppQuestion,
   convertSourceQuestion,
   isExhibitDependent,
   shelvedRecord,
 } from './lib/cleanBankUtils.mjs'
+import { DOMAIN_META, filesForDomain, OSPF_34_EXCLUDE } from './lib/sourceBankConfig.mjs'
+import { tryConvertExhibit } from './lib/exhibitConverters.mjs'
+import { applyAnswerReviewToQuestion } from './lib/generateAnswerReview.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SOURCE_ROOT = join(ROOT, 'data', 'source-question-bank')
 const DL = join(homedir(), 'Downloads')
-const CLEAN_DIR = join(ROOT, 'data', 'clean-question-bank', 'domain-4')
-const SHELVED_DIR = join(ROOT, 'data', 'shelved-questions', 'domain-4')
+const CLEAN_ROOT = join(ROOT, 'data', 'clean-question-bank')
+const SHELVED_ROOT = join(ROOT, 'data', 'shelved-questions')
+
+const arg = process.argv[2] || 'all'
+const domains = arg === 'all' ? [2, 3, 4, 5, 6] : [Number(arg)]
+if (domains.some(d => !DOMAIN_META[d])) {
+  console.error('Usage: buildCleanBank.mjs [2|3|4|5|6|all]')
+  process.exit(1)
+}
 
 function readSourceJson(relPath) {
   const local = join(SOURCE_ROOT, relPath)
@@ -44,113 +50,121 @@ function dedupeById(questions) {
   })
 }
 
-function buildObjective41() {
-  const curated = getCurated('4.1')
-  const active = []
-  const shelved = []
-
-  for (const q of curated?.questions || []) {
-    const clean = cleanAppQuestion(q, '4.1')
-    if (isExhibitDependent(clean)) {
-      shelved.push(shelvedRecord(clean, '4.1', 'exhibit-dependent', 'NAT topology — convert to inline text exhibit later'))
-    } else {
-      active.push(clean)
-    }
-  }
-
-  return { active: dedupeById(active), shelved }
+function mergeCuratedHand(appId) {
+  const curated = getCurated(appId)
+  if (!curated?.questions?.length) return []
+  return curated.questions.map(q => cleanAppQuestion(q, appId))
 }
 
-function buildFromSource(appId, relPath) {
-  const data = readSourceJson(relPath)
-  if (!data) {
-    console.warn(`  ${appId}: source file missing — skipping`)
-    return { active: [], shelved: [], missing: true }
+function processQuestion(q, appId, shelved) {
+  let clean = q
+  if (isExhibitDependent(clean)) {
+    const converted = tryConvertExhibit(clean, appId)
+    if (converted) {
+      clean = converted
+    } else {
+      shelved.exhibitDependent.push(shelvedRecord(clean, appId, 'exhibit-dependent'))
+      return null
+    }
   }
+  return applyAnswerReviewToQuestion(clean)
+}
 
+function buildFromSourceEntry(entry) {
+  const data = readSourceJson(entry.file)
+  if (!data) return { active: [], shelved: { exhibitDependent: [], outOfScope: [] }, missing: true }
+
+  const exclude = new Set(entry.exclude || [])
+  const shelved = { exhibitDependent: [], outOfScope: [] }
   const active = []
-  const shelved = []
 
   for (const q of data.questions || []) {
-    const converted = convertSourceQuestion(q, appId)
-    if (isExhibitDependent(converted)) {
-      shelved.push(shelvedRecord(converted, appId, 'exhibit-dependent'))
-    } else if (q.qualityFlags?.uncertainObjectiveMapping) {
-      shelved.push(shelvedRecord(converted, appId, 'out-of-scope', 'uncertainObjectiveMapping'))
-    } else {
-      active.push(converted)
+    if (exclude.has(q.id)) {
+      shelved.outOfScope.push(shelvedRecord(convertSourceQuestion(q, entry.appId), entry.appId, 'out-of-scope', 'excluded cluster'))
+      continue
     }
+    if (q.qualityFlags?.uncertainObjectiveMapping) {
+      shelved.outOfScope.push(shelvedRecord(convertSourceQuestion(q, entry.appId), entry.appId, 'out-of-scope', 'uncertainObjectiveMapping'))
+      continue
+    }
+    const converted = convertSourceQuestion(q, entry.appId)
+    const final = processQuestion(converted, entry.appId, shelved)
+    if (final) active.push(final)
   }
 
-  return { active: dedupeById(active), shelved, missing: false }
+  return { active, shelved, missing: false }
 }
 
-function main() {
-  mkdirSync(CLEAN_DIR, { recursive: true })
-  mkdirSync(SHELVED_DIR, { recursive: true })
+function buildDomain(domainNum) {
+  const meta = DOMAIN_META[domainNum]
+  const cleanDir = join(CLEAN_ROOT, `domain-${domainNum}`)
+  const shelvedDir = join(SHELVED_ROOT, `domain-${domainNum}`)
+  mkdirSync(cleanDir, { recursive: true })
+  mkdirSync(shelvedDir, { recursive: true })
 
   const manifest = {
     schemaVersion: SCHEMA_VERSION,
-    domain: '4',
-    domainName: 'IP Services',
+    domain: String(domainNum),
+    domainName: meta.name,
     builtAt: new Date().toISOString(),
     objectives: {},
-    totals: { active: 0, shelved: 0, needsExplanationReview: 0 },
+    totals: { active: 0, shelved: 0 },
   }
 
   const allShelved = { exhibitDependent: [], outOfScope: [] }
+  const byObjective = {}
 
-  // 4.1 from curated
-  console.log('Building 4.1 from curated …')
-  const r41 = buildObjective41()
-  writeFileSync(join(CLEAN_DIR, '4.1.json'), JSON.stringify({
-    objectiveId: '4.1',
-    title: getCurated('4.1')?.title || 'NAT',
-    questions: r41.active,
-  }, null, 2))
-  allShelved.exhibitDependent.push(...r41.shelved)
-  manifest.objectives['4.1'] = { active: r41.active.length, shelved: r41.shelved.length, source: 'curated' }
-  manifest.totals.active += r41.active.length
-  manifest.totals.shelved += r41.shelved.length
-  manifest.totals.needsExplanationReview += r41.active.filter(q => q.needsExplanationReview).length
+  for (const entry of filesForDomain(domainNum)) {
+    console.log(`  ${entry.appId} …`)
+    let active = mergeCuratedHand(entry.appId)
 
-  // 4.2–4.9 from source JSON
-  for (const entry of DOMAIN_4_SOURCE_FILES) {
-    if (entry.appId === '4.1') continue
-    console.log(`Building ${entry.appId} from source …`)
-    const result = buildFromSource(entry.appId, entry.file)
-    const data = readSourceJson(entry.file)
-    writeFileSync(join(CLEAN_DIR, `${entry.appId}.json`), JSON.stringify({
-      objectiveId: entry.appId,
-      title: data?.objective?.objectiveTitle || entry.appId,
-      questions: result.active,
+    const shelvedLocal = { exhibitDependent: [], outOfScope: [] }
+    active = active.map(q => processQuestion(q, entry.appId, shelvedLocal)).filter(Boolean)
+
+    const result = buildFromSourceEntry(entry)
+    if (!result.missing) {
+      active = dedupeById([...active, ...result.active])
+      allShelved.exhibitDependent.push(...shelvedLocal.exhibitDependent, ...result.shelved.exhibitDependent)
+      allShelved.outOfScope.push(...shelvedLocal.outOfScope, ...result.shelved.outOfScope)
+    } else {
+      allShelved.exhibitDependent.push(...shelvedLocal.exhibitDependent)
+      allShelved.outOfScope.push(...shelvedLocal.outOfScope)
+      if (!active.length) console.warn(`    source missing for ${entry.appId}`)
+    }
+
+    byObjective[entry.appId] = (byObjective[entry.appId] || []).concat(active)
+  }
+
+  for (const [appId, questions] of Object.entries(byObjective)) {
+    const deduped = dedupeById(questions)
+    const curated = getCurated(appId)
+    const data = readSourceJson(filesForDomain(domainNum).find(f => f.appId === appId)?.file || '')
+    writeFileSync(join(cleanDir, `${appId}.json`), JSON.stringify({
+      objectiveId: appId,
+      title: curated?.title || data?.objective?.objectiveTitle || appId,
+      questions: deduped.map(q => applyAnswerReviewToQuestion(q)),
     }, null, 2))
-    for (const s of result.shelved) {
-      if (s.reason === 'out-of-scope') allShelved.outOfScope.push(s)
-      else allShelved.exhibitDependent.push(s)
-    }
-    manifest.objectives[entry.appId] = {
-      active: result.active.length,
-      shelved: result.shelved.length,
-      source: result.missing ? 'missing' : 'source-json',
-    }
-    manifest.totals.active += result.active.length
-    manifest.totals.shelved += result.shelved.length
-    manifest.totals.needsExplanationReview += result.active.filter(q => q.needsExplanationReview).length
+    manifest.objectives[appId] = { active: deduped.length }
+    manifest.totals.active += deduped.length
   }
 
-  writeFileSync(join(ROOT, 'data', 'clean-question-bank', 'manifest.json'), JSON.stringify(manifest, null, 2))
-  writeFileSync(join(SHELVED_DIR, 'exhibit-dependent.json'), JSON.stringify(allShelved.exhibitDependent, null, 2))
-  writeFileSync(join(SHELVED_DIR, 'out-of-scope.json'), JSON.stringify(allShelved.outOfScope, null, 2))
+  writeFileSync(join(cleanDir, 'manifest.json'), JSON.stringify(manifest, null, 2))
+  writeFileSync(join(shelvedDir, 'exhibit-dependent.json'), JSON.stringify(allShelved.exhibitDependent, null, 2))
+  writeFileSync(join(shelvedDir, 'out-of-scope.json'), JSON.stringify(allShelved.outOfScope, null, 2))
+  manifest.totals.shelved = allShelved.exhibitDependent.length + allShelved.outOfScope.length
 
-  console.log('✓ Clean bank built')
-  console.log(`  Active: ${manifest.totals.active}`)
-  console.log(`  Shelved: ${manifest.totals.shelved}`)
-  console.log(`  Needs explanation review: ${manifest.totals.needsExplanationReview}`)
-  for (const id of DOMAIN_4_OBJECTIVES) {
-    const o = manifest.objectives[id]
-    if (o) console.log(`  ${id}: ${o.active} active, ${o.shelved} shelved (${o.source})`)
+  console.log(`✓ Domain ${domainNum}: ${manifest.totals.active} active, ${manifest.totals.shelved} shelved`)
+  return manifest
+}
+
+function main() {
+  const summary = { builtAt: new Date().toISOString(), domains: {} }
+  for (const d of domains) {
+    console.log(`Building domain ${d} (${DOMAIN_META[d].name}) …`)
+    summary.domains[d] = buildDomain(d)
   }
+  writeFileSync(join(CLEAN_ROOT, 'manifest.json'), JSON.stringify(summary, null, 2))
+  console.log('✓ All requested domains built')
 }
 
 main()

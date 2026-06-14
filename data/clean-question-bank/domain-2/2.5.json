@@ -1,0 +1,1801 @@
+{
+  "objectiveId": "2.5",
+  "title": "Interpret basic operations of Rapid PVST+ Spanning Tree Protocol",
+  "questions": [
+    {
+      "id": "2.5-c-q1",
+      "question": "What problem does STP solve?",
+      "choices": [
+        "Routing loops",
+        "Layer 2 switching loops",
+        "IP address conflicts",
+        "Slow DNS"
+      ],
+      "correctIndex": 1,
+      "explanation": "STP prevents Layer 2 loops by blocking redundant paths.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp purpose",
+      "ckuIds": [
+        "CKU-STP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "STP prevents Layer 2 loops by blocking redundant paths."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Routing loops\" is incorrect because the scenario requires: STP prevents Layer 2 loops by blocking redundant paths.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"IP address conflicts\" is incorrect because the scenario requires: STP prevents Layer 2 loops by blocking redundant paths.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Slow DNS\" is incorrect because the scenario requires: STP prevents Layer 2 loops by blocking redundant paths.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.5-c-q2",
+      "question": "How is the root bridge chosen?",
+      "choices": [
+        "Highest priority",
+        "Lowest Bridge ID (priority + MAC)",
+        "Highest MAC",
+        "Fastest CPU"
+      ],
+      "correctIndex": 1,
+      "explanation": "The lowest Bridge ID (priority, then MAC) wins the root election.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "root election",
+      "ckuIds": [
+        "CKU-ROOT-BRIDGE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The lowest Bridge ID (priority, then MAC) wins the root election."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Highest priority\" is incorrect because the scenario requires: The lowest Bridge ID (priority, then MAC) wins the root election.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Highest MAC\" is incorrect because the scenario requires: The lowest Bridge ID (priority, then MAC) wins the root election.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Fastest CPU\" is incorrect because the scenario requires: The lowest Bridge ID (priority, then MAC) wins the root election.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.5-c-q3",
+      "question": "What is the default STP bridge priority?",
+      "choices": [
+        "0",
+        "4096",
+        "32768",
+        "65535"
+      ],
+      "correctIndex": 2,
+      "explanation": "Default priority is 32768 (lower is preferred).",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "default priority",
+      "ckuIds": [
+        "CKU-ROOT-BRIDGE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Default priority is 32768 (lower is preferred)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"0\" is incorrect because the scenario requires: Default priority is 32768 (lower is preferred).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"4096\" is incorrect because the scenario requires: Default priority is 32768 (lower is preferred).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"65535\" is incorrect because the scenario requires: Default priority is 32768 (lower is preferred).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.5-c-q4",
+      "question": "Each non-root switch has exactly one of which port type toward the root?",
+      "choices": [
+        "Designated port",
+        "Root port",
+        "Blocking port",
+        "Trunk port"
+      ],
+      "correctIndex": 1,
+      "explanation": "Each non-root switch has one root port — its lowest-cost path to root.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "port roles",
+      "ckuIds": [
+        "CKU-STP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Each non-root switch has one root port — its lowest-cost path to root."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Designated port\" is incorrect because the scenario requires: Each non-root switch has one root port — its lowest-cost path to root.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Blocking port\" is incorrect because the scenario requires: Each non-root switch has one root port — its lowest-cost path to root.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Trunk port\" is incorrect because the scenario requires: Each non-root switch has one root port — its lowest-cost path to root.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.5-c-q5",
+      "question": "PortFast should be enabled on which ports?",
+      "choices": [
+        "Switch-to-switch trunks",
+        "Access ports to end devices",
+        "Router uplinks",
+        "All ports"
+      ],
+      "correctIndex": 1,
+      "explanation": "PortFast belongs on access ports to hosts; on switch links it risks loops.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "portfast",
+      "ckuIds": [
+        "CKU-STP-PORTFAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "PortFast belongs on access ports to hosts; on switch links it risks loops."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch-to-switch trunks\" is incorrect because the scenario requires: PortFast belongs on access ports to hosts; on switch links it risks loops.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router uplinks\" is incorrect because the scenario requires: PortFast belongs on access ports to hosts; on switch links it risks loops.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"All ports\" is incorrect because the scenario requires: PortFast belongs on access ports to hosts; on switch links it risks loops.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.5-c-q6",
+      "question": "A PortFast access port receives a BPDU with BPDU Guard enabled. What happens?",
+      "choices": [
+        "Port becomes root",
+        "Port is err-disabled (shut down)",
+        "BPDU is forwarded",
+        "Nothing"
+      ],
+      "correctIndex": 1,
+      "explanation": "BPDU Guard err-disables the port, protecting against a rogue switch.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "bpdu guard",
+      "ckuIds": [
+        "CKU-STP-PORTFAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "BPDU Guard err-disables the port, protecting against a rogue switch."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Port becomes root\" is incorrect because the scenario requires: BPDU Guard err-disables the port, protecting against a rogue switch.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"BPDU is forwarded\" is incorrect because the scenario requires: BPDU Guard err-disables the port, protecting against a rogue switch.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Nothing\" is incorrect because the scenario requires: BPDU Guard err-disables the port, protecting against a rogue switch.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.5-c-q7",
+      "question": "What is the Cisco default spanning-tree mode?",
+      "choices": [
+        "802.1D",
+        "Rapid PVST+",
+        "MST",
+        "PVST"
+      ],
+      "correctIndex": 1,
+      "explanation": "Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "rapid pvst",
+      "ckuIds": [
+        "CKU-STP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.1D\" is incorrect because the scenario requires: Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"MST\" is incorrect because the scenario requires: Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"PVST\" is incorrect because the scenario requires: Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.5-c-q8",
+      "question": "Which command makes a switch the root for VLAN 1 by lowering its priority?",
+      "choices": [
+        "spanning-tree vlan 1 root primary",
+        "spanning-tree portfast",
+        "spanning-tree bpduguard enable",
+        "switchport mode trunk"
+      ],
+      "correctIndex": 0,
+      "explanation": "`spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "set root",
+      "ckuIds": [
+        "CKU-ROOT-BRIDGE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "`spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"spanning-tree portfast\" is incorrect because the scenario requires: `spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"spanning-tree bpduguard enable\" is incorrect because the scenario requires: `spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"switchport mode trunk\" is incorrect because the scenario requires: `spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q002",
+      "question": "Which statement is correct about STP?",
+      "choices": [
+        "STP runs on a central switch by creating a topology database.",
+        "STP runs as a distributed process on each switch and creates a topology database.",
+        "STP uses routing protocols to check for network loops.",
+        "STP uses the MAC address table to check for switching loops."
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"STP runs on a central switch by creating a topology database.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"STP uses routing protocols to check for network loops.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"STP uses the MAC address table to check for switching loops.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q003",
+      "question": "How does STP detect and monitor loops in networks?",
+      "choices": [
+        "STP detects and monitors BPDUs being received on multiple interfaces.",
+        "STP detects and monitors normal traffic frames being received on multiple interfaces.",
+        "STP detects and monitors CDP frames being received on multiple interfaces.",
+        "STP detects and monitors access ports in the same VLAN."
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"STP detects and monitors normal traffic frames being received on multiple interfaces.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"STP detects and monitors CDP frames being received on multiple interfaces.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"STP detects and monitors access ports in the same VLAN.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q004",
+      "question": "What is the IEEE specification for Rapid Spanning Tree Protocol (RSTP)?",
+      "choices": [
+        "802.1X",
+        "802.1w",
+        "802.1D",
+        "802.1s"
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.1X\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"802.1D\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.1s\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q005",
+      "question": "What is the link cost with respect to STP?",
+      "choices": [
+        "Link cost is the latency of a frame traversing across the link.",
+        "Link cost is the calculation of all the ports in the path to the root bridge.",
+        "Link cost is the monetary cost to traverse a link.",
+        "Link cost is a numeric value associated with the speed of a link."
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Link cost is the latency of a frame traversing across the link.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Link cost is the calculation of all the ports in the path to the root bridge.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Link cost is the monetary cost to traverse a link.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q006",
+      "question": "What is the path cost with respect to RSTP?",
+      "choices": [
+        "Path cost is the latency of a frame traversing across the link.",
+        "Path cost is the calculation of all the ports in the path to the root bridge.",
+        "Path cost is the monetary cost to traverse a link.",
+        "Path cost is a numeric value associated with the speed of a link."
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Path cost is the latency of a frame traversing across the link.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Path cost is the monetary cost to traverse a link.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Path cost is a numeric value associated with the speed of a link.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q010",
+      "question": "Which statement is correct about RSTP?",
+      "choices": [
+        "RSTP allows for multiple root bridges.",
+        "RSTP is backward compatible with STP.",
+        "RSTP has a convergence time of around 50 seconds.",
+        "RSTP has five port states to which the interfaces could possibly transition."
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RSTP allows for multiple root bridges.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"RSTP has a convergence time of around 50 seconds.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RSTP has five port states to which the interfaces could possibly transition.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q011",
+      "question": "How do switches participating in an STP network become aware of topology changes?",
+      "choices": [
+        "The root bridge is responsible for sensing the change and sending Topology Change Notification BPDUs.",
+        "Each switch is responsible for sensing the change and sending Topology Change Notification BPDUs.",
+        "The root bridge polls each switch participating in STP for changes.",
+        "The switches participating in STP poll the root bridge for changes."
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The root bridge is responsible for sensing the change and sending Topology Change Notification BPDUs.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The root bridge polls each switch participating in STP for changes.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The switches participating in STP poll the root bridge for changes.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q013",
+      "question": "You have a network consisting of four switches, all configured with the same bridge priority. Which switch will be elected the root bridge?",
+      "choices": [
+        "0081.023a.b433",
+        "0011.03ae.d8aa",
+        "0041.0611.1112",
+        "0021.02fa.bdfc"
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"0081.023a.b433\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"0041.0611.1112\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"0021.02fa.bdfc\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q014",
+      "question": "What is the default STP mode all Cisco switches run?",
+      "choices": [
+        "802.1D",
+        "802.1w",
+        "PVST+",
+        "Rapid PVST+"
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.1D\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"802.1w\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"PVST+\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q015",
+      "question": "Which option is a correct statement about alternate ports in RSTP?",
+      "choices": [
+        "An alternate port receives BPDUs from another port on the same switch and therefore can replace the designated port if it fails.",
+        "An alternate port receives BPDUs from another switch and therefore can replace the designated port if it fails.",
+        "An alternate port is always placed in a forwarding state.",
+        "An alternate port receives BPDUs from another switch and therefore can replace the root port if it fails."
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"An alternate port receives BPDUs from another port on the same switch and therefore can replace the designated port if it fails.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"An alternate port receives BPDUs from another switch and therefore can replace the designated port if it fails.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"An alternate port is always placed in a forwarding state.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q016",
+      "question": "How is the root bridge in STP elected?",
+      "choices": [
+        "The root bridge is the switch with the highest IP address and priority.",
+        "The root bridge is the switch with the lowest IP address and priority.",
+        "The root bridge is the switch with the lowest MAC address and priority.",
+        "The root bridge is the switch with the highest MAC address and priority."
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The root bridge is the switch with the highest IP address and priority.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The root bridge is the switch with the lowest IP address and priority.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The root bridge is the switch with the highest MAC address and priority.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q017",
+      "question": "Why is a root bridge elected for STP to function properly?",
+      "choices": [
+        "The root bridge is the logical center of the STP topology.",
+        "The root bridge allows all forwarding decisions of frames.",
+        "The root bridge calculates the port cost for the rest of the network.",
+        "The root bridge calculates the fastest path for the rest of the network."
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The root bridge allows all forwarding decisions of frames.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The root bridge calculates the port cost for the rest of the network.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The root bridge calculates the fastest path for the rest of the network.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q018",
+      "question": "How does a switch calculate the bridge ID?",
+      "choices": [
+        "The bridge ID is a 6-byte number containing a 2-byte bridge priority and 4-byte IP address.",
+        "The bridge ID is an 8-byte number containing a 4-byte bridge priority and 4-byte IP address.",
+        "The bridge ID is an 8-byte number containing a 2-byte bridge priority and 6-byte MAC address.",
+        "The bridge ID is a 10-byte number containing a 4-byte bridge priority and 6-byte MAC address."
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The bridge ID is a 6-byte number containing a 2-byte bridge priority and 4-byte IP address.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The bridge ID is an 8-byte number containing a 4-byte bridge priority and 4-byte IP address.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The bridge ID is a 10-byte number containing a 4-byte bridge priority and 6-byte MAC address.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q019",
+      "question": "What is the definition of a designated port?",
+      "choices": [
+        "A port that is determined to have the lowest cost and placed in a forwarding state for a network segment",
+        "A port that is determined to have the highest cost and placed in a forwarding state for a network segment",
+        "A port that is determined to have the lowest path cost to the root bridge and placed in a forwarding state for a network segment",
+        "A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"A port that is determined to have the highest cost and placed in a forwarding state for a network segment\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A port that is determined to have the lowest path cost to the root bridge and placed in a forwarding state for a network segment\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q020",
+      "question": "Which is a correct statement about bridge port roles in STP?",
+      "choices": [
+        "Every switch, excluding the root bridge, must have at least one root port.",
+        "Every switch, including the root bridge, must have at least one designated port.",
+        "Every switch, excluding the root bridge, must have at least one alternate port.",
+        "Every switch, including the root bridge, must have at least one backup port."
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Every switch, including the root bridge, must have at least one designated port.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Every switch, excluding the root bridge, must have at least one alternate port.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Every switch, including the root bridge, must have at least one backup port.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q021",
+      "question": "What is the definition of an STP root port?",
+      "choices": [
+        "A port that is determined to have the lowest cost to the network segment and placed in a forwarding state",
+        "A port that is determined to have the highest cost to the network segment and placed in a forwarding state",
+        "A port that is determined to have the lowest path cost to the root bridge and placed in a forwarding state for a network segment",
+        "A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment"
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"A port that is determined to have the lowest cost to the network segment and placed in a forwarding state\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"A port that is determined to have the highest cost to the network segment and placed in a forwarding state\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q022",
+      "question": "What is the definition of an STP designated port?",
+      "choices": [
+        "A port that is determined to have the lowest cost to the network segment and placed in a forwarding state",
+        "A port that is determined to have the lowest path cost to the root bridge and placed in a forwarding state for a network segment",
+        "A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment",
+        "A port that is determined to have the highest cost to the network segment and placed in a forwarding state"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"A port that is determined to have the lowest path cost to the root bridge and placed in a forwarding state for a network segment\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A port that is determined to have the highest cost to the network segment and placed in a forwarding state\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q023",
+      "question": "How is the bridge ID calculated for PVST+?",
+      "choices": [
+        "The bridge ID is a 4-byte bridge priority, a 12-byte sys-id-ext, and a 6-byte MAC address.",
+        "The bridge ID is a 4-byte bridge priority and sys-id-ext and a 6- byte MAC address.",
+        "The bridge ID is a 4-bit bridge priority, a 12-bit sys-id-ext, and a 6-byte MAC address.",
+        "The bridge ID is a 4-bit bridge priority, a 12-bit sys-id-ext, and an 8-byte IP address."
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The bridge ID is a 4-byte bridge priority, a 12-byte sys-id-ext, and a 6-byte MAC address.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The bridge ID is a 4-byte bridge priority and sys-id-ext and a 6- byte MAC address.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The bridge ID is a 4-bit bridge priority, a 12-bit sys-id-ext, and an 8-byte IP address.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q024",
+      "question": "What is the default bridge priority for all STP switches?",
+      "choices": [
+        "Bridge priority of 8,192",
+        "Bridge priority of 16,384",
+        "Bridge priority of 32,768",
+        "Bridge priority of 65,526"
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Bridge priority of 8,192\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Bridge priority of 16,384\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Bridge priority of 65,526\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q025",
+      "question": "Which is a correct statement about bridge port roles in STP?",
+      "choices": [
+        "A designated port is always in a blocking state.",
+        "Every switch, including the root bridge, must have at least one designated port.",
+        "Every switch, excluding the root bridge, must have at least one non-designated port.",
+        "All ports on the root bridge are in a designated port state."
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"A designated port is always in a blocking state.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Every switch, including the root bridge, must have at least one designated port.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Every switch, excluding the root bridge, must have at least one non-designated port.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q026",
+      "question": "Which is a correct statement about backup ports in RSTP?",
+      "choices": [
+        "A backup port receives BPDUs from another port on the same switch and therefore can replace the designated port if it fails.",
+        "A backup port receives BPDUs from another switch and therefore can replace the designated port if it fails.",
+        "A backup port is always placed in a forwarding state.",
+        "A backup port receives BPDUs from another switch and therefore can replace the root port if it fails."
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"A backup port receives BPDUs from another switch and therefore can replace the designated port if it fails.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A backup port is always placed in a forwarding state.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A backup port receives BPDUs from another switch and therefore can replace the root port if it fails.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q027",
+      "question": "What is the default wait time for STP convergence to complete?",
+      "choices": [
+        "Convergence takes 60 seconds to complete.",
+        "Convergence takes 5 seconds to complete.",
+        "Convergence takes 30 seconds to complete.",
+        "Convergence takes 50 seconds to complete."
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Convergence takes 60 seconds to complete.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Convergence takes 5 seconds to complete.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Convergence takes 30 seconds to complete.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q028",
+      "question": "When a computer is connected to an interface with STP enabled in default mode, which is the correct order of the port transitions?",
+      "choices": [
+        "Listening, learning, blocking, forwarding",
+        "Forwarding, listening, learning, blocking",
+        "Blocking, listening, learning, forwarding",
+        "Blocking, learning, listening, forwarding"
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Listening, learning, blocking, forwarding\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Forwarding, listening, learning, blocking\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Blocking, learning, listening, forwarding\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q029",
+      "question": "Which statement describes an STP port that is placed into a blocking state?",
+      "choices": [
+        "When a port is placed into a blocking state, it blocks all frames, including BPDUs.",
+        "When a port is placed into a blocking state, it blocks redundant frames, excluding BPDUs.",
+        "When a port is placed into a blocking state, it blocks all frames, excluding BPDUs.",
+        "When a port is placed into a blocking state, it blocks redundant frames, including BPDUs."
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"When a port is placed into a blocking state, it blocks all frames, including BPDUs.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"When a port is placed into a blocking state, it blocks redundant frames, excluding BPDUs.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"When a port is placed into a blocking state, it blocks redundant frames, including BPDUs.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q030",
+      "question": "When a computer is connected to an interface with RSTP enabled in default mode, which is the correct order of the port transitions?",
+      "choices": [
+        "Discarding, learning, blocking, forwarding",
+        "Discarding, listening, forwarding",
+        "Blocking, listening, learning, forwarding",
+        "Discarding, learning, forwarding"
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Discarding, learning, blocking, forwarding\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Discarding, listening, forwarding\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Blocking, listening, learning, forwarding\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q031",
+      "question": "In RSTP, which port mode replaces the blocking and listening port states?",
+      "choices": [
+        "Discarding",
+        "Learning",
+        "Forwarding",
+        "Backup"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Learning\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Forwarding\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Backup\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q032",
+      "question": "Which new port state does RTSP have compared to STP?",
+      "choices": [
+        "Learning",
+        "Forwarding",
+        "Blocking",
+        "Discarding"
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Learning\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Forwarding\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Blocking\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q033",
+      "question": "You receive a call that when computers boot up, they display an error message stating that they cannot reach a domain controller. However, after a few tries, the problem goes away, and the domain controller can be reached. Which command would you enter into the interface if you suspect spanning-tree convergence problems?",
+      "choices": [
+        "SwitchA(config-if)#no switchport spanning-tree",
+        "SwitchA(config)#switchport spanning-tree portfast",
+        "SwitchA(config)#spanning-tree portfast default",
+        "SwitchA(config-if)#spanning-tree portfast"
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-PORTFAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SwitchA(config-if)#no switchport spanning-tree\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SwitchA(config)#switchport spanning-tree portfast\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SwitchA(config)#spanning-tree portfast default\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q034",
+      "question": "On which types of ports should you configure PortFast mode?",
+      "choices": [
+        "Trunk ports",
+        "Access ports",
+        "Voice ports",
+        "Designated ports"
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-PORTFAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Trunk ports\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Voice ports\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Designated ports\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q035",
+      "question": "What will the command spanning-tree portfast default entered in global configuration mode do?",
+      "choices": [
+        "Turn on PortFast mode for all ports",
+        "Turn on PortFast mode for all access ports only",
+        "Turn off spanning tree on all ports",
+        "Turn off spanning tree on all access ports only"
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-PORTFAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Turn on PortFast mode for all ports\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Turn off spanning tree on all ports\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Turn off spanning tree on all access ports only\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q036",
+      "question": "What will happen if you plug a hub into two ports on the same switch configured with PortFast on all the interfaces?",
+      "choices": [
+        "You will create a temporary switching loop.",
+        "You will create a permanent switching loop.",
+        "Both ports will sense the switch and err-disable.",
+        "One of the links will disable via Spanning Tree."
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-PORTFAST",
+        "CKU-LAYER2-LOOPS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"You will create a permanent switching loop.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Both ports will sense the switch and err-disable.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"One of the links will disable via Spanning Tree.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q038",
+      "question": "What is the transition of states when PortFast is configured?",
+      "choices": [
+        "Forwarding, listening, learning, blocking",
+        "Listening, forwarding, learning, blocking",
+        "Listening, learning, forwarding, blocking",
+        "Blocking, listening, learning, forwarding"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-PORTFAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Listening, forwarding, learning, blocking\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Listening, learning, forwarding, blocking\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Blocking, listening, learning, forwarding\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q042",
+      "question": "Which command will show you if a port has been configured for PortFast mode?",
+      "choices": [
+        "Switch#show portfast",
+        "Switch#show interface fa 0/1",
+        "Switch#show spanning-tree",
+        "Switch#show spanning-tree interface fa 0/1"
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-SHOW-SPANNING-TREE-INTERFACE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#show portfast\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#show interface fa 0/1\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#show spanning-tree\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

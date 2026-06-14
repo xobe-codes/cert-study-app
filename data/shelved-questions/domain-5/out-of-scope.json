@@ -1,0 +1,58 @@
+[
+  {
+    "id": "obj-5.5-source-q002",
+    "objectiveId": "5.10",
+    "question": "Which tunnel protocol is a Cisco proprietary protocol?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-5.8-source-q008",
+    "objectiveId": "5.7",
+    "question": "Which protocol and port does RADIUS authentication use?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-5.8-source-q009",
+    "objectiveId": "5.7",
+    "question": "Which is an authentication protocol for AAA servers to secure Telnet authentication?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-5.9-source-q002",
+    "objectiveId": "5.8",
+    "question": "Which is a requirement of WPA2-Enterprise?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-5.9-source-q012",
+    "objectiveId": "5.8",
+    "question": "Which protocol will restrict you from achieving high throughput rates?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-5.10-source-q003",
+    "objectiveId": "5.9",
+    "question": "You are configuring a WPA2 WLAN. Which security configuration should you use for the highest level of security?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-5.10-source-q004",
+    "objectiveId": "5.9",
+    "question": "You are setting up a wireless network for a client. Their requirements are to minimize the infrastructure and support the highest security. Which wireless encryption standard should be configured to satisfy the requirements?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  }
+]

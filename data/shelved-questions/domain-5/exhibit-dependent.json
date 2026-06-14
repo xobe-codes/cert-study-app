@@ -1,0 +1,106 @@
+[
+  {
+    "id": "obj-5.3-source-q015",
+    "objectiveId": "5.3",
+    "question": "Using the referenced source exhibit, you have listed all management sessions on the switch. On which line are you connected?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.5-source-q004",
+    "objectiveId": "5.10",
+    "question": "Using the referenced source exhibit, you are configuring a GRE tunnel. What is wrong with this configuration?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.5-source-q005",
+    "objectiveId": "5.10",
+    "question": "Using the referenced source exhibit, you are configuring a GRE tunnel and need to configure a route statement on Router A. Which is the correct route statement?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.5-source-q008",
+    "objectiveId": "5.10",
+    "question": "Using the referenced source exhibit, if you do a traceroute on Router A to a destination of 192.168.3.50, how many hops will show?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.5-source-q009",
+    "objectiveId": "5.10",
+    "question": "Using the referenced source exhibit, You are configuring a GRE tunnel. However, you cannot ping from Router A to 192.168.3.1. What is the problem?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.5-source-q011",
+    "objectiveId": "5.10",
+    "question": "Using the referenced source exhibit, You have configured a point-to-point dedicated line between two locations. However, you cannot ping between the two routers. What is the problem?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.6-source-q019",
+    "objectiveId": "5.5",
+    "question": "Using the referenced source exhibit, you need to block traffic from the host 192.168.2.6 to the HR web application server but allow it to get to all other servers and the Internet. Which command(s) will achieve this?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.6-source-q022",
+    "objectiveId": "5.5",
+    "question": "Using the referenced source exhibit, you need to block traffic from the host network to the HR web application and allow all traffic to get to the intranet web server. Which type of ACL would you use?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.6-source-q025",
+    "objectiveId": "5.5",
+    "question": "Using the referenced source exhibit, you want to block the host network from accessing the HR network. Which commands will place the access list on the proper interface to make it effective?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.6-source-q026",
+    "objectiveId": "5.5",
+    "question": "Which command can see the output in the following exhibit with the line numbers?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.7-source-q023",
+    "objectiveId": "5.6",
+    "question": "Using the referenced source exhibit, You received a call that a port is no longer active. The port has port security configured on it. What is the problem?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.7-source-q025",
+    "objectiveId": "5.6",
+    "question": "Using the referenced source exhibit, You receive a call that a port on the switch is not working. You determine that a port-security violation has been experienced. Once the violation has been remediated, how will you reset the port so that it functions again?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-5.7-source-q027",
+    "objectiveId": "5.6",
+    "question": "Which command is used to see the output in the following exhibit?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  }
+]

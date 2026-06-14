@@ -101,8 +101,8 @@
       "CKU-LOGGING-TIMESTAMPS",
       "CKU-LOGGING-CONSOLE",
       "CKU-LOGGING-BUFFERED",
-      "CKU-NAT",
-      "CKU-SNMP-INFORM"
+      "CKU-SNMP-INFORM",
+      "CKU-NAT"
     ],
     "needsReview": true
   },

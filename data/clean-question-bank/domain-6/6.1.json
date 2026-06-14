@@ -1,0 +1,292 @@
+{
+  "objectiveId": "6.1",
+  "title": "Explain how automation impacts network management",
+  "questions": [
+    {
+      "id": "obj-6.1-source-q001",
+      "question": "Which is a reason to automate a process for the configuration of several routers?",
+      "choices": [
+        "To increase the possibility for misconfiguration",
+        "To create an outcome that can be reproduced",
+        "To decrease problems from the new configuration",
+        "To allow you to do less work"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "automation",
+      "ckuIds": [
+        "CKU-AUTOMATION",
+        "CKU-NETWORK-AUTOMATION",
+        "CKU-HUMAN-ERROR-REDUCTION"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"To create an outcome that can be reproduced\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"To increase the possibility for misconfiguration\" is incorrect because the scenario requires: The correct answer is \"To create an outcome that can be reproduced\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"To decrease problems from the new configuration\" is incorrect because the scenario requires: The correct answer is \"To create an outcome that can be reproduced\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"To allow you to do less work\" is incorrect because the scenario requires: The correct answer is \"To create an outcome that can be reproduced\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.1-source-q002",
+      "question": "You need to configure a new static route on the existing 20 routers. Which is the best way to do this?",
+      "choices": [
+        "Copy and paste scripts built in Notepad++ into each router.",
+        "Copy and paste scripts built in Excel into each router.",
+        "Create a Python script to configure each router.",
+        "Work with a partner so that both of you can double-check each other’s work and cut the time in half."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "automation",
+      "ckuIds": [
+        "CKU-AUTOMATION",
+        "CKU-NETWORK-AUTOMATION",
+        "CKU-HUMAN-ERROR-REDUCTION",
+        "CKU-PYTHON-AUTOMATION"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Create a Python script to configure each router.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Copy and paste scripts built in Notepad++ into each router.\" is incorrect because the scenario requires: The correct answer is \"Create a Python script to configure each router.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Copy and paste scripts built in Excel into each router.\" is incorrect because the scenario requires: The correct answer is \"Create a Python script to configure each router.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Work with a partner so that both of you can double-check each other’s work and cut the time in half.\" is incorrect because the scenario requires: The correct answer is \"Create a Python script to configure each router.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.1-source-q003",
+      "question": "Which is the number one motivating factor to use network automation?",
+      "choices": [
+        "Reduce the number of changes to be made",
+        "Reduce the complications that arise from changes",
+        "Reduce the human error factor",
+        "Reduce the planning time for the changes"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "automation",
+      "ckuIds": [
+        "CKU-AUTOMATION",
+        "CKU-NETWORK-AUTOMATION",
+        "CKU-HUMAN-ERROR-REDUCTION"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Reduce the human error factor\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Reduce the number of changes to be made\" is incorrect because the scenario requires: The correct answer is \"Reduce the human error factor\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Reduce the complications that arise from changes\" is incorrect because the scenario requires: The correct answer is \"Reduce the human error factor\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Reduce the planning time for the changes\" is incorrect because the scenario requires: The correct answer is \"Reduce the human error factor\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.1-source-q004",
+      "question": "Identify the term that is used to describe the framework responsible for assisting in network automation?",
+      "choices": [
+        "NetOps",
+        "DevOps",
+        "SysOps",
+        "SecOps"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "automation",
+      "ckuIds": [
+        "CKU-AUTOMATION",
+        "CKU-NETWORK-AUTOMATION",
+        "CKU-HUMAN-ERROR-REDUCTION",
+        "CKU-ESP",
+        "CKU-DEVOPS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"DevOps\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"NetOps\" is incorrect because the scenario requires: The correct answer is \"DevOps\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SysOps\" is incorrect because the scenario requires: The correct answer is \"DevOps\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SecOps\" is incorrect because the scenario requires: The correct answer is \"DevOps\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.1-source-q005",
+      "question": "Which management methodology is commonly used by developers for network automation?",
+      "choices": [
+        "Lean and Agile",
+        "Waterfall",
+        "Kanban",
+        "Scrum"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "automation",
+      "ckuIds": [
+        "CKU-AUTOMATION",
+        "CKU-NETWORK-AUTOMATION",
+        "CKU-HUMAN-ERROR-REDUCTION",
+        "CKU-AGILE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Lean and Agile\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Waterfall\" is incorrect because the scenario requires: The correct answer is \"Lean and Agile\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Kanban\" is incorrect because the scenario requires: The correct answer is \"Lean and Agile\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Scrum\" is incorrect because the scenario requires: The correct answer is \"Lean and Agile\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.1-source-q006",
+      "question": "After you release a network automation script to production, which step should be completed?",
+      "choices": [
+        "Testing",
+        "Building",
+        "Planning",
+        "Monitoring"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "automation",
+      "ckuIds": [
+        "CKU-AUTOMATION",
+        "CKU-NETWORK-AUTOMATION",
+        "CKU-HUMAN-ERROR-REDUCTION"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Monitoring\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Testing\" is incorrect because the scenario requires: The correct answer is \"Monitoring\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Building\" is incorrect because the scenario requires: The correct answer is \"Monitoring\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Planning\" is incorrect because the scenario requires: The correct answer is \"Monitoring\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

@@ -1,0 +1,2309 @@
+{
+  "objectiveId": "3.2",
+  "title": "Determine how a router makes a forwarding decision by default",
+  "questions": [
+    {
+      "id": "3.2-c-q1",
+      "question": "A router has routes to `10.1.1.0/24` via R2 and `10.1.1.0/26` via R3. A packet is destined for `10.1.1.10`. Which route is used?",
+      "choices": [
+        "The /24 via R2",
+        "The /26 via R3",
+        "Whichever has the lower metric",
+        "Both, load-balanced"
+      ],
+      "correctIndex": 1,
+      "explanation": "10.1.1.10 falls inside both, but /26 is the longer (more specific) prefix, so longest prefix match selects it.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "longest prefix match",
+      "ckuIds": [
+        "CKU-LONGEST-PREFIX-MATCH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "10.1.1.10 falls inside both, but /26 is the longer (more specific) prefix, so longest prefix match selects it."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The /24 via R2\" is incorrect because the scenario requires: 10.1.1.10 falls inside both, but /26 is the longer (more specific) prefix, so longest prefix match selects it.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Whichever has the lower metric\" is incorrect because the scenario requires: 10.1.1.10 falls inside both, but /26 is the longer (more specific) prefix, so longest prefix match selects it.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Both, load-balanced\" is incorrect because the scenario requires: 10.1.1.10 falls inside both, but /26 is the longer (more specific) prefix, so longest prefix match selects it.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.2-c-q2",
+      "question": "In what order does a router apply these by default when forwarding?",
+      "choices": [
+        "Metric → AD → longest prefix",
+        "Longest prefix match → administrative distance → metric",
+        "AD → metric → longest prefix",
+        "Longest prefix → metric → AD"
+      ],
+      "correctIndex": 1,
+      "explanation": "Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a given prefix.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "route selection order",
+      "ckuIds": [
+        "CKU-LONGEST-PREFIX-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-METRIC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a given prefix."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Metric → AD → longest prefix\" is incorrect because the scenario requires: Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a giv…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"AD → metric → longest prefix\" is incorrect because the scenario requires: Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a giv…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Longest prefix → metric → AD\" is incorrect because the scenario requires: Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a giv…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.2-c-q3",
+      "question": "Two sources advertise a route to the exact same prefix: OSPF (AD 110) and a static route (AD 1). Which is installed?",
+      "choices": [
+        "OSPF, lower metric",
+        "The static route, lower AD",
+        "Both",
+        "Neither until the tie is broken by metric"
+      ],
+      "correctIndex": 1,
+      "explanation": "For the same prefix from different sources, the lower administrative distance wins. Static (1) beats OSPF (110).",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "administrative distance",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "For the same prefix from different sources, the lower administrative distance wins. Static (1) beats OSPF (110)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"OSPF, lower metric\" is incorrect because the scenario requires: For the same prefix from different sources, the lower administrative distance wins. Static (1) beats OSPF (110).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Both\" is incorrect because the scenario requires: For the same prefix from different sources, the lower administrative distance wins. Static (1) beats OSPF (110).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Neither until the tie is broken by metric\" is incorrect because the scenario requires: For the same prefix from different sources, the lower administrative distance wins. Static (1) beats OSPF (110).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.2-c-q4",
+      "question": "What is the default administrative distance of a connected route?",
+      "choices": [
+        "0",
+        "1",
+        "110",
+        "120"
+      ],
+      "correctIndex": 0,
+      "explanation": "Connected routes have AD 0 — the most trusted source. Static is 1, EIGRP 90, OSPF 110, RIP 120.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "administrative distance values",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Connected routes have AD 0 — the most trusted source. Static is 1, EIGRP 90, OSPF 110, RIP 120."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"1\" is incorrect because the scenario requires: Connected routes have AD 0 — the most trusted source. Static is 1, EIGRP 90, OSPF 110, RIP 120.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"110\" is incorrect because the scenario requires: Connected routes have AD 0 — the most trusted source. Static is 1, EIGRP 90, OSPF 110, RIP 120.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"120\" is incorrect because the scenario requires: Connected routes have AD 0 — the most trusted source. Static is 1, EIGRP 90, OSPF 110, RIP 120.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.2-c-q5",
+      "question": "A route is learned with an administrative distance of 255. What happens?",
+      "choices": [
+        "It becomes the preferred route",
+        "It is installed only if no metric exists",
+        "It is never installed in the routing table",
+        "It is installed but never used"
+      ],
+      "correctIndex": 2,
+      "explanation": "AD 255 means the source is considered untrustworthy; the route is not installed at all.",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "administrative distance 255",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "AD 255 means the source is considered untrustworthy; the route is not installed at all."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"It becomes the preferred route\" is incorrect because the scenario requires: AD 255 means the source is considered untrustworthy; the route is not installed at all.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"It is installed only if no metric exists\" is incorrect because the scenario requires: AD 255 means the source is considered untrustworthy; the route is not installed at all.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"It is installed but never used\" is incorrect because the scenario requires: AD 255 means the source is considered untrustworthy; the route is not installed at all.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.2-c-q6",
+      "question": "True or False: A router can directly compare an OSPF metric to an EIGRP metric to pick the better route.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False. Metrics are only comparable within the same routing protocol. Across protocols, administrative distance decides.",
+      "type": "true-false",
+      "difficulty": "medium",
+      "concept": "metric scope",
+      "ckuIds": [
+        "CKU-METRIC",
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "False. Metrics are only comparable within the same routing protocol. Across protocols, administrative distance decides."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"True\" is incorrect because the scenario requires: False. Metrics are only comparable within the same routing protocol. Across protocols, administrative distance decides.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.2-c-q7",
+      "question": "OSPF learns two routes to `192.168.5.0/24`, one with cost 10 and one with cost 20. Which is installed (assuming no other differences)?",
+      "choices": [
+        "Cost 20",
+        "Cost 10",
+        "Both (equal-cost only if equal)",
+        "Neither — AD must differ"
+      ],
+      "correctIndex": 1,
+      "explanation": "Within one protocol, the lower metric (OSPF cost 10) wins.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "metric tie-break",
+      "ckuIds": [
+        "CKU-METRIC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Within one protocol, the lower metric (OSPF cost 10) wins."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Cost 20\" is incorrect because the scenario requires: Within one protocol, the lower metric (OSPF cost 10) wins.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Both (equal-cost only if equal)\" is incorrect because the scenario requires: Within one protocol, the lower metric (OSPF cost 10) wins.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Neither — AD must differ\" is incorrect because the scenario requires: Within one protocol, the lower metric (OSPF cost 10) wins.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.2-c-q8",
+      "question": "A router has `0.0.0.0/0` via R1 and `172.16.0.0/16` via R2. A packet is destined for `172.16.4.9`. Which route forwards it?",
+      "choices": [
+        "The default route via R1",
+        "The /16 via R2",
+        "Whichever has lower AD",
+        "It is dropped"
+      ],
+      "correctIndex": 1,
+      "explanation": "The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "default route specificity",
+      "ckuIds": [
+        "CKU-DEFAULT-ROUTE",
+        "CKU-LONGEST-PREFIX-MATCH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The default route via R1\" is incorrect because the scenario requires: The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Whichever has lower AD\" is incorrect because the scenario requires: The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"It is dropped\" is incorrect because the scenario requires: The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.2-c-q9",
+      "question": "A packet’s destination matches no route and there is no default route. What does the router do?",
+      "choices": [
+        "Floods it out all interfaces",
+        "Drops the packet",
+        "Sends it to the lowest-AD route",
+        "Queues it until a route appears"
+      ],
+      "correctIndex": 1,
+      "explanation": "With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "no match no default",
+      "ckuIds": [
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Floods it out all interfaces\" is incorrect because the scenario requires: With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Sends it to the lowest-AD route\" is incorrect because the scenario requires: With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Queues it until a route appears\" is incorrect because the scenario requires: With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.2-c-q10",
+      "question": "In `show ip route`, an entry reads `O 10.2.2.0/24 [110/30]`. What do `110` and `30` represent?",
+      "choices": [
+        "Metric and AD",
+        "AD and metric",
+        "Prefix and metric",
+        "Cost and hop count"
+      ],
+      "correctIndex": 1,
+      "explanation": "The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "show ip route brackets",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-METRIC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Metric and AD\" is incorrect because the scenario requires: The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Prefix and metric\" is incorrect because the scenario requires: The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Cost and hop count\" is incorrect because the scenario requires: The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.2-c-q11",
+      "question": "You want a static backup route used only if OSPF (AD 110) loses its route to `10.0.0.0/8`. The config shows `ip route 10.0.0.0 255.0.0.0 10.1.1.1`. Why is the backup active even while OSPF is up?",
+      "choices": [
+        "Static AD (1) is lower than OSPF (110), so static is always preferred",
+        "OSPF metric is too high",
+        "The mask is wrong",
+        "Default routes override static"
+      ],
+      "correctIndex": 0,
+      "explanation": "A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. `... 10.1.1.1 130`) to make it a floating static backup.",
+      "type": "troubleshooting",
+      "difficulty": "hard",
+      "concept": "floating static",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. `... 10.1.1.1 130`) to make it a floating static backup."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPF metric is too high\" is incorrect because the scenario requires: A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. `... 10.1.1.1 130`) …",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The mask is wrong\" is incorrect because the scenario requires: A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. `... 10.1.1.1 130`) …",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Default routes override static\" is incorrect because the scenario requires: A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. `... 10.1.1.1 130`) …",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "3.2-c-q12",
+      "question": "Rank these by default trust (most trusted first): static, OSPF, connected.",
+      "choices": [
+        "OSPF, static, connected",
+        "Connected, static, OSPF",
+        "Static, connected, OSPF",
+        "Connected, OSPF, static"
+      ],
+      "correctIndex": 1,
+      "explanation": "By AD: connected 0 (most trusted), static 1, OSPF 110.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "connected vs static vs dynamic",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "By AD: connected 0 (most trusted), static 1, OSPF 110."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"OSPF, static, connected\" is incorrect because the scenario requires: By AD: connected 0 (most trusted), static 1, OSPF 110.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Static, connected, OSPF\" is incorrect because the scenario requires: By AD: connected 0 (most trusted), static 1, OSPF 110.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Connected, OSPF, static\" is incorrect because the scenario requires: By AD: connected 0 (most trusted), static 1, OSPF 110.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q001",
+      "question": "What role does ICMP take in the routing of a packet?",
+      "choices": [
+        "ICMP populates the routing table.",
+        "ICMP is used when routes are not reachable.",
+        "ICMP maintains the routing table.",
+        "ICMP performs continuous diagnosis of the network paths."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-ICMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"ICMP is used when routes are not reachable.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"ICMP populates the routing table.\" is incorrect because the scenario requires: The correct answer is \"ICMP is used when routes are not reachable.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ICMP maintains the routing table.\" is incorrect because the scenario requires: The correct answer is \"ICMP is used when routes are not reachable.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ICMP performs continuous diagnosis of the network paths.\" is incorrect because the scenario requires: The correct answer is \"ICMP is used when routes are not reachable.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q002",
+      "question": "How is a route selected when the route table contains overlapping destination prefixes?",
+      "choices": [
+        "The route with the lowest cost is selected.",
+        "The route with the longest matching prefix is selected.",
+        "The route with the highest AD is selected.",
+        "The route with the lowest AD is selected."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-PREFIX",
+        "CKU-OSPF-COST",
+        "CKU-PING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The route with the longest matching prefix is selected.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The route with the lowest cost is selected.\" is incorrect because the scenario requires: The correct answer is \"The route with the longest matching prefix is selected.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The route with the highest AD is selected.\" is incorrect because the scenario requires: The correct answer is \"The route with the longest matching prefix is selected.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The route with the lowest AD is selected.\" is incorrect because the scenario requires: The correct answer is \"The route with the longest matching prefix is selected.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q003",
+      "question": "You review a router and discover that there is a static default route configured for a next hop of 192.168.1.2. You also notice that there is a default route being populated from RIP for a next hop of 192.168.2.2. Which default...",
+      "choices": [
+        "The route with the lowest AD",
+        "The route with the highest AD",
+        "The route with the lowest metric",
+        "The route being populated from RIP"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-METRIC",
+        "CKU-NEXT-HOP",
+        "CKU-STATIC-ROUTING",
+        "CKU-RIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The route with the lowest AD\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The route with the highest AD\" is incorrect because the scenario requires: The correct answer is \"The route with the lowest AD\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The route with the lowest metric\" is incorrect because the scenario requires: The correct answer is \"The route with the lowest AD\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The route being populated from RIP\" is incorrect because the scenario requires: The correct answer is \"The route with the lowest AD\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q004",
+      "question": "Which is true of a host route in the routing table?",
+      "choices": [
+        "The host route is the route a packet will take if no other route matches in the routing table.",
+        "The routing table creates host routers for the destination hosts it discovers.",
+        "A host route is a specific route with a netmask of /32 for a specific host.",
+        "The host route is populated from HSRP."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-NETWORK-MASK",
+        "CKU-HSRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The host route is the route a packet will take if no other route matches in the routing table.\" is incorrect because the scenario requires: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The routing table creates host routers for the destination hosts it discovers.\" is incorrect because the scenario requires: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The host route is populated from HSRP.\" is incorrect because the scenario requires: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q005",
+      "question": "Which element of a routing table will identify where the route was learned from?",
+      "choices": [
+        "Prefix and network mask",
+        "Routing protocol code",
+        "Metric",
+        "Next hop"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-METRIC",
+        "CKU-NEXT-HOP",
+        "CKU-NETWORK-MASK",
+        "CKU-PREFIX"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Routing protocol code\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Prefix and network mask\" is incorrect because the scenario requires: The correct answer is \"Routing protocol code\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Metric\" is incorrect because the scenario requires: The correct answer is \"Routing protocol code\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Next hop\" is incorrect because the scenario requires: The correct answer is \"Routing protocol code\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q006",
+      "question": "Which criteria are routing decisions based upon?",
+      "choices": [
+        "Source IP",
+        "Destination IP address",
+        "TTL",
+        "Destination MAC address"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Destination IP address\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Source IP\" is incorrect because the scenario requires: The correct answer is \"Destination IP address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"TTL\" is incorrect because the scenario requires: The correct answer is \"Destination IP address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Destination MAC address\" is incorrect because the scenario requires: The correct answer is \"Destination IP address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q007",
+      "question": "Which type of routing requires network administrator intervention?",
+      "choices": [
+        "Link-state routing",
+        "Distance-vector routing",
+        "Static routing",
+        "Dynamic routing"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-STATIC-ROUTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Static routing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Link-state routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Distance-vector routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Dynamic routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q008",
+      "question": "Which is a correct statement about the subnet mask?",
+      "choices": [
+        "The subnet mask is used by the host to determine the destination network.",
+        "The subnet mask is used in routing to determine the destination network.",
+        "The router uses its subnet mask when routing a packet.",
+        "The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-NETWORK-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The subnet mask is used by the host to determine the destination network.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The subnet mask is used in routing to determine the destination network.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is used by the host to determine the destination network.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The router uses its subnet mask when routing a packet.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is used by the host to determine the destination network.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is used by the host to determine the destination network.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q009",
+      "question": "What protocol does the router or host use to find a MAC address for the frame when it determines that the packet is on the local network?",
+      "choices": [
+        "IGMP",
+        "RARP",
+        "ARP",
+        "ICMP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DR-BDR",
+        "CKU-ARP",
+        "CKU-ICMP",
+        "CKU-LOCAL-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"ARP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IGMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RARP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ICMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q010",
+      "question": "When a packet is determined to be remote from the network of the sending host, what happens?",
+      "choices": [
+        "The destination IP address is changed to the router’s IP address.",
+        "The destination MAC address is changed to the destination host’s MAC address.",
+        "The destination MAC address is changed to the router’s MAC address.",
+        "The source IP address is changed to the router’s IP address."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The destination MAC address is changed to the router’s MAC address.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The destination IP address is changed to the router’s IP address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the router’s MAC address.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The destination MAC address is changed to the destination host’s MAC address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the router’s MAC address.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The source IP address is changed to the router’s IP address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the router’s MAC address.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q011",
+      "question": "Which statement describes correctly what happens when a packet moves through a router?",
+      "choices": [
+        "The destination IP address is changed to the original destination.",
+        "The packet’s TTL is decremented.",
+        "The source MAC address is changed to the original source MAC address.",
+        "All of the above."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The packet’s TTL is decremented.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The destination IP address is changed to the original destination.\" is incorrect because the scenario requires: The correct answer is \"The packet’s TTL is decremented.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The source MAC address is changed to the original source MAC address.\" is incorrect because the scenario requires: The correct answer is \"The packet’s TTL is decremented.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"All of the above.\" is incorrect because the scenario requires: The correct answer is \"The packet’s TTL is decremented.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q012",
+      "question": "When a packet is determined to be on the local network, what happens?",
+      "choices": [
+        "The destination IP address is changed to the router IP address.",
+        "The destination MAC address is changed to the destination host’s MAC address.",
+        "The destination MAC address is changed to the router’s MAC address.",
+        "The source IP address is changed to the router’s IP address."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DR-BDR",
+        "CKU-LOCAL-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The destination MAC address is changed to the destination host’s MAC address.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The destination IP address is changed to the router IP address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the destination host’s MAC address.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The destination MAC address is changed to the router’s MAC address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the destination host’s MAC address.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The source IP address is changed to the router’s IP address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the destination host’s MAC address.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q013",
+      "question": "How does the sending host know if the destination is local or remote with respect to its immediate network?",
+      "choices": [
+        "The host compares the IP address to its internal routing table.",
+        "The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address.",
+        "The host performs ANDing on the destination subnet mask and the destination IP address, comparing the result to its own network address.",
+        "The IP address is verified to be local to its network via ICMP."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-NETWORK-MASK",
+        "CKU-DR-BDR",
+        "CKU-ICMP",
+        "CKU-LOCAL-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The host compares the IP address to its internal routing table.\" is incorrect because the scenario requires: The correct answer is \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The host performs ANDing on the destination subnet mask and the destination IP address, comparing the result to its own network address.\" is incorrect because the scenario requires: The correct answer is \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The IP address is verified to be local to its network via ICMP.\" is incorrect because the scenario requires: The correct answer is \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q014",
+      "question": "What is the current method Cisco routers use for packet forwarding?",
+      "choices": [
+        "Process switching",
+        "Fast switching",
+        "Intelligent packet forwarding",
+        "Cisco Express Forwarding"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Cisco Express Forwarding\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Process switching\" is incorrect because the scenario requires: The correct answer is \"Cisco Express Forwarding\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Fast switching\" is incorrect because the scenario requires: The correct answer is \"Cisco Express Forwarding\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Intelligent packet forwarding\" is incorrect because the scenario requires: The correct answer is \"Cisco Express Forwarding\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q015",
+      "question": "What is the process called at layer 2 when a packet hops from router to router and eventually to the host?",
+      "choices": [
+        "IP routing",
+        "Frame rewrite",
+        "Packet hopping",
+        "Packet switching"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-PING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Frame rewrite\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IP routing\" is incorrect because the scenario requires: The correct answer is \"Frame rewrite\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Packet hopping\" is incorrect because the scenario requires: The correct answer is \"Frame rewrite\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Packet switching\" is incorrect because the scenario requires: The correct answer is \"Frame rewrite\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q016",
+      "question": "When a host sends an ARP request packet out, what is the destination address of the frame?",
+      "choices": [
+        "The router’s MAC address",
+        "The host’s MAC address",
+        "The MAC address, in the form of a broadcast",
+        "The MAC address, in the form of a multicast"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DR-BDR",
+        "CKU-ARP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The MAC address, in the form of a broadcast\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The router’s MAC address\" is incorrect because the scenario requires: The correct answer is \"The MAC address, in the form of a broadcast\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The host’s MAC address\" is incorrect because the scenario requires: The correct answer is \"The MAC address, in the form of a broadcast\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The MAC address, in the form of a multicast\" is incorrect because the scenario requires: The correct answer is \"The MAC address, in the form of a broadcast\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q017",
+      "question": "What does every network device use to limit the number of ARP packets?",
+      "choices": [
+        "ARP cache",
+        "IP multicasting",
+        "Frame casting",
+        "IP cache"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-ARP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"ARP cache\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"IP multicasting\" is incorrect because the scenario requires: The correct answer is \"ARP cache\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Frame casting\" is incorrect because the scenario requires: The correct answer is \"ARP cache\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"IP cache\" is incorrect because the scenario requires: The correct answer is \"ARP cache\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q018",
+      "question": "Which statement describes what happens when a packet enters a router?",
+      "choices": [
+        "The router accepts all incoming frames regardless of their destination MAC address.",
+        "The router decapsulates the packet and inspects the destination IP address.",
+        "Routers do not need to decapsulate packets to inspect the destination IP address.",
+        "Routers make routing decisions first by examining the source MAC address."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The router decapsulates the packet and inspects the destination IP address.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The router accepts all incoming frames regardless of their destination MAC address.\" is incorrect because the scenario requires: The correct answer is \"The router decapsulates the packet and inspects the destination IP address.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Routers do not need to decapsulate packets to inspect the destination IP address.\" is incorrect because the scenario requires: The correct answer is \"The router decapsulates the packet and inspects the destination IP address.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Routers make routing decisions first by examining the source MAC address.\" is incorrect because the scenario requires: The correct answer is \"The router decapsulates the packet and inspects the destination IP address.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q019",
+      "question": "Which command will display the router’s ARP cache?",
+      "choices": [
+        "Router#show arp",
+        "Router#show arp table",
+        "Router#show arp cache",
+        "Router#show ip arp"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-ARP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router#show ip arp\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show arp\" is incorrect because the scenario requires: The correct answer is \"Router#show ip arp\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show arp table\" is incorrect because the scenario requires: The correct answer is \"Router#show ip arp\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show arp cache\" is incorrect because the scenario requires: The correct answer is \"Router#show ip arp\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q020",
+      "question": "What is the default time an entry will live in the ARP cache?",
+      "choices": [
+        "180 seconds",
+        "240 seconds",
+        "300 seconds",
+        "600 seconds"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-ARP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"240 seconds\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"180 seconds\" is incorrect because the scenario requires: The correct answer is \"240 seconds\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"300 seconds\" is incorrect because the scenario requires: The correct answer is \"240 seconds\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"600 seconds\" is incorrect because the scenario requires: The correct answer is \"240 seconds\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q021",
+      "question": "Which statement describes what happens during the routing process?",
+      "choices": [
+        "As a packet travels through the routers, the TTL of the packet will increase by one.",
+        "When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet.",
+        "When a packet travels through the router, the transport information will be checked for the destination network.",
+        "When a route to the destination network is found, the router will attach the destination IP address for the next hop to the packet."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-NEXT-HOP",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"As a packet travels through the routers, the TTL of the packet will increase by one.\" is incorrect because the scenario requires: The correct answer is \"When a route to the destination network is found, the router will attach the destination MAC addr…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"When a packet travels through the router, the transport information will be checked for the destination network.\" is incorrect because the scenario requires: The correct answer is \"When a route to the destination network is found, the router will attach the destination MAC addr…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"When a route to the destination network is found, the router will attach the destination IP address for the next hop to the packet.\" is incorrect because the scenario requires: The correct answer is \"When a route to the destination network is found, the router will attach the destination MAC addr…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q022",
+      "question": "Which protocol allows for testing and connectivity of a route?",
+      "choices": [
+        "IGMP",
+        "RARP",
+        "ARP",
+        "ICMP"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-ARP",
+        "CKU-ICMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"ICMP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IGMP\" is incorrect because the scenario requires: The correct answer is \"ICMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RARP\" is incorrect because the scenario requires: The correct answer is \"ICMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ARP\" is incorrect because the scenario requires: The correct answer is \"ICMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q023",
+      "question": "When an ICMP packet reaches a router for which it has no further route, what happens?",
+      "choices": [
+        "The router will discard the packet without notification.",
+        "The router will change the TTL of the packet to 0.",
+        "The router will send the packet back to the originating host.",
+        "The router will send back a destination unreachable message."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-ICMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"The router will send back a destination unreachable message.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The router will discard the packet without notification.\" is incorrect because the scenario requires: The correct answer is \"The router will send back a destination unreachable message.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The router will change the TTL of the packet to 0.\" is incorrect because the scenario requires: The correct answer is \"The router will send back a destination unreachable message.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The router will send the packet back to the originating host.\" is incorrect because the scenario requires: The correct answer is \"The router will send back a destination unreachable message.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q024",
+      "question": "Which statement accurately describes a routing loop?",
+      "choices": [
+        "Packets are routed out one interface but come back on a different interface.",
+        "Packets are transmitted within a series of routers and never reach the destination.",
+        "Packets reach the expiry TTL before reaching the destination network.",
+        "Packets are routed via an inefficient path."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Packets are transmitted within a series of routers and never reach the destination.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Packets are routed out one interface but come back on a different interface.\" is incorrect because the scenario requires: The correct answer is \"Packets are transmitted within a series of routers and never reach the destination.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Packets reach the expiry TTL before reaching the destination network.\" is incorrect because the scenario requires: The correct answer is \"Packets are transmitted within a series of routers and never reach the destination.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Packets are routed via an inefficient path.\" is incorrect because the scenario requires: The correct answer is \"Packets are transmitted within a series of routers and never reach the destination.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q025",
+      "question": "Where are dynamic routes stored in a router?",
+      "choices": [
+        "RAM",
+        "Flash",
+        "Startup configuration",
+        "Running configuration"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"RAM\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Flash\" is incorrect because the scenario requires: The correct answer is \"RAM\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Startup configuration\" is incorrect because the scenario requires: The correct answer is \"RAM\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Running configuration\" is incorrect because the scenario requires: The correct answer is \"RAM\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q026",
+      "question": "Which command would allow you to see the next hop information for CEF?",
+      "choices": [
+        "Router#show cef",
+        "Router#show ip cef",
+        "Router#show cef nop",
+        "Router#show cef route"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-NEXT-HOP",
+        "CKU-CEF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router#show ip cef\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show cef\" is incorrect because the scenario requires: The correct answer is \"Router#show ip cef\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show cef nop\" is incorrect because the scenario requires: The correct answer is \"Router#show ip cef\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show cef route\" is incorrect because the scenario requires: The correct answer is \"Router#show ip cef\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q027",
+      "question": "Which component of a network transmission changes during the routing process?",
+      "choices": [
+        "Destination MAC address",
+        "Destination IP address",
+        "Source IP address",
+        "Internal routes"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Destination MAC address\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Destination IP address\" is incorrect because the scenario requires: The correct answer is \"Destination MAC address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Source IP address\" is incorrect because the scenario requires: The correct answer is \"Destination MAC address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Internal routes\" is incorrect because the scenario requires: The correct answer is \"Destination MAC address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q028",
+      "question": "What will a router do if a matching route is not present in the router table?",
+      "choices": [
+        "Flood the packet to all active interfaces",
+        "Multicast the packet to other routers",
+        "Drop the packet",
+        "Send the original packet back to the source"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Drop the packet\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Flood the packet to all active interfaces\" is incorrect because the scenario requires: The correct answer is \"Drop the packet\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Multicast the packet to other routers\" is incorrect because the scenario requires: The correct answer is \"Drop the packet\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Send the original packet back to the source\" is incorrect because the scenario requires: The correct answer is \"Drop the packet\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q029",
+      "question": "By default, which type of routing is used automatically on a router?",
+      "choices": [
+        "Default routing",
+        "Dynamic routes",
+        "Static routes",
+        "Connected routes"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-STATIC-ROUTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Connected routes\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Default routing\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Dynamic routes\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Static routes\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q030",
+      "question": "Which command would set the IPv6 default route for a router to interface s0/0?",
+      "choices": [
+        "Router(config)#ip route 0.0.0.0/0 s0/0",
+        "Router(config)#ipv6 route 0.0.0.0/0 s0/0",
+        "Router(config)#ipv6 unicast-route ::0/0 s0/0",
+        "Router(config)#ipv6 route ::0/0 s0/0"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ip route 0.0.0.0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#ipv6 route 0.0.0.0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ipv6 unicast-route ::0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q031",
+      "question": "Which dynamic routing protocol(s) can be used with IPv6?",
+      "choices": [
+        "RIPng",
+        "OSPFv3",
+        "EIGRPv6",
+        "All of the above"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-OSPFV2",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-RIP",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"All of the above\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RIPng\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPFv3\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"EIGRPv6\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q032",
+      "question": "You need to see all routes in the routing table for only IPv6. Which command will achieve this?",
+      "choices": [
+        "Router#show route",
+        "Router#show ip route",
+        "Router#show ipv6 route",
+        "Router#show route ipv6"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#show ipv6 route\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show route\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip route\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show route ipv6\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q033",
+      "question": "What is the relevance of the default gateway address on a host that is transmitting to a destination for the first time?",
+      "choices": [
+        "The destination IP address is replaced with the default gateway when the destination is remote.",
+        "The host sends the default gateway packets that are deemed remote via a broadcast.",
+        "The host sends an ARP packet for the default gateway when the destination is remote.",
+        "The host creates a dedicated connection with the default gateway for remote traffic."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-ARP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The destination IP address is replaced with the default gateway when the destination is remote.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The host sends the default gateway packets that are deemed remote via a broadcast.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The host creates a dedicated connection with the default gateway for remote traffic.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q034",
+      "question": "Which command will display the router’s routing table?",
+      "choices": [
+        "Router#show ip route",
+        "Router#show route",
+        "Router#show route table",
+        "Router#show routes"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#show ip route\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show route\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show route table\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q035",
+      "question": "Which protocol is used by TCP/IP to help facilitate the routing of packets?",
+      "choices": [
+        "IGMP",
+        "RARP",
+        "ARP",
+        "ICMP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-ARP",
+        "CKU-ICMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"ARP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IGMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RARP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ICMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q036",
+      "question": "What uses ICMP to directly check the status of a router?",
+      "choices": [
+        "SNMP traps",
+        "Notifications",
+        "Ping",
+        "ARP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-ARP",
+        "CKU-ICMP",
+        "CKU-PING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Ping\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SNMP traps\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Notifications\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ARP\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.2-source-q037",
+      "question": "You have just used the ping command for a distant router. You received back five exclamation marks. What do these mean?",
+      "choices": [
+        "The distant router is not responding.",
+        "The distant router has a high response time.",
+        "The distant router is responding.",
+        "The distant router has a low response time."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FORWARDING-DECISION",
+        "CKU-LONGEST-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-PING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The distant router is responding.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The distant router is not responding.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The distant router has a high response time.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The distant router has a low response time.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

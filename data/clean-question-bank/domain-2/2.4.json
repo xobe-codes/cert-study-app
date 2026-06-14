@@ -1,0 +1,677 @@
+{
+  "objectiveId": "2.4",
+  "title": "Configure and verify Layer 2/Layer 3 EtherChannel (LACP)",
+  "questions": [
+    {
+      "id": "obj-2.4-source-q001",
+      "question": "What is the maximum number of interfaces that can be aggregated with EtherChannel and PAgP?",
+      "choices": [
+        "2 interfaces",
+        "8 interfaces",
+        "16 interfaces",
+        "4 interfaces"
+      ],
+      "correctIndex": 1,
+      "explanation": "PAgP EtherChannel can bundle up to eight active interfaces.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-ETHERCHANNEL-MAX-LINKS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "PAgP EtherChannel can bundle up to eight active interfaces."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"2 interfaces\" is incorrect because the scenario requires: PAgP EtherChannel can bundle up to eight active interfaces.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"16 interfaces\" is incorrect because the scenario requires: PAgP EtherChannel can bundle up to eight active interfaces.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"4 interfaces\" is incorrect because the scenario requires: PAgP EtherChannel can bundle up to eight active interfaces.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q002",
+      "question": "Which is a true statement about EtherChannel?",
+      "choices": [
+        "EtherChannel works with 802.1Q to block the redundant links.",
+        "EtherChannel can aggregate multiple links with varying speed.",
+        "EtherChannel can aggregate interfaces across multiple stand- alone switches.",
+        "When configured, EtherChannel acts as a single layer 2 connection."
+      ],
+      "correctIndex": 3,
+      "explanation": "EtherChannel acts as one logical Layer 2 link.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "EtherChannel acts as one logical Layer 2 link."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"EtherChannel works with 802.1Q to block the redundant links.\" is incorrect because the scenario requires: EtherChannel acts as one logical Layer 2 link.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"EtherChannel can aggregate multiple links with varying speed.\" is incorrect because the scenario requires: EtherChannel acts as one logical Layer 2 link.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"EtherChannel can aggregate interfaces across multiple stand- alone switches.\" is incorrect because the scenario requires: EtherChannel acts as one logical Layer 2 link.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q003",
+      "question": "You have a switch with 2 gigabit interface ports and 48 FastEthernet ports and are using PAgP. What is the highest bandwidth you can achieve?",
+      "choices": [
+        "2 Gb/s",
+        "2.2 Gb/s",
+        "400 Mb/s",
+        "2.6 Gb/s"
+      ],
+      "correctIndex": 0,
+      "explanation": "Links in an EtherChannel must use the same speed and duplex.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-SAME-SPEED-DUPLEX"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Links in an EtherChannel must use the same speed and duplex."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"2.2 Gb/s\" is incorrect because the scenario requires: Links in an EtherChannel must use the same speed and duplex.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"400 Mb/s\" is incorrect because the scenario requires: Links in an EtherChannel must use the same speed and duplex.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"2.6 Gb/s\" is incorrect because the scenario requires: Links in an EtherChannel must use the same speed and duplex.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q004",
+      "question": "Which aggregation protocol is an IEEE standard?",
+      "choices": [
+        "LACP",
+        "802.1Q",
+        "PAgP",
+        "802.1X"
+      ],
+      "correctIndex": 0,
+      "explanation": "LACP is the IEEE 802.3ad link aggregation standard.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "LACP is the IEEE 802.3ad link aggregation standard."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"802.1Q\" is incorrect because the scenario requires: LACP is the IEEE 802.3ad link aggregation standard.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"PAgP\" is incorrect because the scenario requires: LACP is the IEEE 802.3ad link aggregation standard.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.1X\" is incorrect because the scenario requires: LACP is the IEEE 802.3ad link aggregation standard.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q005",
+      "question": "You need to form an EtherChannel between a VMware ESXi host and the switch. Which negotiation protocol will you choose?",
+      "choices": [
+        "EtherChannel",
+        "LACP",
+        "Channel Group",
+        "PAgP"
+      ],
+      "correctIndex": 1,
+      "explanation": "Use LACP for non-Cisco link aggregation compatibility.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-NON-CISCO"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Use LACP for non-Cisco link aggregation compatibility."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"EtherChannel\" is incorrect because the scenario requires: Use LACP for non-Cisco link aggregation compatibility.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Channel Group\" is incorrect because the scenario requires: Use LACP for non-Cisco link aggregation compatibility.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"PAgP\" is incorrect because the scenario requires: Use LACP for non-Cisco link aggregation compatibility.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q006",
+      "question": "What is the maximum number of interfaces that can be aggregated with EtherChannel and LACP?",
+      "choices": [
+        "2 interfaces",
+        "8 interfaces",
+        "16 interfaces",
+        "4 interfaces"
+      ],
+      "correctIndex": 2,
+      "explanation": "LACP can aggregate up to 16 interfaces, with eight active and others standby.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-ETHERCHANNEL-MAX-LINKS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "LACP can aggregate up to 16 interfaces, with eight active and others standby."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"2 interfaces\" is incorrect because the scenario requires: LACP can aggregate up to 16 interfaces, with eight active and others standby.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"8 interfaces\" is incorrect because the scenario requires: LACP can aggregate up to 16 interfaces, with eight active and others standby.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"4 interfaces\" is incorrect because the scenario requires: LACP can aggregate up to 16 interfaces, with eight active and others standby.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q007",
+      "question": "Which mode forces the aggregation of links without the use of a control protocol?",
+      "choices": [
+        "LACP off mode",
+        "PAgP off mode",
+        "On mode",
+        "802.3ad mode"
+      ],
+      "correctIndex": 2,
+      "explanation": "on mode forms an unconditional port channel without LACP or PAgP.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-ON-MODE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "on mode forms an unconditional port channel without LACP or PAgP."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"LACP off mode\" is incorrect because the scenario requires: on mode forms an unconditional port channel without LACP or PAgP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"PAgP off mode\" is incorrect because the scenario requires: on mode forms an unconditional port channel without LACP or PAgP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.3ad mode\" is incorrect because the scenario requires: on mode forms an unconditional port channel without LACP or PAgP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q008",
+      "question": "Which is a correct statement about aggregating ports together?",
+      "choices": [
+        "The term EtherChannel is a Cisco proprietary term for port channeling.",
+        "PAgP can be used with non-Cisco products.",
+        "LACP can only be used with other Cisco switches.",
+        "PAgP can bundle several different links with varying speeds and duplexes together."
+      ],
+      "correctIndex": 0,
+      "explanation": "EtherChannel is a Cisco-centric term for port channeling.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "EtherChannel is a Cisco-centric term for port channeling."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"PAgP can be used with non-Cisco products.\" is incorrect because the scenario requires: EtherChannel is a Cisco-centric term for port channeling.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"LACP can only be used with other Cisco switches.\" is incorrect because the scenario requires: EtherChannel is a Cisco-centric term for port channeling.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"PAgP can bundle several different links with varying speeds and duplexes together.\" is incorrect because the scenario requires: EtherChannel is a Cisco-centric term for port channeling.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q009",
+      "question": "Which negotiation protocol is a Cisco proprietary standard?",
+      "choices": [
+        "LACP",
+        "802.1Q",
+        "PAgP",
+        "802.1ab"
+      ],
+      "correctIndex": 2,
+      "explanation": "PAgP is Cisco proprietary.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "PAgP is Cisco proprietary."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"LACP\" is incorrect because the scenario requires: PAgP is Cisco proprietary.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"802.1Q\" is incorrect because the scenario requires: PAgP is Cisco proprietary.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.1ab\" is incorrect because the scenario requires: PAgP is Cisco proprietary.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q010",
+      "question": "How often does PAgP send messages to control the status of the links in the bundle?",
+      "choices": [
+        "Every 30 seconds",
+        "Every 60 seconds",
+        "Every 90 seconds",
+        "Every 120 seconds"
+      ],
+      "correctIndex": 0,
+      "explanation": "PAgP sends control messages every 30 seconds.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-PAGP-TIMER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "PAgP sends control messages every 30 seconds."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Every 60 seconds\" is incorrect because the scenario requires: PAgP sends control messages every 30 seconds.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Every 90 seconds\" is incorrect because the scenario requires: PAgP sends control messages every 30 seconds.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Every 120 seconds\" is incorrect because the scenario requires: PAgP sends control messages every 30 seconds.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q011",
+      "question": "You want to configure two switches so that LACP is used between the switches. Which mode should you use on both sides to force LACP?",
+      "choices": [
+        "Active mode on both sides",
+        "Passive mode on both sides",
+        "Auto mode on both sides",
+        "Desirable mode on both sides"
+      ],
+      "correctIndex": 0,
+      "explanation": "LACP active mode actively starts negotiation.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-ACTIVE-MODE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "LACP active mode actively starts negotiation."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Passive mode on both sides\" is incorrect because the scenario requires: LACP active mode actively starts negotiation.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Auto mode on both sides\" is incorrect because the scenario requires: LACP active mode actively starts negotiation.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Desirable mode on both sides\" is incorrect because the scenario requires: LACP active mode actively starts negotiation.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q012",
+      "question": "What is the effect of configuring a port channel with one side set to passive mode and the other side set to active mode?",
+      "choices": [
+        "The channel group will use PAgP.",
+        "The channel group will not be formed.",
+        "The channel group will use LACP.",
+        "The channel group will use EtherChannel."
+      ],
+      "correctIndex": 2,
+      "explanation": "Passive plus active forms an LACP channel.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-ACTIVE-PASSIVE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Passive plus active forms an LACP channel."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The channel group will use PAgP.\" is incorrect because the scenario requires: Passive plus active forms an LACP channel.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The channel group will not be formed.\" is incorrect because the scenario requires: Passive plus active forms an LACP channel.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The channel group will use EtherChannel.\" is incorrect because the scenario requires: Passive plus active forms an LACP channel.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q013",
+      "question": "Which command is used to verify the negotiation protocol for a port channel?",
+      "choices": [
+        "Switch#show etherchannel",
+        "Switch#show port-channel",
+        "Switch#show interface",
+        "Switch#show run"
+      ],
+      "correctIndex": 0,
+      "explanation": "show etherchannel verifies EtherChannel information and negotiated protocol.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-SHOW-ETHERCHANNEL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "show etherchannel verifies EtherChannel information and negotiated protocol."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#show port-channel\" is incorrect because the scenario requires: show etherchannel verifies EtherChannel information and negotiated protocol.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#show interface\" is incorrect because the scenario requires: show etherchannel verifies EtherChannel information and negotiated protocol.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#show run\" is incorrect because the scenario requires: show etherchannel verifies EtherChannel information and negotiated protocol.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q014",
+      "question": "What is the effect of configuring a port channel with one side set to passive mode and the other side set to passive mode?",
+      "choices": [
+        "The channel group will use PAgP.",
+        "The channel group will not be formed.",
+        "The channel group will use LACP.",
+        "An unconditional port channel will be formed."
+      ],
+      "correctIndex": 1,
+      "explanation": "Passive plus passive does not form LACP because neither side initiates.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-PASSIVE-PASSIVE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Passive plus passive does not form LACP because neither side initiates."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The channel group will use PAgP.\" is incorrect because the scenario requires: Passive plus passive does not form LACP because neither side initiates.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The channel group will use LACP.\" is incorrect because the scenario requires: Passive plus passive does not form LACP because neither side initiates.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"An unconditional port channel will be formed.\" is incorrect because the scenario requires: Passive plus passive does not form LACP because neither side initiates.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.4-source-q015",
+      "question": "What is the effect of configuring a port channel with one side set to on mode and the other side set to on mode?",
+      "choices": [
+        "The channel group will use PAgP.",
+        "The channel group will not be formed.",
+        "The channel group will use LACP.",
+        "An unconditional port channel will be formed."
+      ],
+      "correctIndex": 3,
+      "explanation": "On plus on forms an unconditional port channel.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "etherchannel",
+      "ckuIds": [
+        "CKU-ETHERCHANNEL",
+        "CKU-LACP",
+        "CKU-PAGP",
+        "CKU-ON-MODE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "On plus on forms an unconditional port channel."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The channel group will use PAgP.\" is incorrect because the scenario requires: On plus on forms an unconditional port channel.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The channel group will not be formed.\" is incorrect because the scenario requires: On plus on forms an unconditional port channel.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The channel group will use LACP.\" is incorrect because the scenario requires: On plus on forms an unconditional port channel.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

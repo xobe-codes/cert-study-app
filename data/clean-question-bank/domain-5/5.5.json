@@ -1,0 +1,1551 @@
+{
+  "objectiveId": "5.5",
+  "title": "Configure and verify access control lists",
+  "questions": [
+    {
+      "id": "5.5-c-q1",
+      "question": "How are ACL entries processed?",
+      "choices": [
+        "Bottom-up",
+        "Top-down, first match wins",
+        "Most-specific first automatically",
+        "Randomly"
+      ],
+      "correctIndex": 1,
+      "explanation": "ACLs are read top-down and stop at the first match.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "processing order",
+      "ckuIds": [
+        "CKU-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "ACLs are read top-down and stop at the first match."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Bottom-up\" is incorrect because the scenario requires: ACLs are read top-down and stop at the first match.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Most-specific first automatically\" is incorrect because the scenario requires: ACLs are read top-down and stop at the first match.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Randomly\" is incorrect because the scenario requires: ACLs are read top-down and stop at the first match.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.5-c-q2",
+      "question": "True or False: An ACL has an implicit deny-all at the end.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — anything not explicitly permitted is denied.",
+      "type": "true-false",
+      "difficulty": "easy",
+      "concept": "implicit deny",
+      "ckuIds": [
+        "CKU-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "True — anything not explicitly permitted is denied."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"False\" is incorrect because the scenario requires: True — anything not explicitly permitted is denied.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.5-c-q3",
+      "question": "Where should a standard ACL be placed?",
+      "choices": [
+        "Close to the source",
+        "Close to the destination",
+        "On every interface",
+        "Only on trunks"
+      ],
+      "correctIndex": 1,
+      "explanation": "Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "standard placement",
+      "ckuIds": [
+        "CKU-ACL-STANDARD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Standard ACLs match source only, so place them near the destination to avoid over-blocking."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Close to the source\" is incorrect because the scenario requires: Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"On every interface\" is incorrect because the scenario requires: Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Only on trunks\" is incorrect because the scenario requires: Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.5-c-q4",
+      "question": "Where should an extended ACL be placed?",
+      "choices": [
+        "Close to the source",
+        "Close to the destination",
+        "On the root bridge",
+        "On the DHCP server"
+      ],
+      "correctIndex": 0,
+      "explanation": "Extended ACLs are specific, so place near the source to drop traffic early.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "extended placement",
+      "ckuIds": [
+        "CKU-ACL-EXTENDED"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Extended ACLs are specific, so place near the source to drop traffic early."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Close to the destination\" is incorrect because the scenario requires: Extended ACLs are specific, so place near the source to drop traffic early.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"On the root bridge\" is incorrect because the scenario requires: Extended ACLs are specific, so place near the source to drop traffic early.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"On the DHCP server\" is incorrect because the scenario requires: Extended ACLs are specific, so place near the source to drop traffic early.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.5-c-q5",
+      "question": "What wildcard mask matches exactly the /24 network 192.168.1.0?",
+      "choices": [
+        "255.255.255.0",
+        "0.0.0.255",
+        "0.0.0.0",
+        "255.255.255.255"
+      ],
+      "correctIndex": 1,
+      "explanation": "Wildcard = inverse subnet mask; /24 → 0.0.0.255.",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "wildcard mask",
+      "ckuIds": [
+        "CKU-WILDCARD-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Wildcard = inverse subnet mask; /24 → 0.0.0.255."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"255.255.255.0\" is incorrect because the scenario requires: Wildcard = inverse subnet mask; /24 → 0.0.0.255.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"0.0.0.0\" is incorrect because the scenario requires: Wildcard = inverse subnet mask; /24 → 0.0.0.255.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"255.255.255.255\" is incorrect because the scenario requires: Wildcard = inverse subnet mask; /24 → 0.0.0.255.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.5-c-q6",
+      "question": "Which number range is a standard ACL?",
+      "choices": [
+        "1–99",
+        "100–199",
+        "200–299",
+        "1300–2699 only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Standard ACLs are 1–99 (and 1300–1999).",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "standard range",
+      "ckuIds": [
+        "CKU-ACL-STANDARD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Standard ACLs are 1–99 (and 1300–1999)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"100–199\" is incorrect because the scenario requires: Standard ACLs are 1–99 (and 1300–1999).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"200–299\" is incorrect because the scenario requires: Standard ACLs are 1–99 (and 1300–1999).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"1300–2699 only\" is incorrect because the scenario requires: Standard ACLs are 1–99 (and 1300–1999).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.5-c-q7",
+      "question": "What can an extended ACL match that a standard ACL cannot?",
+      "choices": [
+        "Source IP",
+        "Destination IP, protocol, and port",
+        "Interface name",
+        "VLAN ID"
+      ],
+      "correctIndex": 1,
+      "explanation": "Extended ACLs match source+destination IP, protocol, and ports.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "extended match",
+      "ckuIds": [
+        "CKU-ACL-EXTENDED"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Extended ACLs match source+destination IP, protocol, and ports."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Source IP\" is incorrect because the scenario requires: Extended ACLs match source+destination IP, protocol, and ports.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Interface name\" is incorrect because the scenario requires: Extended ACLs match source+destination IP, protocol, and ports.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"VLAN ID\" is incorrect because the scenario requires: Extended ACLs match source+destination IP, protocol, and ports.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.5-c-q8",
+      "question": "Which command applies ACL 100 inbound on an interface?",
+      "choices": [
+        "access-list 100 in",
+        "ip access-group 100 in",
+        "ip access-list 100 inbound",
+        "apply acl 100 in"
+      ],
+      "correctIndex": 1,
+      "explanation": "`ip access-group 100 in` applies the ACL to the interface.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "apply acl",
+      "ckuIds": [
+        "CKU-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`ip access-group 100 in` applies the ACL to the interface."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"access-list 100 in\" is incorrect because the scenario requires: `ip access-group 100 in` applies the ACL to the interface.",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ip access-list 100 inbound\" is incorrect because the scenario requires: `ip access-group 100 in` applies the ACL to the interface.",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"apply acl 100 in\" is incorrect because the scenario requires: `ip access-group 100 in` applies the ACL to the interface.",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "5.5-c-q9",
+      "question": "A specific `deny` never takes effect because a broad `permit` sits above it. Why?",
+      "choices": [
+        "ACLs ignore deny rules",
+        "First match wins — the permit matches first",
+        "Deny rules need a wildcard",
+        "The ACL is not applied"
+      ],
+      "correctIndex": 1,
+      "explanation": "Top-down first-match means the earlier broad permit matches before the specific deny.",
+      "type": "troubleshooting",
+      "difficulty": "hard",
+      "concept": "order matters",
+      "ckuIds": [
+        "CKU-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Top-down first-match means the earlier broad permit matches before the specific deny."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"ACLs ignore deny rules\" is incorrect because the scenario requires: Top-down first-match means the earlier broad permit matches before the specific deny.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Deny rules need a wildcard\" is incorrect because the scenario requires: Top-down first-match means the earlier broad permit matches before the specific deny.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The ACL is not applied\" is incorrect because the scenario requires: Top-down first-match means the earlier broad permit matches before the specific deny.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q001",
+      "question": "Identify the range of a standard access list?",
+      "choices": [
+        "1 to 99",
+        "1 to 100",
+        "100 to 199",
+        "100 to 200"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"1 to 99\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"1 to 100\" is incorrect because the scenario requires: The correct answer is \"1 to 99\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"100 to 199\" is incorrect because the scenario requires: The correct answer is \"1 to 99\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"100 to 200\" is incorrect because the scenario requires: The correct answer is \"1 to 99\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q002",
+      "question": "Which statement is correct about a standard ACL?",
+      "choices": [
+        "Conditions can be based upon only the destination address.",
+        "Conditions can be based upon only the source address and source port.",
+        "Conditions can be based upon only the source address.",
+        "Conditions can be based upon the source or destination address and source or destination port."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Conditions can be based upon only the source address.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Conditions can be based upon only the destination address.\" is incorrect because the scenario requires: The correct answer is \"Conditions can be based upon only the source address.\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Conditions can be based upon only the source address and source port.\" is incorrect because the scenario requires: The correct answer is \"Conditions can be based upon only the source address.\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Conditions can be based upon the source or destination address and source or destination port.\" is incorrect because the scenario requires: The correct answer is \"Conditions can be based upon only the source address.\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q003",
+      "question": "Identify the range of an extended access list?",
+      "choices": [
+        "1 to 99",
+        "1 to 100",
+        "100 to 199",
+        "100 to 200"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"100 to 199\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"1 to 99\" is incorrect because the scenario requires: The correct answer is \"100 to 199\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"1 to 100\" is incorrect because the scenario requires: The correct answer is \"100 to 199\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"100 to 200\" is incorrect because the scenario requires: The correct answer is \"100 to 199\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q004",
+      "question": "Identify at the end of every ACL?",
+      "choices": [
+        "permit any any",
+        "deny any any",
+        "log all",
+        "End of ACL marker"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"deny any any\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"permit any any\" is incorrect because the scenario requires: The correct answer is \"deny any any\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"log all\" is incorrect because the scenario requires: The correct answer is \"deny any any\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"End of ACL marker\" is incorrect because the scenario requires: The correct answer is \"deny any any\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q005",
+      "question": "Which statement is correct about an ACL?",
+      "choices": [
+        "Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken.",
+        "Packets are compared sequentially against each line in an access list until a match is made.",
+        "Packets are compared, and if no matching rule exists, they are allowed.",
+        "At the end of the ACL, there is an implicit allow."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Packets are compared sequentially against each line in an access list until a match is made.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken.\" is incorrect because the scenario requires: The correct answer is \"Packets are compared sequentially against each line in an access list until a match is made.\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Packets are compared, and if no matching rule exists, they are allowed.\" is incorrect because the scenario requires: The correct answer is \"Packets are compared sequentially against each line in an access list until a match is made.\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"At the end of the ACL, there is an implicit allow.\" is incorrect because the scenario requires: The correct answer is \"Packets are compared sequentially against each line in an access list until a match is made.\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q006",
+      "question": "Identify an advantage of using a standard ACL?",
+      "choices": [
+        "More secure",
+        "Less processing overhead",
+        "More specific rules",
+        "Blocking of applications"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Less processing overhead\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"More secure\" is incorrect because the scenario requires: The correct answer is \"Less processing overhead\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"More specific rules\" is incorrect because the scenario requires: The correct answer is \"Less processing overhead\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Blocking of applications\" is incorrect because the scenario requires: The correct answer is \"Less processing overhead\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q007",
+      "question": "Identify the expanded range of a standard access list?",
+      "choices": [
+        "1000 to 1999",
+        "1100 to 1299",
+        "1300 to 1999",
+        "2000 to 2699"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"1300 to 1999\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"1000 to 1999\" is incorrect because the scenario requires: The correct answer is \"1300 to 1999\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"1100 to 1299\" is incorrect because the scenario requires: The correct answer is \"1300 to 1999\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"2000 to 2699\" is incorrect because the scenario requires: The correct answer is \"1300 to 1999\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q008",
+      "question": "You need to filter traffic for the 172.16.0.0/12 network. Which wildcard mask would you use?",
+      "choices": [
+        "255.240.0.0",
+        "0.0.240.255",
+        "0.15.255.255",
+        "255.3.0.0"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL",
+        "CKU-WILDCARD-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"0.15.255.255\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"255.240.0.0\" is incorrect because the scenario requires: The correct answer is \"0.15.255.255\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"0.0.240.255\" is incorrect because the scenario requires: The correct answer is \"0.15.255.255\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"255.3.0.0\" is incorrect because the scenario requires: The correct answer is \"0.15.255.255\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q009",
+      "question": "Which command would configure an ACL to block traffic coming from 192.168.1.0/24?",
+      "choices": [
+        "Router(config)#ip access-list 20 192.168.1.0 0.0.0.255",
+        "Router(config)#ip access-list 100 192.168.1.0 0.0.0.255",
+        "Router(config)#ip access-list 1 192.168.1.0/24",
+        "Router(config)#ip access-list 2 192.168.1.0 255.255.255.0"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config)#ip access-list 20 192.168.1.0 0.0.0.255\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#ip access-list 100 192.168.1.0 0.0.0.255\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip access-list 20 192.168.1.0 0.0.0.255\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ip access-list 1 192.168.1.0/24\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip access-list 20 192.168.1.0 0.0.0.255\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#ip access-list 2 192.168.1.0 255.255.255.0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip access-list 20 192.168.1.0 0.0.0.255\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q010",
+      "question": "If you configure a rule with the address of 0.0.0.0 and wildcard mask of 255.255.255.255, what are you doing?",
+      "choices": [
+        "Defining the broadcast address",
+        "Defining no addresses",
+        "Defining the network address",
+        "Defining all addresses"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL",
+        "CKU-WILDCARD-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Defining all addresses\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Defining the broadcast address\" is incorrect because the scenario requires: The correct answer is \"Defining all addresses\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Defining no addresses\" is incorrect because the scenario requires: The correct answer is \"Defining all addresses\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Defining the network address\" is incorrect because the scenario requires: The correct answer is \"Defining all addresses\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q011",
+      "question": "Which statement is correct about applying ACLs to an interface?",
+      "choices": [
+        "An ACL can be applied in only one direction.",
+        "An ACL can be applied only to a single protocol.",
+        "An ACL can be applied only to a single port.",
+        "All of the above."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"All of the above.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"An ACL can be applied in only one direction.\" is incorrect because the scenario requires: The correct answer is \"All of the above.\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"An ACL can be applied only to a single protocol.\" is incorrect because the scenario requires: The correct answer is \"All of the above.\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"An ACL can be applied only to a single port.\" is incorrect because the scenario requires: The correct answer is \"All of the above.\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q012",
+      "question": "You need to filter an application. Which type of access list will you use to complete the task?",
+      "choices": [
+        "Standard",
+        "Extended",
+        "Dynamic",
+        "Expanded"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Extended\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Standard\" is incorrect because the scenario requires: The correct answer is \"Extended\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Dynamic\" is incorrect because the scenario requires: The correct answer is \"Extended\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Expanded\" is incorrect because the scenario requires: The correct answer is \"Extended\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q013",
+      "question": "Identify the expanded range of an extended access list?",
+      "choices": [
+        "1000 to 1999",
+        "1100 to 1299",
+        "1300 to 1999",
+        "2000 to 2699"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"2000 to 2699\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"1000 to 1999\" is incorrect because the scenario requires: The correct answer is \"2000 to 2699\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"1100 to 1299\" is incorrect because the scenario requires: The correct answer is \"2000 to 2699\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"1300 to 1999\" is incorrect because the scenario requires: The correct answer is \"2000 to 2699\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q014",
+      "question": "You need to filter traffic for the 192.168.1.0/25 network. Which wildcard mask would you use?",
+      "choices": [
+        "255.255.255.128",
+        "0.0.0.128",
+        "0.0.0.127",
+        "0.0.0.63"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL",
+        "CKU-WILDCARD-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"0.0.0.127\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"255.255.255.128\" is incorrect because the scenario requires: The correct answer is \"0.0.0.127\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"0.0.0.128\" is incorrect because the scenario requires: The correct answer is \"0.0.0.127\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"0.0.0.63\" is incorrect because the scenario requires: The correct answer is \"0.0.0.127\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q015",
+      "question": "Which type of ACL allows for removing a single entry without removing the entire ACL?",
+      "choices": [
+        "Standard",
+        "Dynamic",
+        "Extended",
+        "Named"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Named\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Standard\" is incorrect because the scenario requires: The correct answer is \"Named\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Dynamic\" is incorrect because the scenario requires: The correct answer is \"Named\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Extended\" is incorrect because the scenario requires: The correct answer is \"Named\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q016",
+      "question": "Which type of ACL allows you to open a port only after someone has successfully logged into the router?",
+      "choices": [
+        "Standard",
+        "Dynamic",
+        "Extended",
+        "Named"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Dynamic\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Standard\" is incorrect because the scenario requires: The correct answer is \"Dynamic\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Extended\" is incorrect because the scenario requires: The correct answer is \"Dynamic\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Named\" is incorrect because the scenario requires: The correct answer is \"Dynamic\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q017",
+      "question": "Which statement configures a standard access list?",
+      "choices": [
+        "Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255",
+        "Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161",
+        "Router(config)#access-list 130 permit permit ip any any",
+        "Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#access-list 130 permit permit ip any any\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 20 deny 172.16.0.0 0.255.255.255\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q018",
+      "question": "Which statement can be used in lieu of access-list 5 permit 192.168.1.5 0.0.0.0?",
+      "choices": [
+        "Router(config)#access-list 5 permit 192.168.1.5",
+        "Router(config)#access-list 5 permit 192.168.1.5/24",
+        "Router(config)#access-list 5 permit host 192.168.1.5",
+        "Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config)#access-list 5 permit host 192.168.1.5\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#access-list 5 permit 192.168.1.5\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 5 permit host 192.168.1.5\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#access-list 5 permit 192.168.1.5/24\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 5 permit host 192.168.1.5\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 5 permit host 192.168.1.5\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q020",
+      "question": "Which type of access list limits you to describing traffic by source address?",
+      "choices": [
+        "Extended",
+        "Named",
+        "Dynamic",
+        "Standard"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Standard\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Extended\" is incorrect because the scenario requires: The correct answer is \"Standard\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Named\" is incorrect because the scenario requires: The correct answer is \"Standard\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Dynamic\" is incorrect because the scenario requires: The correct answer is \"Standard\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q021",
+      "question": "Which statement will block traffic for a server of 192.168.1.5 for SSH?",
+      "choices": [
+        "Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22",
+        "Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22",
+        "Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23",
+        "Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL",
+        "CKU-SSH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 199 deny tcp any host 192.168.1.5 eq 22\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q023",
+      "question": "Which statement configures a valid access list?",
+      "choices": [
+        "Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443",
+        "Router(config)#access-list 189 deny any host 192.168.1.5 eq 22",
+        "Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any",
+        "Router(config)#access-list 153 permit any host 192.168.4.5 eq 22"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#access-list 189 deny any host 192.168.1.5 eq 22\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#access-list 153 permit any host 192.168.4.5 eq 22\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 143 permit tcp host 192.168.8.3 eq 80 any\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q024",
+      "question": "You want to apply an access list of 198 to an interface to filter traffic into the interface. Which command achieve this?",
+      "choices": [
+        "Router(config)#ip access-list 198 in fast 0/1",
+        "Router(config-if)#ip access-list 198 in",
+        "Router(config-if)#ip access-class 198 in",
+        "Router(config-if)#ip access-group 198 in"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config-if)#ip access-group 198 in\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ip access-list 198 in fast 0/1\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip access-group 198 in\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-if)#ip access-list 198 in\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip access-group 198 in\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-if)#ip access-class 198 in\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip access-group 198 in\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q027",
+      "question": "Which type of ACL should be placed closest to the source of traffic?",
+      "choices": [
+        "Extended",
+        "Standard",
+        "Dynamic",
+        "Expanded"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Extended\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Standard\" is incorrect because the scenario requires: The correct answer is \"Extended\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Dynamic\" is incorrect because the scenario requires: The correct answer is \"Extended\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Expanded\" is incorrect because the scenario requires: The correct answer is \"Extended\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q028",
+      "question": "Which command create an extended named access list?",
+      "choices": [
+        "Router(config)#access-list 101 allow host 192.168.1.5 any",
+        "Router(config)#ip access-list named_list",
+        "Router(config)#ip access-list extended named_list",
+        "Router(config)#ip access-list 101 named_list"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config)#ip access-list extended named_list\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#access-list 101 allow host 192.168.1.5 any\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip access-list extended named_list\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#ip access-list named_list\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip access-list extended named_list\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#ip access-list 101 named_list\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip access-list extended named_list\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q029",
+      "question": "Which type of ACL should be placed closest to the destination of traffic?",
+      "choices": [
+        "Extended",
+        "Standard",
+        "Dynamic",
+        "Expanded"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Standard\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Extended\" is incorrect because the scenario requires: The correct answer is \"Standard\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Dynamic\" is incorrect because the scenario requires: The correct answer is \"Standard\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Expanded\" is incorrect because the scenario requires: The correct answer is \"Standard\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

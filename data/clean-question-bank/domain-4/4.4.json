@@ -22,7 +22,33 @@
         "CKU-MIB",
         "CKU-DHCP-OFFER"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"SNMP version 3\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SNMP version 1\" is incorrect because the scenario requires: The correct answer is \"SNMP version 3\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SNMP version 2e\" is incorrect because the scenario requires: The correct answer is \"SNMP version 3\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SNMP version 2c\" is incorrect because the scenario requires: The correct answer is \"SNMP version 3\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q002",
@@ -46,7 +72,33 @@
         "CKU-SNMP-INFORM",
         "CKU-COMMUNITY-STRING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Management information base\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Object identifiers (OIDs)\" is incorrect because the scenario requires: The correct answer is \"Management information base\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SNMP agent\" is incorrect because the scenario requires: The correct answer is \"Management information base\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SNMP community string\" is incorrect because the scenario requires: The correct answer is \"Management information base\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q003",
@@ -69,7 +121,33 @@
         "CKU-SNMP-INFORM",
         "CKU-SYSLOG"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Network management station\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Syslog\" is incorrect because the scenario requires: The correct answer is \"Network management station\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Object identifier\" is incorrect because the scenario requires: The correct answer is \"Network management station\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Management information base\" is incorrect because the scenario requires: The correct answer is \"Network management station\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q004",
@@ -91,7 +169,33 @@
         "CKU-MIB",
         "CKU-SNMP-TRAP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Trap message\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Get-request message\" is incorrect because the scenario requires: The correct answer is \"Trap message\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Get-response message\" is incorrect because the scenario requires: The correct answer is \"Trap message\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Set-request message\" is incorrect because the scenario requires: The correct answer is \"Trap message\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q005",
@@ -115,7 +219,33 @@
         "CKU-SNMP-INFORM",
         "CKU-COMMUNITY-STRING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Object identifiers (OIDs)\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The SNMP community string\" is incorrect because the scenario requires: The correct answer is \"Object identifiers (OIDs)\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The SNMP agent\" is incorrect because the scenario requires: The correct answer is \"Object identifiers (OIDs)\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SNMP messages\" is incorrect because the scenario requires: The correct answer is \"Object identifiers (OIDs)\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q006",
@@ -139,7 +269,33 @@
         "CKU-SNMP-TRAP",
         "CKU-SNMP-INFORM"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Inform messages always use acknowledgments.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Trap messages are always encrypted.\" is incorrect because the scenario requires: The correct answer is \"Inform messages always use acknowledgments.\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Inform messages do not use acknowledgments.\" is incorrect because the scenario requires: The correct answer is \"Inform messages always use acknowledgments.\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Trap messages always use acknowledgments.\" is incorrect because the scenario requires: The correct answer is \"Inform messages always use acknowledgments.\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q007",
@@ -161,7 +317,33 @@
         "CKU-MIB",
         "CKU-COMMUNITY-STRING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Community strings\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Encryption\" is incorrect because the scenario requires: The correct answer is \"Community strings\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"User authentication\" is incorrect because the scenario requires: The correct answer is \"Community strings\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Message integrity\" is incorrect because the scenario requires: The correct answer is \"Community strings\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q008",
@@ -182,7 +364,33 @@
         "CKU-SNMPV3",
         "CKU-MIB"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Access control lists\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Encrypted communities\" is incorrect because the scenario requires: The correct answer is \"Access control lists\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SNMP callback security\" is incorrect because the scenario requires: The correct answer is \"Access control lists\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SHA-256\" is incorrect because the scenario requires: The correct answer is \"Access control lists\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q009",
@@ -204,7 +412,33 @@
         "CKU-MIB",
         "CKU-SNMP-TRAP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enabl…",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enabl…",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config)#snmp contact trap 192.168.1.5 version 2c\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#snmp-server host 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enabl…",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q010",
@@ -227,7 +461,33 @@
         "CKU-SNMP-TRAP",
         "CKU-SNMP-INFORM"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"UDP/162\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"UDP/161\" is incorrect because the scenario requires: The correct answer is \"UDP/162\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"TCP/162\" is incorrect because the scenario requires: The correct answer is \"UDP/162\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"UDP/514\" is incorrect because the scenario requires: The correct answer is \"UDP/162\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q011",
@@ -250,7 +510,33 @@
         "CKU-SNMP-TRAP",
         "CKU-COMMUNITY-STRING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Switch#show snmp host\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#show snmp\" is incorrect because the scenario requires: The correct answer is \"Switch#show snmp host\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#show snmp community\" is incorrect because the scenario requires: The correct answer is \"Switch#show snmp host\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#show snmp notifications\" is incorrect because the scenario requires: The correct answer is \"Switch#show snmp host\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.4-source-q012",
@@ -274,7 +560,33 @@
         "CKU-COMMUNITY-STRING",
         "CKU-SNMP-VIEW"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Configuring a view\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Configuring a group\" is incorrect because the scenario requires: The correct answer is \"Configuring a view\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Configuring a user\" is incorrect because the scenario requires: The correct answer is \"Configuring a view\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Configuring a community\" is incorrect because the scenario requires: The correct answer is \"Configuring a view\".",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     }
   ]
 }

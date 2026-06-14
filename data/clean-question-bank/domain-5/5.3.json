@@ -1,0 +1,1175 @@
+{
+  "objectiveId": "5.3",
+  "title": "Configure device access control using local passwords",
+  "questions": [
+    {
+      "id": "obj-5.3-source-q001",
+      "question": "Which command configure the enable password for a router or switch?",
+      "choices": [
+        "Router(config)#password enable Password20!",
+        "Router(config)#enable Password20!",
+        "Router(config)#enable secret Password20!",
+        "Router(config)#secret enable Password20!"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config)#enable secret Password20!\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#password enable Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#enable secret Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#enable Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#enable secret Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#secret enable Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#enable secret Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q002",
+      "question": "You need to set the login password for Telnet. Which command you type first?",
+      "choices": [
+        "Switch(config)#interface vlan 1",
+        "Switch(config)#line console 1",
+        "Switch(config)#line aux 1",
+        "Switch(config)#line vty 0 5"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-VTY-LINES",
+        "CKU-TELNET",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Switch(config)#line vty 0 5\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#interface vlan 1\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#line vty 0 5\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#line console 1\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#line vty 0 5\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config)#line aux 1\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#line vty 0 5\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q003",
+      "question": "You have set the enable password using enable password Password20!. However, when you try to get to a privileged exec prompt, the router states that you are using an incorrect password. What is the problem?",
+      "choices": [
+        "You originally entered the wrong password.",
+        "The enable secret password is set to something else.",
+        "The password Password20! contains a special character.",
+        "The password is too long and has been truncated."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The enable secret password is set to something else.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"You originally entered the wrong password.\" is incorrect because the scenario requires: The correct answer is \"The enable secret password is set to something else.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The password Password20! contains a special character.\" is incorrect because the scenario requires: The correct answer is \"The enable secret password is set to something else.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The password is too long and has been truncated.\" is incorrect because the scenario requires: The correct answer is \"The enable secret password is set to something else.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q004",
+      "question": "Which command(s) will set a password and require login for a line?",
+      "choices": [
+        "Router(config-line)#set password Password20! Router(config-line)#request login",
+        "Router(config-line)#password Password20! Router(config-line)#login password",
+        "Router(config-line)#password Password20! Router(config-line)#login",
+        "Router(config-line)#login password Password20!"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config-line)#password Password20! Router(config-line)#login\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config-line)#set password Password20! Router(config-line)#request login\" is incorrect because the scenario requires: The correct answer is \"Router(config-line)#password Password20! Router(config-line)#login\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-line)#password Password20! Router(config-line)#login password\" is incorrect because the scenario requires: The correct answer is \"Router(config-line)#password Password20! Router(config-line)#login\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config-line)#login password Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config-line)#password Password20! Router(config-line)#login\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q005",
+      "question": "You Telnet to a switch and receive the error Password required, but none set.[Connection to 192.168.1.1 closed by foreign host]. What is the problem?",
+      "choices": [
+        "The enable secret is not set.",
+        "The enable password is not set.",
+        "The line login password is not set.",
+        "The line is administratively down."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-TELNET",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The line login password is not set.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The enable secret is not set.\" is incorrect because the scenario requires: The correct answer is \"The line login password is not set.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The enable password is not set.\" is incorrect because the scenario requires: The correct answer is \"The line login password is not set.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The line is administratively down.\" is incorrect because the scenario requires: The correct answer is \"The line login password is not set.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q006",
+      "question": "Identify required before generating the encryption keys for SSH on a router or switch?",
+      "choices": [
+        "Setting the time and date",
+        "Setting the hostname and domain name",
+        "Setting the key strength",
+        "Setting the key repository"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-SSH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Setting the hostname and domain name\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Setting the time and date\" is incorrect because the scenario requires: The correct answer is \"Setting the hostname and domain name\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Setting the key strength\" is incorrect because the scenario requires: The correct answer is \"Setting the hostname and domain name\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Setting the key repository\" is incorrect because the scenario requires: The correct answer is \"Setting the hostname and domain name\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q007",
+      "question": "Which command enable SSH version 2 for logins?",
+      "choices": [
+        "Router(config)#ip ssh version 2",
+        "Router(config-line)#version 2",
+        "Router(config-ssh)#version 2",
+        "Router(config)#ssh version 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-SSH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config)#ip ssh version 2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-line)#version 2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ssh version 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-ssh)#version 2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ssh version 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#ssh version 2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ssh version 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q008",
+      "question": "Which command configure the router or switch to allow SSH as a protocol for management with a fallback of Telnet?",
+      "choices": [
+        "Switch(config)#login ssh telnet",
+        "Switch(config-line)#login ssh telnet",
+        "Switch(config-line)#transport ssh telnet",
+        "Switch(config)#transport ssh telnet"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-SSH",
+        "CKU-TELNET"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Switch(config-line)#transport ssh telnet\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#login ssh telnet\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#transport ssh telnet\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config-line)#login ssh telnet\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#transport ssh telnet\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config)#transport ssh telnet\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#transport ssh telnet\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q009",
+      "question": "Why should Telnet be replaced with SSH?",
+      "choices": [
+        "Telnet has weak encryption.",
+        "SSH allows for file copy.",
+        "SSH makes it easier to create ACLs for access.",
+        "SSH is encrypted."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-SSH",
+        "CKU-TELNET",
+        "CKU-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"SSH is encrypted.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Telnet has weak encryption.\" is incorrect because the scenario requires: The correct answer is \"SSH is encrypted.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SSH allows for file copy.\" is incorrect because the scenario requires: The correct answer is \"SSH is encrypted.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SSH makes it easier to create ACLs for access.\" is incorrect because the scenario requires: The correct answer is \"SSH is encrypted.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q010",
+      "question": "Which command create and apply an access list to secure router or switch management?",
+      "choices": [
+        "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in",
+        "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in",
+        "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in",
+        "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-VTY-LINES",
+        "CKU-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-class 1 in\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-li…",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-li…",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-li…",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q011",
+      "question": "You have created the SSH encryption keys, but you cannot enable SSH version 2. What is the problem?",
+      "choices": [
+        "The time and date need to be corrected.",
+        "The key strength needs to be 768 bits or higher.",
+        "The DNS server is not configured.",
+        "There is no host record for the switch or router."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-SSH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The key strength needs to be 768 bits or higher.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The time and date need to be corrected.\" is incorrect because the scenario requires: The correct answer is \"The key strength needs to be 768 bits or higher.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The DNS server is not configured.\" is incorrect because the scenario requires: The correct answer is \"The key strength needs to be 768 bits or higher.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"There is no host record for the switch or router.\" is incorrect because the scenario requires: The correct answer is \"The key strength needs to be 768 bits or higher.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q012",
+      "question": "Which command configure a local user for SSH access?",
+      "choices": [
+        "Router(config)#username user1 password Password20!",
+        "Router(config)#account user1 Router(config-acct)#password Password20!",
+        "Router(config)#user user1 Password20!",
+        "Router(config)#user-account user1 password Password20!"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-SSH",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config)#username user1 password Password20!\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#account user1 Router(config-acct)#password Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#username user1 password Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#user user1 Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#username user1 password Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#user-account user1 password Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#username user1 password Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q013",
+      "question": "Which command generate the encryption keys for SSH?",
+      "choices": [
+        "Router(config)#generate crypto key rsa",
+        "Router(config)#crypto key generate rsa",
+        "Router(config)#crypto generate key rsa",
+        "Router#crypto key generate rsa"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-SSH",
+        "CKU-CRYPTO-KEY-GENERATE-RSA"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config)#crypto key generate rsa\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#generate crypto key rsa\" is incorrect because the scenario requires: The correct answer is \"Router(config)#crypto key generate rsa\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#crypto generate key rsa\" is incorrect because the scenario requires: The correct answer is \"Router(config)#crypto key generate rsa\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#crypto key generate rsa\" is incorrect because the scenario requires: The correct answer is \"Router(config)#crypto key generate rsa\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q014",
+      "question": "Which command disable auto-disconnect for idle privileged exec sessions?",
+      "choices": [
+        "Switch(config-line)#exec-timeout 0 0",
+        "Switch(config)#exec-timeout 0",
+        "Switch(config-line)#timeout 0 0",
+        "Switch(config-line)#no exec-timeout"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Switch(config-line)#exec-timeout 0 0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#exec-timeout 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 0 0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config-line)#timeout 0 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 0 0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config-line)#no exec-timeout\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 0 0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q016",
+      "question": "You want to turn on local authentication so that a user must supply a username and password when managing the switch. You have created the username and password combinations on the switch. Which command direct SSH and Telnet to use this authentication model?",
+      "choices": [
+        "Switch(config)#new aaa model",
+        "Switch(config)#local authentication",
+        "Switch(config-line)#local authentication",
+        "Switch(config-line)#login local"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-SSH",
+        "CKU-TELNET",
+        "CKU-LOGIN-LOCAL",
+        "CKU-PASSWORD",
+        "CKU-AAA"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Switch(config-line)#login local\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#new aaa model\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#login local\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#local authentication\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#login local\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config-line)#local authentication\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#login local\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q017",
+      "question": "You need to change the default idle time before disconnection of privileged exec mode for network administrators. Which command change it to 30 minutes?",
+      "choices": [
+        "Switch(config)#exec-timeout 30 0",
+        "Switch(config-line)#exec-timeout 30 0",
+        "Switch(config-line)#exec-timeout 0 30",
+        "Switch(config-line)#timeout 30 0"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Switch(config-line)#exec-timeout 30 0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#exec-timeout 30 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 30 0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config-line)#exec-timeout 0 30\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 30 0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config-line)#timeout 30 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 30 0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q018",
+      "question": "You need to disconnect a network admin from the switch or router. Which command would you use?",
+      "choices": [
+        "Switch(config)#no enable secret",
+        "Switch#no line vty 2",
+        "Switch#disconnect line vty 2",
+        "Switch#clear line vty 2"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD",
+        "CKU-VTY-LINES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Switch#clear line vty 2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#no enable secret\" is incorrect because the scenario requires: The correct answer is \"Switch#clear line vty 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#no line vty 2\" is incorrect because the scenario requires: The correct answer is \"Switch#clear line vty 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#disconnect line vty 2\" is incorrect because the scenario requires: The correct answer is \"Switch#clear line vty 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.3-source-q019",
+      "question": "Which banner can deliver a message only to authenticated users regardless of connection type?",
+      "choices": [
+        "MOTD banner",
+        "Login banner",
+        "Exec banner",
+        "Incoming banner"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Exec banner\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"MOTD banner\" is incorrect because the scenario requires: The correct answer is \"Exec banner\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Login banner\" is incorrect because the scenario requires: The correct answer is \"Exec banner\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Incoming banner\" is incorrect because the scenario requires: The correct answer is \"Exec banner\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.4-source-q001",
+      "question": "Your company provides medical data to doctors from a worldwide database. Because of the sensitive nature of the data, it’s imperative that authentication be established on each session and be valid only for that session. Which of the following authentication methods provides credentials that are valid only during a specific period of time?",
+      "choices": [
+        "Token",
+        "Certificate",
+        "Smart card",
+        "License"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "password policy",
+      "ckuIds": [
+        "CKU-PASSWORD-POLICY",
+        "CKU-PASSWORD-COMPLEXITY",
+        "CKU-PASSWORD-ENCRYPTION",
+        "CKU-TOKENS",
+        "CKU-SMART-CARDS",
+        "CKU-AUTH-TOKEN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Token\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Certificate\" is incorrect because the scenario requires: The correct answer is \"Token\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Smart card\" is incorrect because the scenario requires: The correct answer is \"Token\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"License\" is incorrect because the scenario requires: The correct answer is \"Token\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.4-source-q002",
+      "question": "You configured the password for Telnet access, but when you perform a show running-configuration, the password shows in clear text. Which command should be run?",
+      "choices": [
+        "Router(config)#password encryption",
+        "Router(config)#service password-encryption",
+        "Router(config)#service encryption",
+        "Router(config)#password-encryption service"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "password policy",
+      "ckuIds": [
+        "CKU-PASSWORD-POLICY",
+        "CKU-PASSWORD-COMPLEXITY",
+        "CKU-PASSWORD-ENCRYPTION",
+        "CKU-TELNET",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config)#service password-encryption\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#password encryption\" is incorrect because the scenario requires: The correct answer is \"Router(config)#service password-encryption\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#service encryption\" is incorrect because the scenario requires: The correct answer is \"Router(config)#service password-encryption\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#password-encryption service\" is incorrect because the scenario requires: The correct answer is \"Router(config)#service password-encryption\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.4-source-q003",
+      "question": "During a recent external security audit, it was determined that your enable password should be secured with SHA-256 scrypt. Which command change the password strength on the switches and routers?",
+      "choices": [
+        "Switch(config)#enable secret 9",
+        "Switch(config)#service password-encryption scrypt",
+        "Switch(config)#enable secret algorithm-type scrypt",
+        "Switch(config)#enable algorithm-type scrypt secret Password20!"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "password policy",
+      "ckuIds": [
+        "CKU-PASSWORD-POLICY",
+        "CKU-PASSWORD-COMPLEXITY",
+        "CKU-PASSWORD-ENCRYPTION",
+        "CKU-ENABLE-SECRET",
+        "CKU-PASSWORD",
+        "CKU-SCRYPT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Switch(config)#enable algorithm-type scrypt secret Password20!\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#enable secret 9\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#enable algorithm-type scrypt secret Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#service password-encryption scrypt\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#enable algorithm-type scrypt secret Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config)#enable secret algorithm-type scrypt\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#enable algorithm-type scrypt secret Password20!\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.4-source-q004",
+      "question": "Identify the default encryption method for passwords when you configure a line password?",
+      "choices": [
+        "MD5",
+        "SHA-128",
+        "SHA-256",
+        "Clear text"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "password policy",
+      "ckuIds": [
+        "CKU-PASSWORD-POLICY",
+        "CKU-PASSWORD-COMPLEXITY",
+        "CKU-PASSWORD-ENCRYPTION",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Clear text\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"MD5\" is incorrect because the scenario requires: The correct answer is \"Clear text\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SHA-128\" is incorrect because the scenario requires: The correct answer is \"Clear text\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SHA-256\" is incorrect because the scenario requires: The correct answer is \"Clear text\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.4-source-q005",
+      "question": "A smart card is an example of which type of authentication?",
+      "choices": [
+        "Single-factor authentication",
+        "RADIUS authentication",
+        "Multifactor authentication",
+        "Active Directory authentication"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "password policy",
+      "ckuIds": [
+        "CKU-PASSWORD-POLICY",
+        "CKU-PASSWORD-COMPLEXITY",
+        "CKU-PASSWORD-ENCRYPTION",
+        "CKU-SMART-CARDS",
+        "CKU-RADIUS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Multifactor authentication\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Single-factor authentication\" is incorrect because the scenario requires: The correct answer is \"Multifactor authentication\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RADIUS authentication\" is incorrect because the scenario requires: The correct answer is \"Multifactor authentication\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Active Directory authentication\" is incorrect because the scenario requires: The correct answer is \"Multifactor authentication\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.4-source-q006",
+      "question": "You believe that a user’s account has been compromised via a password attack. What should have been enforced to prevent this? (Choose the best answer.)",
+      "choices": [
+        "Password complexity",
+        "Password expiration",
+        "Phishing protection",
+        "Time restrictions"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "password policy",
+      "ckuIds": [
+        "CKU-PASSWORD-POLICY",
+        "CKU-PASSWORD-COMPLEXITY",
+        "CKU-PASSWORD-ENCRYPTION",
+        "CKU-PHISHING",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Password complexity\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Password expiration\" is incorrect because the scenario requires: The correct answer is \"Password complexity\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Phishing protection\" is incorrect because the scenario requires: The correct answer is \"Password complexity\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Time restrictions\" is incorrect because the scenario requires: The correct answer is \"Password complexity\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

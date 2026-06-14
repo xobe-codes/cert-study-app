@@ -1,0 +1,493 @@
+{
+  "objectiveId": "5.8",
+  "title": "Describe wireless security protocols",
+  "questions": [
+    {
+      "id": "obj-5.9-source-q001",
+      "question": "Matilda is interested in securing her SOHO wireless network. What should she do to be assured that only her devices can join her wireless network?",
+      "choices": [
+        "Enable WPA2",
+        "Enable MAC filtering",
+        "Enable port security",
+        "Disable SSID broadcasts"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2",
+        "CKU-PORT-SECURITY",
+        "CKU-SSID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Enable MAC filtering\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Enable WPA2\" is incorrect because the scenario requires: The correct answer is \"Enable MAC filtering\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Enable port security\" is incorrect because the scenario requires: The correct answer is \"Enable MAC filtering\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Disable SSID broadcasts\" is incorrect because the scenario requires: The correct answer is \"Enable MAC filtering\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.9-source-q003",
+      "question": "Which mechanism in WPA prevents the altering and replay of data packets?",
+      "choices": [
+        "TKIP",
+        "MIC",
+        "AES",
+        "CRC"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2",
+        "CKU-AES-CCMP",
+        "CKU-TKIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"MIC\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"TKIP\" is incorrect because the scenario requires: The correct answer is \"MIC\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"AES\" is incorrect because the scenario requires: The correct answer is \"MIC\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"CRC\" is incorrect because the scenario requires: The correct answer is \"MIC\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.9-source-q004",
+      "question": "Which security mode does WPA3-Enterprise use that offers the highest level of security?",
+      "choices": [
+        "64-bit",
+        "128-bit",
+        "192-bit",
+        "256-bit"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2",
+        "CKU-WPA3"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"192-bit\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"64-bit\" is incorrect because the scenario requires: The correct answer is \"192-bit\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"128-bit\" is incorrect because the scenario requires: The correct answer is \"192-bit\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"256-bit\" is incorrect because the scenario requires: The correct answer is \"192-bit\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.9-source-q005",
+      "question": "Which statement is correct about WPA?",
+      "choices": [
+        "WPA was released at the same time as WEP.",
+        "WPA was released as a fix for poor coverage.",
+        "WPA was released as a fix for poor encryption.",
+        "The Wi-Fi Alliance wanted to rebrand WEP with WPA."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"WPA was released as a fix for poor encryption.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"WPA was released at the same time as WEP.\" is incorrect because the scenario requires: The correct answer is \"WPA was released as a fix for poor encryption.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"WPA was released as a fix for poor coverage.\" is incorrect because the scenario requires: The correct answer is \"WPA was released as a fix for poor encryption.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The Wi-Fi Alliance wanted to rebrand WEP with WPA.\" is incorrect because the scenario requires: The correct answer is \"WPA was released as a fix for poor encryption.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.9-source-q006",
+      "question": "Which feature does 802.11i add to the WPA security protocol?",
+      "choices": [
+        "The use of certificates",
+        "Frame-level encryption",
+        "Pre-shared keys",
+        "CRC checking"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Frame-level encryption\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The use of certificates\" is incorrect because the scenario requires: The correct answer is \"Frame-level encryption\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Pre-shared keys\" is incorrect because the scenario requires: The correct answer is \"Frame-level encryption\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"CRC checking\" is incorrect because the scenario requires: The correct answer is \"Frame-level encryption\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.9-source-q007",
+      "question": "Which mode of encryption does 802.11i (WPA2) introduce?",
+      "choices": [
+        "RC4",
+        "MD5",
+        "AES-CCMP",
+        "SHA1"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2",
+        "CKU-AES-CCMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"AES-CCMP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RC4\" is incorrect because the scenario requires: The correct answer is \"AES-CCMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"MD5\" is incorrect because the scenario requires: The correct answer is \"AES-CCMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SHA1\" is incorrect because the scenario requires: The correct answer is \"AES-CCMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.9-source-q008",
+      "question": "Which feature was introduced with WPA3 to enhance security?",
+      "choices": [
+        "Certificate support",
+        "Per-frame encryption",
+        "SAE authentication",
+        "TKIP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2",
+        "CKU-WPA3",
+        "CKU-TKIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"SAE authentication\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Certificate support\" is incorrect because the scenario requires: The correct answer is \"SAE authentication\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Per-frame encryption\" is incorrect because the scenario requires: The correct answer is \"SAE authentication\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"TKIP\" is incorrect because the scenario requires: The correct answer is \"SAE authentication\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.9-source-q009",
+      "question": "When configuring WPA2-Enterprise mode on a wireless LAN controller, what must be configured?",
+      "choices": [
+        "NTP server",
+        "RADIUS server",
+        "PSK",
+        "Captive portal"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2",
+        "CKU-RADIUS",
+        "CKU-PSK",
+        "CKU-CONTROLLER-BASED-NETWORKING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"RADIUS server\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"NTP server\" is incorrect because the scenario requires: The correct answer is \"RADIUS server\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"PSK\" is incorrect because the scenario requires: The correct answer is \"RADIUS server\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Captive portal\" is incorrect because the scenario requires: The correct answer is \"RADIUS server\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.9-source-q010",
+      "question": "When configuring WPA2, you want to ensure that it does not fall back to the older WPA specification. What parameter should you disable?",
+      "choices": [
+        "802.1X",
+        "AES",
+        "TKIP",
+        "MAC filtering"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2",
+        "CKU-802.1X",
+        "CKU-AES-CCMP",
+        "CKU-TKIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"TKIP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.1X\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"AES\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"MAC filtering\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.9-source-q011",
+      "question": "Identify the mechanism that allows for authentication using a symmetrical key with WPA2?",
+      "choices": [
+        "PSK",
+        "AES",
+        "Certificates",
+        "TKIP"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2",
+        "CKU-PSK",
+        "CKU-AES-CCMP",
+        "CKU-TKIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"PSK\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"AES\" is incorrect because the scenario requires: The correct answer is \"PSK\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Certificates\" is incorrect because the scenario requires: The correct answer is \"PSK\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"TKIP\" is incorrect because the scenario requires: The correct answer is \"PSK\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "domain": "6",
+  "domainName": "Automation & Programmability",
+  "builtAt": "2026-06-14T01:49:36.338Z",
+  "objectives": {
+    "6.1": {
+      "active": 6
+    },
+    "6.2": {
+      "active": 6
+    },
+    "6.3": {
+      "active": 20
+    },
+    "6.4": {
+      "active": 10
+    },
+    "6.5": {
+      "active": 18
+    },
+    "6.6": {
+      "active": 24
+    }
+  },
+  "totals": {
+    "active": 84,
+    "shelved": 0
+  }
+}

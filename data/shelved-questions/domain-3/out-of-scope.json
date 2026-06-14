@@ -1,0 +1,114 @@
+[
+  {
+    "id": "obj-3.1-source-q015",
+    "objectiveId": "3.1",
+    "question": "Which must be configured so that EIGRP can calculate the best route?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-3.1-source-q018",
+    "objectiveId": "3.1",
+    "question": "You have a network with varied bandwidths and need to choose a dynamic routing protocol. Which would you choose for optimal performance?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-3.4-source-q007",
+    "objectiveId": "3.4",
+    "question": "You have several sites, each with a different administrative unit, in your company. Which routing protocol should you choose?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q008",
+    "objectiveId": "3.4",
+    "question": "Which area must be present when using the OSPF routing protocol with multiple areas?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q009",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, what is Router A called in OSPF terminology?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q011",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, what are Routers C, D, and E called in OSPF terminology?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q038",
+    "objectiveId": "3.4",
+    "question": "Which statement about OSPF area border routers is correct?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q039",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, you have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q040",
+    "objectiveId": "3.4",
+    "question": "Which command will allow you to see the summary of OSPF link- state advertisements?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q043",
+    "objectiveId": "3.4",
+    "question": "Which is a direct benefit of a hierarchical OSPF design?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q044",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, which router is the DR?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q045",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, what is Router B called in this hierarchy?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q059",
+    "objectiveId": "3.4",
+    "question": "Which is a correct statement about support for OSPF on an MPLS network?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  },
+  {
+    "id": "obj-3.4-source-q062",
+    "objectiveId": "3.4",
+    "question": "Two routers, called Router A and Router B, are configured in the same area on Frame Relay. However, they cannot form an adjacency. What could the problem be?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "excluded cluster"
+  }
+]

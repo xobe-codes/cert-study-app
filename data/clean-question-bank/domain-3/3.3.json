@@ -1,0 +1,2189 @@
+{
+  "objectiveId": "3.3",
+  "title": "Configure and verify IPv4 and IPv6 static routing",
+  "questions": [
+    {
+      "id": "3.3-q1",
+      "question": "Which command adds a static route to 172.16.0.0/16 via next-hop 10.0.0.1?",
+      "choices": [
+        "ip route 172.16.0.0 255.255.0.0 10.0.0.1",
+        "ip route 172.16.0.0 0.0.255.255 10.0.0.1",
+        "static route 172.16.0.0/16 10.0.0.1",
+        "ip static-route 172.16.0.0 255.255.0.0 10.0.0.1"
+      ],
+      "correctIndex": 0,
+      "explanation": "ip route <network> <subnet-mask> <next-hop>. /16 = 255.255.0.0.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "static route syntax",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "ip route <network> <subnet-mask> <next-hop>. /16 = 255.255.0.0."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"ip route 172.16.0.0 0.0.255.255 10.0.0.1\" is incorrect because the scenario requires: ip route <network> <subnet-mask> <next-hop>. /16 = 255.255.0.0.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"static route 172.16.0.0/16 10.0.0.1\" is incorrect because the scenario requires: ip route <network> <subnet-mask> <next-hop>. /16 = 255.255.0.0.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ip static-route 172.16.0.0 255.255.0.0 10.0.0.1\" is incorrect because the scenario requires: ip route <network> <subnet-mask> <next-hop>. /16 = 255.255.0.0.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "3.3-q2",
+      "question": "Which command creates a default static route via 203.0.113.1?",
+      "choices": [
+        "ip route 0.0.0.0 255.255.255.255 203.0.113.1",
+        "ip route 0.0.0.0 0.0.0.0 203.0.113.1",
+        "ip route default 203.0.113.1",
+        "ip default-route 203.0.113.1"
+      ],
+      "correctIndex": 1,
+      "explanation": "Default static route: destination 0.0.0.0 mask 0.0.0.0 (/0) matches all traffic.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "default static route",
+      "ckuIds": [
+        "CKU-DEFAULT-STATIC-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Default static route: destination 0.0.0.0 mask 0.0.0.0 (/0) matches all traffic."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"ip route 0.0.0.0 255.255.255.255 203.0.113.1\" is incorrect because the scenario requires: Default static route: destination 0.0.0.0 mask 0.0.0.0 (/0) matches all traffic.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ip route default 203.0.113.1\" is incorrect because the scenario requires: Default static route: destination 0.0.0.0 mask 0.0.0.0 (/0) matches all traffic.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ip default-route 203.0.113.1\" is incorrect because the scenario requires: Default static route: destination 0.0.0.0 mask 0.0.0.0 (/0) matches all traffic.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "3.3-q3",
+      "question": "OSPF (AD 110) is primary. Which config makes a static route a floating backup?",
+      "choices": [
+        "ip route 10.0.0.0 255.0.0.0 192.168.2.1 90",
+        "ip route 10.0.0.0 255.0.0.0 192.168.2.1 130",
+        "ip route 10.0.0.0 255.0.0.0 192.168.2.1",
+        "ip route 10.0.0.0 255.0.0.0 192.168.2.1 1"
+      ],
+      "correctIndex": 1,
+      "explanation": "AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route. AD 90 would always beat OSPF.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "floating static",
+      "ckuIds": [
+        "CKU-FLOATING-STATIC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route. AD 90 would always beat OSPF."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"ip route 10.0.0.0 255.0.0.0 192.168.2.1 90\" is incorrect because the scenario requires: AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route. AD 90 would always beat OS…",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ip route 10.0.0.0 255.0.0.0 192.168.2.1\" is incorrect because the scenario requires: AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route. AD 90 would always beat OS…",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ip route 10.0.0.0 255.0.0.0 192.168.2.1 1\" is incorrect because the scenario requires: AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route. AD 90 would always beat OS…",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "3.3-q4",
+      "question": "A static route is configured but not in `show ip route`. The next-hop is in a disconnected subnet. Why?",
+      "choices": [
+        "Static routes require OSPF to advertise them",
+        "The next-hop must be reachable — recursive lookup fails",
+        "Static routes must use exit interface only",
+        "The mask is incompatible"
+      ],
+      "correctIndex": 1,
+      "explanation": "A static route requires its next-hop to be reachable via another routing table entry. If not reachable, the static is not installed.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "recursive lookup",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "A static route requires its next-hop to be reachable via another routing table entry. If not reachable, the static is not installed."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Static routes require OSPF to advertise them\" is incorrect because the scenario requires: A static route requires its next-hop to be reachable via another routing table entry. If not reachable, the static is no…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Static routes must use exit interface only\" is incorrect because the scenario requires: A static route requires its next-hop to be reachable via another routing table entry. If not reachable, the static is no…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The mask is incompatible\" is incorrect because the scenario requires: A static route requires its next-hop to be reachable via another routing table entry. If not reachable, the static is no…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.3-q5",
+      "question": "Which command configures a static IPv6 route to 2001:db8:1::/48 via 2001:db8::1?",
+      "choices": [
+        "ip route 2001:db8:1::/48 2001:db8::1",
+        "ipv6 route 2001:db8:1::/48 2001:db8::1",
+        "ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1",
+        "ipv6 route 2001:db8:1:: /48 2001:db8::1"
+      ],
+      "correctIndex": 1,
+      "explanation": "IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`. Requires `ipv6 unicast-routing` globally.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "IPv6 static route",
+      "ckuIds": [
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`. Requires `ipv6 unicast-routing` globally."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"ip route 2001:db8:1::/48 2001:db8::1\" is incorrect because the scenario requires: IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`. Requires `ipv6 unicast-routing` globally.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1\" is incorrect because the scenario requires: IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`. Requires `ipv6 unicast-routing` globally.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ipv6 route 2001:db8:1:: /48 2001:db8::1\" is incorrect because the scenario requires: IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`. Requires `ipv6 unicast-routing` globally.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "3.3-q6",
+      "question": "What is the IPv6 equivalent of `ip route 0.0.0.0 0.0.0.0 <next-hop>`?",
+      "choices": [
+        "ipv6 route ff00::/8 <next-hop>",
+        "ipv6 route ::/0 <next-hop>",
+        "ipv6 route 0::0/0 <next-hop>",
+        "ipv6 default-gateway <next-hop>"
+      ],
+      "correctIndex": 1,
+      "explanation": "IPv6 default route is ::/0 (prefix length 0 matches everything).",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "IPv6 default route",
+      "ckuIds": [
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-STATIC-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "IPv6 default route is ::/0 (prefix length 0 matches everything)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"ipv6 route ff00::/8 <next-hop>\" is incorrect because the scenario requires: IPv6 default route is ::/0 (prefix length 0 matches everything).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ipv6 route 0::0/0 <next-hop>\" is incorrect because the scenario requires: IPv6 default route is ::/0 (prefix length 0 matches everything).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ipv6 default-gateway <next-hop>\" is incorrect because the scenario requires: IPv6 default route is ::/0 (prefix length 0 matches everything).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.3-q7",
+      "question": "Which command shows only static routes in the routing table?",
+      "choices": [
+        "show ip route",
+        "show ip route static",
+        "show running-config | section route",
+        "show ip protocols"
+      ],
+      "correctIndex": 1,
+      "explanation": "`show ip route static` filters to entries with source code S.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "verify static routes",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`show ip route static` filters to entries with source code S."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"show ip route\" is incorrect because the scenario requires: `show ip route static` filters to entries with source code S.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"show running-config | section route\" is incorrect because the scenario requires: `show ip route static` filters to entries with source code S.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"show ip protocols\" is incorrect because the scenario requires: `show ip route static` filters to entries with source code S.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "3.3-q8",
+      "question": "A static route uses only an exit interface (Gi0/0) on a multi-access Ethernet. What is the issue?",
+      "choices": [
+        "The route disappears from the table",
+        "The router ARP-resolves every destination individually, wasting resources",
+        "The route has AD 255",
+        "The router uses OSPF to resolve the path"
+      ],
+      "correctIndex": 1,
+      "explanation": "On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one — inefficient on multi-access segments.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "exit interface vs next-hop",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one — inefficient on multi-access segments."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The route disappears from the table\" is incorrect because the scenario requires: On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one —…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The route has AD 255\" is incorrect because the scenario requires: On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one —…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The router uses OSPF to resolve the path\" is incorrect because the scenario requires: On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one —…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q001",
+      "question": "You need to create a route for 205.34.54.85/29 with the next hop being 205.34.55.2. Which command would create this route?",
+      "choices": [
+        "Router(config)#ip route 205.34.54.85/24 205.34.55.2",
+        "Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2",
+        "Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2",
+        "Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-NEXT-HOP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ip route 205.34.54.85/24 205.34.55.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q002",
+      "question": "Which type of routing requires network administrator intervention?",
+      "choices": [
+        "Link-state routing",
+        "Distance-vector routing",
+        "Static routing",
+        "Dynamic routing"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Static routing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Link-state routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Distance-vector routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Dynamic routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q003",
+      "question": "Which routing technique requires no administrator intervention when a route goes down?",
+      "choices": [
+        "Dynamic routing",
+        "Directly connected routes",
+        "Default routing",
+        "Static routing"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Dynamic routing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Directly connected routes\" is incorrect because the scenario requires: The correct answer is \"Dynamic routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Default routing\" is incorrect because the scenario requires: The correct answer is \"Dynamic routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Static routing\" is incorrect because the scenario requires: The correct answer is \"Dynamic routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q004",
+      "question": "Which routing technique requires increased time for configuration as networks grow?",
+      "choices": [
+        "RIP routing",
+        "OSPF routing",
+        "Static routing",
+        "Default routing"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-OSPFV2",
+        "CKU-RIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Static routing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RIP routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPF routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Default routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q005",
+      "question": "Which routing technique requires the lowest amount of router RAM consumption?",
+      "choices": [
+        "RIP routing",
+        "OSPF routing",
+        "Static routing",
+        "Default routing"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-OSPFV2",
+        "CKU-RIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Default routing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RIP routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPF routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Static routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q006",
+      "question": "Which dynamic routing protocol has the lowest overhead?",
+      "choices": [
+        "BGP",
+        "OSPF",
+        "RIP",
+        "EIGRP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-OSPFV2",
+        "CKU-RIP",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"RIP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"BGP\" is incorrect because the scenario requires: The correct answer is \"RIP\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPF\" is incorrect because the scenario requires: The correct answer is \"RIP\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"EIGRP\" is incorrect because the scenario requires: The correct answer is \"RIP\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q007",
+      "question": "Which is an advantage of dynamic routing protocols?",
+      "choices": [
+        "Resiliency when routes become unavailable",
+        "Lower router RAM usage",
+        "Lower router CPU usage",
+        "Less bandwidth usage"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-BANDWIDTH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Resiliency when routes become unavailable\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Lower router RAM usage\" is incorrect because the scenario requires: The correct answer is \"Resiliency when routes become unavailable\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Lower router CPU usage\" is incorrect because the scenario requires: The correct answer is \"Resiliency when routes become unavailable\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Less bandwidth usage\" is incorrect because the scenario requires: The correct answer is \"Resiliency when routes become unavailable\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q008",
+      "question": "By default, which type of routing is used automatically on a router?",
+      "choices": [
+        "Default routing",
+        "Dynamic routes",
+        "Static routes",
+        "Connected routes"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Connected routes\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Default routing\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Dynamic routes\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Static routes\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q009",
+      "question": "Which command would set the IPv6 default route for a router to interface s0/0?",
+      "choices": [
+        "Router(config)#ip route 0.0.0.0/0 s0/0",
+        "Router(config)#ipv6 route 0.0.0.0/0 s0/0",
+        "Router(config)#ipv6 unicast-route ::0/0 s0/0",
+        "Router(config)#ipv6 route ::0/0 s0/0"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ip route 0.0.0.0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#ipv6 route 0.0.0.0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ipv6 unicast-route ::0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q010",
+      "question": "Which dynamic routing protocol(s) can be used with IPv6?",
+      "choices": [
+        "RIPng",
+        "OSPFv3",
+        "EIGRPv6",
+        "All of the above"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-OSPFV2",
+        "CKU-RIP",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"All of the above\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RIPng\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPFv3\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"EIGRPv6\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q011",
+      "question": "You need to see all routes in the routing table for only IPv6. Which command will achieve this?",
+      "choices": [
+        "Router#show route",
+        "Router#show ip route",
+        "Router#show ipv6 route",
+        "Router#show route ipv6"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#show ipv6 route\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show route\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip route\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show route ipv6\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q012",
+      "question": "What is the relevance of the default gateway address on a host that is transmitting to a destination for the first time?",
+      "choices": [
+        "The destination IP address is replaced with the default gateway when the destination is remote.",
+        "The host sends the default gateway packets that are deemed remote via a broadcast.",
+        "The host sends an ARP packet for the default gateway when the destination is remote.",
+        "The host creates a dedicated connection with the default gateway for remote traffic."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-ARP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The destination IP address is replaced with the default gateway when the destination is remote.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The host sends the default gateway packets that are deemed remote via a broadcast.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The host creates a dedicated connection with the default gateway for remote traffic.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q013",
+      "question": "Which command will display the router’s routing table?",
+      "choices": [
+        "Router#show ip route",
+        "Router#show route",
+        "Router#show route table",
+        "Router#show routes"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#show ip route\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show route\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show route table\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q014",
+      "question": "Which protocol is used by TCP/IP to help facilitate the routing of packets?",
+      "choices": [
+        "IGMP",
+        "RARP",
+        "ARP",
+        "ICMP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-ARP",
+        "CKU-ICMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"ARP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IGMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RARP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ICMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q015",
+      "question": "What uses ICMP to directly check the status of a router?",
+      "choices": [
+        "SNMP traps",
+        "Notifications",
+        "Ping",
+        "ARP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-ARP",
+        "CKU-ICMP",
+        "CKU-PING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Ping\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SNMP traps\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Notifications\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ARP\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q016",
+      "question": "You have just used the ping command for a distant router. You received back five exclamation marks. What do these mean?",
+      "choices": [
+        "The distant router is not responding.",
+        "The distant router has a high response time.",
+        "The distant router is responding.",
+        "The distant router has a low response time."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-PING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The distant router is responding.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The distant router is not responding.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The distant router has a high response time.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The distant router has a low response time.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q017",
+      "question": "You need to create a route for a network of 192.168.4.0/24 through the gateway of serial 0/1 on a 2621 router. Which is the proper command?",
+      "choices": [
+        "Router(config)#ip route 192.168.4.0/24 serial 0/1",
+        "Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1",
+        "Router(config)#ip route 192.168.4.0/24 interface serial 0/1",
+        "Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ip route 192.168.4.0/24 serial 0/1\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ip route 192.168.4.0/24 interface serial 0/1\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q018",
+      "question": "You type into the router ip default-gateway 192.168.11.2. Why will traffic not route out the default gateway?",
+      "choices": [
+        "The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2.",
+        "The command is only used for the management plane of the router itself.",
+        "The command is used for dynamic routing only.",
+        "The specified gateway is wrong."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The command is only used for the management plane of the router itself.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2.\" is incorrect because the scenario requires: The correct answer is \"The command is only used for the management plane of the router itself.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The command is used for dynamic routing only.\" is incorrect because the scenario requires: The correct answer is \"The command is only used for the management plane of the router itself.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The specified gateway is wrong.\" is incorrect because the scenario requires: The correct answer is \"The command is only used for the management plane of the router itself.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q020",
+      "question": "When you configure an IP address on a router interface, what happens to the routing table?",
+      "choices": [
+        "The router creates a /32 route for the IP address.",
+        "The router creates a summary address for the network.",
+        "The router creates a routing update if dynamic routing is configured.",
+        "All of the above."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"All of the above.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The router creates a /32 route for the IP address.\" is incorrect because the scenario requires: The correct answer is \"All of the above.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The router creates a summary address for the network.\" is incorrect because the scenario requires: The correct answer is \"All of the above.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The router creates a routing update if dynamic routing is configured.\" is incorrect because the scenario requires: The correct answer is \"All of the above.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q021",
+      "question": "You want to verify the IP addresses configured on the router. Which command will you use?",
+      "choices": [
+        "Router#show ip",
+        "Router#show ip interfaces brief",
+        "Router#show interfaces",
+        "Router#show ip brief"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router#show ip interfaces brief\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ip\" is incorrect because the scenario requires: The correct answer is \"Router#show ip interfaces brief\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show interfaces\" is incorrect because the scenario requires: The correct answer is \"Router#show ip interfaces brief\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ip brief\" is incorrect because the scenario requires: The correct answer is \"Router#show ip interfaces brief\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q022",
+      "question": "You configure a brand-new IP address on a new router’s interface. However, when you look at the routing table, it does not show up. You see a link light on the interface. What is wrong?",
+      "choices": [
+        "The interface is administratively shut down.",
+        "The interface speed is incorrect.",
+        "The interface bandwidth is not set.",
+        "The route will not show up until you save the config."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-BANDWIDTH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The interface is administratively shut down.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The interface speed is incorrect.\" is incorrect because the scenario requires: The correct answer is \"The interface is administratively shut down.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The interface bandwidth is not set.\" is incorrect because the scenario requires: The correct answer is \"The interface is administratively shut down.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The route will not show up until you save the config.\" is incorrect because the scenario requires: The correct answer is \"The interface is administratively shut down.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q023",
+      "question": "What is a benefit of static routing?",
+      "choices": [
+        "Adding networks is an easy task for network administrators.",
+        "It is suited for large networks because changes will not disturb routing.",
+        "It reduces bandwidth used by router-to-router communications.",
+        "It allows for configuration by any network admin in the network."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-BANDWIDTH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"It reduces bandwidth used by router-to-router communications.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Adding networks is an easy task for network administrators.\" is incorrect because the scenario requires: The correct answer is \"It reduces bandwidth used by router-to-router communications.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"It is suited for large networks because changes will not disturb routing.\" is incorrect because the scenario requires: The correct answer is \"It reduces bandwidth used by router-to-router communications.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"It allows for configuration by any network admin in the network.\" is incorrect because the scenario requires: The correct answer is \"It reduces bandwidth used by router-to-router communications.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q024",
+      "question": "Where are static routes stored?",
+      "choices": [
+        "RAM",
+        "Flash",
+        "Startup configuration",
+        "Routing database"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Startup configuration\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RAM\" is incorrect because the scenario requires: The correct answer is \"Startup configuration\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Flash\" is incorrect because the scenario requires: The correct answer is \"Startup configuration\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Routing database\" is incorrect because the scenario requires: The correct answer is \"Startup configuration\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q025",
+      "question": "You want to route 192.168.1.0/24, 192.168.2.0/24 to a destination address of 198.43.23.2. How can you accomplish this with one route statement so that other networks are not affected?",
+      "choices": [
+        "Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2",
+        "Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2",
+        "Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2",
+        "Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-ROUTE-STATEMENT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q026",
+      "question": "Why would you create a second route statement to the same network using a different AD and different interface?",
+      "choices": [
+        "If the first one fails to route to the destination, the second route will succeed.",
+        "If the first interface goes down, the second route will become active.",
+        "If there is a high amount of traffic on the first interface, the second route will become active.",
+        "If there is a routing loop on the first interface, the second will overcome the loop."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-ROUTE-STATEMENT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"If the first interface goes down, the second route will become active.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"If the first one fails to route to the destination, the second route will succeed.\" is incorrect because the scenario requires: The correct answer is \"If the first interface goes down, the second route will become active.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"If there is a high amount of traffic on the first interface, the second route will become active.\" is incorrect because the scenario requires: The correct answer is \"If the first interface goes down, the second route will become active.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"If there is a routing loop on the first interface, the second will overcome the loop.\" is incorrect because the scenario requires: The correct answer is \"If the first interface goes down, the second route will become active.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q027",
+      "question": "Which route statement is configured when an IP address of 208.43.34.17/29 is configured on an interface?",
+      "choices": [
+        "S 208.43.34.17/32 is directly connected, Serial 0/0/0",
+        "S 208.43.34.24/29 is directly connected, Serial 0/0/0",
+        "S 208.43.34.8/29 is directly connected, Serial 0/0/0",
+        "S 208.43.34.17/29 is directly connected, Serial 0/0/0"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-ROUTE-STATEMENT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"S 208.43.34.17/32 is directly connected, Serial 0/0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"S 208.43.34.24/29 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 208.43.34.17/32 is directly connected, Serial 0/0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"S 208.43.34.8/29 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 208.43.34.17/32 is directly connected, Serial 0/0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"S 208.43.34.17/29 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 208.43.34.17/32 is directly connected, Serial 0/0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q030",
+      "question": "Which route statement is configured when an IP address of 194.22.34.54/28 is configured on an interface?",
+      "choices": [
+        "S 194.22.34.48/28 is directly connected, Serial 0/0/0",
+        "S 194.22.34.64/28 is directly connected, Serial 0/0/0",
+        "S 194.22.34.54/28 is directly connected, Serial 0/0/0",
+        "S 194.22.34.32/28 is directly connected, Serial 0/0/0"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-ROUTE-STATEMENT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"S 194.22.34.48/28 is directly connected, Serial 0/0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"S 194.22.34.64/28 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 194.22.34.48/28 is directly connected, Serial 0/0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"S 194.22.34.54/28 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 194.22.34.48/28 is directly connected, Serial 0/0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"S 194.22.34.32/28 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 194.22.34.48/28 is directly connected, Serial 0/0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q031",
+      "question": "Which command will create a default route through Serial 0/0 for IPv6?",
+      "choices": [
+        "Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0",
+        "Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0",
+        "Router(config)# ipv6 route ::/0 serial 0/0",
+        "Router(config)# ip route ::/0 serial 0/0"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config)# ipv6 route ::/0 serial 0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)# ipv6 route ::/0 serial 0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)# ipv6 route ::/0 serial 0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)# ip route ::/0 serial 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)# ipv6 route ::/0 serial 0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q032",
+      "question": "Which command would configure the route for an IPv6 network of FC00:0:0:1 with the exit interface of serial 0/0/0?",
+      "choices": [
+        "Router(config)#ip route fc00:0:0:1 serial 0/0/0",
+        "Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0",
+        "Router(config)#ip route fc00:0:0:1/64 serial 0/0",
+        "Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ip route fc00:0:0:1 serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ip route fc00:0:0:1/64 serial 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q034",
+      "question": "Which routing technique is a type of static routing?",
+      "choices": [
+        "OSPF routing",
+        "EIGRP routing",
+        "Default routing",
+        "RIP routing"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-OSPFV2",
+        "CKU-RIP",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Default routing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"OSPF routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"EIGRP routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RIP routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q035",
+      "question": "Which is an advantage of using static routing?",
+      "choices": [
+        "There is less administrative overhead.",
+        "It is extremely secure.",
+        "It can create resiliency in a network.",
+        "It is extremely scalable without issues."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"It is extremely secure.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"There is less administrative overhead.\" is incorrect because the scenario requires: The correct answer is \"It is extremely secure.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"It can create resiliency in a network.\" is incorrect because the scenario requires: The correct answer is \"It is extremely secure.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"It is extremely scalable without issues.\" is incorrect because the scenario requires: The correct answer is \"It is extremely secure.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q036",
+      "question": "Which routing technique has the lowest bandwidth overhead?",
+      "choices": [
+        "RIP routing",
+        "OSPF routing",
+        "EIGRP routing",
+        "Static routing"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-OSPFV2",
+        "CKU-BANDWIDTH",
+        "CKU-RIP",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Static routing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RIP routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPF routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"EIGRP routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q037",
+      "question": "Which routing technique requires administrator intervention when a route goes down?",
+      "choices": [
+        "Dynamic routing",
+        "Directly connected routes",
+        "Default routing",
+        "Static routing"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Static routing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Dynamic routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Directly connected routes\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Default routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q038",
+      "question": "You have several routes configured on a router. Which command will show only the static routes?",
+      "choices": [
+        "Router#show static routes",
+        "Router#show ip static routes",
+        "Router#show ip routes static",
+        "Router#show ip routes"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#show ip routes static\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show static routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip routes static\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip static routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip routes static\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ip routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip routes static\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q039",
+      "question": "On interface Serial 0/1, you type ipv6 address 2000:db8:4400:2300::1234/64. Which statement is true?",
+      "choices": [
+        "The router will calculate a network ID of 2000:0db8::.",
+        "The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0.",
+        "The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.",
+        "The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The router will calculate a network ID of 2000:0db8::.\" is incorrect because the scenario requires: The correct answer is \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0.\" is incorrect because the scenario requires: The correct answer is \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0.\" is incorrect because the scenario requires: The correct answer is \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q040",
+      "question": "When you check the IPv6 addresses configured on the interfaces, you find two IPv6 addresses: One address is a 2001:db8::/64 address, and the other is an ff80::/64 address. However, you do not see a route statement for the ff80::/64...",
+      "choices": [
+        "Multicast addresses do not get added to the routing tables.",
+        "Link-local addresses do not get added to the routing tables.",
+        "Only one route statement can be in the routing table at a time for an interface.",
+        "Broadcast addresses do not get added to the routing tables."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-ROUTE-STATEMENT",
+        "CKU-LOCAL-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Link-local addresses do not get added to the routing tables.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Multicast addresses do not get added to the routing tables.\" is incorrect because the scenario requires: The correct answer is \"Link-local addresses do not get added to the routing tables.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Only one route statement can be in the routing table at a time for an interface.\" is incorrect because the scenario requires: The correct answer is \"Link-local addresses do not get added to the routing tables.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Broadcast addresses do not get added to the routing tables.\" is incorrect because the scenario requires: The correct answer is \"Link-local addresses do not get added to the routing tables.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q042",
+      "question": "You need to implement default routing. Which command will help you achieve this?",
+      "choices": [
+        "RouterA(config)#ip default-network 192.168.2.6",
+        "RouterA(config)#ip route default-gateway 192.168.2.6",
+        "RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6",
+        "RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterA(config)#ip default-network 192.168.2.6\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config)#ip route default-gateway 192.168.2.6\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q043",
+      "question": "Which command would you use so that you can view only the RIP route entries in the route table?",
+      "choices": [
+        "RouterA#show ip rip",
+        "RouterA#show ip route",
+        "RouterA#show ip rip route",
+        "RouterA#show ip route rip"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-SHOW-IP-ROUTE",
+        "CKU-RIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"RouterA#show ip route rip\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterA#show ip rip\" is incorrect because the scenario requires: The correct answer is \"RouterA#show ip route rip\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA#show ip route\" is incorrect because the scenario requires: The correct answer is \"RouterA#show ip route rip\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"RouterA#show ip rip route\" is incorrect because the scenario requires: The correct answer is \"RouterA#show ip route rip\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    }
+  ]
+}

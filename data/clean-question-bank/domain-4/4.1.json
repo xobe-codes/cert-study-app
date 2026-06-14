@@ -18,7 +18,31 @@
       "concept": "nat purpose",
       "ckuIds": [
         "CKU-NAT"
-      ]
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "NAT maps inside local (private) to inside global (public) addresses."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Encrypts traffic\" is incorrect because the scenario requires: NAT maps inside local (private) to inside global (public) addresses.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Routes between VLANs\" is incorrect because the scenario requires: NAT maps inside local (private) to inside global (public) addresses.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Assigns DHCP addresses\" is incorrect because the scenario requires: NAT maps inside local (private) to inside global (public) addresses.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
     },
     {
       "id": "4.1-c-q2",
@@ -36,7 +60,32 @@
       "concept": "pat",
       "ckuIds": [
         "CKU-PAT"
-      ]
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "PAT/overload maps many inside hosts to one public IP using ports."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Static NAT\" is incorrect because the scenario requires: PAT/overload maps many inside hosts to one public IP using ports.",
+            "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Dynamic NAT\" is incorrect because the scenario requires: PAT/overload maps many inside hosts to one public IP using ports.",
+            "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"No NAT\" is incorrect because the scenario requires: PAT/overload maps many inside hosts to one public IP using ports.",
+            "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
+          }
+        ],
+        "examTip": "Many hosts sharing one public IP → PAT/overload and the keyword \"overload\".",
+        "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
+      }
     },
     {
       "id": "4.1-c-q3",
@@ -54,7 +103,31 @@
       "concept": "static nat",
       "ckuIds": [
         "CKU-NAT"
-      ]
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Static NAT uses `ip nat inside source static <local> <global>`."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"ip nat pool\" is incorrect because the scenario requires: Static NAT uses `ip nat inside source static <local> <global>`.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ip nat inside source list 1 interface g0/0 overload\" is incorrect because the scenario requires: Static NAT uses `ip nat inside source static <local> <global>`.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ip nat outside\" is incorrect because the scenario requires: Static NAT uses `ip nat inside source static <local> <global>`.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
     },
     {
       "id": "4.1-c-q4",
@@ -72,7 +145,31 @@
       "concept": "interface tags",
       "ckuIds": [
         "CKU-NAT-TERMS"
-      ]
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Interfaces must be marked `ip nat inside` and `ip nat outside`."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"A default route\" is incorrect because the scenario requires: Interfaces must be marked `ip nat inside` and `ip nat outside`.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A loopback\" is incorrect because the scenario requires: Interfaces must be marked `ip nat inside` and `ip nat outside`.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"DNS\" is incorrect because the scenario requires: Interfaces must be marked `ip nat inside` and `ip nat outside`.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "4.1-c-q5",
@@ -90,7 +187,32 @@
       "concept": "overload command",
       "ckuIds": [
         "CKU-PAT"
-      ]
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "PAT: `ip nat inside source list <ACL> interface <if> overload`."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"ip nat inside source static\" is incorrect because the scenario requires: PAT: `ip nat inside source list <ACL> interface <if> overload`.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ip nat pool MYPOOL\" is incorrect because the scenario requires: PAT: `ip nat inside source list <ACL> interface <if> overload`.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ip nat outside source list 1\" is incorrect because the scenario requires: PAT: `ip nat inside source list <ACL> interface <if> overload`.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Many hosts sharing one public IP → PAT/overload and the keyword \"overload\".",
+        "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
+      }
     },
     {
       "id": "4.1-c-q6",
@@ -108,7 +230,31 @@
       "concept": "terminology",
       "ckuIds": [
         "CKU-NAT-TERMS"
-      ]
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Inside local = the private address of an inside host."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Inside global\" is incorrect because the scenario requires: Inside local = the private address of an inside host.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Outside global\" is incorrect because the scenario requires: Inside local = the private address of an inside host.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Outside local\" is incorrect because the scenario requires: Inside local = the private address of an inside host.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "4.1-c-q7",
@@ -126,7 +272,31 @@
       "concept": "verify",
       "ckuIds": [
         "CKU-NAT"
-      ]
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`show ip nat translations` lists the current mappings."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"show ip route\" is incorrect because the scenario requires: `show ip nat translations` lists the current mappings.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"show running-config\" is incorrect because the scenario requires: `show ip nat translations` lists the current mappings.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"show ip nat inside\" is incorrect because the scenario requires: `show ip nat translations` lists the current mappings.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "4.1-c-q8",
@@ -142,7 +312,22 @@
       "concept": "pat ports",
       "ckuIds": [
         "CKU-PAT"
-      ]
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "True — PAT tracks translations by inside global IP + port."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"False\" is incorrect because the scenario requires: True — PAT tracks translations by inside global IP + port.",
+            "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
+          }
+        ],
+        "examTip": "Many hosts sharing one public IP → PAT/overload and the keyword \"overload\".",
+        "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
+      }
     },
     {
       "id": "4.1-q1",
@@ -161,7 +346,174 @@
       "ckuIds": [
         "CKU-NAT"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"NAT\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"CIDR\" is incorrect because the scenario requires: The correct answer is \"NAT\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Classful addressing\" is incorrect because the scenario requires: The correct answer is \"NAT\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"VPN\" is incorrect because the scenario requires: The correct answer is \"NAT\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "4.1-q2",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nwhat is the inside local IP address?",
+      "choices": [
+        "192.168.1.2 Host A",
+        "192.168.1.1 Router A Gi0/0",
+        "179.43.44.1 Router A S0/0",
+        "198.23.53.3 web server"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"192.168.1.2 Host A\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"192.168.1.1 Router A Gi0/0\" is incorrect because the scenario requires: The correct answer is \"192.168.1.2 Host A\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"179.43.44.1 Router A S0/0\" is incorrect because the scenario requires: The correct answer is \"192.168.1.2 Host A\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"198.23.53.3 web server\" is incorrect because the scenario requires: The correct answer is \"192.168.1.2 Host A\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "4.1-q3",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nwhat is the inside global IP address?",
+      "choices": [
+        "192.168.1.2 Host A",
+        "192.168.1.1 Router A Gi0/0",
+        "179.43.44.1 Router A S0/0",
+        "198.23.53.3 web server"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"179.43.44.1 Router A S0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"192.168.1.2 Host A\" is incorrect because the scenario requires: The correct answer is \"179.43.44.1 Router A S0/0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"192.168.1.1 Router A Gi0/0\" is incorrect because the scenario requires: The correct answer is \"179.43.44.1 Router A S0/0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"198.23.53.3 web server\" is incorrect because the scenario requires: The correct answer is \"179.43.44.1 Router A S0/0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "4.1-q4",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nwhat is the outside global IP address?",
+      "choices": [
+        "192.168.1.2 Host A",
+        "192.168.1.1 Router A Gi0/0",
+        "179.43.44.1 Router A S0/0",
+        "198.23.53.3 web server"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"198.23.53.3 web server\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"192.168.1.2 Host A\" is incorrect because the scenario requires: The correct answer is \"198.23.53.3 web server\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"192.168.1.1 Router A Gi0/0\" is incorrect because the scenario requires: The correct answer is \"198.23.53.3 web server\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"179.43.44.1 Router A S0/0\" is incorrect because the scenario requires: The correct answer is \"198.23.53.3 web server\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
     },
     {
       "id": "4.1-q5",
@@ -180,7 +532,33 @@
       "ckuIds": [
         "CKU-NAT"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#show ip nat translations\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show nat translations\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat translations\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#debug ip nat translations\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat translations\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show translations nat\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat translations\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
     },
     {
       "id": "4.1-q6",
@@ -199,7 +577,127 @@
       "ckuIds": [
         "CKU-NAT"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router#show ip nat statistics\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ip nat translations\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat statistics\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip nat summary\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat statistics\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show ip nat status\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat statistics\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "4.1-q7",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nwhich command will configure static NAT for the internal web server?",
+      "choices": [
+        "RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1",
+        "RouterA(config)#nat source static 192.168.1.3 179.43.44.1",
+        "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1",
+        "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config)#nat source static 192.168.1.3 179.43.44.1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"RouterA(config)#ip nat static 192.168.1.3 179.43.44.1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "4.1-q8",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nthe enterprise owns the address block of 179.43.44.0/28. Which command create a NAT pool for Dynamic NAT?",
+      "choices": [
+        "RouterA(config)#ip nat pool EntPool 179.43.44.0/28",
+        "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterA(config)#ip nat pool EntPool 179.43.44.0/28\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
     },
     {
       "id": "4.1-q9",
@@ -218,7 +716,33 @@
       "ckuIds": [
         "CKU-NAT"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The access list allows outgoing access from inside local addresses.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The access list allows incoming access from outside global addresses.\" is incorrect because the scenario requires: The correct answer is \"The access list allows outgoing access from inside local addresses.\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The access list allows outgoing access from outside local addresses.\" is incorrect because the scenario requires: The correct answer is \"The access list allows outgoing access from inside local addresses.\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The access list allows outgoing access from inside global addresses.\" is incorrect because the scenario requires: The correct answer is \"The access list allows outgoing access from inside local addresses.\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
     },
     {
       "id": "4.1-q10",
@@ -237,7 +761,33 @@
       "ckuIds": [
         "CKU-NAT"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#clear ip nat translation *\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#no ip nat translation\" is incorrect because the scenario requires: The correct answer is \"Router#clear ip nat translation *\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#clear ip nat translation\" is incorrect because the scenario requires: The correct answer is \"Router#clear ip nat translation *\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#clear ip nat\" is incorrect because the scenario requires: The correct answer is \"Router#clear ip nat translation *\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
     },
     {
       "id": "4.1-q11",
@@ -256,7 +806,677 @@
       "ckuIds": [
         "CKU-NAT"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router#debug ip nat\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ip translations\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip nat\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#debug ip translations\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip nat\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ip nat\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip nat\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "4.1-q12",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nwhich command will configure Port Address Translation?",
+      "choices": [
+        "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool",
+        "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload",
+        "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-PAT"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 17…",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 17…",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 17…",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q001",
+      "question": "Which method will allow you to use RFC 1918 addresses for Internet requests?",
+      "choices": [
+        "CIDR",
+        "Classful addressing",
+        "NAT",
+        "VPN"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"NAT\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"CIDR\" is incorrect because the scenario requires: The correct answer is \"NAT\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Classful addressing\" is incorrect because the scenario requires: The correct answer is \"NAT\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"VPN\" is incorrect because the scenario requires: The correct answer is \"NAT\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q002",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nwhat is the inside local IP address?",
+      "choices": [
+        "192.168.1.2 Host A",
+        "192.168.1.1 Router A Gi0/0",
+        "179.43.44.1 Router A S0/0",
+        "198.23.53.3 web server"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT",
+        "CKU-NAT-INSIDE-LOCAL"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"192.168.1.2 Host A\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"192.168.1.1 Router A Gi0/0\" is incorrect because the scenario requires: The correct answer is \"192.168.1.2 Host A\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"179.43.44.1 Router A S0/0\" is incorrect because the scenario requires: The correct answer is \"192.168.1.2 Host A\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"198.23.53.3 web server\" is incorrect because the scenario requires: The correct answer is \"192.168.1.2 Host A\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q003",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nwhat is the inside global IP address?",
+      "choices": [
+        "192.168.1.2 Host A",
+        "192.168.1.1 Router A Gi0/0",
+        "179.43.44.1 Router A S0/0",
+        "198.23.53.3 web server"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT",
+        "CKU-NAT-INSIDE-GLOBAL"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"179.43.44.1 Router A S0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"192.168.1.2 Host A\" is incorrect because the scenario requires: The correct answer is \"179.43.44.1 Router A S0/0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"192.168.1.1 Router A Gi0/0\" is incorrect because the scenario requires: The correct answer is \"179.43.44.1 Router A S0/0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"198.23.53.3 web server\" is incorrect because the scenario requires: The correct answer is \"179.43.44.1 Router A S0/0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q004",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nwhat is the outside global IP address?",
+      "choices": [
+        "192.168.1.2 Host A",
+        "192.168.1.1 Router A Gi0/0",
+        "179.43.44.1 Router A S0/0",
+        "198.23.53.3 web server"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT",
+        "CKU-NAT-OUTSIDE-GLOBAL"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"198.23.53.3 web server\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"192.168.1.2 Host A\" is incorrect because the scenario requires: The correct answer is \"198.23.53.3 web server\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"192.168.1.1 Router A Gi0/0\" is incorrect because the scenario requires: The correct answer is \"198.23.53.3 web server\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"179.43.44.1 Router A S0/0\" is incorrect because the scenario requires: The correct answer is \"198.23.53.3 web server\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q005",
+      "question": "Which command can view the NAT translations active on the router?",
+      "choices": [
+        "Router#show ip nat translations",
+        "Router#show nat translations",
+        "Router#debug ip nat translations",
+        "Router#show translations nat"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT",
+        "CKU-NAT-TRANSLATIONS",
+        "CKU-SNMP-VIEW"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#show ip nat translations\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show nat translations\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat translations\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#debug ip nat translations\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat translations\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show translations nat\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat translations\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q006",
+      "question": "Which command display an overview of the current number of active NAT translations on the router, as well as other overview information?",
+      "choices": [
+        "Router#show ip nat translations",
+        "Router#show ip nat summary",
+        "Router#show ip nat status",
+        "Router#show ip nat statistics"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT",
+        "CKU-NAT-TRANSLATIONS",
+        "CKU-SNMP-INFORM",
+        "CKU-SNMP-VIEW"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router#show ip nat statistics\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ip nat translations\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat statistics\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip nat summary\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat statistics\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show ip nat status\" is incorrect because the scenario requires: The correct answer is \"Router#show ip nat statistics\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q007",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nwhich command will configure static NAT for the internal web server?",
+      "choices": [
+        "RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1",
+        "RouterA(config)#nat source static 192.168.1.3 179.43.44.1",
+        "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1",
+        "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config)#nat source static 192.168.1.3 179.43.44.1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"RouterA(config)#ip nat static 192.168.1.3 179.43.44.1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q008",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nthe enterprise owns the address block of 179.43.44.0/28. Which command create a NAT pool for Dynamic NAT?",
+      "choices": [
+        "RouterA(config)#ip nat pool EntPool 179.43.44.0/28",
+        "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT",
+        "CKU-DYNAMIC-NAT",
+        "CKU-NAT-POOL",
+        "CKU-NTP"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterA(config)#ip nat pool EntPool 179.43.44.0/28\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q009",
+      "question": "When configuring dynamic NAT, why must you configure an access list?",
+      "choices": [
+        "The access list allows incoming access from outside global addresses.",
+        "The access list allows outgoing access from inside local addresses.",
+        "The access list allows outgoing access from outside local addresses.",
+        "The access list allows outgoing access from inside global addresses."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT",
+        "CKU-NAT-INSIDE-LOCAL",
+        "CKU-NAT-INSIDE-GLOBAL",
+        "CKU-NAT-OUTSIDE-GLOBAL",
+        "CKU-DYNAMIC-NAT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The access list allows outgoing access from inside local addresses.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The access list allows incoming access from outside global addresses.\" is incorrect because the scenario requires: The correct answer is \"The access list allows outgoing access from inside local addresses.\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The access list allows outgoing access from outside local addresses.\" is incorrect because the scenario requires: The correct answer is \"The access list allows outgoing access from inside local addresses.\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The access list allows outgoing access from inside global addresses.\" is incorrect because the scenario requires: The correct answer is \"The access list allows outgoing access from inside local addresses.\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q010",
+      "question": "Which command wipe out all current NAT translations in the NAT table?",
+      "choices": [
+        "Router#no ip nat translation",
+        "Router#clear ip nat translation",
+        "Router#clear ip nat translation *",
+        "Router#clear ip nat"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT",
+        "CKU-NAT-TRANSLATIONS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#clear ip nat translation *\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#no ip nat translation\" is incorrect because the scenario requires: The correct answer is \"Router#clear ip nat translation *\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#clear ip nat translation\" is incorrect because the scenario requires: The correct answer is \"Router#clear ip nat translation *\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#clear ip nat\" is incorrect because the scenario requires: The correct answer is \"Router#clear ip nat translation *\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q011",
+      "question": "Which command can see real-time network address translations?",
+      "choices": [
+        "Router#show ip translations",
+        "Router#debug ip nat",
+        "Router#debug ip translations",
+        "Router#show ip nat"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT",
+        "CKU-NAT-TRANSLATIONS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router#debug ip nat\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ip translations\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip nat\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#debug ip translations\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip nat\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ip nat\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip nat\".",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "obj-4.1-source-q012",
+      "question": "NAT topology:\n- Host A (inside local): 192.168.1.2 on LAN\n- Router A Gi0/0 (192.168.1.1): ip nat inside\n- Router A S0/0 (inside global): 179.43.44.1 — ip nat outside\n- Internet → Web server (outside global): 198.23.53.3\n- Internal web server inside local: 192.168.1.3 (static NAT to 179.43.44.1)\n- Enterprise public pool: 179.43.44.0/28 (usable 179.43.44.2–179.43.44.15)\n- Inside network: 192.168.1.0/24\n\nwhich command will configure Port Address Translation?",
+      "choices": [
+        "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool",
+        "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload",
+        "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "nat",
+      "ckuIds": [
+        "CKU-NAT",
+        "CKU-INSIDE-SOURCE-NAT",
+        "CKU-STATIC-NAT",
+        "CKU-PAT",
+        "CKU-NAT-POOL",
+        "CKU-NTP"
+      ],
+      "objectiveId": "4.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool overload\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 17…",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 17…",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 17…",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
     }
   ]
 }

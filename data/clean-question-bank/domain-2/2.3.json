@@ -1,0 +1,635 @@
+{
+  "objectiveId": "2.3",
+  "title": "Configure and verify Layer 2 discovery protocols",
+  "questions": [
+    {
+      "id": "obj-2.3-source-q001",
+      "question": "Which protocol is an IEEE standard that collects information from neighboring devices on their identity and capabilities?",
+      "choices": [
+        "CDP",
+        "LLDP",
+        "802.1b",
+        "802.1a"
+      ],
+      "correctIndex": 1,
+      "explanation": "LLDP is IEEE 802.1AB and provides standards-based neighbor discovery.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-IEEE-802.1AB"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "LLDP is IEEE 802.1AB and provides standards-based neighbor discovery."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"CDP\" is incorrect because the scenario requires: LLDP is IEEE 802.1AB and provides standards-based neighbor discovery.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"802.1b\" is incorrect because the scenario requires: LLDP is IEEE 802.1AB and provides standards-based neighbor discovery.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.1a\" is incorrect because the scenario requires: LLDP is IEEE 802.1AB and provides standards-based neighbor discovery.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q002",
+      "question": "You want to turn off CDP on a switch. Which command would you enter?",
+      "choices": [
+        "Switch(config)#cdp disable",
+        "Switch(config-if)#no cdp enable",
+        "Switch(config)#no cdp",
+        "Switch(config-if)#no cdp run"
+      ],
+      "correctIndex": 3,
+      "explanation": "no cdp run disables CDP globally.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-NO-CDP-RUN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "no cdp run disables CDP globally."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#cdp disable\" is incorrect because the scenario requires: no cdp run disables CDP globally.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config-if)#no cdp enable\" is incorrect because the scenario requires: no cdp run disables CDP globally.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config)#no cdp\" is incorrect because the scenario requires: no cdp run disables CDP globally.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q003",
+      "question": "How often are CDP frames sent out of the device by default?",
+      "choices": [
+        "Every 30 seconds",
+        "Every 60 seconds",
+        "Every 90 seconds",
+        "Every 180 seconds"
+      ],
+      "correctIndex": 1,
+      "explanation": "CDP advertises every 60 seconds by default.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-CDP-TIMER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "CDP advertises every 60 seconds by default."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Every 30 seconds\" is incorrect because the scenario requires: CDP advertises every 60 seconds by default.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Every 90 seconds\" is incorrect because the scenario requires: CDP advertises every 60 seconds by default.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Every 180 seconds\" is incorrect because the scenario requires: CDP advertises every 60 seconds by default.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q004",
+      "question": "Which Cisco proprietary protocol collects information from neighboring devices about their identity and capabilities?",
+      "choices": [
+        "802.1ab",
+        "LLDP",
+        "CDP",
+        "802.1a"
+      ],
+      "correctIndex": 2,
+      "explanation": "CDP is Cisco proprietary neighbor discovery.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "CDP is Cisco proprietary neighbor discovery."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.1ab\" is incorrect because the scenario requires: CDP is Cisco proprietary neighbor discovery.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"LLDP\" is incorrect because the scenario requires: CDP is Cisco proprietary neighbor discovery.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.1a\" is incorrect because the scenario requires: CDP is Cisco proprietary neighbor discovery.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q005",
+      "question": "What is the default value of the CDP holddown timer for CDP entries?",
+      "choices": [
+        "30 seconds",
+        "60 seconds",
+        "90 seconds",
+        "180 seconds"
+      ],
+      "correctIndex": 3,
+      "explanation": "CDP holdtime defaults to 180 seconds.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-CDP-HOLDTIME"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "CDP holdtime defaults to 180 seconds."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"30 seconds\" is incorrect because the scenario requires: CDP holdtime defaults to 180 seconds.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"60 seconds\" is incorrect because the scenario requires: CDP holdtime defaults to 180 seconds.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"90 seconds\" is incorrect because the scenario requires: CDP holdtime defaults to 180 seconds.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q006",
+      "question": "You want to turn off CDP on a single interface. Which command would you enter?",
+      "choices": [
+        "Switch(config)#cdp disable",
+        "Switch(config-if)#no cdp enable",
+        "Switch(config)#no cdp",
+        "Switch(config-if)#no cdp run"
+      ],
+      "correctIndex": 1,
+      "explanation": "no cdp enable disables CDP on one interface.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-CDP-INTERFACE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "no cdp enable disables CDP on one interface."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#cdp disable\" is incorrect because the scenario requires: no cdp enable disables CDP on one interface.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config)#no cdp\" is incorrect because the scenario requires: no cdp enable disables CDP on one interface.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config-if)#no cdp run\" is incorrect because the scenario requires: no cdp enable disables CDP on one interface.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q007",
+      "question": "Which command gives information that’s identical to the output of the show cdp neighbors detail command?",
+      "choices": [
+        "Switch#sh cdp neighbors all",
+        "Switch#sh cdp neighbors *",
+        "Switch#sh cdp entries all",
+        "Switch#sh cdp entry *"
+      ],
+      "correctIndex": 3,
+      "explanation": "show cdp entry * gives detailed CDP neighbor information.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-SHOW-CDP-NEIGHBORS-DETAIL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "show cdp entry * gives detailed CDP neighbor information."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#sh cdp neighbors all\" is incorrect because the scenario requires: show cdp entry * gives detailed CDP neighbor information.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#sh cdp neighbors *\" is incorrect because the scenario requires: show cdp entry * gives detailed CDP neighbor information.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#sh cdp entries all\" is incorrect because the scenario requires: show cdp entry * gives detailed CDP neighbor information.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q008",
+      "question": "You have several non-Cisco IP phones and you want to allow automatic power adjustments on the Cisco Power over an Ethernet (PoE) switch. Which command will allow you to achieve this?",
+      "choices": [
+        "Switch#lldp run",
+        "Switch(config)#lldp run",
+        "Switch(config)#lldp enable",
+        "Switch#lldp enable"
+      ],
+      "correctIndex": 1,
+      "explanation": "lldp run enables LLDP globally, including LLDP-MED capabilities.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-LLDP-MED"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "lldp run enables LLDP globally, including LLDP-MED capabilities."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#lldp run\" is incorrect because the scenario requires: lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config)#lldp enable\" is incorrect because the scenario requires: lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#lldp enable\" is incorrect because the scenario requires: lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q009",
+      "question": "Which command will allow you to see LLDP devices connected to a switch?",
+      "choices": [
+        "Switch#show lldp",
+        "Switch#show lldp devices",
+        "Switch#show lldp neighbor detail",
+        "Switch#show cdp neighbor detail"
+      ],
+      "correctIndex": 2,
+      "explanation": "show lldp neighbor detail shows detailed LLDP neighbor information.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-SHOW-LLDP-NEIGHBORS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "show lldp neighbor detail shows detailed LLDP neighbor information."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#show lldp\" is incorrect because the scenario requires: show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#show lldp devices\" is incorrect because the scenario requires: show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#show cdp neighbor detail\" is incorrect because the scenario requires: show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q010",
+      "question": "What is the default LLDP advertisement interval?",
+      "choices": [
+        "30 seconds",
+        "60 seconds",
+        "90 seconds",
+        "120 seconds"
+      ],
+      "correctIndex": 0,
+      "explanation": "LLDP advertises every 30 seconds by default.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-LLDP-TIMER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "LLDP advertises every 30 seconds by default."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"60 seconds\" is incorrect because the scenario requires: LLDP advertises every 30 seconds by default.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"90 seconds\" is incorrect because the scenario requires: LLDP advertises every 30 seconds by default.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"120 seconds\" is incorrect because the scenario requires: LLDP advertises every 30 seconds by default.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q011",
+      "question": "You want to disable LLDP from sending advertisements on a single interface. Which command will you use?",
+      "choices": [
+        "Switch(config-if)#no lldp",
+        "Switch(config-if)#no lldp transmit",
+        "Switch(config-if)#no lldp receive",
+        "Switch(config-if)#no lldp enable"
+      ],
+      "correctIndex": 1,
+      "explanation": "no lldp transmit suppresses outgoing LLDP on an interface.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-LLDP-TRANSMIT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "no lldp transmit suppresses outgoing LLDP on an interface."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config-if)#no lldp\" is incorrect because the scenario requires: no lldp transmit suppresses outgoing LLDP on an interface.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config-if)#no lldp receive\" is incorrect because the scenario requires: no lldp transmit suppresses outgoing LLDP on an interface.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config-if)#no lldp enable\" is incorrect because the scenario requires: no lldp transmit suppresses outgoing LLDP on an interface.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q012",
+      "question": "What is the default value of the LLDP holddown timer for entries?",
+      "choices": [
+        "30 seconds",
+        "60 seconds",
+        "90 seconds",
+        "120 seconds"
+      ],
+      "correctIndex": 3,
+      "explanation": "LLDP holdtime defaults to 120 seconds.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-LLDP-HOLDTIME"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "LLDP holdtime defaults to 120 seconds."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"30 seconds\" is incorrect because the scenario requires: LLDP holdtime defaults to 120 seconds.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"60 seconds\" is incorrect because the scenario requires: LLDP holdtime defaults to 120 seconds.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"90 seconds\" is incorrect because the scenario requires: LLDP holdtime defaults to 120 seconds.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q014",
+      "question": "You have a layer 2 connection to your ISP. You want to make sure that you do not send information on the capabilities of your switch, but you don’t want to affect the use of CDP. Which command will you configure?",
+      "choices": [
+        "Switch(config)#cdp disable",
+        "Switch(config-if)#no cdp",
+        "Switch(config-if)#no cdp disable",
+        "Switch(config-if)#no cdp enable"
+      ],
+      "correctIndex": 3,
+      "explanation": "no cdp enable disables CDP advertisements on one interface.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-CDP-INTERFACE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "no cdp enable disables CDP advertisements on one interface."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#cdp disable\" is incorrect because the scenario requires: no cdp enable disables CDP advertisements on one interface.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config-if)#no cdp\" is incorrect because the scenario requires: no cdp enable disables CDP advertisements on one interface.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config-if)#no cdp disable\" is incorrect because the scenario requires: no cdp enable disables CDP advertisements on one interface.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.3-source-q015",
+      "question": "Which command will show the interfaces that CDP is advertising on?",
+      "choices": [
+        "Switch#show cdp",
+        "Switch#show cdp interface",
+        "Switch#show interface",
+        "Switch#show interface cdp"
+      ],
+      "correctIndex": 1,
+      "explanation": "show cdp interface shows interfaces advertising CDP.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-SHOW-CDP-INTERFACE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "show cdp interface shows interfaces advertising CDP."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#show cdp\" is incorrect because the scenario requires: show cdp interface shows interfaces advertising CDP.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#show interface\" is incorrect because the scenario requires: show cdp interface shows interfaces advertising CDP.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#show interface cdp\" is incorrect because the scenario requires: show cdp interface shows interfaces advertising CDP.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

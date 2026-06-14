@@ -1,0 +1,130 @@
+[
+  {
+    "id": "obj-3.1-source-q002",
+    "objectiveId": "3.1",
+    "question": "You review a routing table and see the entry in the following exhibit. What does the 4 in the underlined number represent?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.1-source-q006",
+    "objectiveId": "3.1",
+    "question": "Using the referenced source exhibit, what does the top line of the output represent?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.1-source-q007",
+    "objectiveId": "3.1",
+    "question": "You review a routing table and see the entry in the following exhibit. What does the underlined number represent?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.1-source-q008",
+    "objectiveId": "3.1",
+    "question": "In the following exhibit is a copy of the running-config. What is the next hop for a destination address of 192.168.4.85?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.3-source-q019",
+    "objectiveId": "3.3",
+    "question": "Using the referenced source exhibit, which route statement needs to be configured on Router A to allow routing to Network B?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.3-source-q028",
+    "objectiveId": "3.3",
+    "question": "Using the referenced source exhibit, which network is routable?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.3-source-q029",
+    "objectiveId": "3.3",
+    "question": "Using the referenced source exhibit, what must be configured on Router B to allow routing to Network A?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.3-source-q033",
+    "objectiveId": "3.3",
+    "question": "Using the referenced source exhibit, which interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.3-source-q041",
+    "objectiveId": "3.3",
+    "question": "Using the referenced source exhibit, which command on Router B will allow hosts on Network B to reach the Internet?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.4-source-q047",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, Router A and Router B will not form an adjacency. What is the cause of the problem?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.4-source-q049",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, which is a correct statement about the neighbor ID of 192.168.2.2?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.4-source-q051",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, which is a correct statement about router ID 192.168.2.2?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.4-source-q052",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, You want to make Router D the DR. Which command will assure that it becomes the DR?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.4-source-q054",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, Router A will not form an adjacency with Router B. What is the problem?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.4-source-q055",
+    "objectiveId": "3.4",
+    "question": "Using the referenced source exhibit, you have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-3.5-source-q026",
+    "objectiveId": "3.5",
+    "question": "Using the referenced source exhibit, You are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  }
+]

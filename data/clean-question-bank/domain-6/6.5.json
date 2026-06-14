@@ -1,0 +1,905 @@
+{
+  "objectiveId": "6.5",
+  "title": "Describe characteristics of REST-based APIs",
+  "questions": [
+    {
+      "id": "obj-6.5-source-q001",
+      "question": "You are creating a network automation script to configure a network device. What should you research to identify what can be controlled with your script?",
+      "choices": [
+        "User interface layout",
+        "API reference",
+        "Source code of the device",
+        "Data storage of the device"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-AUTOMATION",
+        "CKU-API"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"API reference\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"User interface layout\" is incorrect because the scenario requires: The correct answer is \"API reference\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Source code of the device\" is incorrect because the scenario requires: The correct answer is \"API reference\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Data storage of the device\" is incorrect because the scenario requires: The correct answer is \"API reference\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q002",
+      "question": "You are developing a network automation script that retrieves information. Which interface can you implement that will act similar to an API?",
+      "choices": [
+        "CLI",
+        "SNMP",
+        "Syslog",
+        "SSH"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-SSH",
+        "CKU-AUTOMATION",
+        "CKU-API",
+        "CKU-SNMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"SNMP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"CLI\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Syslog\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SSH\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q003",
+      "question": "Which protocol was created as a replacement for SNMP?",
+      "choices": [
+        "NETCONF",
+        "Syslog",
+        "REST",
+        "SSH"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-SSH",
+        "CKU-SNMP",
+        "CKU-NETCONF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"NETCONF\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Syslog\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"REST\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SSH\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q004",
+      "question": "Which protocol uses the YANG data model?",
+      "choices": [
+        "NETCONF",
+        "REST",
+        "SNMP",
+        "YAML"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-YAML",
+        "CKU-SNMP",
+        "CKU-NETCONF",
+        "CKU-YANG"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"NETCONF\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"REST\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SNMP\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"YAML\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q005",
+      "question": "Which protocol uses an HTTPS transport to configure and retrieve details programmatically?",
+      "choices": [
+        "NETCONF",
+        "RESTCONF",
+        "SNMP",
+        "Syslog"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-SNMP",
+        "CKU-NETCONF",
+        "CKU-RESTCONF",
+        "CKU-HTTP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"RESTCONF\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"NETCONF\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SNMP\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Syslog\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q006",
+      "question": "Which protocol is normally used with REST APIs?",
+      "choices": [
+        "SNMP",
+        "HTTP",
+        "SNTP",
+        "SOAP"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-API",
+        "CKU-SNMP",
+        "CKU-HTTP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"HTTP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SNMP\" is incorrect because the scenario requires: The correct answer is \"HTTP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SNTP\" is incorrect because the scenario requires: The correct answer is \"HTTP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SOAP\" is incorrect because the scenario requires: The correct answer is \"HTTP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q007",
+      "question": "You are writing a script to pull information from the Cisco DNA Center via the REST-based API. How do you authenticate so that you can communicate with the Cisco DNA Center API?",
+      "choices": [
+        "Pass the username and password in every request.",
+        "Send a POST to the API for an authentication token.",
+        "Send a GET to the API for an auth token.",
+        "Create a public private key pair for the Cisco DNA Center appliance."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-PASSWORD",
+        "CKU-TOKENS",
+        "CKU-API",
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-AUTH-TOKEN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Send a POST to the API for an authentication token.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Pass the username and password in every request.\" is incorrect because the scenario requires: The correct answer is \"Send a POST to the API for an authentication token.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Send a GET to the API for an auth token.\" is incorrect because the scenario requires: The correct answer is \"Send a POST to the API for an authentication token.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Create a public private key pair for the Cisco DNA Center appliance.\" is incorrect because the scenario requires: The correct answer is \"Send a POST to the API for an authentication token.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q008",
+      "question": "Identify the CRUD framework used for?",
+      "choices": [
+        "Memory cleanup",
+        "Replacement for REST-based APIs",
+        "Data encoding",
+        "Data actions"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-API"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Data actions\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Memory cleanup\" is incorrect because the scenario requires: The correct answer is \"Data actions\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Replacement for REST-based APIs\" is incorrect because the scenario requires: The correct answer is \"Data actions\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Data encoding\" is incorrect because the scenario requires: The correct answer is \"Data actions\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q009",
+      "question": "Which type of authentication is used for REST-based token requests to the Cisco DNA Center?",
+      "choices": [
+        "Basic",
+        "AD integrated",
+        "SSL",
+        "Pass-through"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-TOKENS",
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-AUTH-TOKEN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Basic\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"AD integrated\" is incorrect because the scenario requires: The correct answer is \"Basic\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SSL\" is incorrect because the scenario requires: The correct answer is \"Basic\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Pass-through\" is incorrect because the scenario requires: The correct answer is \"Basic\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q010",
+      "question": "After you obtain an authentication token, how do you apply it to subsequent actions?",
+      "choices": [
+        "Add it as a variable named X-Auth-Token in the script.",
+        "Place it in the header of the request as an X-Auth-Token element.",
+        "Pass the token in the URI of subsequent requests.",
+        "Perform a POST for the authentication token within 10 seconds of the subsequent request."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-TOKENS",
+        "CKU-AUTH-TOKEN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Place it in the header of the request as an X-Auth-Token element.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Add it as a variable named X-Auth-Token in the script.\" is incorrect because the scenario requires: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Pass the token in the URI of subsequent requests.\" is incorrect because the scenario requires: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Perform a POST for the authentication token within 10 seconds of the subsequent request.\" is incorrect because the scenario requires: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q011",
+      "question": "Which encoding method is used to transmit the username and password to obtain the X-Auth-Token from the Cisco DNA Center?",
+      "choices": [
+        "SSL",
+        "AAA",
+        "Base64",
+        "Basic"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-PASSWORD",
+        "CKU-TOKENS",
+        "CKU-AAA",
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-AUTH-TOKEN",
+        "CKU-BASE64"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Base64\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SSL\" is incorrect because the scenario requires: The correct answer is \"Base64\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"AAA\" is incorrect because the scenario requires: The correct answer is \"Base64\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Basic\" is incorrect because the scenario requires: The correct answer is \"Base64\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q013",
+      "question": "Which is a RESTCONF content type that is used with a RESTCONF request?",
+      "choices": [
+        "application/yang-data+json",
+        "application/json",
+        "data/json",
+        "data/yaml"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-YAML",
+        "CKU-JSON",
+        "CKU-RESTCONF",
+        "CKU-YANG"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"application/yang-data+json\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"application/json\" is incorrect because the scenario requires: The correct answer is \"application/yang-data+json\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"data/json\" is incorrect because the scenario requires: The correct answer is \"application/yang-data+json\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"data/yaml\" is incorrect because the scenario requires: The correct answer is \"application/yang-data+json\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q014",
+      "question": "You’ve initiated a REST-based API call to an SDN controller and received a 500 status code. What will most likely fix the problem?",
+      "choices": [
+        "Format your response correctly.",
+        "Authenticate to the device first.",
+        "Nothing; this code means OK.",
+        "Restart the REST-based service."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-ESP",
+        "CKU-API",
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Restart the REST-based service.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Format your response correctly.\" is incorrect because the scenario requires: The correct answer is \"Restart the REST-based service.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Authenticate to the device first.\" is incorrect because the scenario requires: The correct answer is \"Restart the REST-based service.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Nothing; this code means OK.\" is incorrect because the scenario requires: The correct answer is \"Restart the REST-based service.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q016",
+      "question": "How is a status code passed to the client after a REST-based request has been processed?",
+      "choices": [
+        "HTTP header",
+        "HTTP body",
+        "Script variable",
+        "Script data object"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-HTTP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"HTTP header\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"HTTP body\" is incorrect because the scenario requires: The correct answer is \"HTTP header\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Script variable\" is incorrect because the scenario requires: The correct answer is \"HTTP header\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Script data object\" is incorrect because the scenario requires: The correct answer is \"HTTP header\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q017",
+      "question": "You have received a return status code of 201 from an SDN controller after executing an API request via REST. Which CRUD action have you executed, judging by the status code?",
+      "choices": [
+        "POST",
+        "GET",
+        "PATCH",
+        "DELETE"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-API",
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"POST\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"GET\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"PATCH\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"DELETE\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q018",
+      "question": "Which character signifies the starting point for a series of request query parameters in a URI string?",
+      "choices": [
+        "Backslash",
+        "Forward slash",
+        "Question mark",
+        "Ampersand"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-CRYPTO-KEY-GENERATE-RSA"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Question mark\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Backslash\" is incorrect because the scenario requires: The correct answer is \"Question mark\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Forward slash\" is incorrect because the scenario requires: The correct answer is \"Question mark\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Ampersand\" is incorrect because the scenario requires: The correct answer is \"Question mark\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q019",
+      "question": "Which HTTP action verb is used to insert or create a data item?",
+      "choices": [
+        "GET",
+        "UPDATE",
+        "POST",
+        "PUT"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-HTTP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"POST\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"GET\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"UPDATE\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"PUT\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q020",
+      "question": "You just sent a request to the SDN controller, and after a little while, the result code came back as a 504 status code. What most likely happened?",
+      "choices": [
+        "The command is missing parameters.",
+        "The command has timed out.",
+        "The command is restricted.",
+        "The service is down."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The command has timed out.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The command is missing parameters.\" is incorrect because the scenario requires: The correct answer is \"The command has timed out.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The command is restricted.\" is incorrect because the scenario requires: The correct answer is \"The command has timed out.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The service is down.\" is incorrect because the scenario requires: The correct answer is \"The command has timed out.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

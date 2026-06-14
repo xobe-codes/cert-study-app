@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "domain": "4",
+  "domainName": "IP Services",
+  "builtAt": "2026-06-14T01:49:36.280Z",
+  "objectives": {
+    "4.1": {
+      "active": 32
+    },
+    "4.2": {
+      "active": 10
+    },
+    "4.3": {
+      "active": 12
+    },
+    "4.4": {
+      "active": 12
+    },
+    "4.5": {
+      "active": 10
+    },
+    "4.6": {
+      "active": 12
+    },
+    "4.7": {
+      "active": 14
+    },
+    "4.8": {
+      "active": 9
+    },
+    "4.9": {
+      "active": 5
+    }
+  },
+  "totals": {
+    "active": 116,
+    "shelved": 0
+  }
+}

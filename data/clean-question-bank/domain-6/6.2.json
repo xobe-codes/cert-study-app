@@ -1,0 +1,293 @@
+{
+  "objectiveId": "6.2",
+  "title": "Compare traditional networks with controller-based networking",
+  "questions": [
+    {
+      "id": "obj-6.2-source-q001",
+      "question": "Which is a benefit of controller-based networking?",
+      "choices": [
+        "Increased security",
+        "Decreased problems",
+        "Increased throughput",
+        "Increased complexity"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "controller based networking",
+      "ckuIds": [
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-CENTRALIZED-CONTROL-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Increased security\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Decreased problems\" is incorrect because the scenario requires: The correct answer is \"Increased security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Increased throughput\" is incorrect because the scenario requires: The correct answer is \"Increased security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Increased complexity\" is incorrect because the scenario requires: The correct answer is \"Increased security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.2-source-q002",
+      "question": "Which statement is correct about controller-based networking?",
+      "choices": [
+        "Controller-based networking is always in the form of hardware appliances.",
+        "Controller-based networking has a logically centralized control plane.",
+        "Controller-based networking has a logically centralized data plane.",
+        "Controller-based networking uses ASICs to centrally switch frames."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "controller based networking",
+      "ckuIds": [
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-CENTRALIZED-CONTROL-PLANE",
+        "CKU-CONTROL-PLANE",
+        "CKU-DATA-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Controller-based networking has a logically centralized control plane.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Controller-based networking is always in the form of hardware appliances.\" is incorrect because the scenario requires: The correct answer is \"Controller-based networking has a logically centralized control plane.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Controller-based networking has a logically centralized data plane.\" is incorrect because the scenario requires: The correct answer is \"Controller-based networking has a logically centralized control plane.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Controller-based networking uses ASICs to centrally switch frames.\" is incorrect because the scenario requires: The correct answer is \"Controller-based networking has a logically centralized control plane.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.2-source-q004",
+      "question": "Which is a potential disadvantage with controller-based networking?",
+      "choices": [
+        "Scalability",
+        "Security",
+        "Maturity",
+        "Centralized provisioning"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "controller based networking",
+      "ckuIds": [
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-CENTRALIZED-CONTROL-PLANE",
+        "CKU-DNA-PROVISION"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Maturity\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Scalability\" is incorrect because the scenario requires: The correct answer is \"Maturity\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Security\" is incorrect because the scenario requires: The correct answer is \"Maturity\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Centralized provisioning\" is incorrect because the scenario requires: The correct answer is \"Maturity\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.2-source-q005",
+      "question": "Which elements can be controlled with an SDN controller for an SDN- enabled switch?",
+      "choices": [
+        "CPU utilization",
+        "Memory utilization",
+        "QoS",
+        "Forwarding of traffic"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "controller based networking",
+      "ckuIds": [
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-CENTRALIZED-CONTROL-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"QoS\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"CPU utilization\" is incorrect because the scenario requires: The correct answer is \"QoS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Memory utilization\" is incorrect because the scenario requires: The correct answer is \"QoS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Forwarding of traffic\" is incorrect because the scenario requires: The correct answer is \"QoS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.2-source-q006",
+      "question": "Which statement is correct about SDN switches?",
+      "choices": [
+        "All data is centrally switched at the SDN controller.",
+        "All SDN switches are stateless with respect to configuration.",
+        "All SDN switches are stateful with respect to configuration.",
+        "All data flowing through the switch is stateless."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "controller based networking",
+      "ckuIds": [
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-CENTRALIZED-CONTROL-PLANE",
+        "CKU-ESP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"All SDN switches are stateless with respect to configuration.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"All data is centrally switched at the SDN controller.\" is incorrect because the scenario requires: The correct answer is \"All SDN switches are stateless with respect to configuration.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"All SDN switches are stateful with respect to configuration.\" is incorrect because the scenario requires: The correct answer is \"All SDN switches are stateless with respect to configuration.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"All data flowing through the switch is stateless.\" is incorrect because the scenario requires: The correct answer is \"All SDN switches are stateless with respect to configuration.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.2-source-q007",
+      "question": "Which technology allows for the central remote monitoring of network switches and routers?",
+      "choices": [
+        "SNMP",
+        "Syslog",
+        "SDN",
+        "CDP"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "controller based networking",
+      "ckuIds": [
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-CENTRALIZED-CONTROL-PLANE",
+        "CKU-SNMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"SNMP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Syslog\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SDN\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"CDP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

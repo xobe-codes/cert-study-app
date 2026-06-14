@@ -23,7 +23,33 @@
         "CKU-DHCP",
         "CKU-DHCP-LEASE"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#show dhcp lease\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip dhcp lease\" is incorrect because the scenario requires: The correct answer is \"Router#show dhcp lease\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show ip lease\" is incorrect because the scenario requires: The correct answer is \"Router#show dhcp lease\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ip interface\" is incorrect because the scenario requires: The correct answer is \"Router#show dhcp lease\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     },
     {
       "id": "obj-4.6-source-q002",
@@ -47,7 +73,33 @@
         "CKU-DHCP",
         "CKU-DHCP-OFFER"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The layer 2 source is the MAC address of the server.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The layer 3 destination is a unicast to the DHCP client.\" is incorrect because the scenario requires: The correct answer is \"The layer 2 source is the MAC address of the server.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The layer 2 destination is the MAC address of the DHCP client.\" is incorrect because the scenario requires: The correct answer is \"The layer 2 source is the MAC address of the server.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The layer 3 source is a link-local address of the client.\" is incorrect because the scenario requires: The correct answer is \"The layer 2 source is the MAC address of the server.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     },
     {
       "id": "obj-4.6-source-q003",
@@ -69,7 +121,33 @@
         "CKU-IP-HELPER-ADDRESS",
         "CKU-DHCP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config-if)#ip helper-address 10.10.1.101\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ip dhcp server 10.10.1.101\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip helper-address 10.10.1.101\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-if)#ip dhcp server 10.10.1.101\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip helper-address 10.10.1.101\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-if)#ip relay-agent 10.10.1.101\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip helper-address 10.10.1.101\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     },
     {
       "id": "obj-4.6-source-q004",
@@ -92,7 +170,83 @@
         "CKU-DHCP",
         "CKU-GIADDR"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"GIADDR\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"CIADDR\" is incorrect because the scenario requires: The correct answer is \"GIADDR\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SIADDR\" is incorrect because the scenario requires: The correct answer is \"GIADDR\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"CHADDR\" is incorrect because the scenario requires: The correct answer is \"GIADDR\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
+    },
+    {
+      "id": "obj-4.6-source-q005",
+      "question": "Network layout:\n- Host A: 192.168.10.10/24 on VLAN 10 (no local DHCP server)\n- Router R1 Gi0/0: 192.168.10.1 — needs ip helper-address toward remote DHCP\n- Remote DHCP server: 10.0.0.5 on another subnet\n\nwhat is required on the network to allow Host A to receive an IP address from the existing DHCP server?",
+      "choices": [
+        "A second DHCP server on the Host A network",
+        "A DHCP relay agent on Router B interface Gi0/0",
+        "A DHCP relay agent on Switch A",
+        "A DHCP relay agent on Router A interface Gi0/0"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "dhcp client",
+      "ckuIds": [
+        "CKU-DHCP-CLIENT",
+        "CKU-DHCP-RELAY",
+        "CKU-IP-HELPER-ADDRESS",
+        "CKU-DHCP"
+      ],
+      "objectiveId": "4.6",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"A second DHCP server on the Host A network\" is incorrect because the scenario requires: The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"A DHCP relay agent on Router B interface Gi0/0\" is incorrect because the scenario requires: The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A DHCP relay agent on Switch A\" is incorrect because the scenario requires: The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     },
     {
       "id": "obj-4.6-source-q006",
@@ -114,7 +268,33 @@
         "CKU-IP-HELPER-ADDRESS",
         "CKU-DHCP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#debug ip dhcp server packet\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#debug dhcp\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip dhcp server packet\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip dhcp detail\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip dhcp server packet\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#debug ip dhcp\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip dhcp server packet\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     },
     {
       "id": "obj-4.6-source-q007",
@@ -137,7 +317,33 @@
         "CKU-DHCP",
         "CKU-DHCPV6"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Configuration of clients with IPv6 options\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Stateful configuration of clients for IPv6 addressing\" is incorrect because the scenario requires: The correct answer is \"Configuration of clients with IPv6 options\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Configuration of clients with the IPv6 network IDs\" is incorrect because the scenario requires: The correct answer is \"Configuration of clients with IPv6 options\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Stateless configuration of clients for IPv6 addressing\" is incorrect because the scenario requires: The correct answer is \"Configuration of clients with IPv6 options\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     },
     {
       "id": "obj-4.6-source-q008",
@@ -160,7 +366,33 @@
         "CKU-DHCP",
         "CKU-DHCP-LEASE"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"They lose their IP address after their entire lease has expired.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"They lose their IP address immediately.\" is incorrect because the scenario requires: The correct answer is \"They lose their IP address after their entire lease has expired.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"They lose their IP address after one-half of their lease has expired.\" is incorrect because the scenario requires: The correct answer is \"They lose their IP address after their entire lease has expired.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"They lose their IP address after seven-eighths of their lease has expired.\" is incorrect because the scenario requires: The correct answer is \"They lose their IP address after their entire lease has expired.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     },
     {
       "id": "obj-4.6-source-q009",
@@ -183,7 +415,33 @@
         "CKU-DHCP",
         "CKU-DHCPV6"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Stateful DHCPv6 supplies the network ID, host ID, and default router.\" is incorrect because the scenario requires: The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Stateful DHCPv6 communicates via broadcasts.\" is incorrect because the scenario requires: The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Stateful DHCPv6 works in conjunction with SLAAC.\" is incorrect because the scenario requires: The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     },
     {
       "id": "obj-4.6-source-q010",
@@ -206,7 +464,33 @@
         "CKU-DHCP",
         "CKU-DHCPV6"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"RouterA(config-if)#ipv6 address dhcp\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterA(config)#ipv6 address dhcp gi 0/0\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#ipv6 address dhcp\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config-if)#ipv6 address dhcpv6\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#ipv6 address dhcp\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterA(config)#ipv6 address stateless\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#ipv6 address dhcp\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     },
     {
       "id": "obj-4.6-source-q011",
@@ -230,7 +514,33 @@
         "CKU-DHCP-LEASE",
         "CKU-DHCP-OFFER"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The server will contact the client to immediately relinquish the IP address.\" is incorrect because the scenario requires: The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The client will immediately renew its lease for the current IP address.\" is incorrect because the scenario requires: The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The server will offer the IP address to another node, at which time the original client will relinquish the IP address.\" is incorrect because the scenario requires: The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     },
     {
       "id": "obj-4.6-source-q012",
@@ -253,7 +563,33 @@
         "CKU-DHCP",
         "CKU-DHCP-LEASE"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The DHCP client will perform a DHCP rebinding.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Nothing. The DHCP client will retain the lease.\" is incorrect because the scenario requires: The correct answer is \"The DHCP client will perform a DHCP rebinding.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The DHCP client will renew its lease.\" is incorrect because the scenario requires: The correct answer is \"The DHCP client will perform a DHCP rebinding.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The DHCP client will relinquish the use of the IP address.\" is incorrect because the scenario requires: The correct answer is \"The DHCP client will perform a DHCP rebinding.\".",
+            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+      }
     }
   ]
 }

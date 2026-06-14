@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "domain": "2",
+  "domainName": "Network Access",
+  "builtAt": "2026-06-14T01:49:36.238Z",
+  "objectives": {
+    "2.3": {
+      "active": 14
+    },
+    "2.4": {
+      "active": 15
+    },
+    "2.5": {
+      "active": 41
+    },
+    "2.6": {
+      "active": 10
+    },
+    "2.7": {
+      "active": 7
+    },
+    "2.8": {
+      "active": 16
+    }
+  },
+  "totals": {
+    "active": 103,
+    "shelved": 0
+  }
+}

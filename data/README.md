@@ -27,6 +27,14 @@ npm run validate:clean-bank
 npm test
 ```
 
+## Full rollout (domains 2–6)
+
+```bash
+npm run kb:full
+```
+
+Replaces `ccnaQuestionImports.js` per objective via `ccnaCleanQuestions.js` + adapter.
+
 ## Study modes (Domain 4 pilot)
 
 - **Exam Trap Drill** — Home → Study Modes → Exam Traps (static KB, no API)

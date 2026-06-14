@@ -1,0 +1,26 @@
+[
+  {
+    "id": "obj-2.3-source-q013",
+    "objectiveId": "2.3",
+    "question": "The following exhibit shows the output of the CDP details. Which statement is correct about what is displayed?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-2.9-source-q010",
+    "objectiveId": "2.8",
+    "question": "You were just notified by your maintenance department that they lost all wireless connectivity. Earlier you had a contractor working on the WLC. You log into the WLC and click on the WLAN of MaintDept shown in the exhibit below. What can you do to correct the problem?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  },
+  {
+    "id": "obj-2.9-source-q011",
+    "objectiveId": "2.8",
+    "question": "Which statement is true about the WLAN in the following exhibit?",
+    "reason": "exhibit-dependent",
+    "shelvedAt": "2026-06-14",
+    "notes": ""
+  }
+]

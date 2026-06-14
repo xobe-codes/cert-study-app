@@ -21,7 +21,33 @@
         "CKU-CLASSIFICATION",
         "CKU-MARKING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Access control lists\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Layer 2 ASICs\" is incorrect because the scenario requires: The correct answer is \"Access control lists\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Route tables\" is incorrect because the scenario requires: The correct answer is \"Access control lists\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Frame filters\" is incorrect because the scenario requires: The correct answer is \"Access control lists\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q002",
@@ -44,7 +70,33 @@
         "CKU-NAT",
         "CKU-JITTER"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Jitter\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Bandwidth\" is incorrect because the scenario requires: The correct answer is \"Jitter\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Delay\" is incorrect because the scenario requires: The correct answer is \"Jitter\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Loss\" is incorrect because the scenario requires: The correct answer is \"Jitter\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q003",
@@ -65,7 +117,33 @@
         "CKU-CLASSIFICATION",
         "CKU-MARKING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The Class of Service field is only present in 802.1Q frames.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The Class of Service field is a layer 3 field.\" is incorrect because the scenario requires: The correct answer is \"The Class of Service field is only present in 802.1Q frames.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The Class of Service field is present from end to end of a transmission.\" is incorrect because the scenario requires: The correct answer is \"The Class of Service field is only present in 802.1Q frames.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The Class of Service field is 6 bits.\" is incorrect because the scenario requires: The correct answer is \"The Class of Service field is only present in 802.1Q frames.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q004",
@@ -89,7 +167,33 @@
         "CKU-JITTER",
         "CKU-CONGESTION"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Loss\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Bandwidth\" is incorrect because the scenario requires: The correct answer is \"Loss\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Delay\" is incorrect because the scenario requires: The correct answer is \"Loss\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Jitter\" is incorrect because the scenario requires: The correct answer is \"Loss\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q005",
@@ -111,7 +215,33 @@
         "CKU-MARKING",
         "CKU-DSCP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"DSCP EF 46\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"DSCP AF 43\" is incorrect because the scenario requires: The correct answer is \"DSCP EF 46\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"DSCP AF 11\" is incorrect because the scenario requires: The correct answer is \"DSCP EF 46\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"DSCP AF 00\" is incorrect because the scenario requires: The correct answer is \"DSCP EF 46\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q006",
@@ -132,7 +262,33 @@
         "CKU-CLASSIFICATION",
         "CKU-MARKING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"150 ms\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"10 ms\" is incorrect because the scenario requires: The correct answer is \"150 ms\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"90 ms\" is incorrect because the scenario requires: The correct answer is \"150 ms\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"300 ms\" is incorrect because the scenario requires: The correct answer is \"150 ms\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q007",
@@ -156,7 +312,33 @@
         "CKU-LLQ",
         "CKU-CBWFQ"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"LLQ\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"CBWFQ\" is incorrect because the scenario requires: The correct answer is \"LLQ\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"FIFO\" is incorrect because the scenario requires: The correct answer is \"LLQ\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"CIR\" is incorrect because the scenario requires: The correct answer is \"LLQ\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q008",
@@ -181,7 +363,33 @@
         "CKU-CBWFQ",
         "CKU-POLICING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Policing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"LLQ\" is incorrect because the scenario requires: The correct answer is \"Policing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"CBWFQ\" is incorrect because the scenario requires: The correct answer is \"Policing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"FIFO\" is incorrect because the scenario requires: The correct answer is \"Policing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q009",
@@ -205,7 +413,33 @@
         "CKU-SHAPING",
         "CKU-JITTER"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Shaping drops packets over the configured bit rate to cause loss.\" is incorrect because the scenario requires: The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Shaping holds packets in the queue over the configured bit rate to cause jitter.\" is incorrect because the scenario requires: The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Shaping slows packets in the queue over the configured bit rate to adhere to the speed.\" is incorrect because the scenario requires: The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q010",
@@ -228,7 +462,33 @@
         "CKU-LLQ",
         "CKU-CBWFQ"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"CBWFQ\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"LLQ\" is incorrect because the scenario requires: The correct answer is \"CBWFQ\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"FIFO\" is incorrect because the scenario requires: The correct answer is \"CBWFQ\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"PQ\" is incorrect because the scenario requires: The correct answer is \"CBWFQ\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q011",
@@ -252,7 +512,33 @@
         "CKU-POLICING",
         "CKU-JITTER"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Policing drops packets over the configured bit rate to cause loss.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Policing holds packets in the queue over the configured bit rate to cause delay.\" is incorrect because the scenario requires: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Policing holds packets in the queue over the configured bit rate to cause jitter.\" is incorrect because the scenario requires: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Policing slows packets in the queue over the configured bit rate to adhere to the bit rate.\" is incorrect because the scenario requires: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q012",
@@ -274,7 +560,33 @@
         "CKU-MARKING",
         "CKU-POLICING"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"To maintain a contracted CIR\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"To help police LAN applications\" is incorrect because the scenario requires: The correct answer is \"To maintain a contracted CIR\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"To help police WAN applications\" is incorrect because the scenario requires: The correct answer is \"To maintain a contracted CIR\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"To maintain a contracted burst rate\" is incorrect because the scenario requires: The correct answer is \"To maintain a contracted CIR\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q013",
@@ -299,7 +611,33 @@
         "CKU-CONGESTION",
         "CKU-TAIL-DROP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"When the queue depth is full, a percentage of TCP packets are dropped.\" is incorrect because the scenario requires: The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"When the queue depth is empty, a percentage of TCP packets are dropped.\" is incorrect because the scenario requires: The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped.\" is incorrect because the scenario requires: The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.7-source-q014",
@@ -323,7 +661,33 @@
         "CKU-QUEUING",
         "CKU-CONGESTION"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"AF31 marked traffic has a better queue than AF41 marked traffic.\" is incorrect because the scenario requires: The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Both AF31 and AF41 marked traffic has an equal queue.\" is incorrect because the scenario requires: The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"During high congestion, AF41 queues will be dropped and AF31 queues won’t.\" is incorrect because the scenario requires: The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     }
   ]
 }

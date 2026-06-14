@@ -1,57 +1,52 @@
 #!/usr/bin/env node
 /**
- * Validate clean question bank — leak scan, schema, exhibit exclusion.
- * CI-safe: validates only, does not generate content.
+ * Validate all clean question bank domains.
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { DOMAIN_4_OBJECTIVES, validateCleanQuestion } from './lib/cleanBankUtils.mjs'
+import { validateCleanQuestion } from './lib/cleanBankUtils.mjs'
+import { DOMAIN_META } from './lib/sourceBankConfig.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
-const CLEAN_DIR = join(ROOT, 'data', 'clean-question-bank', 'domain-4')
+const CLEAN_ROOT = join(ROOT, 'data', 'clean-question-bank')
 
 function main() {
   const errors = []
   let total = 0
 
-  if (!existsSync(CLEAN_DIR)) {
-    console.error('✗ Clean bank not built. Run: npm run build:clean-bank')
-    process.exit(1)
-  }
-
-  const manifestPath = join(ROOT, 'data', 'clean-question-bank', 'manifest.json')
-  if (!existsSync(manifestPath)) {
-    errors.push('missing manifest.json')
-  }
-
-  for (const objectiveId of DOMAIN_4_OBJECTIVES) {
-    const path = join(CLEAN_DIR, `${objectiveId}.json`)
-    if (!existsSync(path)) {
-      errors.push(`missing clean file for ${objectiveId}`)
+  for (const [domainNum, meta] of Object.entries(DOMAIN_META)) {
+    const dir = join(CLEAN_ROOT, `domain-${domainNum}`)
+    if (!existsSync(dir)) {
+      errors.push(`missing domain-${domainNum}`)
       continue
     }
-    const { questions } = JSON.parse(readFileSync(path, 'utf-8'))
-    if (!Array.isArray(questions) || questions.length === 0) {
-      errors.push(`${objectiveId}: empty questions array`)
-    }
-    const ids = new Set()
-    for (const q of questions || []) {
-      total++
-      if (q.id && ids.has(q.id)) errors.push(`${objectiveId}: duplicate id ${q.id}`)
-      if (q.id) ids.add(q.id)
-      errors.push(...validateCleanQuestion(q, objectiveId))
+    for (const objectiveId of meta.objectives) {
+      const path = join(dir, `${objectiveId}.json`)
+      if (!existsSync(path)) {
+        errors.push(`missing ${objectiveId}.json in domain-${domainNum}`)
+        continue
+      }
+      const { questions } = JSON.parse(readFileSync(path, 'utf-8'))
+      const ids = new Set()
+      for (const q of questions || []) {
+        total++
+        if (q.id && ids.has(q.id)) errors.push(`${objectiveId}: duplicate ${q.id}`)
+        if (q.id) ids.add(q.id)
+        errors.push(...validateCleanQuestion(q, objectiveId))
+        if (!q.answerReview) errors.push(`${objectiveId}/${q.id}: missing answerReview`)
+      }
     }
   }
 
   if (errors.length) {
-    console.error(`✗ Clean bank validation failed (${errors.length} issue(s)):`)
-    errors.forEach(e => console.error('  -', e))
+    console.error(`✗ Validation failed (${errors.length} issues):`)
+    errors.slice(0, 50).forEach(e => console.error('  -', e))
+    if (errors.length > 50) console.error(`  … and ${errors.length - 50} more`)
     process.exit(1)
   }
-
-  console.log(`✓ Clean bank valid — ${total} active Domain 4 questions`)
+  console.log(`✓ Clean bank valid — ${total} questions across domains 2–6`)
 }
 
 main()

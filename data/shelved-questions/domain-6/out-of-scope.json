@@ -1,0 +1,98 @@
+[
+  {
+    "id": "obj-6.2-source-q003",
+    "objectiveId": "6.2",
+    "question": "Which term is used with controller-based networking that combines multiple sites to act as one single network?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.2-source-q008",
+    "objectiveId": "6.2",
+    "question": "Identify the SNMP component that aggregates all SNMP messages and polled metrics?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.2-source-q009",
+    "objectiveId": "6.2",
+    "question": "Which method for configuration is used with Cisco Prime Infrastructure?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.3-source-q004",
+    "objectiveId": "6.3",
+    "question": "Which current Cisco SDN solution is data center focused?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.3-source-q008",
+    "objectiveId": "6.3",
+    "question": "Which platform is Cisco’s SDN controller offering for enterprise connectivity?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.3-source-q018",
+    "objectiveId": "6.3",
+    "question": "Identify the maximum hop count of fabric switching?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.3-source-q024",
+    "objectiveId": "6.3",
+    "question": "Which next-hop packet forwarding protocol is used with SDN switching networks?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.4-source-q010",
+    "objectiveId": "6.4",
+    "question": "Which feature does Cisco Prime Infrastructure provide that Cisco DNA Center cannot provide?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.5-source-q012",
+    "objectiveId": "6.5",
+    "question": "You are creating a script to directly configure a Cisco switch using the YANG data model. Which network API will you use to perform this task?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.5-source-q015",
+    "objectiveId": "6.5",
+    "question": "On which interface of the Cisco DNA Center would you most likely use a RESTCONF request?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.6-source-q002",
+    "objectiveId": "6.6",
+    "question": "Which configuration management tool uses YAML to store configuration?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-6.6-source-q018",
+    "objectiveId": "6.6",
+    "question": "Which format must a custom Ansible module be written in?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  }
+]

@@ -1,0 +1,1408 @@
+{
+  "objectiveId": "3.5",
+  "title": "Describe the purpose, functions, and concepts of first hop redundancy protocols",
+  "questions": [
+    {
+      "id": "obj-3.5-source-q001",
+      "question": "Which protocol is an IEEE standard that is supported openly as a first hop redundancy protocol (FHRP)?",
+      "choices": [
+        "Proxy ARP",
+        "VRRP",
+        "GLBP",
+        "HSRP"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-GLBP",
+        "CKU-ARP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"VRRP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Proxy ARP\" is incorrect because the scenario requires: The correct answer is \"VRRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"GLBP\" is incorrect because the scenario requires: The correct answer is \"VRRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"HSRP\" is incorrect because the scenario requires: The correct answer is \"VRRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q002",
+      "question": "In the MAC address 0000.0c07.ac0a, what is the well-known Hot Standby Router Protocol (HSRP) ID?",
+      "choices": [
+        "0000.0c",
+        "oc07",
+        "0a",
+        "07.ac"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"07.ac\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"0000.0c\" is incorrect because the scenario requires: The correct answer is \"07.ac\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"oc07\" is incorrect because the scenario requires: The correct answer is \"07.ac\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"0a\" is incorrect because the scenario requires: The correct answer is \"07.ac\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q003",
+      "question": "Which protocol is a Cisco Proprietary protocol for load-balancing routers?",
+      "choices": [
+        "Proxy ARP",
+        "VRRP",
+        "GLBP",
+        "HSRP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-GLBP",
+        "CKU-ARP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"GLBP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Proxy ARP\" is incorrect because the scenario requires: The correct answer is \"GLBP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"VRRP\" is incorrect because the scenario requires: The correct answer is \"GLBP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"HSRP\" is incorrect because the scenario requires: The correct answer is \"GLBP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q004",
+      "question": "In the MAC address 0000.0c07.ac01, what is the HSRPv1 group number?",
+      "choices": [
+        "0000.0c",
+        "0c07",
+        "01",
+        "07.ac"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"01\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"0000.0c\" is incorrect because the scenario requires: The correct answer is \"01\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"0c07\" is incorrect because the scenario requires: The correct answer is \"01\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"07.ac\" is incorrect because the scenario requires: The correct answer is \"01\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q005",
+      "question": "What is the default priority of HSRP?",
+      "choices": [
+        "100",
+        "110",
+        "200",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"100\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"110\" is incorrect because the scenario requires: The correct answer is \"100\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"200\" is incorrect because the scenario requires: The correct answer is \"100\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"10\" is incorrect because the scenario requires: The correct answer is \"100\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q006",
+      "question": "What is the maximum number of HSRPv1 groups that can be created?",
+      "choices": [
+        "8",
+        "16",
+        "255",
+        "256"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"256\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"8\" is incorrect because the scenario requires: The correct answer is \"256\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"16\" is incorrect because the scenario requires: The correct answer is \"256\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"255\" is incorrect because the scenario requires: The correct answer is \"256\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q007",
+      "question": "Which port and protocol are used by HSRP for communications?",
+      "choices": [
+        "UDP/1935",
+        "UDP/1985",
+        "UDP/1895",
+        "UCP/3222"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"UDP/1985\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"UDP/1935\" is incorrect because the scenario requires: The correct answer is \"UDP/1985\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"UDP/1895\" is incorrect because the scenario requires: The correct answer is \"UDP/1985\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"UCP/3222\" is incorrect because the scenario requires: The correct answer is \"UDP/1985\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q008",
+      "question": "Which statement is correct about HSRP?",
+      "choices": [
+        "All routers in an HSRP group are active.",
+        "Only one router in an HSRP group can be active.",
+        "The virtual router sends hello packets to the HSRP group.",
+        "HSRP allows for per-packet load balancing."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-OSPF-HELLO"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Only one router in an HSRP group can be active.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"All routers in an HSRP group are active.\" is incorrect because the scenario requires: The correct answer is \"Only one router in an HSRP group can be active.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The virtual router sends hello packets to the HSRP group.\" is incorrect because the scenario requires: The correct answer is \"Only one router in an HSRP group can be active.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"HSRP allows for per-packet load balancing.\" is incorrect because the scenario requires: The correct answer is \"Only one router in an HSRP group can be active.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q009",
+      "question": "What type of communication is used between HSRP members?",
+      "choices": [
+        "Unicast",
+        "Broadcast",
+        "Multicast",
+        "Layer 2 flooding"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Multicast\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Unicast\" is incorrect because the scenario requires: The correct answer is \"Multicast\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Broadcast\" is incorrect because the scenario requires: The correct answer is \"Multicast\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Layer 2 flooding\" is incorrect because the scenario requires: The correct answer is \"Multicast\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q010",
+      "question": "When a host sends an outgoing packet to an HSRP group, which router provides the destination address for the default gateway?",
+      "choices": [
+        "Virtual router",
+        "Active router",
+        "Standby router",
+        "Monitor router"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Virtual router\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Active router\" is incorrect because the scenario requires: The correct answer is \"Virtual router\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Standby router\" is incorrect because the scenario requires: The correct answer is \"Virtual router\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Monitor router\" is incorrect because the scenario requires: The correct answer is \"Virtual router\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q011",
+      "question": "Which timer must expire for a standby router in an HSRP group to become the active router?",
+      "choices": [
+        "Hello timer",
+        "Standby timer",
+        "Hold timer",
+        "Virtual timer"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-OSPF-HELLO"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Hold timer\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Hello timer\" is incorrect because the scenario requires: The correct answer is \"Hold timer\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Standby timer\" is incorrect because the scenario requires: The correct answer is \"Hold timer\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Virtual timer\" is incorrect because the scenario requires: The correct answer is \"Hold timer\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q012",
+      "question": "Which port and protocol are used by Gateway Load Balancing Protocol (GLBP) for communications?",
+      "choices": [
+        "UDP/1935",
+        "UDP/1985",
+        "UDP/1895",
+        "UDP/3222"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-GLBP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"UDP/3222\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"UDP/1935\" is incorrect because the scenario requires: The correct answer is \"UDP/3222\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"UDP/1985\" is incorrect because the scenario requires: The correct answer is \"UDP/3222\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"UDP/1895\" is incorrect because the scenario requires: The correct answer is \"UDP/3222\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q013",
+      "question": "Which is a difference between HSRPv1 and HSRPv2?",
+      "choices": [
+        "HSRPv2 does not use hello packets.",
+        "HSRPv1 uses broadcasts, and HSRPv2 uses multicasts.",
+        "HSRPv1 supports IPv6.",
+        "HSRPv2 uses milliseconds."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-OSPF-HELLO",
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"HSRPv2 uses milliseconds.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"HSRPv2 does not use hello packets.\" is incorrect because the scenario requires: The correct answer is \"HSRPv2 uses milliseconds.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"HSRPv1 uses broadcasts, and HSRPv2 uses multicasts.\" is incorrect because the scenario requires: The correct answer is \"HSRPv2 uses milliseconds.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"HSRPv1 supports IPv6.\" is incorrect because the scenario requires: The correct answer is \"HSRPv2 uses milliseconds.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q014",
+      "question": "Which statement is correct about GLBP?",
+      "choices": [
+        "The active router is responsible for responding to clients with the virtual router’s MAC address.",
+        "The active virtual gateway will respond with a MAC address of the active router.",
+        "The active virtual gateway will respond with a MAC address of an active virtual forwarder.",
+        "The virtual router is responsible for responding to tracking requests."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DR-BDR",
+        "CKU-GLBP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The active router is responsible for responding to clients with the virtual router’s MAC address.\" is incorrect because the scenario requires: The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The active virtual gateway will respond with a MAC address of the active router.\" is incorrect because the scenario requires: The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The virtual router is responsible for responding to tracking requests.\" is incorrect because the scenario requires: The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q015",
+      "question": "Which router is elected to become the GLBP active virtual gateway?",
+      "choices": [
+        "The router with the lowest priority",
+        "The router with the highest priority",
+        "The router with the lowest priority and lowest IP address",
+        "The router with the highest priority and highest IP address"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DR-BDR",
+        "CKU-GLBP",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"The router with the highest priority and highest IP address\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The router with the lowest priority\" is incorrect because the scenario requires: The correct answer is \"The router with the highest priority and highest IP address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The router with the highest priority\" is incorrect because the scenario requires: The correct answer is \"The router with the highest priority and highest IP address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The router with the lowest priority and lowest IP address\" is incorrect because the scenario requires: The correct answer is \"The router with the highest priority and highest IP address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q016",
+      "question": "How many active virtual forwarders are supported per the GLBP group?",
+      "choices": [
+        "2",
+        "4",
+        "16",
+        "1,024"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-GLBP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"4\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"2\" is incorrect because the scenario requires: The correct answer is \"4\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"16\" is incorrect because the scenario requires: The correct answer is \"4\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"1,024\" is incorrect because the scenario requires: The correct answer is \"4\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q017",
+      "question": "Which command will allow Router B to always become the active router for HSRP?",
+      "choices": [
+        "Router(config-if)#standby 1 priority 150",
+        "Router(config-if)#standby 1 priority 70",
+        "Router(config-if)#hsrp 1 priority 150",
+        "Router(config-if)#hsrp 1 priority 90"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config-if)#standby 1 priority 150\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-if)#standby 1 priority 70\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 priority 150\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-if)#hsrp 1 priority 150\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 priority 150\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config-if)#hsrp 1 priority 90\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 priority 150\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q018",
+      "question": "What is the maximum number of HSRPv2 groups that can be created?",
+      "choices": [
+        "255",
+        "256",
+        "1,024",
+        "4,096"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"4,096\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"255\" is incorrect because the scenario requires: The correct answer is \"4,096\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"256\" is incorrect because the scenario requires: The correct answer is \"4,096\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"1,024\" is incorrect because the scenario requires: The correct answer is \"4,096\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q019",
+      "question": "Your company is running a FHRP. You notice that the MAC address of the default gateway is 0000.0c9f.f123. Which FHRP is being employed?",
+      "choices": [
+        "HSRPv1",
+        "GLBP",
+        "HSRPv2",
+        "VRRP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-GLBP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"HSRPv2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"HSRPv1\" is incorrect because the scenario requires: The correct answer is \"HSRPv2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"GLBP\" is incorrect because the scenario requires: The correct answer is \"HSRPv2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"VRRP\" is incorrect because the scenario requires: The correct answer is \"HSRPv2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q020",
+      "question": "What is the definition of preemption for HSRP?",
+      "choices": [
+        "It allows the protocol to effectively load-balance per packet.",
+        "It watches an upstream interface and fails over when the interface goes down.",
+        "It ignores the priorities of the routers and elects an active router by highest IP address.",
+        "When a standby router comes online, it allows for a re-election of the active router."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DR-BDR",
+        "CKU-PREEMPTION"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"It allows the protocol to effectively load-balance per packet.\" is incorrect because the scenario requires: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"It watches an upstream interface and fails over when the interface goes down.\" is incorrect because the scenario requires: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"It ignores the priorities of the routers and elects an active router by highest IP address.\" is incorrect because the scenario requires: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q021",
+      "question": "Which is a method of configuring HSRP so that traffic is not directed to one router?",
+      "choices": [
+        "Configure version 2 for all HSRP groups.",
+        "Configure an HSRP group per VLAN and alternate the priority above 100.",
+        "Configure PPPoE on the router interfaces.",
+        "Configure all routers in the HSRP as active routers."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Configure version 2 for all HSRP groups.\" is incorrect because the scenario requires: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Configure PPPoE on the router interfaces.\" is incorrect because the scenario requires: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Configure all routers in the HSRP as active routers.\" is incorrect because the scenario requires: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q022",
+      "question": "Which command will allow you to verify the state of the current router for HSRP?",
+      "choices": [
+        "RouterA#show hsrp",
+        "RouterA#show ip standby",
+        "RouterA#show standby",
+        "RouterA#show ip hsrp"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"RouterA#show standby\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterA#show hsrp\" is incorrect because the scenario requires: The correct answer is \"RouterA#show standby\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA#show ip standby\" is incorrect because the scenario requires: The correct answer is \"RouterA#show standby\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterA#show ip hsrp\" is incorrect because the scenario requires: The correct answer is \"RouterA#show standby\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q023",
+      "question": "You have just changed the priority on Router A to 150, and it has not become the active router. All other routers have the default priority. What is wrong?",
+      "choices": [
+        "The default priority is 150.",
+        "The hold timer is set too high and needs to timeout.",
+        "The HSRP group is not set for preemption.",
+        "Router A’s IP address is too low."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-PREEMPTION",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The HSRP group is not set for preemption.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The default priority is 150.\" is incorrect because the scenario requires: The correct answer is \"The HSRP group is not set for preemption.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The hold timer is set too high and needs to timeout.\" is incorrect because the scenario requires: The correct answer is \"The HSRP group is not set for preemption.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router A’s IP address is too low.\" is incorrect because the scenario requires: The correct answer is \"The HSRP group is not set for preemption.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q024",
+      "question": "Which command will allow you to enable preemption for HSRP?",
+      "choices": [
+        "Router(config)#standby 1 preemption",
+        "Router(config-if)#standby 1 preemption",
+        "Router(config-if)#hsrp 1 preempt",
+        "Router(config-if)#standby 1 preempt"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-PREEMPTION"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config-if)#standby 1 preempt\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#standby 1 preemption\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 preempt\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-if)#standby 1 preemption\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 preempt\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-if)#hsrp 1 preempt\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 preempt\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q025",
+      "question": "Which command will configure VRRP on an interface with an IP address of 10.1.2.3?",
+      "choices": [
+        "Router(config)#vrrp 1 10.1.2.3 gi 0/0",
+        "Router(config-if)#vrrp 1 ip 10.1.2.3",
+        "Router(config-if)#vrrp 1 10.1.2.3",
+        "Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config-if)#vrrp 1 ip 10.1.2.3\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#vrrp 1 10.1.2.3 gi 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#vrrp 1 ip 10.1.2.3\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-if)#vrrp 1 10.1.2.3\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#vrrp 1 ip 10.1.2.3\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#vrrp 1 ip 10.1.2.3\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q027",
+      "question": "Which command will allow you to see real-time diagnostics of HSRP?",
+      "choices": [
+        "Router#show ip hsrp",
+        "Router#debug ip hsrp",
+        "Router#debug standby",
+        "Router#debug ip standby"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#debug standby\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ip hsrp\" is incorrect because the scenario requires: The correct answer is \"Router#debug standby\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#debug ip hsrp\" is incorrect because the scenario requires: The correct answer is \"Router#debug standby\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#debug ip standby\" is incorrect because the scenario requires: The correct answer is \"Router#debug standby\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q028",
+      "question": "Which statement is correct about GLBP?",
+      "choices": [
+        "GLBP allows for per-host load balancing.",
+        "The active virtual gateway will respond with a MAC address of the active router.",
+        "GLBP allows for per-subnet load balancing.",
+        "The virtual router is responsible for responding to tracking requests."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DR-BDR",
+        "CKU-GLBP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"GLBP allows for per-host load balancing.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The active virtual gateway will respond with a MAC address of the active router.\" is incorrect because the scenario requires: The correct answer is \"GLBP allows for per-host load balancing.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"GLBP allows for per-subnet load balancing.\" is incorrect because the scenario requires: The correct answer is \"GLBP allows for per-host load balancing.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The virtual router is responsible for responding to tracking requests.\" is incorrect because the scenario requires: The correct answer is \"GLBP allows for per-host load balancing.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q029",
+      "question": "Which command will allow you to set the hello and hold timers for HSRPv2 to a hello of 200 milliseconds and a hold of 700 milliseconds?",
+      "choices": [
+        "RouterA(config-if)#standby 1 timers msec 200 msec 700",
+        "RouterA(config-if)#standby 1 timers 200 msec 700 msec",
+        "RouterA(config-if)#standby 1 timers 700 msec 200 msec",
+        "RouterA(config-if)#standby 1 timers msec 700 msec 200"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-OSPF-HELLO"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config-if)#standby 1 timers 200 msec 700 msec\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"RouterA(config-if)#standby 1 timers 700 msec 200 msec\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterA(config-if)#standby 1 timers msec 700 msec 200\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.5-source-q030",
+      "question": "You have four routers configured with HSRP. Four routers—Router A, Router B, Router C, and Router D—are configured with the default priority. You change the priority of Router A to 80, Router B to 100, Router C to 140, and Router D is...",
+      "choices": [
+        "Router A will become the active router.",
+        "Router B will become the active router.",
+        "Router C will become the active router.",
+        "Router D will become the active router."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router C will become the active router.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router A will become the active router.\" is incorrect because the scenario requires: The correct answer is \"Router C will become the active router.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router B will become the active router.\" is incorrect because the scenario requires: The correct answer is \"Router C will become the active router.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router D will become the active router.\" is incorrect because the scenario requires: The correct answer is \"Router C will become the active router.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

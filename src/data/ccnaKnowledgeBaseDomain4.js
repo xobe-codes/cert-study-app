@@ -19,11 +19,29 @@ export const DOMAIN_4_KB = {
         "4.1-c-q3",
         "4.1-c-q7",
         "4.1-q1",
+        "4.1-q2",
+        "4.1-q3",
+        "4.1-q4",
         "4.1-q5",
         "4.1-q6",
+        "4.1-q7",
+        "4.1-q8",
         "4.1-q9",
         "4.1-q10",
-        "4.1-q11"
+        "4.1-q11",
+        "4.1-q12",
+        "obj-4.1-source-q001",
+        "obj-4.1-source-q002",
+        "obj-4.1-source-q003",
+        "obj-4.1-source-q004",
+        "obj-4.1-source-q005",
+        "obj-4.1-source-q006",
+        "obj-4.1-source-q007",
+        "obj-4.1-source-q008",
+        "obj-4.1-source-q009",
+        "obj-4.1-source-q010",
+        "obj-4.1-source-q011",
+        "obj-4.1-source-q012"
       ],
       "confidence": "high",
       "needsReview": false
@@ -45,7 +63,9 @@ export const DOMAIN_4_KB = {
       "relatedQuestionIds": [
         "4.1-c-q2",
         "4.1-c-q5",
-        "4.1-c-q8"
+        "4.1-c-q8",
+        "4.1-q12",
+        "obj-4.1-source-q012"
       ],
       "confidence": "high",
       "needsReview": false
@@ -299,8 +319,8 @@ export const DOMAIN_4_KB = {
         "CKU-LOGGING-TIMESTAMPS",
         "CKU-LOGGING-CONSOLE",
         "CKU-LOGGING-BUFFERED",
-        "CKU-NAT",
-        "CKU-SNMP-INFORM"
+        "CKU-SNMP-INFORM",
+        "CKU-NAT"
       ],
       "needsReview": true
     },

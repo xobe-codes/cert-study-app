@@ -21,7 +21,33 @@
         "CKU-NTP-CLIENT",
         "CKU-NTP-SERVER"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config)#ntp server 129.6.15.28\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#ntp server 129.6.15.28\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ntp server 129.6.15.28\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ntp client 129.6.15.28\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ntp server 129.6.15.28\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#ntp client 129.6.15.28\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ntp server 129.6.15.28\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.2-source-q002",
@@ -43,7 +69,33 @@
         "CKU-NTP-SERVER",
         "CKU-CLOCK"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config)#ntp master\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ntp server\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ntp master\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ntp clock source\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ntp master\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#ntp trusted\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ntp master\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.2-source-q003",
@@ -65,7 +117,33 @@
         "CKU-NTP-SERVER",
         "CKU-CLOCK"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#show clock detail\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ntp\" is incorrect because the scenario requires: The correct answer is \"Router#show clock detail\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show time\" is incorrect because the scenario requires: The correct answer is \"Router#show clock detail\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show time source\" is incorrect because the scenario requires: The correct answer is \"Router#show clock detail\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.2-source-q004",
@@ -88,7 +166,33 @@
         "CKU-CLOCK",
         "CKU-SNMP-VIEW"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#show ntp associations detail\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show clock detail\" is incorrect because the scenario requires: The correct answer is \"Router#show ntp associations detail\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ntp detail\" is incorrect because the scenario requires: The correct answer is \"Router#show ntp associations detail\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ntp skew\" is incorrect because the scenario requires: The correct answer is \"Router#show ntp associations detail\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.2-source-q005",
@@ -109,7 +213,33 @@
         "CKU-NTP-CLIENT",
         "CKU-NTP-SERVER"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"UDP/123\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"TCP/161\" is incorrect because the scenario requires: The correct answer is \"UDP/123\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"TCP/123\" is incorrect because the scenario requires: The correct answer is \"UDP/123\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"UDP/69\" is incorrect because the scenario requires: The correct answer is \"UDP/123\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.2-source-q006",
@@ -130,7 +260,33 @@
         "CKU-NTP-CLIENT",
         "CKU-NTP-SERVER"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#debug ntp packets\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ntp\" is incorrect because the scenario requires: The correct answer is \"Router#debug ntp packets\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip ntp\" is incorrect because the scenario requires: The correct answer is \"Router#debug ntp packets\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#debug ntp messages\" is incorrect because the scenario requires: The correct answer is \"Router#debug ntp packets\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.2-source-q007",
@@ -152,7 +308,33 @@
         "CKU-NTP-SERVER",
         "CKU-DNS"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Always configure the time source to a DNS address.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Configure all devices to a public NTP server.\" is incorrect because the scenario requires: The correct answer is \"Always configure the time source to a DNS address.\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Configure all devices to different NTP servers for redundancy.\" is incorrect because the scenario requires: The correct answer is \"Always configure the time source to a DNS address.\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Configure all devices as master servers.\" is incorrect because the scenario requires: The correct answer is \"Always configure the time source to a DNS address.\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.2-source-q008",
@@ -174,7 +356,33 @@
         "CKU-NTP-SERVER",
         "CKU-SNMP-VIEW"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#show ntp status\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ntp\" is incorrect because the scenario requires: The correct answer is \"Router#show ntp status\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip ntp status\" is incorrect because the scenario requires: The correct answer is \"Router#show ntp status\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#debug ntp drift\" is incorrect because the scenario requires: The correct answer is \"Router#show ntp status\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.2-source-q010",
@@ -196,7 +404,33 @@
         "CKU-NTP-SERVER",
         "CKU-NTP-SOURCE"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Loopback interface\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Tunnel interface\" is incorrect because the scenario requires: The correct answer is \"Loopback interface\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"NTP interface\" is incorrect because the scenario requires: The correct answer is \"Loopback interface\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switched Virtual Interface (SVI)\" is incorrect because the scenario requires: The correct answer is \"Loopback interface\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.2-source-q011",
@@ -219,7 +453,33 @@
         "CKU-NTP-SOURCE",
         "CKU-CLOCK"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Switch(config)#ntp source loopback 0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#ntp loopback 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#ntp source loopback 0\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config)#ntp master loopback 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#ntp source loopback 0\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config)#ntp clock loopback 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#ntp source loopback 0\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     }
   ]
 }

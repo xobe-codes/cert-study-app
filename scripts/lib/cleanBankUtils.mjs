@@ -79,6 +79,8 @@ export function scrubExplanation(text) {
   if (!text || typeof text !== 'string') return ''
   let out = text.trim()
   if (isPlaceholderExplanation(out)) return ''
+  if (/source answer/i.test(out)) return ''
+  if (/The\s+is:/i.test(out)) return ''
   for (const re of LEAK_PATTERNS) {
     out = out.replace(re, '')
   }

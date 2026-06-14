@@ -1,0 +1,1157 @@
+{
+  "objectiveId": "6.6",
+  "title": "Recognize capabilities of Puppet, Chef, and Ansible",
+  "questions": [
+    {
+      "id": "obj-6.6-source-q001",
+      "question": "Which function does Ansible, Chef, and Puppet perform in the network?",
+      "choices": [
+        "Network management station",
+        "Configuration management",
+        "Software-defined networking",
+        "Centralized logging"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-CHEF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Configuration management\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Network management station\" is incorrect because the scenario requires: The correct answer is \"Configuration management\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Software-defined networking\" is incorrect because the scenario requires: The correct answer is \"Configuration management\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Centralized logging\" is incorrect because the scenario requires: The correct answer is \"Configuration management\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q003",
+      "question": "Which component in an Ansible setup defines the connection information so that Ansible can perform configuration management?",
+      "choices": [
+        "Playbook",
+        "Settings",
+        "Inventory",
+        "Modules"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-PLAYBOOK",
+        "CKU-INVENTORY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Inventory\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Playbook\" is incorrect because the scenario requires: The correct answer is \"Inventory\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Settings\" is incorrect because the scenario requires: The correct answer is \"Inventory\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Modules\" is incorrect because the scenario requires: The correct answer is \"Inventory\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q004",
+      "question": "Which configuration management tool does not require an agent to apply changes to a Linux-based server?",
+      "choices": [
+        "Ansible",
+        "Puppet",
+        "Chef",
+        "Cisco DNA Center"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-CHEF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Ansible\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Puppet\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Chef\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Cisco DNA Center\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q005",
+      "question": "Which Puppet component contains the configuration for the managed hosts?",
+      "choices": [
+        "Manifest",
+        "Agent",
+        "Class",
+        "Module"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-MANIFEST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Manifest\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Agent\" is incorrect because the scenario requires: The correct answer is \"Manifest\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Class\" is incorrect because the scenario requires: The correct answer is \"Manifest\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Module\" is incorrect because the scenario requires: The correct answer is \"Manifest\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q006",
+      "question": "Which Chef component contains the set of instructions to configure a node?",
+      "choices": [
+        "Cookbook",
+        "Crock Pot",
+        "Recipe",
+        "Chef Node"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-CHEF",
+        "CKU-COOKBOOK",
+        "CKU-RECIPE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Recipe\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Cookbook\" is incorrect because the scenario requires: The correct answer is \"Recipe\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Crock Pot\" is incorrect because the scenario requires: The correct answer is \"Recipe\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Chef Node\" is incorrect because the scenario requires: The correct answer is \"Recipe\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q007",
+      "question": "Which Chef component collects system state information and reports back to the Chef Server component?",
+      "choices": [
+        "Chef-Client",
+        "Chef Workstation",
+        "Ohai",
+        "Knife"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-CHEF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Ohai\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Chef-Client\" is incorrect because the scenario requires: The correct answer is \"Ohai\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Chef Workstation\" is incorrect because the scenario requires: The correct answer is \"Ohai\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Knife\" is incorrect because the scenario requires: The correct answer is \"Ohai\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q008",
+      "question": "Which variable is checked to determine the location of the Ansible settings file?",
+      "choices": [
+        "ANSIBLE_SETTINGS",
+        "ANSIBLE_CONFIG",
+        "ansible_connection",
+        "/etc/ansible/hosts"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"ANSIBLE_CONFIG\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"ANSIBLE_SETTINGS\" is incorrect because the scenario requires: The correct answer is \"ANSIBLE_CONFIG\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ansible_connection\" is incorrect because the scenario requires: The correct answer is \"ANSIBLE_CONFIG\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"/etc/ansible/hosts\" is incorrect because the scenario requires: The correct answer is \"ANSIBLE_CONFIG\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q009",
+      "question": "Which command give detailed information on modules in Ansible?",
+      "choices": [
+        "man",
+        "cat",
+        "ad-hoc",
+        "ansible-doc"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"ansible-doc\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"man\" is incorrect because the scenario requires: The correct answer is \"ansible-doc\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"cat\" is incorrect because the scenario requires: The correct answer is \"ansible-doc\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ad-hoc\" is incorrect because the scenario requires: The correct answer is \"ansible-doc\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q010",
+      "question": "Which Ansible tool will allow you to try commands against a host without making a Playbook?",
+      "choices": [
+        "Knife interface",
+        "ansible_playbook command",
+        "Ad-hoc interface",
+        "Ansible Tower"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-PLAYBOOK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Ad-hoc interface\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Knife interface\" is incorrect because the scenario requires: The correct answer is \"Ad-hoc interface\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"ansible_playbook command\" is incorrect because the scenario requires: The correct answer is \"Ad-hoc interface\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Ansible Tower\" is incorrect because the scenario requires: The correct answer is \"Ad-hoc interface\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q011",
+      "question": "What are global variables that contain information specific to Puppet called?",
+      "choices": [
+        "Resource",
+        "Class",
+        "Module",
+        "Facts"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Facts\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Resource\" is incorrect because the scenario requires: The correct answer is \"Facts\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Class\" is incorrect because the scenario requires: The correct answer is \"Facts\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Module\" is incorrect because the scenario requires: The correct answer is \"Facts\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q012",
+      "question": "Once you have completed a Cookbook for Chef, where do you upload the Cookbook so it is accessible on the Chef Server?",
+      "choices": [
+        "Bookshelf",
+        "Chef Workstation",
+        "Chef Node",
+        "Chef-Client"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-CHEF",
+        "CKU-COOKBOOK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Bookshelf\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Chef Workstation\" is incorrect because the scenario requires: The correct answer is \"Bookshelf\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Chef Node\" is incorrect because the scenario requires: The correct answer is \"Bookshelf\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Chef-Client\" is incorrect because the scenario requires: The correct answer is \"Bookshelf\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q013",
+      "question": "Which tool will allow for central management and RBAC and is supported by Red Hat?",
+      "choices": [
+        "Ansible Tower",
+        "Chef",
+        "Puppet",
+        "Ansible"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-CHEF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Ansible Tower\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Chef\" is incorrect because the scenario requires: The correct answer is \"Ansible Tower\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Puppet\" is incorrect because the scenario requires: The correct answer is \"Ansible Tower\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Ansible\" is incorrect because the scenario requires: The correct answer is \"Ansible Tower\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q014",
+      "question": "Which configuration management utility allows for easy configuration of Cisco network devices?",
+      "choices": [
+        "Ansible",
+        "Puppet",
+        "Chef",
+        "Python"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-PYTHON-AUTOMATION",
+        "CKU-CHEF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Ansible\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Puppet\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Chef\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Python\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q015",
+      "question": "What function does Knife serve in the Chef configuration management utility?",
+      "choices": [
+        "Storage of the Bookshelf",
+        "Storage of the configuration of Chef",
+        "CLI utility for the management of Chef",
+        "Client-side agent"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-CHEF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"CLI utility for the management of Chef\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Storage of the Bookshelf\" is incorrect because the scenario requires: The correct answer is \"CLI utility for the management of Chef\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Storage of the configuration of Chef\" is incorrect because the scenario requires: The correct answer is \"CLI utility for the management of Chef\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Client-side agent\" is incorrect because the scenario requires: The correct answer is \"CLI utility for the management of Chef\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q016",
+      "question": "Which is a correct statement about configuration management?",
+      "choices": [
+        "IaaS helps maintain configuration over the life cycle of the host.",
+        "Configuration management prevents drift with NTP.",
+        "IaC solutions prevent drift with Idempotence.",
+        "Configuration management software requires per-host licensing."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-IDEMPOTENCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"IaC solutions prevent drift with Idempotence.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IaaS helps maintain configuration over the life cycle of the host.\" is incorrect because the scenario requires: The correct answer is \"IaC solutions prevent drift with Idempotence.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Configuration management prevents drift with NTP.\" is incorrect because the scenario requires: The correct answer is \"IaC solutions prevent drift with Idempotence.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Configuration management software requires per-host licensing.\" is incorrect because the scenario requires: The correct answer is \"IaC solutions prevent drift with Idempotence.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.6-source-q017",
+      "question": "Which configuration management utility is the easiest to set up?",
+      "choices": [
+        "Chef",
+        "Puppet",
+        "Ansible",
+        "Cisco DNA Center"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-CHEF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Ansible\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Chef\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Puppet\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Cisco DNA Center\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q001",
+      "question": "Which element of YAML defines a key-value pair?",
+      "choices": [
+        "Definition",
+        "Mapping",
+        "Lists",
+        "Keys"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Mapping\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Definition\" is incorrect because the scenario requires: The correct answer is \"Mapping\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Lists\" is incorrect because the scenario requires: The correct answer is \"Mapping\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Keys\" is incorrect because the scenario requires: The correct answer is \"Mapping\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q002",
+      "question": "How can you identify that a file is a YAML file?",
+      "choices": [
+        "The file begins with three dashes.",
+        "The file begins with a hashbang preprocessor.",
+        "The contents are contained between curly brackets.",
+        "The contents are contained between square brackets."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The file begins with three dashes.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The file begins with a hashbang preprocessor.\" is incorrect because the scenario requires: The correct answer is \"The file begins with three dashes.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The contents are contained between curly brackets.\" is incorrect because the scenario requires: The correct answer is \"The file begins with three dashes.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The contents are contained between square brackets.\" is incorrect because the scenario requires: The correct answer is \"The file begins with three dashes.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q003",
+      "question": "Which structured data format closely resembles HTML?",
+      "choices": [
+        "YAML",
+        "JSON",
+        "CSV",
+        "XML"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"XML\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"YAML\" is incorrect because the scenario requires: The correct answer is \"XML\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"JSON\" is incorrect because the scenario requires: The correct answer is \"XML\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"CSV\" is incorrect because the scenario requires: The correct answer is \"XML\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q004",
+      "question": "Which data format is structured by white space?",
+      "choices": [
+        "YAML",
+        "JSON",
+        "XML",
+        "CSV"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"YAML\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"JSON\" is incorrect because the scenario requires: The correct answer is \"YAML\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"XML\" is incorrect because the scenario requires: The correct answer is \"YAML\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"CSV\" is incorrect because the scenario requires: The correct answer is \"YAML\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q005",
+      "question": "Identify at the beginning of every JSON file that helps you identify the format?",
+      "choices": [
+        "Three dashes",
+        "A square bracket",
+        "A double quote",
+        "A curly bracket"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"A curly bracket\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Three dashes\" is incorrect because the scenario requires: The correct answer is \"A curly bracket\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"A square bracket\" is incorrect because the scenario requires: The correct answer is \"A curly bracket\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A double quote\" is incorrect because the scenario requires: The correct answer is \"A curly bracket\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q006",
+      "question": "You just opened a JSON file, and the key you are looking for has a square bracket. What can be concluded?",
+      "choices": [
+        "The value that follows the square bracket is the value you are looking for.",
+        "There are several key-value pairs for the key you need.",
+        "The value is after the matching square bracket.",
+        "The value is unknown."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"There are several key-value pairs for the key you need.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The value that follows the square bracket is the value you are looking for.\" is incorrect because the scenario requires: The correct answer is \"There are several key-value pairs for the key you need.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The value is after the matching square bracket.\" is incorrect because the scenario requires: The correct answer is \"There are several key-value pairs for the key you need.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The value is unknown.\" is incorrect because the scenario requires: The correct answer is \"There are several key-value pairs for the key you need.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q008",
+      "question": "Which is an advantage in using JSON over a CSV file?",
+      "choices": [
+        "Values can be used that contain spaces.",
+        "There are multiple values for a particular key.",
+        "The files can be read line by line for every value.",
+        "Hierarchical structure allows for programmability."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Hierarchical structure allows for programmability.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Values can be used that contain spaces.\" is incorrect because the scenario requires: The correct answer is \"Hierarchical structure allows for programmability.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"There are multiple values for a particular key.\" is incorrect because the scenario requires: The correct answer is \"Hierarchical structure allows for programmability.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The files can be read line by line for every value.\" is incorrect because the scenario requires: The correct answer is \"Hierarchical structure allows for programmability.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q009",
+      "question": "When you request information from the Cisco DNA Center via a REST-based API, what format is the response in?",
+      "choices": [
+        "JSON",
+        "XML",
+        "CSV",
+        "YAML"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML",
+        "CKU-ESP",
+        "CKU-API",
+        "CKU-CISCO-DNA-CENTER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"JSON\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"XML\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"CSV\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"YAML\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

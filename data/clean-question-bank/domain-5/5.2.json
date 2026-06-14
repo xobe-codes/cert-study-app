@@ -1,0 +1,350 @@
+{
+  "objectiveId": "5.2",
+  "title": "Describe security program elements",
+  "questions": [
+    {
+      "id": "obj-5.2-source-q001",
+      "question": "What can protect users from a phishing attack that is sent via email?",
+      "choices": [
+        "Training",
+        "Anti-malware software",
+        "Antivirus software",
+        "Certificates"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security program",
+      "ckuIds": [
+        "CKU-SECURITY-PROGRAM",
+        "CKU-USER-AWARENESS",
+        "CKU-TRAINING",
+        "CKU-PHISHING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Training\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Anti-malware software\" is incorrect because the scenario requires: The correct answer is \"Training\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Antivirus software\" is incorrect because the scenario requires: The correct answer is \"Training\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Certificates\" is incorrect because the scenario requires: The correct answer is \"Training\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.2-source-q002",
+      "question": "A user has brought an email to your attention that is not from his bank, but it looks like his bank’s website when he clicks on the link. What is this most likely?",
+      "choices": [
+        "Spam",
+        "Password cracking",
+        "Phishing",
+        "Worm"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "security program",
+      "ckuIds": [
+        "CKU-SECURITY-PROGRAM",
+        "CKU-USER-AWARENESS",
+        "CKU-TRAINING",
+        "CKU-PHISHING",
+        "CKU-PASSWORD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Phishing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Spam\" is incorrect because the scenario requires: The correct answer is \"Phishing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Password cracking\" is incorrect because the scenario requires: The correct answer is \"Phishing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Worm\" is incorrect because the scenario requires: The correct answer is \"Phishing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.2-source-q003",
+      "question": "What type of filters can be placed over a monitor to prevent the data on the screen from being readable when viewed from the side?",
+      "choices": [
+        "Security",
+        "Privacy",
+        "Degaussing",
+        "Tempered"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security program",
+      "ckuIds": [
+        "CKU-SECURITY-PROGRAM",
+        "CKU-USER-AWARENESS",
+        "CKU-TRAINING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Privacy\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Security\" is incorrect because the scenario requires: The correct answer is \"Privacy\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Degaussing\" is incorrect because the scenario requires: The correct answer is \"Privacy\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Tempered\" is incorrect because the scenario requires: The correct answer is \"Privacy\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.2-source-q004",
+      "question": "Which form of social engineering is nothing more than looking over someone’s shoulder while they enter or view sensitive information?",
+      "choices": [
+        "Shoulder surfing",
+        "Phishing",
+        "Tailgating",
+        "Whaling"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security program",
+      "ckuIds": [
+        "CKU-SECURITY-PROGRAM",
+        "CKU-USER-AWARENESS",
+        "CKU-TRAINING",
+        "CKU-PHISHING",
+        "CKU-TAILGATING",
+        "CKU-SHOULDER-SURFING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Shoulder surfing\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Phishing\" is incorrect because the scenario requires: The correct answer is \"Shoulder surfing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Tailgating\" is incorrect because the scenario requires: The correct answer is \"Shoulder surfing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Whaling\" is incorrect because the scenario requires: The correct answer is \"Shoulder surfing\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.2-source-q005",
+      "question": "Several office-level users have administrative privileges on the network. Which of the following is the easiest to implement to immediately add security to the network?",
+      "choices": [
+        "Biometric authentication",
+        "Hardware tokens",
+        "Active Directory",
+        "Least privilege"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security program",
+      "ckuIds": [
+        "CKU-SECURITY-PROGRAM",
+        "CKU-USER-AWARENESS",
+        "CKU-TRAINING",
+        "CKU-LEAST-PRIVILEGE",
+        "CKU-TOKENS",
+        "CKU-AUTH-TOKEN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Least privilege\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Biometric authentication\" is incorrect because the scenario requires: The correct answer is \"Least privilege\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Hardware tokens\" is incorrect because the scenario requires: The correct answer is \"Least privilege\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Active Directory\" is incorrect because the scenario requires: The correct answer is \"Least privilege\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.2-source-q006",
+      "question": "You need to protect your users from Trojans, viruses, and phishing emails. What should you implement?",
+      "choices": [
+        "Multifactor authentication",
+        "Software firewalls",
+        "Anti-malware software",
+        "Antivirus software"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "security program",
+      "ckuIds": [
+        "CKU-SECURITY-PROGRAM",
+        "CKU-USER-AWARENESS",
+        "CKU-TRAINING",
+        "CKU-PHISHING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Anti-malware software\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Multifactor authentication\" is incorrect because the scenario requires: The correct answer is \"Anti-malware software\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Software firewalls\" is incorrect because the scenario requires: The correct answer is \"Anti-malware software\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Antivirus software\" is incorrect because the scenario requires: The correct answer is \"Anti-malware software\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.2-source-q007",
+      "question": "Identify a method for stopping tailgating?",
+      "choices": [
+        "User authentication",
+        "Mantraps",
+        "Strong passwords",
+        "Change SSIDs"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "security program",
+      "ckuIds": [
+        "CKU-SECURITY-PROGRAM",
+        "CKU-USER-AWARENESS",
+        "CKU-TRAINING",
+        "CKU-IDS",
+        "CKU-TAILGATING",
+        "CKU-MANTRAP",
+        "CKU-PASSWORD",
+        "CKU-SSID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Mantraps\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"User authentication\" is incorrect because the scenario requires: The correct answer is \"Mantraps\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Strong passwords\" is incorrect because the scenario requires: The correct answer is \"Mantraps\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Change SSIDs\" is incorrect because the scenario requires: The correct answer is \"Mantraps\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

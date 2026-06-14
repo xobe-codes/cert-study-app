@@ -1,0 +1,500 @@
+{
+  "objectiveId": "6.4",
+  "title": "Compare traditional campus device management with Cisco DNA Center",
+  "questions": [
+    {
+      "id": "obj-6.4-source-q001",
+      "question": "Which product is a replacement for APIC-EM?",
+      "choices": [
+        "OpenFlow",
+        "Cisco Prime Infrastructure",
+        "Cisco DNA Center",
+        "Cisco SD-WAN"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE",
+        "CKU-API",
+        "CKU-SD-WAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Cisco DNA Center\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"OpenFlow\" is incorrect because the scenario requires: The correct answer is \"Cisco DNA Center\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Cisco Prime Infrastructure\" is incorrect because the scenario requires: The correct answer is \"Cisco DNA Center\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Cisco SD-WAN\" is incorrect because the scenario requires: The correct answer is \"Cisco DNA Center\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.4-source-q002",
+      "question": "Which protocol is not used by the DNA discovery process for reading the inventory of a network device?",
+      "choices": [
+        "SSH",
+        "HTTPS",
+        "NETCONF",
+        "OpenFlow"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE",
+        "CKU-SSH",
+        "CKU-NETCONF",
+        "CKU-HTTP",
+        "CKU-INVENTORY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"OpenFlow\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SSH\" is incorrect because the scenario requires: The correct answer is \"OpenFlow\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"HTTPS\" is incorrect because the scenario requires: The correct answer is \"OpenFlow\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"NETCONF\" is incorrect because the scenario requires: The correct answer is \"OpenFlow\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.4-source-q003",
+      "question": "Where would you see the overall health of the network inside of the Cisco DNA Center?",
+      "choices": [
+        "Design",
+        "Policy",
+        "Assurance",
+        "Platform"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE",
+        "CKU-DNA-PLATFORM"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Assurance\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Design\" is incorrect because the scenario requires: The correct answer is \"Assurance\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Policy\" is incorrect because the scenario requires: The correct answer is \"Assurance\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Platform\" is incorrect because the scenario requires: The correct answer is \"Assurance\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.4-source-q004",
+      "question": "Which Cisco DNA Center feature allows you to template and apply standard configuration such as DNS servers, NTP servers, and AAA servers?",
+      "choices": [
+        "IP-based access control",
+        "Plug and Play",
+        "Group-based access control",
+        "Assurance"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE",
+        "CKU-AAA"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Plug and Play\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IP-based access control\" is incorrect because the scenario requires: The correct answer is \"Plug and Play\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Group-based access control\" is incorrect because the scenario requires: The correct answer is \"Plug and Play\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Assurance\" is incorrect because the scenario requires: The correct answer is \"Plug and Play\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.4-source-q005",
+      "question": "You want to see how everything is connected at a particular site. Which section contains a tool to obtain this information inside of the Cisco DNA Center?",
+      "choices": [
+        "Provision",
+        "Assurance",
+        "Platform",
+        "Policy"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE",
+        "CKU-DNA-PROVISION",
+        "CKU-DNA-PLATFORM"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Provision\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Assurance\" is incorrect because the scenario requires: The correct answer is \"Provision\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Platform\" is incorrect because the scenario requires: The correct answer is \"Provision\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Policy\" is incorrect because the scenario requires: The correct answer is \"Provision\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.4-source-q006",
+      "question": "You need to add an OSPF area to a number of routers. What is the easiest method to achieve this with the Cisco DNA Center?",
+      "choices": [
+        "IP-based access control",
+        "Python",
+        "DNA Command Runner",
+        "Inventory"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE",
+        "CKU-PYTHON-AUTOMATION",
+        "CKU-INVENTORY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"DNA Command Runner\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IP-based access control\" is incorrect because the scenario requires: The correct answer is \"DNA Command Runner\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Python\" is incorrect because the scenario requires: The correct answer is \"DNA Command Runner\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Inventory\" is incorrect because the scenario requires: The correct answer is \"DNA Command Runner\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.4-source-q007",
+      "question": "In which section inside of the Cisco DNA Center can you view and manage inventory of routers, switches, APs, and WLCs?",
+      "choices": [
+        "Provision",
+        "Policy",
+        "Design",
+        "Assurance"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE",
+        "CKU-WLC",
+        "CKU-DNA-PROVISION",
+        "CKU-INVENTORY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Provision\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Policy\" is incorrect because the scenario requires: The correct answer is \"Provision\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Design\" is incorrect because the scenario requires: The correct answer is \"Provision\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Assurance\" is incorrect because the scenario requires: The correct answer is \"Provision\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.4-source-q008",
+      "question": "You are developing a Python script that will interact with the Cisco DNA Center. Which section will detail the API that you will need to use?",
+      "choices": [
+        "Design",
+        "Policy",
+        "Provision",
+        "Platform"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE",
+        "CKU-PYTHON-AUTOMATION",
+        "CKU-API",
+        "CKU-DNA-PROVISION",
+        "CKU-DNA-PLATFORM"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Platform\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Design\" is incorrect because the scenario requires: The correct answer is \"Platform\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Policy\" is incorrect because the scenario requires: The correct answer is \"Platform\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Provision\" is incorrect because the scenario requires: The correct answer is \"Platform\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.4-source-q009",
+      "question": "Identify the Cisco DNA Center feature that automates the fabric of the underlay and overlay of the network?",
+      "choices": [
+        "Easy-QOS",
+        "SD-Access",
+        "System 360",
+        "Cisco ISE"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE",
+        "CKU-OVERLAY",
+        "CKU-UNDERLAY",
+        "CKU-SD-ACCESS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"SD-Access\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Easy-QOS\" is incorrect because the scenario requires: The correct answer is \"SD-Access\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"System 360\" is incorrect because the scenario requires: The correct answer is \"SD-Access\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Cisco ISE\" is incorrect because the scenario requires: The correct answer is \"SD-Access\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.4-source-q011",
+      "question": "Which method(s) of connectivity must be configured for network discovery inside of the Cisco DNA Center?",
+      "choices": [
+        "SSH",
+        "SNMP",
+        "Logging",
+        "Both A and B"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE",
+        "CKU-SSH",
+        "CKU-SNMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Both A and B\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SSH\" is incorrect because the scenario requires: The correct answer is \"Both A and B\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SNMP\" is incorrect because the scenario requires: The correct answer is \"Both A and B\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Logging\" is incorrect because the scenario requires: The correct answer is \"Both A and B\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

@@ -22,7 +22,33 @@
         "CKU-COPY-TFTP-RUNNING-CONFIG",
         "CKU-RUNNING-CONFIG"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Switch#copy tftp: running-config\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#archive tftp: running-config\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp: running-config\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#restore tftp://192.168.1.2 running-config\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp: running-config\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#copy server: running-config\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp: running-config\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.9-source-q002",
@@ -44,7 +70,33 @@
         "CKU-COPY-TFTP-RUNNING-CONFIG",
         "CKU-FLASH"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Switch#copy tftp flash\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#copy tftp ios\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp flash\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#copy tftp nvram\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp flash\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#upgrade tftp flash\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp flash\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.9-source-q003",
@@ -67,7 +119,33 @@
         "CKU-CRYPTO-KEY-GENERATE-RSA",
         "CKU-BOOT-SYSTEM-TFTP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#boot tftp://192.168.1.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin\" is incorrect because the scenario requires: The correct answer is \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin\" is incorrect because the scenario requires: The correct answer is \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.9-source-q004",
@@ -90,7 +168,33 @@
         "CKU-FLASH",
         "CKU-ROMMON"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS.\" is incorrect because the scenario requires: The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Nothing needs to be done because the IOS is not storage on the flash memory card.\" is incorrect because the scenario requires: The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Format the flash card with the FAT operating system and copy the IOS image to the card.\" is incorrect because the scenario requires: The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     },
     {
       "id": "obj-4.9-source-q005",
@@ -112,7 +216,33 @@
         "CKU-COPY-TFTP-RUNNING-CONFIG",
         "CKU-LOCAL-USERNAME"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ip ftp username USER password USERPASS\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#ftp USER password USERPASS\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#username USER password USERPASS\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     }
   ]
 }

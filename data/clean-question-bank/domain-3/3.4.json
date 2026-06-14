@@ -1,0 +1,2562 @@
+{
+  "objectiveId": "3.4",
+  "title": "Configure and verify single area OSPFv2",
+  "questions": [
+    {
+      "id": "3.4-c-q1",
+      "question": "What type of routing protocol is OSPF?",
+      "choices": [
+        "Distance vector",
+        "Link-state",
+        "Path vector",
+        "Static"
+      ],
+      "correctIndex": 1,
+      "explanation": "OSPF is a link-state IGP using LSAs and SPF.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "protocol type",
+      "ckuIds": [
+        "CKU-OSPF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "OSPF is a link-state IGP using LSAs and SPF."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Distance vector\" is incorrect because the scenario requires: OSPF is a link-state IGP using LSAs and SPF.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Path vector\" is incorrect because the scenario requires: OSPF is a link-state IGP using LSAs and SPF.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Static\" is incorrect because the scenario requires: OSPF is a link-state IGP using LSAs and SPF.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.4-c-q2",
+      "question": "What is OSPF’s default administrative distance?",
+      "choices": [
+        "90",
+        "100",
+        "110",
+        "120"
+      ],
+      "correctIndex": 2,
+      "explanation": "OSPF AD is 110.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "administrative distance",
+      "ckuIds": [
+        "CKU-OSPF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "OSPF AD is 110."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"90\" is incorrect because the scenario requires: OSPF AD is 110.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"100\" is incorrect because the scenario requires: OSPF AD is 110.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"120\" is incorrect because the scenario requires: OSPF AD is 110.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.4-c-q3",
+      "question": "With default settings, what is the OSPF cost of a 100 Mbps link?",
+      "choices": [
+        "1",
+        "10",
+        "100",
+        "64"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cost = 100 Mbps reference ÷ 100 Mbps = 1.",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "cost formula",
+      "ckuIds": [
+        "CKU-OSPF-COST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Cost = 100 Mbps reference ÷ 100 Mbps = 1."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"10\" is incorrect because the scenario requires: Cost = 100 Mbps reference ÷ 100 Mbps = 1.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"100\" is incorrect because the scenario requires: Cost = 100 Mbps reference ÷ 100 Mbps = 1.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"64\" is incorrect because the scenario requires: Cost = 100 Mbps reference ÷ 100 Mbps = 1.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.4-c-q4",
+      "question": "How is the OSPF Router ID selected if not set manually?",
+      "choices": [
+        "Lowest interface IP",
+        "Highest loopback IP, else highest active interface IP",
+        "MAC address",
+        "Always 0.0.0.0"
+      ],
+      "correctIndex": 1,
+      "explanation": "Highest loopback IP wins; otherwise the highest active interface IP.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "router id",
+      "ckuIds": [
+        "CKU-OSPF-NEIGHBOR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Highest loopback IP wins; otherwise the highest active interface IP."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Lowest interface IP\" is incorrect because the scenario requires: Highest loopback IP wins; otherwise the highest active interface IP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"MAC address\" is incorrect because the scenario requires: Highest loopback IP wins; otherwise the highest active interface IP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Always 0.0.0.0\" is incorrect because the scenario requires: Highest loopback IP wins; otherwise the highest active interface IP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.4-c-q5",
+      "question": "Two OSPF routers won’t form an adjacency. Which mismatch is a likely cause?",
+      "choices": [
+        "Different hostnames",
+        "Different hello/dead timers or area",
+        "Different SNMP strings",
+        "Different banners"
+      ],
+      "correctIndex": 1,
+      "explanation": "Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
+      "type": "troubleshooting",
+      "difficulty": "hard",
+      "concept": "adjacency requirements",
+      "ckuIds": [
+        "CKU-OSPF-NEIGHBOR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Different hostnames\" is incorrect because the scenario requires: Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Different SNMP strings\" is incorrect because the scenario requires: Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Different banners\" is incorrect because the scenario requires: Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.4-c-q6",
+      "question": "Which command advertises 10.0.0.0/24 into OSPF area 0?",
+      "choices": [
+        "network 10.0.0.0 255.255.255.0 area 0",
+        "network 10.0.0.0 0.0.0.255 area 0",
+        "ospf network 10.0.0.0/24",
+        "advertise 10.0.0.0 area 0"
+      ],
+      "correctIndex": 1,
+      "explanation": "OSPF `network` uses a wildcard mask: 0.0.0.255 for a /24.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "config network",
+      "ckuIds": [
+        "CKU-OSPF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "OSPF `network` uses a wildcard mask: 0.0.0.255 for a /24."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"network 10.0.0.0 255.255.255.0 area 0\" is incorrect because the scenario requires: OSPF `network` uses a wildcard mask: 0.0.0.255 for a /24.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ospf network 10.0.0.0/24\" is incorrect because the scenario requires: OSPF `network` uses a wildcard mask: 0.0.0.255 for a /24.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"advertise 10.0.0.0 area 0\" is incorrect because the scenario requires: OSPF `network` uses a wildcard mask: 0.0.0.255 for a /24.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.4-c-q7",
+      "question": "A healthy OSPF neighbor relationship settles in which state?",
+      "choices": [
+        "Init",
+        "2-Way",
+        "Exchange",
+        "Full"
+      ],
+      "correctIndex": 3,
+      "explanation": "Adjacent neighbors reach the Full state.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "full state",
+      "ckuIds": [
+        "CKU-OSPF-NEIGHBOR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "Adjacent neighbors reach the Full state."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Init\" is incorrect because the scenario requires: Adjacent neighbors reach the Full state.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"2-Way\" is incorrect because the scenario requires: Adjacent neighbors reach the Full state.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Exchange\" is incorrect because the scenario requires: Adjacent neighbors reach the Full state.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.4-c-q8",
+      "question": "What does `passive-interface` do in OSPF?",
+      "choices": [
+        "Stops advertising the network",
+        "Advertises the network but sends no hellos",
+        "Disables the interface",
+        "Forces DR election"
+      ],
+      "correctIndex": 1,
+      "explanation": "A passive interface is still advertised but sends no OSPF hellos (e.g. toward LAN hosts).",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "passive interface",
+      "ckuIds": [
+        "CKU-OSPF-NEIGHBOR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "A passive interface is still advertised but sends no OSPF hellos (e.g. toward LAN hosts)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Stops advertising the network\" is incorrect because the scenario requires: A passive interface is still advertised but sends no OSPF hellos (e.g. toward LAN hosts).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Disables the interface\" is incorrect because the scenario requires: A passive interface is still advertised but sends no OSPF hellos (e.g. toward LAN hosts).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Forces DR election\" is incorrect because the scenario requires: A passive interface is still advertised but sends no OSPF hellos (e.g. toward LAN hosts).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.4-c-q9",
+      "question": "On a multi-access Ethernet segment, how is the DR elected?",
+      "choices": [
+        "Lowest IP",
+        "Highest OSPF priority, then highest Router ID",
+        "Lowest MAC",
+        "First to boot only"
+      ],
+      "correctIndex": 1,
+      "explanation": "Highest priority wins; ties break on highest Router ID. Priority 0 never becomes DR.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "DR election",
+      "ckuIds": [
+        "CKU-OSPF-NEIGHBOR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Highest priority wins; ties break on highest Router ID. Priority 0 never becomes DR."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Lowest IP\" is incorrect because the scenario requires: Highest priority wins; ties break on highest Router ID. Priority 0 never becomes DR.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Lowest MAC\" is incorrect because the scenario requires: Highest priority wins; ties break on highest Router ID. Priority 0 never becomes DR.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"First to boot only\" is incorrect because the scenario requires: Highest priority wins; ties break on highest Router ID. Priority 0 never becomes DR.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q001",
+      "question": "Which protocol is a true link-state protocol?",
+      "choices": [
+        "RIP",
+        "OSPF",
+        "EIGRP",
+        "BGP"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-RIP",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"OSPF\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RIP\" is incorrect because the scenario requires: The correct answer is \"OSPF\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"EIGRP\" is incorrect because the scenario requires: The correct answer is \"OSPF\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"BGP\" is incorrect because the scenario requires: The correct answer is \"OSPF\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q002",
+      "question": "Which dynamic routing protocol uses the Dijkstra routing algorithm?",
+      "choices": [
+        "RIP",
+        "EIGRP",
+        "OSPF",
+        "BGP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-RIP",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"OSPF\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RIP\" is incorrect because the scenario requires: The correct answer is \"OSPF\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"EIGRP\" is incorrect because the scenario requires: The correct answer is \"OSPF\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"BGP\" is incorrect because the scenario requires: The correct answer is \"OSPF\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q003",
+      "question": "Why don’t link-state protocols suffer from routing loops as distance- vector protocols do?",
+      "choices": [
+        "Link-state protocols require routers to maintain their own topology database of the network.",
+        "Link-state protocols share the topology database among all routers.",
+        "Link-state protocols allow routers to maintain a link-state database of all routers.",
+        "Link-state protocols use multiple routes to the same destination."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Link-state protocols require routers to maintain their own topology database of the network.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Link-state protocols share the topology database among all routers.\" is incorrect because the scenario requires: The correct answer is \"Link-state protocols require routers to maintain their own topology database of the network.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Link-state protocols allow routers to maintain a link-state database of all routers.\" is incorrect because the scenario requires: The correct answer is \"Link-state protocols require routers to maintain their own topology database of the network.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Link-state protocols use multiple routes to the same destination.\" is incorrect because the scenario requires: The correct answer is \"Link-state protocols require routers to maintain their own topology database of the network.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q004",
+      "question": "What is an advantage of a link-state dynamic routing protocol?",
+      "choices": [
+        "The only metric needed is hop count.",
+        "Link-state dynamic routing protocols support CIDR and VLSM.",
+        "OSPF requires only a small amount of resources such as CPU and RAM.",
+        "Link-state dynamic routing protocols use triggered updates for recalculation of routing tables."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-METRIC",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The only metric needed is hop count.\" is incorrect because the scenario requires: The correct answer is \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Link-state dynamic routing protocols support CIDR and VLSM.\" is incorrect because the scenario requires: The correct answer is \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"OSPF requires only a small amount of resources such as CPU and RAM.\" is incorrect because the scenario requires: The correct answer is \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q005",
+      "question": "What type of network is best suited for a link-state routing protocol such as OSPF?",
+      "choices": [
+        "Extremely small networks of three routers",
+        "Networks with routers that have a limited amount of RAM and CPU",
+        "Large hierarchical networks like global networks",
+        "Networks within organizations with limited training of network admins"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Large hierarchical networks like global networks\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Extremely small networks of three routers\" is incorrect because the scenario requires: The correct answer is \"Large hierarchical networks like global networks\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Networks with routers that have a limited amount of RAM and CPU\" is incorrect because the scenario requires: The correct answer is \"Large hierarchical networks like global networks\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Networks within organizations with limited training of network admins\" is incorrect because the scenario requires: The correct answer is \"Large hierarchical networks like global networks\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q006",
+      "question": "Which is an example of an interior gateway protocol that is nonproprietary?",
+      "choices": [
+        "EGP",
+        "OSPF",
+        "EIGRP",
+        "BGP"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"OSPF\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"EGP\" is incorrect because the scenario requires: The correct answer is \"OSPF\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"EIGRP\" is incorrect because the scenario requires: The correct answer is \"OSPF\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"BGP\" is incorrect because the scenario requires: The correct answer is \"OSPF\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q010",
+      "question": "Which multicast address is used by OSPF for neighbor discovery?",
+      "choices": [
+        "224.0.0.9",
+        "224.0.0.5",
+        "224.0.0.6",
+        "224.0.0.7"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-NEIGHBORSHIP",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"224.0.0.5\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"224.0.0.9\" is incorrect because the scenario requires: The correct answer is \"224.0.0.5\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"224.0.0.6\" is incorrect because the scenario requires: The correct answer is \"224.0.0.5\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"224.0.0.7\" is incorrect because the scenario requires: The correct answer is \"224.0.0.5\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q012",
+      "question": "Which statement is true about OSPF?",
+      "choices": [
+        "OSPF is a distance-vector protocol.",
+        "OSPF performs default auto-summarization.",
+        "OSPF broadcasts changes to the routing tables.",
+        "OSPF updates are event triggered."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"OSPF updates are event triggered.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"OSPF is a distance-vector protocol.\" is incorrect because the scenario requires: The correct answer is \"OSPF updates are event triggered.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPF performs default auto-summarization.\" is incorrect because the scenario requires: The correct answer is \"OSPF updates are event triggered.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"OSPF broadcasts changes to the routing tables.\" is incorrect because the scenario requires: The correct answer is \"OSPF updates are event triggered.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q013",
+      "question": "How do Cisco routers determine their router ID (RID)?",
+      "choices": [
+        "The lowest IP address configured on the loopback interfaces",
+        "The highest IP address configured on the router",
+        "The lowest IP address configured on the router",
+        "The highest MAC address configured on the router"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The highest IP address configured on the router\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The lowest IP address configured on the loopback interfaces\" is incorrect because the scenario requires: The correct answer is \"The highest IP address configured on the router\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The lowest IP address configured on the router\" is incorrect because the scenario requires: The correct answer is \"The highest IP address configured on the router\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The highest MAC address configured on the router\" is incorrect because the scenario requires: The correct answer is \"The highest IP address configured on the router\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q014",
+      "question": "What is the definition of an OSPF link?",
+      "choices": [
+        "Two routers participating in OSPF routing",
+        "Two routers that share the same area ID",
+        "A routed interface added to the OSPF process",
+        "Two routers that share the same AS number"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"A routed interface added to the OSPF process\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Two routers participating in OSPF routing\" is incorrect because the scenario requires: The correct answer is \"A routed interface added to the OSPF process\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Two routers that share the same area ID\" is incorrect because the scenario requires: The correct answer is \"A routed interface added to the OSPF process\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Two routers that share the same AS number\" is incorrect because the scenario requires: The correct answer is \"A routed interface added to the OSPF process\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q015",
+      "question": "Which statement is correct about adjacency with OSPF on a broadcast network (LAN)?",
+      "choices": [
+        "An adjacency is formed between routers on the same link.",
+        "An adjacency is formed between the designated router (DR) and every neighbor router on the same area.",
+        "An adjacency is formed between the DR and every router in the same autonomous system.",
+        "An adjacency is formed between the DR and every router in the same OSPF area."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-NEIGHBORSHIP",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"An adjacency is formed between the designated router (DR) and every neighbor router on the same area.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"An adjacency is formed between routers on the same link.\" is incorrect because the scenario requires: The correct answer is \"An adjacency is formed between the designated router (DR) and every neighbor router on the same a…",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"An adjacency is formed between the DR and every router in the same autonomous system.\" is incorrect because the scenario requires: The correct answer is \"An adjacency is formed between the designated router (DR) and every neighbor router on the same a…",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"An adjacency is formed between the DR and every router in the same OSPF area.\" is incorrect because the scenario requires: The correct answer is \"An adjacency is formed between the designated router (DR) and every neighbor router on the same a…",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q016",
+      "question": "How is a DR elected for OSPF?",
+      "choices": [
+        "The DR is elected by the highest priority and highest RID in the same autonomous system.",
+        "The DR is elected by the lowest priority and highest RID in the same area.",
+        "The DR is elected by the lowest priority and lowest RID.",
+        "The DR is elected by the highest priority and highest RID in the same area."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DR-BDR",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"The DR is elected by the highest priority and highest RID in the same area.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The DR is elected by the highest priority and highest RID in the same autonomous system.\" is incorrect because the scenario requires: The correct answer is \"The DR is elected by the highest priority and highest RID in the same area.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The DR is elected by the lowest priority and highest RID in the same area.\" is incorrect because the scenario requires: The correct answer is \"The DR is elected by the highest priority and highest RID in the same area.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The DR is elected by the lowest priority and lowest RID.\" is incorrect because the scenario requires: The correct answer is \"The DR is elected by the highest priority and highest RID in the same area.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q017",
+      "question": "In which database can you see all of the routers discovered in the OSPF network in which hello packets were sent and acknowledged?",
+      "choices": [
+        "The routing table database",
+        "The neighborship database",
+        "The topological database",
+        "The link-state database"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-HELLO",
+        "CKU-OSPF-NEIGHBORSHIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The neighborship database\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The routing table database\" is incorrect because the scenario requires: The correct answer is \"The neighborship database\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The topological database\" is incorrect because the scenario requires: The correct answer is \"The neighborship database\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The link-state database\" is incorrect because the scenario requires: The correct answer is \"The neighborship database\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q018",
+      "question": "Which is a correct statement about OSPF?",
+      "choices": [
+        "OSPF uses autonomous systems for scalability.",
+        "OSPF uses process IDs for scalability.",
+        "OSPF uses areas for scalability.",
+        "OSPF uses RID for scalability."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"OSPF uses areas for scalability.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"OSPF uses autonomous systems for scalability.\" is incorrect because the scenario requires: The correct answer is \"OSPF uses areas for scalability.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPF uses process IDs for scalability.\" is incorrect because the scenario requires: The correct answer is \"OSPF uses areas for scalability.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"OSPF uses RID for scalability.\" is incorrect because the scenario requires: The correct answer is \"OSPF uses areas for scalability.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q019",
+      "question": "Which is an example of a broadcast (multi-access) network?",
+      "choices": [
+        "An X.25 network",
+        "Frame Relay",
+        "ATM network",
+        "A LAN"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"A LAN\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"An X.25 network\" is incorrect because the scenario requires: The correct answer is \"A LAN\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Frame Relay\" is incorrect because the scenario requires: The correct answer is \"A LAN\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ATM network\" is incorrect because the scenario requires: The correct answer is \"A LAN\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q020",
+      "question": "Which multicast address is used by OSPF for communication between the DR and adjacencies formed?",
+      "choices": [
+        "224.0.0.9",
+        "224.0.0.5",
+        "224.0.0.6",
+        "224.0.0.7"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"224.0.0.6\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"224.0.0.9\" is incorrect because the scenario requires: The correct answer is \"224.0.0.6\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"224.0.0.5\" is incorrect because the scenario requires: The correct answer is \"224.0.0.6\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"224.0.0.7\" is incorrect because the scenario requires: The correct answer is \"224.0.0.6\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q021",
+      "question": "What does the command router ospf 20 configure?",
+      "choices": [
+        "An OSPF router process ID of 20",
+        "An OSPF router area of 20",
+        "An OSPF router autonomous system of 20",
+        "An OSPF cost of 20"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-COST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"An OSPF router process ID of 20\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"An OSPF router area of 20\" is incorrect because the scenario requires: The correct answer is \"An OSPF router process ID of 20\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"An OSPF router autonomous system of 20\" is incorrect because the scenario requires: The correct answer is \"An OSPF router process ID of 20\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"An OSPF cost of 20\" is incorrect because the scenario requires: The correct answer is \"An OSPF router process ID of 20\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q022",
+      "question": "Which command will verify the bandwidth of an interface participating in OSPF?",
+      "choices": [
+        "Router#show ospf",
+        "Router#show interface",
+        "Router#show running-config",
+        "Router#show ospf interface"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-BANDWIDTH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router#show interface\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ospf\" is incorrect because the scenario requires: The correct answer is \"Router#show interface\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show running-config\" is incorrect because the scenario requires: The correct answer is \"Router#show interface\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ospf interface\" is incorrect because the scenario requires: The correct answer is \"Router#show interface\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q023",
+      "question": "Which command will tune the cost of the OSPF metrics for integration with non-Cisco routers to participate in OSPF?",
+      "choices": [
+        "Router(config-if)#ip cost 20000",
+        "Router(config)#ip ospf cost 20000",
+        "Router(config)#ip cost 20000",
+        "Router(config-if)#ip ospf cost 20000"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-METRIC",
+        "CKU-OSPF-COST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config-if)#ip ospf cost 20000\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config-if)#ip cost 20000\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip ospf cost 20000\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#ip ospf cost 20000\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip ospf cost 20000\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ip cost 20000\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip ospf cost 20000\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q024",
+      "question": "Which command will configure a network of 192.168.1.0/24 for OSPF area 0?",
+      "choices": [
+        "Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255",
+        "Router(config)#ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255",
+        "Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 255.255.255.0",
+        "Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255\" is incorrect because the scenario requires: The correct answer is \"Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255\" is incorrect because the scenario requires: The correct answer is \"Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 255.255.255.0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#router ospf 1 Router(config-router)#network 192.168.1.0 0.0.0.255 area 0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q025",
+      "question": "What is the default number of equal-cost routes for OSPF on Cisco routers?",
+      "choices": [
+        "4 routes",
+        "8 routes",
+        "16 routes",
+        "32 routes"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-OSPF-COST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"4 routes\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"8 routes\" is incorrect because the scenario requires: The correct answer is \"4 routes\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"16 routes\" is incorrect because the scenario requires: The correct answer is \"4 routes\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"32 routes\" is incorrect because the scenario requires: The correct answer is \"4 routes\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q026",
+      "question": "You want to advertise a network of 131.40.32.0/27 with OSPF. Which wildcard mask will you need to use?",
+      "choices": [
+        "255.255.224.0",
+        "0.0.32.255",
+        "0.0.0.31",
+        "0.0.224.255"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-NETWORK-MASK",
+        "CKU-WILDCARD-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"0.0.0.31\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"255.255.224.0\" is incorrect because the scenario requires: The correct answer is \"0.0.0.31\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"0.0.32.255\" is incorrect because the scenario requires: The correct answer is \"0.0.0.31\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"0.0.224.255\" is incorrect because the scenario requires: The correct answer is \"0.0.0.31\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q027",
+      "question": "Which command will allow changing the number of equal-cost routes for OSPF?",
+      "choices": [
+        "Router(config)#ospf equal-cost 10",
+        "Router(config-router)#ospf equal-cost 10",
+        "Router(config)#ospf maximum-paths 10",
+        "Router(config-router)#maximum-paths 10"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-COST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config-router)#maximum-paths 10\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ospf equal-cost 10\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#maximum-paths 10\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-router)#ospf equal-cost 10\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#maximum-paths 10\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ospf maximum-paths 10\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#maximum-paths 10\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q028",
+      "question": "What is the maximum number of equal-cost routes that can be configured for OSPF on Cisco routers?",
+      "choices": [
+        "4 routes",
+        "8 routes",
+        "16 routes",
+        "32 routes"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-COST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"32 routes\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"4 routes\" is incorrect because the scenario requires: The correct answer is \"32 routes\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"8 routes\" is incorrect because the scenario requires: The correct answer is \"32 routes\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"16 routes\" is incorrect because the scenario requires: The correct answer is \"32 routes\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q029",
+      "question": "Which command will allow you to verify the router’s RID for OSPF?",
+      "choices": [
+        "Router#show ip ospf",
+        "Router#show ip interface",
+        "Router#show ip ospf rid",
+        "Router#show ip ospf neighbor"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-NEIGHBORSHIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#show ip ospf\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip interface\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show ip ospf rid\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ip ospf neighbor\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q030",
+      "question": "You want to advertise a network of 192.168.1.16/28 with OSPF. Which wildcard mask will you need to use?",
+      "choices": [
+        "0.0.0.16",
+        "255.255.255.240",
+        "0.0.0.15",
+        "0.0.0.240"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-NETWORK-MASK",
+        "CKU-WILDCARD-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"0.0.0.15\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"0.0.0.16\" is incorrect because the scenario requires: The correct answer is \"0.0.0.15\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"255.255.255.240\" is incorrect because the scenario requires: The correct answer is \"0.0.0.15\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"0.0.0.240\" is incorrect because the scenario requires: The correct answer is \"0.0.0.15\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q031",
+      "question": "Which command will allow you to verify if a remote router has formed an adjacency with the current router?",
+      "choices": [
+        "Router#show ip ospf neighbor",
+        "Router#show router adjacency",
+        "Router#show ip ospf",
+        "Router#show ip ospf router"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-NEIGHBORSHIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#show ip ospf neighbor\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show router adjacency\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf neighbor\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show ip ospf\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf neighbor\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ip ospf router\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf neighbor\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q032",
+      "question": "What is the default OSPF hello interval in which hello packets are sent out on a broadcast (multi-access) network?",
+      "choices": [
+        "5 seconds",
+        "10 seconds",
+        "30 seconds",
+        "60 seconds"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-OSPF-HELLO"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"10 seconds\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"5 seconds\" is incorrect because the scenario requires: The correct answer is \"10 seconds\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"30 seconds\" is incorrect because the scenario requires: The correct answer is \"10 seconds\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"60 seconds\" is incorrect because the scenario requires: The correct answer is \"10 seconds\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q033",
+      "question": "You are running OSPF on a router. One of the interfaces, Gi0/1, connects to your ISP. You want to make sure you do not forward any OSPF packets to your ISP. How can you achieve this?",
+      "choices": [
+        "Router(config-if)#passive-interface",
+        "Router(config-router)#passive-interface gigabitethernet 0/1",
+        "Router(config)#passive-interface gigabitethernet 0/1",
+        "Router(config-if)#passive-interface default"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-PASSIVE-INTERFACE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config-router)#passive-interface gigabitethernet 0/1\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config-if)#passive-interface\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#passive-interface gigabitethernet 0/1\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#passive-interface gigabitethernet 0/1\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#passive-interface gigabitethernet 0/1\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config-if)#passive-interface default\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#passive-interface gigabitethernet 0/1\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q034",
+      "question": "Which command will allow you to verify the interfaces that hello packets are being sent out for OSPF?",
+      "choices": [
+        "Router#show interfaces",
+        "Router#show ip routes",
+        "Router#show ip ospf interface",
+        "Router#show ip ospf brief"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-HELLO",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#show ip ospf interface\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show interfaces\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf interface\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf interface\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ip ospf brief\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf interface\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q035",
+      "question": "Which command will statically set the RID for OSPF and override all others?",
+      "choices": [
+        "Router(config)#interface fa 0/1 Router(config-if)#ip address 192.168.1.5 255.255.255.0",
+        "Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.5 255.255.255.0",
+        "Router(config-router)#rid 192.168.1.5",
+        "Router(config-router)#router-id 192.168.1.5"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DR-BDR",
+        "CKU-STATIC-ROUTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config-router)#router-id 192.168.1.5\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#interface fa 0/1 Router(config-if)#ip address 192.168.1.5 255.255.255.0\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#router-id 192.168.1.5\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.5 255.255.255.0\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#router-id 192.168.1.5\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-router)#rid 192.168.1.5\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#router-id 192.168.1.5\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q036",
+      "question": "Which command(s) will only allow interface Gi0/2 to send hello packets for OSPF?",
+      "choices": [
+        "Router(config-router)#active-interface gigabitethernet 0/2",
+        "Router(config-router)#passive-interface default Router(config-router)#active-interface gigabitethernet 0/2",
+        "Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2",
+        "Router(config-router)#passive-interface gigabitethernet 0/2"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-OSPF-HELLO",
+        "CKU-PASSIVE-INTERFACE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config-router)#active-interface gigabitethernet 0/2\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabi…",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-router)#passive-interface default Router(config-router)#active-interface gigabitethernet 0/2\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabi…",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config-router)#passive-interface gigabitethernet 0/2\" is incorrect because the scenario requires: The correct answer is \"Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabi…",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q037",
+      "question": "After changing the router’s RID for OSPF, which command needs to be entered?",
+      "choices": [
+        "Router#clear ip ospf",
+        "Router(config-router)#shutdown Router(config-router)#no shutdown",
+        "Router(config-router)#clear ip ospf",
+        "Router#clear ospf"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#clear ip ospf\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-router)#shutdown Router(config-router)#no shutdown\" is incorrect because the scenario requires: The correct answer is \"Router#clear ip ospf\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-router)#clear ip ospf\" is incorrect because the scenario requires: The correct answer is \"Router#clear ip ospf\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#clear ospf\" is incorrect because the scenario requires: The correct answer is \"Router#clear ip ospf\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q041",
+      "question": "You have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating? Refer to the following...",
+      "choices": [
+        "Interface Serial 0/3/0",
+        "Interface Serial 0/3/0.1",
+        "Interface Serial 0/3/0.2",
+        "Interface GigabitEthernet 0/0"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Interface GigabitEthernet 0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Interface Serial 0/3/0\" is incorrect because the scenario requires: The correct answer is \"Interface GigabitEthernet 0/0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Interface Serial 0/3/0.1\" is incorrect because the scenario requires: The correct answer is \"Interface GigabitEthernet 0/0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Interface Serial 0/3/0.2\" is incorrect because the scenario requires: The correct answer is \"Interface GigabitEthernet 0/0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q042",
+      "question": "Two routers, called Router A and Router B, are configured in the same area and share a common LAN. However, they cannot form an adjacency. What could the problem be?",
+      "choices": [
+        "There is a static route configured between the two routers.",
+        "Router A is configured with multiple area IDs.",
+        "Router A is configured with a hello timer of 30.",
+        "Router B is configured with a hello timer of 10."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-HELLO",
+        "CKU-STATIC-ROUTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router A is configured with a hello timer of 30.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"There is a static route configured between the two routers.\" is incorrect because the scenario requires: The correct answer is \"Router A is configured with a hello timer of 30.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router A is configured with multiple area IDs.\" is incorrect because the scenario requires: The correct answer is \"Router A is configured with a hello timer of 30.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router B is configured with a hello timer of 10.\" is incorrect because the scenario requires: The correct answer is \"Router A is configured with a hello timer of 30.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q046",
+      "question": "You have configured a router with the following command. However, when you enter show ip routes you do not see any routes for OSPF. What is the problem? Router(config)#router ospf 255 Router(config-router)#network 10.0.0.0 0.0.0.0 area 255",
+      "choices": [
+        "The process ID is incorrect.",
+        "The area number is incorrect.",
+        "The subnet mask is incorrect.",
+        "The network ID is incorrect."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-NETWORK-MASK",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The subnet mask is incorrect.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The process ID is incorrect.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is incorrect.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The area number is incorrect.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is incorrect.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The network ID is incorrect.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is incorrect.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q048",
+      "question": "Which state in the neighbor table indicates that the router has successfully downloaded the LSA information from a neighboring router?",
+      "choices": [
+        "FULL state",
+        "EXSTART state",
+        "INIT state",
+        "EXCHANGE state"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-NEIGHBORSHIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"FULL state\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"EXSTART state\" is incorrect because the scenario requires: The correct answer is \"FULL state\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"INIT state\" is incorrect because the scenario requires: The correct answer is \"FULL state\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"EXCHANGE state\" is incorrect because the scenario requires: The correct answer is \"FULL state\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q050",
+      "question": "You have two links that enter the same OSPF router with the same bandwidth. You want to prefer one route over the other yet allow the second as a backup route. Which command would you use to achieve this?",
+      "choices": [
+        "Router(config-router)#ip ospf priority 25",
+        "Router(config-if)#ip ospf route primary",
+        "Router(config-if)#ip ospf cost 25",
+        "Router(config-router)#passive interface gi 0/0"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-PASSIVE-INTERFACE",
+        "CKU-OSPF-COST",
+        "CKU-BANDWIDTH",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router(config-if)#ip ospf cost 25\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config-router)#ip ospf priority 25\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip ospf cost 25\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-if)#ip ospf route primary\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip ospf cost 25\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config-router)#passive interface gi 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip ospf cost 25\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q053",
+      "question": "Which command will display the DR for a LAN?",
+      "choices": [
+        "Router#show ip ospf neighbor",
+        "Router#show ip ospf database",
+        "Router#show ip ospf dr",
+        "Router#show ip ospf interface"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-OSPF-NEIGHBORSHIP",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router#show ip ospf interface\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show ip ospf neighbor\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf interface\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip ospf database\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf interface\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show ip ospf dr\" is incorrect because the scenario requires: The correct answer is \"Router#show ip ospf interface\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q056",
+      "question": "Which command will set the bandwidth of an interface to 2.048 Mb/s?",
+      "choices": [
+        "Router(config-if)#bandwidth 2048",
+        "Router(config-if)#bandwidth 2048000000",
+        "Router(config-if)#bandwidth 2.048",
+        "Router(config-if)#bandwidth 2048000"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-BANDWIDTH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router(config-if)#bandwidth 2048\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-if)#bandwidth 2048000000\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#bandwidth 2048\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-if)#bandwidth 2.048\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#bandwidth 2048\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config-if)#bandwidth 2048000\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#bandwidth 2048\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q057",
+      "question": "Which command would you use to make sure Router A never becomes a DR?",
+      "choices": [
+        "Router(config)#no ospf designated",
+        "Router(config-router)#no ospf designated",
+        "Router(config-router)#passive interface gi 0/0",
+        "Router(config-if)#ip ospf priority 0"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DR-BDR",
+        "CKU-PASSIVE-INTERFACE",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config-if)#ip ospf priority 0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#no ospf designated\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip ospf priority 0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config-router)#no ospf designated\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip ospf priority 0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config-router)#passive interface gi 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip ospf priority 0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q058",
+      "question": "Which command will configure a loopback interface with an address of 192.168.1.2/24?",
+      "choices": [
+        "Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2/24",
+        "Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0",
+        "Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2/24",
+        "Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2 255.255.255.0"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DR-BDR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2/24\" is incorrect because the scenario requires: The correct answer is \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2/24\" is incorrect because the scenario requires: The correct answer is \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2 255.255.255.0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2 255.255.255.0\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q060",
+      "question": "What is the default priority for Open Shortest Path First (OSPF) routers?",
+      "choices": [
+        "1",
+        "100",
+        "255",
+        "32,768"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"1\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"100\" is incorrect because the scenario requires: The correct answer is \"1\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"255\" is incorrect because the scenario requires: The correct answer is \"1\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"32,768\" is incorrect because the scenario requires: The correct answer is \"1\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q061",
+      "question": "You have changed the router’s priority for OSPF to make the router the DR, but the router has not become a DR. What must be done to force the election?",
+      "choices": [
+        "You must use the shutdown and no shutdown commands on the interface with the highest IP address.",
+        "In global configuration mode, you must enter the command ospf election force.",
+        "In privileged exec mode, you must enter the command clear ip ospf process x.",
+        "In privileged exec mode on the DR, you must enter the command clear ip ospf process x."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID",
+        "CKU-DR-BDR",
+        "CKU-PRIORITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"In privileged exec mode on the DR, you must enter the command clear ip ospf process x.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"You must use the shutdown and no shutdown commands on the interface with the highest IP address.\" is incorrect because the scenario requires: The correct answer is \"In privileged exec mode on the DR, you must enter the command clear ip ospf process x.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"In global configuration mode, you must enter the command ospf election force.\" is incorrect because the scenario requires: The correct answer is \"In privileged exec mode on the DR, you must enter the command clear ip ospf process x.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"In privileged exec mode, you must enter the command clear ip ospf process x.\" is incorrect because the scenario requires: The correct answer is \"In privileged exec mode on the DR, you must enter the command clear ip ospf process x.\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    },
+    {
+      "id": "obj-3.4-source-q063",
+      "question": "What is the AD for OSPF?",
+      "choices": [
+        "90",
+        "110",
+        "120",
+        "200"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ospfv2",
+      "ckuIds": [
+        "CKU-OSPFV2",
+        "CKU-SINGLE-AREA-OSPF",
+        "CKU-ROUTER-ID"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"110\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"90\" is incorrect because the scenario requires: The correct answer is \"110\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"120\" is incorrect because the scenario requires: The correct answer is \"110\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"200\" is incorrect because the scenario requires: The correct answer is \"110\".",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+      }
+    }
+  ]
+}

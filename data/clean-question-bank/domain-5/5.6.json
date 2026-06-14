@@ -1,0 +1,1238 @@
+{
+  "objectiveId": "5.6",
+  "title": "Configure Layer 2 security features",
+  "questions": [
+    {
+      "id": "obj-5.7-source-q001",
+      "question": "Which is a requirement for the use of DHCP snooping to protect a device?",
+      "choices": [
+        "The device is on a layer 2 switched port on the same VLAN.",
+        "The DHCP server is running on the layer 2 switch.",
+        "The device is on a layer 3 routed port on the same VLAN.",
+        "Configuration of a dedicated IP address for monitoring DHCP transactions."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The device is on a layer 2 switched port on the same VLAN.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The DHCP server is running on the layer 2 switch.\" is incorrect because the scenario requires: The correct answer is \"The device is on a layer 2 switched port on the same VLAN.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The device is on a layer 3 routed port on the same VLAN.\" is incorrect because the scenario requires: The correct answer is \"The device is on a layer 2 switched port on the same VLAN.\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Configuration of a dedicated IP address for monitoring DHCP transactions.\" is incorrect because the scenario requires: The correct answer is \"The device is on a layer 2 switched port on the same VLAN.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q002",
+      "question": "Which attack can be used on a native VLAN?",
+      "choices": [
+        "Double tagging",
+        "VLAN traversal",
+        "Trunk popping",
+        "Denial of service"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY",
+        "CKU-DOS",
+        "CKU-CRYPTO-KEY-GENERATE-RSA"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Double tagging\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"VLAN traversal\" is incorrect because the scenario requires: The correct answer is \"Double tagging\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Trunk popping\" is incorrect because the scenario requires: The correct answer is \"Double tagging\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Denial of service\" is incorrect because the scenario requires: The correct answer is \"Double tagging\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q003",
+      "question": "Which command is used to configure the port of a switch as trusted for DHCP snooping?",
+      "choices": [
+        "Switch(config-if)#ip dhcp snooping trust",
+        "Switch(config-if)#dhcp snooping trust",
+        "Switch(config)#ip dhcp snooping trust interface gi 2/3",
+        "Switch(config-if)#ip dhcp trust"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Switch(config-if)#ip dhcp snooping trust\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config-if)#dhcp snooping trust\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config)#ip dhcp snooping trust interface gi 2/3\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config-if)#ip dhcp trust\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q004",
+      "question": "Which command should you start with when trying to diagnose port security issues?",
+      "choices": [
+        "Switch#show port-security",
+        "Switch#show mac address-table",
+        "Switch#show interface",
+        "Switch#show security"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Switch#show port-security\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#show mac address-table\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#show interface\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#show security\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q005",
+      "question": "You have configured an access port for a remote office computer. The office has no IT persons on site. You want to stop workers from plugging in a WAP and exposing your company’s internal network. Which feature should you configure?",
+      "choices": [
+        "Dynamic VLANs",
+        "Port security",
+        "ACLs",
+        "VLAN pruning"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY",
+        "CKU-ACL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Port security\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Dynamic VLANs\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ACLs\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"VLAN pruning\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q006",
+      "question": "Which method can restrict a user from plugging a wireless access point into a corporate network?",
+      "choices": [
+        "Access control lists",
+        "Port security",
+        "Wired Equivalent Privacy",
+        "Static MAC addresses"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Port security\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Access control lists\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Wired Equivalent Privacy\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Static MAC addresses\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q007",
+      "question": "What does port security use to block unauthorized access?",
+      "choices": [
+        "Source MAC addresses",
+        "Destination MAC addresses",
+        "Source IP addresses",
+        "Destination IP addresses"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Source MAC addresses\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Destination MAC addresses\" is incorrect because the scenario requires: The correct answer is \"Source MAC addresses\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Source IP addresses\" is incorrect because the scenario requires: The correct answer is \"Source MAC addresses\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Destination IP addresses\" is incorrect because the scenario requires: The correct answer is \"Source MAC addresses\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q008",
+      "question": "Which command enable port security?",
+      "choices": [
+        "Switch(config)#switchport port-security",
+        "Switch(config)#port-security enable",
+        "Switch(config-if)#switchport port-security",
+        "Switch(config-if)#port-security enable"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Switch(config-if)#switchport port-security\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config)#switchport port-security\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config)#port-security enable\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config-if)#port-security enable\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q009",
+      "question": "If port security is enabled on an interface, what is the maximum number of MAC addresses allowed by default?",
+      "choices": [
+        "1 MAC address",
+        "2 MAC addresses",
+        "0 MAC addresses",
+        "10 MAC addresses"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"1 MAC address\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"2 MAC addresses\" is incorrect because the scenario requires: The correct answer is \"1 MAC address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"0 MAC addresses\" is incorrect because the scenario requires: The correct answer is \"1 MAC address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"10 MAC addresses\" is incorrect because the scenario requires: The correct answer is \"1 MAC address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q010",
+      "question": "Which layer of the OSI model does port security use for securing a port?",
+      "choices": [
+        "Layer 0",
+        "Layer 1",
+        "Layer 2",
+        "Layer 3"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Layer 2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Layer 0\" is incorrect because the scenario requires: The correct answer is \"Layer 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Layer 1\" is incorrect because the scenario requires: The correct answer is \"Layer 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Layer 3\" is incorrect because the scenario requires: The correct answer is \"Layer 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q011",
+      "question": "Why would a network admin choose to configure port security on an interface?",
+      "choices": [
+        "To allow or disallow VLANs",
+        "To allow or disallow IP addresses",
+        "To prevent unauthorized access by MAC address",
+        "To prevent unauthorized access by users"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"To prevent unauthorized access by MAC address\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"To allow or disallow VLANs\" is incorrect because the scenario requires: The correct answer is \"To prevent unauthorized access by MAC address\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"To allow or disallow IP addresses\" is incorrect because the scenario requires: The correct answer is \"To prevent unauthorized access by MAC address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"To prevent unauthorized access by users\" is incorrect because the scenario requires: The correct answer is \"To prevent unauthorized access by MAC address\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q012",
+      "question": "Which statement is correct about port security?",
+      "choices": [
+        "Port security works best in mobile environments.",
+        "Port security requires a higher amount of memory.",
+        "Port security works best in static environments.",
+        "Port security always results in admin intervention to reset the port."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Port security works best in static environments.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Port security works best in mobile environments.\" is incorrect because the scenario requires: The correct answer is \"Port security works best in static environments.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Port security requires a higher amount of memory.\" is incorrect because the scenario requires: The correct answer is \"Port security works best in static environments.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Port security always results in admin intervention to reset the port.\" is incorrect because the scenario requires: The correct answer is \"Port security works best in static environments.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q013",
+      "question": "When configuring port security on a port that contains a VoIP phone with a voice VLAN and a computer connected to the phone, how many MAC addresses must you allow?",
+      "choices": [
+        "1 MAC address",
+        "2 MAC addresses",
+        "0 MAC addresses",
+        "10 MAC addresses"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"2 MAC addresses\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"1 MAC address\" is incorrect because the scenario requires: The correct answer is \"2 MAC addresses\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"0 MAC addresses\" is incorrect because the scenario requires: The correct answer is \"2 MAC addresses\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"10 MAC addresses\" is incorrect because the scenario requires: The correct answer is \"2 MAC addresses\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q014",
+      "question": "Identify the default action of port security on the interface when the maximum number of MAC addresses is exceeded?",
+      "choices": [
+        "Administrative shutdown",
+        "Err-disabled shutdown",
+        "Restricted access without logging",
+        "Restricted access with logging"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY",
+        "CKU-ERRDISABLE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Err-disabled shutdown\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Administrative shutdown\" is incorrect because the scenario requires: The correct answer is \"Err-disabled shutdown\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Restricted access without logging\" is incorrect because the scenario requires: The correct answer is \"Err-disabled shutdown\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Restricted access with logging\" is incorrect because the scenario requires: The correct answer is \"Err-disabled shutdown\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q015",
+      "question": "You are configuring a port for port security and receive the error Command rejected: FastEthernet0/1 is a dynamic port. Which commands will help you configure the port?",
+      "choices": [
+        "SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security",
+        "SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security",
+        "SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security",
+        "SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(confi…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(confi…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(confi…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q016",
+      "question": "Which command can configure two MAC addresses for port security?",
+      "choices": [
+        "SwitchA(config-if)#switchport maximum 2",
+        "SwitchA(config-if)#switchport port-security maximum 2",
+        "SwitchA(config-if)#port-security maximum 2",
+        "SwitchA(config-if)#switchport port-security limit 2"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SwitchA(config-if)#switchport maximum 2\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SwitchA(config-if)#port-security maximum 2\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SwitchA(config-if)#switchport port-security limit 2\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q017",
+      "question": "Which command limit devices via port security without disabling the port and logging the restricted device?",
+      "choices": [
+        "Switch(config-if)#switchport port-security violation shutdown",
+        "Switch(config-if)#switchport port-security restrict",
+        "Switch(config-if)#switchport port-security violation protect",
+        "Switch(config-if)#switchport port-security violation restrict"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Switch(config-if)#switchport port-security violation restrict\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config-if)#switchport port-security violation shutdown\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config-if)#switchport port-security restrict\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config-if)#switchport port-security violation protect\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q018",
+      "question": "Which command can inspect the status of a port that has been configured for port security?",
+      "choices": [
+        "Switch#show running-configuration",
+        "Switch#show port-security interface gi 2/13",
+        "Switch#show port-security details interface gi 2/13",
+        "Switch#show port-security gi 2/13"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Switch#show port-security interface gi 2/13\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#show running-configuration\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security interface gi 2/13\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#show port-security details interface gi 2/13\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security interface gi 2/13\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#show port-security gi 2/13\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security interface gi 2/13\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q019",
+      "question": "Which command limit devices via port security and send an SNMP trap notification?",
+      "choices": [
+        "Switch(config-if)#switchport port-security violation shutdown",
+        "Switch(config-if)#switchport port-security restrict",
+        "Switch(config-if)#switchport port-security violation protect",
+        "Switch(config-if)#switchport port-security violation restrict"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY",
+        "CKU-SNMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config-if)#switchport port-security restrict\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config-if)#switchport port-security violation protect\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config-if)#switchport port-security violation restrict\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q020",
+      "question": "Which command limit devices via port security without disabling the port and not provide logging for a security violation counter?",
+      "choices": [
+        "Switch(config-if)#switchport port-security violation shutdown",
+        "Switch(config-if)#switchport port-security restrict",
+        "Switch(config-if)#switchport port-security violation protect",
+        "Switch(config-if)#switchport port-security violation restrict"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Switch(config-if)#switchport port-security violation protect\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config-if)#switchport port-security violation shutdown\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch(config-if)#switchport port-security restrict\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch(config-if)#switchport port-security violation restrict\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q021",
+      "question": "Which command can see logged security violations for port security?",
+      "choices": [
+        "Switch#show violations",
+        "Switch#show port-security violations",
+        "Switch#show port-security",
+        "Switch#show psec violations"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Switch#show port-security\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#show violations\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#show port-security violations\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#show psec violations\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q022",
+      "question": "You have been tasked to secure ports with port security. You need to make sure that only the computers installed can access the network. The computers are installed already. Which type of configuration for port security would require the least amount of administration?",
+      "choices": [
+        "Static port security",
+        "Dynamic port security",
+        "Sticky port security",
+        "Time limit port security"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY",
+        "CKU-STICKY-MAC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Sticky port security\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Static port security\" is incorrect because the scenario requires: The correct answer is \"Sticky port security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Dynamic port security\" is incorrect because the scenario requires: The correct answer is \"Sticky port security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Time limit port security\" is incorrect because the scenario requires: The correct answer is \"Sticky port security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q024",
+      "question": "Which command allow the first MAC address learned on the port to be allowed to only pass traffic on the port via port security?",
+      "choices": [
+        "SwitchA(config-if)#switchport port-security mac-address sticky",
+        "SwitchA(config-if)#switchport port-security mac-address dynamic",
+        "SwitchA(config-if)#switchport port-security mac-address static",
+        "SwitchA(config-if)#switchport port-security mac-address learn"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY",
+        "CKU-STICKY-MAC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SwitchA(config-if)#switchport port-security mac-address dynamic\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SwitchA(config-if)#switchport port-security mac-address static\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SwitchA(config-if)#switchport port-security mac-address learn\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q026",
+      "question": "Which command configure the port with only the MAC address you want to allow via port security?",
+      "choices": [
+        "SwitchA(config-if)#switchport port-security mac-address sticky",
+        "SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4",
+        "SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4",
+        "SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY",
+        "CKU-STICKY-MAC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SwitchA(config-if)#switchport port-security mac-address sticky\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q028",
+      "question": "Which command can globally reset all ports with an err- disable state with minimal disruption?",
+      "choices": [
+        "Switch#clear err-disable",
+        "Switch#clear switchport port-security",
+        "Switch#clear port-security violation",
+        "Switch(config)#errdisable recovery cause psecure_violation"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY",
+        "CKU-ERRDISABLE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#clear err-disable\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#clear switchport port-security\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#clear port-security violation\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q029",
+      "question": "You need to verify the sticky MAC addresses learned on a port on the switch. Which command can verify the addresses learned?",
+      "choices": [
+        "SwitchA#show running-config",
+        "SwitchA#show port-security",
+        "SwitchA#show port-security details",
+        "SwitchA#show port-security status"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY",
+        "CKU-STICKY-MAC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"SwitchA#show running-config\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SwitchA#show port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA#show running-config\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SwitchA#show port-security details\" is incorrect because the scenario requires: The correct answer is \"SwitchA#show running-config\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SwitchA#show port-security status\" is incorrect because the scenario requires: The correct answer is \"SwitchA#show running-config\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

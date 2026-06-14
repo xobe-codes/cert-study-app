@@ -1,0 +1,1459 @@
+{
+  "objectiveId": "3.1",
+  "title": "Interpret the components of a routing table",
+  "questions": [
+    {
+      "id": "3.1-q1",
+      "question": "In `show ip route`, what does the source code `O` represent?",
+      "choices": [
+        "Connected route",
+        "OSPF-learned route",
+        "Static route",
+        "EIGRP-learned route"
+      ],
+      "correctIndex": 1,
+      "explanation": "O = OSPF. C = connected, S = static, D = EIGRP.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "route source codes",
+      "ckuIds": [
+        "CKU-ROUTE-SOURCE-CODES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "O = OSPF. C = connected, S = static, D = EIGRP."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Connected route\" is incorrect because the scenario requires: O = OSPF. C = connected, S = static, D = EIGRP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Static route\" is incorrect because the scenario requires: O = OSPF. C = connected, S = static, D = EIGRP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"EIGRP-learned route\" is incorrect because the scenario requires: O = OSPF. C = connected, S = static, D = EIGRP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.1-q2",
+      "question": "A routing entry shows `[110/20]`. What does 110 represent?",
+      "choices": [
+        "The metric",
+        "The administrative distance",
+        "The OSPF cost",
+        "The hop count"
+      ],
+      "correctIndex": 1,
+      "explanation": "Format is [AD/metric]. 110 is the administrative distance (OSPF), 20 is the metric (OSPF cost).",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "AD/metric brackets",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE-ENTRY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Format is [AD/metric]. 110 is the administrative distance (OSPF), 20 is the metric (OSPF cost)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The metric\" is incorrect because the scenario requires: Format is [AD/metric]. 110 is the administrative distance (OSPF), 20 is the metric (OSPF cost).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The OSPF cost\" is incorrect because the scenario requires: Format is [AD/metric]. 110 is the administrative distance (OSPF), 20 is the metric (OSPF cost).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The hop count\" is incorrect because the scenario requires: Format is [AD/metric]. 110 is the administrative distance (OSPF), 20 is the metric (OSPF cost).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.1-q3",
+      "question": "When an interface comes up with IP 192.168.1.1/24, which two routes are auto-installed?",
+      "choices": [
+        "C 192.168.1.0/24 and L 192.168.1.1/32",
+        "S 192.168.1.0/24 and C 192.168.1.1/32",
+        "O 192.168.1.0/24 and C 192.168.1.1/24",
+        "C 192.168.1.0/24 only"
+      ],
+      "correctIndex": 0,
+      "explanation": "A connected (C) route to the subnet and a local (L) /32 for the router own interface IP are both auto-installed at AD 0.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "connected and local routes",
+      "ckuIds": [
+        "CKU-CONNECTED-LOCAL-ROUTES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "A connected (C) route to the subnet and a local (L) /32 for the router own interface IP are both auto-installed at AD 0."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"S 192.168.1.0/24 and C 192.168.1.1/32\" is incorrect because the scenario requires: A connected (C) route to the subnet and a local (L) /32 for the router own interface IP are both auto-installed at AD 0.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"O 192.168.1.0/24 and C 192.168.1.1/24\" is incorrect because the scenario requires: A connected (C) route to the subnet and a local (L) /32 for the router own interface IP are both auto-installed at AD 0.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"C 192.168.1.0/24 only\" is incorrect because the scenario requires: A connected (C) route to the subnet and a local (L) /32 for the router own interface IP are both auto-installed at AD 0.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.1-q4",
+      "question": "What is the purpose of the L (local) /32 route in the routing table?",
+      "choices": [
+        "It routes traffic to hosts on the subnet",
+        "It allows the router to process packets destined for its own interface IP",
+        "It is a backup for the connected route",
+        "It marks the default gateway"
+      ],
+      "correctIndex": 1,
+      "explanation": "The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.g. for SSH or ping to the router itself).",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "L route purpose",
+      "ckuIds": [
+        "CKU-CONNECTED-LOCAL-ROUTES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.g. for SSH or ping to the router itself)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"It routes traffic to hosts on the subnet\" is incorrect because the scenario requires: The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.g. for SSH or ping…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"It is a backup for the connected route\" is incorrect because the scenario requires: The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.g. for SSH or ping…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"It marks the default gateway\" is incorrect because the scenario requires: The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.g. for SSH or ping…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.1-q5",
+      "question": "Which source code indicates a route learned via EIGRP?",
+      "choices": [
+        "E",
+        "D",
+        "O",
+        "R"
+      ],
+      "correctIndex": 1,
+      "explanation": "D = EIGRP (Diffusing Update Algorithm). O = OSPF, R = RIP, B = BGP.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "EIGRP code",
+      "ckuIds": [
+        "CKU-ROUTE-SOURCE-CODES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "D = EIGRP (Diffusing Update Algorithm). O = OSPF, R = RIP, B = BGP."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"E\" is incorrect because the scenario requires: D = EIGRP (Diffusing Update Algorithm). O = OSPF, R = RIP, B = BGP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"O\" is incorrect because the scenario requires: D = EIGRP (Diffusing Update Algorithm). O = OSPF, R = RIP, B = BGP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"R\" is incorrect because the scenario requires: D = EIGRP (Diffusing Update Algorithm). O = OSPF, R = RIP, B = BGP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.1-q6",
+      "question": "Interface Gi0/1 goes down. What happens to its connected route?",
+      "choices": [
+        "Marked with *, indicating preferred",
+        "Stays with an age timer",
+        "Removed from the routing table",
+        "Converts to a static route"
+      ],
+      "correctIndex": 2,
+      "explanation": "Connected and local routes are removed when the interface fails. They cannot be reached directly anymore.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "connected route removal",
+      "ckuIds": [
+        "CKU-CONNECTED-LOCAL-ROUTES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Connected and local routes are removed when the interface fails. They cannot be reached directly anymore."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Marked with *, indicating preferred\" is incorrect because the scenario requires: Connected and local routes are removed when the interface fails. They cannot be reached directly anymore.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Stays with an age timer\" is incorrect because the scenario requires: Connected and local routes are removed when the interface fails. They cannot be reached directly anymore.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Converts to a static route\" is incorrect because the scenario requires: Connected and local routes are removed when the interface fails. They cannot be reached directly anymore.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.1-q7",
+      "question": "What is the default administrative distance of a static route?",
+      "choices": [
+        "0",
+        "1",
+        "90",
+        "110"
+      ],
+      "correctIndex": 1,
+      "explanation": "Static routes have AD 1 by default — one higher than connected (0) but lower than any dynamic protocol.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "static AD",
+      "ckuIds": [
+        "CKU-ROUTE-SOURCE-CODES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Static routes have AD 1 by default — one higher than connected (0) but lower than any dynamic protocol."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"0\" is incorrect because the scenario requires: Static routes have AD 1 by default — one higher than connected (0) but lower than any dynamic protocol.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"90\" is incorrect because the scenario requires: Static routes have AD 1 by default — one higher than connected (0) but lower than any dynamic protocol.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"110\" is incorrect because the scenario requires: Static routes have AD 1 by default — one higher than connected (0) but lower than any dynamic protocol.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "3.1-q8",
+      "question": "A route reads: `D 172.16.0.0/16 [90/307200] via 10.0.0.2, 00:10:00, Gi0/0`. What is 307200?",
+      "choices": [
+        "Administrative distance",
+        "EIGRP composite metric",
+        "OSPF cost",
+        "Hop count"
+      ],
+      "correctIndex": 1,
+      "explanation": "D = EIGRP. [90/307200] = [AD/metric]. 307200 is the EIGRP composite metric (bandwidth + delay). AD is 90.",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "show ip route interpretation",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE-ENTRY",
+        "CKU-ROUTE-SOURCE-CODES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "D = EIGRP. [90/307200] = [AD/metric]. 307200 is the EIGRP composite metric (bandwidth + delay). AD is 90."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Administrative distance\" is incorrect because the scenario requires: D = EIGRP. [90/307200] = [AD/metric]. 307200 is the EIGRP composite metric (bandwidth + delay). AD is 90.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"OSPF cost\" is incorrect because the scenario requires: D = EIGRP. [90/307200] = [AD/metric]. 307200 is the EIGRP composite metric (bandwidth + delay). AD is 90.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Hop count\" is incorrect because the scenario requires: D = EIGRP. [90/307200] = [AD/metric]. 307200 is the EIGRP composite metric (bandwidth + delay). AD is 90.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.1-q9",
+      "question": "The top of `show ip route` shows \"Gateway of last resort is 203.0.113.1\". What does this indicate?",
+      "choices": [
+        "A default route is installed",
+        "The router cannot reach any network",
+        "The router is a DHCP server",
+        "OSPF elected a DR"
+      ],
+      "correctIndex": 0,
+      "explanation": "The gateway of last resort message means a default route (0.0.0.0/0) is installed, pointing to 203.0.113.1.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "gateway of last resort",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE-ENTRY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The gateway of last resort message means a default route (0.0.0.0/0) is installed, pointing to 203.0.113.1."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The router cannot reach any network\" is incorrect because the scenario requires: The gateway of last resort message means a default route (0.0.0.0/0) is installed, pointing to 203.0.113.1.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The router is a DHCP server\" is incorrect because the scenario requires: The gateway of last resort message means a default route (0.0.0.0/0) is installed, pointing to 203.0.113.1.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"OSPF elected a DR\" is incorrect because the scenario requires: The gateway of last resort message means a default route (0.0.0.0/0) is installed, pointing to 203.0.113.1.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "3.1-q10",
+      "question": "An asterisk (*) next to a routing entry indicates what?",
+      "choices": [
+        "The route is unreachable",
+        "It is the best match or candidate default",
+        "The route is more than 24 hours old",
+        "The route requires manual activation"
+      ],
+      "correctIndex": 1,
+      "explanation": "An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort).",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "asterisk in routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE-ENTRY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The route is unreachable\" is incorrect because the scenario requires: An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gat…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The route is more than 24 hours old\" is incorrect because the scenario requires: An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gat…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The route requires manual activation\" is incorrect because the scenario requires: An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gat…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q001",
+      "question": "You review a routing table and see a route marked with S*. Which type of route is this?",
+      "choices": [
+        "Static route",
+        "Default route",
+        "Dynamic route",
+        "OSPF route"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-STATIC-DEFAULT-ROUTE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-OSPFV2",
+        "CKU-STATIC-ROUTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Default route\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Static route\" is incorrect because the scenario requires: The correct answer is \"Default route\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Dynamic route\" is incorrect because the scenario requires: The correct answer is \"Default route\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"OSPF route\" is incorrect because the scenario requires: The correct answer is \"Default route\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q003",
+      "question": "Which command will allow you to verify routes line by line in a subset of the general route statement?",
+      "choices": [
+        "Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes",
+        "Router#show ip route 160.45.23.0 255.255.255.0",
+        "Router#show ip route bgp",
+        "Router#show ip route"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-ROUTE-STATEMENT",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show ip route 160.45.23.0 255.255.255.0\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show ip route bgp\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show ip route\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route 160.45.23.0 255.255.255.0 longer- prefixes\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q004",
+      "question": "Examining the show ip route statement in the exhibit, which will be the next hop for a destination address of 192.168.1.5?",
+      "choices": [
+        "The gateway 172.16.1.200",
+        "The exit interface Serial 0/0",
+        "The gateway 172.16.1.100",
+        "The exit interface Ethernet0"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-NEXT-HOP",
+        "CKU-DR-BDR",
+        "CKU-ROUTE-STATEMENT",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The exit interface Serial 0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The gateway 172.16.1.200\" is incorrect because the scenario requires: The correct answer is \"The exit interface Serial 0/0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The gateway 172.16.1.100\" is incorrect because the scenario requires: The correct answer is \"The exit interface Serial 0/0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The exit interface Ethernet0\" is incorrect because the scenario requires: The correct answer is \"The exit interface Serial 0/0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q005",
+      "question": "Which route statement is configured when an IP address of 203.80.53.22/19 is configured on an interface?",
+      "choices": [
+        "S 203.80.16.0/19 is directly connected, Serial 0/0/0",
+        "S 203.80.32.0/19 is directly connected, Serial 0/0/0",
+        "S 203.80.48.0/19 is directly connected, Serial 0/0/0",
+        "S 203.80.53.22/19 is directly connected, Serial 0/0/0"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-DR-BDR",
+        "CKU-ROUTE-STATEMENT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"S 203.80.32.0/19 is directly connected, Serial 0/0/0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"S 203.80.16.0/19 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 203.80.32.0/19 is directly connected, Serial 0/0/0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"S 203.80.48.0/19 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 203.80.32.0/19 is directly connected, Serial 0/0/0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"S 203.80.53.22/19 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 203.80.32.0/19 is directly connected, Serial 0/0/0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q009",
+      "question": "When a static route is made, what is the default AD?",
+      "choices": [
+        "AD of 1",
+        "AD of 0",
+        "AD of 2",
+        "AD of 255"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-STATIC-ROUTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"AD of 1\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"AD of 0\" is incorrect because the scenario requires: The correct answer is \"AD of 1\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"AD of 2\" is incorrect because the scenario requires: The correct answer is \"AD of 1\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"AD of 255\" is incorrect because the scenario requires: The correct answer is \"AD of 1\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q010",
+      "question": "What is the AD of RIP?",
+      "choices": [
+        "AD of 90",
+        "AD of 100",
+        "AD of 110",
+        "AD of 120"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-RIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"AD of 120\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"AD of 90\" is incorrect because the scenario requires: The correct answer is \"AD of 120\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"AD of 100\" is incorrect because the scenario requires: The correct answer is \"AD of 120\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"AD of 110\" is incorrect because the scenario requires: The correct answer is \"AD of 120\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q011",
+      "question": "Why are ADs used with routing tables?",
+      "choices": [
+        "ADs define protocol standards.",
+        "ADs define reliability of routing protocols.",
+        "ADs allow for the shortest distance between routes.",
+        "ADs are programmed by the administrator for path selection."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"ADs define reliability of routing protocols.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"ADs define protocol standards.\" is incorrect because the scenario requires: The correct answer is \"ADs define reliability of routing protocols.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ADs allow for the shortest distance between routes.\" is incorrect because the scenario requires: The correct answer is \"ADs define reliability of routing protocols.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ADs are programmed by the administrator for path selection.\" is incorrect because the scenario requires: The correct answer is \"ADs define reliability of routing protocols.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q012",
+      "question": "What is the AD of a directly connected network?",
+      "choices": [
+        "The AD is 0.",
+        "The AD is 1.",
+        "The AD is 5.",
+        "Directly connected networks do not have an AD."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The AD is 0.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The AD is 1.\" is incorrect because the scenario requires: The correct answer is \"The AD is 0.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The AD is 5.\" is incorrect because the scenario requires: The correct answer is \"The AD is 0.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Directly connected networks do not have an AD.\" is incorrect because the scenario requires: The correct answer is \"The AD is 0.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q013",
+      "question": "What is the AD of internal EIGRP?",
+      "choices": [
+        "90",
+        "100",
+        "110",
+        "120"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"90\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"100\" is incorrect because the scenario requires: The correct answer is \"90\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"110\" is incorrect because the scenario requires: The correct answer is \"90\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"120\" is incorrect because the scenario requires: The correct answer is \"90\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q014",
+      "question": "What is the definition of route statement AD?",
+      "choices": [
+        "The AD is a metric that routing protocols use to select the best route.",
+        "The AD is a value assigned by network administrators for route selection.",
+        "The AD is a rating of trust when multiple routes exist to the same destination.",
+        "The AD is a value associated with the cost to the destination."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-METRIC",
+        "CKU-OSPF-COST",
+        "CKU-ROUTE-STATEMENT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The AD is a rating of trust when multiple routes exist to the same destination.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The AD is a metric that routing protocols use to select the best route.\" is incorrect because the scenario requires: The correct answer is \"The AD is a rating of trust when multiple routes exist to the same destination.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The AD is a value assigned by network administrators for route selection.\" is incorrect because the scenario requires: The correct answer is \"The AD is a rating of trust when multiple routes exist to the same destination.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The AD is a value associated with the cost to the destination.\" is incorrect because the scenario requires: The correct answer is \"The AD is a rating of trust when multiple routes exist to the same destination.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q016",
+      "question": "You perform a show ip route on the router and see several routes with an AD of 90. Which routing protocol has generated these route statements?",
+      "choices": [
+        "IGRP",
+        "OSPF",
+        "EIGRP",
+        "RIP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-OSPFV2",
+        "CKU-ROUTE-STATEMENT",
+        "CKU-SHOW-IP-ROUTE",
+        "CKU-RIP",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"EIGRP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IGRP\" is incorrect because the scenario requires: The correct answer is \"EIGRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPF\" is incorrect because the scenario requires: The correct answer is \"EIGRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RIP\" is incorrect because the scenario requires: The correct answer is \"EIGRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q017",
+      "question": "Which statement is true when there are multiple route statements from different routing protocols for the same destination network?",
+      "choices": [
+        "The route is chosen with the highest AD.",
+        "The route chosen has the lowest metric.",
+        "The route is chosen with the lowest AD.",
+        "The route chosen has the highest metric."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-METRIC",
+        "CKU-ROUTE-STATEMENT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The route is chosen with the lowest AD.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The route is chosen with the highest AD.\" is incorrect because the scenario requires: The correct answer is \"The route is chosen with the lowest AD.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The route chosen has the lowest metric.\" is incorrect because the scenario requires: The correct answer is \"The route is chosen with the lowest AD.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The route chosen has the highest metric.\" is incorrect because the scenario requires: The correct answer is \"The route is chosen with the lowest AD.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q019",
+      "question": "What is the Cisco metric for OSPF?",
+      "choices": [
+        "108/bandwidth",
+        "Delay, bandwidth, reliability, load",
+        "K metrics",
+        "Bandwidth"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-METRIC",
+        "CKU-OSPFV2",
+        "CKU-BANDWIDTH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"108/bandwidth\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Delay, bandwidth, reliability, load\" is incorrect because the scenario requires: The correct answer is \"108/bandwidth\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"K metrics\" is incorrect because the scenario requires: The correct answer is \"108/bandwidth\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Bandwidth\" is incorrect because the scenario requires: The correct answer is \"108/bandwidth\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q020",
+      "question": "You enter a show ip route command and see the following line. What does the [110/1] identify? O 192.168.3.0/24 [110/1] via 192.168.10.6, 00:58:55, Serial0/3/1",
+      "choices": [
+        "AD of 110 and a 100 Mb/s link",
+        "AD of 110 and a 10 Mb/s link",
+        "AD of 1 and a 110 Mb/s link",
+        "AD of 110 and a 1 Gb/s link"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"AD of 110 and a 100 Mb/s link\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"AD of 110 and a 10 Mb/s link\" is incorrect because the scenario requires: The correct answer is \"AD of 110 and a 100 Mb/s link\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"AD of 1 and a 110 Mb/s link\" is incorrect because the scenario requires: The correct answer is \"AD of 110 and a 100 Mb/s link\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"AD of 110 and a 1 Gb/s link\" is incorrect because the scenario requires: The correct answer is \"AD of 110 and a 100 Mb/s link\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q021",
+      "question": "What type of route is the destination of 0.0.0.0/0?",
+      "choices": [
+        "Local route",
+        "Dynamic route",
+        "Default route",
+        "Loopback route"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-LOCAL-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Default route\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Local route\" is incorrect because the scenario requires: The correct answer is \"Default route\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Dynamic route\" is incorrect because the scenario requires: The correct answer is \"Default route\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Loopback route\" is incorrect because the scenario requires: The correct answer is \"Default route\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q022",
+      "question": "Which is true of a host route in the routing table?",
+      "choices": [
+        "The host route is the route a packet will take if no other route matches in the routing table.",
+        "The routing table creates host routers for the destination hosts it discovers.",
+        "A host route is a specific route with a netmask of /32 for a specific host.",
+        "The host route is populated from HSRP."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-NETWORK-MASK",
+        "CKU-HSRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The host route is the route a packet will take if no other route matches in the routing table.\" is incorrect because the scenario requires: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The routing table creates host routers for the destination hosts it discovers.\" is incorrect because the scenario requires: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The host route is populated from HSRP.\" is incorrect because the scenario requires: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q023",
+      "question": "Which element of a routing table will identify where the route was learned from?",
+      "choices": [
+        "Prefix and network mask",
+        "Routing protocol code",
+        "Metric",
+        "Next hop"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-METRIC",
+        "CKU-NEXT-HOP",
+        "CKU-NETWORK-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Routing protocol code\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Prefix and network mask\" is incorrect because the scenario requires: The correct answer is \"Routing protocol code\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Metric\" is incorrect because the scenario requires: The correct answer is \"Routing protocol code\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Next hop\" is incorrect because the scenario requires: The correct answer is \"Routing protocol code\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q024",
+      "question": "Which is a correct statement about the subnet mask?",
+      "choices": [
+        "The subnet mask is used by the host to determine the destination network.",
+        "The subnet mask is used in routing to determine the destination network.",
+        "The router uses its subnet mask when routing a packet.",
+        "The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer."
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-NETWORK-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The subnet mask is used by the host to determine the destination network.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The subnet mask is used in routing to determine the destination network.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is used by the host to determine the destination network.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The router uses its subnet mask when routing a packet.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is used by the host to determine the destination network.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is used by the host to determine the destination network.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q025",
+      "question": "What is the entry for the IP address in the routing table called in IOS 15 code when an interface is configured?",
+      "choices": [
+        "IP address route",
+        "Local route",
+        "Dynamic route",
+        "Static route"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-DR-BDR",
+        "CKU-STATIC-ROUTING",
+        "CKU-LOCAL-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Local route\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IP address route\" is incorrect because the scenario requires: The correct answer is \"Local route\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Dynamic route\" is incorrect because the scenario requires: The correct answer is \"Local route\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Static route\" is incorrect because the scenario requires: The correct answer is \"Local route\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q026",
+      "question": "What is the relevance of the default gateway address on a host that is transmitting to a destination for the first time?",
+      "choices": [
+        "The destination IP address is replaced with the default gateway when the destination is remote.",
+        "The host sends the default gateway packets that are deemed remote via a broadcast.",
+        "The host sends an ARP packet for the default gateway when the destination is remote.",
+        "The host creates a dedicated connection with the default gateway for remote traffic."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-DR-BDR",
+        "CKU-ARP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The destination IP address is replaced with the default gateway when the destination is remote.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The host sends the default gateway packets that are deemed remote via a broadcast.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The host creates a dedicated connection with the default gateway for remote traffic.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q027",
+      "question": "Which command will display the router’s routing table?",
+      "choices": [
+        "Router#show ip route",
+        "Router#show route",
+        "Router#show route table",
+        "Router#show routes"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-SHOW-IP-ROUTE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Router#show ip route\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show route\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router#show route table\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

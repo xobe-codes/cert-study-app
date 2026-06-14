@@ -1,0 +1,456 @@
+{
+  "objectiveId": "2.6",
+  "title": "Compare Cisco Wireless Architectures and AP modes",
+  "questions": [
+    {
+      "id": "obj-2.6-source-q001",
+      "question": "You require a density of 100 wireless clients in a relatively small area. Which design would be optimal?",
+      "choices": [
+        "Autonomous WAPs with a WLC",
+        "Lightweight WAPs with a WLC",
+        "Autonomous WAPs without a WLC",
+        "Lightweight WAPs without a WLC"
+      ],
+      "correctIndex": 1,
+      "explanation": "A high-density design is best served by lightweight APs controlled by a WLC.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WIRELESS-ARCHITECTURES",
+        "CKU-LIGHTWEIGHT-AP",
+        "CKU-AUTONOMOUS-AP",
+        "CKU-WLC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "A high-density design is best served by lightweight APs controlled by a WLC."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Autonomous WAPs with a WLC\" is incorrect because the scenario requires: A high-density design is best served by lightweight APs controlled by a WLC.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Autonomous WAPs without a WLC\" is incorrect because the scenario requires: A high-density design is best served by lightweight APs controlled by a WLC.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Lightweight WAPs without a WLC\" is incorrect because the scenario requires: A high-density design is best served by lightweight APs controlled by a WLC.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.6-source-q002",
+      "question": "Which mode will allow a Cisco AP to detect interference of Bluetooth devices?",
+      "choices": [
+        "BT mode",
+        "Sniffing mode",
+        "Analysis mode",
+        "Monitor mode"
+      ],
+      "correctIndex": 3,
+      "explanation": "Monitor mode can detect sources of wireless interference such as Bluetooth.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WIRELESS-ARCHITECTURES",
+        "CKU-LIGHTWEIGHT-AP",
+        "CKU-AUTONOMOUS-AP",
+        "CKU-MONITOR-MODE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "Monitor mode can detect sources of wireless interference such as Bluetooth."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"BT mode\" is incorrect because the scenario requires: Monitor mode can detect sources of wireless interference such as Bluetooth.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Sniffing mode\" is incorrect because the scenario requires: Monitor mode can detect sources of wireless interference such as Bluetooth.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Analysis mode\" is incorrect because the scenario requires: Monitor mode can detect sources of wireless interference such as Bluetooth.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.6-source-q003",
+      "question": "Which wireless mode allows for a network connection without a wireless infrastructure in place?",
+      "choices": [
+        "BSS",
+        "ESS",
+        "IBSS",
+        "DS"
+      ],
+      "correctIndex": 2,
+      "explanation": "IBSS is ad hoc wireless without infrastructure.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WIRELESS-ARCHITECTURES",
+        "CKU-LIGHTWEIGHT-AP",
+        "CKU-AUTONOMOUS-AP",
+        "CKU-IBSS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "IBSS is ad hoc wireless without infrastructure."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"BSS\" is incorrect because the scenario requires: IBSS is ad hoc wireless without infrastructure.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"ESS\" is incorrect because the scenario requires: IBSS is ad hoc wireless without infrastructure.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"DS\" is incorrect because the scenario requires: IBSS is ad hoc wireless without infrastructure.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.6-source-q004",
+      "question": "Which statement is correct about root and non-root wireless devices?",
+      "choices": [
+        "Non-root devices can connect to other non-root devices.",
+        "Non-root devices can connect to root devices.",
+        "Root devices can connect to other root devices.",
+        "Repeaters are considered root devices."
+      ],
+      "correctIndex": 1,
+      "explanation": "Non-root wireless devices connect to root devices.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WIRELESS-ARCHITECTURES",
+        "CKU-LIGHTWEIGHT-AP",
+        "CKU-AUTONOMOUS-AP",
+        "CKU-ROOT-NONROOT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Non-root wireless devices connect to root devices."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Non-root devices can connect to other non-root devices.\" is incorrect because the scenario requires: Non-root wireless devices connect to root devices.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Root devices can connect to other root devices.\" is incorrect because the scenario requires: Non-root wireless devices connect to root devices.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Repeaters are considered root devices.\" is incorrect because the scenario requires: Non-root wireless devices connect to root devices.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.6-source-q005",
+      "question": "Which type of WAP can operate independently?",
+      "choices": [
+        "Lightweight WAP",
+        "WLC",
+        "Mesh",
+        "Autonomous WAP"
+      ],
+      "correctIndex": 3,
+      "explanation": "Autonomous APs can operate independently.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WIRELESS-ARCHITECTURES",
+        "CKU-LIGHTWEIGHT-AP",
+        "CKU-AUTONOMOUS-AP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "Autonomous APs can operate independently."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Lightweight WAP\" is incorrect because the scenario requires: Autonomous APs can operate independently.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"WLC\" is incorrect because the scenario requires: Autonomous APs can operate independently.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Mesh\" is incorrect because the scenario requires: Autonomous APs can operate independently.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.6-source-q006",
+      "question": "You have three buildings that are separated by a number of public roads but have a relatively close proximity to each other. You need to network them together to a central point. Which type of wireless technology should you deploy?",
+      "choices": [
+        "Point-to-point wireless bridge",
+        "Mesh wireless network",
+        "Point-to-multipoint wireless bridge",
+        "Autonomous wireless network"
+      ],
+      "correctIndex": 2,
+      "explanation": "Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WIRELESS-ARCHITECTURES",
+        "CKU-LIGHTWEIGHT-AP",
+        "CKU-AUTONOMOUS-AP",
+        "CKU-POINT-TO-MULTIPOINT-BRIDGE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Point-to-point wireless bridge\" is incorrect because the scenario requires: Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Mesh wireless network\" is incorrect because the scenario requires: Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Autonomous wireless network\" is incorrect because the scenario requires: Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.6-source-q007",
+      "question": "A customer complains that their wireless network drops signal when they are performing inventory in the back of their warehouse. The customer wants to cover the small area for as little money as possible. What would you recommend?",
+      "choices": [
+        "Wireless bridging",
+        "Mesh wireless system",
+        "Addition of a wireless LAN controller",
+        "Wireless repeater"
+      ],
+      "correctIndex": 3,
+      "explanation": "A repeater can extend coverage for a small area at low cost.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WIRELESS-ARCHITECTURES",
+        "CKU-LIGHTWEIGHT-AP",
+        "CKU-AUTONOMOUS-AP",
+        "CKU-REPEATER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "A repeater can extend coverage for a small area at low cost."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Wireless bridging\" is incorrect because the scenario requires: A repeater can extend coverage for a small area at low cost.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Mesh wireless system\" is incorrect because the scenario requires: A repeater can extend coverage for a small area at low cost.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Addition of a wireless LAN controller\" is incorrect because the scenario requires: A repeater can extend coverage for a small area at low cost.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.6-source-q008",
+      "question": "Which type of WAP requires a wireless controller?",
+      "choices": [
+        "Lightweight WAP",
+        "BSS",
+        "Bridges",
+        "Autonomous WAP"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lightweight APs require a wireless LAN controller.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WIRELESS-ARCHITECTURES",
+        "CKU-LIGHTWEIGHT-AP",
+        "CKU-AUTONOMOUS-AP",
+        "CKU-WLC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Lightweight APs require a wireless LAN controller."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"BSS\" is incorrect because the scenario requires: Lightweight APs require a wireless LAN controller.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Bridges\" is incorrect because the scenario requires: Lightweight APs require a wireless LAN controller.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Autonomous WAP\" is incorrect because the scenario requires: Lightweight APs require a wireless LAN controller.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.6-source-q009",
+      "question": "You need to cover a large public area with high speed wireless coverage. Many of the areas are too far away from the wired switching equipment. What should you implement?",
+      "choices": [
+        "Mesh wireless network",
+        "Autonomous wireless network",
+        "Point-to-multipoint wireless bridges",
+        "Wireless repeaters"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mesh wireless networks can cover large public areas where cabling is not practical.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WIRELESS-ARCHITECTURES",
+        "CKU-LIGHTWEIGHT-AP",
+        "CKU-AUTONOMOUS-AP",
+        "CKU-MESH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Mesh wireless networks can cover large public areas where cabling is not practical."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Autonomous wireless network\" is incorrect because the scenario requires: Mesh wireless networks can cover large public areas where cabling is not practical.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Point-to-multipoint wireless bridges\" is incorrect because the scenario requires: Mesh wireless networks can cover large public areas where cabling is not practical.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Wireless repeaters\" is incorrect because the scenario requires: Mesh wireless networks can cover large public areas where cabling is not practical.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.6-source-q010",
+      "question": "Which statement is correct about Flex Connect mode versus Local mode?",
+      "choices": [
+        "Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data.",
+        "Local mode creates a CAPWAP tunnel to the WLC to transport data.",
+        "Local mode allows for switching of VLANs at the WAP.",
+        "Flex Connect mode allows for switching of VLANs at the WLC."
+      ],
+      "correctIndex": 1,
+      "explanation": "Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wireless architectures",
+      "ckuIds": [
+        "CKU-WIRELESS-ARCHITECTURES",
+        "CKU-LIGHTWEIGHT-AP",
+        "CKU-AUTONOMOUS-AP",
+        "CKU-FLEXCONNECT",
+        "CKU-LOCAL-MODE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data.\" is incorrect because the scenario requires: Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Local mode allows for switching of VLANs at the WAP.\" is incorrect because the scenario requires: Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Flex Connect mode allows for switching of VLANs at the WLC.\" is incorrect because the scenario requires: Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

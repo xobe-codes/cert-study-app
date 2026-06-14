@@ -17,17 +17,26 @@ import { isPlaceholderExplanation } from './lib/cleanBankUtils.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
-const CLEAN_DIR = join(ROOT, 'data', 'clean-question-bank', 'domain-4')
+const CLEAN_DIR = join(ROOT, 'data', 'clean-question-bank')
 const OUT_DIR = join(ROOT, 'data', 'enrichment-queue')
 
 function loadObjective(objectiveId) {
-  const path = join(CLEAN_DIR, `${objectiveId}.json`)
-  if (!existsSync(path)) throw new Error(`Missing clean bank for ${objectiveId}. Run build:clean-bank first.`)
-  return JSON.parse(readFileSync(path, 'utf-8'))
+  for (const domainNum of [2, 3, 4, 5, 6]) {
+    const path = join(CLEAN_DIR, `domain-${domainNum}`, `${objectiveId}.json`)
+    if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf-8'))
+  }
+  throw new Error(`Missing clean bank for ${objectiveId}. Run build:clean-bank first.`)
 }
 
 function saveObjective(objectiveId, data) {
-  writeFileSync(join(CLEAN_DIR, `${objectiveId}.json`), JSON.stringify(data, null, 2))
+  for (const domainNum of [2, 3, 4, 5, 6]) {
+    const path = join(CLEAN_DIR, `domain-${domainNum}`, `${objectiveId}.json`)
+    if (existsSync(path)) {
+      writeFileSync(path, JSON.stringify(data, null, 2))
+      return
+    }
+  }
+  throw new Error(`Cannot save — no file for ${objectiveId}`)
 }
 
 function exportBatch(objectiveId) {

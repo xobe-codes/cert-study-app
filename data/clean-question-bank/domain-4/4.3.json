@@ -21,7 +21,33 @@
         "CKU-DNS-A-RECORD",
         "CKU-DNS-REVERSE-LOOKUP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"A reverse lookup is the resolution of an IP address to FQDN.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"A reverse lookup is when the request needs to be reversed to another DNS server.\" is incorrect because the scenario requires: The correct answer is \"A reverse lookup is the resolution of an IP address to FQDN.\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A reverse lookup is when the DNS queried can answer the request without asking another DNS server.\" is incorrect because the scenario requires: The correct answer is \"A reverse lookup is the resolution of an IP address to FQDN.\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A reverse lookup is the resolution of an FQDN to an IP address.\" is incorrect because the scenario requires: The correct answer is \"A reverse lookup is the resolution of an IP address to FQDN.\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q002",
@@ -43,7 +69,33 @@
         "CKU-DNS-REVERSE-LOOKUP",
         "CKU-DNS-RECORD"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The PTR record\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The A record\" is incorrect because the scenario requires: The correct answer is \"The PTR record\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The CName record\" is incorrect because the scenario requires: The correct answer is \"The PTR record\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The AAAA record\" is incorrect because the scenario requires: The correct answer is \"The PTR record\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q003",
@@ -67,7 +119,33 @@
         "CKU-HOSTNAME",
         "CKU-DOMAIN-NAME"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The DNS domain name\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The DNS zone\" is incorrect because the scenario requires: The correct answer is \"The DNS domain name\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The host header\" is incorrect because the scenario requires: The correct answer is \"The DNS domain name\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The hostname PTR record\" is incorrect because the scenario requires: The correct answer is \"The DNS domain name\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q004",
@@ -90,7 +168,33 @@
         "CKU-DNS-RECORD",
         "CKU-HOSTNAME"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Static hostname entries\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"DNS\" is incorrect because the scenario requires: The correct answer is \"Static hostname entries\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"PTR records\" is incorrect because the scenario requires: The correct answer is \"Static hostname entries\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"LLMNR\" is incorrect because the scenario requires: The correct answer is \"Static hostname entries\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q005",
@@ -113,7 +217,33 @@
         "CKU-DNS-RECORD",
         "CKU-HOSTNAME"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"The A record\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The CName record\" is incorrect because the scenario requires: The correct answer is \"The A record\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The PTR record\" is incorrect because the scenario requires: The correct answer is \"The A record\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The AAAA record\" is incorrect because the scenario requires: The correct answer is \"The A record\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q006",
@@ -136,7 +266,33 @@
         "CKU-DNS-RECORD",
         "CKU-DNS-TTL"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"TTL\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"An A record\" is incorrect because the scenario requires: The correct answer is \"TTL\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SOA\" is incorrect because the scenario requires: The correct answer is \"TTL\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Default of 5 minutes\" is incorrect because the scenario requires: The correct answer is \"TTL\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q007",
@@ -161,7 +317,33 @@
         "CKU-DHCP-DISCOVER",
         "CKU-DHCP-OFFER"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Acknowledgment\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Discover\" is incorrect because the scenario requires: The correct answer is \"Acknowledgment\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Offer\" is incorrect because the scenario requires: The correct answer is \"Acknowledgment\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Request\" is incorrect because the scenario requires: The correct answer is \"Acknowledgment\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q008",
@@ -183,7 +365,33 @@
         "CKU-DNS-REVERSE-LOOKUP",
         "CKU-DHCP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Layer 3 broadcast\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Layer 3 multicast\" is incorrect because the scenario requires: The correct answer is \"Layer 3 broadcast\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Layer 3 802.1Q\" is incorrect because the scenario requires: The correct answer is \"Layer 3 broadcast\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Layer 3 unicast\" is incorrect because the scenario requires: The correct answer is \"Layer 3 broadcast\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q009",
@@ -206,7 +414,33 @@
         "CKU-DHCP",
         "CKU-DHCP-LEASE"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"One-half of the lease\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"One-quarter of the lease\" is incorrect because the scenario requires: The correct answer is \"One-half of the lease\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Seven-eighths of the lease\" is incorrect because the scenario requires: The correct answer is \"One-half of the lease\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"End of the lease\" is incorrect because the scenario requires: The correct answer is \"One-half of the lease\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q010",
@@ -229,7 +463,33 @@
         "CKU-DHCP",
         "CKU-DHCP-LEASE"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The DHCP client is responsible for maintaining the life cycle of an IP address.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The DHCP server is responsible for maintaining the life cycle of an IP address.\" is incorrect because the scenario requires: The correct answer is \"The DHCP client is responsible for maintaining the life cycle of an IP address.\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"DHCP uses multicasting between the client and server.\" is incorrect because the scenario requires: The correct answer is \"The DHCP client is responsible for maintaining the life cycle of an IP address.\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The DHCP lease is negotiated between client and server.\" is incorrect because the scenario requires: The correct answer is \"The DHCP client is responsible for maintaining the life cycle of an IP address.\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q011",
@@ -252,7 +512,33 @@
         "CKU-DHCP",
         "CKU-TRANSPORT-INPUT"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"UDP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"ICMP\" is incorrect because the scenario requires: The correct answer is \"UDP\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"TCP\" is incorrect because the scenario requires: The correct answer is \"UDP\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RARP\" is incorrect because the scenario requires: The correct answer is \"UDP\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     },
     {
       "id": "obj-4.3-source-q012",
@@ -275,7 +561,33 @@
         "CKU-NAT-POOL",
         "CKU-DHCP"
       ],
-      "needsExplanationReview": true
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The IP address is removed from the DHCP pool.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The IP address is still served to the client.\" is incorrect because the scenario requires: The correct answer is \"The IP address is removed from the DHCP pool.\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The DHCP server will halt.\" is incorrect because the scenario requires: The correct answer is \"The IP address is removed from the DHCP pool.\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The DHCP will serve the IP address in the future.\" is incorrect because the scenario requires: The correct answer is \"The IP address is removed from the DHCP pool.\".",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
     }
   ]
 }

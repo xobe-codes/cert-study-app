@@ -1,0 +1,146 @@
+[
+  {
+    "id": "obj-2.5-source-q001",
+    "objectiveId": "2.5",
+    "question": "What is the IEEE specification for Spanning Tree Protocol (STP)?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q007",
+    "objectiveId": "2.5",
+    "question": "Which protocol is a Cisco proprietary enhancement for 802.1D that allows separate spanning-tree instances for each VLAN?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q008",
+    "objectiveId": "2.5",
+    "question": "Which protocol is a Cisco proprietary enhancement for 802.1W that allows separate spanning-tree instances for each VLAN?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q009",
+    "objectiveId": "2.5",
+    "question": "Which statement is correct about the Common Spanning Tree (CST)?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q012",
+    "objectiveId": "2.5",
+    "question": "Which of the following standards is an IEEE standard that replaces Rapid PVST+?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q037",
+    "objectiveId": "2.5",
+    "question": "Which feature will protect a switch immediately if it sees another switch’s advertisement?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q039",
+    "objectiveId": "2.5",
+    "question": "Which command would you use to configure BPDU Guard on an interface?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q040",
+    "objectiveId": "2.5",
+    "question": "After you configure an access switch on your network, you receive a call that the users have lost connectivity. You examine the trunk interface with the command show interfaces Gi 0/1. What might be the problem?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q041",
+    "objectiveId": "2.5",
+    "question": "Which option is a best practice when configuring links on an access switch?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q043",
+    "objectiveId": "2.5",
+    "question": "Which command would you use to remove BPDU Guard from an interface?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q044",
+    "objectiveId": "2.5",
+    "question": "You have BPDU Guard configured on an interface. What happens if a BPDU is advertised on the interface?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q045",
+    "objectiveId": "2.5",
+    "question": "Which command will show you if BPDU Guard is enabled by default?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.5-source-q046",
+    "objectiveId": "2.5",
+    "question": "You are configuring an edge switch and want to make sure that someone does not plug a switch in accidentally. Which feature will you configure?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.9-source-q001",
+    "objectiveId": "2.8",
+    "question": "What is the maximum length of an SSID?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.9-source-q003",
+    "objectiveId": "2.8",
+    "question": "You company has been contracted to implement a 802.11 wireless system for a small town. Which type of implementation is this considered?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.9-source-q004",
+    "objectiveId": "2.8",
+    "question": "What is the term for a small wireless network that does not extend past 30 feet?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.9-source-q005",
+    "objectiveId": "2.8",
+    "question": "What is the definition of a trust boundary in relation to QoS?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  },
+  {
+    "id": "obj-2.9-source-q013",
+    "objectiveId": "2.8",
+    "question": "Which type of security can be implemented on a WLAN that requires the host PC to present a certificate before being allowed onto the wireless network?",
+    "reason": "out-of-scope",
+    "shelvedAt": "2026-06-14",
+    "notes": "uncertainObjectiveMapping"
+  }
+]
