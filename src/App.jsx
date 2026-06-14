@@ -3695,7 +3695,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={selectAnswer} />
         )}
         {revealed && (
-          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
+          <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
@@ -5917,7 +5917,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
         )}
         {revealed && (
-          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
+          <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={current} selected={selected} />
           </div>
@@ -6115,7 +6115,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
         )}
         {revealed && (
-          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
+          <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={current} selected={selected} />
             {!isCorrect && isMcQuestion(current) && (
@@ -6262,7 +6262,7 @@ function Onboarding({ onComplete, onSkip }) {
             <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
           )}
           {revealed && (
-            <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
+            <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
               <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
               <AnswerReview q={current} selected={selected} />
             </div>
@@ -7718,6 +7718,19 @@ export default function App() {
   // Recompute the due-review count whenever we land back on Home.
   useEffect(() => { if (view === 'home') refreshDue() }, [view, refreshDue])
 
+  // Cmd+K / Ctrl+K opens global search (Phase 6).
+  useEffect(() => {
+    function onKey(e) {
+      if (!(e.metaKey || e.ctrlKey) || e.key.toLowerCase() !== 'k') return
+      const tag = document.activeElement?.tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return
+      e.preventDefault()
+      if (!showExport && !showSync) setShowSearch(true)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [showExport, showSync])
+
   // Pull remote → merge with local → save → refresh UI → push merged back.
   // Deterministic and convergent, so it's safe to run on any device.
   const doSync = useCallback(async (code) => {
@@ -7910,6 +7923,8 @@ export default function App() {
         }
         @keyframes ccna-pulse { 0% { box-shadow: 0 0 0 0 currentColor; opacity:.7 } 100% { box-shadow: 0 0 0 10px transparent; opacity:1 } }
         .ccna-pulse { animation: ccna-pulse .45s ease-out; }
+        @keyframes ccna-quiz-reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        .ccna-quiz-reveal { animation: ccna-quiz-reveal .2s ease both; }
         @keyframes ccna-view-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
         .ccna-view { animation: ccna-view-in .28s ease both; }
         .ccna-stagger > * { animation: ccna-view-in .42s ease both; }
@@ -7920,7 +7935,7 @@ export default function App() {
         .ccna-sheet { animation: ccna-sheet-in .3s cubic-bezier(.2,.8,.2,1) both; }
         @media (prefers-reduced-motion: reduce) {
           html { scroll-behavior: auto; }
-          .ccna-view, .ccna-overlay, .ccna-sheet, .ccna-stagger > *, .ccna-shimmer::after, .ccna-skeleton, .ccna-pulse { animation: none; }
+          .ccna-view, .ccna-overlay, .ccna-sheet, .ccna-stagger > *, .ccna-quiz-reveal, .ccna-shimmer::after, .ccna-skeleton, .ccna-pulse { animation: none; }
           button:active:not(:disabled) { transform: none; }
         }
       `}</style>
@@ -7929,7 +7944,7 @@ export default function App() {
       {!showExport && !showSync && !showSearch && (
       <button
         onClick={() => setShowSearch(true)}
-        title="Search objectives"
+        title="Search objectives (⌘K)"
         aria-label="Search objectives"
         style={{
           position: 'fixed',
