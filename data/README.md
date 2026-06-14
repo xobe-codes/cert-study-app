@@ -27,6 +27,12 @@ npm run validate:clean-bank
 npm test
 ```
 
+## Study modes (Domain 4 pilot)
+
+- **Exam Trap Drill** — Home → Study Modes → Exam Traps (static KB, no API)
+- **NAT CLI Drill** — Objective 4.1 → CLI Drill tab
+- **Clean bank** — enabled for Domain 4 via `cleanQuestionAdapter.js`
+
 ## Rules
 
 - Never commit files under `source-question-bank/` (gitignored).
