@@ -6664,7 +6664,9 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         return (
           <div key={domain.id} className="ccna-hover" style={styles.card}>
             <button
-              onClick={() => setOpenDomain(isOpen ? null : domain.id)}
+              onClick={() => onOpenDomain(isOpen ? null : domain.id)}
+              aria-expanded={isOpen}
+              aria-controls={`domain-panel-${domain.id}`}
               style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: 0, textAlign: 'left' }}
             >
               <div style={{ flex: 1, minWidth: 0, marginRight: 10 }}>
@@ -6684,7 +6686,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
               <span style={{ ...styles.pill(domain.accent), flexShrink: 0 }}>{isOpen ? '−' : '+'}</span>
             </button>
             {isOpen && (
-              <div style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>
+              <div id={`domain-panel-${domain.id}`} role="region" aria-label={`${domain.name} objectives`} style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>
                 {objs.map(o => {
                   const status = progress[o.id]?.status || 'unseen'
                   return (
@@ -7607,6 +7609,7 @@ export default function App() {
   const [syncBusy, setSyncBusy] = useState(false)
   const [syncMsg, setSyncMsg] = useState('')
   const [dueCount, setDueCount] = useState(0)
+  const [openDomain, setOpenDomain] = useState(null)
   const [selectedLab, setSelectedLab] = useState(null)
   const [labReturn, setLabReturn] = useState('labs') // where the lab's Back goes
   const openLab = useCallback((labId, from = 'labs') => { setSelectedLab(labId); setLabReturn(from); setView('lab') }, [])
@@ -8000,6 +8003,8 @@ export default function App() {
             onImportPick={pickImportFile}
             dueCount={dueCount}
             syncOn={!!syncCode}
+            openDomain={openDomain}
+            onOpenDomain={setOpenDomain}
           />
         )}
         {view === 'objective' && selectedObjective && (
