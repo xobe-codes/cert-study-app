@@ -94,6 +94,19 @@ export async function saveQuizSessionSizePref(size) {
   return clamped
 }
 
+export async function saveExamMode(on) {
+  await window.storage.setItem(STORAGE_KEYS.examMode, on || null)
+  return on
+}
+
+export async function loadExamMode() {
+  try {
+    return !!(await window.storage.getItem(STORAGE_KEYS.examMode))
+  } catch {
+    return false
+  }
+}
+
 export async function loadTourDone() {
   try {
     return !!(await window.storage.getItem(STORAGE_KEYS.tourDone))

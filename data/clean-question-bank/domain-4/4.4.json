@@ -47,7 +47,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -97,7 +97,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -146,7 +146,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -194,7 +194,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -244,7 +244,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -294,7 +294,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -342,7 +342,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -389,7 +389,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -437,7 +437,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -486,7 +486,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -535,7 +535,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -585,7 +585,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     }
   ]

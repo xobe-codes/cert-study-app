@@ -70,6 +70,22 @@ export function getCuratedBundleLabel(objectiveId) {
 }
 
 /** Short reading preview for mastered objectives (plain text, no markdown). */
+export function getObjectiveWhyLine(objectiveId) {
+  const data = getCurated(objectiveId)
+  const reading = data?.reading
+  if (!reading) return null
+  const raw = reading.realWorld
+    || reading.keyPoints?.[0]
+    || data.examTraps?.[0]?.trap
+    || reading.definition
+  if (!raw) return null
+  const plain = String(raw).replace(/\*\*/g, '').replace(/\s+/g, ' ').trim()
+  if (!plain) return null
+  if (plain.length <= 140) return plain
+  return `${plain.slice(0, 139)}…`
+}
+
+/** Short reading preview for mastered objectives (plain text, no markdown). */
 export function getCuratedPreview(objectiveId, { maxLen = 110 } = {}) {
   const data = getCurated(objectiveId)
   const reading = data?.reading

@@ -45,7 +45,7 @@
             "misconceptionTested": "Selecting \"It automatically encrypts all traffic on…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -88,7 +88,7 @@
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -131,7 +131,7 @@
             "misconceptionTested": "Selecting \"To store network device configuration ba…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **DMZ** — exam distractors swap similar terms; anchor on: A DMZ is a segmented zone that exposes services to untrusted networks (like the internet) while keeping them isolated from the trusted internal network — so a compromise of a DMZ host doesn't directly expose internal systems."
       }
     },
     {
@@ -175,7 +175,7 @@
             "misconceptionTested": "Selecting \"Microsegmentation is identical to VLAN s…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -218,7 +218,7 @@
             "misconceptionTested": "Selecting \"A flat network automatically isolates in…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -262,7 +262,7 @@
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -305,7 +305,7 @@
             "misconceptionTested": "Selecting \"Zero trust applies only to wireless netw…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -349,7 +349,7 @@
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -392,7 +392,7 @@
             "misconceptionTested": "Selecting \"Assigning a static IP to each printer\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -435,7 +435,7 @@
             "misconceptionTested": "Selecting \"It allows users to bypass authentication…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     }
   ]

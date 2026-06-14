@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"169.254.1.0/24\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking 172.16.0.0/16 is the whole 172 private block — The private range is 172.16.0.0/12 (through 172.31.x.x)"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"APIPA\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking 172.16.0.0/16 is the whole 172 private block — The private range is 172.16.0.0/12 (through 172.31.x.x)"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "Selecting \"Only on IPv6\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking 172.16.0.0/16 is the whole 172 private block — The private range is 172.16.0.0/12 (through 172.31.x.x)"
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Selecting \"DNS cache flush\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating 169.254.x.x as normal private DHCP address — 169.254 is APIPA — indicates DHCP failure, not RFC 1918"
       }
     },
     {
@@ -211,7 +211,7 @@
             "misconceptionTested": "Selecting \"Firewalls block all IPv4\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -253,7 +253,7 @@
             "misconceptionTested": "Selecting \"192.168.1.1\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **identify public** — exam distractors swap similar terms; anchor on: 198."
       }
     },
     {
@@ -283,7 +283,7 @@
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating 169.254.x.x as normal private DHCP address — 169.254 is APIPA — indicates DHCP failure, not RFC 1918"
       }
     },
     {
@@ -325,7 +325,7 @@
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     }
   ]

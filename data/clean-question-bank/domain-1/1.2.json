@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"Spine\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "On the exam: More tiers always mean faster networks — Tiers organize scale and policy; extra hops can add latency if over-engineered"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"Home gaming\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "Selecting \"Point-to-point only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming hub-and-spoke has automatic redundancy — The hub is a single point of failure unless spokes are dual-homed or meshed"
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Selecting \"Eliminates routing\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming hub-and-spoke has automatic redundancy — The hub is a single point of failure unless spokes are dual-homed or meshed"
       }
     },
     {
@@ -211,7 +211,7 @@
             "misconceptionTested": "Selecting \"Five\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "On the exam: More tiers always mean faster networks — Tiers organize scale and policy; extra hops can add latency if over-engineered"
       }
     },
     {
@@ -253,7 +253,7 @@
             "misconceptionTested": "Selecting \"Spine fabric\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Cloud means no local network — Hybrid designs keep on-prem LAN/WAN while using cloud for apps or compute"
       }
     },
     {
@@ -295,7 +295,7 @@
             "misconceptionTested": "Selecting \"On-prem only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Cloud means no local network — Hybrid designs keep on-prem LAN/WAN while using cloud for apps or compute"
       }
     },
     {
@@ -325,7 +325,7 @@
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     }
   ]

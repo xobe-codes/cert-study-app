@@ -46,7 +46,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -94,7 +94,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -144,7 +144,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -193,7 +193,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -242,7 +242,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -291,7 +291,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -342,7 +342,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -390,7 +390,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -439,7 +439,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -488,7 +488,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -537,7 +537,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -586,7 +586,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     }
   ]

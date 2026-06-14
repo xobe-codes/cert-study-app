@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"TFTP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -87,7 +87,7 @@
             "misconceptionTested": "Selecting \"Router#vty 198.56.33.3\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -133,7 +133,7 @@
             "misconceptionTested": "Selecting \"UDP/47\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -177,7 +177,7 @@
             "misconceptionTested": "Selecting \"SFTP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -222,7 +222,7 @@
             "misconceptionTested": "Selecting \"At-rest encryption\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -267,7 +267,7 @@
             "misconceptionTested": "Selecting \"Local storage\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **management access** — exam distractors swap similar terms; anchor on: WAP debug output appears on the console by default."
       }
     },
     {
@@ -312,7 +312,7 @@
             "misconceptionTested": "Selecting \"LDAP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -357,7 +357,7 @@
             "misconceptionTested": "Selecting \"RADIUS\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -403,7 +403,7 @@
             "misconceptionTested": "Selecting \"Telnet\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **management access** — exam distractors swap similar terms; anchor on: A first-time autonomous AP setup commonly uses the console connection."
       }
     },
     {
@@ -448,7 +448,7 @@
             "misconceptionTested": "Selecting \"19200 baud\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **management access** — exam distractors swap similar terms; anchor on: Cisco console access commonly uses 9600 baud."
       }
     },
     {
@@ -492,7 +492,7 @@
             "misconceptionTested": "Selecting \"64 characters\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **wlan** — exam distractors swap similar terms; anchor on: An SSID can be up to 32 characters."
       }
     },
     {
@@ -537,7 +537,7 @@
             "misconceptionTested": "Selecting \"Access control lists for two SSIDs\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -582,7 +582,7 @@
             "misconceptionTested": "Selecting \"WWAN\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -627,7 +627,7 @@
             "misconceptionTested": "Selecting \"WWAN\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -672,7 +672,7 @@
             "misconceptionTested": "Selecting \"A trust boundary is the separation of Qo…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **wlan** — exam distractors swap similar terms; anchor on: A QoS trust boundary is where the network begins trusting QoS markings."
       }
     },
     {
@@ -717,7 +717,7 @@
             "misconceptionTested": "Selecting \"802.11k\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -762,7 +762,7 @@
             "misconceptionTested": "Selecting \"Add an LDAP server\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -807,7 +807,7 @@
             "misconceptionTested": "Selecting \"802.11ac\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -853,7 +853,7 @@
             "misconceptionTested": "Selecting \"Gold\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -900,7 +900,7 @@
             "misconceptionTested": "Selecting \"Enable Broadcast SSID\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -947,7 +947,7 @@
             "misconceptionTested": "Selecting \"802.1X is enabled.\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -992,7 +992,7 @@
             "misconceptionTested": "Selecting \"Silver\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **wlan** — exam distractors swap similar terms; anchor on: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context."
       }
     },
     {
@@ -1038,7 +1038,7 @@
             "misconceptionTested": "Selecting \"Fast Transitioning\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     }
   ]

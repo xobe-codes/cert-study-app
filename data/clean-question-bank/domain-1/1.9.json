@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"FF00::/8\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Link-local **fe80::/10** is automatic; global unicast needs SLAAC, DHCPv6, or static config."
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"FD00\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing FE80 and FF02 — FE80 = link-local unicast; FF02 = link-local multicast group"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "Selecting \"FF00::/8\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating ULA as routable — FD00::/8 is private and should not be advertised to the internet"
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Selecting \"224.0.0.2\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Looking for an IPv6 broadcast — There is none; multicast (FF00::/8) replaces broadcast"
       }
     },
     {
@@ -199,7 +199,7 @@
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Looking for an IPv6 broadcast — There is none; multicast (FF00::/8) replaces broadcast"
       }
     },
     {
@@ -241,7 +241,7 @@
             "misconceptionTested": "Looking for an IPv6 broadcast"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Looking for an IPv6 broadcast — There is none; multicast (FF00::/8) replaces broadcast"
       }
     },
     {
@@ -283,7 +283,7 @@
             "misconceptionTested": "Global unicast is the only usable type on a router link"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing FE80 and FF02 — FE80 = link-local unicast; FF02 = link-local multicast group"
       }
     },
     {
@@ -325,7 +325,7 @@
             "misconceptionTested": "Selecting \"2000::1\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Looking for an IPv6 broadcast — There is none; multicast (FF00::/8) replaces broadcast"
       }
     }
   ]

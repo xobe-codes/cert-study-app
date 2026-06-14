@@ -17,6 +17,7 @@ export const STORAGE_KEYS = {
   examDate: 'ccna_exam_date_v1',
   reduceMotion: 'ccna_reduce_motion_v1',
   mockHistory: 'ccna_mock_history_v1',
+  examMode: 'ccna_exam_mode_v1',
   nudgeDismissed: 'ccna_nudge_dismissed_v1',
   quizSessionSize: 'ccna_quiz_session_size_v1',
   studyBlock: 'ccna_study_block_v1',

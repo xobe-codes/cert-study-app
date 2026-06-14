@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"Routes between VLANs\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"12 bytes\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Mismatched native VLANs — Native VLAN must match on both ends or traffic can leak (CDP warns)"
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Mismatched native VLANs — Native VLAN must match on both ends or traffic can leak (CDP warns)"
       }
     },
     {
@@ -211,7 +211,7 @@
             "misconceptionTested": "Selecting \"switchport nonegotiate\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
       }
     },
     {
@@ -253,7 +253,7 @@
             "misconceptionTested": "Selecting \"no switchport trunk\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Leaving DTP on for untrusted ports — Disable DTP with switchport nonegotiate to prevent VLAN hopping"
       }
     },
     {
@@ -295,7 +295,7 @@
             "misconceptionTested": "Selecting \"show cdp neighbors\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
       }
     },
     {
@@ -337,7 +337,7 @@
             "misconceptionTested": "A trunk is faster than an access port"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
       }
     }
   ]

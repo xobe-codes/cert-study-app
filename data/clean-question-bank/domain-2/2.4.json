@@ -44,7 +44,7 @@
             "misconceptionTested": "Selecting \"4 interfaces\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -88,7 +88,7 @@
             "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -133,7 +133,7 @@
             "misconceptionTested": "Selecting \"2.6 Gb/s\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -177,7 +177,7 @@
             "misconceptionTested": "Selecting \"802.1X\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -222,7 +222,7 @@
             "misconceptionTested": "Selecting \"PAgP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -267,7 +267,7 @@
             "misconceptionTested": "Selecting \"4 interfaces\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -312,7 +312,7 @@
             "misconceptionTested": "Selecting \"802.3ad mode\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -356,7 +356,7 @@
             "misconceptionTested": "Selecting \"PAgP can bundle several different links …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -400,7 +400,7 @@
             "misconceptionTested": "Selecting \"802.1ab\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -445,7 +445,7 @@
             "misconceptionTested": "Selecting \"Every 120 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -490,7 +490,7 @@
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -535,7 +535,7 @@
             "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -580,7 +580,7 @@
             "misconceptionTested": "Selecting \"Switch#show run\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -625,7 +625,7 @@
             "misconceptionTested": "Selecting \"An unconditional port channel will be fo…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -670,7 +670,7 @@
             "misconceptionTested": "Selecting \"The channel group will use LACP.\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     }
   ]

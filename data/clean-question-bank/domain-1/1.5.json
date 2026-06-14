@@ -43,7 +43,7 @@
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "Learning records the **source MAC on the ingress port**; forwarding looks up the **destination MAC** — don't swap them."
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Choosing flood behavior when the destination is already in the MAC table"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting same-port source/destination frames are filtered, not forwarded — If both MACs map to the same ingress port, the switch does not forward the frame at all"
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Selecting \"3600 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the aging timer disconnects the device — Aging only removes the table entry; the device itself is unaffected and will be relearned on its next frame"
       }
     },
     {
@@ -211,7 +211,7 @@
             "misconceptionTested": "Choosing drop when the switch should forward or flood"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting same-port source/destination frames are filtered, not forwarded — If both MACs map to the same ingress port, the switch does not forward the frame at all"
       }
     },
     {
@@ -253,7 +253,7 @@
             "misconceptionTested": "Selecting \"AAAA.AAAA.AAAA\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Unknown unicast → flood (same VLAN). Known unicast → forward one port."
+        "examTip": "On the exam: Thinking switches broadcast every frame — Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port"
       }
     },
     {
@@ -283,7 +283,7 @@
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Unknown unicast → flood (same VLAN). Known unicast → forward one port."
+        "examTip": "On the exam: Thinking switches broadcast every frame — Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port"
       }
     },
     {
@@ -325,7 +325,7 @@
             "misconceptionTested": "Selecting \"show cdp neighbors\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A switch needs to know a device's IP address to forward frames to it — Switching is Layer 2 — only MAC addresses matter for the forwarding decision"
       }
     },
     {
@@ -367,7 +367,7 @@
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: A switch needs to know a device's IP address to forward frames to it — Switching is Layer 2 — only MAC addresses matter for the forwarding decision"
       }
     },
     {
@@ -410,7 +410,7 @@
             "misconceptionTested": "Expecting the switch to ARP before forwarding at Layer 2"
           }
         ],
-        "examTip": "Unknown unicast → flood (same VLAN). Known unicast → forward one port."
+        "examTip": "On the exam: Thinking switches broadcast every frame — Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port"
       }
     },
     {
@@ -453,7 +453,7 @@
             "misconceptionTested": "Selecting \"The switch shuts down port 5\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the aging timer disconnects the device — Aging only removes the table entry; the device itself is unaffected and will be relearned on its next frame"
       }
     },
     {
@@ -496,7 +496,7 @@
             "misconceptionTested": "Selecting \"A switch only works at Layer 3\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Unknown unicast → flood (same VLAN). Known unicast → forward one port."
+        "examTip": "On the exam: Forgetting same-port source/destination frames are filtered, not forwarded — If both MACs map to the same ingress port, the switch does not forward the frame at all"
       }
     }
   ]

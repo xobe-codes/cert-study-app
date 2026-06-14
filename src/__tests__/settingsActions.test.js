@@ -13,6 +13,8 @@ import {
   loadQuizSessionSizePref,
   saveTourDone,
   loadTourDone,
+  loadExamMode,
+  saveExamMode,
 } from '../settings/settingsActions.js'
 
 describe('settingsActions', () => {
@@ -91,5 +93,13 @@ describe('settingsActions', () => {
     expect(await loadTourDone()).toBe(false)
     await saveTourDone(true)
     expect(await loadTourDone()).toBe(true)
+  })
+
+  it('persists exam mode preference', async () => {
+    expect(await loadExamMode()).toBe(false)
+    await saveExamMode(true)
+    expect(await loadExamMode()).toBe(true)
+    await saveExamMode(false)
+    expect(await loadExamMode()).toBe(false)
   })
 })

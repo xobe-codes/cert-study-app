@@ -41,7 +41,7 @@
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -83,7 +83,7 @@
             "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
           }
         ],
-        "examTip": "Many hosts sharing one public IP → PAT/overload and the keyword \"overload\".",
+        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
         "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
       }
     },
@@ -126,7 +126,7 @@
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -168,7 +168,7 @@
             "misconceptionTested": "Selecting \"DNS\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without `ip nat inside`/`outside`, NAT translates nothing"
       }
     },
     {
@@ -210,7 +210,7 @@
             "misconceptionTested": "Selecting \"ip nat outside source list 1\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Many hosts sharing one public IP → PAT/overload and the keyword \"overload\".",
+        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
         "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
       }
     },
@@ -253,7 +253,7 @@
             "misconceptionTested": "Forgetting the inside/outside interface tags"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without `ip nat inside`/`outside`, NAT translates nothing"
       }
     },
     {
@@ -295,7 +295,7 @@
             "misconceptionTested": "Selecting \"show ip nat inside\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -325,7 +325,7 @@
             "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
           }
         ],
-        "examTip": "Many hosts sharing one public IP → PAT/overload and the keyword \"overload\".",
+        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
         "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
       }
     },
@@ -371,7 +371,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -418,7 +418,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -465,7 +465,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -512,7 +512,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -557,7 +557,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -602,7 +602,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -649,7 +649,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -696,7 +696,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -741,7 +741,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -786,7 +786,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -831,7 +831,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -879,7 +879,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -926,7 +926,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -976,7 +976,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -1026,7 +1026,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -1076,7 +1076,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -1125,7 +1125,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -1175,7 +1175,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -1224,7 +1224,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -1276,7 +1276,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -1327,7 +1327,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -1375,7 +1375,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -1423,7 +1423,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -1475,7 +1475,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     }
   ]

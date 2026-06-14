@@ -1,4 +1,5 @@
 /** Detect low-quality / template wrong-answer explanations. */
+import { isGenericExamTip } from './examTipLogic.js'
 
 export const FALLBACK_EXPLANATION_RE = [
   /is incorrect because the scenario requires:/i,
@@ -25,6 +26,8 @@ export function isGenericTrap(label) {
   if (!label) return true
   return GENERIC_TRAP_RE.test(label.trim())
 }
+
+export { isGenericExamTip, GENERIC_EXAM_TIP_RE } from './examTipLogic.js'
 
 /** Score one distractor explanation 0–4. */
 export function scoreDistractorExplanation(q, choiceIndex, text, trap) {
@@ -84,6 +87,9 @@ export function validateQuestionAnswerReview(q) {
     if (isGenericTrap(item.misconceptionTested)) {
       errors.push(`${where}: generic trap for choice ${item.choiceIndex}`)
     }
+  }
+  if (isGenericExamTip(ar.examTip)) {
+    errors.push(`${where}: generic examTip`)
   }
   const { min, avg } = scoreAnswerReview(q)
   if (min < 3) errors.push(`${where}: distractor quality below threshold (min=${min}, avg=${avg.toFixed(1)})`)

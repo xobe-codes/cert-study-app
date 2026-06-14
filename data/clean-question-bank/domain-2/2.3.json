@@ -44,7 +44,7 @@
             "misconceptionTested": "Selecting \"802.1a\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -89,7 +89,7 @@
             "misconceptionTested": "Selecting \"Switch(config)#no cdp\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no cdp run disables CDP globally."
       }
     },
     {
@@ -134,7 +134,7 @@
             "misconceptionTested": "Selecting \"Every 180 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: CDP advertises every 60 seconds by default."
       }
     },
     {
@@ -178,7 +178,7 @@
             "misconceptionTested": "Selecting \"802.1a\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -223,7 +223,7 @@
             "misconceptionTested": "Selecting \"90 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: CDP holdtime defaults to 180 seconds."
       }
     },
     {
@@ -268,7 +268,7 @@
             "misconceptionTested": "Selecting \"Switch(config-if)#no cdp run\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no cdp enable disables CDP on one interface."
       }
     },
     {
@@ -313,7 +313,7 @@
             "misconceptionTested": "Selecting \"Switch#sh cdp entries all\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: show cdp entry * gives detailed CDP neighbor information."
       }
     },
     {
@@ -358,7 +358,7 @@
             "misconceptionTested": "Selecting \"Switch#lldp enable\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: lldp run enables LLDP globally, including LLDP-MED capabilities."
       }
     },
     {
@@ -403,7 +403,7 @@
             "misconceptionTested": "Selecting \"Switch#show cdp neighbor detail\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: show lldp neighbor detail shows detailed LLDP neighbor information."
       }
     },
     {
@@ -448,7 +448,7 @@
             "misconceptionTested": "Selecting \"120 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: LLDP advertises every 30 seconds by default."
       }
     },
     {
@@ -493,7 +493,7 @@
             "misconceptionTested": "Selecting \"Switch(config-if)#no lldp enable\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no lldp transmit suppresses outgoing LLDP on an interface."
       }
     },
     {
@@ -538,7 +538,7 @@
             "misconceptionTested": "Selecting \"90 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: LLDP holdtime defaults to 120 seconds."
       }
     },
     {
@@ -585,7 +585,7 @@
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: CDP detail output identifies the local and remote interfaces, holdtime, and management address."
       }
     },
     {
@@ -630,7 +630,7 @@
             "misconceptionTested": "Selecting \"Switch(config-if)#no cdp disable\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no cdp enable disables CDP advertisements on one interface."
       }
     },
     {
@@ -675,7 +675,7 @@
             "misconceptionTested": "Selecting \"Switch#show interface cdp\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: show cdp interface shows interfaces advertising CDP."
       }
     }
   ]

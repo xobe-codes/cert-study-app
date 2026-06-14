@@ -42,7 +42,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Layer 7\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
       }
     },
     {
@@ -84,7 +84,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"ACL list\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "On the exam: Expecting an L2 switch to route VLANs — Inter-VLAN routing requires an L3 device — router or L3 switch with SVIs"
       }
     },
     {
@@ -168,7 +168,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"It operates only at Layer 1\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Firewalls and IPS are interchangeable — Firewalls enforce access policy; IPS focuses on threat detection/prevention — often deployed together"
       }
     },
     {
@@ -210,7 +210,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"DHCP relay\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling an AP a router — An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing"
       }
     },
     {
@@ -252,7 +252,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Core router\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
       }
     },
     {
@@ -294,7 +294,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The DNS server\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
       }
     },
     {
@@ -324,7 +324,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling an AP a router — An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing"
       }
     }
   ],
@@ -368,7 +368,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Spine\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "On the exam: More tiers always mean faster networks — Tiers organize scale and policy; extra hops can add latency if over-engineered"
       }
     },
     {
@@ -410,7 +410,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Home gaming\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -452,7 +452,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Point-to-point only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming hub-and-spoke has automatic redundancy — The hub is a single point of failure unless spokes are dual-homed or meshed"
       }
     },
     {
@@ -494,7 +494,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Eliminates routing\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming hub-and-spoke has automatic redundancy — The hub is a single point of failure unless spokes are dual-homed or meshed"
       }
     },
     {
@@ -536,7 +536,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Five\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "On the exam: More tiers always mean faster networks — Tiers organize scale and policy; extra hops can add latency if over-engineered"
       }
     },
     {
@@ -578,7 +578,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Spine fabric\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Cloud means no local network — Hybrid designs keep on-prem LAN/WAN while using cloud for apps or compute"
       }
     },
     {
@@ -620,7 +620,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"On-prem only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Cloud means no local network — Hybrid designs keep on-prem LAN/WAN while using cloud for apps or compute"
       }
     },
     {
@@ -650,7 +650,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     }
   ],
@@ -694,7 +694,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"1 km\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Higher Cat number means longer distance — All UTP Ethernet stays ~100 m; higher categories support higher bandwidth"
       }
     },
     {
@@ -736,7 +736,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Fiber SM only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Always choosing crossover switch-to-switch — Modern auto-MDIX usually allows straight-through between switches"
       }
     },
     {
@@ -778,7 +778,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Coax\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using MM fiber for km-scale links — Long distance requires single-mode fiber and matching SM optics"
       }
     },
     {
@@ -821,7 +821,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"USB-C\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using MM fiber for km-scale links — Long distance requires single-mode fiber and matching SM optics"
       }
     },
     {
@@ -863,7 +863,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"40 Gbps\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Higher Cat number means longer distance — All UTP Ethernet stays ~100 m; higher categories support higher bandwidth"
       }
     },
     {
@@ -905,7 +905,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Serial DCE\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Always choosing crossover switch-to-switch — Modern auto-MDIX usually allows straight-through between switches"
       }
     },
     {
@@ -947,7 +947,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Encrypt traffic\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **sfp purpose** — exam distractors swap similar terms; anchor on: SFPs let you choose copper or fiber media per port without changing the switch."
       }
     },
     {
@@ -977,7 +977,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using MM fiber for km-scale links — Long distance requires single-mode fiber and matching SM optics"
       }
     }
   ],
@@ -1021,7 +1021,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Valid VLAN tagging\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: CRC errors always mean replace the switch — Most CRC issues are cable, SFP, or duplex — not the switch ASIC"
       }
     },
     {
@@ -1063,7 +1063,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"show version\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming up/up means healthy link — Always check error counters — CRCs can climb while status stays up"
       }
     },
     {
@@ -1105,7 +1105,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forcing full-duplex on one side only — Both ends must match — use auto-auto or identical manual settings"
       }
     },
     {
@@ -1147,7 +1147,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"DHCP renewal\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Collisions are normal on all Ethernet links — Full-duplex switched links should have near-zero collisions"
       }
     },
     {
@@ -1190,7 +1190,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Enable OSPF\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: CRC errors always mean replace the switch — Most CRC issues are cable, SFP, or duplex — not the switch ASIC"
       }
     },
     {
@@ -1232,7 +1232,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Encrypted frames\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming up/up means healthy link — Always check error counters — CRCs can climb while status stays up"
       }
     },
     {
@@ -1262,7 +1262,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming up/up means healthy link — Always check error counters — CRCs can climb while status stays up"
       }
     },
     {
@@ -1304,7 +1304,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"WPA3 misconfig\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: CRC errors always mean replace the switch — Most CRC issues are cable, SFP, or duplex — not the switch ASIC"
       }
     }
   ],
@@ -1348,7 +1348,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "Learning records the **source MAC on the ingress port**; forwarding looks up the **destination MAC** — don't swap them."
       }
     },
     {
@@ -1390,7 +1390,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Choosing flood behavior when the destination is already in the MAC table"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting same-port source/destination frames are filtered, not forwarded — If both MACs map to the same ingress port, the switch does not forward the frame at all"
       }
     },
     {
@@ -1474,7 +1474,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"3600 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the aging timer disconnects the device — Aging only removes the table entry; the device itself is unaffected and will be relearned on its next frame"
       }
     },
     {
@@ -1516,7 +1516,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Choosing drop when the switch should forward or flood"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting same-port source/destination frames are filtered, not forwarded — If both MACs map to the same ingress port, the switch does not forward the frame at all"
       }
     },
     {
@@ -1558,7 +1558,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"AAAA.AAAA.AAAA\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Unknown unicast → flood (same VLAN). Known unicast → forward one port."
+        "examTip": "On the exam: Thinking switches broadcast every frame — Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port"
       }
     },
     {
@@ -1588,7 +1588,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Unknown unicast → flood (same VLAN). Known unicast → forward one port."
+        "examTip": "On the exam: Thinking switches broadcast every frame — Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port"
       }
     },
     {
@@ -1630,7 +1630,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"show cdp neighbors\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A switch needs to know a device's IP address to forward frames to it — Switching is Layer 2 — only MAC addresses matter for the forwarding decision"
       }
     },
     {
@@ -1672,7 +1672,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: A switch needs to know a device's IP address to forward frames to it — Switching is Layer 2 — only MAC addresses matter for the forwarding decision"
       }
     },
     {
@@ -1715,7 +1715,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Expecting the switch to ARP before forwarding at Layer 2"
           }
         ],
-        "examTip": "Unknown unicast → flood (same VLAN). Known unicast → forward one port."
+        "examTip": "On the exam: Thinking switches broadcast every frame — Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port"
       }
     },
     {
@@ -1758,7 +1758,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The switch shuts down port 5\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the aging timer disconnects the device — Aging only removes the table entry; the device itself is unaffected and will be relearned on its next frame"
       }
     },
     {
@@ -1801,7 +1801,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"A switch only works at Layer 3\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Unknown unicast → flood (same VLAN). Known unicast → forward one port."
+        "examTip": "On the exam: Forgetting same-port source/destination frames are filtered, not forwarded — If both MACs map to the same ingress port, the switch does not forward the frame at all"
       }
     }
   ],
@@ -1845,7 +1845,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"126\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     },
     {
@@ -1887,7 +1887,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"8\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
       }
     },
     {
@@ -1930,7 +1930,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"192.168.10.64\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
       }
     },
     {
@@ -1972,7 +1972,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"172.16.0.128\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
       }
     },
     {
@@ -2014,7 +2014,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"/29\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     },
     {
@@ -2056,7 +2056,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"0\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     },
     {
@@ -2098,7 +2098,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"3\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     },
     {
@@ -2140,7 +2140,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"/29\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A bigger prefix (/27) means a bigger network — A larger prefix number means MORE network bits and FEWER hosts — a smaller subnet"
       }
     },
     {
@@ -2183,7 +2183,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"10.0.0.1 – 10.0.0.14\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
       }
     },
     {
@@ -2225,7 +2225,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"4\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A bigger prefix (/27) means a bigger network — A larger prefix number means MORE network bits and FEWER hosts — a smaller subnet"
       }
     },
     {
@@ -2255,7 +2255,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     },
     {
@@ -2297,7 +2297,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"/26\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     }
   ],
@@ -2341,7 +2341,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"169.254.1.0/24\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking 172.16.0.0/16 is the whole 172 private block — The private range is 172.16.0.0/12 (through 172.31.x.x)"
       }
     },
     {
@@ -2383,7 +2383,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"APIPA\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking 172.16.0.0/16 is the whole 172 private block — The private range is 172.16.0.0/12 (through 172.31.x.x)"
       }
     },
     {
@@ -2425,7 +2425,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Only on IPv6\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking 172.16.0.0/16 is the whole 172 private block — The private range is 172.16.0.0/12 (through 172.31.x.x)"
       }
     },
     {
@@ -2467,7 +2467,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"DNS cache flush\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating 169.254.x.x as normal private DHCP address — 169.254 is APIPA — indicates DHCP failure, not RFC 1918"
       }
     },
     {
@@ -2509,7 +2509,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Firewalls block all IPv4\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -2551,7 +2551,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"192.168.1.1\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **identify public** — exam distractors swap similar terms; anchor on: 198."
       }
     },
     {
@@ -2581,7 +2581,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating 169.254.x.x as normal private DHCP address — 169.254 is APIPA — indicates DHCP failure, not RFC 1918"
       }
     },
     {
@@ -2623,7 +2623,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     }
   ],
@@ -2667,7 +2667,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"256\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
       }
     },
     {
@@ -2709,7 +2709,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"2001::db8::1\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
       }
     },
     {
@@ -2739,7 +2739,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
       }
     },
     {
@@ -2781,7 +2781,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"/128\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
       }
     },
     {
@@ -2823,7 +2823,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"FE80\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Link-local **fe80::/10** is automatic; global unicast needs SLAAC, DHCPv6, or static config."
       }
     },
     {
@@ -2865,7 +2865,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"NAT66\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting SLAAC on a non-/64 prefix — SLAAC requires a /64 prefix"
       }
     },
     {
@@ -2907,7 +2907,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "IPv6 needs NAT like IPv4"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
       }
     },
     {
@@ -2949,7 +2949,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"None\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
       }
     },
     {
@@ -2991,7 +2991,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"show running-config\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
       }
     },
     {
@@ -3033,7 +3033,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"128\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
       }
     }
   ],
@@ -3077,7 +3077,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"FF00::/8\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Link-local **fe80::/10** is automatic; global unicast needs SLAAC, DHCPv6, or static config."
       }
     },
     {
@@ -3119,7 +3119,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"FD00\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing FE80 and FF02 — FE80 = link-local unicast; FF02 = link-local multicast group"
       }
     },
     {
@@ -3161,7 +3161,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"FF00::/8\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating ULA as routable — FD00::/8 is private and should not be advertised to the internet"
       }
     },
     {
@@ -3203,7 +3203,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"224.0.0.2\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Looking for an IPv6 broadcast — There is none; multicast (FF00::/8) replaces broadcast"
       }
     },
     {
@@ -3233,7 +3233,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Looking for an IPv6 broadcast — There is none; multicast (FF00::/8) replaces broadcast"
       }
     },
     {
@@ -3275,7 +3275,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Looking for an IPv6 broadcast"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Looking for an IPv6 broadcast — There is none; multicast (FF00::/8) replaces broadcast"
       }
     },
     {
@@ -3317,7 +3317,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Global unicast is the only usable type on a router link"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing FE80 and FF02 — FE80 = link-local unicast; FF02 = link-local multicast group"
       }
     },
     {
@@ -3359,7 +3359,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"2000::1\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Looking for an IPv6 broadcast — There is none; multicast (FF00::/8) replaces broadcast"
       }
     }
   ],
@@ -3403,7 +3403,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"route print only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Ignoring 169.254.x.x in ipconfig — APIPA means DHCP failed — not a valid corporate address"
       }
     },
     {
@@ -3445,7 +3445,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"WPA3\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
       }
     },
     {
@@ -3487,7 +3487,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
       }
     },
     {
@@ -3529,7 +3529,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Wi‑Fi channel\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: ping failure always means the remote host is down — Firewalls may block ICMP; also local misconfig can fail before the path is tested"
       }
     },
     {
@@ -3572,7 +3572,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"VTP domain\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
       }
     },
     {
@@ -3614,7 +3614,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Loopback only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: ping failure always means the remote host is down — Firewalls may block ICMP; also local misconfig can fail before the path is tested"
       }
     },
     {
@@ -3656,7 +3656,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"debug ip routing\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Ignoring 169.254.x.x in ipconfig — APIPA means DHCP failed — not a valid corporate address"
       }
     },
     {
@@ -3698,7 +3698,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Valid DHCP lease\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
       }
     }
   ],
@@ -3742,7 +3742,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"11, 12, 13 only in all regions\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using adjacent 2.4 GHz channels (e.g. 3 and 4) — They overlap — stick to 1, 6, 11 for non-overlapping 20 MHz cells"
       }
     },
     {
@@ -3784,7 +3784,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Only WEP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using adjacent 2.4 GHz channels (e.g. 3 and 4) — They overlap — stick to 1, 6, 11 for non-overlapping 20 MHz cells"
       }
     },
     {
@@ -3826,7 +3826,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Removing AES\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -3856,7 +3856,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -3898,7 +3898,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Wi‑Fi 5\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -3940,7 +3940,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The VLAN ID only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **ssid** — exam distractors swap similar terms; anchor on: SSID identifies the WLAN broadcast by the AP."
       }
     },
     {
@@ -3982,7 +3982,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Disables 5 GHz\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: More AP power always fixes coverage — Higher power increases interference and sticky clients; proper placement and channel plan matter"
       }
     },
     {
@@ -4024,7 +4024,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"NAT port count\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: More AP power always fixes coverage — Higher power increases interference and sticky clients; proper placement and channel plan matter"
       }
     }
   ],
@@ -4068,7 +4068,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Virtualization eliminates physical networks"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Virtualization eliminates physical networks — VMs/containers still need virtual and physical switching/routing underneath"
       }
     },
     {
@@ -4110,7 +4110,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Without any VMs\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Virtualization eliminates physical networks — VMs/containers still need virtual and physical switching/routing underneath"
       }
     },
     {
@@ -4152,7 +4152,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Replace physical switches\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Saying containers include a full guest OS — Containers share the host kernel — only apps/libs are packaged"
       }
     },
     {
@@ -4194,7 +4194,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"DHCP server redundancy\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Equating VRF with VLAN — VRF isolates L3 routing; VLAN isolates L2 broadcast domains"
       }
     },
     {
@@ -4236,7 +4236,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Using only WEP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: NFV and VMs are the same thing — NFV is a use case — virtualized network functions; VMs are one way to host them (containers another)"
       }
     },
     {
@@ -4278,7 +4278,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"No network interface\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Virtualization eliminates physical networks — VMs/containers still need virtual and physical switching/routing underneath"
       }
     },
     {
@@ -4308,7 +4308,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Equating VRF with VLAN — VRF isolates L3 routing; VLAN isolates L2 broadcast domains"
       }
     },
     {
@@ -4350,7 +4350,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Saying containers include a full guest OS — Containers share the host kernel — only apps/libs are packaged"
       }
     }
   ],
@@ -4394,7 +4394,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -4436,7 +4436,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -4478,7 +4478,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"switchport voice vlan 10\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -4520,7 +4520,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"show mac address-table\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -4562,7 +4562,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -4604,7 +4604,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -4634,7 +4634,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -4676,7 +4676,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     }
   ],
@@ -4720,7 +4720,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Routes between VLANs\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
       }
     },
     {
@@ -4762,7 +4762,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"12 bytes\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
       }
     },
     {
@@ -4804,7 +4804,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Mismatched native VLANs — Native VLAN must match on both ends or traffic can leak (CDP warns)"
       }
     },
     {
@@ -4846,7 +4846,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Mismatched native VLANs — Native VLAN must match on both ends or traffic can leak (CDP warns)"
       }
     },
     {
@@ -4888,7 +4888,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"switchport nonegotiate\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
       }
     },
     {
@@ -4930,7 +4930,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"no switchport trunk\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Leaving DTP on for untrusted ports — Disable DTP with switchport nonegotiate to prevent VLAN hopping"
       }
     },
     {
@@ -4972,7 +4972,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"show cdp neighbors\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
       }
     },
     {
@@ -5014,7 +5014,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "A trunk is faster than an access port"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A trunk is faster than an access port — A trunk simply carries multiple VLANs; speed depends on the physical link"
       }
     }
   ],
@@ -5061,7 +5061,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"802.1a\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -5106,7 +5106,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Switch(config)#no cdp\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no cdp run disables CDP globally."
       }
     },
     {
@@ -5151,7 +5151,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Every 180 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: CDP advertises every 60 seconds by default."
       }
     },
     {
@@ -5195,7 +5195,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"802.1a\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -5240,7 +5240,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"90 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: CDP holdtime defaults to 180 seconds."
       }
     },
     {
@@ -5285,7 +5285,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Switch(config-if)#no cdp run\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no cdp enable disables CDP on one interface."
       }
     },
     {
@@ -5330,7 +5330,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Switch#sh cdp entries all\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: show cdp entry * gives detailed CDP neighbor information."
       }
     },
     {
@@ -5375,7 +5375,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Switch#lldp enable\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: lldp run enables LLDP globally, including LLDP-MED capabilities."
       }
     },
     {
@@ -5420,7 +5420,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Switch#show cdp neighbor detail\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: show lldp neighbor detail shows detailed LLDP neighbor information."
       }
     },
     {
@@ -5465,7 +5465,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"120 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: LLDP advertises every 30 seconds by default."
       }
     },
     {
@@ -5510,7 +5510,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Switch(config-if)#no lldp enable\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no lldp transmit suppresses outgoing LLDP on an interface."
       }
     },
     {
@@ -5555,7 +5555,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"90 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: LLDP holdtime defaults to 120 seconds."
       }
     },
     {
@@ -5602,7 +5602,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: CDP detail output identifies the local and remote interfaces, holdtime, and management address."
       }
     },
     {
@@ -5647,7 +5647,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Switch(config-if)#no cdp disable\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no cdp enable disables CDP advertisements on one interface."
       }
     },
     {
@@ -5692,7 +5692,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Switch#show interface cdp\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: show cdp interface shows interfaces advertising CDP."
       }
     }
   ],
@@ -5739,7 +5739,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"4 interfaces\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -5783,7 +5783,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -5828,7 +5828,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"2.6 Gb/s\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -5872,7 +5872,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"802.1X\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -5917,7 +5917,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"PAgP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -5962,7 +5962,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"4 interfaces\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -6007,7 +6007,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"802.3ad mode\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -6051,7 +6051,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"PAgP can bundle several different links …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -6095,7 +6095,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"802.1ab\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -6140,7 +6140,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Every 120 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -6185,7 +6185,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -6230,7 +6230,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -6275,7 +6275,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Switch#show run\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -6320,7 +6320,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"An unconditional port channel will be fo…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -6365,7 +6365,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The channel group will use LACP.\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     }
   ],
@@ -6409,7 +6409,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -6451,7 +6451,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Fastest CPU\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Highest priority becomes root — LOWEST Bridge ID (priority then MAC) becomes root"
       }
     },
     {
@@ -6493,7 +6493,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"65535\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Highest priority becomes root — LOWEST Bridge ID (priority then MAC) becomes root"
       }
     },
     {
@@ -6535,7 +6535,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Trunk port\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -6577,7 +6577,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"All ports\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: PortFast on switch links — PortFast belongs only on access/host ports; on switch links it risks loops"
       }
     },
     {
@@ -6619,7 +6619,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Nothing\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: PortFast on switch links — PortFast belongs only on access/host ports; on switch links it risks loops"
       }
     },
     {
@@ -6661,7 +6661,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"PVST\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -6703,7 +6703,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"switchport mode trunk\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Highest priority becomes root — LOWEST Bridge ID (priority then MAC) becomes root"
       }
     },
     {
@@ -6747,7 +6747,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -6791,7 +6791,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "STP prevents routing loops"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -6835,7 +6835,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -6879,7 +6879,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -6923,7 +6923,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -6967,7 +6967,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7011,7 +7011,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7055,7 +7055,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7099,7 +7099,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7143,7 +7143,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7187,7 +7187,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7231,7 +7231,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7275,7 +7275,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7319,7 +7319,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7363,7 +7363,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7407,7 +7407,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7451,7 +7451,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7495,7 +7495,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7539,7 +7539,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7583,7 +7583,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7627,7 +7627,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7671,7 +7671,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7715,7 +7715,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7759,7 +7759,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7803,7 +7803,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7847,7 +7847,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7891,7 +7891,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7935,7 +7935,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -7979,7 +7979,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "STP load-balances across redundant links"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8023,7 +8023,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8067,7 +8067,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8111,7 +8111,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8156,7 +8156,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8201,7 +8201,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8246,7 +8246,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8292,7 +8292,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "STP load-balances across redundant links"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8337,7 +8337,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8382,7 +8382,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8427,7 +8427,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8472,7 +8472,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8518,7 +8518,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8563,7 +8563,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8608,7 +8608,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8654,7 +8654,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8699,7 +8699,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -8744,7 +8744,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     }
   ],
@@ -8791,7 +8791,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Lightweight WAPs without a WLC\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -8836,7 +8836,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Analysis mode\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -8881,7 +8881,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"DS\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -8926,7 +8926,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Repeaters are considered root devices.\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -8970,7 +8970,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Mesh\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -9015,7 +9015,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Autonomous wireless network\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -9060,7 +9060,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Addition of a wireless LAN controller\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -9105,7 +9105,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Autonomous WAP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -9150,7 +9150,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Wireless repeaters\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -9196,7 +9196,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Flex Connect mode allows for switching o…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     }
   ],
@@ -9244,7 +9244,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Use the wireless controller to perform i…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -9289,7 +9289,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Routed switch port\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -9334,7 +9334,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"PortChannel\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -9379,7 +9379,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Spill and fill\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **wlc connections** — exam distractors swap similar terms; anchor on: WLC LAG load balancing is hash-based."
       }
     },
     {
@@ -9424,7 +9424,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"2\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **wlc connections** — exam distractors swap similar terms; anchor on: A WLC LAG supports up to eight bundled ports."
       }
     },
     {
@@ -9469,7 +9469,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Add a second WLC to accommodate the new …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -9514,7 +9514,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"LAG port\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     }
   ],
@@ -9560,7 +9560,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"TFTP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -9604,7 +9604,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Router#vty 198.56.33.3\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -9650,7 +9650,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"UDP/47\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -9694,7 +9694,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"SFTP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -9739,7 +9739,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"At-rest encryption\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -9784,7 +9784,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Local storage\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **management access** — exam distractors swap similar terms; anchor on: WAP debug output appears on the console by default."
       }
     },
     {
@@ -9829,7 +9829,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"LDAP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -9874,7 +9874,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"RADIUS\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -9920,7 +9920,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Telnet\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **management access** — exam distractors swap similar terms; anchor on: A first-time autonomous AP setup commonly uses the console connection."
       }
     },
     {
@@ -9965,7 +9965,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"19200 baud\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **management access** — exam distractors swap similar terms; anchor on: Cisco console access commonly uses 9600 baud."
       }
     },
     {
@@ -10009,7 +10009,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"64 characters\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **wlan** — exam distractors swap similar terms; anchor on: An SSID can be up to 32 characters."
       }
     },
     {
@@ -10054,7 +10054,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Access control lists for two SSIDs\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -10099,7 +10099,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"WWAN\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -10144,7 +10144,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"WWAN\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -10189,7 +10189,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"A trust boundary is the separation of Qo…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **wlan** — exam distractors swap similar terms; anchor on: A QoS trust boundary is where the network begins trusting QoS markings."
       }
     },
     {
@@ -10234,7 +10234,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"802.11k\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -10279,7 +10279,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Add an LDAP server\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -10324,7 +10324,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"802.11ac\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -10370,7 +10370,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Gold\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -10417,7 +10417,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Enable Broadcast SSID\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -10464,7 +10464,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"802.1X is enabled.\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -10509,7 +10509,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Silver\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **wlan** — exam distractors swap similar terms; anchor on: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context."
       }
     },
     {
@@ -10555,7 +10555,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Fast Transitioning\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     }
   ],
@@ -10599,7 +10599,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"EIGRP-learned route\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **route source codes** — exam distractors swap similar terms; anchor on: O = OSPF."
       }
     },
     {
@@ -10641,7 +10641,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The hop count\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
       }
     },
     {
@@ -10683,7 +10683,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"C 192.168.1.0/24 only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
       }
     },
     {
@@ -10725,7 +10725,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"It marks the default gateway\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
       }
     },
     {
@@ -10767,7 +10767,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"R\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **EIGRP code** — exam distractors swap similar terms; anchor on: D = EIGRP (Diffusing Update Algorithm)."
       }
     },
     {
@@ -10809,7 +10809,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "The L route is NOT a host route to a PC"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
       }
     },
     {
@@ -10851,7 +10851,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -10894,7 +10894,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Hop count\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
       }
     },
     {
@@ -10936,7 +10936,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"OSPF elected a DR\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
       }
     },
     {
@@ -10978,7 +10978,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The route requires manual activation\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
       }
     },
     {
@@ -11029,7 +11029,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -11080,7 +11080,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -11129,7 +11129,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -11180,7 +11180,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -11229,7 +11229,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -11279,7 +11279,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
       }
     },
     {
@@ -11328,7 +11328,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -11379,7 +11379,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -11428,7 +11428,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -11476,7 +11476,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -11523,7 +11523,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -11570,7 +11570,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -11618,7 +11618,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -11668,7 +11668,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -11717,7 +11717,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -11769,7 +11769,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -11818,7 +11818,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -11868,7 +11868,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -11918,7 +11918,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -11966,7 +11966,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -12015,7 +12015,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -12064,7 +12064,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -12114,7 +12114,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -12162,7 +12162,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
       }
     },
     {
@@ -12212,7 +12212,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -12262,7 +12262,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -12310,7 +12310,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     }
   ],
@@ -12354,7 +12354,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -12398,7 +12398,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "A lower metric can beat a more-specific route"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -12440,7 +12440,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "AD and metric do the same job"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -12482,7 +12482,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"120\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -12524,7 +12524,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Forgetting AD 255 behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -12555,7 +12555,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -12597,7 +12597,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Neither — AD must differ\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -12640,7 +12640,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"It is dropped\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -12682,7 +12682,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Treating the default route as a normal match"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -12725,7 +12725,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Cost and hop count\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -12767,7 +12767,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -12809,7 +12809,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -12857,7 +12857,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -12907,7 +12907,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -12959,7 +12959,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13008,7 +13008,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13059,7 +13059,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13107,7 +13107,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13155,7 +13155,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13203,7 +13203,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13254,7 +13254,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13302,7 +13302,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13350,7 +13350,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13399,7 +13399,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13450,7 +13450,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13497,7 +13497,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13545,7 +13545,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13594,7 +13594,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13642,7 +13642,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13690,7 +13690,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13738,7 +13738,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13787,7 +13787,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13836,7 +13836,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13885,7 +13885,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13933,7 +13933,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -13980,7 +13980,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14027,7 +14027,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14076,7 +14076,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14124,7 +14124,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14172,7 +14172,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14221,7 +14221,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14270,7 +14270,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14321,7 +14321,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14370,7 +14370,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14420,7 +14420,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14468,7 +14468,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14517,7 +14517,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14567,7 +14567,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -14615,7 +14615,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     }
   ],
@@ -14659,7 +14659,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
       }
     },
     {
@@ -14701,7 +14701,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -14743,7 +14743,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: A floating static needs AD HIGHER than the dynamic protocol — Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup"
       }
     },
     {
@@ -14785,7 +14785,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The mask is incompatible\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
       }
     },
     {
@@ -14827,7 +14827,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -14870,7 +14870,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -14912,7 +14912,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
       }
     },
     {
@@ -14954,7 +14954,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The router uses OSPF to resolve the path\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
       }
     },
     {
@@ -15002,7 +15002,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15049,7 +15049,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15097,7 +15097,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15147,7 +15147,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15197,7 +15197,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15247,7 +15247,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15295,7 +15295,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15343,7 +15343,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15391,7 +15391,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15441,7 +15441,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15489,7 +15489,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15539,7 +15539,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15587,7 +15587,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15636,7 +15636,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15686,7 +15686,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15734,7 +15734,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15781,7 +15781,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15829,7 +15829,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15879,7 +15879,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15927,7 +15927,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -15976,7 +15976,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16025,7 +16025,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16073,7 +16073,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16120,7 +16120,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16169,7 +16169,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16217,7 +16217,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16266,7 +16266,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16315,7 +16315,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16364,7 +16364,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16413,7 +16413,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16461,7 +16461,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16508,7 +16508,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16558,7 +16558,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16609,7 +16609,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16656,7 +16656,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16707,7 +16707,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16755,7 +16755,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16803,7 +16803,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16851,7 +16851,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16901,7 +16901,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -16952,7 +16952,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -17000,7 +17000,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -17049,7 +17049,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     }
   ],
@@ -17093,7 +17093,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Static\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24)"
       }
     },
     {
@@ -17135,7 +17135,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"120\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24)"
       }
     },
     {
@@ -17177,7 +17177,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"64\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -17219,7 +17219,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Always 0.0.0.0\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
       }
     },
     {
@@ -17261,7 +17261,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Different banners\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
       }
     },
     {
@@ -17303,7 +17303,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"advertise 10.0.0.0 area 0\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24)"
       }
     },
     {
@@ -17345,7 +17345,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Exchange\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
       }
     },
     {
@@ -17387,7 +17387,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Misapplying OSPF DR/BDR election rules"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
       }
     },
     {
@@ -17429,7 +17429,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"First to boot only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
       }
     },
     {
@@ -17478,7 +17478,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -17527,7 +17527,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -17574,7 +17574,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -17623,7 +17623,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -17670,7 +17670,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -17718,7 +17718,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -17766,7 +17766,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -17813,7 +17813,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -17862,7 +17862,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -17911,7 +17911,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -17960,7 +17960,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -18008,7 +18008,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -18056,7 +18056,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -18103,7 +18103,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -18152,7 +18152,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -18201,7 +18201,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -18250,7 +18250,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -18297,7 +18297,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -18344,7 +18344,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -18392,7 +18392,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -18440,7 +18440,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -18488,7 +18488,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -18537,7 +18537,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -18584,7 +18584,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -18633,7 +18633,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -18682,7 +18682,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Using a subnet mask in an ACL — ACLs use WILDCARD masks (inverse): /24 → 0.0.0.255"
       }
     },
     {
@@ -18730,7 +18730,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -18778,7 +18778,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -18826,7 +18826,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -18875,7 +18875,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Using a subnet mask in an ACL — ACLs use WILDCARD masks (inverse): /24 → 0.0.0.255"
       }
     },
     {
@@ -18923,7 +18923,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -18972,7 +18972,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -19021,7 +19021,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -19070,7 +19070,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -19119,7 +19119,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -19169,7 +19169,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -19216,7 +19216,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -19263,7 +19263,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -19312,7 +19312,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -19360,7 +19360,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -19407,7 +19407,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -19456,7 +19456,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -19504,7 +19504,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -19554,7 +19554,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -19604,7 +19604,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -19653,7 +19653,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -19704,7 +19704,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -19752,7 +19752,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -19803,7 +19803,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -19854,7 +19854,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -19904,7 +19904,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -19956,7 +19956,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -20005,7 +20005,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -20055,7 +20055,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -20105,7 +20105,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -20153,7 +20153,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -20203,7 +20203,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -20251,7 +20251,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -20298,7 +20298,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -20347,7 +20347,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -20396,7 +20396,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -20444,7 +20444,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -20491,7 +20491,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     }
   ],
@@ -20542,7 +20542,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -20590,7 +20590,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -20639,7 +20639,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -20687,7 +20687,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -20736,7 +20736,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -20783,7 +20783,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -20830,7 +20830,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -20878,7 +20878,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -20925,7 +20925,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -20974,7 +20974,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -21022,7 +21022,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21070,7 +21070,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21119,7 +21119,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -21168,7 +21168,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21218,7 +21218,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21266,7 +21266,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21314,7 +21314,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21361,7 +21361,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21411,7 +21411,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -21460,7 +21460,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21508,7 +21508,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21555,7 +21555,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21606,7 +21606,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -21654,7 +21654,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21702,7 +21702,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21751,7 +21751,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21798,7 +21798,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21847,7 +21847,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21895,7 +21895,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -21944,7 +21944,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     }
   ],
@@ -21990,7 +21990,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Neither route — the router flags a confl…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -22033,7 +22033,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Nothing — next-hop routes forward immedi…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **recursive route lookup** — exam distractors swap similar terms; anchor on: A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP, adding extra processing versus a directly-attached exit-interface route."
       }
     },
     {
@@ -22076,7 +22076,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -22119,7 +22119,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The host has a duplicate IP address\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Local L2 works but remote fails? Check the host **default gateway** before blaming routing protocols."
       }
     },
     {
@@ -22162,7 +22162,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"show ip protocols\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **routing table verification** — exam distractors swap similar terms; anchor on: show ip route lists all routes in the routing table along with a code (S, C, O, D, etc."
       }
     },
     {
@@ -22205,7 +22205,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: A floating static needs AD HIGHER than the dynamic protocol — Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup"
       }
     },
     {
@@ -22248,7 +22248,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The NTP server configuration\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Troubleshooting stem: work **bottom-up** (L1 → L2 → L3). Here the fix hinges on: A correct routing table entry doesn't guarantee Layer 1/2 health."
       }
     },
     {
@@ -22291,7 +22291,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The route with the higher next-hop IP is…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -22335,7 +22335,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Treating the default route as a normal match"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -22379,7 +22379,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules"
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24)"
       }
     }
   ],
@@ -22423,7 +22423,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -22465,7 +22465,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
           }
         ],
-        "examTip": "Many hosts sharing one public IP → PAT/overload and the keyword \"overload\".",
+        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
         "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
       }
     },
@@ -22508,7 +22508,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -22550,7 +22550,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"DNS\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without `ip nat inside`/`outside`, NAT translates nothing"
       }
     },
     {
@@ -22592,7 +22592,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"ip nat outside source list 1\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Many hosts sharing one public IP → PAT/overload and the keyword \"overload\".",
+        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
         "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
       }
     },
@@ -22635,7 +22635,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Forgetting the inside/outside interface tags"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without `ip nat inside`/`outside`, NAT translates nothing"
       }
     },
     {
@@ -22677,7 +22677,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"show ip nat inside\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -22707,7 +22707,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
           }
         ],
-        "examTip": "Many hosts sharing one public IP → PAT/overload and the keyword \"overload\".",
+        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports",
         "memoryHook": "PAT = many tenants, one door — ports are the apartment numbers."
       }
     },
@@ -22753,7 +22753,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -22800,7 +22800,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -22847,7 +22847,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -22894,7 +22894,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -22939,7 +22939,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -22984,7 +22984,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23031,7 +23031,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23078,7 +23078,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23123,7 +23123,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23168,7 +23168,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23213,7 +23213,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23261,7 +23261,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23308,7 +23308,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23358,7 +23358,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23408,7 +23408,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23458,7 +23458,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23507,7 +23507,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23557,7 +23557,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23606,7 +23606,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23658,7 +23658,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23709,7 +23709,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23757,7 +23757,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23805,7 +23805,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -23857,7 +23857,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     }
   ],
@@ -23906,7 +23906,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -23954,7 +23954,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -24002,7 +24002,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -24051,7 +24051,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -24098,7 +24098,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -24145,7 +24145,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -24193,7 +24193,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -24241,7 +24241,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -24290,7 +24290,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -24338,7 +24338,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -24387,7 +24387,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -24435,7 +24435,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
       }
     }
   ],
@@ -24484,7 +24484,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -24532,7 +24532,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -24582,7 +24582,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -24631,7 +24631,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -24680,7 +24680,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -24729,7 +24729,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "Forward = name→IP; reverse = IP→name (PTR)."
       }
     },
     {
@@ -24780,7 +24780,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -24828,7 +24828,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -24877,7 +24877,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -24926,7 +24926,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -24975,7 +24975,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -25024,7 +25024,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     }
   ],
@@ -25074,7 +25074,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -25124,7 +25124,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -25173,7 +25173,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -25221,7 +25221,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -25271,7 +25271,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -25321,7 +25321,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -25369,7 +25369,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -25416,7 +25416,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -25464,7 +25464,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -25513,7 +25513,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -25562,7 +25562,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -25612,7 +25612,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     }
   ],
@@ -25661,7 +25661,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -25710,7 +25710,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -25758,7 +25758,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -25806,7 +25806,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -25854,7 +25854,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -25902,7 +25902,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -25949,7 +25949,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -26000,7 +26000,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -26047,7 +26047,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -26096,7 +26096,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -26145,7 +26145,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -26194,7 +26194,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     }
   ],
@@ -26245,7 +26245,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -26295,7 +26295,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -26343,7 +26343,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -26392,7 +26392,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -26442,7 +26442,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -26490,7 +26490,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -26539,7 +26539,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -26588,7 +26588,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -26637,7 +26637,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -26686,7 +26686,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -26736,7 +26736,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -26785,7 +26785,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Remember DORA: Discover, Offer, Request, Acknowledge."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     }
   ],
@@ -26834,7 +26834,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -26883,7 +26883,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -26930,7 +26930,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -26980,7 +26980,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -27028,7 +27028,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -27075,7 +27075,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -27125,7 +27125,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -27176,7 +27176,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -27226,7 +27226,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -27275,7 +27275,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -27325,7 +27325,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -27373,7 +27373,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -27424,7 +27424,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -27474,7 +27474,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports"
       }
     }
   ],
@@ -27523,7 +27523,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -27570,7 +27570,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -27619,7 +27619,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -27667,7 +27667,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -27716,7 +27716,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -27764,7 +27764,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -27812,7 +27812,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -27863,7 +27863,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -27911,7 +27911,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     }
   ],
@@ -27961,7 +27961,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -28009,7 +28009,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **tftp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -28058,7 +28058,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **tftp** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -28107,7 +28107,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -28155,7 +28155,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **tftp** before picking a familiar-sounding wrong term."
       }
     }
   ],
@@ -28200,7 +28200,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"On-premises networks cannot use SNMP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -28243,7 +28243,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Picking Telnet when secure management is required"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -28287,7 +28287,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Wired switches in the same branch also s…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -28330,7 +28330,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Configuration changes never require any …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -28373,7 +28373,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -28416,7 +28416,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Local management automatically encrypts …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -28458,7 +28458,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Management is impossible without a dedic…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -28501,7 +28501,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"VLAN trunking configuration\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -28544,7 +28544,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"All devices are physically located in th…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -28587,7 +28587,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"A school district wanting centralized vi…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     }
   ],
@@ -28631,7 +28631,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
       }
     },
     {
@@ -28673,7 +28673,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Non-repudiation\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
       }
     },
     {
@@ -28715,7 +28715,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Risk\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A vulnerability alone equals a breach — A threat and exploit are also required — vulnerability is only the weakness"
       }
     },
     {
@@ -28757,7 +28757,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Trojan\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
       }
     },
     {
@@ -28799,7 +28799,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"IP spoofing\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
       }
     },
     {
@@ -28842,7 +28842,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Unknown unicast → flood (same VLAN). Known unicast → forward one port."
+        "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
       }
     },
     {
@@ -28884,7 +28884,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"AAA framework\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **defense in depth** — exam distractors swap similar terms; anchor on: Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect."
       }
     },
     {
@@ -28926,7 +28926,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
       }
     },
     {
@@ -28968,7 +28968,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Adware\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
       }
     },
     {
@@ -29011,7 +29011,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Encryption\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
       }
     },
     {
@@ -29060,7 +29060,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -29109,7 +29109,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29158,7 +29158,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29206,7 +29206,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29255,7 +29255,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29304,7 +29304,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29352,7 +29352,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29402,7 +29402,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29451,7 +29451,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29500,7 +29500,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -29549,7 +29549,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -29599,7 +29599,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -29647,7 +29647,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29694,7 +29694,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     }
   ],
@@ -29744,7 +29744,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29793,7 +29793,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29840,7 +29840,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29890,7 +29890,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29940,7 +29940,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -29988,7 +29988,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -30040,7 +30040,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
       }
     }
   ],
@@ -30090,7 +30090,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -30140,7 +30140,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -30188,7 +30188,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -30236,7 +30236,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -30285,7 +30285,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -30333,7 +30333,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -30381,7 +30381,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -30430,7 +30430,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -30480,7 +30480,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -30529,7 +30529,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -30577,7 +30577,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -30626,7 +30626,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -30675,7 +30675,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -30722,7 +30722,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -30771,7 +30771,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -30823,7 +30823,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -30870,7 +30870,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -30918,7 +30918,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -30965,7 +30965,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -31015,7 +31015,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -31064,7 +31064,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -31114,7 +31114,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -31162,7 +31162,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -31211,7 +31211,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -31260,7 +31260,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
       }
     }
   ],
@@ -31304,7 +31304,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Randomly\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -31334,7 +31334,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -31376,7 +31376,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Only on trunks\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -31418,7 +31418,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"On the DHCP server\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Placing extended ACLs near the destination — Place extended ACLs near the source to drop traffic early"
       }
     },
     {
@@ -31460,7 +31460,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"255.255.255.255\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using a subnet mask in an ACL — ACLs use WILDCARD masks (inverse): /24 → 0.0.0.255"
       }
     },
     {
@@ -31502,7 +31502,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"1300–2699 only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "**First match wins** + implicit deny. Standard = source only near **destination**; extended near **source**."
       }
     },
     {
@@ -31544,7 +31544,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"VLAN ID\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Placing extended ACLs near the destination — Place extended ACLs near the source to drop traffic early"
       }
     },
     {
@@ -31586,7 +31586,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -31628,7 +31628,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"The ACL is not applied\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -31675,7 +31675,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -31722,7 +31722,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -31769,7 +31769,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -31816,7 +31816,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -31863,7 +31863,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -31910,7 +31910,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -31957,7 +31957,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32005,7 +32005,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32052,7 +32052,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32100,7 +32100,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32147,7 +32147,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32194,7 +32194,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32241,7 +32241,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32289,7 +32289,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32336,7 +32336,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32383,7 +32383,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32430,7 +32430,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32477,7 +32477,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32526,7 +32526,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32573,7 +32573,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32621,7 +32621,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32670,7 +32670,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32717,7 +32717,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32764,7 +32764,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32813,7 +32813,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32862,7 +32862,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32909,7 +32909,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -32956,7 +32956,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -33003,7 +33003,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     }
   ],
@@ -33052,7 +33052,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -33101,7 +33101,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -33148,7 +33148,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -33195,7 +33195,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33243,7 +33243,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -33290,7 +33290,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -33337,7 +33337,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33384,7 +33384,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33431,7 +33431,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33478,7 +33478,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33525,7 +33525,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33572,7 +33572,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33619,7 +33619,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -33667,7 +33667,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33714,7 +33714,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33761,7 +33761,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33808,7 +33808,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33855,7 +33855,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33903,7 +33903,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33950,7 +33950,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -33997,7 +33997,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -34045,7 +34045,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -34094,7 +34094,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -34142,7 +34142,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -34191,7 +34191,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -34239,7 +34239,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -34288,7 +34288,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -34336,7 +34336,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -34384,7 +34384,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
       }
     }
   ],
@@ -34435,7 +34435,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -34486,7 +34486,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -34537,7 +34537,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -34588,7 +34588,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -34642,7 +34642,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -34691,7 +34691,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -34739,7 +34739,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -34787,7 +34787,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -34838,7 +34838,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -34886,7 +34886,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -34935,7 +34935,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -34982,7 +34982,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -35030,7 +35030,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     }
   ],
@@ -35081,7 +35081,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35129,7 +35129,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35178,7 +35178,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35226,7 +35226,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35273,7 +35273,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35320,7 +35320,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35368,7 +35368,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35417,7 +35417,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35467,7 +35467,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35517,7 +35517,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35567,7 +35567,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35617,7 +35617,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     }
   ],
@@ -35667,7 +35667,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **wlc gui wlan** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -35717,7 +35717,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35768,7 +35768,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -35818,7 +35818,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     }
   ],
@@ -35868,7 +35868,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -35916,7 +35916,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -35963,7 +35963,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -36012,7 +36012,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -36061,7 +36061,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -36108,7 +36108,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -36155,7 +36155,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -36204,7 +36204,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -36253,7 +36253,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -36301,7 +36301,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -36350,7 +36350,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -36397,7 +36397,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -36444,7 +36444,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -36491,7 +36491,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -36538,7 +36538,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -36587,7 +36587,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -36635,7 +36635,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
       }
     }
   ],
@@ -36684,7 +36684,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     },
     {
@@ -36732,7 +36732,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     },
     {
@@ -36779,7 +36779,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     },
     {
@@ -36828,7 +36828,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     },
     {
@@ -36876,7 +36876,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     },
     {
@@ -36923,7 +36923,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     }
   ],
@@ -36972,7 +36972,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -37021,7 +37021,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -37070,7 +37070,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -37118,7 +37118,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -37165,7 +37165,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -37213,7 +37213,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -37261,7 +37261,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -37310,7 +37310,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -37359,7 +37359,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     }
   ],
@@ -37409,7 +37409,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37456,7 +37456,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37503,7 +37503,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37553,7 +37553,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37603,7 +37603,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37651,7 +37651,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37702,7 +37702,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37753,7 +37753,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37802,7 +37802,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37851,7 +37851,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37900,7 +37900,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37949,7 +37949,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -37999,7 +37999,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38050,7 +38050,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38098,7 +38098,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38150,7 +38150,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38200,7 +38200,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38247,7 +38247,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38297,7 +38297,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38347,7 +38347,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38398,7 +38398,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38448,7 +38448,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38497,7 +38497,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     },
     {
@@ -38546,7 +38546,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling spine-leaf a WAN topology — Spine-leaf is a data-center switching fabric, not a branch WAN pattern"
       }
     }
   ],
@@ -38597,7 +38597,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -38648,7 +38648,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -38696,7 +38696,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -38744,7 +38744,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -38793,7 +38793,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -38842,7 +38842,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -38892,7 +38892,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -38943,7 +38943,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -38993,7 +38993,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -39040,7 +39040,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -39089,7 +39089,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     }
   ],
@@ -39140,7 +39140,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39191,7 +39191,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39241,7 +39241,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39292,7 +39292,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39343,7 +39343,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39393,7 +39393,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39445,7 +39445,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -39493,7 +39493,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39543,7 +39543,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -39592,7 +39592,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39645,7 +39645,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -39696,7 +39696,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39747,7 +39747,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39798,7 +39798,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -39849,7 +39849,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -39897,7 +39897,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -39947,7 +39947,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -39995,7 +39995,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -40043,7 +40043,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -40092,7 +40092,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     }
   ],
@@ -40142,7 +40142,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -40192,7 +40192,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40241,7 +40241,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -40290,7 +40290,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40338,7 +40338,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40388,7 +40388,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40436,7 +40436,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40483,7 +40483,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -40530,7 +40530,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -40578,7 +40578,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -40625,7 +40625,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40674,7 +40674,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40722,7 +40722,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40771,7 +40771,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40819,7 +40819,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40867,7 +40867,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40916,7 +40916,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -40966,7 +40966,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -41013,7 +41013,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -41060,7 +41060,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -41107,7 +41107,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -41154,7 +41154,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -41201,7 +41201,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -41248,7 +41248,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -41298,7 +41298,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Local L2 works but remote fails? Check the host **default gateway** before blaming routing protocols."
       }
     },
     {
@@ -41345,7 +41345,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -41395,7 +41395,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -41444,7 +41444,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
       }
     },
     {
@@ -41493,7 +41493,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
       }
     },
     {
@@ -41542,7 +41542,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
       }
     }
   ],
@@ -41589,7 +41589,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Authorization, Access, Accounting\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -41632,7 +41632,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"TCP port 1812\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -41675,7 +41675,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"UDP 161 and UDP 162\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -41719,7 +41719,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -41762,7 +41762,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"aaa start\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -41805,7 +41805,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"This command has no effect without a RAD…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -41848,7 +41848,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"TACACS+ requires the keys to be differen…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -41891,7 +41891,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Auditing\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -41934,7 +41934,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Encryption\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -41978,7 +41978,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"TACACS+ uses less bandwidth than RADIUS …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     }
   ],
@@ -42023,7 +42023,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"It automatically encrypts all traffic on…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -42066,7 +42066,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -42109,7 +42109,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"To store network device configuration ba…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **DMZ** — exam distractors swap similar terms; anchor on: A DMZ is a segmented zone that exposes services to untrusted networks (like the internet) while keeping them isolated from the trusted internal network — so a compromise of a DMZ host doesn't directly expose internal systems."
       }
     },
     {
@@ -42153,7 +42153,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Microsegmentation is identical to VLAN s…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -42196,7 +42196,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"A flat network automatically isolates in…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -42240,7 +42240,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -42283,7 +42283,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Zero trust applies only to wireless netw…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -42327,7 +42327,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -42370,7 +42370,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Assigning a static IP to each printer\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -42413,7 +42413,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"It allows users to bypass authentication…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     }
   ]

@@ -41,7 +41,7 @@
             "misconceptionTested": "Selecting \"EIGRP-learned route\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **route source codes** — exam distractors swap similar terms; anchor on: O = OSPF."
       }
     },
     {
@@ -83,7 +83,7 @@
             "misconceptionTested": "Selecting \"The hop count\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
       }
     },
     {
@@ -125,7 +125,7 @@
             "misconceptionTested": "Selecting \"C 192.168.1.0/24 only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
       }
     },
     {
@@ -167,7 +167,7 @@
             "misconceptionTested": "Selecting \"It marks the default gateway\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
       }
     },
     {
@@ -209,7 +209,7 @@
             "misconceptionTested": "Selecting \"R\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **EIGRP code** — exam distractors swap similar terms; anchor on: D = EIGRP (Diffusing Update Algorithm)."
       }
     },
     {
@@ -251,7 +251,7 @@
             "misconceptionTested": "The L route is NOT a host route to a PC"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: The L route is NOT a host route to a PC — L is the router own interface IP as a /32 — so the router processes packets addressed to itself"
       }
     },
     {
@@ -293,7 +293,7 @@
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -336,7 +336,7 @@
             "misconceptionTested": "Selecting \"Hop count\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
       }
     },
     {
@@ -378,7 +378,7 @@
             "misconceptionTested": "Selecting \"OSPF elected a DR\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
       }
     },
     {
@@ -420,7 +420,7 @@
             "misconceptionTested": "Selecting \"The route requires manual activation\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: In [AD/metric], AD comes FIRST — Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets"
       }
     },
     {
@@ -471,7 +471,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -522,7 +522,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -571,7 +571,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -622,7 +622,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -671,7 +671,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -721,7 +721,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
       }
     },
     {
@@ -770,7 +770,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -821,7 +821,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -870,7 +870,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -918,7 +918,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -965,7 +965,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1012,7 +1012,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -1060,7 +1060,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -1110,7 +1110,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -1159,7 +1159,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1211,7 +1211,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -1260,7 +1260,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -1310,7 +1310,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1360,7 +1360,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -1408,7 +1408,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1457,7 +1457,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -1506,7 +1506,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1556,7 +1556,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -1604,7 +1604,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
       }
     },
     {
@@ -1654,7 +1654,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1704,7 +1704,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -1752,7 +1752,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **routing table** before picking a familiar-sounding wrong term."
       }
     }
   ]

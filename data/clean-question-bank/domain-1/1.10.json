@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"route print only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Ignoring 169.254.x.x in ipconfig — APIPA means DHCP failed — not a valid corporate address"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"WPA3\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           }
         ],
-        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Selecting \"Wi‑Fi channel\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: ping failure always means the remote host is down — Firewalls may block ICMP; also local misconfig can fail before the path is tested"
       }
     },
     {
@@ -212,7 +212,7 @@
             "misconceptionTested": "Selecting \"VTP domain\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
       }
     },
     {
@@ -254,7 +254,7 @@
             "misconceptionTested": "Selecting \"Loopback only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: ping failure always means the remote host is down — Firewalls may block ICMP; also local misconfig can fail before the path is tested"
       }
     },
     {
@@ -296,7 +296,7 @@
             "misconceptionTested": "Selecting \"debug ip routing\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Ignoring 169.254.x.x in ipconfig — APIPA means DHCP failed — not a valid corporate address"
       }
     },
     {
@@ -338,7 +338,7 @@
             "misconceptionTested": "Selecting \"Valid DHCP lease\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Blaming DNS when the gateway is wrong — If remote IPs fail, fix gateway/routing before DNS"
       }
     }
   ]

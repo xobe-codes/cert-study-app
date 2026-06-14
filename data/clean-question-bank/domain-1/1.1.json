@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"Layer 7\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"ACL list\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "On the exam: Expecting an L2 switch to route VLANs — Inter-VLAN routing requires an L3 device — router or L3 switch with SVIs"
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Selecting \"It operates only at Layer 1\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Firewalls and IPS are interchangeable — Firewalls enforce access policy; IPS focuses on threat detection/prevention — often deployed together"
       }
     },
     {
@@ -211,7 +211,7 @@
             "misconceptionTested": "Selecting \"DHCP relay\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling an AP a router — An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing"
       }
     },
     {
@@ -253,7 +253,7 @@
             "misconceptionTested": "Selecting \"Core router\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
       }
     },
     {
@@ -295,7 +295,7 @@
             "misconceptionTested": "Selecting \"The DNS server\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: More switches always mean better routing — Switches extend L2 domains; routing is an L3 function on routers or L3 switches"
       }
     },
     {
@@ -325,7 +325,7 @@
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Calling an AP a router — An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing"
       }
     }
   ]

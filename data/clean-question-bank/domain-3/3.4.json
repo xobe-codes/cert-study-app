@@ -41,7 +41,7 @@
             "misconceptionTested": "Selecting \"Static\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24)"
       }
     },
     {
@@ -83,7 +83,7 @@
             "misconceptionTested": "Selecting \"120\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24)"
       }
     },
     {
@@ -125,7 +125,7 @@
             "misconceptionTested": "Selecting \"64\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -167,7 +167,7 @@
             "misconceptionTested": "Selecting \"Always 0.0.0.0\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
       }
     },
     {
@@ -209,7 +209,7 @@
             "misconceptionTested": "Selecting \"Different banners\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
       }
     },
     {
@@ -251,7 +251,7 @@
             "misconceptionTested": "Selecting \"advertise 10.0.0.0 area 0\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24)"
       }
     },
     {
@@ -293,7 +293,7 @@
             "misconceptionTested": "Selecting \"Exchange\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
       }
     },
     {
@@ -335,7 +335,7 @@
             "misconceptionTested": "Misapplying OSPF DR/BDR election rules"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
       }
     },
     {
@@ -377,7 +377,7 @@
             "misconceptionTested": "Selecting \"First to boot only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting DR/BDR on point-to-point links — DR/BDR are only elected on multi-access (e.g. Ethernet) segments"
       }
     },
     {
@@ -426,7 +426,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -475,7 +475,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -522,7 +522,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -571,7 +571,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -618,7 +618,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -666,7 +666,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -714,7 +714,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -761,7 +761,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -810,7 +810,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -859,7 +859,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -908,7 +908,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -956,7 +956,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -1004,7 +1004,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -1051,7 +1051,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -1100,7 +1100,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -1149,7 +1149,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -1198,7 +1198,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -1245,7 +1245,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -1292,7 +1292,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -1340,7 +1340,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -1388,7 +1388,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -1436,7 +1436,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -1485,7 +1485,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -1532,7 +1532,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -1581,7 +1581,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -1630,7 +1630,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Using a subnet mask in an ACL — ACLs use WILDCARD masks (inverse): /24 → 0.0.0.255"
       }
     },
     {
@@ -1678,7 +1678,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -1726,7 +1726,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -1774,7 +1774,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -1823,7 +1823,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Using a subnet mask in an ACL — ACLs use WILDCARD masks (inverse): /24 → 0.0.0.255"
       }
     },
     {
@@ -1871,7 +1871,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -1920,7 +1920,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -1969,7 +1969,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -2018,7 +2018,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -2067,7 +2067,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -2117,7 +2117,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -2164,7 +2164,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -2211,7 +2211,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -2260,7 +2260,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -2308,7 +2308,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -2355,7 +2355,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -2404,7 +2404,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -2452,7 +2452,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -2502,7 +2502,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -2552,7 +2552,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -2601,7 +2601,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -2652,7 +2652,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -2700,7 +2700,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -2751,7 +2751,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -2802,7 +2802,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -2852,7 +2852,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -2904,7 +2904,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
       }
     },
     {
@@ -2953,7 +2953,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -3003,7 +3003,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -3053,7 +3053,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -3101,7 +3101,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -3151,7 +3151,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -3199,7 +3199,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -3246,7 +3246,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -3295,7 +3295,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -3344,7 +3344,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
       }
     },
     {
@@ -3392,7 +3392,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
       }
     },
     {
@@ -3439,7 +3439,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching area, hello/dead timers, and subnet on the link."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     }
   ]

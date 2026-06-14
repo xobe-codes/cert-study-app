@@ -46,7 +46,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -95,7 +95,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -143,7 +143,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -191,7 +191,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -239,7 +239,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -287,7 +287,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -334,7 +334,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -385,7 +385,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -432,7 +432,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -481,7 +481,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     },
     {
@@ -530,7 +530,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -579,7 +579,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
       }
     }
   ]

@@ -2,6 +2,7 @@
  * Clean question bank adapter — lazy-loads the large questions module on first use.
  */
 import { CLEAN_BANK_OBJECTIVES } from './ccnaCleanBankMeta.js'
+import { isGenericExamTip } from '../answerReview/examTipLogic.js'
 
 export const CLEAN_BANK_ENABLED = true
 
@@ -46,10 +47,15 @@ export function getCleanBankStats() {
     return { enabled: true, objectives: CLEAN_BANK_OBJECTIVES.size, questions: 0, loaded: false }
   }
   let questions = 0
+  let genericExamTips = 0
   for (const id of CLEAN_BANK_OBJECTIVES) {
-    questions += cleanModule.CLEAN_QUESTIONS[id]?.length || 0
+    const qs = cleanModule.CLEAN_QUESTIONS[id] || []
+    questions += qs.length
+    for (const q of qs) {
+      if (isGenericExamTip(q.answerReview?.examTip)) genericExamTips += 1
+    }
   }
-  return { enabled: true, objectives: CLEAN_BANK_OBJECTIVES.size, questions, loaded: true }
+  return { enabled: true, objectives: CLEAN_BANK_OBJECTIVES.size, questions, loaded: true, genericExamTips }
 }
 
 /** Objectives not yet in clean bank (empty when fully migrated). */

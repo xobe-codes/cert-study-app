@@ -41,7 +41,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -83,7 +83,7 @@
             "misconceptionTested": "Selecting \"Fastest CPU\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Highest priority becomes root — LOWEST Bridge ID (priority then MAC) becomes root"
       }
     },
     {
@@ -125,7 +125,7 @@
             "misconceptionTested": "Selecting \"65535\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Highest priority becomes root — LOWEST Bridge ID (priority then MAC) becomes root"
       }
     },
     {
@@ -167,7 +167,7 @@
             "misconceptionTested": "Selecting \"Trunk port\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -209,7 +209,7 @@
             "misconceptionTested": "Selecting \"All ports\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: PortFast on switch links — PortFast belongs only on access/host ports; on switch links it risks loops"
       }
     },
     {
@@ -251,7 +251,7 @@
             "misconceptionTested": "Selecting \"Nothing\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: PortFast on switch links — PortFast belongs only on access/host ports; on switch links it risks loops"
       }
     },
     {
@@ -293,7 +293,7 @@
             "misconceptionTested": "Selecting \"PVST\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -335,7 +335,7 @@
             "misconceptionTested": "Selecting \"switchport mode trunk\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Highest priority becomes root — LOWEST Bridge ID (priority then MAC) becomes root"
       }
     },
     {
@@ -379,7 +379,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -423,7 +423,7 @@
             "misconceptionTested": "STP prevents routing loops"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -467,7 +467,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -511,7 +511,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -555,7 +555,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -599,7 +599,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -643,7 +643,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -687,7 +687,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -731,7 +731,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -775,7 +775,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -819,7 +819,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -863,7 +863,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -907,7 +907,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -951,7 +951,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -995,7 +995,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1039,7 +1039,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1083,7 +1083,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1127,7 +1127,7 @@
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1171,7 +1171,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1215,7 +1215,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1259,7 +1259,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1303,7 +1303,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1347,7 +1347,7 @@
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1391,7 +1391,7 @@
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1435,7 +1435,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1479,7 +1479,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1523,7 +1523,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1567,7 +1567,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1611,7 +1611,7 @@
             "misconceptionTested": "STP load-balances across redundant links"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1655,7 +1655,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1699,7 +1699,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1743,7 +1743,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1788,7 +1788,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1833,7 +1833,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1878,7 +1878,7 @@
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1924,7 +1924,7 @@
             "misconceptionTested": "STP load-balances across redundant links"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -1969,7 +1969,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -2014,7 +2014,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -2059,7 +2059,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -2104,7 +2104,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -2150,7 +2150,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -2195,7 +2195,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -2240,7 +2240,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -2286,7 +2286,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -2331,7 +2331,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     },
     {
@@ -2376,7 +2376,7 @@
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Confusing root and designated ports — Root port = best path to root (per switch); designated = forwarding port per segment"
       }
     }
   ]

@@ -44,7 +44,7 @@
             "misconceptionTested": "Selecting \"Lightweight WAPs without a WLC\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -89,7 +89,7 @@
             "misconceptionTested": "Selecting \"Analysis mode\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -134,7 +134,7 @@
             "misconceptionTested": "Selecting \"DS\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
       }
     },
     {
@@ -179,7 +179,7 @@
             "misconceptionTested": "Selecting \"Repeaters are considered root devices.\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -223,7 +223,7 @@
             "misconceptionTested": "Selecting \"Mesh\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -268,7 +268,7 @@
             "misconceptionTested": "Selecting \"Autonomous wireless network\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -313,7 +313,7 @@
             "misconceptionTested": "Selecting \"Addition of a wireless LAN controller\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -358,7 +358,7 @@
             "misconceptionTested": "Selecting \"Autonomous WAP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -403,7 +403,7 @@
             "misconceptionTested": "Selecting \"Wireless repeaters\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -449,7 +449,7 @@
             "misconceptionTested": "Selecting \"Flex Connect mode allows for switching o…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     }
   ]

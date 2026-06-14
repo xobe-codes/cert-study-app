@@ -60,6 +60,8 @@ export default function SettingsSheet({
   onSocraticDefaultChange,
   reduceMotion,
   onReduceMotionChange,
+  examMode,
+  onExamModeChange,
   onReplayPlacement,
   onShowTour,
   onOpenSync,
@@ -72,6 +74,7 @@ export default function SettingsSheet({
   objectiveCount,
   cleanBankObjectives,
   cleanBankQuestions,
+  cleanBankGenericExamTips,
   appVersion,
 }) {
   const dialogRef = useRef(null)
@@ -138,6 +141,12 @@ export default function SettingsSheet({
           hint="Minimize animations if movement is distracting."
           checked={reduceMotion}
           onChange={onReduceMotionChange}
+        />
+        <ToggleRow
+          label="Exam mode (quiz)"
+          hint="Hide exam tips until the session ends — tips appear as a debrief."
+          checked={examMode}
+          onChange={onExamModeChange}
         />
 
         <SectionLabel>STUDY</SectionLabel>
@@ -214,7 +223,11 @@ export default function SettingsSheet({
         <SectionLabel>ABOUT</SectionLabel>
         <p style={{ ...styles.small, marginBottom: 16, lineHeight: 1.5 }}>
           CCNA 200-301 Study Tool v{appVersion}<br />
-          {objectiveCount} exam objectives · {cleanBankObjectives} with curated banks · {cleanBankQuestions > 0 ? `${cleanBankQuestions} bundled questions` : 'bundled questions load on first quiz'}<br />
+          {objectiveCount} exam objectives · {cleanBankObjectives} with curated banks · {cleanBankQuestions > 0 ? `${cleanBankQuestions} bundled questions` : 'bundled questions load on first quiz'}
+          {cleanBankQuestions > 0 && cleanBankGenericExamTips != null && (
+            <> · {cleanBankGenericExamTips === 0 ? 'all exam tips curated' : `${cleanBankGenericExamTips} generic exam tip${cleanBankGenericExamTips === 1 ? '' : 's'}`}</>
+          )}
+          <br />
           Most lessons work offline — curated content ships in the app.
         </p>
 

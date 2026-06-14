@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"11, 12, 13 only in all regions\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using adjacent 2.4 GHz channels (e.g. 3 and 4) — They overlap — stick to 1, 6, 11 for non-overlapping 20 MHz cells"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"Only WEP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using adjacent 2.4 GHz channels (e.g. 3 and 4) — They overlap — stick to 1, 6, 11 for non-overlapping 20 MHz cells"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "Selecting \"Removing AES\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -157,7 +157,7 @@
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
       }
     },
     {
@@ -199,7 +199,7 @@
             "misconceptionTested": "Selecting \"Wi‑Fi 5\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -241,7 +241,7 @@
             "misconceptionTested": "Selecting \"The VLAN ID only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **ssid** — exam distractors swap similar terms; anchor on: SSID identifies the WLAN broadcast by the AP."
       }
     },
     {
@@ -283,7 +283,7 @@
             "misconceptionTested": "Selecting \"Disables 5 GHz\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: More AP power always fixes coverage — Higher power increases interference and sticky clients; proper placement and channel plan matter"
       }
     },
     {
@@ -325,7 +325,7 @@
             "misconceptionTested": "Selecting \"NAT port count\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: More AP power always fixes coverage — Higher power increases interference and sticky clients; proper placement and channel plan matter"
       }
     }
   ]

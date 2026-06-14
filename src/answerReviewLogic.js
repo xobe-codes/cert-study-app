@@ -12,13 +12,9 @@ import {
   resolveStemAnchored,
 } from './answerReview/ckuTrapLibrary.js'
 import { goldAnswerReviewFor } from './answerReview/goldAnswerReviews.js'
+import { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 
-export { isFallbackExplanation, isFallbackExplanation as isGenericWrongExplanation } from './answerReview/answerReviewQuality.js'
-export {
-  scoreAnswerReview,
-  validateQuestionAnswerReview,
-  tierQuestion,
-} from './answerReview/answerReviewQuality.js'
+export { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 
 function firstSentence(text) {
   const t = String(text || '').trim()
@@ -188,29 +184,21 @@ export function buildWrongExplanation(q, choiceIndex) {
 
   return resolveStemAnchored(wrong, q).explanation
 }
-
-export function examTipFor(q) {
-  const c = (q.concept || '').toLowerCase()
-  const { blob } = ctx(q)
-  if (c.includes('mac') || /mac learning|cam/i.test(blob)) {
-    return 'Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup.'
-  }
-  if (c.includes('pat') || c.includes('overload')) return 'Many hosts sharing one public IP → PAT/overload and the keyword "overload".'
-  if (c.includes('nat')) return 'Mark inside/outside interfaces first — NAT does nothing without them.'
-  if (c.includes('dhcp')) return 'Remember DORA: Discover, Offer, Request, Acknowledge.'
-  if (c.includes('dns')) return 'Forward lookup = name→IP; reverse lookup = IP→name.'
-  if (c.includes('syslog')) return 'Lower syslog severity number = more critical (emergencies = 0).'
-  if (c.includes('ospf')) return 'OSPF neighbors need matching area, hello/dead timers, and subnet on the link.'
-  if (c.includes('static')) return 'Next-hop static routes need a recursive lookup to find the exit interface.'
-  if (/flood|unknown/i.test(blob)) return 'Unknown unicast → flood (same VLAN). Known unicast → forward one port.'
-  return 'Eliminate answers that describe a different protocol, port, or command than the stem asks for.'
-}
+export { isFallbackExplanation, isFallbackExplanation as isGenericWrongExplanation } from './answerReview/answerReviewQuality.js'
+export {
+  scoreAnswerReview,
+  validateQuestionAnswerReview,
+  tierQuestion,
+} from './answerReview/answerReviewQuality.js'
 
 export function generateAnswerReview(q) {
   if (!Array.isArray(q.choices) || typeof q.correctIndex !== 'number') return null
 
   const gold = goldAnswerReviewFor(q.id)
-  if (gold) return { ...gold }
+  if (gold) {
+    const examTip = gold.examTip && !isGenericExamTip(gold.examTip) ? gold.examTip : examTipFor(q)
+    return { ...gold, examTip }
+  }
 
   const correctExpl = (q.explanation || '').trim()
     || `The correct answer is "${q.choices[q.correctIndex]}".`

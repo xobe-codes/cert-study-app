@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"1 km\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Higher Cat number means longer distance — All UTP Ethernet stays ~100 m; higher categories support higher bandwidth"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"Fiber SM only\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Always choosing crossover switch-to-switch — Modern auto-MDIX usually allows straight-through between switches"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "Selecting \"Coax\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using MM fiber for km-scale links — Long distance requires single-mode fiber and matching SM optics"
       }
     },
     {
@@ -170,7 +170,7 @@
             "misconceptionTested": "Selecting \"USB-C\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using MM fiber for km-scale links — Long distance requires single-mode fiber and matching SM optics"
       }
     },
     {
@@ -212,7 +212,7 @@
             "misconceptionTested": "Selecting \"40 Gbps\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Higher Cat number means longer distance — All UTP Ethernet stays ~100 m; higher categories support higher bandwidth"
       }
     },
     {
@@ -254,7 +254,7 @@
             "misconceptionTested": "Selecting \"Serial DCE\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Always choosing crossover switch-to-switch — Modern auto-MDIX usually allows straight-through between switches"
       }
     },
     {
@@ -296,7 +296,7 @@
             "misconceptionTested": "Selecting \"Encrypt traffic\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **sfp purpose** — exam distractors swap similar terms; anchor on: SFPs let you choose copper or fiber media per port without changing the switch."
       }
     },
     {
@@ -326,7 +326,7 @@
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using MM fiber for km-scale links — Long distance requires single-mode fiber and matching SM optics"
       }
     }
   ]

@@ -43,7 +43,7 @@
             "misconceptionTested": "Virtualization eliminates physical networks"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Virtualization eliminates physical networks — VMs/containers still need virtual and physical switching/routing underneath"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"Without any VMs\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Virtualization eliminates physical networks — VMs/containers still need virtual and physical switching/routing underneath"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "Selecting \"Replace physical switches\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Saying containers include a full guest OS — Containers share the host kernel — only apps/libs are packaged"
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Selecting \"DHCP server redundancy\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Equating VRF with VLAN — VRF isolates L3 routing; VLAN isolates L2 broadcast domains"
       }
     },
     {
@@ -211,7 +211,7 @@
             "misconceptionTested": "Selecting \"Using only WEP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: NFV and VMs are the same thing — NFV is a use case — virtualized network functions; VMs are one way to host them (containers another)"
       }
     },
     {
@@ -253,7 +253,7 @@
             "misconceptionTested": "Selecting \"No network interface\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Virtualization eliminates physical networks — VMs/containers still need virtual and physical switching/routing underneath"
       }
     },
     {
@@ -283,7 +283,7 @@
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Equating VRF with VLAN — VRF isolates L3 routing; VLAN isolates L2 broadcast domains"
       }
     },
     {
@@ -325,7 +325,7 @@
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Saying containers include a full guest OS — Containers share the host kernel — only apps/libs are packaged"
       }
     }
   ]

@@ -45,7 +45,7 @@
             "misconceptionTested": "Selecting \"On-premises networks cannot use SNMP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -88,7 +88,7 @@
             "misconceptionTested": "Picking Telnet when secure management is required"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -132,7 +132,7 @@
             "misconceptionTested": "Selecting \"Wired switches in the same branch also s…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -175,7 +175,7 @@
             "misconceptionTested": "Selecting \"Configuration changes never require any …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -218,7 +218,7 @@
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -261,7 +261,7 @@
             "misconceptionTested": "Selecting \"Local management automatically encrypts …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -303,7 +303,7 @@
             "misconceptionTested": "Selecting \"Management is impossible without a dedic…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -346,7 +346,7 @@
             "misconceptionTested": "Selecting \"VLAN trunking configuration\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -389,7 +389,7 @@
             "misconceptionTested": "Selecting \"All devices are physically located in th…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -432,7 +432,7 @@
             "misconceptionTested": "Selecting \"A school district wanting centralized vi…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     }
   ]

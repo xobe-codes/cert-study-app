@@ -16,6 +16,7 @@ import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
+import { summarizeWrongTraps } from './missed/missedTrapGroups.js'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
 import { useNavHint } from './components/NavHintProvider.jsx'
@@ -182,7 +183,11 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
         correct++
       }
     })
-    const result = { correct, total: questions.length, byDomain }
+    const trapDebrief = summarizeWrongTraps(
+      questions,
+      questions.map((_, idx) => responses[idx]),
+    )
+    const result = { correct, total: questions.length, byDomain, trapDebrief }
     // Persist to history
     ;(async () => {
       const hist = (await window.storage.getItem(STORAGE_KEYS.mockHistory)) || []
@@ -264,6 +269,20 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
             )
           })}
         </div>
+        {report.trapDebrief?.length > 0 && (
+          <div style={styles.card}>
+            <h2 style={styles.h2}>Trap debrief</h2>
+            <p style={{ ...styles.small, marginBottom: 10 }}>Patterns behind your missed answers — study these before retaking.</p>
+            <ul style={{ margin: 0, paddingLeft: 18, fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.5 }}>
+              {report.trapDebrief.map((t, i) => (
+                <li key={i} style={{ marginBottom: 6 }}>
+                  <strong>{t.trap}</strong> — {t.count} miss{t.count === 1 ? '' : 'es'}
+                  {t.objectiveIds?.length ? ` (${t.objectiveIds.join(', ')})` : ''}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <button style={styles.primaryBtn} onClick={() => { setCurrent(0); setPhase('review') }}>Review answers</button>
         <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={start}>Retake mock exam</button>
       </div>

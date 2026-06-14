@@ -41,7 +41,7 @@
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
       }
     },
     {
@@ -83,7 +83,7 @@
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -125,7 +125,7 @@
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: A floating static needs AD HIGHER than the dynamic protocol — Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup"
       }
     },
     {
@@ -167,7 +167,7 @@
             "misconceptionTested": "Selecting \"The mask is incompatible\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
       }
     },
     {
@@ -209,7 +209,7 @@
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -252,7 +252,7 @@
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -294,7 +294,7 @@
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
       }
     },
     {
@@ -336,7 +336,7 @@
             "misconceptionTested": "Selecting \"The router uses OSPF to resolve the path\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
       }
     },
     {
@@ -384,7 +384,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -431,7 +431,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -479,7 +479,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -529,7 +529,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -579,7 +579,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -629,7 +629,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -677,7 +677,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -725,7 +725,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -773,7 +773,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -823,7 +823,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -871,7 +871,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -921,7 +921,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -969,7 +969,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1018,7 +1018,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1068,7 +1068,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1116,7 +1116,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1163,7 +1163,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1211,7 +1211,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1261,7 +1261,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1309,7 +1309,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1358,7 +1358,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1407,7 +1407,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1455,7 +1455,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1502,7 +1502,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1551,7 +1551,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1599,7 +1599,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1648,7 +1648,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1697,7 +1697,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1746,7 +1746,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1795,7 +1795,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1843,7 +1843,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1890,7 +1890,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1940,7 +1940,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1991,7 +1991,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2038,7 +2038,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2089,7 +2089,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2137,7 +2137,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2185,7 +2185,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2233,7 +2233,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2283,7 +2283,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2334,7 +2334,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2382,7 +2382,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2431,7 +2431,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
       }
     }
   ]

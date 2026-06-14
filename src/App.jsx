@@ -17,6 +17,7 @@ import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { buildAppShellCss } from './ui/appShell.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import OverflowMarquee from './components/OverflowMarquee.jsx'
+import DeferredExamTips from './components/DeferredExamTips.jsx'
 import { formatCuratedAttribution } from './curatedDisplay.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
@@ -65,7 +66,11 @@ import {
   saveQuizSessionSizePref,
   loadTourDone,
   saveTourDone,
+  loadExamMode,
+  saveExamMode,
 } from './settings/settingsActions.js'
+import { applyAnswerReviewToQuestion, inferTrapForChoice } from './answerReviewLogic.js'
+import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import pkg from '../package.json'
 
 
@@ -3131,10 +3136,12 @@ function QuizCompleteCard({
   )
 }
 
-function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onSwitchTab }) {
+function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onSwitchTab, examMode = false }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const justMasteredRef = useRef(false)
+  const deferredTips = useRef([])
+  const [overconfidentCallout, setOverconfidentCallout] = useState(false)
   const [phase, setPhase] = useState('idle') // idle | loading | active | done | error
   const [error, setError] = useState(null)
   const [queue, setQueue] = useState([]) // remaining questions
@@ -3147,6 +3154,15 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
   const sessionRatings = useRef([])
   const missedOnce = useRef(new Set()) // question IDs missed once this session → 2nd miss = near-front re-queue
   const [streak, setStreak] = useState(0) // consecutive correct answers this session
+
+  function collectDeferredTip(q, selectedIndex) {
+    if (!examMode || !q) return
+    const enriched = applyAnswerReviewToQuestion(q)
+    const tip = enriched.answerReview?.examTip
+    if (!tip) return
+    const trap = selectedIndex != null ? inferTrapForChoice(enriched, selectedIndex) : null
+    deferredTips.current.push({ tip, trap })
+  }
   const [bankSize, setBankSize] = useState(0)
   const [bankQuestions, setBankQuestions] = useState([])
   const [orderDraft, setOrderDraft] = useState([])
@@ -3224,6 +3240,8 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
   const startQuiz = useCallback(async (forceNew) => {
     setError(null)
     sessionRatings.current = []
+    deferredTips.current = []
+    setOverconfidentCallout(false)
     try {
       await preloadCleanBank()
       let bank = await loadQuizBank()
@@ -3300,6 +3318,8 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     setRating(null)
     setStreak(0)
     sessionRatings.current = []
+    deferredTips.current = []
+    setOverconfidentCallout(false)
     missedOnce.current = new Set()
     refreshBankSize()
   }, [objective.id, refreshBankSize])
@@ -3325,6 +3345,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
     if (!correct) {
+      collectDeferredTip(current, idx)
       onMissed(buildMissedEntry(objective.id, current, { selectedIndex: idx }))
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
@@ -3349,6 +3370,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
     if (!correct) {
+      collectDeferredTip(current, null)
       onMissed(buildMissedEntry(objective.id, current, { orderAnswer: orderDraft }))
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
@@ -3365,6 +3387,11 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     sessionRatings.current.push(value)
     if (current.id) recordQuizResult(objective.id, current.id, { rating: value })
     logEvent('user_rated_question_difficulty', { objectiveId: objective.id, questionId: current.id, rating: value })
+    if (value === 'easy' && revealed) {
+      const ordering = isOrderingQuestion(current)
+      const wasWrong = ordering ? !gradeQuestion(current, orderDraft) : (selected != null && !gradeQuestion(current, selected))
+      if (wasWrong) setOverconfidentCallout(true)
+    }
   }
 
   function next() {
@@ -3378,6 +3405,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     setSelected(null)
     setRevealed(false)
     setRating(null)
+    setOverconfidentCallout(false)
   }
 
   if (phase === 'idle') {
@@ -3443,18 +3471,22 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
   if (phase === 'done') {
     const missedCountGlobal = (missed || []).length
     return (
-      <QuizCompleteCard
-        stats={stats}
-        objectiveId={objective.id}
-        progress={progress}
-        nextObjective={nextObjective}
-        missedCountGlobal={missedCountGlobal}
-        onReviewAgain={() => startQuiz(false)}
-        onGenerateNew={() => startQuiz(true)}
-        onOpenMissed={onOpenMissed}
-        onSelectObjective={onSelectObjective}
-        onSwitchTab={onSwitchTab}
-      />
+      <>
+        <QuizCompleteCard
+          stats={stats}
+          objectiveId={objective.id}
+          progress={progress}
+          nextObjective={nextObjective}
+          missedCountGlobal={missedCountGlobal}
+          onReviewAgain={() => startQuiz(false)}
+          onGenerateNew={() => startQuiz(true)}
+          onOpenMissed={onOpenMissed}
+          onSelectObjective={onSelectObjective}
+          onSwitchTab={onSwitchTab}
+          footnote={examMode ? 'Exam mode — tips saved for debrief below.' : null}
+        />
+        {examMode && <DeferredExamTips tips={deferredTips.current} />}
+      </>
     )
   }
 
@@ -3486,7 +3518,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <AnswerReview q={current} selected={selected} />
+            <AnswerReview q={current} selected={selected} hideExamTip={examMode} />
             {!isCorrect && isMcQuestion(current) && (
               <DeeperHelpSection>
                 <ExplainMistake
@@ -3519,6 +3551,11 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
       )}
       {revealed && (
         <div style={{ marginBottom: 10 }}>
+          {overconfidentCallout && (
+            <div style={{ ...styles.small, marginBottom: 8, padding: '8px 10px', borderRadius: 8, border: `1px solid ${COLORS.amberBorder}`, background: COLORS.amberDim, color: COLORS.amber }}>
+              You marked this <strong>Easy</strong> but missed it — a common exam trap. Re-read the explanation before moving on.
+            </div>
+          )}
           <div style={{ ...styles.small, marginBottom: 6 }}>How confident did you feel?</div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
             {CONFIDENCE_OPTIONS.map(opt => {
@@ -3894,7 +3931,9 @@ function CLIDrillTab({ objective }) {
           <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '4px 0', borderBottom: i < drills.length - 1 ? `1px solid ${COLORS.border}` : 'none' }}>
             <span style={{ color: statuses[i] ? COLORS.mint : COLORS.silverDim, fontSize: 'var(--ccna-type-sm)', marginTop: 1 }}>{statuses[i] ? '✓' : '○'}</span>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 'var(--ccna-type-sm)', color: statuses[i] ? COLORS.silverMid : COLORS.silver, lineHeight: 1.4, textDecoration: statuses[i] ? 'line-through' : 'none' }}>{d.prompt}</div>
+              <div style={{ fontSize: 'var(--ccna-type-sm)', color: statuses[i] ? COLORS.silverMid : COLORS.silver, lineHeight: 1.4, textDecoration: statuses[i] ? 'line-through' : 'none' }}>
+                <OverflowMarquee text={d.prompt} style={{ fontSize: 'var(--ccna-type-sm)' }} />
+              </div>
               {hintIdx === i && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.sky, marginTop: 2 }}>Hint: {d.hint}</div>}
             </div>
             {!statuses[i] && (
@@ -5938,7 +5977,14 @@ function Onboarding({ onComplete, onSkip }) {
    ========================================================================= */
 function MissedReview({ missed, onBack, onRemove }) {
   const [revealedIdx, setRevealedIdx] = useState(null)
-  const items = useMemo(() => randomizeQuestionOrder(missed), [missed])
+  const [trapFilter, setTrapFilter] = useState(null)
+  const trapGroups = useMemo(() => groupMissedByTrap(missed), [missed])
+  const items = useMemo(() => {
+    const pool = trapFilter
+      ? (trapGroups.find(g => g.trap === trapFilter)?.items || [])
+      : missed
+    return randomizeQuestionOrder(pool)
+  }, [missed, trapFilter, trapGroups])
 
   if (missed.length === 0) {
     return (
@@ -5955,6 +6001,31 @@ function MissedReview({ missed, onBack, onRemove }) {
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>Missed Questions</h1>
       <p style={{ ...styles.small, marginBottom: 14 }}>{missed.length} question{missed.length === 1 ? '' : 's'} saved for review.</p>
+      {trapGroups.length > 1 && (
+        <div style={{ ...styles.card, marginBottom: 14, padding: 12 }}>
+          <div style={{ ...styles.small, fontWeight: 700, marginBottom: 8 }}>Trap patterns ({trapGroups.length})</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+            <button
+              type="button"
+              style={{ ...styles.pill(trapFilter ? 'silver' : 'mint'), fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', border: 'none' }}
+              onClick={() => setTrapFilter(null)}
+            >
+              All ({missed.length})
+            </button>
+            {trapGroups.slice(0, 8).map(g => (
+              <button
+                key={g.trap}
+                type="button"
+                style={{ ...styles.pill(trapFilter === g.trap ? 'mint' : 'silver'), fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', border: 'none', maxWidth: '100%' }}
+                onClick={() => setTrapFilter(trapFilter === g.trap ? null : g.trap)}
+                title={g.trap}
+              >
+                <OverflowMarquee text={`${g.trap} (${g.count})`} style={{ fontSize: 'var(--ccna-type-xs)' }} />
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
       {items.map((m, idx) => (
         <div key={`${m.objectiveId}-${normalizeQuestionText(m.question)}-${idx}`} style={styles.card}>
           <div style={{ ...styles.small, marginBottom: 6 }}>{m.objectiveId}</div>
@@ -6666,7 +6737,8 @@ export default function App() {
   const [settingsQuizSize, setSettingsQuizSize] = useState(5)
   const [settingsSocratic, setSettingsSocratic] = useState(false)
   const [settingsReduceMotion, setSettingsReduceMotion] = useState(false)
-  const [cleanBankStats, setCleanBankStats] = useState({ objectives: 0, questions: 0 })
+  const [settingsExamMode, setSettingsExamMode] = useState(false)
+  const [cleanBankStats, setCleanBankStats] = useState({ objectives: 0, questions: 0, genericExamTips: 0 })
   const importFileRef = useRef(null)
   const mainRef = useRef(null)
   const homeScrollRef = useRef(0)
@@ -6723,6 +6795,7 @@ export default function App() {
       const reduceMotion = await loadReduceMotion()
       applyReduceMotionPreference(reduceMotion)
       setSettingsReduceMotion(reduceMotion)
+      setSettingsExamMode(await loadExamMode())
       if (!onboardDone) {
         if (Object.keys(p).length === 0) setView('onboarding')
         else await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
@@ -6837,15 +6910,17 @@ export default function App() {
     if (!showSettings) return
     let cancelled = false
     ;(async () => {
-      const [exam, quiz, soc] = await Promise.all([
+      const [exam, quiz, soc, examMode] = await Promise.all([
         loadExamDate(),
         loadQuizSessionSizePref(),
         loadSocraticDefault(),
+        loadExamMode(),
       ])
       if (!cancelled) {
         setSettingsExamDate(exam)
         setSettingsQuizSize(quiz)
         setSettingsSocratic(soc)
+        setSettingsExamMode(examMode)
       }
       await preloadCleanBank()
       if (!cancelled) setCleanBankStats(getCleanBankStats())
@@ -6876,6 +6951,11 @@ export default function App() {
   const handleReduceMotionChange = useCallback(async (on) => {
     await saveReduceMotion(on)
     setSettingsReduceMotion(on)
+  }, [])
+
+  const handleExamModeChange = useCallback(async (on) => {
+    await saveExamMode(on)
+    setSettingsExamMode(on)
   }, [])
 
   const handleClearTutorChat = useCallback(() => clearTutorChat(), [])
@@ -7258,6 +7338,7 @@ export default function App() {
             bumpSessionStudy={bumpSessionStudy}
             celebrate={celebrate}
             haptic={haptic}
+            examMode={settingsExamMode}
           />
         )}
         {view === 'mock' && <MockExam onExit={() => setView('home')} askClaudeJSON={askClaudeJSON} cachedSystem={cachedSystem} mockSchema={MOCK_SCHEMA} bookRef={BOOK_REF} />}
@@ -7329,6 +7410,9 @@ export default function App() {
           onSocraticDefaultChange={handleSocraticDefaultChange}
           reduceMotion={settingsReduceMotion}
           onReduceMotionChange={handleReduceMotionChange}
+          examMode={settingsExamMode}
+          onExamModeChange={handleExamModeChange}
+          cleanBankGenericExamTips={cleanBankStats.genericExamTips}
           onReplayPlacement={replayPlacementCheck}
           onShowTour={showTourAgain}
           onOpenSync={() => setShowSync(true)}

@@ -48,7 +48,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -99,7 +99,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -149,7 +149,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -200,7 +200,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -251,7 +251,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -301,7 +301,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -353,7 +353,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -401,7 +401,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -451,7 +451,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -500,7 +500,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -553,7 +553,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -604,7 +604,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -655,7 +655,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -706,7 +706,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -757,7 +757,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -805,7 +805,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -855,7 +855,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -903,7 +903,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -951,7 +951,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -1000,7 +1000,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     }
   ]

@@ -47,7 +47,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -97,7 +97,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -145,7 +145,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -193,7 +193,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -242,7 +242,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -290,7 +290,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -338,7 +338,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -387,7 +387,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -437,7 +437,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -486,7 +486,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -534,7 +534,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -583,7 +583,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -632,7 +632,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -679,7 +679,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -728,7 +728,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -780,7 +780,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -827,7 +827,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -875,7 +875,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -922,7 +922,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -972,7 +972,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -1021,7 +1021,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
       }
     },
     {
@@ -1071,7 +1071,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1119,7 +1119,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1168,7 +1168,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1217,7 +1217,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
       }
     }
   ]

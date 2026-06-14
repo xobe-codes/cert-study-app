@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { DOMAINS } from './data/ccnaDomains.js'
 import { hasCuratedReading, hasCuratedQuestions } from './data/ccnaCurated.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
+import MasteryChecklist from './components/MasteryChecklist.jsx'
+import { getObjectiveWhyLine } from './curatedDisplay.js'
 import StudyBlockStrip from './components/StudyBlockStrip.jsx'
 import StudyBlockCompleteCard from './components/StudyBlockCompleteCard.jsx'
 import { useStudyBlock } from './components/StudyBlockProvider.jsx'
@@ -14,6 +16,7 @@ import { STATIC_COPY } from './ui/staticContentCopy.js'
 export default function ObjectiveScreen({
   objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed,
   ExplainTab, VisualAidTab, QuizTab, CLIDrillTab, SubnettingTab, VLSMTab, IPv6CalcTab, ACLCalcTab,
+  examMode = false,
   SectionLabel, StatusLabel, StatusDot, ProgressBar, objectiveTabId, objectivePanelId, commandDrills,
   computeMastery, logEvent, masteryGate, enableSectionReview, bumpSessionStudy, celebrate, haptic,
 }) {
@@ -46,6 +49,7 @@ export default function ObjectiveScreen({
   const isOffline = offlineReady?.has(objective.id)
   const isPackaging = packagingId === objective.id
   const masteryPct = Math.round(computeMastery(progress[objective.id] || {}).score * 100)
+  const whyLine = getObjectiveWhyLine(objective.id)
   const deepRead = isActive && tab === 'Explain'
 
   function handleSelectSibling(target) {
@@ -168,7 +172,13 @@ export default function ObjectiveScreen({
         })()}
       </div>
       <h1 className="objective-title">{objective.title}</h1>
+      {whyLine && (
+        <p style={{ ...styles.small, marginBottom: 6, lineHeight: 1.45, color: COLORS.silverMid }}>
+          Why it matters: {whyLine}
+        </p>
+      )}
       <div className="objective-domain" style={{ ...styles.small, marginBottom: 6 }}>{objective.domainName}</div>
+      <MasteryChecklist progressEntry={progress[objective.id]} compact />
 
       <div className="objective-actions-row">
         {(prevObj || nextObj) && (
@@ -295,6 +305,7 @@ export default function ObjectiveScreen({
               onSelectObjective={onSelectObjective}
               onOpenMissed={onOpenMissed}
               onSwitchTab={setTab}
+              examMode={examMode}
             />
           </div>
         )}

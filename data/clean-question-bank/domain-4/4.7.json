@@ -46,7 +46,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -95,7 +95,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
       }
     },
     {
@@ -142,7 +142,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -192,7 +192,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -240,7 +240,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -287,7 +287,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -337,7 +337,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -388,7 +388,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -438,7 +438,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -487,7 +487,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -537,7 +537,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -585,7 +585,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -636,7 +636,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **qos** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -686,7 +686,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Every inside host needs its own public IP — PAT lets thousands of hosts share one public IP via ports"
       }
     }
   ]

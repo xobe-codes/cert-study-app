@@ -46,7 +46,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -95,7 +95,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -142,7 +142,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -189,7 +189,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -237,7 +237,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -284,7 +284,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -331,7 +331,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -378,7 +378,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -425,7 +425,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -472,7 +472,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -519,7 +519,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -566,7 +566,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -613,7 +613,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -661,7 +661,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -708,7 +708,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -755,7 +755,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -802,7 +802,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -849,7 +849,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -897,7 +897,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -944,7 +944,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -991,7 +991,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -1039,7 +1039,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -1088,7 +1088,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -1136,7 +1136,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -1185,7 +1185,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1233,7 +1233,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
       }
     },
     {
@@ -1282,7 +1282,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1330,7 +1330,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1378,7 +1378,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
       }
     }
   ]

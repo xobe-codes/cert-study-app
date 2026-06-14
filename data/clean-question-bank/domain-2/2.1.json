@@ -43,7 +43,7 @@
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "Selecting \"switchport voice vlan 10\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Selecting \"show mac address-table\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -211,7 +211,7 @@
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -253,7 +253,7 @@
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -283,7 +283,7 @@
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     },
     {
@@ -325,7 +325,7 @@
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Thinking same-VLAN devices need a router — Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does"
       }
     }
   ]

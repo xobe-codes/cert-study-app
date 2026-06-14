@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"Valid VLAN tagging\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: CRC errors always mean replace the switch — Most CRC issues are cable, SFP, or duplex — not the switch ASIC"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"show version\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming up/up means healthy link — Always check error counters — CRCs can climb while status stays up"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forcing full-duplex on one side only — Both ends must match — use auto-auto or identical manual settings"
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Selecting \"DHCP renewal\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Collisions are normal on all Ethernet links — Full-duplex switched links should have near-zero collisions"
       }
     },
     {
@@ -212,7 +212,7 @@
             "misconceptionTested": "Selecting \"Enable OSPF\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: CRC errors always mean replace the switch — Most CRC issues are cable, SFP, or duplex — not the switch ASIC"
       }
     },
     {
@@ -254,7 +254,7 @@
             "misconceptionTested": "Selecting \"Encrypted frames\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming up/up means healthy link — Always check error counters — CRCs can climb while status stays up"
       }
     },
     {
@@ -284,7 +284,7 @@
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming up/up means healthy link — Always check error counters — CRCs can climb while status stays up"
       }
     },
     {
@@ -326,7 +326,7 @@
             "misconceptionTested": "Selecting \"WPA3 misconfig\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: CRC errors always mean replace the switch — Most CRC issues are cable, SFP, or duplex — not the switch ASIC"
       }
     }
   ]

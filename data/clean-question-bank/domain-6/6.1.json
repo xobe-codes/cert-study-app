@@ -46,7 +46,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     },
     {
@@ -94,7 +94,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     },
     {
@@ -141,7 +141,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     },
     {
@@ -190,7 +190,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     },
     {
@@ -238,7 +238,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     },
     {
@@ -285,7 +285,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
       }
     }
   ]

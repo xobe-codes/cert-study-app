@@ -58,7 +58,7 @@ function WrongChoiceReview({ q, item }) {
 }
 
 /** Post-reveal breakdown — correct + your pick expanded; other distractors collapsed. */
-export default function AnswerReview({ q, selected }) {
+export default function AnswerReview({ q, selected, hideExamTip = false }) {
   const correctIdx = q.correctIndex
   if (!Array.isArray(q.choices) || typeof correctIdx !== 'number') {
     return <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>{q.explanation}</div>
@@ -111,7 +111,7 @@ export default function AnswerReview({ q, selected }) {
           ))}
         </ReviewBlock>
       )}
-      {ar?.examTip && <ReviewBlock icon="💡" title="EXAM TIP" accent="amber"><RichText text={ar.examTip} /></ReviewBlock>}
+      {(!hideExamTip && ar?.examTip) && <ReviewBlock icon="💡" title="EXAM TIP" accent="amber"><RichText text={ar.examTip} /></ReviewBlock>}
       {ar?.memoryHook && (
         <ReviewBlock icon="🧠" title="MEMORY HOOK" accent="purple" collapsible defaultOpen={false}>
           <RichText text={ar.memoryHook} />

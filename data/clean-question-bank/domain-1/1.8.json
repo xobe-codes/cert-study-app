@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"256\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"2001::db8::1\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
       }
     },
     {
@@ -115,7 +115,7 @@
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
       }
     },
     {
@@ -157,7 +157,7 @@
             "misconceptionTested": "Selecting \"/128\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
       }
     },
     {
@@ -199,7 +199,7 @@
             "misconceptionTested": "Selecting \"FE80\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Link-local **fe80::/10** is automatic; global unicast needs SLAAC, DHCPv6, or static config."
       }
     },
     {
@@ -241,7 +241,7 @@
             "misconceptionTested": "Selecting \"NAT66\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Expecting SLAAC on a non-/64 prefix — SLAAC requires a /64 prefix"
       }
     },
     {
@@ -283,7 +283,7 @@
             "misconceptionTested": "IPv6 needs NAT like IPv4"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
       }
     },
     {
@@ -325,7 +325,7 @@
             "misconceptionTested": "Selecting \"None\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using :: twice — Only one :: per address is allowed"
       }
     },
     {
@@ -367,7 +367,7 @@
             "misconceptionTested": "Selecting \"show running-config\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
       }
     },
     {
@@ -409,7 +409,7 @@
             "misconceptionTested": "Selecting \"128\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: IPv6 needs NAT like IPv4 — IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary"
       }
     }
   ]

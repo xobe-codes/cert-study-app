@@ -41,7 +41,7 @@
             "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
       }
     },
     {
@@ -83,7 +83,7 @@
             "misconceptionTested": "Selecting \"Non-repudiation\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
       }
     },
     {
@@ -125,7 +125,7 @@
             "misconceptionTested": "Selecting \"Risk\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A vulnerability alone equals a breach — A threat and exploit are also required — vulnerability is only the weakness"
       }
     },
     {
@@ -167,7 +167,7 @@
             "misconceptionTested": "Selecting \"Trojan\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
       }
     },
     {
@@ -209,7 +209,7 @@
             "misconceptionTested": "Selecting \"IP spoofing\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
       }
     },
     {
@@ -252,7 +252,7 @@
             "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Unknown unicast → flood (same VLAN). Known unicast → forward one port."
+        "examTip": "On the exam: Integrity = detecting CHANGES (hashing). NOT keeping data private — That is confidentiality. Integrity uses hashing to detect unauthorized modification"
       }
     },
     {
@@ -294,7 +294,7 @@
             "misconceptionTested": "Selecting \"AAA framework\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **defense in depth** — exam distractors swap similar terms; anchor on: Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect."
       }
     },
     {
@@ -336,7 +336,7 @@
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
       }
     },
     {
@@ -378,7 +378,7 @@
             "misconceptionTested": "Selecting \"Adware\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
       }
     },
     {
@@ -421,7 +421,7 @@
             "misconceptionTested": "Selecting \"Encryption\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A DDoS attack violates AVAILABILITY, not confidentiality or integrity — Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services"
       }
     },
     {
@@ -470,7 +470,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -519,7 +519,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -568,7 +568,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -616,7 +616,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -665,7 +665,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -714,7 +714,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -762,7 +762,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -812,7 +812,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -861,7 +861,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -910,7 +910,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -959,7 +959,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -1009,7 +1009,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
       }
     },
     {
@@ -1057,7 +1057,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1104,7 +1104,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     }
   ]

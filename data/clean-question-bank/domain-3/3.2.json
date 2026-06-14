@@ -41,7 +41,7 @@
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "A lower metric can beat a more-specific route"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -127,7 +127,7 @@
             "misconceptionTested": "AD and metric do the same job"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -169,7 +169,7 @@
             "misconceptionTested": "Selecting \"120\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -211,7 +211,7 @@
             "misconceptionTested": "Forgetting AD 255 behavior"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -242,7 +242,7 @@
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -284,7 +284,7 @@
             "misconceptionTested": "Selecting \"Neither — AD must differ\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Comparing metrics across routing protocols — Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc"
       }
     },
     {
@@ -327,7 +327,7 @@
             "misconceptionTested": "Selecting \"It is dropped\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -369,7 +369,7 @@
             "misconceptionTested": "Treating the default route as a normal match"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
       }
     },
     {
@@ -412,7 +412,7 @@
             "misconceptionTested": "Selecting \"Cost and hop count\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -454,7 +454,7 @@
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -496,7 +496,7 @@
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -544,7 +544,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -594,7 +594,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -646,7 +646,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -695,7 +695,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -746,7 +746,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -794,7 +794,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -842,7 +842,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -890,7 +890,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -941,7 +941,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -989,7 +989,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1037,7 +1037,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1086,7 +1086,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1137,7 +1137,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1184,7 +1184,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1232,7 +1232,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1281,7 +1281,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1329,7 +1329,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1377,7 +1377,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1425,7 +1425,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1474,7 +1474,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1523,7 +1523,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1572,7 +1572,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1620,7 +1620,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1667,7 +1667,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1714,7 +1714,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1763,7 +1763,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1811,7 +1811,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1859,7 +1859,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1908,7 +1908,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -1957,7 +1957,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -2008,7 +2008,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -2057,7 +2057,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -2107,7 +2107,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -2155,7 +2155,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -2204,7 +2204,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -2254,7 +2254,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     },
     {
@@ -2302,7 +2302,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
       }
     }
   ]

@@ -43,7 +43,7 @@
             "misconceptionTested": "Selecting \"126\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     },
     {
@@ -85,7 +85,7 @@
             "misconceptionTested": "Selecting \"8\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
       }
     },
     {
@@ -128,7 +128,7 @@
             "misconceptionTested": "Selecting \"192.168.10.64\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
       }
     },
     {
@@ -170,7 +170,7 @@
             "misconceptionTested": "Selecting \"172.16.0.128\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
       }
     },
     {
@@ -212,7 +212,7 @@
             "misconceptionTested": "Selecting \"/29\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     },
     {
@@ -254,7 +254,7 @@
             "misconceptionTested": "Selecting \"0\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     },
     {
@@ -296,7 +296,7 @@
             "misconceptionTested": "Selecting \"3\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     },
     {
@@ -338,7 +338,7 @@
             "misconceptionTested": "Selecting \"/29\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A bigger prefix (/27) means a bigger network — A larger prefix number means MORE network bits and FEWER hosts — a smaller subnet"
       }
     },
     {
@@ -381,7 +381,7 @@
             "misconceptionTested": "Selecting \"10.0.0.1 – 10.0.0.14\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Using the wrong octet for block size — Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet)"
       }
     },
     {
@@ -423,7 +423,7 @@
             "misconceptionTested": "Selecting \"4\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: A bigger prefix (/27) means a bigger network — A larger prefix number means MORE network bits and FEWER hosts — a smaller subnet"
       }
     },
     {
@@ -453,7 +453,7 @@
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     },
     {
@@ -495,7 +495,7 @@
             "misconceptionTested": "Selecting \"/26\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "On the exam: Forgetting the “− 2” in the host formula — Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned"
       }
     }
   ]

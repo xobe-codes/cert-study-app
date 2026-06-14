@@ -48,7 +48,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -99,7 +99,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     },
     {
@@ -147,7 +147,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -195,7 +195,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "AuthN = who you are · AuthZ = what you may do · Accounting = what you did. TACACS+ = TCP/49; RADIUS = UDP/1812/1813."
       }
     },
     {
@@ -244,7 +244,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -293,7 +293,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -343,7 +343,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -394,7 +394,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -444,7 +444,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -491,7 +491,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
       }
     },
     {
@@ -540,7 +540,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
       }
     }
   ]

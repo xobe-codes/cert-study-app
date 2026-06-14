@@ -45,7 +45,7 @@
             "misconceptionTested": "Selecting \"Use the wireless controller to perform i…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -90,7 +90,7 @@
             "misconceptionTested": "Selecting \"Routed switch port\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
       }
     },
     {
@@ -135,7 +135,7 @@
             "misconceptionTested": "Selecting \"PortChannel\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -180,7 +180,7 @@
             "misconceptionTested": "Selecting \"Spill and fill\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **wlc connections** — exam distractors swap similar terms; anchor on: WLC LAG load balancing is hash-based."
       }
     },
     {
@@ -225,7 +225,7 @@
             "misconceptionTested": "Selecting \"2\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "This stem tests **wlc connections** — exam distractors swap similar terms; anchor on: A WLC LAG supports up to eight bundled ports."
       }
     },
     {
@@ -270,7 +270,7 @@
             "misconceptionTested": "Selecting \"Add a second WLC to accommodate the new …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -315,7 +315,7 @@
             "misconceptionTested": "Selecting \"LAG port\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
       }
     }
   ]
