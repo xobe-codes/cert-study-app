@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { DOMAINS } from './data/ccnaDomains.js'
 import { getCuratedQuestions } from './data/ccnaCurated.js'
 import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
-import { isMcQuestion } from './questionUtils.js'
+import { isMcQuestion, gradeQuestion } from './questionUtils.js'
 import {
   buildMockExamDomainCounts,
   MOCK_EXAM_QUESTION_COUNT,
@@ -15,6 +15,7 @@ import { COLORS, styles } from './ui/appTheme.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
+import AnswerReview from './components/AnswerReview.jsx'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
 import { useNavHint } from './components/NavHintProvider.jsx'
@@ -42,7 +43,7 @@ function formatSeconds(total) {
 export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSchema, bookRef = {} }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
-  const [phase, setPhase] = useState('intro') // intro | loading | active | done | error
+  const [phase, setPhase] = useState('intro') // intro | loading | active | done | review | error
   const [error, setError] = useState(null)
   const [questions, setQuestions] = useState([])
   const [current, setCurrent] = useState(0)
@@ -263,12 +264,51 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
             )
           })}
         </div>
-        <button style={styles.primaryBtn} onClick={start}>Retake mock exam</button>
+        <button style={styles.primaryBtn} onClick={() => { setCurrent(0); setPhase('review') }}>Review answers</button>
+        <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={start}>Retake mock exam</button>
       </div>
     )
   }
 
-  // active
+  if (phase === 'review') {
+    const q = questions[current]
+    const selected = responses[current] ?? null
+    const isCorrect = selected != null && gradeQuestion(q, selected)
+    const unanswered = selected == null
+    return (
+      <div>
+        <button style={styles.backBtn} onClick={() => setPhase('done')}>‹ Results</button>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
+          <h1 style={{ ...styles.h1, margin: 0 }}>Answer review</h1>
+          <span style={styles.small}>{current + 1} / {questions.length}</span>
+        </div>
+        {q.objectiveId && <div style={{ ...styles.small, marginBottom: 8 }}>Objective {q.objectiveId}</div>}
+        <div style={styles.card}>
+          <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{q.question}</div>
+          <McChoices q={q} selected={selected} revealed onSelect={() => {}} />
+          <div
+            className="ccna-quiz-reveal"
+            style={{
+              marginTop: 8, padding: 12, borderRadius: 10,
+              background: unanswered ? COLORS.amberDim : isCorrect ? COLORS.mintDim : COLORS.roseDim,
+              border: `2px solid ${unanswered ? COLORS.amberBorder : isCorrect ? COLORS.mintBorder : COLORS.rose}`,
+            }}
+          >
+            <div style={{ fontWeight: 700, color: unanswered ? COLORS.amber : isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
+              {unanswered ? 'Unanswered' : isCorrect ? 'Correct' : 'Incorrect'}
+            </div>
+            <AnswerReview q={q} selected={selected} />
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+          <button style={styles.secondaryBtn} disabled={current === 0} onClick={() => setCurrent(c => Math.max(0, c - 1))}>Previous</button>
+          <button style={styles.primaryBtn} disabled={current >= questions.length - 1} onClick={() => setCurrent(c => Math.min(questions.length - 1, c + 1))}>Next</button>
+        </div>
+      </div>
+    )
+  }
+
+  // active — exam mode keeps choices fully visible until submit; accordion applies in review.
   const q = questions[current]
   const selected = responses[current]
   const answeredCount = Object.keys(responses).length

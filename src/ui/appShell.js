@@ -537,8 +537,9 @@ export function buildAppShellCss(colors) {
       line-height: var(--ccna-line-read, 1.62);
       font-size: var(--ccna-type-md);
     }
-    .lesson-prose li {
-      margin-bottom: 0.45em;
+    .mc-choices-accordion__toggle:focus-visible {
+      outline: 2px solid ${colors.sky};
+      outline-offset: 2px;
     }
     .objective-shell--deep-read .objective-reading-prose,
     .app-shell--deep-work .objective-reading-prose {

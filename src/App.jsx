@@ -18,6 +18,7 @@ import { buildAppShellCss } from './ui/appShell.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
+import AnswerReview from './components/AnswerReview.jsx'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
 import StatusDot from './components/StatusDot.jsx'
@@ -2785,52 +2786,7 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
 }
 
 
-/* ---- Answer review (static, no API) — shows why the correct choice is right
-   and why each wrong choice is wrong, with optional exam tip / memory hook.
-   Uses q.answerReview when present; for questions without one (most of the
-   bank) it falls back to a generic per-choice breakdown built from
-   q.explanation + q.choices, so every MC question gets the same layout.
-   Ordering questions (no choices/correctIndex) fall back to plain text. ---- */
-const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
-function AnswerReview({ q, selected }) {
-  const correctIdx = q.correctIndex
-  if (!Array.isArray(q.choices) || typeof correctIdx !== 'number') {
-    return <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>{q.explanation}</div>
-  }
-  const ar = q.answerReview
-  const incorrect = ar
-    ? (ar.incorrect || []).filter(item => item.choiceIndex !== correctIdx)
-    : q.choices.map((_, choiceIndex) => ({ choiceIndex })).filter(item => item.choiceIndex !== correctIdx)
-  return (
-    <div style={{ marginTop: 8 }}>
-      <ExplainBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint">
-        <RichText text={ar?.correct?.explanation || q.explanation} />
-      </ExplainBlock>
-      {incorrect.map(item => (
-        <ExplainBlock
-          key={item.choiceIndex}
-          icon="❌" title={`WHY ${CHOICE_LETTERS[item.choiceIndex] || item.choiceIndex} IS WRONG`} accent="rose"
-        >
-          {item.explanation
-            ? <RichText text={item.explanation} />
-            : <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>This option doesn't fit the scenario above — see the correct-answer explanation for why.</div>}
-          {item.misconceptionTested && (
-            <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Trap tested: {item.misconceptionTested}</div>
-          )}
-          {item.needsExplanationReview && (
-            <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.amber }}>⚠ Explanation pending review</div>
-          )}
-        </ExplainBlock>
-      ))}
-      {ar?.examTip && <ExplainBlock icon="💡" title="EXAM TIP" accent="amber"><RichText text={ar.examTip} /></ExplainBlock>}
-      {ar?.memoryHook && (
-        <ExplainBlock icon="🧠" title="MEMORY HOOK" accent="purple" collapsible defaultOpen={false}>
-          <RichText text={ar.memoryHook} />
-        </ExplainBlock>
-      )}
-    </div>
-  )
-}
+// AnswerReview lives in components/AnswerReview.jsx (accordion on other distractors).
 
 // Small type + difficulty badges shown above a question (mixed-type quizzes).
 function QuestionMeta({ q }) {
