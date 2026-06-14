@@ -240,7 +240,7 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {} }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {} }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -433,7 +433,14 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           <StudyModeBtn onClick={onOpenFocus}>🎯 Weak Areas</StudyModeBtn>
           <StudyModeBtn onClick={onOpenMissed}>Missed ({missedCount})</StudyModeBtn>
           <StudyModeBtn onClick={onOpenExamTraps}>⚠️ Exam Traps</StudyModeBtn>
-          <StudyModeBtn onClick={onOpenTutor} disabled={!apiOnline}>AI Tutor</StudyModeBtn>
+          <StudyModeBtn
+            onClick={() => {
+              if (premiumUnlocked) onOpenTutor?.()
+              else onPremiumBlocked?.('tutor', 'home')
+            }}
+          >
+            AI Tutor
+          </StudyModeBtn>
         </StudyModeCard>
         <StudyModeCard title="Labs & drills" subtitle="Hands-on practice and extra content">
           <StudyModeBtn onClick={onOpenLabs}>🧪 Labs</StudyModeBtn>

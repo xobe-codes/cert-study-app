@@ -4,10 +4,8 @@ import { getCuratedQuestions } from './data/ccnaCurated.js'
 import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
 import { isMcQuestion, gradeQuestion } from './questionUtils.js'
 import {
-  buildMockExamDomainCounts,
   MOCK_EXAM_QUESTION_COUNT,
   MOCK_EXAM_DURATION_MIN,
-  MOCK_EXAM_AI_CAP,
   staticMockExamReady,
   buildStaticMockExamPool,
 } from './mockExamConfig.js'
@@ -40,10 +38,6 @@ function shuffleArray(arr) {
   }
   return a
 }
-const MOCK_EXAM_SYSTEM = `You are a CCNA 200-301 exam question generator. Ground every question strictly in the provided reference notes for each objective — do not introduce facts that contradict them. Generate multiple-choice questions (4 choices each, exactly one correct) at official CCNA exam difficulty, distributed across the listed objectives.
-
-Respond with ONLY valid JSON (no markdown fences, no commentary), in this exact shape:
-{"questions":[{"objectiveId":"x.x","question":"...","choices":["...","...","...","..."],"correctIndex":0,"explanation":"..."}]}`
 
 function formatSeconds(total) {
   const m = Math.floor(total / 60)
@@ -51,7 +45,7 @@ function formatSeconds(total) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSchema, bookRef = {}, examMode = false }) {
+export default function MockExam({ onExit, examMode = false }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | loading | active | done | review | error
@@ -65,7 +59,6 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
   const [current, setCurrent] = useState(0)
   const [responses, setResponses] = useState({}) // qIndex -> selectedIndex
   const [secondsLeft, setSecondsLeft] = useState(MOCK_EXAM_DURATION_MIN * 60)
-  const [staticOnly, setStaticOnly] = useState(true)
   const [bankReady, setBankReady] = useState(false)
 
   useEffect(() => {
@@ -79,11 +72,6 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
   const canUseStaticOnly = useMemo(() => (
     bankReady && staticMockExamReady(DOMAINS, getMcForObjective)
   ), [bankReady, getMcForObjective])
-
-  useEffect(() => {
-    if (canUseStaticOnly) setStaticOnly(true)
-    else setStaticOnly(false)
-  }, [canUseStaticOnly])
 
   const toggleDomain = useCallback((domainId) => {
     setIntroError(null)
@@ -125,61 +113,20 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
       await preloadCleanBank()
       const getMc = (id) => getCuratedQuestions(id).filter(isMcQuestion)
 
-      if (staticOnly) {
-        if (!staticMockExamReady(DOMAINS, getMc)) {
-          throw new Error('Not enough static questions for a full exam. Turn off static-only or add more questions to the bank.')
-        }
-        const final = buildStaticMockExamPool(DOMAINS, getMc, shuffleArray)
-        setQuestions(final)
-        setResponses({})
-        setCurrent(0)
-        setSecondsLeft(MOCK_EXAM_DURATION_MIN * 60)
-        setPhase('active')
-        return
+      if (!staticMockExamReady(DOMAINS, getMc)) {
+        throw new Error('Not enough static questions for a full exam. Add more questions to the bank.')
       }
-
-      const domainCounts = buildMockExamDomainCounts(DOMAINS).filter(dc => dc.count > 0)
-
-      const all = []
-      let aiUsed = 0
-      await Promise.all(domainCounts.map(async ({ domain, count }) => {
-        const staticPool = shuffleArray(
-          domain.objectives.flatMap(o => getCuratedQuestions(o.id).filter(isMcQuestion).map(q => ({ ...q, objectiveId: o.id }))),
-        )
-        const fromStatic = staticPool.slice(0, count)
-        all.push(...fromStatic)
-
-        const aiCount = Math.min(count - fromStatic.length, Math.max(0, MOCK_EXAM_AI_CAP - aiUsed))
-        if (aiCount <= 0) return
-        aiUsed += aiCount
-
-        const objectivesText = domain.objectives.map(o => `Objective ${o.id} — ${o.title}\n${bookRef[o.id] || ''}`).join('\n\n')
-        const data = await askClaudeJSON({
-          system: cachedSystem(MOCK_EXAM_SYSTEM),
-          messages: [{
-            role: 'user',
-            content: `Domain: ${domain.name}\n\n${objectivesText}\n\nGenerate ${aiCount} multiple-choice questions total for this domain, spread across the objectives above. Tag each question with its objectiveId.`,
-          }],
-          max_tokens: 250 * aiCount + 300,
-          schema: mockSchema,
-          toolName: 'emit_exam',
-          feature: 'mock',
-        })
-        all.push(...(data.questions || []).slice(0, aiCount))
-      }))
-
-      const final = shuffleArray(all)
-      if (final.length === 0) throw new Error('No questions were generated.')
+      const final = buildStaticMockExamPool(DOMAINS, getMc, shuffleArray)
       setQuestions(final)
       setResponses({})
       setCurrent(0)
       setSecondsLeft(MOCK_EXAM_DURATION_MIN * 60)
       setPhase('active')
     } catch (err) {
-      setError(err.message.includes('JSON') ? 'Claude returned an unexpected format while building the exam. Please try again.' : err.message)
+      setError(err.message)
       setPhase('error')
     }
-  }, [staticOnly])
+  }, [])
 
   // Countdown timer (full mock exam only — study mode has no countdown)
   useEffect(() => {
@@ -260,7 +207,6 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
     const staticCount = bankReady
       ? DOMAINS.flatMap(d => d.objectives).reduce((n, o) => n + getMcForObjective(o.id).length, 0)
       : 0
-    const staticPct = Math.min(100, Math.round((Math.min(staticCount, MOCK_EXAM_QUESTION_COUNT) / MOCK_EXAM_QUESTION_COUNT) * 100))
     const selectedDomains = resolveSelectedDomains(DOMAINS, selectedDomainIds)
     const domainPoolSize = bankReady ? countDomainStudyPool(selectedDomains, getMcForObjective) : 0
     return (
@@ -289,7 +235,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
               <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.7 }}>
                 <div>• {MOCK_EXAM_QUESTION_COUNT} questions, {MOCK_EXAM_DURATION_MIN} minute countdown</div>
                 <div>• Weighted by official exam domain percentages</div>
-                <div>• <span style={{ color: COLORS.mint }}>{canUseStaticOnly ? '100% from your static bank' : `~${staticPct}% from your static question bank`}</span>{canUseStaticOnly ? ` — ${STATIC_COPY.mockStaticLine}` : ' — hybrid fills gaps on demand'}</div>
+                <div>• <span style={{ color: COLORS.mint }}>100% from your static bank</span> — {STATIC_COPY.mockStaticLine}</div>
                 <div>• Score report broken down by domain at the end</div>
                 <div>• Once started, the timer runs continuously — find a quiet 2 hours, or submit early</div>
               </div>
@@ -298,21 +244,15 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
                   {staticCount} multiple-choice questions in static bank for this exam
                 </div>
               )}
-              <label style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontSize: 'var(--ccna-type-md)', cursor: 'pointer' }}>
-                <input
-                  type="checkbox"
-                  checked={staticOnly}
-                  onChange={e => setStaticOnly(e.target.checked)}
-                  disabled={!canUseStaticOnly && staticOnly}
-                  style={{ width: 18, height: 18, accentColor: COLORS.brand }}
-                />
-                <span>
-                  {STATIC_COPY.mockStaticOnly}
-                  {!canUseStaticOnly && !bankReady && <span style={{ color: COLORS.silverMid }}> — loading bank…</span>}
-                </span>
-              </label>
+              {bankReady && !canUseStaticOnly && (
+                <div style={{ ...styles.small, marginTop: 8, color: COLORS.rose }}>
+                  Not enough static questions for a full exam yet.
+                </div>
+              )}
             </div>
-            <button style={styles.primaryBtn} onClick={start}>Start Mock Exam</button>
+            <button style={styles.primaryBtn} onClick={start} disabled={!bankReady || !canUseStaticOnly}>
+              {bankReady ? 'Start Mock Exam' : 'Loading question bank…'}
+            </button>
           </>
         ) : (
           <>

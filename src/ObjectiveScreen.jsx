@@ -17,6 +17,8 @@ export default function ObjectiveScreen({
   objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed,
   ExplainTab, VisualAidTab, QuizTab, CLIDrillTab, SubnettingTab, VLSMTab, IPv6CalcTab, ACLCalcTab,
   examMode = false,
+  premiumUnlocked = false,
+  onPremiumBlocked,
   SectionLabel, StatusLabel, StatusDot, ProgressBar, objectiveTabId, objectivePanelId, commandDrills,
   computeMastery, logEvent, masteryGate, enableSectionReview, bumpSessionStudy, celebrate, haptic,
 }) {
@@ -102,7 +104,7 @@ export default function ObjectiveScreen({
       bumpSessionStudy('mastered', objective.id)
       showNavHint(NAV_HINT_KEYS.QUIZ_MASTERED, { nextId: nextObj?.id })
     }
-    if (mastered && !isOffline && apiOnline) onPackage?.(objective)
+    if (mastered && !isOffline && apiOnline && premiumUnlocked) onPackage?.(objective)
     return justMastered
   }
 
@@ -201,7 +203,15 @@ export default function ObjectiveScreen({
           ) : isPackaging ? (
             <span style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-xs)' }}>Downloading…</span>
           ) : (
-            <button type="button" className="objective-offline-btn" onClick={() => onPackage?.(objective)} disabled={!apiOnline}>
+            <button
+              type="button"
+              className="objective-offline-btn"
+              onClick={() => {
+                if (premiumUnlocked) onPackage?.(objective)
+                else onPremiumBlocked?.('offline_pack', 'objective', { objectiveId: objective.id })
+              }}
+              disabled={!apiOnline && premiumUnlocked}
+            >
               {apiOnline ? '⤓ Save offline' : 'Offline only'}
             </button>
           )}
@@ -271,7 +281,7 @@ export default function ObjectiveScreen({
         )}
         {tab === 'Visual' && (
           <div role="tabpanel" id={objectivePanelId(objective.id, 'Visual')} aria-labelledby={objectiveTabId(objective.id, 'Visual')}>
-            <VisualAidTab objective={objective} />
+            <VisualAidTab objective={objective} premiumUnlocked={premiumUnlocked} onPremiumBlocked={onPremiumBlocked} />
           </div>
         )}
         {tab === 'Quiz' && (
@@ -287,6 +297,8 @@ export default function ObjectiveScreen({
               onOpenMissed={onOpenMissed}
               onSwitchTab={setTab}
               examMode={examMode}
+              premiumUnlocked={premiumUnlocked}
+              onPremiumBlocked={onPremiumBlocked}
             />
           </div>
         )}

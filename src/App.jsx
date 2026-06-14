@@ -61,6 +61,13 @@ import StudyBlockProvider, { useStudyBlock } from './components/StudyBlockProvid
 import SvgConfetti from './components/SvgConfetti.jsx'
 import RouteShell from './components/RouteShell.jsx'
 import SettingsSheet from './components/SettingsSheet.jsx'
+import { PremiumBlockedShell, PremiumToast } from './components/PremiumPreview.jsx'
+import {
+  loadPremiumUnlocked,
+  logPremiumBlocked,
+  PREMIUM_FEATURES,
+  PREMIUM_COMING_SOON_LABEL,
+} from './premium/premiumFeatures.js'
 import AppTour from './components/AppTour.jsx'
 import BottomNav from './components/BottomNav.jsx'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
@@ -85,6 +92,13 @@ import { applyAnswerReviewToQuestion, inferTrapForChoice } from './answerReviewL
 import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import pkg from '../package.json'
 
+const PREMIUM_TOAST_MESSAGES = {
+  [PREMIUM_FEATURES.tutor]: 'AI Tutor will unlock with supporter access.',
+  [PREMIUM_FEATURES.offline_pack]: 'Offline AI packaging is a premium feature.',
+  [PREMIUM_FEATURES.ai_visual]: 'Custom AI visuals require supporter access.',
+  [PREMIUM_FEATURES.quiz_generate]: 'Generating new quiz questions is a premium feature.',
+  [PREMIUM_FEATURES.donate_preview]: 'Donations are not enabled yet — thank you for your interest.',
+}
 
 /* =========================================================================
    BOOK_REF — condensed notes grounded on Jeremy's IT Lab CCNA course,
@@ -1641,7 +1655,7 @@ function CuratedVisualAid({ data }) {
   )
 }
 
-function VisualAidTab({ objective }) {
+function VisualAidTab({ objective, premiumUnlocked, onPremiumBlocked }) {
   const [spec, setSpec] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -1649,6 +1663,10 @@ function VisualAidTab({ objective }) {
   const hasCuratedVisual = !!curatedData?.diagram
 
   const fetchVisual = useCallback(async (force) => {
+    if (!premiumUnlocked) {
+      onPremiumBlocked?.(PREMIUM_FEATURES.ai_visual, 'visual_tab')
+      return
+    }
     setLoading(true)
     setError(null)
     try {
@@ -1685,7 +1703,7 @@ function VisualAidTab({ objective }) {
     } finally {
       setLoading(false)
     }
-  }, [objective.id, objective.title])
+  }, [objective.id, objective.title, premiumUnlocked, onPremiumBlocked])
 
   useEffect(() => {
     setSpec(null)
@@ -1695,17 +1713,31 @@ function VisualAidTab({ objective }) {
       logEvent('user_viewed_visual_aid', { objectiveId: objective.id, cached: true, curated: true })
       return
     }
+    if (!premiumUnlocked) {
+      setLoading(false)
+      return
+    }
     fetchVisual(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [objective.id, hasCuratedVisual])
+  }, [objective.id, hasCuratedVisual, premiumUnlocked])
 
   return (
     <div>
       {hasCuratedVisual && <CuratedVisualAid data={curatedData} />}
-      {!hasCuratedVisual && loading && <Spinner label="Building visual aid..." />}
-      {!hasCuratedVisual && error && <ErrorBox message={error} onRetry={() => fetchVisual(true)} />}
-      {!hasCuratedVisual && spec && !loading && <VisualAidRender spec={spec} />}
-      {!loading && (
+      {!hasCuratedVisual && !premiumUnlocked && (
+        <div style={{ ...styles.card, border: `1px solid ${COLORS.border}` }}>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver, marginBottom: 6 }}>
+            No bundled diagram for this topic
+          </div>
+          <p style={{ ...styles.small, margin: 0, lineHeight: 1.45 }}>
+            {PREMIUM_COMING_SOON_LABEL} — custom AI visuals will return with supporter access.
+          </p>
+        </div>
+      )}
+      {!hasCuratedVisual && premiumUnlocked && loading && <Spinner label="Building visual aid..." />}
+      {!hasCuratedVisual && premiumUnlocked && error && <ErrorBox message={error} onRetry={() => fetchVisual(true)} />}
+      {!hasCuratedVisual && premiumUnlocked && spec && !loading && <VisualAidRender spec={spec} />}
+      {!loading && premiumUnlocked && (hasCuratedVisual || spec) && (
         <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => fetchVisual(true)}>
           {hasCuratedVisual ? 'Generate AI visual instead' : 'Regenerate visual'}
         </button>
@@ -2463,20 +2495,6 @@ function ConceptDetailPanel({ objectiveId, card }) {
   )
 }
 
-function DeeperHelpSection({ children }) {
-  const [open, setOpen] = useState(false)
-  if (!children) return null
-  return (
-    <div style={{ marginTop: 10 }}>
-      <button type="button" onClick={() => setOpen(o => !o)} style={{ ...styles.secondaryBtn, fontSize: 'var(--ccna-type-xs)', padding: '6px 10px' }}>
-        {open ? '▲ Hide deeper help' : '▼ Need deeper help? (optional AI)'}
-      </button>
-      {open && <div style={{ marginTop: 8 }}>{children}</div>}
-    </div>
-  )
-}
-
-
 function SubnetPracticeHome({ onBack }) {
   return (
     <div>
@@ -2508,7 +2526,6 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [objective.id])
 
-  const adjustments = useMemo(() => ({}), [])
   const fetchExplanation = useCallback(async (force, adjust) => {
     setLoading(true)
     setError(null)
@@ -2635,37 +2652,9 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
                 <StructuredExplanation data={content} />
               </div>
               <SourcesPanel objective={objective} />
-              <AdjustExplanation onAdjust={(a) => fetchExplanation(true, a)} />
             </>
           )}
         </>
-      )}
-    </div>
-  )
-}
-
-/* ---- Adjust explanation (replaces generic regenerate) ---- */
-const ADJUST_OPTIONS = [
-  { value: 'too technical — simplify the language', label: 'Too technical' },
-  { value: 'too broad — go deeper into details', label: 'Too broad' },
-  { value: 'too abstract — add real-world examples', label: 'Too abstract' },
-  { value: 'too fast-paced — break down each step', label: 'Too fast' },
-  { value: 'too theoretical — add hands-on/lab scenarios', label: 'Too theoretical' },
-]
-function AdjustExplanation({ onAdjust }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <div style={{ marginTop: 8 }}>
-      <button style={styles.secondaryBtn} onClick={() => setOpen(o => !o)}>Adjust explanation</button>
-      {open && (
-        <div style={{ marginTop: 8 }}>
-          <div style={{ ...styles.small, marginBottom: 6 }}>This explanation is…</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-            {ADJUST_OPTIONS.map(o => (
-              <button key={o.value} onClick={() => { setOpen(false); onAdjust(o.value) }} style={{ flex: '1 1 auto', minHeight: 40, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}`, color: COLORS.silver, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{o.label}</button>
-            ))}
-          </div>
-        </div>
       )}
     </div>
   )
@@ -2782,177 +2771,6 @@ function QuestionMeta({ q }) {
       {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{TYPE_LABEL[q.type] || q.type}</span>}
       {skill && <span style={{ ...styles.pill(skillAccent), fontSize: 'var(--ccna-type-micro)' }}>{SKILL_LABEL[skill] || skill}</span>}
       {q.concept && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, alignSelf: 'center' }}>{q.concept}</span>}
-    </div>
-  )
-}
-
-// "Explain my mistake" — on-demand, cached, personalized to the SPECIFIC wrong
-// choice the learner picked (not just the generic explanation). Cheap model,
-// short output, cached per question+choice so it's never paid for twice.
-const MISTAKE_CACHE_KEY = 'ccna_mistake_cache_v1'
-// #18: session-level hint cache — Map so it resets on page reload (no storage cost)
-const _hintSessionCache = new Map()
-const _mnemonicSessionCache = new Map()  // #20: personalized mnemonics
-const _cliFailSessionCache = new Map()   // #26: CLI lab failure explanations
-
-const MISTAKE_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor helping a student understand a mistake they just made on a practice question. You'll be given the question, all answer choices, the correct answer, the general explanation, and the choice the student picked instead.
-
-In 2-3 short sentences: (1) name the likely misconception behind picking that specific wrong choice, and (2) clarify the distinction that makes the correct choice right. Be specific to THEIR choice, not generic. Stay strictly within CCNA 200-301 facts already implied by the question/explanation — do not introduce new facts.`
-
-async function explainMistake({ question, choices, correctIndex, selectedIndex, explanation }) {
-  return askClaude({
-    system: MISTAKE_PROMPT_SYSTEM,
-    messages: [{
-      role: 'user',
-      content: `Question: ${question}\nChoices: ${choices.map((c, i) => `${i === correctIndex ? '[CORRECT] ' : ''}${c}`).join(' | ')}\nGeneral explanation: ${explanation || '(none provided)'}\nStudent picked: "${choices[selectedIndex]}"\n\nWhy did the student likely pick that, and what's the key distinction?`,
-    }],
-    max_tokens: 220,
-    model: MODELS.fast,
-    feature: 'mistake',
-  })
-}
-
-function ExplainMistake({ cacheKey, question, choices, correctIndex, selectedIndex, explanation }) {
-  const [phase, setPhase] = useState('idle') // idle | loading | done | error
-  const [text, setText] = useState(null)
-  const [error, setError] = useState(null)
-
-  if (selectedIndex == null || selectedIndex === correctIndex) return null
-
-  async function reveal() {
-    setPhase('loading')
-    try {
-      const cache = (await window.storage.getItem(MISTAKE_CACHE_KEY)) || {}
-      if (cache[cacheKey]) { setText(cache[cacheKey]); setPhase('done'); return }
-      const reply = await explainMistake({ question, choices, correctIndex, selectedIndex, explanation })
-      cache[cacheKey] = reply
-      await window.storage.setItem(MISTAKE_CACHE_KEY, cache)
-      setText(reply)
-      setPhase('done')
-    } catch (err) {
-      setError(err.message)
-      setPhase('error')
-    }
-  }
-
-  if (phase === 'idle') {
-    return <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={reveal}>🤔 Why did I pick that?</button>
-  }
-  if (phase === 'loading') return <Spinner label="Looking at your answer..." />
-  if (phase === 'error') return <ErrorBox message={error} onRetry={reveal} />
-  return (
-    <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.purpleDim, border: `1px solid ${COLORS.borderGlow}` }}>
-      <div style={{ fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 4, fontSize: 'var(--ccna-type-xs)' }}>ABOUT YOUR ANSWER</div>
-      <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={text} /></div>
-    </div>
-  )
-}
-
-/* ---- Progressive hint (#18) — Socratic nudge after wrong answer ---- */
-const PROGRESSIVE_HINT_SYSTEM = `You are a CCNA 200-301 tutor. A student just answered a practice question incorrectly. Give a 1-2 sentence Socratic hint that guides them toward understanding the correct answer WITHOUT directly revealing it. Ask a leading question or highlight a key principle they may have overlooked. Do NOT state the correct answer.`
-
-function ProgressiveHint({ questionText, wrongChoice, correctChoice }) {
-  const [phase, setPhase] = useState('idle') // idle | loading | done | error
-  const [hint, setHint] = useState(null)
-  const [error, setError] = useState(null)
-
-  const cacheKey = `hint::${questionText}`
-
-  async function fetchHint() {
-    setPhase('loading')
-    try {
-      if (_hintSessionCache.has(cacheKey)) {
-        setHint(_hintSessionCache.get(cacheKey))
-        setPhase('done')
-        return
-      }
-      const text = await askClaude({
-        system: PROGRESSIVE_HINT_SYSTEM,
-        messages: [{
-          role: 'user',
-          content: `Question: ${questionText}\nStudent answered: "${wrongChoice}"\nCorrect answer: "${correctChoice}"\n\nProvide a brief Socratic hint.`,
-        }],
-        max_tokens: 200,
-        model: MODELS.fast,
-        feature: 'hint',
-      })
-      _hintSessionCache.set(cacheKey, text)
-      setHint(text)
-      setPhase('done')
-    } catch (err) {
-      setError(err.message)
-      setPhase('error')
-    }
-  }
-
-  if (phase === 'idle') {
-    return (
-      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 'var(--ccna-type-xs)' }} onClick={fetchHint}>
-        💡 Need a deeper hint?
-      </button>
-    )
-  }
-  if (phase === 'loading') return <Spinner label="Thinking of a hint..." />
-  if (phase === 'error') return <ErrorBox message={error} onRetry={fetchHint} />
-  return (
-    <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}` }}>
-      <div style={{ fontWeight: 700, color: COLORS.amber, marginBottom: 4, fontSize: 'var(--ccna-type-xs)' }}>💡 HINT</div>
-      <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={hint} /></div>
-    </div>
-  )
-}
-
-/* ---- Personalized mnemonic (#20) — memory aid after wrong answer ---- */
-function PersonalizedMnemonic({ questionId, questionText, correctChoice }) {
-  const [phase, setPhase] = useState('idle') // idle | loading | done | error
-  const [mnemonic, setMnemonic] = useState(null)
-  const [error, setError] = useState(null)
-
-  const cacheKey = `ccna_mnemonic_${questionId || questionText.slice(0, 40)}`
-
-  async function fetchMnemonic() {
-    setPhase('loading')
-    try {
-      if (_mnemonicSessionCache.has(cacheKey)) {
-        setMnemonic(_mnemonicSessionCache.get(cacheKey))
-        setPhase('done')
-        return
-      }
-      const stored = sessionStorage.getItem(cacheKey)
-      if (stored) {
-        _mnemonicSessionCache.set(cacheKey, stored)
-        setMnemonic(stored)
-        setPhase('done')
-        return
-      }
-      const text = await askClaude({
-        system: 'You are a CCNA 200-301 tutor. Create a memorable mnemonic, acronym, or analogy to help a student remember a networking concept. Keep it to 1-2 sentences — short, catchy, and relevant.',
-        messages: [{ role: 'user', content: `Create a mnemonic to help remember: "${correctChoice}" — in the context of: ${questionText}` }],
-        max_tokens: 150, model: MODELS.fast, feature: 'hint',
-      })
-      sessionStorage.setItem(cacheKey, text)
-      _mnemonicSessionCache.set(cacheKey, text)
-      setMnemonic(text)
-      setPhase('done')
-    } catch (err) {
-      setError(err.message)
-      setPhase('error')
-    }
-  }
-
-  if (phase === 'idle') {
-    return (
-      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 'var(--ccna-type-xs)' }} onClick={fetchMnemonic}>
-        🧠 Give me a mnemonic
-      </button>
-    )
-  }
-  if (phase === 'loading') return <Spinner label="Crafting a memory aid..." />
-  if (phase === 'error') return <ErrorBox message={error} onRetry={fetchMnemonic} />
-  return (
-    <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}` }}>
-      <div style={{ fontWeight: 700, color: COLORS.amber, marginBottom: 4, fontSize: 'var(--ccna-type-xs)' }}>🧠 MNEMONIC</div>
-      <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={mnemonic} /></div>
     </div>
   )
 }
@@ -3085,7 +2903,7 @@ function QuizCompleteCard({
   )
 }
 
-function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onSwitchTab, examMode = false }) {
+function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onSwitchTab, examMode = false, premiumUnlocked = false, onPremiumBlocked }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const justMasteredRef = useRef(false)
@@ -3204,6 +3022,14 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
         bank = mergeIntoBank(bank, objective.id, curatedQs)
         await saveQuizBank(bank)
         banked = bank[objective.id]
+      }
+
+      if (forceNew) {
+        if (!premiumUnlocked) {
+          onPremiumBlocked?.(PREMIUM_FEATURES.quiz_generate, 'quiz_tab', { objectiveId: objective.id })
+          setPhase('idle')
+          return
+        }
       }
 
       if (forceNew || (!curatedQs.length && banked.length < QUIZ_BANK_MIN)) {
@@ -3468,30 +3294,6 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
             <AnswerReview q={current} selected={selected} hideExamTip={examMode} />
-            {!isCorrect && isMcQuestion(current) && (
-              <DeeperHelpSection>
-                <ExplainMistake
-                  cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
-                  question={current.question} choices={current.choices}
-                  correctIndex={current.correctIndex} selectedIndex={selected}
-                  explanation={current.explanation}
-                />
-                {selected != null && (
-                  <ProgressiveHint
-                    questionText={current.question}
-                    wrongChoice={current.choices[selected]}
-                    correctChoice={current.choices[current.correctIndex]}
-                  />
-                )}
-                {selected != null && (
-                  <PersonalizedMnemonic
-                    questionId={current.id}
-                    questionText={current.question}
-                    correctChoice={current.choices[current.correctIndex]}
-                  />
-                )}
-              </DeeperHelpSection>
-            )}
           </div>
         )}
       </div>
@@ -3538,61 +3340,6 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
    ========================================================================= */
 function normalizeCmd(s) {
   return s.trim().toLowerCase().replace(/\s+/g, ' ')
-}
-
-/* ---- CLI failure explainer (#26) — "Why did this fail?" button ---- */
-function CliFailureExplainer({ objectiveId, userCommand, correctCommand, taskDescription }) {
-  const [phase, setPhase] = useState('idle') // idle | loading | done | error
-  const [explanation, setExplanation] = useState(null)
-  const [error, setError] = useState(null)
-
-  const cacheKey = `ccna_clifail_${objectiveId}_${userCommand}`
-
-  async function fetchExplanation() {
-    setPhase('loading')
-    try {
-      if (_cliFailSessionCache.has(cacheKey)) {
-        setExplanation(_cliFailSessionCache.get(cacheKey))
-        setPhase('done')
-        return
-      }
-      const stored = sessionStorage.getItem(cacheKey)
-      if (stored) {
-        _cliFailSessionCache.set(cacheKey, stored)
-        setExplanation(stored)
-        setPhase('done')
-        return
-      }
-      const text = await askClaude({
-        system: 'You are a Cisco IOS CLI tutor. Explain in 1-2 concise sentences why the student\'s command was wrong and what the correct command does differently. Be specific about syntax or mode issues.',
-        messages: [{ role: 'user', content: `Task: ${taskDescription}\nStudent entered: ${userCommand}\nCorrect command: ${correctCommand}\n\nWhy was the student's command wrong?` }],
-        max_tokens: 150, model: MODELS.fast, feature: 'hint',
-      })
-      sessionStorage.setItem(cacheKey, text)
-      _cliFailSessionCache.set(cacheKey, text)
-      setExplanation(text)
-      setPhase('done')
-    } catch (err) {
-      setError(err.message)
-      setPhase('error')
-    }
-  }
-
-  if (phase === 'idle') {
-    return (
-      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 'var(--ccna-type-xs)' }} onClick={fetchExplanation}>
-        💡 Why did this fail?
-      </button>
-    )
-  }
-  if (phase === 'loading') return <Spinner label="Analyzing your command..." />
-  if (phase === 'error') return <ErrorBox message={error} onRetry={fetchExplanation} />
-  return (
-    <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
-      <div style={{ fontWeight: 700, color: COLORS.sky, marginBottom: 4, fontSize: 'var(--ccna-type-xs)' }}>💡 COMMAND FEEDBACK</div>
-      <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={explanation} /></div>
-    </div>
-  )
 }
 
 /* =========================================================================
@@ -3736,13 +3483,12 @@ function CLIDrillTab({ objective }) {
   const [statuses, setStatuses] = useState(() => drills.map(() => false))
   const [hintIdx, setHintIdx] = useState(null)
   const [done, setDone] = useState(false)
-  const [lastFail, setLastFail] = useState(null) // #26: { userCommand, correctCommand, taskDescription }
   const counters = useRef({ commandsEntered: 0, syntaxErrors: 0, wrongModeErrors: 0, hintsUsed: 0 })
   const scrollRef = useRef(null)
 
   const reset = useCallback(() => {
     setMode('user'); setInput(''); setHistory([]); setStatuses(drills.map(() => false))
-    setHintIdx(null); setDone(false); setLastFail(null)
+    setHintIdx(null); setDone(false)
     counters.current = { commandsEntered: 0, syntaxErrors: 0, wrongModeErrors: 0, hintsUsed: 0 }
   }, [drills])
 
@@ -3818,13 +3564,10 @@ function CLIDrillTab({ objective }) {
         if (nav) setMode(nav.to) // mode-changing objective (interface/vlan/router/…)
         completeObjective(matchIdx, next)
         setStatuses(next)
-        setLastFail(null) // clear failure after a success
       } else {
         counters.current.wrongModeErrors += 1
         push(`% Wrong mode. That command belongs in ${CLI_MODE_HINT[req] || req}.`, 'warn')
         logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'mode' })
-        // #26: track wrong-mode failure
-        setLastFail({ userCommand: raw, correctCommand: drills[matchIdx].answer[0], taskDescription: drills[matchIdx].prompt })
       }
       return
     }
@@ -3856,9 +3599,6 @@ function CLIDrillTab({ objective }) {
     if (near) push(`% Incomplete or incorrect syntax. Expected pattern: ${near.answer[0]}`, 'warn')
     else push('% Invalid input detected. Type "hint" for the next objective, or "?" for help.', 'warn')
     logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'syntax' })
-    // #26: track the failed command so the AI explainer can reference it
-    const nextDrill = drills[statuses.findIndex(s => !s)]
-    if (nextDrill) setLastFail({ userCommand: raw, correctCommand: nextDrill.answer[0], taskDescription: nextDrill.prompt })
   }
 
   const completed = statuses.filter(Boolean).length
@@ -3928,16 +3668,6 @@ function CLIDrillTab({ objective }) {
         </div>
       ) : (
         <button style={styles.primaryBtn} onClick={reset}>Restart lab</button>
-      )}
-      {/* #26: show AI failure explainer after a wrong command */}
-      {lastFail && !done && (
-        <CliFailureExplainer
-          key={`${lastFail.userCommand}`}
-          objectiveId={objective.id}
-          userCommand={lastFail.userCommand}
-          correctCommand={lastFail.correctCommand}
-          taskDescription={lastFail.taskDescription}
-        />
       )}
     </div>
   )
@@ -5718,16 +5448,6 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
           <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={current} selected={selected} />
-            {!isCorrect && isMcQuestion(current) && (
-              <DeeperHelpSection>
-                <ExplainMistake
-                  cacheKey={`${current.id || normalizeQuestionText(current.question)}::${selected}`}
-                  question={current.question} choices={current.choices}
-                  correctIndex={current.correctIndex} selectedIndex={selected}
-                  explanation={current.explanation}
-                />
-              </DeeperHelpSection>
-            )}
             {obj && (
               <button
                 onClick={() => onOpenSection?.(obj)}
@@ -5996,14 +5716,6 @@ function MissedReview({ missed, onBack, onRemove }) {
           {revealedIdx === idx ? (
             <div style={{ marginTop: 4 }}>
               <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginBottom: 8, lineHeight: 1.5 }}>{m.explanation}</div>
-              {m.selectedIndex != null && (
-                <ExplainMistake
-                  cacheKey={`${normalizeQuestionText(m.question)}::${m.selectedIndex}`}
-                  question={m.question} choices={m.choices}
-                  correctIndex={m.correctIndex} selectedIndex={m.selectedIndex}
-                  explanation={m.explanation}
-                />
-              )}
               <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => onRemove(missed.indexOf(m))}>Mark as reviewed (remove)</button>
             </div>
           ) : (
@@ -6702,6 +6414,13 @@ export default function App() {
   const openLab = useCallback((labId, from = 'labs') => { setSelectedLab(labId); setLabReturn(from); setView('lab') }, [])
   const [theme, setTheme] = useState(() =>
     (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme')) || 'dark')
+  const [premiumUnlocked, setPremiumUnlocked] = useState(false)
+  const [premiumToast, setPremiumToast] = useState(null)
+
+  const handlePremiumBlocked = useCallback((feature, source, extra) => {
+    logPremiumBlocked(feature, source, extra)
+    setPremiumToast(PREMIUM_TOAST_MESSAGES[feature] || 'This coach feature will unlock with supporter access.')
+  }, [])
 
   // Flip the theme: update the root attribute (re-themes instantly via CSS
   // vars) and persist the choice. Available from a fixed control at all times.
@@ -6727,10 +6446,11 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      const [p, m, s, off, code, last, due, onboardDone] = await Promise.all([
+      const [p, m, s, off, code, last, due, onboardDone, premium] = await Promise.all([
         loadProgress(), loadMissed(), loadStreak(), loadOfflineReadyIds(),
         window.storage.getItem(STORAGE_KEYS.syncCode), window.storage.getItem(STORAGE_KEYS.syncLast),
         countDueQuestions(), window.storage.getItem(STORAGE_KEYS.onboardDone),
+        loadPremiumUnlocked(),
       ])
       setProgress(p)
       setMissed(m)
@@ -6739,6 +6459,7 @@ export default function App() {
       setSyncCode(code || null)
       setLastSynced(last || null)
       setDueCount(due)
+      setPremiumUnlocked(premium)
       setLoaded(true)
       const reduceMotion = await loadReduceMotion()
       applyReduceMotionPreference(reduceMotion)
@@ -6763,38 +6484,6 @@ export default function App() {
   // Diagnostic placement check: seed quizScores for sampled objectives, then
   // hand off to the normal dashboard.
 
-  // Background pre-cache: after a 10s idle, quietly seed key-terms cache for
-  // uncurated objectives that have imported questions but no cached terms yet.
-  // Runs at most once per session; skips curated (already bundled) and already-cached.
-  useEffect(() => {
-    if (!loaded || !apiOnline) return
-    const t = setTimeout(async () => {
-      try {
-        const termsCache = (await window.storage.getItem(TERMS_CACHE_KEY)) || {}
-        const targets = ALL_OBJECTIVES.filter(o =>
-          !getCurated(o.id)?.flashcards?.length && // not curated
-          hasCuratedQuestions(o.id) && // has static questions (Q-only)
-          !termsCache[o.id] // not yet cached
-        ).slice(0, 5) // max 5 per session to avoid API bursts
-        for (const obj of targets) {
-          try {
-            const refNotes = BOOK_REF[obj.id] || ''
-            const data = await askClaudeJSON({
-              system: TERMS_PROMPT_SYSTEM,
-              messages: [{ role: 'user', content: `Objective ${obj.id}: ${obj.title}\n\nReference notes:\n${refNotes}\n\nGenerate key-term flashcards.` }],
-              max_tokens: 700, model: MODELS.fast, schema: TERMS_SCHEMA, toolName: 'emit_terms', feature: 'terms',
-            })
-            if ((data.cards || []).length > 0) {
-              const cache = (await window.storage.getItem(TERMS_CACHE_KEY)) || {}
-              cache[obj.id] = data.cards
-              await window.storage.setItem(TERMS_CACHE_KEY, cache)
-            }
-          } catch { /* silent — background best-effort */ }
-        }
-      } catch { /* silent */ }
-    }, 10000)
-    return () => clearTimeout(t)
-  }, [loaded, apiOnline])
   const finishOnboarding = useCallback(async (results) => {
     if (!onboardingReplayRef.current) {
       setProgress(prev => {
@@ -7058,6 +6747,10 @@ export default function App() {
   // Pre-fetch every AI asset for a topic so it works offline. No-op when offline.
   // Returns true on success. Used both manually and automatically on mastery.
   const packageObjective = useCallback(async (objective) => {
+    if (!premiumUnlocked) {
+      handlePremiumBlocked(PREMIUM_FEATURES.offline_pack, 'objective', { objectiveId: objective?.id })
+      return false
+    }
     if (!apiOnline || !objective) return false
     if (offlineReady.has(objective.id)) return true
     setPackagingId(objective.id)
@@ -7070,7 +6763,7 @@ export default function App() {
     } finally {
       setPackagingId(null)
     }
-  }, [apiOnline, offlineReady, refreshOffline])
+  }, [apiOnline, offlineReady, refreshOffline, premiumUnlocked, handlePremiumBlocked])
 
   // Periodically check API reachability for the offline banner
   useEffect(() => {
@@ -7226,6 +6919,8 @@ export default function App() {
             onOpenMock={() => setView('mock')}
             onOpenMissed={() => setView('missed')}
             onOpenTutor={() => setView('tutor')}
+            premiumUnlocked={premiumUnlocked}
+            onPremiumBlocked={handlePremiumBlocked}
             onOpenMetrics={() => setView('metrics')}
             onOpenStats={() => setView('stats')}
             onOpenSettings={() => setShowSettings(true)}
@@ -7280,11 +6975,17 @@ export default function App() {
             celebrate={celebrate}
             haptic={haptic}
             examMode={settingsExamMode}
+            premiumUnlocked={premiumUnlocked}
+            onPremiumBlocked={handlePremiumBlocked}
           />
         )}
-        {view === 'mock' && <MockExam onExit={() => setView('home')} askClaudeJSON={askClaudeJSON} cachedSystem={cachedSystem} mockSchema={MOCK_SCHEMA} bookRef={BOOK_REF} examMode={settingsExamMode} />}
+        {view === 'mock' && <MockExam onExit={() => setView('home')} examMode={settingsExamMode} />}
         {view === 'missed' && <MissedReview missed={missed} onBack={() => setView('home')} onRemove={removeMissed} />}
-        {view === 'tutor' && <TutorChat progress={progress} missed={missed} onBack={() => setView('home')} />}
+        {view === 'tutor' && (
+          premiumUnlocked
+            ? <TutorChat progress={progress} missed={missed} onBack={() => setView('home')} />
+            : <PremiumBlockedShell title="AI Tutor" onBack={() => setView('home')} />
+        )}
         {view === 'stats' && (
           <StatsPage
             progress={progress}
@@ -7365,8 +7066,10 @@ export default function App() {
           cleanBankObjectives={cleanBankStats.objectives}
           cleanBankQuestions={cleanBankStats.questions}
           appVersion={pkg.version}
+          onDonatePreview={() => handlePremiumBlocked(PREMIUM_FEATURES.donate_preview, 'settings')}
         />
       )}
+      <PremiumToast message={premiumToast} onDismiss={() => setPremiumToast(null)} />
       {showTour && <AppTour onComplete={completeTour} onSkip={skipTour} />}
     </AppShell>
     </StudyBlockProvider>

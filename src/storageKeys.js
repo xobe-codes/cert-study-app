@@ -21,4 +21,5 @@ export const STORAGE_KEYS = {
   nudgeDismissed: 'ccna_nudge_dismissed_v1',
   quizSessionSize: 'ccna_quiz_session_size_v1',
   studyBlock: 'ccna_study_block_v1',
+  premiumUnlocked: 'ccna_premium_unlocked_v1',
 }

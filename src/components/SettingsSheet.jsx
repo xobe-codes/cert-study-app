@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { MIN_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE } from '../quizSessionConfig.js'
 import { KEYBOARD_SHORTCUTS } from '../ui/keyboardShortcuts.js'
+import { PremiumSettingsCard } from './PremiumPreview.jsx'
 
 const MODAL_Z = 300
 
@@ -74,6 +75,7 @@ export default function SettingsSheet({
   cleanBankQuestions,
   cleanBankGenericExamTips,
   appVersion,
+  onDonatePreview,
 }) {
   const dialogRef = useRef(null)
   const [examInput, setExamInput] = useState(examDate || '')
@@ -180,6 +182,8 @@ export default function SettingsSheet({
         <button type="button" style={{ ...styles.secondaryBtn, textAlign: 'left', marginBottom: 16 }} onClick={() => { onClose(); onShowTour() }}>
           Show app tour again
         </button>
+
+        <PremiumSettingsCard onDonatePreview={onDonatePreview} />
 
         <SectionLabel>AI</SectionLabel>
         <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
