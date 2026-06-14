@@ -6,7 +6,10 @@ import {
   shuffleArrayCopy, randomizeQuestionOrder, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
 } from './questionUtils.js'
 import { computeCkuWeakness, computeTrapWeakness } from './weaknessUtils.js'
-import { getKnowledgeForObjective, hasKnowledgeBase } from './data/knowledgeStudy.js'
+import { getLessonReference, hasLessonReference } from './lesson/knowledgeReference.js'
+import { buildConceptDetail } from './lesson/conceptDetail.js'
+import { pickReviewSet, computeCkuCoverage, getObjectiveCkuIds } from './lesson/quizCoverage.js'
+import { parseRichTextSegments } from './lesson/richTextParse.js'
 import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme.js'
@@ -601,40 +604,7 @@ function mergeIntoBank(bank, objectiveId, questions) {
   bank[objectiveId] = [...existing, ...added]
   return bank
 }
-// Picks up to QUIZ_SESSION_SIZE questions, prioritising those the learner has
-// never answered, rated hard, or previously missed (deterministic spaced
-// repetition over the stored bank — no API call).
-//
-// `accuracy` (0..1, recent quiz accuracy for this objective, or null if
-// unknown) adaptively nudges the difficulty mix: a learner who's been doing
-// well gets pulled toward harder questions (less time on mastered easy
-// material); a struggling learner gets pulled toward easier/medium ones. This
-// only breaks near-ties in review priority — never-seen or just-missed
-// questions are still reviewed first regardless of difficulty.
-function pickReviewSet(banked, accuracy = null, sessionSize = QUIZ_SESSION_SIZE) {
-  const limit = Math.min(Math.max(1, sessionSize), banked.length)
-  const priority = (q) => {
-    const lastRating = q.ratings.length ? q.ratings[q.ratings.length - 1].value : null
-    const lastAttempt = q.attempts.length ? q.attempts[q.attempts.length - 1] : null
-    if (q.attempts.length === 0) return 0                       // never seen — first
-    if (lastAttempt && !lastAttempt.correct) return 1           // last attempt wrong
-    if (lastRating === 'hard' || lastRating === 'practice') return 2
-    if (lastRating === 'medium') return 3
-    return 4                                                    // easy / confident — last
-  }
-  const diffBias = accuracy == null ? {}
-    : accuracy >= 0.8 ? { easy: 0.35, medium: 0, hard: -0.35 }   // doing well — favor harder
-    : accuracy < 0.5 ? { easy: -0.35, medium: 0, hard: 0.35 }    // struggling — favor easier
-    : {}
-  const typeBias = { troubleshooting: -0.45, ordering: -0.35 }
-  // Select by review priority (adaptively biased), then randomize session order.
-  const selected = [...banked]
-    .map(q => ({ q, p: priority(q) + (diffBias[q.difficulty] ?? 0) + (typeBias[q.type] ?? 0), j: Math.random() }))
-    .sort((a, b) => a.p - b.p || a.j - b.j)
-    .slice(0, limit)
-    .map(x => x.q)
-  return randomizeQuestionOrder(selected)
-}
+// Picks up to sessionSize questions — see lesson/quizCoverage.js for CKU-aware logic.
 // Records an attempt + optional confidence rating against a banked question.
 // `schedule` gates spaced-repetition: a question only joins the review queue
 // once its section has cleared the mastery gate (see enableSectionReview).
@@ -1355,6 +1325,7 @@ function KeyTermsCarousel({ objective }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [flipped, setFlipped] = useState(() => new Set())
+  const [detailIdx, setDetailIdx] = useState(null)
   const [fromCurated, setFromCurated] = useState(false)
   const curatedFlashcards = useMemo(() => getCurated(objective.id)?.flashcards || null, [objective.id])
 
@@ -1364,7 +1335,7 @@ function KeyTermsCarousel({ objective }) {
     setFromCurated(false)
     try {
       if (!force && curatedFlashcards?.length) {
-        setCards(curatedFlashcards.map(f => ({ term: f.front, detail: f.back })))
+        setCards(curatedFlashcards.map(f => ({ term: f.front, detail: f.back, ckuId: f.ckuId || null, id: f.id })))
         setFromCurated(true)
         setLoading(false)
         return
@@ -1407,6 +1378,7 @@ function KeyTermsCarousel({ objective }) {
     setCards(null)
     setError(null)
     setFlipped(new Set())
+    setDetailIdx(null)
     fetchTerms(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [objective.id])
@@ -1414,8 +1386,13 @@ function KeyTermsCarousel({ objective }) {
   const toggleFlip = (idx) => {
     setFlipped(prev => {
       const next = new Set(prev)
-      if (next.has(idx)) next.delete(idx)
-      else next.add(idx)
+      if (next.has(idx)) {
+        next.delete(idx)
+        setDetailIdx(current => (current === idx ? null : current))
+      } else {
+        next.add(idx)
+        setDetailIdx(idx)
+      }
       return next
     })
   }
@@ -1473,6 +1450,9 @@ function KeyTermsCarousel({ objective }) {
           )
         })}
       </div>
+      {detailIdx != null && cards[detailIdx] && flipped.has(detailIdx) && (
+        <ConceptDetailPanel objectiveId={objective.id} card={cards[detailIdx]} />
+      )}
     </div>
   )
 }
@@ -1892,13 +1872,21 @@ function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen 
     </div>
   )
 }
-// Renders `inline code` segments (CLI commands, keywords) in monospace.
+// Renders `inline code` and **bold** segments in lesson prose.
 function RichText({ text }) {
   if (text == null) return null
-  const parts = String(text).split(/`([^`]+)`/)
-  return parts.map((p, i) => i % 2 === 1
-    ? <code key={i} style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 5, padding: '1px 5px', fontSize: 'var(--ccna-type-sm)', color: COLORS.sky, overflowWrap: 'anywhere', wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{p}</code>
-    : <span key={i}>{p}</span>)
+  const segments = parseRichTextSegments(text)
+  return segments.map((seg, i) => {
+    if (seg.type === 'code') {
+      return (
+        <code key={i} style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 5, padding: '1px 5px', fontSize: 'var(--ccna-type-sm)', color: COLORS.sky, overflowWrap: 'anywhere', wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{seg.value}</code>
+      )
+    }
+    if (seg.type === 'bold') {
+      return <strong key={i} style={{ color: COLORS.silver, fontWeight: 700 }}>{seg.value}</strong>
+    }
+    return <span key={i}>{seg.value}</span>
+  })
 }
 function Bullets({ items }) {
   return <ul style={{ margin: 0, paddingLeft: 18 }}>{(items || []).map((t, i) => <li key={i} style={{ marginBottom: 4 }}><RichText text={t} /></li>)}</ul>
@@ -2098,11 +2086,11 @@ const READING_TIERS = [
 // Renders a curated objective's reading: source-grounded, no AI call. Reuses
 // the same ExplainBlock visual language as the AI path so it feels native.
 function CuratedReading({ data }) {
-  const [tier, setTier] = useState('examReady')
+  const [tier, setTier] = useState('intermediate')
   const r = data.reading
   const srcNames = [...new Set(r.sourceRefs.map(s => s.sourceName.replace(/ —.*$/, '').replace(/\s*\(.*\)$/, '')))]
   return (
-    <div className="ccna-stagger">
+    <div className="ccna-stagger objective-reading-prose lesson-prose">
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
         <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
         <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{srcNames.join(' · ')}</span>
@@ -2202,44 +2190,156 @@ function BookRefPanel({ objective }) {
   )
 }
 
-function KnowledgeStudyPanel({ objectiveId }) {
-  const kb = useMemo(() => getKnowledgeForObjective(objectiveId), [objectiveId])
-  if (!kb || !hasKnowledgeBase(objectiveId)) return null
-  const hasContent = kb.glossary.length || kb.commands.length || kb.examTraps.length
-  if (!hasContent) return null
+function LessonReferencePanel({ objectiveId, defaultOpen = true }) {
+  const ref = useMemo(() => getLessonReference(objectiveId), [objectiveId])
+  if (!ref) return null
+  const openDefault = defaultOpen
   return (
     <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.skyBorder}` }}>
-      <SectionLabel icon="📚" label="KNOWLEDGE BASE" />
-      {kb.objective?.summary && <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5, marginBottom: 10 }}><RichText text={kb.objective.summary} /></div>}
-      {kb.glossary.length > 0 && (
-        <ExplainBlock icon="📖" title="GLOSSARY" accent="sky" collapsible defaultOpen={false}>
-          {kb.glossary.map(g => (
-            <div key={g.id || g.term} style={{ marginBottom: 8 }}>
+      <SectionLabel icon="📚" label="REFERENCE" />
+      {ref.summary && <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55, marginBottom: 10 }}><RichText text={ref.summary} /></div>}
+      {ref.glossary.length > 0 && (
+        <ExplainBlock icon="📖" title="GLOSSARY" accent="sky" collapsible defaultOpen={openDefault}>
+          {ref.glossary.map(g => (
+            <div key={g.id || g.term} style={{ marginBottom: 10 }}>
               <div style={{ fontWeight: 600, fontSize: 'var(--ccna-type-sm)' }}>{g.term}</div>
-              <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{g.definition}</div>
+              <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, lineHeight: 1.5 }}><RichText text={g.definition} /></div>
             </div>
           ))}
         </ExplainBlock>
       )}
-      {kb.commands.length > 0 && (
-        <ExplainBlock icon="⌨️" title="COMMAND BANK" accent="mint" collapsible defaultOpen={false}>
-          {kb.commands.map(c => (
-            <div key={c.id || c.command} style={{ marginBottom: 8, fontSize: 'var(--ccna-type-xs)' }}>
-              <code style={{ color: COLORS.mint }}>{c.command}</code>
-              <div style={{ color: COLORS.silverMid, marginTop: 2 }}>{c.purpose}</div>
+      {ref.commands.length > 0 && (
+        <ExplainBlock icon="⌨️" title="COMMAND BANK" accent="mint" collapsible defaultOpen={openDefault}>
+          {ref.commands.map(c => (
+            <div key={c.id || c.command} style={{ marginBottom: 10, fontSize: 'var(--ccna-type-sm)' }}>
+              <code style={{ color: COLORS.mint, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>{c.command}</code>
+              {c.mode && <span style={{ color: COLORS.silverDim, marginLeft: 6, fontSize: 'var(--ccna-type-xs)' }}>({c.mode})</span>}
+              <div style={{ color: COLORS.silverMid, marginTop: 4, lineHeight: 1.45 }}>{c.purpose}</div>
+              {c.example && <div style={{ color: COLORS.silverDim, marginTop: 2, fontSize: 'var(--ccna-type-xs)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>{c.example}</div>}
             </div>
           ))}
         </ExplainBlock>
       )}
-      {kb.examTraps.length > 0 && (
-        <ExplainBlock icon="⚠️" title="EXAM TRAPS" accent="amber" collapsible defaultOpen={false}>
-          {kb.examTraps.map(t => (
-            <div key={t.id || t.trap} style={{ marginBottom: 8, fontSize: 'var(--ccna-type-xs)', lineHeight: 1.4 }}>
+      {ref.examTraps.length > 0 && (
+        <ExplainBlock icon="⚠️" title="EXAM TRAPS" accent="amber" collapsible defaultOpen={openDefault}>
+          {ref.examTraps.map(t => (
+            <div key={t.id || t.trap} style={{ marginBottom: 10, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.45 }}>
               <div style={{ fontWeight: 600 }}>{t.trap || t.title}</div>
-              {(t.avoid || t.correction) && <div style={{ color: COLORS.silverMid }}>{t.avoid || t.correction}</div>}
+              {(t.avoid || t.correction) && <div style={{ color: COLORS.silverMid, marginTop: 4 }}>{t.avoid || t.correction}</div>}
             </div>
           ))}
         </ExplainBlock>
+      )}
+      {ref.mnemonics?.length > 0 && (
+        <ExplainBlock icon="💡" title="MNEMONICS" accent="purple" collapsible defaultOpen={openDefault}>
+          {ref.mnemonics.map(m => (
+            <div key={m.id || m.title} style={{ marginBottom: 10, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.45 }}>
+              <div style={{ fontWeight: 600 }}>{m.title}</div>
+              <div style={{ color: COLORS.purpleGlow, marginTop: 2 }}>{m.mnemonic}</div>
+              {m.explanation && <div style={{ color: COLORS.silverMid, marginTop: 4 }}>{m.explanation}</div>}
+            </div>
+          ))}
+        </ExplainBlock>
+      )}
+      {ref.misconceptions?.length > 0 && (
+        <ExplainBlock icon="🚫" title="MISCONCEPTIONS" accent="rose" collapsible defaultOpen={false}>
+          {ref.misconceptions.map(x => (
+            <div key={x.id || x.misconception} style={{ marginBottom: 10, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.45 }}>
+              <div style={{ fontWeight: 600 }}>{x.misconception}</div>
+              <div style={{ color: COLORS.silverMid, marginTop: 4 }}>{x.reality}</div>
+            </div>
+          ))}
+        </ExplainBlock>
+      )}
+    </div>
+  )
+}
+
+function LessonViewTabs({ view, onChange, showReference }) {
+  if (!showReference) return null
+  const tabs = [
+    { key: 'read', label: 'Read' },
+    { key: 'reference', label: 'Reference' },
+  ]
+  return (
+    <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
+      {tabs.map(t => {
+        const active = view === t.key
+        return (
+          <button
+            key={t.key}
+            type="button"
+            onClick={() => onChange(t.key)}
+            style={{
+              flex: 1, minHeight: 40, borderRadius: 10,
+              border: `1px solid ${active ? COLORS.skyBorder : COLORS.border}`,
+              background: active ? COLORS.skyDim : COLORS.surface,
+              color: active ? COLORS.sky : COLORS.silverMid,
+              fontSize: 'var(--ccna-type-sm)', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit',
+            }}
+          >
+            {t.label}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function CkuCoverageChip({ objectiveId, banked }) {
+  const coverage = useMemo(() => computeCkuCoverage(objectiveId, banked), [objectiveId, banked])
+  if (!coverage || coverage.total === 0) return null
+  const complete = coverage.covered === coverage.total
+  return (
+    <span style={{ ...styles.pill(complete ? 'mint' : 'amber'), fontSize: 'var(--ccna-type-xs)', display: 'inline-block', marginBottom: 10 }}>
+      {coverage.covered}/{coverage.total} concepts in quiz bank
+    </span>
+  )
+}
+
+function ConceptDetailPanel({ objectiveId, card }) {
+  const detail = useMemo(() => buildConceptDetail(objectiveId, card), [objectiveId, card])
+  if (!detail.hasDepth && !card?.detail) return null
+  return (
+    <div style={{ ...styles.card, marginTop: 10, marginBottom: 12, border: `1px solid ${COLORS.purpleGlow}`, background: COLORS.purpleDim }}>
+      <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 8, letterSpacing: 0.6 }}>
+        ABOUT: {card.term}
+      </div>
+      {detail.cku?.summary && (
+        <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55, marginBottom: 10, color: COLORS.silver }}>
+          <RichText text={detail.cku.summary} />
+        </div>
+      )}
+      {detail.glossaryEntry && !detail.cku?.summary && (
+        <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55, marginBottom: 10, color: COLORS.silver }}>
+          <RichText text={detail.glossaryEntry.definition} />
+        </div>
+      )}
+      {detail.commands.length > 0 && (
+        <div style={{ marginBottom: 8 }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.mint, fontWeight: 700, marginBottom: 4 }}>Commands</div>
+          {detail.commands.slice(0, 3).map(c => (
+            <div key={c.id || c.command} style={{ fontSize: 'var(--ccna-type-xs)', marginBottom: 4, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.silverMid }}>
+              {c.command}
+            </div>
+          ))}
+        </div>
+      )}
+      {detail.traps.length > 0 && (
+        <div style={{ marginBottom: 8 }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.amber, fontWeight: 700, marginBottom: 4 }}>Exam trap</div>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', lineHeight: 1.45, color: COLORS.silverMid }}>{detail.traps[0].trap || detail.traps[0].title}</div>
+        </div>
+      )}
+      {detail.mnemonics.length > 0 && (
+        <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.purpleGlow, marginBottom: 8 }}>
+          💡 {detail.mnemonics[0].mnemonic}
+        </div>
+      )}
+      {detail.quizCount > 0 && (
+        <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
+          {detail.quizCount} quiz question{detail.quizCount === 1 ? '' : 's'} test this concept
+        </div>
       )}
     </div>
   )
@@ -2275,13 +2375,17 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
   const [content, setContent] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  const [recalled, setRecalled] = useState(false) // retrieval-practice gate
+  const [recalled, setRecalled] = useState(false) // retrieval-practice gate (AI lessons only)
+  const [lessonView, setLessonView] = useState('read') // read | reference
   const [stage, setStage] = useState('assess') // assess | lesson — pre-assessment gates the lesson
   const testedOut = !!progress?.[objective.id]?.testedOut
   const curated = hasCuratedReading(objective.id) ? getCurated(objective.id) : null
+  const showReference = hasLessonReference(objective.id)
+  const bankedForCoverage = useMemo(() => getCuratedQuestions(objective.id), [objective.id])
 
   useEffect(() => {
     setRecalled(false)
+    setLessonView('read')
     setStage(progress?.[objective.id]?.testedOut ? 'lesson' : 'assess')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [objective.id])
@@ -2341,48 +2445,54 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
   }
 
   // Lesson stage
+  const showReading = curated || recalled
   return (
     <div>
       {testedOut && <div style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-xs)', marginBottom: 10, display: 'inline-block' }}>✓ Tested out — scheduled for review</div>}
       <KeyTermsCarousel objective={objective} />
-      <KnowledgeStudyPanel objectiveId={objective.id} />
+      <CkuCoverageChip objectiveId={objective.id} banked={bankedForCoverage} />
+      <LessonViewTabs view={lessonView} onChange={setLessonView} showReference={showReference} />
 
-      {!curated && <BookRefPanel objective={objective} />}
-
-      {!recalled && !error && (
-        <div style={{ ...styles.card, border: `1px solid ${COLORS.purpleGlow}`, background: COLORS.purpleDim }}>
-          <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 6 }}>🧠 RECALL FIRST</div>
-          <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.5, marginBottom: 12 }}>
-            Before you read it: what do you already know about <strong>{objective.title}</strong>? Try to explain it to yourself — a rough attempt strengthens memory far more than re-reading.
-          </div>
-          <button style={styles.primaryBtn} onClick={() => setRecalled(true)}>Reveal explanation</button>
-        </div>
-      )}
-
-      {recalled && loading && (
-        <div>
-          <Skeleton width="50%" height={16} style={{ marginBottom: 10 }} />
-          <Skeleton width="100%" height={48} /><Skeleton width="100%" height={48} /><Skeleton width="100%" height={48} />
-        </div>
-      )}
-      {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
-      {recalled && curated && (
+      {lessonView === 'reference' && showReference ? (
+        <LessonReferencePanel objectiveId={objective.id} defaultOpen />
+      ) : (
         <>
-          <SectionLabel icon="📖" label="READING" />
-          <CuratedReading data={curated} />
-          {/* #19: style switcher for curated objectives */}
-          <StyleSwitcher objectiveId={objective.id} objectiveTitle={objective.title} />
-        </>
-      )}
-      {recalled && !curated && <AiBudgetWarning />}
-      {recalled && !curated && content && !loading && (
-        <>
-          <SectionLabel icon="📖" label="READING" />
-          <StructuredExplanation data={content} />
-          <SourcesPanel objective={objective} />
-          <AdjustExplanation onAdjust={(a) => fetchExplanation(true, a)} />
-          {/* #19: style switcher for AI-generated explanations */}
-          <StyleSwitcher objectiveId={objective.id} objectiveTitle={objective.title} />
+          {!curated && <BookRefPanel objective={objective} />}
+
+          {!curated && !recalled && !error && (
+            <div style={{ ...styles.card, border: `1px solid ${COLORS.purpleGlow}`, background: COLORS.purpleDim }}>
+              <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 6 }}>🧠 RECALL FIRST</div>
+              <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.5, marginBottom: 12 }}>
+                Before you read it: what do you already know about <strong>{objective.title}</strong>? Try to explain it to yourself — a rough attempt strengthens memory far more than re-reading.
+              </div>
+              <button style={styles.primaryBtn} onClick={() => setRecalled(true)}>Reveal explanation</button>
+            </div>
+          )}
+
+          {showReading && loading && (
+            <div>
+              <Skeleton width="50%" height={16} style={{ marginBottom: 10 }} />
+              <Skeleton width="100%" height={48} /><Skeleton width="100%" height={48} /><Skeleton width="100%" height={48} />
+            </div>
+          )}
+          {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
+          {showReading && curated && (
+            <>
+              <CuratedReading data={curated} />
+              <StyleSwitcher objectiveId={objective.id} objectiveTitle={objective.title} />
+            </>
+          )}
+          {showReading && !curated && <AiBudgetWarning />}
+          {showReading && !curated && content && !loading && (
+            <>
+              <div className="objective-reading-prose lesson-prose">
+                <StructuredExplanation data={content} />
+              </div>
+              <SourcesPanel objective={objective} />
+              <AdjustExplanation onAdjust={(a) => fetchExplanation(true, a)} />
+              <StyleSwitcher objectiveId={objective.id} objectiveTitle={objective.title} />
+            </>
+          )}
         </>
       )}
     </div>
@@ -3171,7 +3281,8 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
       }
 
       const breakdown = masteryBreakdown(progress?.[objective.id])
-      const set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null, sessionSize)
+      const ckuIds = getObjectiveCkuIds(objective.id)
+      const set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null, sessionSize, { ckuIds })
       if (set.length === 0) throw new Error('No questions available for this objective yet.')
       setBankSize(banked.length)
       setSourceLabel(usedApi ? 'Freshly generated · added to your bank' : `From your saved bank of ${banked.length} · no API used`)

@@ -416,6 +416,13 @@ export function buildAppShellCss(colors) {
     .objective-reading-prose {
       max-width: 68ch;
     }
+    .lesson-prose {
+      line-height: var(--ccna-line-read, 1.62);
+      font-size: var(--ccna-type-md);
+    }
+    .lesson-prose li {
+      margin-bottom: 0.45em;
+    }
     .objective-shell--deep-read .objective-reading-prose,
     .app-shell--deep-work .objective-reading-prose {
       line-height: var(--ccna-line-read);
