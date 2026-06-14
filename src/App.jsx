@@ -5009,7 +5009,7 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
       )}
 
       <div role="tablist" aria-label={`${objective.id} study activities`} style={styles.tabBar}>
-        {tabs.map(t => (
+        {tabs.map((t, idx) => (
           <button
             key={t}
             type="button"
@@ -5020,6 +5020,16 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
             tabIndex={tab === t ? 0 : -1}
             style={styles.tabBtn(tab === t)}
             onClick={() => setTab(t)}
+            onKeyDown={(e) => {
+              if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return
+              e.preventDefault()
+              let next = idx
+              if (e.key === 'ArrowRight') next = (idx + 1) % tabs.length
+              else if (e.key === 'ArrowLeft') next = (idx - 1 + tabs.length) % tabs.length
+              else if (e.key === 'Home') next = 0
+              else if (e.key === 'End') next = tabs.length - 1
+              setTab(tabs[next])
+            }}
           >{t}</button>
         ))}
       </div>
@@ -6656,6 +6666,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
       <ExamCountdown progress={progress} />
       <ExamTrapWidget />
 
+      <div role="group" aria-label="Course domains">
       {DOMAINS.map(domain => {
         const isOpen = openDomain === domain.id
         const objs = domain.objectives
@@ -6713,6 +6724,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
           </div>
         )
       })}
+      </div>
     </div>
   )
 }
@@ -7604,6 +7616,9 @@ export default function App() {
   const [showSync, setShowSync] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const importFileRef = useRef(null)
+  const mainRef = useRef(null)
+  const homeScrollRef = useRef(0)
+  const prevViewRef = useRef('home')
   const [syncCode, setSyncCode] = useState(null)
   const [lastSynced, setLastSynced] = useState(null)
   const [syncBusy, setSyncBusy] = useState(false)
@@ -7732,6 +7747,20 @@ export default function App() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [showExport, showSync])
+
+  // Preserve Home scroll position when leaving and returning (Phase 8).
+  useEffect(() => {
+    const prev = prevViewRef.current
+    if (prev === 'home' && view !== 'home' && mainRef.current) {
+      homeScrollRef.current = mainRef.current.scrollTop
+    }
+    if (view === 'home' && mainRef.current) {
+      requestAnimationFrame(() => {
+        if (mainRef.current) mainRef.current.scrollTop = homeScrollRef.current
+      })
+    }
+    prevViewRef.current = view
+  }, [view])
 
   // Pull remote → merge with local → save → refresh UI → push merged back.
   // Deterministic and convergent, so it's safe to run on any device.
@@ -7979,8 +8008,8 @@ export default function App() {
         {theme === 'dark' ? '☀️' : '🌙'}
       </button>
       {!apiOnline && <OfflineBanner />}
-      <div style={styles.container}>
-        <div className="ccna-view" key={view}>
+      <div style={styles.container} ref={mainRef}>
+        <div className="ccna-view">
         {view === 'onboarding' && <Onboarding onComplete={finishOnboarding} onSkip={skipOnboarding} />}
         {view === 'home' && (
           <HomeScreen
