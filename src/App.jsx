@@ -4976,7 +4976,7 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
                 <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>You know more than you think about:</div>
                 {underconfident.map(o => (
                   <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-                    <span style={{ fontSize: 14 }}>💪</span>
+                    <span style={{ fontSize: 14 }}>💪🏾</span>
                     <span style={{ flex: 1 }}>
                       <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{o.id} {o.title}</span>
                       <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
@@ -5625,7 +5625,7 @@ function Onboarding({ onComplete, onSkip }) {
     return (
       <div>
         <div style={styles.card}>
-          <h1 style={styles.h1}>Welcome 👋</h1>
+          <h1 style={styles.h1}>Welcome 👋🏾</h1>
           <p style={{ fontSize: 14, lineHeight: 1.6, color: COLORS.silver, marginBottom: 10 }}>
             Quick placement check, ~5 minutes. A short mixed-domain quiz — including drag-and-drop ordering
             and troubleshooting — to see where you're starting from and seed your progress.

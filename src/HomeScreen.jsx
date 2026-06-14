@@ -259,7 +259,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         <h1 style={styles.h1} className="ccna-grad-text">CCNA 200-301</h1>
         {streak.count > 0 && (() => {
           const count = streak.count
-          const msg = count >= 30 ? 'Legendary! 🏆' : count >= 14 ? 'Unstoppable! 💪' : count >= 7 ? 'On fire! 🔥' : count >= 3 ? 'Nice momentum!' : 'Keep it going!'
+          const msg = count >= 30 ? 'Legendary! 🏆' : count >= 14 ? 'Unstoppable! 💪🏾' : count >= 7 ? 'On fire! 🔥' : count >= 3 ? 'Nice momentum!' : 'Keep it going!'
           const today = todayStr()
           const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
           const lastLabel = streak.lastStudyDate === today ? 'Today' : streak.lastStudyDate === yesterday ? 'Yesterday' : null
