@@ -48,10 +48,10 @@ export default function ProgressRing({ value, size = 72, stroke = 7, accent = 'p
           />
         </svg>
         <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-          <span style={{ fontSize: Math.max(11, size * 0.24), fontWeight: 700, color: COLORS.silver, lineHeight: 1 }}>{pctLabel}</span>
+          <span style={{ fontSize: `clamp(12px, ${Math.max(13, size * 0.28)}px, var(--ccna-type-sm))`, fontWeight: 700, color: COLORS.silver, lineHeight: 1 }}>{pctLabel}</span>
         </div>
       </div>
-      {caption && <span style={{ fontSize: 11, color: COLORS.silverMid, textAlign: 'center', maxWidth: size + 16, lineHeight: 1.3 }}>{caption}</span>}
+      {caption && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, textAlign: 'center', maxWidth: size + 16, lineHeight: 1.3 }}>{caption}</span>}
     </div>
   )
 }

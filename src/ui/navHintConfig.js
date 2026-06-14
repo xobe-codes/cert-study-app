@@ -58,7 +58,7 @@ const HINTS = {
   [NAV_HINT_KEYS.FOCUS_DONE]: {
     icon: 'check',
     accent: 'sky',
-    message: () => 'Focus round complete — **Home** weak domains or run another **Focus** session tomorrow.',
+    message: () => 'Weak Areas round complete — **Home** for domains or run another session tomorrow.',
   },
   [NAV_HINT_KEYS.PLACEMENT_DONE]: {
     icon: 'next',
@@ -75,7 +75,7 @@ const HINTS = {
   [NAV_HINT_KEYS.MOCK_FAIL]: {
     icon: 'retry',
     accent: 'rose',
-    message: () => 'Mock below target — use **Focus Mode** on weak objectives, then retake the exam.',
+    message: () => 'Mock below target — use **Weak Areas** on low-mastery objectives, then retake the exam.',
   },
   [NAV_HINT_KEYS.LAB_DONE]: {
     icon: 'check',

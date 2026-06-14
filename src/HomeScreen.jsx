@@ -49,10 +49,10 @@ function HomeExtrasSection({ progress }) {
         }}
       >
         <span style={{ flex: 1, textAlign: 'left' }}>
-          <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>EXAM PREP EXTRAS</span>
-          <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid, marginTop: 2 }}>Countdown · daily trap</span>
+          <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>EXAM PREP EXTRAS</span>
+          <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>Countdown · daily trap</span>
         </span>
-        <span style={{ fontSize: 12, color: COLORS.silverMid, flexShrink: 0 }}>{open ? '▲' : '▼'}</span>
+        <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, flexShrink: 0 }}>{open ? '▲' : '▼'}</span>
       </button>
       {open && (
         <div>
@@ -93,13 +93,13 @@ function ExamCountdown({ progress }) {
   if (editing || !examDate) {
     return (
       <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.border}` }}>
-        <div style={{ fontSize: 12, fontWeight: 600, color: COLORS.silver, marginBottom: 8 }}>📅 Set your exam date</div>
+        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, color: COLORS.silver, marginBottom: 8 }}>📅 Set your exam date</div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
           <input
             type="date"
             value={inputVal}
             onChange={e => setInputVal(e.target.value)}
-            style={{ flex: 1, minWidth: 140, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 8, padding: '8px 10px', color: COLORS.silver, fontFamily: 'inherit', fontSize: 13 }}
+            style={{ flex: 1, minWidth: 140, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 8, padding: '8px 10px', color: COLORS.silver, fontFamily: 'inherit', fontSize: 'var(--ccna-type-sm)' }}
           />
           <button style={{ ...styles.primaryBtn, flex: 0 }} onClick={save}>Set</button>
           {examDate && <button style={{ ...styles.secondaryBtn, flex: 0 }} onClick={() => setEditing(false)}>Cancel</button>}
@@ -113,8 +113,8 @@ function ExamCountdown({ progress }) {
   const daysLeft = Math.ceil((target - now) / 86400000)
   if (daysLeft < 0) return (
     <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.mintBorder}` }}>
-      <div style={{ fontSize: 13, color: COLORS.mint, fontWeight: 600 }}>🎓 Exam date passed — good luck with results!</div>
-      <button style={{ fontSize: 11, color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginTop: 4 }} onClick={() => setEditing(true)}>Update date</button>
+      <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.mint, fontWeight: 600 }}>🎓 Exam date passed — good luck with results!</div>
+      <button style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginTop: 4 }} onClick={() => setEditing(true)}>Update date</button>
     </div>
   )
 
@@ -126,17 +126,17 @@ function ExamCountdown({ progress }) {
     <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${accentColors(urgency).border}`, background: accentColors(urgency).dim }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
-          <div style={{ fontSize: 22, fontWeight: 700, color: accentColors(urgency).text }}>{daysLeft} day{daysLeft !== 1 ? 's' : ''}</div>
-          <div style={{ fontSize: 12, color: COLORS.silverMid }}>until exam · {target.toLocaleDateString()}</div>
+          <div style={{ fontSize: 'var(--ccna-type-xl)', fontWeight: 700, color: accentColors(urgency).text }}>{daysLeft} day{daysLeft !== 1 ? 's' : ''}</div>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>until exam · {target.toLocaleDateString()}</div>
         </div>
-        <button style={{ fontSize: 11, color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0' }} onClick={() => setEditing(true)}>Edit</button>
+        <button style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0' }} onClick={() => setEditing(true)}>Edit</button>
       </div>
       {unstudied > 0 && daysLeft > 0 && (
-        <div style={{ marginTop: 8, fontSize: 12, color: COLORS.silver }}>
+        <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.silver }}>
           {unstudied} objectives not started · aim for ~{objPerDay}/day to cover all before exam
         </div>
       )}
-      {unstudied === 0 && <div style={{ marginTop: 8, fontSize: 12, color: COLORS.mint }}>All objectives started — focus on mastery and daily reviews.</div>}
+      {unstudied === 0 && <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.mint }}>All objectives started — focus on mastery and daily reviews.</div>}
     </div>
   )
 }
@@ -149,11 +149,11 @@ function ExamTrapWidget() {
   return (
     <div style={{ ...styles.card, border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim, marginBottom: 12 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-        <span style={{ ...styles.pill('rose'), fontSize: 9 }}>⚠️ EXAM TRAP OF THE DAY</span>
-        <span style={{ fontSize: 10, color: COLORS.silverMid }}>{trap.objectiveId}</span>
+        <span style={{ ...styles.pill('rose'), fontSize: 'var(--ccna-type-micro)' }}>⚠️ EXAM TRAP OF THE DAY</span>
+        <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>{trap.objectiveId}</span>
       </div>
-      <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.rose, marginBottom: 6, lineHeight: 1.4 }}>{trap.trap}</div>
-      <div style={{ fontSize: 12, color: COLORS.silver, lineHeight: 1.5 }}>{trap.correction}</div>
+      <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.rose, marginBottom: 6, lineHeight: 1.4 }}>{trap.trap}</div>
+      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.5 }}>{trap.correction}</div>
     </div>
   )
 }
@@ -181,14 +181,14 @@ function SessionRecapCard() {
     }}>
       <button
         onClick={dismiss}
-        style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 18, cursor: 'pointer', lineHeight: 1, padding: 0 }}
+        style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-lg)', cursor: 'pointer', lineHeight: 1, padding: 0 }}
         aria-label="Dismiss"
       >×</button>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, marginBottom: 2 }}>📊 Last session</div>
-        <div style={{ fontSize: 13, color: COLORS.silver }}>{parts.join(' · ')}</div>
+        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 2 }}>📊 Last session</div>
+        <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }}>{parts.join(' · ')}</div>
         {total > 0 && (
-          <div style={{ fontSize: 11, color: COLORS.silverMid, marginTop: 2 }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>
             {data.correct} correct · {data.incorrect} incorrect
           </div>
         )}
@@ -270,8 +270,8 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           return (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 3, marginRight: 48, flexShrink: 0 }}>
               <div style={{ ...styles.pill('mint'), whiteSpace: 'nowrap' }}>🔥 {count} day{count === 1 ? '' : 's'} streak</div>
-              <div style={{ fontSize: 11, color: accentColors('mint').text, fontWeight: 500, textAlign: 'right' }}>{msg}</div>
-              {lastLabel && <div style={{ fontSize: 10, color: COLORS.silverMid }}>Last studied: {lastLabel}</div>}
+              <div style={{ fontSize: 'var(--ccna-type-xs)', color: accentColors('mint').text, fontWeight: 500, textAlign: 'right' }}>{msg}</div>
+              {lastLabel && <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>Last studied: {lastLabel}</div>}
             </div>
           )
         })()}
@@ -287,20 +287,20 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 12, position: 'relative' }}>
           <button
             onClick={dismissNudge}
-            style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 18, cursor: 'pointer', lineHeight: 1, padding: 0, minWidth: 44, minHeight: 44 }}
+            style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-lg)', cursor: 'pointer', lineHeight: 1, padding: 0, minWidth: 44, minHeight: 44 }}
             aria-label="Dismiss"
           >×</button>
-          <div style={{ fontWeight: 700, fontSize: 14, color: COLORS.sky, marginBottom: 6 }}>📱 New device?</div>
-          <div style={{ fontSize: 13, color: COLORS.silver, marginBottom: 10 }}>
+          <div style={{ fontWeight: 700, fontSize: 'var(--ccna-type-md)', color: COLORS.sky, marginBottom: 6 }}>📱 New device?</div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginBottom: 10 }}>
             Export your progress from another device and import it here to pick up where you left off.
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
             <button
-              style={{ ...styles.secondaryBtn, flex: 1, fontSize: 13, border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
+              style={{ ...styles.secondaryBtn, flex: 1, fontSize: 'var(--ccna-type-sm)', border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
               onClick={onOpenExport}
             >⬆ Export</button>
             <button
-              style={{ ...styles.secondaryBtn, flex: 1, fontSize: 13, border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
+              style={{ ...styles.secondaryBtn, flex: 1, fontSize: 'var(--ccna-type-sm)', border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
               onClick={onImportPick}
             >⬇ Import</button>
           </div>
@@ -337,10 +337,10 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                  <span style={{ ...styles.pill(s.accent), fontSize: 11 }}>{s.chip}</span>
-                  <span style={{ color: c.text, fontSize: 16, lineHeight: 1 }}>›</span>
+                  <span style={{ ...styles.pill(s.accent), fontSize: 'var(--ccna-type-xs)' }}>{s.chip}</span>
+                  <span style={{ color: c.text, fontSize: 'var(--ccna-type-lg)', lineHeight: 1 }}>›</span>
                 </div>
-                <div style={{ fontWeight: 600, fontSize: 14, color: COLORS.silver, marginBottom: 4, lineHeight: 1.4 }}>{s.title}</div>
+                <div style={{ fontWeight: 600, fontSize: 'var(--ccna-type-md)', color: COLORS.silver, marginBottom: 4, lineHeight: 1.4 }}>{s.title}</div>
                 <div style={{ ...styles.small, lineHeight: 1.5 }}>{s.body}</div>
               </button>
             )
@@ -358,7 +358,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
               const c = accentColors(d.accent)
               return (
                 <div key={d.id} style={{ marginBottom: 6 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: COLORS.silverMid, marginBottom: 2 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>
                     <span>{d.name}</span>
                     <span>{Math.round(d.avg * 100)}%</span>
                   </div>
@@ -372,7 +372,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         </div>
         <button
           onClick={onOpenMetrics}
-          style={{ marginTop: 10, background: 'none', border: 'none', color: COLORS.sky, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
+          style={{ marginTop: 10, background: 'none', border: 'none', color: COLORS.sky, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
         >
           View full metrics →
         </button>
@@ -385,7 +385,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenMissed}>Missed ({missedCount})</button>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenFocus}>🎯 Focus Mode</button>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenFocus}>🎯 Weak Areas</button>
           <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenLabs}>🧪 Labs</button>
         </div>
         <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
@@ -428,8 +428,8 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
             >
               <div style={{ flex: 1, minWidth: 0, marginRight: 10 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2 }}>
-                  <div style={{ fontSize: 15, fontWeight: 600 }}>{domain.name}</div>
-                  <span style={{ ...styles.pill(domain.accent), fontSize: 9 }}>{domain.weight}% exam weight</span>
+                  <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600 }}>{domain.name}</div>
+                  <span style={{ ...styles.pill(domain.accent), fontSize: 'var(--ccna-type-micro)' }}>{domain.weight}% exam weight</span>
                 </div>
                 <div style={{ ...styles.small, marginBottom: 6 }}>{masteredCount}/{objs.length} mastered</div>
                 {/* Outer bar width = exam weight (so D4@25% appears wider than D1@20%); fill = mastery */}
@@ -458,15 +458,15 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                       >
                         <StatusDot status={status} />
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontSize: 13 }}>{o.id} {o.title}</div>
+                          <div style={{ fontSize: 'var(--ccna-type-sm)' }}>{o.id} {o.title}</div>
                           {preview && (
-                            <div style={{ fontSize: 11, color: COLORS.silverMid, marginTop: 3, lineHeight: 1.35 }}>{preview}</div>
+                            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 3, lineHeight: 1.35 }}>{preview}</div>
                           )}
                         </div>
                         {isStatic
                           ? <CuratedStaticBadge objectiveId={o.id} fontSize={9} />
                           : null}
-                        {offlineReady?.has(o.id) && <span style={{ color: COLORS.mint, fontSize: 13, marginLeft: 8, flexShrink: 0 }}>⤓</span>}
+                        {offlineReady?.has(o.id) && <span style={{ color: COLORS.mint, fontSize: 'var(--ccna-type-sm)', marginLeft: 8, flexShrink: 0 }}>⤓</span>}
                       </button>
                       {ckus.length > 0 && (
                         <div style={{ paddingLeft: 22, paddingBottom: 6 }}>
@@ -475,7 +475,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                               key={cku.id}
                               style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0', minHeight: 32 }}
                             >
-                              <span style={{ flex: 1, fontSize: 11, color: COLORS.silverMid, lineHeight: 1.35 }}>{cku.title}</span>
+                              <span style={{ flex: 1, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.35 }}>{cku.title}</span>
                               <DifficultyPill difficulty={getCkuDifficulty(o.id, cku.id)} fontSize={8} style={{ marginLeft: 0 }} />
                             </div>
                           ))}

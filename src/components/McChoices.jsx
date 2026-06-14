@@ -67,7 +67,7 @@ export default function McChoices({ q, selected, revealed, onSelect }) {
             style={{
               display: 'block', width: '100%', maxWidth: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
               background: bg, border: `${borderWidth}px solid ${border}`, color, borderRadius: 10,
-              padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4,
+              padding: '12px 14px', fontSize: 'var(--ccna-type-md)', cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4,
               fontWeight, fontFamily: 'inherit', boxSizing: 'border-box', overflowWrap: 'anywhere', wordBreak: 'break-word',
             }}
           >

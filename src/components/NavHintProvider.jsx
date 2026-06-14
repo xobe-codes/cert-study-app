@@ -24,7 +24,7 @@ function NavHintToast({ hint, onDismiss }) {
         }}
       >
         <NavHintIcon name={hint.icon} accent={hint.accent} />
-        <p style={{ margin: 0, fontSize: 13, lineHeight: 1.45, color: COLORS.silver, flex: 1 }}>
+        <p style={{ margin: 0, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.45, color: COLORS.silver, flex: 1 }}>
           {parts.map((part, i) => (
             part.bold
               ? <strong key={i} style={{ color: c.text, fontWeight: 700 }}>{part.text}</strong>
@@ -39,7 +39,7 @@ function NavHintToast({ hint, onDismiss }) {
             background: 'none',
             border: 'none',
             color: COLORS.silverMid,
-            fontSize: 18,
+            fontSize: 'var(--ccna-type-lg)',
             lineHeight: 1,
             cursor: 'pointer',
             padding: 4,

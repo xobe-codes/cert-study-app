@@ -19,7 +19,7 @@ export default function CuratedStaticBadge({
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
       <DifficultyPill difficulty={difficulty} fontSize={fontSize} style={{ marginLeft: 0 }} />
       {showNoApi && (
-        <span style={{ fontSize: fontSize <= 9 ? 10 : 11, color: COLORS.silverMid }}>{noApiLabel}</span>
+        <span style={{ fontSize: fontSize <= 9 ? 'var(--ccna-type-micro)' : 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{noApiLabel}</span>
       )}
     </span>
   )

@@ -70,12 +70,12 @@ export default function ExamTrapStudyMode({ styles, onBack }) {
       <DomainPicker domainId={domainId} onChange={switchDomain} styles={styles} />
       <div style={styles.small}>{domain.label} · {traps.length} traps · static KB, no API</div>
       <div style={{ ...styles.card, marginTop: 12 }}>
-        <div style={{ ...styles.pill('amber'), fontSize: 10, marginBottom: 8 }}>TRAP {idx + 1} / {traps.length}</div>
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 12 }}>{trap.trap || trap.title}</div>
+        <div style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)', marginBottom: 8 }}>TRAP {idx + 1} / {traps.length}</div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 12 }}>{trap.trap || trap.title}</div>
         {!revealed
           ? <button type="button" style={styles.primaryBtn} onClick={() => setRevealed(true)}>Reveal how to avoid it</button>
           : (
-            <div style={{ fontSize: 13, lineHeight: 1.5 }}>
+            <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>
               {trap.avoid || trap.correction || trap.explanation || 'Review the related objective reading and quiz explanations.'}
             </div>
           )}

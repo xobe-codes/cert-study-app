@@ -35,8 +35,8 @@ export default function ExtraStudyMode({
         <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
         <h1 style={styles.h1}>Extra Study</h1>
         <div style={{ ...styles.card, marginTop: 12 }}>
-          <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 8, color: COLORS.mint }}>All clear — 0 shelved questions</div>
-          <div style={{ fontSize: 13, lineHeight: 1.55 }}>
+          <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 8, color: COLORS.mint }}>All clear — 0 shelved questions</div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55 }}>
             Every question in the work-in-progress bank has been promoted into the main clean bank.
             Use domain quizzes and Mock Exam for scored practice.
           </div>
@@ -65,13 +65,13 @@ export default function ExtraStudyMode({
       {q && (
         <div style={styles.card}>
           <div style={{ display: 'flex', gap: 6, marginBottom: 8, flexWrap: 'wrap' }}>
-            <span style={{ ...styles.pill(reasonAccent), fontSize: 10 }}>{q.reason === 'exhibit-dependent' ? 'EXHIBIT' : 'OUT OF SCOPE'}</span>
-            <span style={{ ...styles.pill('silver'), fontSize: 10 }}>{q.objectiveId}</span>
-            <span style={{ fontSize: 11, color: COLORS.silverMid }}>{idx + 1} / {pool.length}</span>
+            <span style={{ ...styles.pill(reasonAccent), fontSize: 'var(--ccna-type-micro)' }}>{q.reason === 'exhibit-dependent' ? 'EXHIBIT' : 'OUT OF SCOPE'}</span>
+            <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{q.objectiveId}</span>
+            <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{idx + 1} / {pool.length}</span>
           </div>
 
           <QuestionMeta q={q} />
-          <div style={{ fontSize: 14, lineHeight: 1.55, whiteSpace: 'pre-wrap', marginBottom: 12 }}>{q.question}</div>
+          <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.55, whiteSpace: 'pre-wrap', marginBottom: 12 }}>{q.question}</div>
 
           {isMcQuestion(q) ? (
             <McChoices q={q} selected={selected} revealed={revealed} onSelect={(i) => {
@@ -85,14 +85,14 @@ export default function ExtraStudyMode({
 
           {revealed && isMcQuestion(q) && (
             <div style={{ marginTop: 10, padding: 12, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}` }}>
-              <div style={{ fontWeight: 700, color: gradeQuestion(q, selected) ? COLORS.mint : COLORS.rose, marginBottom: 6, fontSize: 13 }}>
+              <div style={{ fontWeight: 700, color: gradeQuestion(q, selected) ? COLORS.mint : COLORS.rose, marginBottom: 6, fontSize: 'var(--ccna-type-sm)' }}>
                 {gradeQuestion(q, selected) ? 'Correct' : 'Incorrect'}
               </div>
               <AnswerReview q={q} selected={selected} />
               <div style={{ marginTop: 10, padding: 10, borderRadius: 8, background: accentColors('amber').dim, border: `1px solid ${accentColors('amber').border}` }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: accentColors('amber').text, marginBottom: 4 }}>HOW TO PROMOTE TO MAIN BANK</div>
-                <div style={{ fontSize: 12, lineHeight: 1.45, color: COLORS.silver }}>{getPromoteHint(q)}</div>
-                {q.notes && <div style={{ fontSize: 11, color: COLORS.silverMid, marginTop: 4 }}>Note: {q.notes}</div>}
+                <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: accentColors('amber').text, marginBottom: 4 }}>HOW TO PROMOTE TO MAIN BANK</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', lineHeight: 1.45, color: COLORS.silver }}>{getPromoteHint(q)}</div>
+                {q.notes && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 4 }}>Note: {q.notes}</div>}
               </div>
             </div>
           )}

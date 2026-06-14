@@ -105,34 +105,34 @@ const styles = {
   container: { width: '100%', margin: '0 auto', padding: '8px 0 16px', boxSizing: 'border-box' },
   card: { background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14, padding: 14, marginBottom: 10, boxShadow: COLORS.cardShadow, maxWidth: '100%', boxSizing: 'border-box', overflow: 'hidden' },
   cardHover: { background: COLORS.cardHover },
-  h1: { fontSize: 20, fontWeight: 700, color: COLORS.silver, margin: '2px 0 4px', lineHeight: 1.25 },
-  h2: { fontSize: 17, fontWeight: 600, color: COLORS.silver, margin: '0 0 8px' },
-  small: { fontSize: 13, color: COLORS.silverMid },
+  h1: { fontSize: 'var(--ccna-type-xl)', fontWeight: 700, color: COLORS.silver, margin: '2px 0 4px', lineHeight: 1.25 },
+  h2: { fontSize: 'var(--ccna-type-lg)', fontWeight: 600, color: COLORS.silver, margin: '0 0 8px' },
+  small: { fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, lineHeight: 1.45 },
   primaryBtn: {
     background: `linear-gradient(135deg, ${COLORS.brand}, ${COLORS.brandM})`,
     color: '#fff', border: 'none', borderRadius: 12, padding: '12px 18px',
-    fontSize: 15, fontWeight: 600, minHeight: 44, cursor: 'pointer', width: '100%',
+    fontSize: 'var(--ccna-type-md)', fontWeight: 600, minHeight: 44, cursor: 'pointer', width: '100%',
   },
   secondaryBtn: {
     background: COLORS.card, color: COLORS.silver, border: `1px solid ${COLORS.border}`,
-    borderRadius: 12, padding: '12px 18px', fontSize: 15, fontWeight: 600, minHeight: 44, cursor: 'pointer', width: '100%',
+    borderRadius: 12, padding: '12px 18px', fontSize: 'var(--ccna-type-md)', fontWeight: 600, minHeight: 44, cursor: 'pointer', width: '100%',
   },
   input: {
     width: '100%', boxSizing: 'border-box', background: COLORS.surface, color: COLORS.silver,
-    border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: '12px 14px', fontSize: 15,
+    border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: '12px 14px', fontSize: 'var(--ccna-type-md)',
     minHeight: 44, fontFamily: 'inherit',
   },
   pill: (accent) => {
     const c = accentColors(accent)
-    return { display: 'inline-block', background: c.dim, border: `1px solid ${c.border}`, color: c.text, borderRadius: 999, padding: '3px 10px', fontSize: 12, fontWeight: 600 }
+    return { display: 'inline-block', background: c.dim, border: `1px solid ${c.border}`, color: c.text, borderRadius: 999, padding: '3px 10px', fontSize: 'var(--ccna-type-xs)', fontWeight: 600 }
   },
   tabBar: { display: 'flex', gap: 4, marginBottom: 10, flexWrap: 'wrap' },
   tabBtn: (active) => ({
     flex: '1 1 auto', minHeight: 40, borderRadius: 10, border: `1px solid ${active ? COLORS.brandGlow : COLORS.border}`,
     background: active ? COLORS.brandDim : COLORS.surface, color: active ? COLORS.brandGlow : COLORS.silverMid,
-    fontSize: 12, fontWeight: 600, cursor: 'pointer', padding: '8px 6px',
+    fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', padding: '8px 6px',
   }),
-  backBtn: { background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 15, cursor: 'pointer', padding: '10px 0', minHeight: 44, display: 'flex', alignItems: 'center', gap: 6 },
+  backBtn: { background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-md)', cursor: 'pointer', padding: '10px 0', minHeight: 44, display: 'flex', alignItems: 'center', gap: 6 },
 }
 
 export { PALETTES, COLORS, THEME_CSS, accentColors, styles }

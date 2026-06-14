@@ -9,7 +9,7 @@ export default function Spinner({ label }) {
         border: `2px solid ${COLORS.skyBorder}`, borderTopColor: COLORS.sky,
         animation: 'ccna-spin 0.8s linear infinite',
       }} />
-      <span style={{ fontSize: 14 }}>{label || 'Asking Claude...'}</span>
+      <span style={{ fontSize: 'var(--ccna-type-md)' }}>{label || 'Asking Claude...'}</span>
       <style>{`@keyframes ccna-spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   )

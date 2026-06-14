@@ -19,9 +19,9 @@ export default function StudyNextStrip({ next, onSelectObjective, onOpenReview, 
         padding: '10px 12px', marginBottom: sticky ? 0 : 10,
       }}
     >
-      <span style={{ ...styles.pill(next.accent), fontSize: 10, flexShrink: 0 }}>STUDY NEXT</span>
-      <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: COLORS.silver, lineHeight: 1.35 }}>{next.shortTitle}</span>
-      <span style={{ color: c.text, fontSize: 16, lineHeight: 1 }} aria-hidden="true">›</span>
+      <span style={{ ...styles.pill(next.accent), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>STUDY NEXT</span>
+      <span style={{ flex: 1, fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver, lineHeight: 1.35 }}>{next.shortTitle}</span>
+      <span style={{ color: c.text, fontSize: 'var(--ccna-type-lg)', lineHeight: 1 }} aria-hidden="true">›</span>
     </button>
   )
 }

@@ -36,6 +36,7 @@ import ExamTrapStudyMode from './ExamTrapStudyMode.jsx'
 import RoutingDecoderMode from './RoutingDecoderMode.jsx'
 import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
 import { NavHintProvider, useNavHint } from './components/NavHintProvider.jsx'
+import StudyBlockProvider, { useStudyBlock } from './components/StudyBlockProvider.jsx'
 import SvgConfetti from './components/SvgConfetti.jsx'
 import RouteShell from './components/RouteShell.jsx'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
@@ -266,7 +267,7 @@ function AiBudgetWarning() {
   return (
     <div style={{
       background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}`,
-      borderRadius: 8, padding: '6px 10px', fontSize: 12, color: COLORS.amber,
+      borderRadius: 8, padding: '6px 10px', fontSize: 'var(--ccna-type-xs)', color: COLORS.amber,
       marginBottom: 8,
     }}>
       ⚠ High API usage today ({count} calls) — consider packaging this objective offline for faster, free access.
@@ -282,7 +283,7 @@ function AiCallsIndicator() {
   return (
     <div style={{
       display: 'flex', alignItems: 'center', gap: 6,
-      fontSize: 11, color: overBudget ? COLORS.amber : COLORS.silverMid,
+      fontSize: 'var(--ccna-type-xs)', color: overBudget ? COLORS.amber : COLORS.silverMid,
       marginBottom: 12,
     }}>
       <span style={{ opacity: 0.7 }}>🤖</span>
@@ -1132,7 +1133,7 @@ function generateVLSMProblem() {
 
 function SectionLabel({ icon, label }) {
   return (
-    <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 5 }}>
+    <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 5 }}>
       <span>{icon}</span><span>{label}</span>
     </div>
   )
@@ -1214,8 +1215,8 @@ function ProgressBar({ value, max = 1, label, sublabel, accent = 'purple', heigh
     <div style={{ marginBottom: 10 }}>
       {(label || sublabel) && (
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4, gap: 8 }}>
-          {label && <span style={{ fontSize: 12, color: COLORS.silver }}>{label}</span>}
-          {sublabel && <span style={{ fontSize: 12, color: c.text, fontWeight: 600, whiteSpace: 'nowrap' }}>{sublabel}</span>}
+          {label && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver }}>{label}</span>}
+          {sublabel && <span style={{ fontSize: 'var(--ccna-type-xs)', color: c.text, fontWeight: 600, whiteSpace: 'nowrap' }}>{sublabel}</span>}
         </div>
       )}
       <div style={{ background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 999, height, overflow: 'hidden' }}>
@@ -1255,10 +1256,10 @@ function ProgressRing({ value, size = 72, stroke = 7, accent = 'purple', caption
           />
         </svg>
         <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-          <span style={{ fontSize: Math.max(11, size * 0.24), fontWeight: 700, color: COLORS.silver, lineHeight: 1 }}>{pctLabel}</span>
+          <span style={{ fontSize: `clamp(12px, ${Math.max(13, size * 0.28)}px, var(--ccna-type-sm))`, fontWeight: 700, color: COLORS.silver, lineHeight: 1 }}>{pctLabel}</span>
         </div>
       </div>
-      {caption && <span style={{ fontSize: 11, color: COLORS.silverMid, textAlign: 'center', maxWidth: size + 16, lineHeight: 1.3 }}>{caption}</span>}
+      {caption && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, textAlign: 'center', maxWidth: size + 16, lineHeight: 1.3 }}>{caption}</span>}
     </div>
   )
 }
@@ -1429,13 +1430,13 @@ function KeyTermsCarousel({ objective }) {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9 }}>🃏 KEY TERMS</div>
-            <div style={{ ...styles.small, fontSize: 11, marginTop: 1 }}>Tap a card to flip</div>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9 }}>🃏 KEY TERMS</div>
+            <div style={{ ...styles.small, fontSize: 'var(--ccna-type-xs)', marginTop: 1 }}>Tap a card to flip</div>
           </div>
           {fromCurated && <CuratedStaticBadge objectiveId={objective.id} fontSize={9} />}
         </div>
         <button
-          style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 12, cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
+          style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
           onClick={() => fetchTerms(true)}
         >
           {fromCurated ? 'Generate with AI' : 'Refresh'}
@@ -1461,13 +1462,13 @@ function KeyTermsCarousel({ objective }) {
                 fontFamily: 'inherit', color: COLORS.silver,
               }}
             >
-              <div style={{ fontSize: 13, fontWeight: 700, color: isFlipped ? COLORS.sky : COLORS.purpleGlow }}>
+              <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: isFlipped ? COLORS.sky : COLORS.purpleGlow }}>
                 {c.term}
               </div>
               {isFlipped ? (
-                <div style={{ fontSize: 12, lineHeight: 1.4, color: COLORS.silver }}>{c.detail}</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', lineHeight: 1.4, color: COLORS.silver }}>{c.detail}</div>
               ) : (
-                <div style={{ fontSize: 11, color: COLORS.silverMid }}>Tap to reveal</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Tap to reveal</div>
               )}
             </button>
           )
@@ -1506,7 +1507,7 @@ function VisualBadge({ children, accent }) {
   return (
     <span style={{
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-      minWidth: 22, height: 22, borderRadius: 6, fontSize: 11, fontWeight: 700,
+      minWidth: 22, height: 22, borderRadius: 6, fontSize: 'var(--ccna-type-xs)', fontWeight: 700,
       background: COLORS.surface, border: `1px solid ${COLORS.border}`, color: c, padding: '0 6px',
     }}>{children}</span>
   )
@@ -1516,7 +1517,7 @@ function VisualBadge({ children, accent }) {
 function VisualAidRender({ spec }) {
   if (!spec || !spec.type) return null
   const frame = { ...styles.card, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }
-  const titleStyle = { fontSize: 13, fontWeight: 700, color: COLORS.sky, marginBottom: 12, letterSpacing: 0.2 }
+  const titleStyle = { fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.sky, marginBottom: 12, letterSpacing: 0.2 }
 
   if (spec.type === 'command_sequence' || spec.type === 'flow') {
     const horizontal = spec.type === 'flow'
@@ -1532,10 +1533,10 @@ function VisualAidRender({ spec }) {
                 background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 8, padding: '8px 10px',
               }}>
                 <VisualBadge accent={COLORS.sky}>{i + 1}</VisualBadge>
-                <span style={{ fontSize: 13, color: COLORS.silver, fontFamily: horizontal ? 'inherit' : 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>{s}</span>
+                <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, fontFamily: horizontal ? 'inherit' : 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>{s}</span>
               </div>
               {i < steps.length - 1 && (
-                <div style={{ alignSelf: 'center', color: COLORS.silverMid, fontSize: 14, lineHeight: 1 }}>
+                <div style={{ alignSelf: 'center', color: COLORS.silverMid, fontSize: 'var(--ccna-type-md)', lineHeight: 1 }}>
                   {horizontal ? '→' : '↓'}
                 </div>
               )}
@@ -1549,9 +1550,9 @@ function VisualAidRender({ spec }) {
   if (spec.type === 'comparison') {
     const col = (side, accent, dim, border) => (
       <div style={{ flex: '1 1 0', minWidth: 0, background: dim, border: `1px solid ${border}`, borderRadius: 10, padding: 12 }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: accent, marginBottom: 8 }}>{side?.label}</div>
+        <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: accent, marginBottom: 8 }}>{side?.label}</div>
         {(side?.points || []).map((p, i) => (
-          <div key={i} style={{ fontSize: 12, color: COLORS.silver, lineHeight: 1.45, marginBottom: 4, display: 'flex', gap: 6 }}>
+          <div key={i} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.45, marginBottom: 4, display: 'flex', gap: 6 }}>
             <span style={{ color: accent }}>•</span><span>{p}</span>
           </div>
         ))}
@@ -1581,8 +1582,8 @@ function VisualAidRender({ spec }) {
             }}>
               <VisualBadge accent={COLORS.purpleGlow}>{layers.length - i}</VisualBadge>
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.silver }}>{l.label}</div>
-                {l.note && <div style={{ fontSize: 11, color: COLORS.silverMid, lineHeight: 1.4 }}>{l.note}</div>}
+                <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver }}>{l.label}</div>
+                {l.note && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.4 }}>{l.note}</div>}
               </div>
             </div>
           ))}
@@ -1604,13 +1605,13 @@ function CuratedVisualAid({ data }) {
       {data.diagram && <CuratedDiagram diagram={data.diagram} />}
       {pf?.steps?.length > 0 && (
         <div style={{ ...styles.card, border: `1px solid ${COLORS.mintBorder}`, background: COLORS.mintDim, marginTop: 8 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.mint, marginBottom: 10 }}>{pf.title}</div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.mint, marginBottom: 10 }}>{pf.title}</div>
           {pf.steps.map((s, i) => (
             <div key={s.id} style={{ display: 'flex', gap: 8, marginBottom: i < pf.steps.length - 1 ? 8 : 0, alignItems: 'flex-start' }}>
               <VisualBadge accent={COLORS.mint}>{s.order}</VisualBadge>
               <div>
-                <div style={{ fontSize: 12, fontWeight: 600, color: COLORS.silver }}>{s.title}</div>
-                <div style={{ fontSize: 12, color: COLORS.silverMid, lineHeight: 1.45 }}>{s.action}</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, color: COLORS.silver }}>{s.title}</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>{s.action}</div>
               </div>
             </div>
           ))}
@@ -1806,8 +1807,8 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
   if (phase === 'intro') {
     return (
       <div style={{ ...styles.card, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>📋 PRE-ASSESSMENT</div>
-        <div style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 12 }}>Already know this section? Take a quick 6-question check — score 85%+ and you can skip straight ahead.</div>
+        <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>📋 PRE-ASSESSMENT</div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.5, marginBottom: 12 }}>Already know this section? Take a quick 6-question check — score 85%+ and you can skip straight ahead.</div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button style={styles.primaryBtn} onClick={start}>Test out</button>
           <button style={styles.secondaryBtn} onClick={onStudy}>Study it</button>
@@ -1831,12 +1832,12 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
       <>
         {showConfetti && <SvgConfetti active onComplete={() => setShowConfetti(false)} />}
         <div style={{ ...styles.card, border: `1px solid ${accent.b}`, background: accent.dim }}>
-        <div style={{ fontSize: 26, fontWeight: 700, color: accent.c }}>{correct}/{results.length} · {Math.round(pct * 100)}%</div>
-        <div style={{ fontSize: 14, fontWeight: 600, margin: '4px 0 8px' }}>
+        <div style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: accent.c }}>{correct}/{results.length} · {Math.round(pct * 100)}%</div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, margin: '4px 0 8px' }}>
           {tier === 'ready' ? "You're ready — you can skip this section." : tier === 'partial' ? 'You know some of this.' : 'Recommend studying this section first.'}
         </div>
         {missed.length > 0 && (
-          <div style={{ ...styles.small, marginBottom: 12 }}>Review these: {missed.map(m => <span key={m} style={{ ...styles.pill('amber'), fontSize: 11, marginRight: 4, display: 'inline-block', marginBottom: 4 }}>{m}</span>)}</div>
+          <div style={{ ...styles.small, marginBottom: 12 }}>Review these: {missed.map(m => <span key={m} style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-xs)', marginRight: 4, display: 'inline-block', marginBottom: 4 }}>{m}</span>)}</div>
         )}
         <div style={{ display: 'flex', gap: 8 }}>
           {tier === 'ready'
@@ -1856,7 +1857,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
       <div style={{ ...styles.small, marginBottom: 8 }}>Pre-assessment · {idx + 1} of {questions.length}</div>
       <div style={styles.card}>
         <QuestionMeta q={q} />
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={q.question} /></div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={q.question} /></div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? q.orderItems : null} />
         ) : (
@@ -1864,7 +1865,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
         )}
         {revealed && (
           <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }}>
-            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
+            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={q} selected={selected} />
           </div>
         )}
@@ -1885,10 +1886,10 @@ function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen 
         onClick={() => collapsible && setOpen(o => !o)}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: collapsible ? 'pointer' : 'default', color: c.text }}
       >
-        <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: 0.3 }}>{icon} {title}</span>
-        {collapsible && <span style={{ fontSize: 13, color: COLORS.silverMid }}>{open ? '−' : '+'}</span>}
+        <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, letterSpacing: 0.3 }}>{icon} {title}</span>
+        {collapsible && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>{open ? '−' : '+'}</span>}
       </button>
-      {open && <div style={{ marginTop: 8, fontSize: 14, lineHeight: 1.55, color: COLORS.silver }}>{children}</div>}
+      {open && <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-md)', lineHeight: 1.55, color: COLORS.silver }}>{children}</div>}
     </div>
   )
 }
@@ -1897,7 +1898,7 @@ function RichText({ text }) {
   if (text == null) return null
   const parts = String(text).split(/`([^`]+)`/)
   return parts.map((p, i) => i % 2 === 1
-    ? <code key={i} style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 5, padding: '1px 5px', fontSize: 13, color: COLORS.sky, overflowWrap: 'anywhere', wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{p}</code>
+    ? <code key={i} style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 5, padding: '1px 5px', fontSize: 'var(--ccna-type-sm)', color: COLORS.sky, overflowWrap: 'anywhere', wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{p}</code>
     : <span key={i}>{p}</span>)
 }
 function Bullets({ items }) {
@@ -1983,7 +1984,7 @@ function CuratedDiagram({ diagram, compact = false }) {
   return (
     <div style={{ ...styles.card, padding: compact ? 10 : 12, overflow: 'hidden' }}>
       {!compact && (
-        <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, marginBottom: 8, letterSpacing: 0.4 }}>
+        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 8, letterSpacing: 0.4 }}>
           🗺️ {diagram.title.toUpperCase()}
         </div>
       )}
@@ -2073,7 +2074,7 @@ function CuratedDiagram({ diagram, compact = false }) {
       </div>
 
       {showLegend && !compact && (
-        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 8, fontSize: 10, color: COLORS.silverMid }}>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 8, fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>
           {linkStatuses.has('forwarding') && <span><span style={{ color: COLORS.mint }}>—</span> Forwarding</span>}
           {linkStatuses.has('blocked') && <span><span style={{ color: COLORS.rose }}>- -</span> Blocked</span>}
           {linkStatuses.has('dropped') && <span><span style={{ color: COLORS.rose }}>- -</span> Dropped</span>}
@@ -2082,7 +2083,7 @@ function CuratedDiagram({ diagram, compact = false }) {
       )}
 
       {diagram.annotations?.length > 0 && !compact && (
-        <ul style={{ margin: '8px 0 0', paddingLeft: 16, fontSize: 11, color: COLORS.silverMid, lineHeight: 1.45 }}>
+        <ul style={{ margin: '8px 0 0', paddingLeft: 16, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>
           {diagram.annotations.map((a, i) => <li key={i}>{a}</li>)}
         </ul>
       )}
@@ -2105,13 +2106,13 @@ function CuratedReading({ data }) {
     <div className="ccna-stagger">
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
         <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
-        <span style={{ fontSize: 11, color: COLORS.silverMid }}>{srcNames.join(' · ')}</span>
+        <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{srcNames.join(' · ')}</span>
       </div>
       <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
         {READING_TIERS.map(t => {
           const active = tier === t.key
           return (
-            <button key={t.key} onClick={() => setTier(t.key)} style={{ flex: 1, minHeight: 36, borderRadius: 8, border: `1px solid ${active ? COLORS.skyBorder : COLORS.border}`, background: active ? COLORS.skyDim : COLORS.surface, color: active ? COLORS.sky : COLORS.silverMid, fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
+            <button key={t.key} onClick={() => setTier(t.key)} style={{ flex: 1, minHeight: 36, borderRadius: 8, border: `1px solid ${active ? COLORS.skyBorder : COLORS.border}`, background: active ? COLORS.skyDim : COLORS.surface, color: active ? COLORS.sky : COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
           )
         })}
       </div>
@@ -2134,11 +2135,11 @@ function CuratedSources({ data }) {
   return (
     <div style={{ ...styles.card, padding: 12, marginTop: 4 }}>
       <button onClick={() => setOpen(o => !o)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
-        <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.silverMid }}>📚 SOURCES (verifiable)</span>
-        <span style={{ fontSize: 13, color: COLORS.silverMid }}>{open ? '−' : '+'}</span>
+        <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid }}>📚 SOURCES (verifiable)</span>
+        <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>{open ? '−' : '+'}</span>
       </button>
       {open && (
-        <div style={{ marginTop: 10, fontSize: 12, lineHeight: 1.5, color: COLORS.silverMid }}>
+        <div style={{ marginTop: 10, fontSize: 'var(--ccna-type-xs)', lineHeight: 1.5, color: COLORS.silverMid }}>
           <div style={{ marginBottom: 8 }}>
             <a href={EXAM_SOURCES.blueprintUrl} target="_blank" rel="noreferrer" style={{ color: COLORS.sky, textDecoration: 'none' }}>{EXAM_SOURCES.examName} exam topic {data.objectiveId}</a> — official blueprint (authoritative).
           </div>
@@ -2148,7 +2149,7 @@ function CuratedSources({ data }) {
               <span style={{ color: COLORS.silverDim }}> confidence {Math.round(s.confidence * 100)}%</span>
             </div>
           ))}
-          <div style={{ marginTop: 6, fontSize: 11, color: COLORS.silverDim }}>Paraphrased from the cited sources — no API used on this objective.</div>
+          <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim }}>Paraphrased from the cited sources — no API used on this objective.</div>
         </div>
       )}
     </div>
@@ -2161,11 +2162,11 @@ function SourcesPanel({ objective }) {
   return (
     <div style={{ ...styles.card, padding: 12, marginTop: 4 }}>
       <button onClick={() => setOpen(o => !o)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
-        <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.silverMid }}>📚 SOURCES</span>
-        <span style={{ fontSize: 13, color: COLORS.silverMid }}>{open ? '−' : '+'}</span>
+        <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid }}>📚 SOURCES</span>
+        <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>{open ? '−' : '+'}</span>
       </button>
       {open && (
-        <div style={{ marginTop: 10, fontSize: 12, lineHeight: 1.5, color: COLORS.silverMid }}>
+        <div style={{ marginTop: 10, fontSize: 'var(--ccna-type-xs)', lineHeight: 1.5, color: COLORS.silverMid }}>
           <div style={{ marginBottom: 8 }}>
             <a href={EXAM_SOURCES.blueprintUrl} target="_blank" rel="noreferrer" style={{ color: COLORS.sky, textDecoration: 'none' }}>
               {EXAM_SOURCES.examName} exam topic {objective.id} — {objective.title}
@@ -2178,7 +2179,7 @@ function SourcesPanel({ objective }) {
               <div>Covers: {objective.domainName}.</div>
             </div>
           ))}
-          <div style={{ marginTop: 6, fontSize: 11, color: COLORS.silverDim }}>Explanations and key terms are AI study aids grounded in these sources — verify command syntax against official docs.</div>
+          <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim }}>Explanations and key terms are AI study aids grounded in these sources — verify command syntax against official docs.</div>
         </div>
       )}
     </div>
@@ -2193,9 +2194,9 @@ function BookRefPanel({ objective }) {
   return (
     <div style={{ ...styles.card, border: `1px solid ${COLORS.border}`, marginBottom: 12 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-        <span style={{ ...styles.pill('amber'), fontSize: 9 }}>⚡ QUICK REFERENCE · NO AI</span>
+        <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>⚡ QUICK REFERENCE · NO AI</span>
       </div>
-      <div style={{ fontSize: 13, color: COLORS.silver, lineHeight: 1.65 }}>
+      <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.65 }}>
         <RichText text={notes} />
       </div>
     </div>
@@ -2210,13 +2211,13 @@ function KnowledgeStudyPanel({ objectiveId }) {
   return (
     <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.skyBorder}` }}>
       <SectionLabel icon="📚" label="KNOWLEDGE BASE" />
-      {kb.objective?.summary && <div style={{ fontSize: 13, lineHeight: 1.5, marginBottom: 10 }}><RichText text={kb.objective.summary} /></div>}
+      {kb.objective?.summary && <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5, marginBottom: 10 }}><RichText text={kb.objective.summary} /></div>}
       {kb.glossary.length > 0 && (
         <ExplainBlock icon="📖" title="GLOSSARY" accent="sky" collapsible defaultOpen={false}>
           {kb.glossary.map(g => (
             <div key={g.id || g.term} style={{ marginBottom: 8 }}>
-              <div style={{ fontWeight: 600, fontSize: 13 }}>{g.term}</div>
-              <div style={{ fontSize: 12, color: COLORS.silverMid }}>{g.definition}</div>
+              <div style={{ fontWeight: 600, fontSize: 'var(--ccna-type-sm)' }}>{g.term}</div>
+              <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{g.definition}</div>
             </div>
           ))}
         </ExplainBlock>
@@ -2224,7 +2225,7 @@ function KnowledgeStudyPanel({ objectiveId }) {
       {kb.commands.length > 0 && (
         <ExplainBlock icon="⌨️" title="COMMAND BANK" accent="mint" collapsible defaultOpen={false}>
           {kb.commands.map(c => (
-            <div key={c.id || c.command} style={{ marginBottom: 8, fontSize: 12 }}>
+            <div key={c.id || c.command} style={{ marginBottom: 8, fontSize: 'var(--ccna-type-xs)' }}>
               <code style={{ color: COLORS.mint }}>{c.command}</code>
               <div style={{ color: COLORS.silverMid, marginTop: 2 }}>{c.purpose}</div>
             </div>
@@ -2234,7 +2235,7 @@ function KnowledgeStudyPanel({ objectiveId }) {
       {kb.examTraps.length > 0 && (
         <ExplainBlock icon="⚠️" title="EXAM TRAPS" accent="amber" collapsible defaultOpen={false}>
           {kb.examTraps.map(t => (
-            <div key={t.id || t.trap} style={{ marginBottom: 8, fontSize: 12, lineHeight: 1.4 }}>
+            <div key={t.id || t.trap} style={{ marginBottom: 8, fontSize: 'var(--ccna-type-xs)', lineHeight: 1.4 }}>
               <div style={{ fontWeight: 600 }}>{t.trap || t.title}</div>
               {(t.avoid || t.correction) && <div style={{ color: COLORS.silverMid }}>{t.avoid || t.correction}</div>}
             </div>
@@ -2250,7 +2251,7 @@ function DeeperHelpSection({ children }) {
   if (!children) return null
   return (
     <div style={{ marginTop: 10 }}>
-      <button type="button" onClick={() => setOpen(o => !o)} style={{ ...styles.secondaryBtn, fontSize: 12, padding: '6px 10px' }}>
+      <button type="button" onClick={() => setOpen(o => !o)} style={{ ...styles.secondaryBtn, fontSize: 'var(--ccna-type-xs)', padding: '6px 10px' }}>
         {open ? '▲ Hide deeper help' : '▼ Need deeper help? (optional AI)'}
       </button>
       {open && <div style={{ marginTop: 8 }}>{children}</div>}
@@ -2343,7 +2344,7 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
   // Lesson stage
   return (
     <div>
-      {testedOut && <div style={{ ...styles.pill('mint'), fontSize: 11, marginBottom: 10, display: 'inline-block' }}>✓ Tested out — scheduled for review</div>}
+      {testedOut && <div style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-xs)', marginBottom: 10, display: 'inline-block' }}>✓ Tested out — scheduled for review</div>}
       <KeyTermsCarousel objective={objective} />
       <KnowledgeStudyPanel objectiveId={objective.id} />
 
@@ -2351,8 +2352,8 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
 
       {!recalled && !error && (
         <div style={{ ...styles.card, border: `1px solid ${COLORS.purpleGlow}`, background: COLORS.purpleDim }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 6 }}>🧠 RECALL FIRST</div>
-          <div style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 12 }}>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 6 }}>🧠 RECALL FIRST</div>
+          <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.5, marginBottom: 12 }}>
             Before you read it: what do you already know about <strong>{objective.title}</strong>? Try to explain it to yourself — a rough attempt strengthens memory far more than re-reading.
           </div>
           <button style={styles.primaryBtn} onClick={() => setRecalled(true)}>Reveal explanation</button>
@@ -2407,7 +2408,7 @@ function AdjustExplanation({ onAdjust }) {
           <div style={{ ...styles.small, marginBottom: 6 }}>This explanation is…</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {ADJUST_OPTIONS.map(o => (
-              <button key={o.value} onClick={() => { setOpen(false); onAdjust(o.value) }} style={{ flex: '1 1 auto', minHeight: 40, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}`, color: COLORS.silver, fontSize: 12, fontWeight: 600, padding: '8px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{o.label}</button>
+              <button key={o.value} onClick={() => { setOpen(false); onAdjust(o.value) }} style={{ flex: '1 1 auto', minHeight: 40, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}`, color: COLORS.silver, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{o.label}</button>
             ))}
           </div>
         </div>
@@ -2521,7 +2522,7 @@ function StyleSwitcher({ objectiveId, objectiveTitle }) {
                 background: active ? COLORS.brandDim : COLORS.surface,
                 border: `1px solid ${active ? COLORS.brandGlow : COLORS.border}`,
                 color: active ? COLORS.brandGlow : COLORS.silverMid,
-                fontSize: 12, fontWeight: 600, padding: '8px 10px', fontFamily: 'inherit',
+                fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 10px', fontFamily: 'inherit',
               }}
             >
               {opt.label}
@@ -2536,7 +2537,7 @@ function StyleSwitcher({ objectiveId, objectiveTitle }) {
             background: socraticOn ? COLORS.amberDim : COLORS.surface,
             border: `1px solid ${socraticOn ? COLORS.amberBorder : COLORS.border}`,
             color: socraticOn ? COLORS.amber : COLORS.silverMid,
-            fontSize: 12, fontWeight: 600, padding: '8px 10px', fontFamily: 'inherit',
+            fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 10px', fontFamily: 'inherit',
           }}
         >
           🧠 Socratic Mode
@@ -2549,13 +2550,13 @@ function StyleSwitcher({ objectiveId, objectiveTitle }) {
           <div style={{ ...styles.small, fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 8 }}>
             {STYLE_OPTIONS.find(o => o.value === selected)?.label}
           </div>
-          <div style={{ fontSize: 13, lineHeight: 1.6 }}><RichText text={content} /></div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.6 }}><RichText text={content} /></div>
         </div>
       )}
       {/* #15: Socratic guiding questions box */}
       {socraticOn && (
         <div style={{ marginTop: 8 }}>
-          <div style={{ fontSize: 11, color: COLORS.amber, fontWeight: 600, marginBottom: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.amber, fontWeight: 600, marginBottom: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
             ❓ Guiding questions mode
           </div>
           {socraticLoading && <Spinner label="Generating guiding questions..." />}
@@ -2563,7 +2564,7 @@ function StyleSwitcher({ objectiveId, objectiveTitle }) {
           {!socraticLoading && !socraticError && socraticContent && (
             <div style={{ ...styles.card, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}` }}>
               <div style={{ ...styles.small, fontWeight: 700, color: COLORS.amber, marginBottom: 8 }}>🧠 Think it through first</div>
-              <div style={{ fontSize: 13, lineHeight: 1.7 }}><RichText text={socraticContent} /></div>
+              <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.7 }}><RichText text={socraticContent} /></div>
             </div>
           )}
         </div>
@@ -2597,8 +2598,8 @@ function BankMixDisplay({ questions }) {
   const skillLine = Object.entries(mix.skills).sort((a, b) => b[1] - a[1]).map(([s, n]) => `${SKILL_LABEL[s] || s} ${n}`).join(' · ')
   return (
     <div style={{ marginTop: 8, marginBottom: 8, padding: '8px 10px', borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}` }}>
-      <div style={{ fontSize: 11, color: COLORS.silverMid, lineHeight: 1.45 }}>{typeLine}</div>
-      {skillLine && <div style={{ fontSize: 11, color: COLORS.silverDim, lineHeight: 1.45, marginTop: 2 }}>{skillLine}</div>}
+      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>{typeLine}</div>
+      {skillLine && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, lineHeight: 1.45, marginTop: 2 }}>{skillLine}</div>}
     </div>
   )
 }
@@ -2642,18 +2643,18 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
             style={{
               display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, padding: '10px 12px',
               background: bg, border: `${borderWidth}px solid ${border}`, borderRadius: 10, color,
-              cursor: revealed ? 'default' : 'grab', lineHeight: 1.4, fontSize: 14,
+              cursor: revealed ? 'default' : 'grab', lineHeight: 1.4, fontSize: 'var(--ccna-type-md)',
               opacity: dragIdx === idx ? 0.55 : 1,
             }}
           >
-            <span style={{ ...styles.pill('purple'), fontSize: 10, flexShrink: 0, minWidth: 22, textAlign: 'center' }}>{idx + 1}</span>
+            <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0, minWidth: 22, textAlign: 'center' }}>{idx + 1}</span>
             <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{item}</span>
             {!revealed && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
                 <button type="button" onClick={() => reorder(idx, idx - 1)} disabled={idx === 0}
-                  style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, color: COLORS.silverMid, borderRadius: 8, width: 44, height: 44, cursor: idx === 0 ? 'default' : 'pointer', fontSize: 14, padding: 0 }}>↑</button>
+                  style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, color: COLORS.silverMid, borderRadius: 8, width: 44, height: 44, cursor: idx === 0 ? 'default' : 'pointer', fontSize: 'var(--ccna-type-md)', padding: 0 }}>↑</button>
                 <button type="button" onClick={() => reorder(idx, idx + 1)} disabled={idx === items.length - 1}
-                  style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, color: COLORS.silverMid, borderRadius: 8, width: 44, height: 44, cursor: idx === items.length - 1 ? 'default' : 'pointer', fontSize: 14, padding: 0 }}>↓</button>
+                  style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, color: COLORS.silverMid, borderRadius: 8, width: 44, height: 44, cursor: idx === items.length - 1 ? 'default' : 'pointer', fontSize: 'var(--ccna-type-md)', padding: 0 }}>↓</button>
               </div>
             )}
           </div>
@@ -2677,7 +2678,7 @@ const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
 function AnswerReview({ q, selected }) {
   const correctIdx = q.correctIndex
   if (!Array.isArray(q.choices) || typeof correctIdx !== 'number') {
-    return <div style={{ fontSize: 13, lineHeight: 1.5 }}>{q.explanation}</div>
+    return <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>{q.explanation}</div>
   }
   const ar = q.answerReview
   const incorrect = ar
@@ -2695,12 +2696,12 @@ function AnswerReview({ q, selected }) {
         >
           {item.explanation
             ? <RichText text={item.explanation} />
-            : <div style={{ fontSize: 13, lineHeight: 1.5 }}>This option doesn't fit the scenario above — see the correct-answer explanation for why.</div>}
+            : <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>This option doesn't fit the scenario above — see the correct-answer explanation for why.</div>}
           {item.misconceptionTested && (
-            <div style={{ marginTop: 6, fontSize: 12, color: COLORS.silverMid }}>Trap tested: {item.misconceptionTested}</div>
+            <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Trap tested: {item.misconceptionTested}</div>
           )}
           {item.needsExplanationReview && (
-            <div style={{ marginTop: 6, fontSize: 11, color: COLORS.amber }}>⚠ Explanation pending review</div>
+            <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.amber }}>⚠ Explanation pending review</div>
           )}
         </ExplainBlock>
       ))}
@@ -2724,10 +2725,10 @@ function QuestionMeta({ q }) {
   const skillAccent = skill === 'troubleshoot' ? 'amber' : skill === 'implement' ? 'sky' : 'mint'
   return (
     <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
-      {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 10 }}>{q.difficulty.toUpperCase()}</span>}
-      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' ? 'sky' : 'silver'), fontSize: 10 }}>{TYPE_LABEL[q.type] || q.type}</span>}
-      {skill && <span style={{ ...styles.pill(skillAccent), fontSize: 10 }}>{SKILL_LABEL[skill] || skill}</span>}
-      {q.concept && <span style={{ fontSize: 11, color: COLORS.silverMid, alignSelf: 'center' }}>{q.concept}</span>}
+      {q.difficulty && <span style={{ ...styles.pill(dAccent), fontSize: 'var(--ccna-type-micro)' }}>{q.difficulty.toUpperCase()}</span>}
+      {q.type && <span style={{ ...styles.pill(q.type === 'troubleshooting' || q.type === 'ordering' ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{TYPE_LABEL[q.type] || q.type}</span>}
+      {skill && <span style={{ ...styles.pill(skillAccent), fontSize: 'var(--ccna-type-micro)' }}>{SKILL_LABEL[skill] || skill}</span>}
+      {q.concept && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, alignSelf: 'center' }}>{q.concept}</span>}
     </div>
   )
 }
@@ -2788,8 +2789,8 @@ function ExplainMistake({ cacheKey, question, choices, correctIndex, selectedInd
   if (phase === 'error') return <ErrorBox message={error} onRetry={reveal} />
   return (
     <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.purpleDim, border: `1px solid ${COLORS.borderGlow}` }}>
-      <div style={{ fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 4, fontSize: 12 }}>ABOUT YOUR ANSWER</div>
-      <div style={{ fontSize: 13, lineHeight: 1.5 }}><RichText text={text} /></div>
+      <div style={{ fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 4, fontSize: 'var(--ccna-type-xs)' }}>ABOUT YOUR ANSWER</div>
+      <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={text} /></div>
     </div>
   )
 }
@@ -2833,7 +2834,7 @@ function ProgressiveHint({ questionText, wrongChoice, correctChoice }) {
 
   if (phase === 'idle') {
     return (
-      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 12 }} onClick={fetchHint}>
+      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 'var(--ccna-type-xs)' }} onClick={fetchHint}>
         💡 Need a deeper hint?
       </button>
     )
@@ -2842,8 +2843,8 @@ function ProgressiveHint({ questionText, wrongChoice, correctChoice }) {
   if (phase === 'error') return <ErrorBox message={error} onRetry={fetchHint} />
   return (
     <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}` }}>
-      <div style={{ fontWeight: 700, color: COLORS.amber, marginBottom: 4, fontSize: 12 }}>💡 HINT</div>
-      <div style={{ fontSize: 13, lineHeight: 1.5 }}><RichText text={hint} /></div>
+      <div style={{ fontWeight: 700, color: COLORS.amber, marginBottom: 4, fontSize: 'var(--ccna-type-xs)' }}>💡 HINT</div>
+      <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={hint} /></div>
     </div>
   )
 }
@@ -2888,7 +2889,7 @@ function PersonalizedMnemonic({ questionId, questionText, correctChoice }) {
 
   if (phase === 'idle') {
     return (
-      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 12 }} onClick={fetchMnemonic}>
+      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 'var(--ccna-type-xs)' }} onClick={fetchMnemonic}>
         🧠 Give me a mnemonic
       </button>
     )
@@ -2897,8 +2898,8 @@ function PersonalizedMnemonic({ questionId, questionText, correctChoice }) {
   if (phase === 'error') return <ErrorBox message={error} onRetry={fetchMnemonic} />
   return (
     <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}` }}>
-      <div style={{ fontWeight: 700, color: COLORS.amber, marginBottom: 4, fontSize: 12 }}>🧠 MNEMONIC</div>
-      <div style={{ fontSize: 13, lineHeight: 1.5 }}><RichText text={mnemonic} /></div>
+      <div style={{ fontWeight: 700, color: COLORS.amber, marginBottom: 4, fontSize: 'var(--ccna-type-xs)' }}>🧠 MNEMONIC</div>
+      <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={mnemonic} /></div>
     </div>
   )
 }
@@ -3000,7 +3001,7 @@ function QuizCompleteCard({
   return (
     <div style={styles.card}>
       <h2 style={styles.h2}>{title}</h2>
-      <p style={{ fontSize: 28, fontWeight: 700, color: scoreColor, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
+      <p style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: scoreColor, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
       <p style={{ ...styles.small, marginBottom: 4 }}>
         {pct}% this session · Topic mastery {Math.round(mastery.score * 100)}%
         {mastery.mastered ? ' · Mastered ✓' : ''}
@@ -3284,7 +3285,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     const reviewCount = hasBank ? Math.min(sessionSize, bankSize) : sessionSize
     return (
       <div className="ccna-quiz-idle">
-        <p style={{ fontSize: 15, fontWeight: 600, color: COLORS.silver, margin: '0 0 6px', lineHeight: 1.35 }}>
+        <p style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, color: COLORS.silver, margin: '0 0 6px', lineHeight: 1.35 }}>
           How many questions do you want?
         </p>
         {hasBank ? (
@@ -3299,7 +3300,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
         {hasBank && <BankMixDisplay questions={bankQuestions} />}
         {!hasBank && <AiBudgetWarning />}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-          <label htmlFor={`quiz-session-size-${objective.id}`} style={{ fontSize: 12, color: COLORS.silverMid }}>This session</label>
+          <label htmlFor={`quiz-session-size-${objective.id}`} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>This session</label>
           <input
             id={`quiz-session-size-${objective.id}`}
             type="number"
@@ -3314,12 +3315,12 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
               ...styles.input,
               width: 56,
               padding: '4px 8px',
-              fontSize: 13,
+              fontSize: 'var(--ccna-type-sm)',
               textAlign: 'center',
             }}
           />
           {hasBank && (
-            <span style={{ fontSize: 12, color: COLORS.silverMid }}>
+            <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
               of {bankSize} available
             </span>
           )}
@@ -3358,12 +3359,12 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
         <div style={styles.small}>Question {stats.total + 1}{queue.length > 0 ? ` · ${queue.length} remaining` : ''}</div>
-        {streak >= 3 && <span style={{ ...styles.pill('mint'), fontSize: 10 }}>🔥 {streak} streak</span>}
+        {streak >= 3 && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>🔥 {streak} streak</span>}
       </div>
-      {sourceLabel && <div style={{ fontSize: 11, color: COLORS.silverMid, marginBottom: 8 }}>{sourceLabel}</div>}
+      {sourceLabel && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 8 }}>{sourceLabel}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
         {ordering ? (
           <OrderingQuestion
             items={orderDraft}
@@ -3376,7 +3377,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
         )}
         {revealed && (
           <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
-            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>
+            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
             <AnswerReview q={current} selected={selected} />
@@ -3425,7 +3426,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
                     background: active ? opt.dim : COLORS.surface,
                     border: `1px solid ${active ? opt.border : COLORS.border}`,
                     color: active ? opt.accent : COLORS.silverMid,
-                    fontSize: 12, fontWeight: 600, padding: '8px 6px', fontFamily: 'inherit',
+                    fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 6px', fontFamily: 'inherit',
                   }}
                 >
                   {opt.label}
@@ -3487,7 +3488,7 @@ function CliFailureExplainer({ objectiveId, userCommand, correctCommand, taskDes
 
   if (phase === 'idle') {
     return (
-      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 12 }} onClick={fetchExplanation}>
+      <button style={{ ...styles.secondaryBtn, marginTop: 8, fontSize: 'var(--ccna-type-xs)' }} onClick={fetchExplanation}>
         💡 Why did this fail?
       </button>
     )
@@ -3496,8 +3497,8 @@ function CliFailureExplainer({ objectiveId, userCommand, correctCommand, taskDes
   if (phase === 'error') return <ErrorBox message={error} onRetry={fetchExplanation} />
   return (
     <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
-      <div style={{ fontWeight: 700, color: COLORS.sky, marginBottom: 4, fontSize: 12 }}>💡 COMMAND FEEDBACK</div>
-      <div style={{ fontSize: 13, lineHeight: 1.5 }}><RichText text={explanation} /></div>
+      <div style={{ fontWeight: 700, color: COLORS.sky, marginBottom: 4, fontSize: 'var(--ccna-type-xs)' }}>💡 COMMAND FEEDBACK</div>
+      <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={explanation} /></div>
     </div>
   )
 }
@@ -3785,15 +3786,15 @@ function CLIDrillTab({ objective }) {
         <div style={{ ...styles.small, fontWeight: 700, marginBottom: 8 }}>Lab objectives · {completed}/{drills.length}</div>
         {drills.map((d, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '4px 0', borderBottom: i < drills.length - 1 ? `1px solid ${COLORS.border}` : 'none' }}>
-            <span style={{ color: statuses[i] ? COLORS.mint : COLORS.silverDim, fontSize: 13, marginTop: 1 }}>{statuses[i] ? '✓' : '○'}</span>
+            <span style={{ color: statuses[i] ? COLORS.mint : COLORS.silverDim, fontSize: 'var(--ccna-type-sm)', marginTop: 1 }}>{statuses[i] ? '✓' : '○'}</span>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 13, color: statuses[i] ? COLORS.silverMid : COLORS.silver, lineHeight: 1.4, textDecoration: statuses[i] ? 'line-through' : 'none' }}>{d.prompt}</div>
-              {hintIdx === i && <div style={{ fontSize: 12, color: COLORS.sky, marginTop: 2 }}>Hint: {d.hint}</div>}
+              <div style={{ fontSize: 'var(--ccna-type-sm)', color: statuses[i] ? COLORS.silverMid : COLORS.silver, lineHeight: 1.4, textDecoration: statuses[i] ? 'line-through' : 'none' }}>{d.prompt}</div>
+              {hintIdx === i && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.sky, marginTop: 2 }}>Hint: {d.hint}</div>}
             </div>
             {!statuses[i] && (
               <button
                 onClick={() => { setHintIdx(i); counters.current.hintsUsed += 1 }}
-                style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 11, cursor: 'pointer', padding: '2px 4px', minHeight: 28 }}
+                style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '2px 4px', minHeight: 28 }}
               >Hint</button>
             )}
           </div>
@@ -3806,7 +3807,7 @@ function CLIDrillTab({ objective }) {
         style={{
           background: '#05060a', border: `1px solid ${COLORS.border}`, borderRadius: 10,
           padding: 12, height: 240, overflowY: 'auto', marginBottom: 8,
-          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 12.5, lineHeight: 1.55,
+          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55,
         }}
       >
         {history.length === 0 && (
@@ -3819,7 +3820,7 @@ function CLIDrillTab({ objective }) {
 
       {!done ? (
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <span style={{ fontFamily: 'ui-monospace, monospace', fontSize: 12.5, color: COLORS.silverMid, whiteSpace: 'nowrap' }}>{host}{CLI_MODE_PROMPT[mode]}</span>
+          <span style={{ fontFamily: 'ui-monospace, monospace', fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, whiteSpace: 'nowrap' }}>{host}{CLI_MODE_PROMPT[mode]}</span>
           <input
             style={{ ...styles.input, flex: 1, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
             value={input}
@@ -3854,7 +3855,7 @@ function CLIDrillTab({ objective }) {
 function SubnetField({ label, value, onChange, placeholder }) {
   return (
     <div style={{ marginBottom: 8 }}>
-      <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>{label}</div>
+      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>{label}</div>
       <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
         value={value} onChange={onChange} placeholder={placeholder}
         autoCapitalize="none" autoCorrect="off" spellCheck={false} inputMode="decimal" />
@@ -3893,7 +3894,7 @@ function SubnettingTab() {
       <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
         {[false, true].map(dm => (
           <button key={String(dm)} onClick={() => { setDrillMode(dm); newProblem() }}
-            style={{ flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${drillMode === dm ? COLORS.skyBorder : COLORS.border}`, background: drillMode === dm ? COLORS.skyDim : COLORS.surface, color: drillMode === dm ? COLORS.sky : COLORS.silverMid, fontSize: 12, cursor: 'pointer', fontFamily: 'inherit' }}>
+            style={{ flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${drillMode === dm ? COLORS.skyBorder : COLORS.border}`, background: drillMode === dm ? COLORS.skyDim : COLORS.surface, color: drillMode === dm ? COLORS.sky : COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', fontFamily: 'inherit' }}>
             {dm ? '🔢 Binary Drill' : '🔣 Standard'}
           </button>
         ))}
@@ -3901,14 +3902,14 @@ function SubnettingTab() {
 
       <div style={styles.card}>
         <div style={styles.small}>Given:</div>
-        <div style={{ fontSize: 18, fontWeight: 700, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', marginTop: 4, marginBottom: drillMode ? 4 : 12 }}>
+        <div style={{ fontSize: 'var(--ccna-type-lg)', fontWeight: 700, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', marginTop: 4, marginBottom: drillMode ? 4 : 12 }}>
           {problem.ip} /{problem.cidr}
         </div>
         {drillMode && (
-          <div style={{ fontSize: 11, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.sky, marginBottom: 12, lineHeight: 1.8 }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.sky, marginBottom: 12, lineHeight: 1.8 }}>
             <div>IP:   {ipBin}</div>
             <div>Mask: {maskBin}</div>
-            <div style={{ color: COLORS.silverMid, fontSize: 10, marginTop: 4 }}>AND the IP with the mask to find the network; OR with wildcard for broadcast</div>
+            <div style={{ color: COLORS.silverMid, fontSize: 'var(--ccna-type-micro)', marginTop: 4 }}>AND the IP with the mask to find the network; OR with wildcard for broadcast</div>
           </div>
         )}
         <SubnetField label="Network address" placeholder="x.x.x.x" {...field('network')} />
@@ -3928,7 +3929,7 @@ function SubnettingTab() {
             ].map(([key, expected]) => {
               const ok = isCorrect(key, expected)
               return (
-                <div key={key} style={{ fontSize: 13, color: ok ? COLORS.mint : COLORS.rose, marginBottom: 2 }}>
+                <div key={key} style={{ fontSize: 'var(--ccna-type-sm)', color: ok ? COLORS.mint : COLORS.rose, marginBottom: 2 }}>
                   {ok ? '✓' : '✗'} {key}: expected {String(expected)}
                 </div>
               )
@@ -3941,14 +3942,14 @@ function SubnettingTab() {
         <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
           <div style={styles.h2}>Step-by-step solution</div>
           {drillMode && (
-            <div style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 11, color: COLORS.sky, marginBottom: 10, lineHeight: 1.8 }}>
+            <div style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: COLORS.sky, marginBottom: 10, lineHeight: 1.8 }}>
               <div>IP:        {ipBin}</div>
               <div>Mask:      {maskBin}</div>
               <div>Network:   {problem.network.split('.').map(o => parseInt(o).toString(2).padStart(8,'0')).join('.')} = {problem.network}</div>
               <div>Broadcast: {problem.broadcast.split('.').map(o => parseInt(o).toString(2).padStart(8,'0')).join('.')} = {problem.broadcast}</div>
             </div>
           )}
-          <ol style={{ paddingLeft: 18, margin: 0, fontSize: 13, lineHeight: 1.7 }}>
+          <ol style={{ paddingLeft: 18, margin: 0, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.7 }}>
             {problem.steps.map((s, i) => <li key={i}>{s}</li>)}
           </ol>
         </div>
@@ -3984,7 +3985,7 @@ function VLSMTab() {
       <div style={styles.card}>
         <div style={styles.small}>Base network: <strong style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.silver }}>{problem.baseNetwork}</strong></div>
         <div style={{ ...styles.small, marginTop: 8, marginBottom: 4 }}>Allocate subnets in order, largest requirement first:</div>
-        <ul style={{ paddingLeft: 18, margin: 0, fontSize: 13, lineHeight: 1.7 }}>
+        <ul style={{ paddingLeft: 18, margin: 0, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.7 }}>
           {problem.requirements.map(r => (
             <li key={r.name}>{r.name}: {r.hostsNeeded} hosts needed</li>
           ))}
@@ -3993,7 +3994,7 @@ function VLSMTab() {
 
       {problem.allocations.map((a, idx) => (
         <div key={a.name} style={styles.card}>
-          <div style={{ ...styles.h2, fontSize: 15 }}>{idx + 1}. {a.name} ({a.hostsNeeded} hosts needed)</div>
+          <div style={{ ...styles.h2, fontSize: 'var(--ccna-type-md)' }}>{idx + 1}. {a.name} ({a.hostsNeeded} hosts needed)</div>
           <SubnetField label="Network address" placeholder="x.x.x.x" value={answers[`${a.name}_network`] || ''} onChange={e => setField(a.name, 'network', e.target.value)} />
           <SubnetField label="CIDR (/n)" placeholder="/n" value={answers[`${a.name}_cidr`] || ''} onChange={e => setField(a.name, 'cidr', e.target.value)} />
           <SubnetField label="Broadcast address" placeholder="x.x.x.x" value={answers[`${a.name}_broadcast`] || ''} onChange={e => setField(a.name, 'broadcast', e.target.value)} />
@@ -4005,12 +4006,12 @@ function VLSMTab() {
                 const got = (answers[`${a.name}_${key}`] || '').trim()
                 const ok = got === String(expected)
                 return (
-                  <div key={key} style={{ fontSize: 13, color: ok ? COLORS.mint : COLORS.rose, marginBottom: 2 }}>
+                  <div key={key} style={{ fontSize: 'var(--ccna-type-sm)', color: ok ? COLORS.mint : COLORS.rose, marginBottom: 2 }}>
                     {ok ? '✓' : '✗'} {key}: expected {expected}
                   </div>
                 )
               })}
-              <div style={{ fontSize: 12, color: COLORS.silverMid, marginTop: 4 }}>
+              <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 4 }}>
                 Usable range: {a.firstUsable} - {a.lastUsable} ({a.usableHosts} usable hosts, block size {a.blockSize})
               </div>
             </div>
@@ -4125,25 +4126,25 @@ function LabView({ bundle, onBack, onDone }) {
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>{lab.title}</h1>
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
-        <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 10 }}>{lab.difficulty.toUpperCase()}</span>
-        {lab.labType === 'troubleshooting' && <span style={{ ...styles.pill('amber'), fontSize: 10 }}>TROUBLESHOOT</span>}
-        <span style={{ ...styles.pill('silver'), fontSize: 10 }}>~{lab.estimatedTimeMinutes} MIN</span>
-        <span style={{ ...styles.pill('silver'), fontSize: 10 }}>{lab.objectiveId}</span>
-        {prog.complete && <span style={{ ...styles.pill('mint'), fontSize: 10 }}>✓ COMPLETE</span>}
+        <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 'var(--ccna-type-micro)' }}>{lab.difficulty.toUpperCase()}</span>
+        {lab.labType === 'troubleshooting' && <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>TROUBLESHOOT</span>}
+        <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>~{lab.estimatedTimeMinutes} MIN</span>
+        <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{lab.objectiveId}</span>
+        {prog.complete && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>✓ COMPLETE</span>}
       </div>
 
       <details style={{ ...styles.card, marginBottom: 10 }}>
-        <summary style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, cursor: 'pointer' }}>🎯 Scenario & topology</summary>
-        <div style={{ fontSize: 13, lineHeight: 1.55, marginTop: 8 }}>{lab.scenario}</div>
+        <summary style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, cursor: 'pointer' }}>🎯 Scenario & topology</summary>
+        <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55, marginTop: 8 }}>{lab.scenario}</div>
         <div style={{ marginTop: 10 }}><CuratedDiagram diagram={topology} compact /></div>
       </details>
 
       <div style={{ ...styles.card, padding: 0, overflow: 'hidden', border: `1px solid ${COLORS.border}` }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px 6px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.4 }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.4 }}>
             TASK {activeTaskIdx + 1} OF {lab.tasks.length}
           </div>
-          <div style={{ fontSize: 11, color: COLORS.silverMid }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
             {prog.done.length}/{prog.total} commands
           </div>
         </div>
@@ -4168,11 +4169,11 @@ function LabView({ bundle, onBack, onDone }) {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                  <span style={{ color: allIn ? COLORS.mint : COLORS.silverMid, fontSize: 14 }}>{allIn ? '✓' : t.order}</span>
-                  <span style={{ fontSize: 13, fontWeight: 600, flex: 1, lineHeight: 1.3 }}>{t.title}</span>
-                  <span style={{ ...styles.pill('purple'), fontSize: 9 }}>{t.device}</span>
+                  <span style={{ color: allIn ? COLORS.mint : COLORS.silverMid, fontSize: 'var(--ccna-type-md)' }}>{allIn ? '✓' : t.order}</span>
+                  <span style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, flex: 1, lineHeight: 1.3 }}>{t.title}</span>
+                  <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)' }}>{t.device}</span>
                 </div>
-                <div style={{ fontSize: 12.5, color: COLORS.silverMid, lineHeight: 1.5 }}>{t.instruction}</div>
+                <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, lineHeight: 1.5 }}>{t.instruction}</div>
               </div>
             )
           })}
@@ -4197,14 +4198,14 @@ function LabView({ bundle, onBack, onDone }) {
           <div style={{ padding: '0 12px 8px' }}>
             <button
               onClick={() => setShowCommands(v => !v)}
-              style={{ background: 'none', border: 'none', color: COLORS.sky, fontSize: 11, cursor: 'pointer', padding: 0, minHeight: 28 }}
+              style={{ background: 'none', border: 'none', color: COLORS.sky, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: 0, minHeight: 28 }}
             >
               {showCommands ? 'Hide expected commands' : 'Show expected commands'}
             </button>
             {showCommands && (
               <div style={{ marginTop: 6 }}>
                 {(activeTask.expectedCommands || []).map((c, i) => (
-                  <div key={i} style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12, color: cmdDone(c) ? COLORS.mint : COLORS.silver, padding: '2px 0' }}>
+                  <div key={i} style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: cmdDone(c) ? COLORS.mint : COLORS.silver, padding: '2px 0' }}>
                     {cmdDone(c) ? '✓' : '›'} {c}
                   </div>
                 ))}
@@ -4218,7 +4219,7 @@ function LabView({ bundle, onBack, onDone }) {
             ref={scrollRef}
             style={{
               padding: '10px 12px', height: 160, overflowY: 'auto',
-              fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12.5, lineHeight: 1.55,
+              fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55,
             }}
           >
             {history.length === 0 && (
@@ -4231,7 +4232,7 @@ function LabView({ bundle, onBack, onDone }) {
             ))}
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '8px 12px 12px', borderTop: `1px solid ${COLORS.border}` }}>
-            <span style={{ fontFamily: 'ui-monospace, monospace', fontSize: 12.5, color: '#8a8fa8', whiteSpace: 'nowrap' }}>{activeDevice}#</span>
+            <span style={{ fontFamily: 'ui-monospace, monospace', fontSize: 'var(--ccna-type-sm)', color: '#8a8fa8', whiteSpace: 'nowrap' }}>{activeDevice}#</span>
             <input
               style={{ ...styles.input, flex: 1, fontFamily: 'ui-monospace, Menlo, monospace', background: '#0a0c12', border: `1px solid ${COLORS.border}`, color: '#d9d9d9' }}
               value={input}
@@ -4247,32 +4248,32 @@ function LabView({ bundle, onBack, onDone }) {
         </div>
       </div>
 
-      <div style={{ fontSize: 11, color: COLORS.silverDim, textAlign: 'center', margin: '6px 0 12px' }}>Swipe ← → between tasks</div>
+      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, textAlign: 'center', margin: '6px 0 12px' }}>Swipe ← → between tasks</div>
 
       {prog.complete && (
         <div style={{ ...styles.card, background: COLORS.mintDim, border: `1px solid ${COLORS.mintBorder}` }}>
-          <div style={{ fontWeight: 700, color: COLORS.mint, fontSize: 14 }}>✓ Lab complete</div>
-          <div style={{ fontSize: 13, color: COLORS.silver, marginTop: 4 }}>All key commands entered. Run the verification commands below on real gear to confirm.</div>
+          <div style={{ fontWeight: 700, color: COLORS.mint, fontSize: 'var(--ccna-type-md)' }}>✓ Lab complete</div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginTop: 4 }}>All key commands entered. Run the verification commands below on real gear to confirm.</div>
         </div>
       )}
 
       {/* Verification */}
       <div style={{ ...styles.card }}>
         <button onClick={() => setRevealVerify(v => !v)} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
-          <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.silverMid }}>🔍 VERIFY</span><span style={{ color: COLORS.silverMid }}>{revealVerify ? '−' : '+'}</span>
+          <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid }}>🔍 VERIFY</span><span style={{ color: COLORS.silverMid }}>{revealVerify ? '−' : '+'}</span>
         </button>
         {revealVerify && (
           <div style={{ marginTop: 8 }}>
             {validator.verificationChecks.map(v => (
               <div key={v.id} style={{ marginBottom: 8 }}>
-                <div style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12, color: COLORS.sky }}>{v.device}# {v.command}</div>
-                <div style={{ fontSize: 12, color: COLORS.silverMid, lineHeight: 1.5 }}>→ {v.expectedResult}</div>
+                <div style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: COLORS.sky }}>{v.device}# {v.command}</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.5 }}>→ {v.expectedResult}</div>
               </div>
             ))}
             {validator.failureChecks.map(f => (
               <div key={f.id} style={{ marginBottom: 8 }}>
-                <div style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12, color: COLORS.rose }}>{f.device}# {f.command}</div>
-                <div style={{ fontSize: 12, color: COLORS.silverMid, lineHeight: 1.5 }}>→ {f.expectedFailure} <span style={{ color: COLORS.silverDim }}>({f.reason})</span></div>
+                <div style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: COLORS.rose }}>{f.device}# {f.command}</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.5 }}>→ {f.expectedFailure} <span style={{ color: COLORS.silverDim }}>({f.reason})</span></div>
               </div>
             ))}
           </div>
@@ -4281,7 +4282,7 @@ function LabView({ bundle, onBack, onDone }) {
 
       <ExplainBlock icon="✅" title="SUCCESS CRITERIA" accent="mint"><Bullets items={lab.successCriteria} /></ExplainBlock>
       <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={lab.commonMistakes} /></ExplainBlock>
-      <div style={{ fontSize: 11, color: COLORS.silverDim, marginTop: 8 }}>Source: {lab.source.name}{lab.source.chapter ? ` — ${lab.source.chapter}` : ''}. Commands are factual Cisco IOS; lab paraphrased, not copied.</div>
+      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, marginTop: 8 }}>Source: {lab.source.name}{lab.source.chapter ? ` — ${lab.source.chapter}` : ''}. Commands are factual Cisco IOS; lab paraphrased, not copied.</div>
     </div>
   )
 }
@@ -4296,15 +4297,15 @@ function LabsHub({ onBack, onOpenLab }) {
   const labCard = (lab) => (
     <button key={lab.id} className="ccna-hover" onClick={() => onOpenLab(lab.id)} style={{ ...styles.card, display: 'block', width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-        <span style={{ fontSize: 14, fontWeight: 600, color: COLORS.silver, flex: 1 }}>{lab.title}</span>
-        {done.includes(lab.id) && <span style={{ ...styles.pill('mint'), fontSize: 9 }}>✓ DONE</span>}
+        <span style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, color: COLORS.silver, flex: 1 }}>{lab.title}</span>
+        {done.includes(lab.id) && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>✓ DONE</span>}
       </div>
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-        <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 9 }}>{lab.difficulty.toUpperCase()}</span>
-        {lab.labType === 'troubleshooting' && <span style={{ ...styles.pill('amber'), fontSize: 9 }}>TROUBLESHOOT</span>}
-        <span style={{ ...styles.pill('silver'), fontSize: 9 }}>~{lab.estimatedTimeMinutes} MIN</span>
-        <span style={{ ...styles.pill('silver'), fontSize: 9 }}>{lab.objectiveId}</span>
-        <span style={{ fontSize: 11, color: COLORS.silverMid, alignSelf: 'center' }}>{lab.tools.slice(0, 2).join(' · ')}</span>
+        <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 'var(--ccna-type-micro)' }}>{lab.difficulty.toUpperCase()}</span>
+        {lab.labType === 'troubleshooting' && <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>TROUBLESHOOT</span>}
+        <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>~{lab.estimatedTimeMinutes} MIN</span>
+        <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{lab.objectiveId}</span>
+        <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, alignSelf: 'center' }}>{lab.tools.slice(0, 2).join(' · ')}</span>
       </div>
     </button>
   )
@@ -4408,17 +4409,17 @@ function IPv6CalcTab() {
       <div style={styles.card}>
         <div style={{ ...styles.small, fontWeight: 700, marginBottom: 10 }}>IPv6 Address / Prefix Calculator</div>
         <div style={{ marginBottom: 8 }}>
-          <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>IPv6 Address</div>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>IPv6 Address</div>
           <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
             value={input} onChange={e => setInput(e.target.value)} placeholder="e.g. 2001:db8::1 or 2001:0db8::" autoCapitalize="none" autoCorrect="off" />
         </div>
         <div style={{ marginBottom: 12 }}>
-          <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>Prefix Length</div>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>Prefix Length</div>
           <input style={{ ...styles.input, width: 80 }} value={prefix} onChange={e => setPrefix(e.target.value)} placeholder="64" inputMode="numeric" />
         </div>
         <button style={styles.primaryBtn} onClick={calculate}>Calculate</button>
       </div>
-      {error && <div style={{ color: COLORS.rose, fontSize: 13, marginTop: 8 }}>{error}</div>}
+      {error && <div style={{ color: COLORS.rose, fontSize: 'var(--ccna-type-sm)', marginTop: 8 }}>{error}</div>}
       {result && (
         <div style={styles.card}>
           {[
@@ -4430,8 +4431,8 @@ function IPv6CalcTab() {
             ['Total addresses', result.totalAddresses],
           ].map(([label, val]) => (
             <div key={label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, flexWrap: 'wrap', gap: 4 }}>
-              <span style={{ fontSize: 12, color: COLORS.silverMid }}>{label}</span>
-              <span style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 13, color: COLORS.sky }}>{val}</span>
+              <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{label}</span>
+              <span style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', color: COLORS.sky }}>{val}</span>
             </div>
           ))}
         </div>
@@ -4501,7 +4502,7 @@ function ACLWildcardTab() {
       <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
         {[['mask', 'Mask → Wildcard'], ['range', 'Address + Wildcard → Range']].map(([m, label]) => (
           <button key={m} onClick={() => { setMode(m); setResult(null); setError('') }}
-            style={{ flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${mode === m ? COLORS.skyBorder : COLORS.border}`, background: mode === m ? COLORS.skyDim : COLORS.surface, color: mode === m ? COLORS.sky : COLORS.silverMid, fontSize: 12, cursor: 'pointer', fontFamily: 'inherit' }}>
+            style={{ flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${mode === m ? COLORS.skyBorder : COLORS.border}`, background: mode === m ? COLORS.skyDim : COLORS.surface, color: mode === m ? COLORS.sky : COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', fontFamily: 'inherit' }}>
             {label}
           </button>
         ))}
@@ -4509,19 +4510,19 @@ function ACLWildcardTab() {
       <div style={styles.card}>
         {mode === 'mask' ? (
           <div style={{ marginBottom: 12 }}>
-            <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>Subnet Mask</div>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>Subnet Mask</div>
             <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
               value={mask} onChange={e => setMask(e.target.value)} placeholder="255.255.255.0" inputMode="decimal" />
           </div>
         ) : (
           <>
             <div style={{ marginBottom: 8 }}>
-              <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>IP Address</div>
+              <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>IP Address</div>
               <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
                 value={address} onChange={e => setAddress(e.target.value)} placeholder="192.168.1.0" inputMode="decimal" />
             </div>
             <div style={{ marginBottom: 12 }}>
-              <div style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 4 }}>Wildcard Mask</div>
+              <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>Wildcard Mask</div>
               <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
                 value={wildcard} onChange={e => setWildcard(e.target.value)} placeholder="0.0.0.255" inputMode="decimal" />
             </div>
@@ -4529,13 +4530,13 @@ function ACLWildcardTab() {
         )}
         <button style={styles.primaryBtn} onClick={calculate}>Calculate</button>
       </div>
-      {error && <div style={{ color: COLORS.rose, fontSize: 13, marginTop: 8 }}>{error}</div>}
+      {error && <div style={{ color: COLORS.rose, fontSize: 'var(--ccna-type-sm)', marginTop: 8 }}>{error}</div>}
       {result && (
         <div style={styles.card}>
           {Object.entries(result).map(([key, val]) => (
             <div key={key} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, flexWrap: 'wrap', gap: 4 }}>
-              <span style={{ fontSize: 12, color: COLORS.silverMid, textTransform: 'capitalize' }}>{key.replace(/([A-Z])/g, ' $1').trim()}</span>
-              <span style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 13, color: COLORS.sky }}>{val}</span>
+              <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, textTransform: 'capitalize' }}>{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+              <span style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', color: COLORS.sky }}>{val}</span>
             </div>
           ))}
         </div>
@@ -4694,12 +4695,12 @@ function MetricsCollapsibleSection({ title, summary, defaultOpen = false, childr
         }}
       >
         <span style={{ flex: 1, minWidth: 0 }}>
-          <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>{title}</span>
+          <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>{title}</span>
           {!open && summary && (
-            <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid, marginTop: 4, lineHeight: 1.35 }}>{summary}</span>
+            <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 4, lineHeight: 1.35 }}>{summary}</span>
           )}
         </span>
-        <span style={{ fontSize: 12, color: COLORS.silverMid, flexShrink: 0 }} aria-hidden="true">{open ? '▲' : '▼'}</span>
+        <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, flexShrink: 0 }} aria-hidden="true">{open ? '▲' : '▼'}</span>
       </button>
       {open && <div style={{ marginTop: 12 }}>{children}</div>}
     </div>
@@ -4722,17 +4723,17 @@ function ContentCoverage({ onOpen, bare = false }) {
 
   const body = (
     <>
-      {!bare && <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5, marginBottom: 4 }}>CONTENT COVERAGE</div>}
+      {!bare && <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5, marginBottom: 4 }}>CONTENT COVERAGE</div>}
       <div style={{ ...styles.small, marginBottom: 10 }}>{totalCurated}/{totalObj} objectives curated{totalQuestionsOnly > 0 ? ` · ${totalQuestionsOnly} with curated questions only` : ''} · {totalLabs} with labs. Uncurated objectives still work via AI (hybrid).</div>
       <ProgressBar value={totalCurated} max={totalObj} accent="mint" label="Curated (static, source-grounded)" sublabel={`${totalCurated}/${totalObj}`} height={8} />
       {rows.map(r => (
         <div key={r.id} style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 8, marginTop: 8 }}>
           <button onClick={() => setOpenId(o => o === r.id ? null : r.id)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-            <span style={{ flex: 1, fontSize: 13, color: COLORS.silver }}>{r.name}</span>
-            <span style={{ ...styles.pill(r.curated === r.total ? 'mint' : r.curated > 0 ? 'amber' : 'silver'), fontSize: 10 }}>{r.curated}/{r.total} curated</span>
-            {r.questionsOnly > 0 && <span style={{ ...styles.pill('sky'), fontSize: 10 }}>{r.questionsOnly} Q-only</span>}
-            {r.labs > 0 && <span style={{ ...styles.pill('sky'), fontSize: 10 }}>🧪 {r.labs}</span>}
-            <span style={{ color: COLORS.silverMid, fontSize: 12 }}>{openId === r.id ? '−' : '+'}</span>
+            <span style={{ flex: 1, fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }}>{r.name}</span>
+            <span style={{ ...styles.pill(r.curated === r.total ? 'mint' : r.curated > 0 ? 'amber' : 'silver'), fontSize: 'var(--ccna-type-micro)' }}>{r.curated}/{r.total} curated</span>
+            {r.questionsOnly > 0 && <span style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-micro)' }}>{r.questionsOnly} Q-only</span>}
+            {r.labs > 0 && <span style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-micro)' }}>🧪 {r.labs}</span>}
+            <span style={{ color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)' }}>{openId === r.id ? '−' : '+'}</span>
           </button>
           {openId === r.id && (
             <div style={{ marginTop: 8 }}>
@@ -4744,16 +4745,16 @@ function ContentCoverage({ onOpen, bare = false }) {
                   <div key={o.id} style={{ marginBottom: ckus.length ? 4 : 0 }}>
                     <button onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                       <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : q ? COLORS.sky : COLORS.silverDim, flexShrink: 0 }} />
-                      <span style={{ flex: 1, fontSize: 12, color: c || q ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
+                      <span style={{ flex: 1, fontSize: 'var(--ccna-type-xs)', color: c || q ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
                       {(c || q) && <CuratedStaticBadge objectiveId={o.id} fontSize={8} noApiLabel="no API" />}
-                      {!c && !q && <span style={{ fontSize: 9, color: COLORS.silverDim }}>AI</span>}
-                      {l && <span style={{ fontSize: 11 }}>🧪</span>}
+                      {!c && !q && <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverDim }}>AI</span>}
+                      {l && <span style={{ fontSize: 'var(--ccna-type-xs)' }}>🧪</span>}
                     </button>
                     {ckus.length > 0 && (
                       <div style={{ paddingLeft: 14, marginBottom: 4 }}>
                         {ckus.map(cku => (
                           <div key={cku.id} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '2px 0' }}>
-                            <span style={{ flex: 1, fontSize: 10, color: COLORS.silverMid }}>{cku.title}</span>
+                            <span style={{ flex: 1, fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>{cku.title}</span>
                             <DifficultyPill difficulty={getCkuDifficulty(o.id, cku.id)} fontSize={8} style={{ marginLeft: 0 }} />
                           </div>
                         ))}
@@ -4865,9 +4866,9 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
   const open = (o) => onSelectObjective({ ...o, domainId: o.domainId, domainName: o.domainName, accent: o.accent })
   const quadCell = (key, label, accent, hint) => (
     <div style={{ flex: '1 1 45%', background: accentColors(accent).dim, border: `1px solid ${accentColors(accent).border}`, borderRadius: 10, padding: 10 }}>
-      <div style={{ fontSize: 20, fontWeight: 700, color: accentColors(accent).text }}>{quads[key].length}</div>
-      <div style={{ fontSize: 11, fontWeight: 600, color: COLORS.silver }}>{label}</div>
-      <div style={{ fontSize: 10, color: COLORS.silverMid, lineHeight: 1.3 }}>{hint}</div>
+      <div style={{ fontSize: 'var(--ccna-type-xl)', fontWeight: 700, color: accentColors(accent).text }}>{quads[key].length}</div>
+      <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, color: COLORS.silver }}>{label}</div>
+      <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, lineHeight: 1.3 }}>{hint}</div>
     </div>
   )
 
@@ -4920,13 +4921,13 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
               const color = h.pct >= 80 ? COLORS.mint : h.pct >= 70 ? COLORS.sky : COLORS.rose
               return (
                 <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-                  <div style={{ fontSize: 9, color: COLORS.silverMid, textAlign: 'center' }}>{h.pct}%</div>
+                  <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, textAlign: 'center' }}>{h.pct}%</div>
                   <div style={{ width: '100%', borderRadius: '3px 3px 0 0', background: color, height: `${Math.max(4, h.pct * 0.55)}px` }} />
                 </div>
               )
             })}
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: COLORS.silverMid }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>
             <span>{new Date(mockHistory[Math.max(0, mockHistory.length - 12)].date).toLocaleDateString()}</span>
             <span>{mockHistory.length} attempt{mockHistory.length !== 1 ? 's' : ''} total</span>
             <span>{new Date(mockHistory[mockHistory.length - 1].date).toLocaleDateString()}</span>
@@ -4950,8 +4951,8 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
                 const c = accentColors(m.accent)
                 return (
                   <div key={st} style={{ flex: 1, textAlign: 'center', background: c.dim, border: `1px solid ${c.border}`, borderRadius: 10, padding: '8px 4px' }}>
-                    <div style={{ fontSize: 20, fontWeight: 700, color: c.text }}>{n}</div>
-                    <div style={{ fontSize: 10, color: c.text, fontWeight: 600 }}>{m.icon} {m.label}</div>
+                    <div style={{ fontSize: 'var(--ccna-type-xl)', fontWeight: 700, color: c.text }}>{n}</div>
+                    <div style={{ fontSize: 'var(--ccna-type-micro)', color: c.text, fontWeight: 600 }}>{m.icon} {m.label}</div>
                   </div>
                 )
               })}
@@ -4961,12 +4962,12 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
               const c = accentColors(m.accent)
               return (
                 <button key={r.id} onClick={() => open(r.objective)} style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 10, textAlign: 'left', background: 'none', border: 'none', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', padding: '10px 2px', fontFamily: 'inherit' }}>
-                  <span style={{ fontSize: 18 }} aria-hidden="true">{m.icon}</span>
+                  <span style={{ fontSize: 'var(--ccna-type-lg)' }} aria-hidden="true">{m.icon}</span>
                   <span style={{ flex: 1 }}>
-                    <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{r.id} {r.title}</span>
-                    <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>{m.note(r)} · {r.count} item{r.count === 1 ? '' : 's'}</span>
+                    <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }}>{r.id} {r.title}</span>
+                    <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{m.note(r)} · {r.count} item{r.count === 1 ? '' : 's'}</span>
                   </span>
-                  <span style={{ ...styles.pill(m.accent), fontSize: 10 }}>{m.label}</span>
+                  <span style={{ ...styles.pill(m.accent), fontSize: 'var(--ccna-type-micro)' }}>{m.label}</span>
                 </button>
               )
             })}
@@ -4986,7 +4987,7 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
             <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>Most-missed concepts</div>
             {missedTop.map(([id, n]) => {
               const o = ALL_OBJECTIVES.find(x => x.id === id)
-              return <div key={id} style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 2 }}>{id} {o ? o.title : ''} — <span style={{ color: COLORS.rose }}>missed {n}×</span></div>
+              return <div key={id} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>{id} {o ? o.title : ''} — <span style={{ color: COLORS.rose }}>missed {n}×</span></div>
             })}
           </div>
         )}
@@ -4994,7 +4995,7 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
           <div style={{ marginTop: 10 }}>
             <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>Weak CKUs (from missed bank)</div>
             {ckuWeak.map(({ id, count }) => (
-              <div key={id} style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 2 }}>
+              <div key={id} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>
                 {id} — <span style={{ color: COLORS.amber }}>missed {count}×</span>
               </div>
             ))}
@@ -5004,7 +5005,7 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
           <div style={{ marginTop: 10 }}>
             <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>Repeated exam traps</div>
             {trapWeak.map(({ trap, count }) => (
-              <div key={trap} style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 2 }}>
+              <div key={trap} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>
                 {trap} — <span style={{ color: COLORS.amber }}>{count}×</span>
               </div>
             ))}
@@ -5038,30 +5039,30 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
           <>
             {overconfident.length > 0 && (
               <div style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.rose, marginBottom: 6 }}>You overestimate your knowledge on:</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.rose, marginBottom: 6 }}>You overestimate your knowledge on:</div>
                 {overconfident.map(o => (
                   <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-                    <span style={{ fontSize: 14 }}>⚠️</span>
+                    <span style={{ fontSize: 'var(--ccna-type-md)' }}>⚠️</span>
                     <span style={{ flex: 1 }}>
-                      <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{o.id} {o.title}</span>
-                      <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
+                      <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }}>{o.id} {o.title}</span>
+                      <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
                     </span>
-                    <span style={{ ...styles.pill('rose'), fontSize: 10 }}>Overconfident</span>
+                    <span style={{ ...styles.pill('rose'), fontSize: 'var(--ccna-type-micro)' }}>Overconfident</span>
                   </button>
                 ))}
               </div>
             )}
             {underconfident.length > 0 && (
               <div style={{ marginBottom: 6 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>You know more than you think about:</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 6 }}>You know more than you think about:</div>
                 {underconfident.map(o => (
                   <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-                    <span style={{ fontSize: 14 }}>💪🏾</span>
+                    <span style={{ fontSize: 'var(--ccna-type-md)' }}>💪🏾</span>
                     <span style={{ flex: 1 }}>
-                      <span style={{ display: 'block', fontSize: 13, color: COLORS.silver }}>{o.id} {o.title}</span>
-                      <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
+                      <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }}>{o.id} {o.title}</span>
+                      <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
                     </span>
-                    <span style={{ ...styles.pill('sky'), fontSize: 10 }}>Trust yourself</span>
+                    <span style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-micro)' }}>Trust yourself</span>
                   </button>
                 ))}
               </div>
@@ -5095,8 +5096,8 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
         {reviewCards.length === 0 && <div style={styles.small}>You're all caught up. Start a new topic to populate your queue.</div>}
         {reviewCards.map(s => (
           <button key={s.key} onClick={() => onSelectObjective({ ...s.objective, __initialTab: s.tab })} style={{ display: 'block', width: '100%', textAlign: 'left', background: accentColors(s.accent).dim, border: `1px solid ${accentColors(s.accent).border}`, borderRadius: 10, padding: 10, marginBottom: 8, cursor: 'pointer', fontFamily: 'inherit' }}>
-            <span style={{ ...styles.pill(s.accent), fontSize: 10 }}>{s.chip}</span>
-            <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.silver, margin: '4px 0 2px' }}>{s.title}</div>
+            <span style={{ ...styles.pill(s.accent), fontSize: 'var(--ccna-type-micro)' }}>{s.chip}</span>
+            <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver, margin: '4px 0 2px' }}>{s.title}</div>
             <div style={{ ...styles.small, lineHeight: 1.4 }}>{s.body}</div>
           </button>
         ))}
@@ -5111,8 +5112,8 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
         {offlineInProgress.map(({ o, d }) => (
           <div key={o.id} style={{ marginBottom: 10 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-              <span style={{ fontSize: 12, color: COLORS.silver }}>{o.id} {o.title}</span>
-              <span style={{ fontSize: 12, color: COLORS.mint, fontWeight: 600 }}>{d.count} of 4</span>
+              <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver }}>{o.id} {o.title}</span>
+              <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.mint, fontWeight: 600 }}>{d.count} of 4</span>
             </div>
             <SegmentedBar segments={d.reqs} accent="mint" />
           </div>
@@ -5173,14 +5174,14 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
                         style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 10, textAlign: 'left', background: isOpen ? c.dim : 'none', border: `1px solid ${isOpen ? c.border : COLORS.border}`, borderRadius: isOpen ? '10px 10px 0 0' : 10, cursor: 'pointer', padding: '10px 12px', fontFamily: 'inherit', transition: 'background 0.15s' }}
                       >
                         <span style={{ flex: 1 }}>
-                          <span style={{ display: 'block', fontSize: 13, fontWeight: 600, color: COLORS.silver }}>{objId}{obj ? ` ${obj.title}` : ''}</span>
-                          <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid, marginTop: 2 }}>
+                          <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver }}>{objId}{obj ? ` ${obj.title}` : ''}</span>
+                          <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>
                             {qs.length} question{qs.length !== 1 ? 's' : ''} · {masteredCount} mastered
                           </span>
                         </span>
-                        <span style={{ ...styles.pill(accent), fontSize: 10 }}>{qs.length}</span>
-                        {masteredCount > 0 && <span style={{ ...styles.pill('mint'), fontSize: 10 }}>✓ {masteredCount}</span>}
-                        <span style={{ fontSize: 12, color: COLORS.silverMid, marginLeft: 2 }}>{isOpen ? '▲' : '▼'}</span>
+                        <span style={{ ...styles.pill(accent), fontSize: 'var(--ccna-type-micro)' }}>{qs.length}</span>
+                        {masteredCount > 0 && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>✓ {masteredCount}</span>}
+                        <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginLeft: 2 }}>{isOpen ? '▲' : '▼'}</span>
                       </button>
                       {isOpen && (
                         <div style={{ border: `1px solid ${c.border}`, borderTop: 'none', borderRadius: '0 0 10px 10px', background: COLORS.surface, padding: '4px 0' }}>
@@ -5190,11 +5191,11 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
                             return (
                               <div key={q.id || i} style={{ padding: '10px 14px', borderTop: i > 0 ? `1px solid ${COLORS.border}` : 'none' }}>
                                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 4 }}>
-                                  <span style={{ fontSize: 12, color: COLORS.silver, flex: 1, lineHeight: 1.4 }}>{q.question}</span>
-                                  <span style={{ ...styles.pill(badge.accent), fontSize: 10, whiteSpace: 'nowrap', flexShrink: 0 }}>{badge.label}</span>
+                                  <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, flex: 1, lineHeight: 1.4 }}>{q.question}</span>
+                                  <span style={{ ...styles.pill(badge.accent), fontSize: 'var(--ccna-type-micro)', whiteSpace: 'nowrap', flexShrink: 0 }}>{badge.label}</span>
                                 </div>
                                 {correctAnswer && (
-                                  <div style={{ fontSize: 11, color: COLORS.mint, marginTop: 2 }}>
+                                  <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.mint, marginTop: 2 }}>
                                     ✓ {correctAnswer}
                                   </div>
                                 )}
@@ -5222,26 +5223,26 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
           <>
             <div style={{ display: 'flex', gap: 16, alignItems: 'baseline', marginBottom: 10 }}>
               <div>
-                <div style={{ fontSize: 24, fontWeight: 700, color: COLORS.mint }}>${usage.costUSD.toFixed(3)}</div>
+                <div style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: COLORS.mint }}>${usage.costUSD.toFixed(3)}</div>
                 <div style={styles.small}>estimated total</div>
               </div>
               <div>
-                <div style={{ fontSize: 18, fontWeight: 600, color: COLORS.silver }}>{usage.calls}</div>
+                <div style={{ fontSize: 'var(--ccna-type-lg)', fontWeight: 600, color: COLORS.silver }}>{usage.calls}</div>
                 <div style={styles.small}>API calls</div>
               </div>
               <div>
-                <div style={{ fontSize: 18, fontWeight: 600, color: COLORS.silver }}>{Math.round((usage.input + usage.output) / 1000)}k</div>
+                <div style={{ fontSize: 'var(--ccna-type-lg)', fontWeight: 600, color: COLORS.silver }}>{Math.round((usage.input + usage.output) / 1000)}k</div>
                 <div style={styles.small}>tokens</div>
               </div>
             </div>
             <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>By feature</div>
             {Object.entries(usage.byFeature).sort((a, b) => b[1].costUSD - a[1].costUSD).map(([f, e]) => (
-              <div key={f} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: COLORS.silverMid, marginBottom: 2 }}>
+              <div key={f} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>
                 <span>{f} · {e.calls} call{e.calls === 1 ? '' : 's'}</span>
                 <span style={{ color: COLORS.sky }}>${e.costUSD.toFixed(3)}</span>
               </div>
             ))}
-            <div style={{ ...styles.small, marginTop: 8, fontSize: 11 }}>Estimate based on public token pricing; cached/free reuse isn't billed.</div>
+            <div style={{ ...styles.small, marginTop: 8, fontSize: 'var(--ccna-type-xs)' }}>Estimate based on public token pricing; cached/free reuse isn't billed.</div>
           </>
         )}
       </MetricsCollapsibleSection>
@@ -5356,7 +5357,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
   if (phase === 'empty') return (
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Focus Mode</h1>
+      <h1 style={styles.h1}>Weak Areas</h1>
       <p style={styles.small}>No weak areas found! All studied objectives are above 50% mastery. Keep quizzing to identify gaps, or take a mock exam to find where to focus.</p>
     </div>
   )
@@ -5364,8 +5365,8 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <div style={styles.card}>
-        <h2 style={styles.h2}>Focus session complete</h2>
-        <p style={{ fontSize: 28, fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
+        <h2 style={styles.h2}>Weak Areas complete</h2>
+        <p style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
         <p style={styles.small}>{weakIds.length} weak objective{weakIds.length !== 1 ? 's' : ''} targeted. Keep drilling these until they reach 50%+.</p>
         <button style={{ ...styles.primaryBtn, marginTop: 10 }} onClick={onBack}>Done</button>
       </div>
@@ -5376,14 +5377,14 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
-        <h1 style={{ ...styles.h1, margin: 0 }}>Focus Mode</h1>
+        <h1 style={{ ...styles.h1, margin: 0 }}>Weak Areas</h1>
         <span style={styles.small}>{total - queue.length} of {total}</span>
       </div>
       <div style={{ ...styles.small, marginBottom: 8 }}>{weakIds.length} weak objectives · drilling gaps</div>
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
         ) : (
@@ -5391,7 +5392,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
         )}
         {revealed && (
           <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
-            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
+            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={current} selected={selected} />
           </div>
         )}
@@ -5458,15 +5459,15 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
     >
       <div style={{ width: '100%', maxWidth: 540, background: COLORS.card, borderRadius: 16, border: `1px solid ${COLORS.borderGlow}`, overflow: 'hidden' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', borderBottom: `1px solid ${COLORS.border}` }}>
-          <span style={{ fontSize: 16, color: COLORS.silverMid }}>🔍</span>
+          <span style={{ fontSize: 'var(--ccna-type-lg)', color: COLORS.silverMid }}>🔍</span>
           <input
             ref={inputRef}
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="Search objectives — e.g. 'OSPF' or '3.4'"
-            style={{ flex: 1, background: 'none', border: 'none', outline: 'none', fontSize: 15, color: COLORS.silver, fontFamily: 'inherit' }}
+            style={{ flex: 1, background: 'none', border: 'none', outline: 'none', fontSize: 'var(--ccna-type-md)', color: COLORS.silver, fontFamily: 'inherit' }}
           />
-          <button onClick={onClose} style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 13, cursor: 'pointer', padding: '4px 8px' }}>ESC</button>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)', cursor: 'pointer', padding: '4px 8px' }}>ESC</button>
         </div>
         <div style={{ maxHeight: 360, overflowY: 'auto' }}>
           {results.map(o => {
@@ -5481,20 +5482,20 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
                 style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', padding: '12px 16px', background: 'none', border: 'none', borderBottom: `1px solid ${COLORS.border}`, color: COLORS.silver, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}
               >
                 <StatusDot status={status} />
-                <span style={{ ...styles.pill(domain?.accent || 'purple'), fontSize: 10, flexShrink: 0 }}>{o.id}</span>
+                <span style={{ ...styles.pill(domain?.accent || 'purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{o.id}</span>
                 <span style={{ flex: 1, minWidth: 0 }}>
-                  <span style={{ display: 'block', fontSize: 13, lineHeight: 1.4 }}>{o.title}</span>
-                  {preview && <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid, marginTop: 2, lineHeight: 1.35 }}>{preview}</span>}
+                  <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }}>{o.title}</span>
+                  {preview && <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2, lineHeight: 1.35 }}>{preview}</span>}
                 </span>
                 {isStatic && <CuratedStaticBadge objectiveId={o.id} fontSize={8} noApiLabel="no API" />}
               </button>
             )
           })}
           {results.length === 0 && (
-            <div style={{ padding: 20, textAlign: 'center', color: COLORS.silverMid, fontSize: 13 }}>No objectives match "{query}"</div>
+            <div style={{ padding: 20, textAlign: 'center', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)' }}>No objectives match "{query}"</div>
           )}
         </div>
-        {!query && <div style={{ padding: '8px 16px', fontSize: 11, color: COLORS.silverDim, borderTop: `1px solid ${COLORS.border}` }}>Recent objectives first · type to search all {ALL_OBJECTIVES.length}</div>}
+        {!query && <div style={{ padding: '8px 16px', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, borderTop: `1px solid ${COLORS.border}` }}>Recent objectives first · type to search all {ALL_OBJECTIVES.length}</div>}
       </div>
     </div>
   )
@@ -5586,7 +5587,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
         <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
         <div style={styles.card}>
           <h2 style={styles.h2}>Review complete</h2>
-          <p style={{ fontSize: 28, fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
+          <p style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{stats.correct} / {stats.total}</p>
           <p style={styles.small}>Each question's next review has been rescheduled. Come back tomorrow for the next batch.</p>
           <button style={{ ...styles.primaryBtn, marginTop: 10 }} onClick={onBack}>Done</button>
         </div>
@@ -5608,7 +5609,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
         ) : (
@@ -5616,7 +5617,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
         )}
         {revealed && (
           <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
-            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
+            <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={current} selected={selected} />
             {!isCorrect && isMcQuestion(current) && (
               <DeeperHelpSection>
@@ -5631,7 +5632,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
             {obj && (
               <button
                 onClick={() => onOpenSection?.(obj)}
-                style={{ marginTop: 10, background: 'none', border: 'none', color: COLORS.sky, fontSize: 12, fontWeight: 600, cursor: 'pointer', padding: 0 }}
+                style={{ marginTop: 10, background: 'none', border: 'none', color: COLORS.sky, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', padding: 0 }}
               >
                 Review {obj.id} {obj.title} →
               </button>
@@ -5750,7 +5751,7 @@ function Onboarding({ onComplete, onSkip }) {
       <div>
         <div style={styles.card}>
           <h1 style={styles.h1}>Welcome 👋🏾</h1>
-          <p style={{ fontSize: 14, lineHeight: 1.6, color: COLORS.silver, marginBottom: 10 }}>
+          <p style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.6, color: COLORS.silver, marginBottom: 10 }}>
             Quick placement check, ~5 minutes. A short mixed-domain quiz — including drag-and-drop ordering
             and troubleshooting — to see where you're starting from and seed your progress.
           </p>
@@ -5775,7 +5776,7 @@ function Onboarding({ onComplete, onSkip }) {
         {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
         <div style={styles.card}>
           <QuestionMeta q={current} />
-          <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
+          <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
           {ordering ? (
             <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
           ) : (
@@ -5783,7 +5784,7 @@ function Onboarding({ onComplete, onSkip }) {
           )}
           {revealed && (
             <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
-              <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
+              <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
               <AnswerReview q={current} selected={selected} />
             </div>
           )}
@@ -5805,12 +5806,12 @@ function Onboarding({ onComplete, onSkip }) {
     <div>
       <div style={styles.card}>
         <h2 style={styles.h2}>Placement check complete</h2>
-        <p style={{ fontSize: 28, fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{fmtPct(overall)}</p>
+        <p style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{fmtPct(overall)}</p>
         <p style={styles.small}>Your progress for these {rows.length} objectives has been seeded. Everything else starts fresh — no penalty either way.</p>
         {weakest && weakest.obj && (
           <div style={{ marginTop: 10, padding: 12, borderRadius: 10, background: COLORS.purpleDim, border: `1px solid ${COLORS.purpleGlow}` }}>
-            <div style={{ fontSize: 12, color: COLORS.purpleGlow, fontWeight: 700, marginBottom: 4 }}>RECOMMENDED STARTING POINT</div>
-            <div style={{ fontSize: 14, fontWeight: 600 }}>{weakest.obj.id} {weakest.obj.title}</div>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.purpleGlow, fontWeight: 700, marginBottom: 4 }}>RECOMMENDED STARTING POINT</div>
+            <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600 }}>{weakest.obj.id} {weakest.obj.title}</div>
             <div style={styles.small}>{fmtPct(weakest.acc)} on the placement check</div>
           </div>
         )}
@@ -5846,13 +5847,13 @@ function MissedReview({ missed, onBack, onRemove }) {
       {items.map((m, idx) => (
         <div key={`${m.objectiveId}-${normalizeQuestionText(m.question)}-${idx}`} style={styles.card}>
           <div style={{ ...styles.small, marginBottom: 6 }}>{m.objectiveId}</div>
-          <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 10, lineHeight: 1.5 }}>{m.question}</div>
+          <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 10, lineHeight: 1.5 }}>{m.question}</div>
           {m.choices.map((c, ci) => {
             const isAnswer = ci === m.correctIndex
             const reveal = revealedIdx === idx
             return (
               <div key={ci} style={{
-                padding: '10px 12px', borderRadius: 10, marginBottom: 6, fontSize: 13,
+                padding: '10px 12px', borderRadius: 10, marginBottom: 6, fontSize: 'var(--ccna-type-sm)',
                 background: reveal && isAnswer ? COLORS.mintDim : COLORS.surface,
                 border: `1px solid ${reveal && isAnswer ? COLORS.mintBorder : COLORS.border}`,
                 color: reveal && isAnswer ? COLORS.mint : COLORS.silver,
@@ -5863,7 +5864,7 @@ function MissedReview({ missed, onBack, onRemove }) {
           })}
           {revealedIdx === idx ? (
             <div style={{ marginTop: 4 }}>
-              <div style={{ fontSize: 13, color: COLORS.silverMid, marginBottom: 8, lineHeight: 1.5 }}>{m.explanation}</div>
+              <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginBottom: 8, lineHeight: 1.5 }}>{m.explanation}</div>
               {m.selectedIndex != null && (
                 <ExplainMistake
                   cacheKey={`${normalizeQuestionText(m.question)}::${m.selectedIndex}`}
@@ -6222,7 +6223,7 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
                 background: active ? COLORS.brandDim : COLORS.surface,
                 border: `1px solid ${active ? COLORS.brandGlow : COLORS.border}`,
                 color: active ? COLORS.brandGlow : COLORS.silverMid,
-                  fontSize: 12, fontWeight: 600, padding: '8px 10px', whiteSpace: 'nowrap',
+                  fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 10px', whiteSpace: 'nowrap',
                 }}
               >{r.label}</button>
             )
@@ -6236,7 +6237,7 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
           <textarea
             readOnly
             value={text}
-            style={{ ...styles.input, height: 260, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 12, resize: 'vertical', whiteSpace: 'pre' }}
+            style={{ ...styles.input, height: 260, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', resize: 'vertical', whiteSpace: 'pre' }}
           />
         )}
         <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
@@ -6279,7 +6280,7 @@ function SyncModal({ syncCode, lastSynced, busy, msg, online, onGenerate, onLink
         </p>
 
         {!online && (
-          <div style={{ background: COLORS.roseDim, border: `1px solid ${COLORS.roseBorder}`, color: COLORS.rose, fontSize: 12, borderRadius: 10, padding: 10, marginBottom: 12 }}>
+          <div style={{ background: COLORS.roseDim, border: `1px solid ${COLORS.roseBorder}`, color: COLORS.rose, fontSize: 'var(--ccna-type-xs)', borderRadius: 10, padding: 10, marginBottom: 12 }}>
             You appear offline. Sync needs a connection (and only works on the deployed site, not local dev).
           </div>
         )}
@@ -6288,7 +6289,7 @@ function SyncModal({ syncCode, lastSynced, busy, msg, online, onGenerate, onLink
           <>
             <div style={{ ...styles.small, marginBottom: 6 }}>Your sync code</div>
             <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-              <div style={{ flex: 1, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 16, letterSpacing: 1, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: '12px 14px', color: COLORS.sky }}>{syncCode}</div>
+              <div style={{ flex: 1, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-lg)', letterSpacing: 1, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: '12px 14px', color: COLORS.sky }}>{syncCode}</div>
               <button style={{ ...styles.secondaryBtn, width: 'auto', padding: '0 16px' }} onClick={copyCode}>{copied ? 'Copied!' : 'Copy'}</button>
             </div>
             <p style={{ ...styles.small, marginBottom: 12 }}>On your other device: open Sync → “I have a code” → paste this. Then tap Sync now on both.</p>
@@ -6330,7 +6331,7 @@ function SyncModal({ syncCode, lastSynced, busy, msg, online, onGenerate, onLink
    ========================================================================= */
 function OfflineBanner() {
   return (
-    <div style={{ background: COLORS.roseDim, borderBottom: `1px solid ${COLORS.roseBorder}`, color: COLORS.rose, fontSize: 13, textAlign: 'center', padding: '8px 12px' }}>
+    <div style={{ background: COLORS.roseDim, borderBottom: `1px solid ${COLORS.roseBorder}`, color: COLORS.rose, fontSize: 'var(--ccna-type-sm)', textAlign: 'center', padding: '8px 12px' }}>
       Offline or API unreachable — AI explanations, quizzes & tutor chat won't work, but CLI drills and subnetting/VLSM practice still will.
     </div>
   )
@@ -6421,14 +6422,14 @@ function TutorChat({ progress, missed, onBack }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
         <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
         {messages.length > 0 && (
-          <button style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 36, padding: '6px 14px', fontSize: 12 }} onClick={clearChat}>Clear chat</button>
+          <button style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 36, padding: '6px 14px', fontSize: 'var(--ccna-type-xs)' }} onClick={clearChat}>Clear chat</button>
         )}
       </div>
       <h1 style={styles.h1}>AI Tutor Chat</h1>
       <div ref={scrollRef} className="tutor-messages internal-scroll" style={{ marginBottom: 10 }}>
         {messages.length === 0 && (
           <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
-            <div style={{ fontSize: 13, lineHeight: 1.6 }}>
+            <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.6 }}>
               Hi! I know your scores and what you've mastered so far. Ask me anything — e.g. "Explain HSRP vs VRRP" or "What should I focus on this week?"
             </div>
           </div>
@@ -6438,14 +6439,14 @@ function TutorChat({ progress, missed, onBack }) {
             ...styles.card,
             background: m.role === 'user' ? COLORS.purpleDim : COLORS.skyDim,
             border: `1px solid ${m.role === 'user' ? COLORS.borderGlow : COLORS.skyBorder}`,
-            whiteSpace: 'pre-wrap', fontSize: 14, lineHeight: 1.5,
+            whiteSpace: 'pre-wrap', fontSize: 'var(--ccna-type-md)', lineHeight: 1.5,
           }}>
             <RichText text={m.content} />
           </div>
         ))}
         {loading && (
           streamingText ? (
-            <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, whiteSpace: 'pre-wrap', fontSize: 14, lineHeight: 1.5 }}>
+            <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, whiteSpace: 'pre-wrap', fontSize: 'var(--ccna-type-md)', lineHeight: 1.5 }}>
               <RichText text={streamingText} />
               <span className="ccna-pulse" style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: COLORS.sky, marginLeft: 4 }} />
             </div>
@@ -6455,7 +6456,7 @@ function TutorChat({ progress, missed, onBack }) {
         )}
         {error && <ErrorBox message={error} onRetry={send} />}
         {messages.length > 0 && !loading && (
-          <div style={{ fontSize: 11, color: COLORS.silverMid, lineHeight: 1.5, padding: '4px 2px' }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.5, padding: '4px 2px' }}>
             Tutor answers are AI-generated study help. Verify exam objectives, command syntax, and key terms against the{' '}
             <a href={EXAM_SOURCES.blueprintUrl} target="_blank" rel="noreferrer" style={{ color: COLORS.sky, textDecoration: 'none' }}>{EXAM_SOURCES.examName} exam topics</a>
             {' '}and {EXAM_SOURCES.references.map(r => r.title).join(', ')} — open the matching objective's Explain tab for cited definitions.
@@ -6519,6 +6520,15 @@ function syncAppHash(view, objective) {
   if (window.location.pathname + window.location.search + window.location.hash !== target && (next || window.location.hash)) {
     window.history.replaceState(null, '', target)
   }
+}
+
+/* =========================================================================
+   APP SHELL — study-block aware layout wrapper
+   ========================================================================= */
+function AppShell({ view, compactTopChrome, children }) {
+  const { isActive } = useStudyBlock()
+  const className = `app-shell${compactTopChrome ? ' app-shell--compact-top' : ''}${view === 'objective' && isActive ? ' app-shell--deep-work' : ''}`
+  return <div className={className}>{children}</div>
 }
 
 /* =========================================================================
@@ -6866,6 +6876,11 @@ export default function App() {
     setView('objective')
   }
 
+  const handleFocusBlockCompleted = useCallback(async () => {
+    const next = await bumpStreak()
+    setStreak(next)
+  }, [])
+
   if (!loaded) {
     return (
       <NavHintProvider>
@@ -6880,10 +6895,12 @@ export default function App() {
   }
 
   const routeScrolls = view !== 'objective' && view !== 'tutor'
+  const compactTopChrome = view === 'objective' || view === 'tutor'
 
   return (
     <NavHintProvider>
-    <div className="app-shell">
+    <StudyBlockProvider onFocusBlockCompleted={handleFocusBlockCompleted}>
+    <AppShell view={view} compactTopChrome={compactTopChrome}>
       <style>{`
         ${buildAppShellCss(COLORS)}
         ${THEME_CSS}
@@ -6930,7 +6947,7 @@ export default function App() {
         .ccna-overlay { animation: ccna-overlay-in .2s ease both; }
         .ccna-sheet { animation: ccna-sheet-in .3s cubic-bezier(.2,.8,.2,1) both; }
         @media (max-width: 480px) {
-          .ccna-compact-p { font-size: 12px !important; line-height: 1.4 !important; }
+          .ccna-compact-p { font-size: var(--ccna-type-xs) !important; line-height: 1.4 !important; }
         }
         @media (prefers-reduced-motion: reduce) {
           .ccna-view, .ccna-overlay, .ccna-sheet, .ccna-stagger > *, .ccna-quiz-reveal, .ccna-shimmer::after, .ccna-skeleton, .ccna-pulse { animation: none; }
@@ -7085,7 +7102,8 @@ export default function App() {
           onClose={() => setShowSync(false)}
         />
       )}
-    </div>
+    </AppShell>
+    </StudyBlockProvider>
     </NavHintProvider>
   )
 }

@@ -2,8 +2,26 @@
 
 export const SITE_COLUMN_MAX = 720
 
+const FLUID_TYPE_CSS = `
+    :root {
+      --ccna-type-caption: clamp(12px, 0.65vmin + 10px, 14px);
+      --ccna-type-micro: clamp(12px, 0.55vmin + 10px, 13px);
+      --ccna-type-xs: clamp(13px, 0.7vmin + 11px, 15px);
+      --ccna-type-sm: clamp(14px, 0.85vmin + 11px, 16px);
+      --ccna-type-md: clamp(16px, 1vmin + 13px, 18px);
+      --ccna-type-lg: clamp(17px, 1.15vmin + 13px, 20px);
+      --ccna-type-xl: clamp(19px, 1.35vmin + 14px, 24px);
+      --ccna-type-2xl: clamp(22px, 1.65vmin + 15px, 28px);
+      --ccna-type-display: clamp(26px, 2.1vmin + 16px, 34px);
+      --ccna-type-timer: clamp(15px, 1.1vmin + 12px, 18px);
+      --ccna-line-body: 1.52;
+      --ccna-line-read: 1.65;
+    }
+`
+
 export function buildAppShellCss(colors) {
   return `
+    ${FLUID_TYPE_CSS}
     html, body, #root {
       width: 100%;
       max-width: 100%;
@@ -63,7 +81,17 @@ export function buildAppShellCss(colors) {
       background: transparent;
       color: ${colors.silver};
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: var(--ccna-type-md);
+      line-height: var(--ccna-line-body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       box-sizing: border-box;
+    }
+    .app-shell button,
+    .app-shell input,
+    .app-shell textarea,
+    .app-shell select {
+      font-family: inherit;
     }
     @media (min-width: ${SITE_COLUMN_MAX + 1}px) {
       .app-shell {
@@ -249,6 +277,214 @@ export function buildAppShellCss(colors) {
     }
     .objective-header {
       flex-shrink: 0;
+    }
+    .objective-top-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+      min-width: 0;
+    }
+    .objective-top-row .objective-back-btn {
+      flex-shrink: 0;
+      margin: 0;
+    }
+    .study-block-strip {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+    .study-block-chip {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 36px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid ${colors.border};
+      background: ${colors.surface};
+      color: ${colors.silver};
+      font-size: var(--ccna-type-timer);
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      flex-shrink: 0;
+      max-width: 100%;
+    }
+    .study-block-chip--active {
+      border-color: ${colors.brandGlow};
+      background: color-mix(in srgb, ${colors.brandDim} 70%, ${colors.surface});
+    }
+    .study-block-chip--break {
+      border-color: ${colors.amberBorder};
+      background: color-mix(in srgb, ${colors.amberDim} 65%, ${colors.surface});
+      color: ${colors.amber};
+    }
+    .study-block-chip__play {
+      font-size: 11px;
+      opacity: 0.9;
+    }
+    .study-block-chip__phase {
+      font-size: var(--ccna-type-caption);
+      font-weight: 600;
+      color: ${colors.silverMid};
+      white-space: nowrap;
+    }
+    .study-block-chip__progress {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 100%;
+      transform-origin: left center;
+      background: ${colors.brand};
+    }
+    .study-block-chip--break .study-block-chip__progress {
+      background: ${colors.amber};
+    }
+    .study-block-mode-btn,
+    .study-block-stop-btn {
+      min-height: 32px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid ${colors.border};
+      background: ${colors.surface};
+      color: ${colors.silverMid};
+      font-size: var(--ccna-type-caption);
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .study-block-mode-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      z-index: 140;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 180px;
+      padding: 8px;
+      border-radius: 12px;
+      border: 1px solid ${colors.border};
+      background: ${colors.card};
+      box-shadow: ${colors.cardShadow || '0 10px 32px #00000033'};
+    }
+    .study-block-mode-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 40px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
+    }
+    .study-block-other-hint {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .objective-header-scroll {
+      flex-shrink: 0;
+    }
+    .objective-sticky-chrome {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      flex-shrink: 0;
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+      background: linear-gradient(to bottom, color-mix(in srgb, ${colors.bg} 94%, transparent) 75%, transparent);
+    }
+    .objective-sticky-chrome .objective-tab-bar {
+      margin-bottom: 0 !important;
+    }
+    .study-block-complete-card {
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+    .objective-reading-prose {
+      max-width: 68ch;
+    }
+    .objective-shell--deep-read .objective-reading-prose,
+    .app-shell--deep-work .objective-reading-prose {
+      line-height: var(--ccna-line-read);
+    }
+    .objective-shell--deep-read .objective-reading-prose p,
+    .app-shell--deep-work .objective-reading-prose p {
+      margin-bottom: 1.15em;
+    }
+    @media (min-width: 768px) {
+      .objective-reading-prose {
+        max-width: 68ch;
+      }
+      .objective-header-scroll h1 {
+        font-size: var(--ccna-type-display);
+      }
+    }
+    @media (max-width: 640px) {
+      .app-shell--compact-top > .app-chrome-toolbar {
+        position: absolute;
+        top: calc(env(safe-area-inset-top) + 2px);
+        right: max(16px, env(safe-area-inset-right));
+        left: auto;
+        width: auto;
+        z-index: 130;
+        padding: 0;
+        min-height: 0;
+        height: 0;
+        overflow: visible;
+        pointer-events: none;
+        flex: none;
+      }
+      .app-shell--compact-top .app-chrome-toolbar .app-chrome-theme {
+        pointer-events: auto;
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+      .app-shell--compact-top .route-inner.ccna-container.page-fill {
+        padding-top: calc(env(safe-area-inset-top) + 2px);
+      }
+      .app-shell--compact-top .objective-header {
+        padding-right: 44px;
+      }
+      .app-shell--compact-top .objective-top-row .objective-back-btn {
+        padding: 2px 0 4px;
+        min-height: 36px;
+      }
+      .app-shell--compact-top .objective-header h1 {
+        margin-top: 0;
+        line-height: 1.2;
+      }
+      .app-shell--compact-top .objective-domain {
+        margin-bottom: 4px !important;
+      }
+      .app-shell--compact-top .objective-meta-row {
+        margin-bottom: 4px !important;
+      }
+      .app-shell--compact-top .objective-nav-row {
+        margin-bottom: 6px !important;
+      }
+      .app-shell--compact-top .objective-tab-bar {
+        margin-bottom: 6px !important;
+      }
+    }
+    @media (max-width: 640px) {
+      .app-chrome-toolbar {
+        padding-top: calc(env(safe-area-inset-top) + 4px);
+        padding-bottom: 4px;
+      }
     }
     .objective-body {
       flex: 1;

@@ -200,14 +200,14 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
         <button style={styles.backBtn} onClick={onExit}>‹ Back</button>
         <h1 style={styles.h1}>Mock Exam</h1>
         <div style={styles.card}>
-          <div style={{ fontSize: 14, lineHeight: 1.7 }}>
+          <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.7 }}>
             <div>• {MOCK_EXAM_QUESTION_COUNT} questions, {MOCK_EXAM_DURATION_MIN} minute countdown</div>
             <div>• Weighted by official exam domain percentages</div>
             <div>• <span style={{ color: COLORS.mint }}>{canUseStaticOnly ? '100% from your static bank' : `~${staticPct}% from your static question bank`}</span>{canUseStaticOnly ? ' — no API needed' : ' — hybrid fills gaps with AI'}</div>
             <div>• Score report broken down by domain at the end</div>
             <div>• Once started, the timer runs continuously — find a quiet 2 hours, or submit early</div>
           </div>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontSize: 14, cursor: 'pointer' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontSize: 'var(--ccna-type-md)', cursor: 'pointer' }}>
             <input
               type="checkbox"
               checked={staticOnly}
@@ -235,7 +235,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
         <button style={styles.backBtn} onClick={onExit}>‹ Back to Home</button>
         <h1 style={styles.h1}>Exam Results</h1>
         <div style={styles.card}>
-          <div style={{ fontSize: 32, fontWeight: 700, color: pct >= 70 ? COLORS.mint : COLORS.rose }}>{pct}%</div>
+          <div style={{ fontSize: 'var(--ccna-type-display)', fontWeight: 700, color: pct >= 70 ? COLORS.mint : COLORS.rose }}>{pct}%</div>
           <div style={styles.small}>{report.correct} / {report.total} correct</div>
         </div>
         <div style={styles.card}>
@@ -246,7 +246,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
             const dpct = Math.round((r.correct / r.total) * 100)
             return (
               <div key={d.id} style={{ marginBottom: 10 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 4 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--ccna-type-sm)', marginBottom: 4 }}>
                   <span>{d.name}</span>
                   <span style={{ color: dpct >= 70 ? COLORS.mint : COLORS.rose, fontWeight: 600 }}>{r.correct}/{r.total} ({dpct}%)</span>
                 </div>
@@ -273,7 +273,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
         <div style={{ ...styles.pill(secondsLeft < 600 ? 'rose' : 'sky') }}>{formatSeconds(secondsLeft)}</div>
       </div>
       <div style={styles.card}>
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{q.question}</div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{q.question}</div>
         <McChoices q={q} selected={selected ?? null} revealed={false} onSelect={selectChoice} />
       </div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
