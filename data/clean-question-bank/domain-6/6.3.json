@@ -30,19 +30,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Three tier\" is incorrect because the scenario requires: The correct answer is \"Spine/Leaf\".",
+            "explanation": "**Three tier** describes a different mechanism than this question tests. The right idea: The correct answer is \"Spine/Leaf\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Collapsed core\" is incorrect because the scenario requires: The correct answer is \"Spine/Leaf\".",
+            "explanation": "**Collapsed core** describes a different mechanism than this question tests. The right idea: The correct answer is \"Spine/Leaf\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SAN fabric\" is incorrect because the scenario requires: The correct answer is \"Spine/Leaf\".",
+            "explanation": "**SAN fabric** describes a different mechanism than this question tests. The right idea: The correct answer is \"Spine/Leaf\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -77,19 +77,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The Leaf switches connect to other Leaf switches.\" is incorrect because the scenario requires: The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.\".",
+            "explanation": "**The Leaf switches connect to other Leaf switches.** does not satisfy what the question asks. The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"There is only one Spine switch per network.\" is incorrect because the scenario requires: The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.\".",
+            "explanation": "**There is only one Spine switch per network.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Spine switches provide access to hosts.\" is incorrect because the scenario requires: The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.\".",
+            "explanation": "**Spine switches provide access to hosts.** does not satisfy what the question asks. The correct answer is \"The Leaf switches never connect to other Leaf switches, only Spine switches.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -124,19 +124,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Leaf to Leaf to Spine\" is incorrect because the scenario requires: The correct answer is \"Leaf to Spine to Leaf\".",
+            "explanation": "**Leaf to Leaf to Spine** describes a different mechanism than this question tests. The right idea: The correct answer is \"Leaf to Spine to Leaf\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Spine to Leaf to Spine\" is incorrect because the scenario requires: The correct answer is \"Leaf to Spine to Leaf\".",
+            "explanation": "**Spine to Leaf to Spine** does not satisfy what the question asks. The correct answer is \"Leaf to Spine to Leaf\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Leaf to Leaf\" is incorrect because the scenario requires: The correct answer is \"Leaf to Spine to Leaf\".",
+            "explanation": "**Leaf to Leaf** describes a different mechanism than this question tests. The right idea: The correct answer is \"Leaf to Spine to Leaf\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -174,19 +174,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Cisco APIC-EM\" is incorrect because the scenario requires: The correct answer is \"Cisco ACI\".",
+            "explanation": "**Cisco APIC-EM** describes a different mechanism than this question tests. The right idea: The correct answer is \"Cisco ACI\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"OpenDaylight\" is incorrect because the scenario requires: The correct answer is \"Cisco ACI\".",
+            "explanation": "**OpenDaylight** describes a different mechanism than this question tests. The right idea: The correct answer is \"Cisco ACI\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Cisco SD-WAN\" is incorrect because the scenario requires: The correct answer is \"Cisco ACI\".",
+            "explanation": "**Cisco SD-WAN** describes a different mechanism than this question tests. The right idea: The correct answer is \"Cisco ACI\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -224,19 +224,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Cisco APIC-EM\" is incorrect because the scenario requires: The correct answer is \"Cisco SD-WAN\".",
+            "explanation": "**Cisco APIC-EM** describes a different mechanism than this question tests. The right idea: The correct answer is \"Cisco SD-WAN\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Cisco Prime Infrastructure\" is incorrect because the scenario requires: The correct answer is \"Cisco SD-WAN\".",
+            "explanation": "**Cisco Prime Infrastructure** describes a different mechanism than this question tests. The right idea: The correct answer is \"Cisco SD-WAN\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"OpenDaylight\" is incorrect because the scenario requires: The correct answer is \"Cisco SD-WAN\".",
+            "explanation": "**OpenDaylight** describes a different mechanism than this question tests. The right idea: The correct answer is \"Cisco SD-WAN\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -272,24 +272,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Spine/Leaf\" is incorrect because the scenario requires: The correct answer is \"Campus\".",
+            "explanation": "**Spine/Leaf** describes a different mechanism than this question tests. The right idea: The correct answer is \"Campus\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"CLOS\" is incorrect because the scenario requires: The correct answer is \"Campus\".",
+            "explanation": "**CLOS** describes a different mechanism than this question tests. The right idea: The correct answer is \"Campus\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SDN\" is incorrect because the scenario requires: The correct answer is \"Campus\".",
+            "explanation": "**SDN** describes a different mechanism than this question tests. The right idea: The correct answer is \"Campus\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
       }
     },
     {
@@ -323,19 +323,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The SDN controller configures the management plane of network devices.\" is incorrect because the scenario requires: The correct answer is \"The SDN controller replaces the control plane of the SDN.\".",
+            "explanation": "**The SDN controller configures the management plane of network devices.** does not satisfy what the question asks. The correct answer is \"The SDN controller replaces the control plane of the SDN.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The SDN controller monitors data plane traffic.\" is incorrect because the scenario requires: The correct answer is \"The SDN controller replaces the control plane of the SDN.\".",
+            "explanation": "**The SDN controller monitors data plane traffic.** does not satisfy what the question asks. The correct answer is \"The SDN controller replaces the control plane of the SDN.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The SDN controller complements the control plane of the SDN device.\" is incorrect because the scenario requires: The correct answer is \"The SDN controller replaces the control plane of the SDN.\".",
+            "explanation": "**The SDN controller complements the control plane of the SDN device.** does not satisfy what the question asks. The correct answer is \"The SDN controller replaces the control plane of the SDN.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -374,19 +374,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"OpenSDN\" is incorrect because the scenario requires: The correct answer is \"APIC-EM\".",
+            "explanation": "**OpenSDN** describes a different mechanism than this question tests. The right idea: The correct answer is \"APIC-EM\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"OpenStack\" is incorrect because the scenario requires: The correct answer is \"APIC-EM\".",
+            "explanation": "**OpenStack** describes a different mechanism than this question tests. The right idea: The correct answer is \"APIC-EM\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"OpenDaylight\" is incorrect because the scenario requires: The correct answer is \"APIC-EM\".",
+            "explanation": "**OpenDaylight** describes a different mechanism than this question tests. The right idea: The correct answer is \"APIC-EM\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -423,19 +423,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Data plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "explanation": "**Data plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Control plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Management plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "explanation": "**Management plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Control plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "explanation": "**Switch plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Control plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -472,19 +472,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Data plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "explanation": "**Data plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Management plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Control plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "explanation": "**Control plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Management plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "explanation": "**Switch plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Management plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -521,19 +521,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Control plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "explanation": "**Control plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Management plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "explanation": "**Management plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "explanation": "**Switch plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -570,19 +570,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Data plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "explanation": "**Data plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Control plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Management plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "explanation": "**Management plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Control plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Routing plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "explanation": "**Routing plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Control plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -620,19 +620,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Data plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "explanation": "**Data plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Management plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Control plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "explanation": "**Control plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Management plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Network plane\" is incorrect because the scenario requires: The correct answer is \"Management plane\".",
+            "explanation": "**Network plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Management plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -671,19 +671,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The northbound interface (NBI)\" is incorrect because the scenario requires: The correct answer is \"The southbound interface (SBI)\".",
+            "explanation": "**The northbound interface (NBI)** describes a different mechanism than this question tests. The right idea: The correct answer is \"The southbound interface (SBI)\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The core of the controller\" is incorrect because the scenario requires: The correct answer is \"The southbound interface (SBI)\".",
+            "explanation": "**The core of the controller** describes a different mechanism than this question tests. The right idea: The correct answer is \"The southbound interface (SBI)\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Applications hosted on the controller\" is incorrect because the scenario requires: The correct answer is \"The southbound interface (SBI)\".",
+            "explanation": "**Applications hosted on the controller** describes a different mechanism than this question tests. The right idea: The correct answer is \"The southbound interface (SBI)\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -719,19 +719,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"An API is a program that allows for data transfer.\" is incorrect because the scenario requires: The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another pr…",
+            "explanation": "**An API is a program that allows for data transfer.** does not satisfy what the question asks. The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another program.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"An API is a programming language for network programmability.\" is incorrect because the scenario requires: The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another pr…",
+            "explanation": "**An API is a programming language for network programmability.** does not satisfy what the question asks. The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another program.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"An API allows for programs to be virtualized.\" is incorrect because the scenario requires: The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another pr…",
+            "explanation": "**An API allows for programs to be virtualized.** describes a different mechanism than this question tests. The right idea: The correct answer is \"An API is a programming interface or standard allowing one program to communicate with another program.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -771,19 +771,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The southbound interface (SBI)\" is incorrect because the scenario requires: The correct answer is \"The northbound interface (NBI)\".",
+            "explanation": "**The southbound interface (SBI)** describes a different mechanism than this question tests. The right idea: The correct answer is \"The northbound interface (NBI)\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The core of the controller\" is incorrect because the scenario requires: The correct answer is \"The northbound interface (NBI)\".",
+            "explanation": "**The core of the controller** describes a different mechanism than this question tests. The right idea: The correct answer is \"The northbound interface (NBI)\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Simple Network Management Protocol (SNMP)\" is incorrect because the scenario requires: The correct answer is \"The northbound interface (NBI)\".",
+            "explanation": "**Simple Network Management Protocol (SNMP)** describes a different mechanism than this question tests. The right idea: The correct answer is \"The northbound interface (NBI)\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -821,19 +821,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Control plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "explanation": "**Control plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Management plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "explanation": "**Management plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Routing plane\" is incorrect because the scenario requires: The correct answer is \"Data plane\".",
+            "explanation": "**Routing plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -868,19 +868,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"1 hop\" is incorrect because the scenario requires: The correct answer is \"3 hops\".",
+            "explanation": "**1 hop** describes a different mechanism than this question tests. The right idea: The correct answer is \"3 hops\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"4 hops\" is incorrect because the scenario requires: The correct answer is \"3 hops\".",
+            "explanation": "**4 hops** describes a different mechanism than this question tests. The right idea: The correct answer is \"3 hops\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"5 hops\" is incorrect because the scenario requires: The correct answer is \"3 hops\".",
+            "explanation": "**5 hops** describes a different mechanism than this question tests. The right idea: The correct answer is \"3 hops\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -918,19 +918,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Overlay\" is incorrect because the scenario requires: The correct answer is \"Underlay\".",
+            "explanation": "**Overlay** describes a different mechanism than this question tests. The right idea: The correct answer is \"Underlay\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Tunnel\" is incorrect because the scenario requires: The correct answer is \"Underlay\".",
+            "explanation": "**Tunnel** describes a different mechanism than this question tests. The right idea: The correct answer is \"Underlay\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Leaf\" is incorrect because the scenario requires: The correct answer is \"Underlay\".",
+            "explanation": "**Leaf** describes a different mechanism than this question tests. The right idea: The correct answer is \"Underlay\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -968,19 +968,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Management plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "explanation": "**Management plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Control plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Configuration plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "explanation": "**Configuration plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Control plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Data plane\" is incorrect because the scenario requires: The correct answer is \"Control plane\".",
+            "explanation": "**Data plane** describes a different mechanism than this question tests. The right idea: The correct answer is \"Control plane\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1019,19 +1019,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"VXLAN\" is incorrect because the scenario requires: The correct answer is \"DMVPN\".",
+            "explanation": "**VXLAN** describes a different mechanism than this question tests. The right idea: The correct answer is \"DMVPN\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"VLAN\" is incorrect because the scenario requires: The correct answer is \"DMVPN\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**VLAN** describes a different mechanism than this question tests. The right idea: The correct answer is \"DMVPN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ECMP\" is incorrect because the scenario requires: The correct answer is \"DMVPN\".",
+            "explanation": "**ECMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"DMVPN\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1069,19 +1069,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"ECMP\" is incorrect because the scenario requires: The correct answer is \"VXLAN\".",
+            "explanation": "**ECMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"VXLAN\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"DMVPN\" is incorrect because the scenario requires: The correct answer is \"VXLAN\".",
+            "explanation": "**DMVPN** describes a different mechanism than this question tests. The right idea: The correct answer is \"VXLAN\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"EIGRP\" is incorrect because the scenario requires: The correct answer is \"VXLAN\".",
+            "explanation": "**EIGRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"VXLAN\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1118,19 +1118,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"CDP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "explanation": "**CDP** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ICMP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "explanation": "**ICMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"VTP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "explanation": "**VTP** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1167,19 +1167,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"OSPF\" is incorrect because the scenario requires: The correct answer is \"ECMP\".",
+            "explanation": "**OSPF** describes a different mechanism than this question tests. The right idea: The correct answer is \"ECMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"MPLS\" is incorrect because the scenario requires: The correct answer is \"ECMP\".",
+            "explanation": "**MPLS** describes a different mechanism than this question tests. The right idea: The correct answer is \"ECMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"CLOS\" is incorrect because the scenario requires: The correct answer is \"ECMP\".",
+            "explanation": "**CLOS** describes a different mechanism than this question tests. The right idea: The correct answer is \"ECMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

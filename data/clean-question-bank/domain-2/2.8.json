@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SNMP\" is incorrect because the scenario requires: Telnet provides terminal emulation over a network but is not encrypted.",
+            "explanation": "**SNMP** describes a different mechanism than this question tests. The right idea: Telnet provides terminal emulation over a network but is not encrypted.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"HTTP\" is incorrect because the scenario requires: Telnet provides terminal emulation over a network but is not encrypted.",
+            "explanation": "**HTTP** describes a different mechanism than this question tests. The right idea: Telnet provides terminal emulation over a network but is not encrypted.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"TFTP\" is incorrect because the scenario requires: Telnet provides terminal emulation over a network but is not encrypted.",
+            "explanation": "**TFTP** describes a different mechanism than this question tests. The right idea: Telnet provides terminal emulation over a network but is not encrypted.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -73,17 +73,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Router#connect 198.56.33.3\" is incorrect because the scenario requires: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "explanation": "**Router#connect 198.56.33.3** describes a different mechanism than this question tests. The right idea: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router#remote 198.56.33.3\" is incorrect because the scenario requires: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "explanation": "**Router#remote 198.56.33.3** describes a different mechanism than this question tests. The right idea: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#vty 198.56.33.3\" is incorrect because the scenario requires: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "explanation": "**Router#vty 198.56.33.3** describes a different mechanism than this question tests. The right idea: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -119,17 +119,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"UDP/69\" is incorrect because the scenario requires: TACACS+ uses TCP port 49.",
+            "explanation": "**UDP/69** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"TCP/74\" is incorrect because the scenario requires: TACACS+ uses TCP port 49.",
+            "explanation": "**TCP/74** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"UDP/47\" is incorrect because the scenario requires: TACACS+ uses TCP port 49.",
+            "explanation": "**UDP/47** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -163,17 +163,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RADIUS\" is incorrect because the scenario requires: SSH provides encrypted management access.",
+            "explanation": "**RADIUS** describes a different mechanism than this question tests. The right idea: SSH provides encrypted management access.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"HTTP\" is incorrect because the scenario requires: SSH provides encrypted management access.",
+            "explanation": "**HTTP** describes a different mechanism than this question tests. The right idea: SSH provides encrypted management access.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SFTP\" is incorrect because the scenario requires: SSH provides encrypted management access.",
+            "explanation": "**SFTP** describes a different mechanism than this question tests. The right idea: SSH provides encrypted management access.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -208,17 +208,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Symmetrical encryption\" is incorrect because the scenario requires: SSH uses public/private key asymmetric encryption.",
+            "explanation": "**Symmetrical encryption** does not satisfy what the question asks. SSH uses public/private key asymmetric encryption.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Code block ciphers\" is incorrect because the scenario requires: SSH uses public/private key asymmetric encryption.",
+            "explanation": "**Code block ciphers** describes a different mechanism than this question tests. The right idea: SSH uses public/private key asymmetric encryption.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"At-rest encryption\" is incorrect because the scenario requires: SSH uses public/private key asymmetric encryption.",
+            "explanation": "**At-rest encryption** describes a different mechanism than this question tests. The right idea: SSH uses public/private key asymmetric encryption.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -253,17 +253,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"SSH\" is incorrect because the scenario requires: WAP debug output appears on the console by default.",
+            "explanation": "**SSH** describes a different mechanism than this question tests. The right idea: WAP debug output appears on the console by default.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Logging server\" is incorrect because the scenario requires: WAP debug output appears on the console by default.",
+            "explanation": "**Logging server** describes a different mechanism than this question tests. The right idea: WAP debug output appears on the console by default.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Local storage\" is incorrect because the scenario requires: WAP debug output appears on the console by default.",
+            "explanation": "**Local storage** describes a different mechanism than this question tests. The right idea: WAP debug output appears on the console by default.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -298,17 +298,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"TACACS+\" is incorrect because the scenario requires: RADIUS is an open standard originally proposed by the IETF.",
+            "explanation": "**TACACS+** describes a different mechanism than this question tests. The right idea: RADIUS is an open standard originally proposed by the IETF.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Kerberos\" is incorrect because the scenario requires: RADIUS is an open standard originally proposed by the IETF.",
+            "explanation": "**Kerberos** describes a different mechanism than this question tests. The right idea: RADIUS is an open standard originally proposed by the IETF.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"LDAP\" is incorrect because the scenario requires: RADIUS is an open standard originally proposed by the IETF.",
+            "explanation": "**LDAP** describes a different mechanism than this question tests. The right idea: RADIUS is an open standard originally proposed by the IETF.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -343,17 +343,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"TACACS+\" is incorrect because the scenario requires: SSH can use AES for encrypted credentials and session data.",
+            "explanation": "**TACACS+** describes a different mechanism than this question tests. The right idea: SSH can use AES for encrypted credentials and session data.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"HTTPS\" is incorrect because the scenario requires: SSH can use AES for encrypted credentials and session data.",
+            "explanation": "**HTTPS** describes a different mechanism than this question tests. The right idea: SSH can use AES for encrypted credentials and session data.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"RADIUS\" is incorrect because the scenario requires: SSH can use AES for encrypted credentials and session data.",
+            "explanation": "**RADIUS** describes a different mechanism than this question tests. The right idea: SSH can use AES for encrypted credentials and session data.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -389,17 +389,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"HTTPS\" is incorrect because the scenario requires: A first-time autonomous AP setup commonly uses the console connection.",
+            "explanation": "**HTTPS** describes a different mechanism than this question tests. The right idea: A first-time autonomous AP setup commonly uses the console connection.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"SSH\" is incorrect because the scenario requires: A first-time autonomous AP setup commonly uses the console connection.",
+            "explanation": "**SSH** describes a different mechanism than this question tests. The right idea: A first-time autonomous AP setup commonly uses the console connection.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Telnet\" is incorrect because the scenario requires: A first-time autonomous AP setup commonly uses the console connection.",
+            "explanation": "**Telnet** describes a different mechanism than this question tests. The right idea: A first-time autonomous AP setup commonly uses the console connection.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -434,17 +434,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"19.2 kb/s\" is incorrect because the scenario requires: Cisco console access commonly uses 9600 baud.",
+            "explanation": "**19.2 kb/s** describes a different mechanism than this question tests. The right idea: Cisco console access commonly uses 9600 baud.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"9600 kb/s\" is incorrect because the scenario requires: Cisco console access commonly uses 9600 baud.",
+            "explanation": "**9600 kb/s** describes a different mechanism than this question tests. The right idea: Cisco console access commonly uses 9600 baud.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"19200 baud\" is incorrect because the scenario requires: Cisco console access commonly uses 9600 baud.",
+            "explanation": "**19200 baud** describes a different mechanism than this question tests. The right idea: Cisco console access commonly uses 9600 baud.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -478,17 +478,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"16 characters\" is incorrect because the scenario requires: An SSID can be up to 32 characters.",
+            "explanation": "**16 characters** describes a different mechanism than this question tests. The right idea: An SSID can be up to 32 characters.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"48 characters\" is incorrect because the scenario requires: An SSID can be up to 32 characters.",
+            "explanation": "**48 characters** describes a different mechanism than this question tests. The right idea: An SSID can be up to 32 characters.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"64 characters\" is incorrect because the scenario requires: An SSID can be up to 32 characters.",
+            "explanation": "**64 characters** describes a different mechanism than this question tests. The right idea: An SSID can be up to 32 characters.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -523,17 +523,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Access control lists for one SSID\" is incorrect because the scenario requires: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "explanation": "**Access control lists for one SSID** describes a different mechanism than this question tests. The right idea: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Dynamic VLANs for the SSID\" is incorrect because the scenario requires: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**Dynamic VLANs for the SSID** describes a different mechanism than this question tests. The right idea: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Access control lists for two SSIDs\" is incorrect because the scenario requires: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "explanation": "**Access control lists for two SSIDs** describes a different mechanism than this question tests. The right idea: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -568,17 +568,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"WPAN\" is incorrect because the scenario requires: A town-wide wireless deployment is a WMAN.",
+            "explanation": "**WPAN** describes a different mechanism than this question tests. The right idea: A town-wide wireless deployment is a WMAN.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"WLAN\" is incorrect because the scenario requires: A town-wide wireless deployment is a WMAN.",
+            "explanation": "**WLAN** describes a different mechanism than this question tests. The right idea: A town-wide wireless deployment is a WMAN.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"WWAN\" is incorrect because the scenario requires: A town-wide wireless deployment is a WMAN.",
+            "explanation": "**WWAN** describes a different mechanism than this question tests. The right idea: A town-wide wireless deployment is a WMAN.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -613,17 +613,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"WLAN\" is incorrect because the scenario requires: A short-range personal wireless network is a WPAN.",
+            "explanation": "**WLAN** describes a different mechanism than this question tests. The right idea: A short-range personal wireless network is a WPAN.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"WMAN\" is incorrect because the scenario requires: A short-range personal wireless network is a WPAN.",
+            "explanation": "**WMAN** describes a different mechanism than this question tests. The right idea: A short-range personal wireless network is a WPAN.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"WWAN\" is incorrect because the scenario requires: A short-range personal wireless network is a WPAN.",
+            "explanation": "**WWAN** describes a different mechanism than this question tests. The right idea: A short-range personal wireless network is a WPAN.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -658,17 +658,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"A trust boundary is where the QoS markings are first configured.\" is incorrect because the scenario requires: A QoS trust boundary is where the network begins trusting QoS markings.",
+            "explanation": "**A trust boundary is where the QoS markings are first configured.** does not satisfy what the question asks. A QoS trust boundary is where the network begins trusting QoS markings.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"A trust boundary is where the QoS markings are stripped at the router.\" is incorrect because the scenario requires: A QoS trust boundary is where the network begins trusting QoS markings.",
+            "explanation": "**A trust boundary is where the QoS markings are stripped at the router.** does not satisfy what the question asks. A QoS trust boundary is where the network begins trusting QoS markings.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"A trust boundary is the separation of QoS queues based upon their priority.\" is incorrect because the scenario requires: A QoS trust boundary is where the network begins trusting QoS markings.",
+            "explanation": "**A trust boundary is the separation of QoS queues based upon their priority.** does not satisfy what the question asks. A QoS trust boundary is where the network begins trusting QoS markings.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -703,17 +703,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"802.11r\" is incorrect because the scenario requires: 802.11e defines wireless QoS.",
+            "explanation": "**802.11r** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"802.1p\" is incorrect because the scenario requires: 802.11e defines wireless QoS.",
+            "explanation": "**802.1p** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"802.11k\" is incorrect because the scenario requires: 802.11e defines wireless QoS.",
+            "explanation": "**802.11k** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -748,17 +748,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Disable SSID broadcasting\" is incorrect because the scenario requires: MAC filtering can restrict WLAN access to known corporate hosts.",
+            "explanation": "**Disable SSID broadcasting** describes a different mechanism than this question tests. The right idea: MAC filtering can restrict WLAN access to known corporate hosts.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Set a unique PSK\" is incorrect because the scenario requires: MAC filtering can restrict WLAN access to known corporate hosts.",
+            "explanation": "**Set a unique PSK** describes a different mechanism than this question tests. The right idea: MAC filtering can restrict WLAN access to known corporate hosts.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Add an LDAP server\" is incorrect because the scenario requires: MAC filtering can restrict WLAN access to known corporate hosts.",
+            "explanation": "**Add an LDAP server** describes a different mechanism than this question tests. The right idea: MAC filtering can restrict WLAN access to known corporate hosts.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -793,17 +793,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"802.11r\" is incorrect because the scenario requires: 802.11k lets clients learn neighboring AP information.",
+            "explanation": "**802.11r** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"802.11e\" is incorrect because the scenario requires: 802.11k lets clients learn neighboring AP information.",
+            "explanation": "**802.11e** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"802.11ac\" is incorrect because the scenario requires: 802.11k lets clients learn neighboring AP information.",
+            "explanation": "**802.11ac** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -839,17 +839,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Bronze\" is incorrect because the scenario requires: Platinum is the WLC QoS profile appropriate for voice.",
+            "explanation": "**Bronze** describes a different mechanism than this question tests. The right idea: Platinum is the WLC QoS profile appropriate for voice.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Silver\" is incorrect because the scenario requires: Platinum is the WLC QoS profile appropriate for voice.",
+            "explanation": "**Silver** describes a different mechanism than this question tests. The right idea: Platinum is the WLC QoS profile appropriate for voice.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Gold\" is incorrect because the scenario requires: Platinum is the WLC QoS profile appropriate for voice.",
+            "explanation": "**Gold** describes a different mechanism than this question tests. The right idea: Platinum is the WLC QoS profile appropriate for voice.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -886,17 +886,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Change the radio policy\" is incorrect because the scenario requires: If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "explanation": "**Change the radio policy** describes a different mechanism than this question tests. The right idea: If a WLAN is disabled in the GUI, enabling status restores client access.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Enable Multicast VLAN Feature\" is incorrect because the scenario requires: If a WLAN is disabled in the GUI, enabling status restores client access.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**Enable Multicast VLAN Feature** describes a different mechanism than this question tests. The right idea: If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Enable Broadcast SSID\" is incorrect because the scenario requires: If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "explanation": "**Enable Broadcast SSID** describes a different mechanism than this question tests. The right idea: If a WLAN is disabled in the GUI, enabling status restores client access.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -933,17 +933,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"WPA is enabled.\" is incorrect because the scenario requires: The  WPA2 personal/PSK security.",
+            "explanation": "**WPA is enabled.** describes a different mechanism than this question tests. The right idea: The  WPA2 personal/PSK security.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"WPA2 enterprise is enabled.\" is incorrect because the scenario requires: The  WPA2 personal/PSK security.",
+            "explanation": "**WPA2 enterprise is enabled.** describes a different mechanism than this question tests. The right idea: The  WPA2 personal/PSK security.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"802.1X is enabled.\" is incorrect because the scenario requires: The  WPA2 personal/PSK security.",
+            "explanation": "**802.1X is enabled.** describes a different mechanism than this question tests. The right idea: The  WPA2 personal/PSK security.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -978,17 +978,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Gold\" is incorrect because the scenario requires: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "explanation": "**Gold** describes a different mechanism than this question tests. The right idea: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Platinum\" is incorrect because the scenario requires: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "explanation": "**Platinum** describes a different mechanism than this question tests. The right idea: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Silver\" is incorrect because the scenario requires: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "explanation": "**Silver** describes a different mechanism than this question tests. The right idea: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -1024,17 +1024,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"MAC filtering\" is incorrect because the scenario requires: 802.1X can require certificate-based authentication for WLAN access.",
+            "explanation": "**MAC filtering** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"WPA2 PSK\" is incorrect because the scenario requires: 802.1X can require certificate-based authentication for WLAN access.",
+            "explanation": "**WPA2 PSK** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Fast Transitioning\" is incorrect because the scenario requires: 802.1X can require certificate-based authentication for WLAN access.",
+            "explanation": "**Fast Transitioning** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],

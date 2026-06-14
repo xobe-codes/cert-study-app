@@ -29,18 +29,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Layer 1\" is incorrect because the scenario requires: Routers forward packets based on IP addresses — Layer 3.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Layer 1** is the wrong OSI layer here. The stem tests **Layer 3** behavior — routers forward based on IP addresses and routing tables.",
+            "misconceptionTested": "Choosing physical layer when the question is about network layer forwarding"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Layer 2\" is incorrect because the scenario requires: Routers forward packets based on IP addresses — Layer 3.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Layer 2** is the wrong OSI layer here. The stem tests **Layer 3** behavior — routers forward based on IP addresses and routing tables.",
+            "misconceptionTested": "Choosing data link layer when the question is about network layer routing"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Layer 7\" is incorrect because the scenario requires: Routers forward packets based on IP addresses — Layer 3.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Layer 7** is the wrong OSI layer here. The stem tests **Layer 3** behavior — routers forward based on IP addresses and routing tables.",
+            "misconceptionTested": "Choosing application layer when the question is about L2/L3 mechanics"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -71,21 +71,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Routing table\" is incorrect because the scenario requires: L2 switches forward using the MAC address (CAM) table.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Routing tables** are for Layer 3 routers. Switches forward frames using a **MAC address (CAM) table**.",
+            "misconceptionTested": "Using router behavior (routing table) on a switch question"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"DNS cache\" is incorrect because the scenario requires: L2 switches forward using the MAC address (CAM) table.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DNS cache** describes a different mechanism than this question tests. The right idea: L2 switches forward using the MAC address (CAM) table.",
+            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ACL list\" is incorrect because the scenario requires: L2 switches forward using the MAC address (CAM) table.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**ACL list** describes a different mechanism than this question tests. The right idea: L2 switches forward using the MAC address (CAM) table.",
+            "misconceptionTested": "Defaulting to ACLs when the stem tests something else"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
       }
     },
     {
@@ -113,21 +113,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Port mirroring\" is incorrect because the scenario requires: An L3 switch uses SVIs to route between VLANs locally.",
+            "explanation": "**Port mirroring** describes a different mechanism than this question tests. The right idea: An L3 switch uses SVIs to route between VLANs locally.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Spanning Tree\" is incorrect because the scenario requires: An L3 switch uses SVIs to route between VLANs locally.",
+            "explanation": "**Spanning Tree** describes a different mechanism than this question tests. The right idea: An L3 switch uses SVIs to route between VLANs locally.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"EtherChannel\" is incorrect because the scenario requires: An L3 switch uses SVIs to route between VLANs locally.",
+            "explanation": "**EtherChannel** describes a different mechanism than this question tests. The right idea: An L3 switch uses SVIs to route between VLANs locally.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
       }
     },
     {
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"It only blocks UDP\" is incorrect because the scenario requires: NGFWs track connection state and inspect applications, not just IP/port.",
+            "explanation": "**It only blocks UDP** describes a different mechanism than this question tests. The right idea: NGFWs track connection state and inspect applications, not just IP/port.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"It replaces switches\" is incorrect because the scenario requires: NGFWs track connection state and inspect applications, not just IP/port.",
+            "explanation": "**It replaces switches** describes a different mechanism than this question tests. The right idea: NGFWs track connection state and inspect applications, not just IP/port.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"It operates only at Layer 1\" is incorrect because the scenario requires: NGFWs track connection state and inspect applications, not just IP/port.",
+            "explanation": "**It operates only at Layer 1** describes a different mechanism than this question tests. The right idea: NGFWs track connection state and inspect applications, not just IP/port.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -197,17 +197,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"DNS server\" is incorrect because the scenario requires: Lightweight APs are managed by a WLC; they do not run full standalone config.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DNS server** describes a different mechanism than this question tests. The right idea: Lightweight APs are managed by a WLC; they do not run full standalone config.",
+            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Core router only\" is incorrect because the scenario requires: Lightweight APs are managed by a WLC; they do not run full standalone config.",
+            "explanation": "**Core router only** describes a different mechanism than this question tests. The right idea: Lightweight APs are managed by a WLC; they do not run full standalone config.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"DHCP relay\" is incorrect because the scenario requires: Lightweight APs are managed by a WLC; they do not run full standalone config.",
+            "explanation": "**DHCP relay** describes a different mechanism than this question tests. The right idea: Lightweight APs are managed by a WLC; they do not run full standalone config.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -239,17 +239,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Web server\" is incorrect because the scenario requires: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "explanation": "**Web server** describes a different mechanism than this question tests. The right idea: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"DNS server\" is incorrect because the scenario requires: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DNS server** describes a different mechanism than this question tests. The right idea: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Core router\" is incorrect because the scenario requires: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "explanation": "**Core router** describes a different mechanism than this question tests. The right idea: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -281,18 +281,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The access switch only\" is incorrect because the scenario requires: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "explanation": "**The access switch only** describes a different mechanism than this question tests. The right idea: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The WLC\" is incorrect because the scenario requires: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "explanation": "**The WLC** describes a different mechanism than this question tests. The right idea: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The DNS server\" is incorrect because the scenario requires: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The DNS server** describes a different mechanism than this question tests. The right idea: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -321,8 +321,8 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"False\" is incorrect because the scenario requires: True — WLCs manage lightweight APs from a central point.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "This statement is **False**, but the tested fact is: True — WLCs manage lightweight APs from a central point.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

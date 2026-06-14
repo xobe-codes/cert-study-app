@@ -29,19 +29,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"To increase the possibility for misconfiguration\" is incorrect because the scenario requires: The correct answer is \"To create an outcome that can be reproduced\".",
+            "explanation": "**To increase the possibility for misconfiguration** describes a different mechanism than this question tests. The right idea: The correct answer is \"To create an outcome that can be reproduced\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"To decrease problems from the new configuration\" is incorrect because the scenario requires: The correct answer is \"To create an outcome that can be reproduced\".",
+            "explanation": "**To decrease problems from the new configuration** describes a different mechanism than this question tests. The right idea: The correct answer is \"To create an outcome that can be reproduced\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"To allow you to do less work\" is incorrect because the scenario requires: The correct answer is \"To create an outcome that can be reproduced\".",
+            "explanation": "**To allow you to do less work** describes a different mechanism than this question tests. The right idea: The correct answer is \"To create an outcome that can be reproduced\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -77,20 +77,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Copy and paste scripts built in Notepad++ into each router.\" is incorrect because the scenario requires: The correct answer is \"Create a Python script to configure each router.\".",
+            "explanation": "**Copy and paste scripts built in Notepad++ into each router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Create a Python script to configure each router.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Copy and paste scripts built in Excel into each router.\" is incorrect because the scenario requires: The correct answer is \"Create a Python script to configure each router.\".",
+            "explanation": "**Copy and paste scripts built in Excel into each router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Create a Python script to configure each router.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Work with a partner so that both of you can double-check each other’s work and cut the time in half.\" is incorrect because the scenario requires: The correct answer is \"Create a Python script to configure each router.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Work with a partner so that both of you can double-check each other’s work and cut the time in half.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Create a Python script to configure each router.",
+            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
             "needsExplanationReview": true
           }
         ],
@@ -124,19 +124,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Reduce the number of changes to be made\" is incorrect because the scenario requires: The correct answer is \"Reduce the human error factor\".",
+            "explanation": "**Reduce the number of changes to be made** describes a different mechanism than this question tests. The right idea: The correct answer is \"Reduce the human error factor\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Reduce the complications that arise from changes\" is incorrect because the scenario requires: The correct answer is \"Reduce the human error factor\".",
+            "explanation": "**Reduce the complications that arise from changes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Reduce the human error factor\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Reduce the planning time for the changes\" is incorrect because the scenario requires: The correct answer is \"Reduce the human error factor\".",
+            "explanation": "**Reduce the planning time for the changes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Reduce the human error factor\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -173,19 +173,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"NetOps\" is incorrect because the scenario requires: The correct answer is \"DevOps\".",
+            "explanation": "**NetOps** describes a different mechanism than this question tests. The right idea: The correct answer is \"DevOps\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SysOps\" is incorrect because the scenario requires: The correct answer is \"DevOps\".",
+            "explanation": "**SysOps** describes a different mechanism than this question tests. The right idea: The correct answer is \"DevOps\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SecOps\" is incorrect because the scenario requires: The correct answer is \"DevOps\".",
+            "explanation": "**SecOps** describes a different mechanism than this question tests. The right idea: The correct answer is \"DevOps\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -221,19 +221,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Waterfall\" is incorrect because the scenario requires: The correct answer is \"Lean and Agile\".",
+            "explanation": "**Waterfall** describes a different mechanism than this question tests. The right idea: The correct answer is \"Lean and Agile\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Kanban\" is incorrect because the scenario requires: The correct answer is \"Lean and Agile\".",
+            "explanation": "**Kanban** describes a different mechanism than this question tests. The right idea: The correct answer is \"Lean and Agile\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Scrum\" is incorrect because the scenario requires: The correct answer is \"Lean and Agile\".",
+            "explanation": "**Scrum** describes a different mechanism than this question tests. The right idea: The correct answer is \"Lean and Agile\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -268,19 +268,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Testing\" is incorrect because the scenario requires: The correct answer is \"Monitoring\".",
+            "explanation": "**Testing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Monitoring\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Building\" is incorrect because the scenario requires: The correct answer is \"Monitoring\".",
+            "explanation": "**Building** describes a different mechanism than this question tests. The right idea: The correct answer is \"Monitoring\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Planning\" is incorrect because the scenario requires: The correct answer is \"Monitoring\".",
+            "explanation": "**Planning** describes a different mechanism than this question tests. The right idea: The correct answer is \"Monitoring\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

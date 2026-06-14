@@ -29,21 +29,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Core\" is incorrect because the scenario requires: Access switches connect PCs, phones, and APs.",
+            "explanation": "**Core** describes a different mechanism than this question tests. The right idea: Access switches connect PCs, phones, and APs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Distribution\" is incorrect because the scenario requires: Access switches connect PCs, phones, and APs.",
+            "explanation": "**Distribution** describes a different mechanism than this question tests. The right idea: Access switches connect PCs, phones, and APs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Spine\" is incorrect because the scenario requires: Access switches connect PCs, phones, and APs.",
+            "explanation": "**Spine** describes a different mechanism than this question tests. The right idea: Access switches connect PCs, phones, and APs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
       }
     },
     {
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SOHO Wi‑Fi\" is incorrect because the scenario requires: Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
+            "explanation": "**SOHO Wi‑Fi** describes a different mechanism than this question tests. The right idea: Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Dial-up WAN\" is incorrect because the scenario requires: Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
+            "explanation": "**Dial-up WAN** describes a different mechanism than this question tests. The right idea: Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Home gaming\" is incorrect because the scenario requires: Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
+            "explanation": "**Home gaming** describes a different mechanism than this question tests. The right idea: Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Full mesh\" is incorrect because the scenario requires: All spokes via one hub = hub-and-spoke.",
+            "explanation": "**Full mesh** describes a different mechanism than this question tests. The right idea: All spokes via one hub = hub-and-spoke.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Spine-leaf\" is incorrect because the scenario requires: All spokes via one hub = hub-and-spoke.",
+            "explanation": "**Spine-leaf** describes a different mechanism than this question tests. The right idea: All spokes via one hub = hub-and-spoke.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Point-to-point only\" is incorrect because the scenario requires: All spokes via one hub = hub-and-spoke.",
+            "explanation": "**Point-to-point only** describes a different mechanism than this question tests. The right idea: All spokes via one hub = hub-and-spoke.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"No redundancy\" is incorrect because the scenario requires: Full mesh connects every site to every other — resilient but expensive.",
+            "explanation": "**No redundancy** contradicts the expected behavior. Full mesh connects every site to every other — resilient but expensive.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Only works with fiber\" is incorrect because the scenario requires: Full mesh connects every site to every other — resilient but expensive.",
+            "explanation": "**Only works with fiber** describes a different mechanism than this question tests. The right idea: Full mesh connects every site to every other — resilient but expensive.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Eliminates routing\" is incorrect because the scenario requires: Full mesh connects every site to every other — resilient but expensive.",
+            "explanation": "**Eliminates routing** describes a different mechanism than this question tests. The right idea: Full mesh connects every site to every other — resilient but expensive.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -197,21 +197,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"One\" is incorrect because the scenario requires: Two-tier merges distribution and core — access + collapsed distribution/core.",
+            "explanation": "**One** describes a different mechanism than this question tests. The right idea: Two-tier merges distribution and core — access + collapsed distribution/core.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Four\" is incorrect because the scenario requires: Two-tier merges distribution and core — access + collapsed distribution/core.",
+            "explanation": "**Four** describes a different mechanism than this question tests. The right idea: Two-tier merges distribution and core — access + collapsed distribution/core.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Five\" is incorrect because the scenario requires: Two-tier merges distribution and core — access + collapsed distribution/core.",
+            "explanation": "**Five** describes a different mechanism than this question tests. The right idea: Two-tier merges distribution and core — access + collapsed distribution/core.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
       }
     },
     {
@@ -239,17 +239,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Core datacenter\" is incorrect because the scenario requires: Small office/home office networks are simple, often one integrated gateway.",
+            "explanation": "**Core datacenter** describes a different mechanism than this question tests. The right idea: Small office/home office networks are simple, often one integrated gateway.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Full mesh WAN\" is incorrect because the scenario requires: Small office/home office networks are simple, often one integrated gateway.",
+            "explanation": "**Full mesh WAN** describes a different mechanism than this question tests. The right idea: Small office/home office networks are simple, often one integrated gateway.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Spine fabric\" is incorrect because the scenario requires: Small office/home office networks are simple, often one integrated gateway.",
+            "explanation": "**Spine fabric** describes a different mechanism than this question tests. The right idea: Small office/home office networks are simple, often one integrated gateway.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -281,17 +281,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SaaS\" is incorrect because the scenario requires: IaaS provides VMs/infrastructure; the customer manages OS and above.",
+            "explanation": "**SaaS** describes a different mechanism than this question tests. The right idea: IaaS provides VMs/infrastructure; the customer manages OS and above.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"PaaS\" is incorrect because the scenario requires: IaaS provides VMs/infrastructure; the customer manages OS and above.",
+            "explanation": "**PaaS** describes a different mechanism than this question tests. The right idea: IaaS provides VMs/infrastructure; the customer manages OS and above.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"On-prem only\" is incorrect because the scenario requires: IaaS provides VMs/infrastructure; the customer manages OS and above.",
+            "explanation": "**On-prem only** describes a different mechanism than this question tests. The right idea: IaaS provides VMs/infrastructure; the customer manages OS and above.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -321,8 +321,8 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"False\" is incorrect because the scenario requires: True — full mesh between leaves and spines is the defining property.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "This statement is **False**, but the tested fact is: True — full mesh between leaves and spines is the defining property.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

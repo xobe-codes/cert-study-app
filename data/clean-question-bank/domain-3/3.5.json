@@ -31,19 +31,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Proxy ARP\" is incorrect because the scenario requires: The correct answer is \"VRRP\".",
+            "explanation": "**Proxy ARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"VRRP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"GLBP\" is incorrect because the scenario requires: The correct answer is \"VRRP\".",
+            "explanation": "**GLBP** describes a different mechanism than this question tests. The right idea: The correct answer is \"VRRP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"HSRP\" is incorrect because the scenario requires: The correct answer is \"VRRP\".",
+            "explanation": "**HSRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"VRRP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -79,19 +79,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"0000.0c\" is incorrect because the scenario requires: The correct answer is \"07.ac\".",
+            "explanation": "**0000.0c** describes a different mechanism than this question tests. The right idea: The correct answer is \"07.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"oc07\" is incorrect because the scenario requires: The correct answer is \"07.ac\".",
+            "explanation": "**oc07** describes a different mechanism than this question tests. The right idea: The correct answer is \"07.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"0a\" is incorrect because the scenario requires: The correct answer is \"07.ac\".",
+            "explanation": "**0a** describes a different mechanism than this question tests. The right idea: The correct answer is \"07.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -128,19 +128,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Proxy ARP\" is incorrect because the scenario requires: The correct answer is \"GLBP\".",
+            "explanation": "**Proxy ARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"GLBP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"VRRP\" is incorrect because the scenario requires: The correct answer is \"GLBP\".",
+            "explanation": "**VRRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"GLBP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"HSRP\" is incorrect because the scenario requires: The correct answer is \"GLBP\".",
+            "explanation": "**HSRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"GLBP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -176,19 +176,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"0000.0c\" is incorrect because the scenario requires: The correct answer is \"01\".",
+            "explanation": "**0000.0c** describes a different mechanism than this question tests. The right idea: The correct answer is \"01\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"0c07\" is incorrect because the scenario requires: The correct answer is \"01\".",
+            "explanation": "**0c07** describes a different mechanism than this question tests. The right idea: The correct answer is \"01\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"07.ac\" is incorrect because the scenario requires: The correct answer is \"01\".",
+            "explanation": "**07.ac** describes a different mechanism than this question tests. The right idea: The correct answer is \"01\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -225,19 +225,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"110\" is incorrect because the scenario requires: The correct answer is \"100\".",
+            "explanation": "**110** describes a different mechanism than this question tests. The right idea: The correct answer is \"100\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"200\" is incorrect because the scenario requires: The correct answer is \"100\".",
+            "explanation": "**200** describes a different mechanism than this question tests. The right idea: The correct answer is \"100\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"10\" is incorrect because the scenario requires: The correct answer is \"100\".",
+            "explanation": "**10** does not satisfy what the question asks. The correct answer is \"100\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -272,19 +272,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"8\" is incorrect because the scenario requires: The correct answer is \"256\".",
+            "explanation": "**8** describes a different mechanism than this question tests. The right idea: The correct answer is \"256\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"16\" is incorrect because the scenario requires: The correct answer is \"256\".",
+            "explanation": "**16** describes a different mechanism than this question tests. The right idea: The correct answer is \"256\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"255\" is incorrect because the scenario requires: The correct answer is \"256\".",
+            "explanation": "**255** describes a different mechanism than this question tests. The right idea: The correct answer is \"256\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -319,19 +319,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"UDP/1935\" is incorrect because the scenario requires: The correct answer is \"UDP/1985\".",
+            "explanation": "**UDP/1935** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/1985\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"UDP/1895\" is incorrect because the scenario requires: The correct answer is \"UDP/1985\".",
+            "explanation": "**UDP/1895** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/1985\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"UCP/3222\" is incorrect because the scenario requires: The correct answer is \"UDP/1985\".",
+            "explanation": "**UCP/3222** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/1985\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -367,19 +367,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"All routers in an HSRP group are active.\" is incorrect because the scenario requires: The correct answer is \"Only one router in an HSRP group can be active.\".",
+            "explanation": "**All routers in an HSRP group are active.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Only one router in an HSRP group can be active.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The virtual router sends hello packets to the HSRP group.\" is incorrect because the scenario requires: The correct answer is \"Only one router in an HSRP group can be active.\".",
+            "explanation": "**The virtual router sends hello packets to the HSRP group.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Only one router in an HSRP group can be active.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"HSRP allows for per-packet load balancing.\" is incorrect because the scenario requires: The correct answer is \"Only one router in an HSRP group can be active.\".",
+            "explanation": "**HSRP allows for per-packet load balancing.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Only one router in an HSRP group can be active.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -414,19 +414,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Unicast\" is incorrect because the scenario requires: The correct answer is \"Multicast\".",
+            "explanation": "**Unicast** describes a different mechanism than this question tests. The right idea: The correct answer is \"Multicast\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Broadcast\" is incorrect because the scenario requires: The correct answer is \"Multicast\".",
+            "explanation": "**Broadcast** describes a different mechanism than this question tests. The right idea: The correct answer is \"Multicast\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Layer 2 flooding\" is incorrect because the scenario requires: The correct answer is \"Multicast\".",
+            "explanation": "**Layer 2 flooding** describes a different mechanism than this question tests. The right idea: The correct answer is \"Multicast\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -463,19 +463,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Active router\" is incorrect because the scenario requires: The correct answer is \"Virtual router\".",
+            "explanation": "**Active router** describes a different mechanism than this question tests. The right idea: The correct answer is \"Virtual router\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Standby router\" is incorrect because the scenario requires: The correct answer is \"Virtual router\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Standby router** describes a different mechanism than this question tests. The right idea: The correct answer is \"Virtual router\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Monitor router\" is incorrect because the scenario requires: The correct answer is \"Virtual router\".",
+            "explanation": "**Monitor router** describes a different mechanism than this question tests. The right idea: The correct answer is \"Virtual router\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -511,19 +511,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Hello timer\" is incorrect because the scenario requires: The correct answer is \"Hold timer\".",
+            "explanation": "**Hello timer** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hold timer\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Standby timer\" is incorrect because the scenario requires: The correct answer is \"Hold timer\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Standby timer** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hold timer\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Virtual timer\" is incorrect because the scenario requires: The correct answer is \"Hold timer\".",
+            "explanation": "**Virtual timer** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hold timer\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -559,19 +559,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"UDP/1935\" is incorrect because the scenario requires: The correct answer is \"UDP/3222\".",
+            "explanation": "**UDP/1935** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/3222\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"UDP/1985\" is incorrect because the scenario requires: The correct answer is \"UDP/3222\".",
+            "explanation": "**UDP/1985** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/3222\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"UDP/1895\" is incorrect because the scenario requires: The correct answer is \"UDP/3222\".",
+            "explanation": "**UDP/1895** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/3222\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -608,19 +608,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"HSRPv2 does not use hello packets.\" is incorrect because the scenario requires: The correct answer is \"HSRPv2 uses milliseconds.\".",
+            "explanation": "**HSRPv2 does not use hello packets.** contradicts the expected behavior. The correct answer is \"HSRPv2 uses milliseconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"HSRPv1 uses broadcasts, and HSRPv2 uses multicasts.\" is incorrect because the scenario requires: The correct answer is \"HSRPv2 uses milliseconds.\".",
+            "explanation": "**HSRPv1 uses broadcasts, and HSRPv2 uses multicasts.** describes a different mechanism than this question tests. The right idea: The correct answer is \"HSRPv2 uses milliseconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"HSRPv1 supports IPv6.\" is incorrect because the scenario requires: The correct answer is \"HSRPv2 uses milliseconds.\".",
+            "explanation": "**HSRPv1 supports IPv6.** describes a different mechanism than this question tests. The right idea: The correct answer is \"HSRPv2 uses milliseconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -657,19 +657,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The active router is responsible for responding to clients with the virtual router’s MAC address.\" is incorrect because the scenario requires: The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\".",
+            "explanation": "**The active router is responsible for responding to clients with the virtual router’s MAC address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The active virtual gateway will respond with a MAC address of the active router.\" is incorrect because the scenario requires: The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\".",
+            "explanation": "**The active virtual gateway will respond with a MAC address of the active router.** does not satisfy what the question asks. The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The virtual router is responsible for responding to tracking requests.\" is incorrect because the scenario requires: The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.\".",
+            "explanation": "**The virtual router is responsible for responding to tracking requests.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -707,19 +707,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The router with the lowest priority\" is incorrect because the scenario requires: The correct answer is \"The router with the highest priority and highest IP address\".",
+            "explanation": "**The router with the lowest priority** does not satisfy what the question asks. The correct answer is \"The router with the highest priority and highest IP address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The router with the highest priority\" is incorrect because the scenario requires: The correct answer is \"The router with the highest priority and highest IP address\".",
+            "explanation": "**The router with the highest priority** does not satisfy what the question asks. The correct answer is \"The router with the highest priority and highest IP address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The router with the lowest priority and lowest IP address\" is incorrect because the scenario requires: The correct answer is \"The router with the highest priority and highest IP address\".",
+            "explanation": "**The router with the lowest priority and lowest IP address** does not satisfy what the question asks. The correct answer is \"The router with the highest priority and highest IP address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -755,19 +755,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"2\" is incorrect because the scenario requires: The correct answer is \"4\".",
+            "explanation": "**2** describes a different mechanism than this question tests. The right idea: The correct answer is \"4\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"16\" is incorrect because the scenario requires: The correct answer is \"4\".",
+            "explanation": "**16** describes a different mechanism than this question tests. The right idea: The correct answer is \"4\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"1,024\" is incorrect because the scenario requires: The correct answer is \"4\".",
+            "explanation": "**1,024** describes a different mechanism than this question tests. The right idea: The correct answer is \"4\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -803,19 +803,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config-if)#standby 1 priority 70\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 priority 150\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config-if)#standby 1 priority 70** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 priority 150\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config-if)#hsrp 1 priority 150\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 priority 150\".",
+            "explanation": "**Router(config-if)#hsrp 1 priority 150** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 priority 150\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config-if)#hsrp 1 priority 90\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 priority 150\".",
+            "explanation": "**Router(config-if)#hsrp 1 priority 90** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 priority 150\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -850,19 +850,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"255\" is incorrect because the scenario requires: The correct answer is \"4,096\".",
+            "explanation": "**255** describes a different mechanism than this question tests. The right idea: The correct answer is \"4,096\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"256\" is incorrect because the scenario requires: The correct answer is \"4,096\".",
+            "explanation": "**256** describes a different mechanism than this question tests. The right idea: The correct answer is \"4,096\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"1,024\" is incorrect because the scenario requires: The correct answer is \"4,096\".",
+            "explanation": "**1,024** describes a different mechanism than this question tests. The right idea: The correct answer is \"4,096\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -900,19 +900,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"HSRPv1\" is incorrect because the scenario requires: The correct answer is \"HSRPv2\".",
+            "explanation": "**HSRPv1** describes a different mechanism than this question tests. The right idea: The correct answer is \"HSRPv2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"GLBP\" is incorrect because the scenario requires: The correct answer is \"HSRPv2\".",
+            "explanation": "**GLBP** describes a different mechanism than this question tests. The right idea: The correct answer is \"HSRPv2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"VRRP\" is incorrect because the scenario requires: The correct answer is \"HSRPv2\".",
+            "explanation": "**VRRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"HSRPv2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -949,19 +949,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"It allows the protocol to effectively load-balance per packet.\" is incorrect because the scenario requires: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.\".",
+            "explanation": "**It allows the protocol to effectively load-balance per packet.** describes a different mechanism than this question tests. The right idea: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"It watches an upstream interface and fails over when the interface goes down.\" is incorrect because the scenario requires: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.\".",
+            "explanation": "**It watches an upstream interface and fails over when the interface goes down.** describes a different mechanism than this question tests. The right idea: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"It ignores the priorities of the routers and elects an active router by highest IP address.\" is incorrect because the scenario requires: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.\".",
+            "explanation": "**It ignores the priorities of the routers and elects an active router by highest IP address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -997,20 +997,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Configure version 2 for all HSRP groups.\" is incorrect because the scenario requires: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Configure version 2 for all HSRP groups.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Configure PPPoE on the router interfaces.\" is incorrect because the scenario requires: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Configure PPPoE on the router interfaces.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Configure all routers in the HSRP as active routers.\" is incorrect because the scenario requires: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Configure all routers in the HSRP as active routers.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -1044,19 +1044,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RouterA#show hsrp\" is incorrect because the scenario requires: The correct answer is \"RouterA#show standby\".",
+            "explanation": "**RouterA#show hsrp** does not satisfy what the question asks. The correct answer is \"RouterA#show standby\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RouterA#show ip standby\" is incorrect because the scenario requires: The correct answer is \"RouterA#show standby\".",
+            "explanation": "**RouterA#show ip standby** does not satisfy what the question asks. The correct answer is \"RouterA#show standby\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"RouterA#show ip hsrp\" is incorrect because the scenario requires: The correct answer is \"RouterA#show standby\".",
+            "explanation": "**RouterA#show ip hsrp** does not satisfy what the question asks. The correct answer is \"RouterA#show standby\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -1095,19 +1095,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The default priority is 150.\" is incorrect because the scenario requires: The correct answer is \"The HSRP group is not set for preemption.\".",
+            "explanation": "**The default priority is 150.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The HSRP group is not set for preemption.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The hold timer is set too high and needs to timeout.\" is incorrect because the scenario requires: The correct answer is \"The HSRP group is not set for preemption.\".",
+            "explanation": "**The hold timer is set too high and needs to timeout.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The HSRP group is not set for preemption.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router A’s IP address is too low.\" is incorrect because the scenario requires: The correct answer is \"The HSRP group is not set for preemption.\".",
+            "explanation": "**Router A’s IP address is too low.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The HSRP group is not set for preemption.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1143,19 +1143,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#standby 1 preemption\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 preempt\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#standby 1 preemption** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 preempt\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config-if)#standby 1 preemption\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 preempt\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config-if)#standby 1 preemption** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 preempt\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config-if)#hsrp 1 preempt\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#standby 1 preempt\".",
+            "explanation": "**Router(config-if)#hsrp 1 preempt** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 preempt\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1191,20 +1191,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#vrrp 1 10.1.2.3 gi 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#vrrp 1 ip 10.1.2.3\".",
+            "explanation": "**Router(config)#vrrp 1 10.1.2.3 gi 0/0** does not satisfy what the question asks. The correct answer is \"Router(config-if)#vrrp 1 ip 10.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config-if)#vrrp 1 10.1.2.3\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#vrrp 1 ip 10.1.2.3\".",
+            "explanation": "**Router(config-if)#vrrp 1 10.1.2.3** does not satisfy what the question asks. The correct answer is \"Router(config-if)#vrrp 1 ip 10.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#vrrp 1 ip 10.1.2.3\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp** does not satisfy what the question asks. The correct answer is \"Router(config-if)#vrrp 1 ip 10.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
         ],
@@ -1240,20 +1240,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
         ],
@@ -1287,19 +1287,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router#show ip hsrp\" is incorrect because the scenario requires: The correct answer is \"Router#debug standby\".",
+            "explanation": "**Router#show ip hsrp** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router#debug standby\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router#debug ip hsrp\" is incorrect because the scenario requires: The correct answer is \"Router#debug standby\".",
+            "explanation": "**Router#debug ip hsrp** does not satisfy what the question asks. The correct answer is \"Router#debug standby\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#debug ip standby\" is incorrect because the scenario requires: The correct answer is \"Router#debug standby\".",
+            "explanation": "**Router#debug ip standby** does not satisfy what the question asks. The correct answer is \"Router#debug standby\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -1336,19 +1336,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"The active virtual gateway will respond with a MAC address of the active router.\" is incorrect because the scenario requires: The correct answer is \"GLBP allows for per-host load balancing.\".",
+            "explanation": "**The active virtual gateway will respond with a MAC address of the active router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"GLBP allows for per-host load balancing.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"GLBP allows for per-subnet load balancing.\" is incorrect because the scenario requires: The correct answer is \"GLBP allows for per-host load balancing.\".",
+            "explanation": "**GLBP allows for per-subnet load balancing.** does not satisfy what the question asks. The correct answer is \"GLBP allows for per-host load balancing.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The virtual router is responsible for responding to tracking requests.\" is incorrect because the scenario requires: The correct answer is \"GLBP allows for per-host load balancing.\".",
+            "explanation": "**The virtual router is responsible for responding to tracking requests.** describes a different mechanism than this question tests. The right idea: The correct answer is \"GLBP allows for per-host load balancing.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1384,20 +1384,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"RouterA(config-if)#standby 1 timers 200 msec 700 msec\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**RouterA(config-if)#standby 1 timers 200 msec 700 msec** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"RouterA(config-if)#standby 1 timers 700 msec 200 msec\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**RouterA(config-if)#standby 1 timers 700 msec 200 msec** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"RouterA(config-if)#standby 1 timers msec 700 msec 200\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**RouterA(config-if)#standby 1 timers msec 700 msec 200** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
         ],
@@ -1433,19 +1433,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router A will become the active router.\" is incorrect because the scenario requires: The correct answer is \"Router C will become the active router.\".",
+            "explanation": "**Router A will become the active router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router C will become the active router.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router B will become the active router.\" is incorrect because the scenario requires: The correct answer is \"Router C will become the active router.\".",
+            "explanation": "**Router B will become the active router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router C will become the active router.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router D will become the active router.\" is incorrect because the scenario requires: The correct answer is \"Router C will become the active router.\".",
+            "explanation": "**Router D will become the active router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router C will become the active router.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

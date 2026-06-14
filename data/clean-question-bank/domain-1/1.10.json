@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"netstat\" is incorrect because the scenario requires: ipconfig /all displays full IPv4/IPv6 client parameters.",
+            "explanation": "**netstat** describes a different mechanism than this question tests. The right idea: ipconfig /all displays full IPv4/IPv6 client parameters.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"arp -a\" is incorrect because the scenario requires: ipconfig /all displays full IPv4/IPv6 client parameters.",
+            "explanation": "**arp -a** describes a different mechanism than this question tests. The right idea: ipconfig /all displays full IPv4/IPv6 client parameters.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"route print only\" is incorrect because the scenario requires: ipconfig /all displays full IPv4/IPv6 client parameters.",
+            "explanation": "**route print only** describes a different mechanism than this question tests. The right idea: ipconfig /all displays full IPv4/IPv6 client parameters.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"DNS server\" is incorrect because the scenario requires: Same-subnet works but off-subnet fails → check default gateway.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DNS server** describes a different mechanism than this question tests. The right idea: Same-subnet works but off-subnet fails → check default gateway.",
+            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Wrong VLAN on switch\" is incorrect because the scenario requires: Same-subnet works but off-subnet fails → check default gateway.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**Wrong VLAN on switch** describes a different mechanism than this question tests. The right idea: Same-subnet works but off-subnet fails → check default gateway.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"WPA3\" is incorrect because the scenario requires: Same-subnet works but off-subnet fails → check default gateway.",
+            "explanation": "**WPA3** describes a different mechanism than this question tests. The right idea: Same-subnet works but off-subnet fails → check default gateway.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Cable CRC errors\" is incorrect because the scenario requires: IP works but names fail — troubleshoot DNS settings or server.",
+            "explanation": "**Cable CRC errors** describes a different mechanism than this question tests. The right idea: IP works but names fail — troubleshoot DNS settings or server.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Missing subnet mask\" is incorrect because the scenario requires: IP works but names fail — troubleshoot DNS settings or server.",
+            "explanation": "**Missing subnet mask** describes a different mechanism than this question tests. The right idea: IP works but names fail — troubleshoot DNS settings or server.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"STP loop\" is incorrect because the scenario requires: IP works but names fail — troubleshoot DNS settings or server.",
+            "explanation": "**STP loop** describes a different mechanism than this question tests. The right idea: IP works but names fail — troubleshoot DNS settings or server.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"MAC address table\" is incorrect because the scenario requires: Traceroute reveals each router hop toward the destination.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "Routers forward packets using a **routing table** and IP prefixes, not a switch MAC/CAM table.",
+            "misconceptionTested": "Using switch/L2 forwarding behavior on a router question"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"DHCP lease time only\" is incorrect because the scenario requires: Traceroute reveals each router hop toward the destination.",
+            "explanation": "**DHCP lease time only** describes a different mechanism than this question tests. The right idea: Traceroute reveals each router hop toward the destination.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Wi‑Fi channel\" is incorrect because the scenario requires: Traceroute reveals each router hop toward the destination.",
+            "explanation": "**Wi‑Fi channel** describes a different mechanism than this question tests. The right idea: Traceroute reveals each router hop toward the destination.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -198,17 +198,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"OSPF neighbor table\" is incorrect because the scenario requires: 169.254.x.x means DHCP failed — verify DHCP service, relay, and VLAN.",
+            "explanation": "**OSPF neighbor table** describes a different mechanism than this question tests. The right idea: 169.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Fiber SM/MM type\" is incorrect because the scenario requires: 169.254.x.x means DHCP failed — verify DHCP service, relay, and VLAN.",
+            "explanation": "**Fiber SM/MM type** describes a different mechanism than this question tests. The right idea: 169.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"VTP domain\" is incorrect because the scenario requires: 169.254.x.x means DHCP failed — verify DHCP service, relay, and VLAN.",
+            "explanation": "**VTP domain** describes a different mechanism than this question tests. The right idea: 169.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -240,17 +240,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Hostname → random IP\" is incorrect because the scenario requires: Test gateway, then known public IP, then DNS name to isolate layer.",
+            "explanation": "**Hostname → random IP** describes a different mechanism than this question tests. The right idea: Test gateway, then known public IP, then DNS name to isolate layer.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Broadcast → multicast\" is incorrect because the scenario requires: Test gateway, then known public IP, then DNS name to isolate layer.",
+            "explanation": "**Broadcast → multicast** describes a different mechanism than this question tests. The right idea: Test gateway, then known public IP, then DNS name to isolate layer.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Loopback only\" is incorrect because the scenario requires: Test gateway, then known public IP, then DNS name to isolate layer.",
+            "explanation": "**Loopback only** describes a different mechanism than this question tests. The right idea: Test gateway, then known public IP, then DNS name to isolate layer.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -282,17 +282,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"show vlan brief\" is incorrect because the scenario requires: ip route displays routes and the default gateway.",
+            "explanation": "**show vlan brief** describes a different mechanism than this question tests. The right idea: ip route displays routes and the default gateway.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ifconfig only\" is incorrect because the scenario requires: ip route displays routes and the default gateway.",
+            "explanation": "**ifconfig only** describes a different mechanism than this question tests. The right idea: ip route displays routes and the default gateway.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"debug ip routing\" is incorrect because the scenario requires: ip route displays routes and the default gateway.",
+            "explanation": "**debug ip routing** describes a different mechanism than this question tests. The right idea: ip route displays routes and the default gateway.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           }
         ],
@@ -324,17 +324,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Correct DNS\" is incorrect because the scenario requires: Duplicate IPs cause ARP conflicts and flaky connectivity.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Correct DNS** describes a different mechanism than this question tests. The right idea: Duplicate IPs cause ARP conflicts and flaky connectivity.",
+            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Full-duplex on both ends\" is incorrect because the scenario requires: Duplicate IPs cause ARP conflicts and flaky connectivity.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Full-duplex on both ends** describes a different mechanism than this question tests. The right idea: Duplicate IPs cause ARP conflicts and flaky connectivity.",
+            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Valid DHCP lease\" is incorrect because the scenario requires: Duplicate IPs cause ARP conflicts and flaky connectivity.",
+            "explanation": "**Valid DHCP lease** describes a different mechanism than this question tests. The right idea: Duplicate IPs cause ARP conflicts and flaky connectivity.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],

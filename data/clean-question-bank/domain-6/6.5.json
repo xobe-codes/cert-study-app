@@ -31,19 +31,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"User interface layout\" is incorrect because the scenario requires: The correct answer is \"API reference\".",
+            "explanation": "**User interface layout** describes a different mechanism than this question tests. The right idea: The correct answer is \"API reference\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Source code of the device\" is incorrect because the scenario requires: The correct answer is \"API reference\".",
+            "explanation": "**Source code of the device** describes a different mechanism than this question tests. The right idea: The correct answer is \"API reference\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Data storage of the device\" is incorrect because the scenario requires: The correct answer is \"API reference\".",
+            "explanation": "**Data storage of the device** describes a different mechanism than this question tests. The right idea: The correct answer is \"API reference\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -82,19 +82,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"CLI\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "explanation": "**CLI** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Syslog\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "explanation": "**Syslog** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SSH\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "explanation": "**SSH** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -132,19 +132,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Syslog\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "explanation": "**Syslog** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"REST\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "explanation": "**REST** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SSH\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "explanation": "**SSH** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -183,19 +183,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"REST\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "explanation": "**REST** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SNMP\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "explanation": "**SNMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"YAML\" is incorrect because the scenario requires: The correct answer is \"NETCONF\".",
+            "explanation": "**YAML** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -234,19 +234,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"NETCONF\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "explanation": "**NETCONF** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SNMP\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "explanation": "**SNMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Syslog\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "explanation": "**Syslog** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -284,19 +284,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SNMP\" is incorrect because the scenario requires: The correct answer is \"HTTP\".",
+            "explanation": "**SNMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SNTP\" is incorrect because the scenario requires: The correct answer is \"HTTP\".",
+            "explanation": "**SNTP** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SOAP\" is incorrect because the scenario requires: The correct answer is \"HTTP\".",
+            "explanation": "**SOAP** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -336,19 +336,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Pass the username and password in every request.\" is incorrect because the scenario requires: The correct answer is \"Send a POST to the API for an authentication token.\".",
+            "explanation": "**Pass the username and password in every request.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Send a POST to the API for an authentication token.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Send a GET to the API for an auth token.\" is incorrect because the scenario requires: The correct answer is \"Send a POST to the API for an authentication token.\".",
+            "explanation": "**Send a GET to the API for an auth token.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Send a POST to the API for an authentication token.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Create a public private key pair for the Cisco DNA Center appliance.\" is incorrect because the scenario requires: The correct answer is \"Send a POST to the API for an authentication token.\".",
+            "explanation": "**Create a public private key pair for the Cisco DNA Center appliance.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Send a POST to the API for an authentication token.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -384,19 +384,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Memory cleanup\" is incorrect because the scenario requires: The correct answer is \"Data actions\".",
+            "explanation": "**Memory cleanup** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data actions\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Replacement for REST-based APIs\" is incorrect because the scenario requires: The correct answer is \"Data actions\".",
+            "explanation": "**Replacement for REST-based APIs** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data actions\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Data encoding\" is incorrect because the scenario requires: The correct answer is \"Data actions\".",
+            "explanation": "**Data encoding** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data actions\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -434,19 +434,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"AD integrated\" is incorrect because the scenario requires: The correct answer is \"Basic\".",
+            "explanation": "**AD integrated** describes a different mechanism than this question tests. The right idea: The correct answer is \"Basic\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SSL\" is incorrect because the scenario requires: The correct answer is \"Basic\".",
+            "explanation": "**SSL** describes a different mechanism than this question tests. The right idea: The correct answer is \"Basic\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Pass-through\" is incorrect because the scenario requires: The correct answer is \"Basic\".",
+            "explanation": "**Pass-through** describes a different mechanism than this question tests. The right idea: The correct answer is \"Basic\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -483,19 +483,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Add it as a variable named X-Auth-Token in the script.\" is incorrect because the scenario requires: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.\".",
+            "explanation": "**Add it as a variable named X-Auth-Token in the script.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Pass the token in the URI of subsequent requests.\" is incorrect because the scenario requires: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.\".",
+            "explanation": "**Pass the token in the URI of subsequent requests.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Perform a POST for the authentication token within 10 seconds of the subsequent request.\" is incorrect because the scenario requires: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.\".",
+            "explanation": "**Perform a POST for the authentication token within 10 seconds of the subsequent request.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -536,19 +536,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SSL\" is incorrect because the scenario requires: The correct answer is \"Base64\".",
+            "explanation": "**SSL** describes a different mechanism than this question tests. The right idea: The correct answer is \"Base64\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"AAA\" is incorrect because the scenario requires: The correct answer is \"Base64\".",
+            "explanation": "**AAA** describes a different mechanism than this question tests. The right idea: The correct answer is \"Base64\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Basic\" is incorrect because the scenario requires: The correct answer is \"Base64\".",
+            "explanation": "**Basic** describes a different mechanism than this question tests. The right idea: The correct answer is \"Base64\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -587,19 +587,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"OpenFlow\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "explanation": "**OpenFlow** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SNMP\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "explanation": "**SNMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"REST-based API\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "explanation": "**REST-based API** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -638,19 +638,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"application/json\" is incorrect because the scenario requires: The correct answer is \"application/yang-data+json\".",
+            "explanation": "**application/json** does not satisfy what the question asks. The correct answer is \"application/yang-data+json\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"data/json\" is incorrect because the scenario requires: The correct answer is \"application/yang-data+json\".",
+            "explanation": "**data/json** describes a different mechanism than this question tests. The right idea: The correct answer is \"application/yang-data+json\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"data/yaml\" is incorrect because the scenario requires: The correct answer is \"application/yang-data+json\".",
+            "explanation": "**data/yaml** describes a different mechanism than this question tests. The right idea: The correct answer is \"application/yang-data+json\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -689,19 +689,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Format your response correctly.\" is incorrect because the scenario requires: The correct answer is \"Restart the REST-based service.\".",
+            "explanation": "**Format your response correctly.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Restart the REST-based service.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Authenticate to the device first.\" is incorrect because the scenario requires: The correct answer is \"Restart the REST-based service.\".",
+            "explanation": "**Authenticate to the device first.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Restart the REST-based service.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Nothing; this code means OK.\" is incorrect because the scenario requires: The correct answer is \"Restart the REST-based service.\".",
+            "explanation": "**Nothing; this code means OK.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Restart the REST-based service.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -740,19 +740,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Northbound interface\" is incorrect because the scenario requires: The correct answer is \"Southbound interface\".",
+            "explanation": "**Northbound interface** describes a different mechanism than this question tests. The right idea: The correct answer is \"Southbound interface\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Eastbound interface\" is incorrect because the scenario requires: The correct answer is \"Southbound interface\".",
+            "explanation": "**Eastbound interface** describes a different mechanism than this question tests. The right idea: The correct answer is \"Southbound interface\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Westbound interface\" is incorrect because the scenario requires: The correct answer is \"Southbound interface\".",
+            "explanation": "**Westbound interface** describes a different mechanism than this question tests. The right idea: The correct answer is \"Southbound interface\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -788,19 +788,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"HTTP body\" is incorrect because the scenario requires: The correct answer is \"HTTP header\".",
+            "explanation": "**HTTP body** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP header\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Script variable\" is incorrect because the scenario requires: The correct answer is \"HTTP header\".",
+            "explanation": "**Script variable** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP header\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Script data object\" is incorrect because the scenario requires: The correct answer is \"HTTP header\".",
+            "explanation": "**Script data object** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP header\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -838,19 +838,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"GET\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "explanation": "**GET** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"PATCH\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "explanation": "**PATCH** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"DELETE\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "explanation": "**DELETE** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -886,19 +886,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Backslash\" is incorrect because the scenario requires: The correct answer is \"Question mark\".",
+            "explanation": "**Backslash** describes a different mechanism than this question tests. The right idea: The correct answer is \"Question mark\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Forward slash\" is incorrect because the scenario requires: The correct answer is \"Question mark\".",
+            "explanation": "**Forward slash** describes a different mechanism than this question tests. The right idea: The correct answer is \"Question mark\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Ampersand\" is incorrect because the scenario requires: The correct answer is \"Question mark\".",
+            "explanation": "**Ampersand** describes a different mechanism than this question tests. The right idea: The correct answer is \"Question mark\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -934,19 +934,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"GET\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "explanation": "**GET** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"UPDATE\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "explanation": "**UPDATE** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"PUT\" is incorrect because the scenario requires: The correct answer is \"POST\".",
+            "explanation": "**PUT** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -983,24 +983,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The command is missing parameters.\" is incorrect because the scenario requires: The correct answer is \"The command has timed out.\".",
+            "explanation": "**The command is missing parameters.** does not satisfy what the question asks. The correct answer is \"The command has timed out.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The command is restricted.\" is incorrect because the scenario requires: The correct answer is \"The command has timed out.\".",
+            "explanation": "**The command is restricted.** does not satisfy what the question asks. The correct answer is \"The command has timed out.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The service is down.\" is incorrect because the scenario requires: The correct answer is \"The command has timed out.\".",
+            "explanation": "**The service is down.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The command has timed out.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
       }
     }
   ]

@@ -27,18 +27,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The /24 via R2\" is incorrect because the scenario requires: 10.1.1.10 falls inside both, but /26 is the longer (more specific) prefix, so longest prefix match selects it.",
+            "explanation": "**The /24 via R2** describes a different mechanism than this question tests. The right idea: 10.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Whichever has the lower metric\" is incorrect because the scenario requires: 10.1.1.10 falls inside both, but /26 is the longer (more specific) prefix, so longest prefix match selects it.",
+            "explanation": "**Whichever has the lower metric** describes a different mechanism than this question tests. The right idea: 10.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Both, load-balanced\" is incorrect because the scenario requires: 10.1.1.10 falls inside both, but /26 is the longer (more specific) prefix, so longest prefix match selects it.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Both, load-balanced** describes a different mechanism than this question tests. The right idea: 10.",
+            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Metric → AD → longest prefix\" is incorrect because the scenario requires: Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a giv…",
+            "explanation": "**Metric → AD → longest prefix** describes a different mechanism than this question tests. The right idea: Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a given prefix.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"AD → metric → longest prefix\" is incorrect because the scenario requires: Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a giv…",
+            "explanation": "**AD → metric → longest prefix** describes a different mechanism than this question tests. The right idea: Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a given prefix.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Longest prefix → metric → AD\" is incorrect because the scenario requires: Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a giv…",
+            "explanation": "**Longest prefix → metric → AD** does not satisfy what the question asks. Longest prefix match decides which route forwards the packet; AD then metric decide which routes get installed for a given prefix.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"OSPF, lower metric\" is incorrect because the scenario requires: For the same prefix from different sources, the lower administrative distance wins. Static (1) beats OSPF (110).",
+            "explanation": "**OSPF, lower metric** describes a different mechanism than this question tests. The right idea: For the same prefix from different sources, the lower administrative distance wins.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Both\" is incorrect because the scenario requires: For the same prefix from different sources, the lower administrative distance wins. Static (1) beats OSPF (110).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Both** describes a different mechanism than this question tests. The right idea: For the same prefix from different sources, the lower administrative distance wins.",
+            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Neither until the tie is broken by metric\" is incorrect because the scenario requires: For the same prefix from different sources, the lower administrative distance wins. Static (1) beats OSPF (110).",
+            "explanation": "**Neither until the tie is broken by metric** describes a different mechanism than this question tests. The right idea: For the same prefix from different sources, the lower administrative distance wins.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"1\" is incorrect because the scenario requires: Connected routes have AD 0 — the most trusted source. Static is 1, EIGRP 90, OSPF 110, RIP 120.",
+            "explanation": "**1** describes a different mechanism than this question tests. The right idea: Connected routes have AD 0 — the most trusted source.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"110\" is incorrect because the scenario requires: Connected routes have AD 0 — the most trusted source. Static is 1, EIGRP 90, OSPF 110, RIP 120.",
+            "explanation": "**110** describes a different mechanism than this question tests. The right idea: Connected routes have AD 0 — the most trusted source.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"120\" is incorrect because the scenario requires: Connected routes have AD 0 — the most trusted source. Static is 1, EIGRP 90, OSPF 110, RIP 120.",
+            "explanation": "**120** describes a different mechanism than this question tests. The right idea: Connected routes have AD 0 — the most trusted source.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -197,17 +197,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"It becomes the preferred route\" is incorrect because the scenario requires: AD 255 means the source is considered untrustworthy; the route is not installed at all.",
+            "explanation": "**It becomes the preferred route** describes a different mechanism than this question tests. The right idea: AD 255 means the source is considered untrustworthy; the route is not installed at all.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"It is installed only if no metric exists\" is incorrect because the scenario requires: AD 255 means the source is considered untrustworthy; the route is not installed at all.",
+            "explanation": "**It is installed only if no metric exists** describes a different mechanism than this question tests. The right idea: AD 255 means the source is considered untrustworthy; the route is not installed at all.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"It is installed but never used\" is incorrect because the scenario requires: AD 255 means the source is considered untrustworthy; the route is not installed at all.",
+            "explanation": "**It is installed but never used** describes a different mechanism than this question tests. The right idea: AD 255 means the source is considered untrustworthy; the route is not installed at all.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -238,8 +238,8 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"True\" is incorrect because the scenario requires: False. Metrics are only comparable within the same routing protocol. Across protocols, administrative distance decides.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "This statement is **True**, but the tested fact is: False.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -270,17 +270,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Cost 20\" is incorrect because the scenario requires: Within one protocol, the lower metric (OSPF cost 10) wins.",
+            "explanation": "**Cost 20** describes a different mechanism than this question tests. The right idea: Within one protocol, the lower metric (OSPF cost 10) wins.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Both (equal-cost only if equal)\" is incorrect because the scenario requires: Within one protocol, the lower metric (OSPF cost 10) wins.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "The CAM table stores **source** MAC-to-port mappings. Destination MACs are not learned as table entries on arrival.",
+            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Neither — AD must differ\" is incorrect because the scenario requires: Within one protocol, the lower metric (OSPF cost 10) wins.",
+            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -313,17 +313,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The default route via R1\" is incorrect because the scenario requires: The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
+            "explanation": "**The default route via R1** describes a different mechanism than this question tests. The right idea: The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Whichever has lower AD\" is incorrect because the scenario requires: The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
+            "explanation": "**Whichever has lower AD** describes a different mechanism than this question tests. The right idea: The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"It is dropped\" is incorrect because the scenario requires: The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
+            "explanation": "**It is dropped** describes a different mechanism than this question tests. The right idea: The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -355,17 +355,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Floods it out all interfaces\" is incorrect because the scenario requires: With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
+            "explanation": "**Floods it out all interfaces** describes a different mechanism than this question tests. The right idea: With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Sends it to the lowest-AD route\" is incorrect because the scenario requires: With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
+            "explanation": "**Sends it to the lowest-AD route** describes a different mechanism than this question tests. The right idea: With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Queues it until a route appears\" is incorrect because the scenario requires: With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
+            "explanation": "**Queues it until a route appears** describes a different mechanism than this question tests. The right idea: With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -398,17 +398,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Metric and AD\" is incorrect because the scenario requires: The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
+            "explanation": "**Metric and AD** describes a different mechanism than this question tests. The right idea: The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Prefix and metric\" is incorrect because the scenario requires: The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
+            "explanation": "**Prefix and metric** describes a different mechanism than this question tests. The right idea: The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Cost and hop count\" is incorrect because the scenario requires: The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
+            "explanation": "**Cost and hop count** describes a different mechanism than this question tests. The right idea: The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -440,17 +440,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"OSPF metric is too high\" is incorrect because the scenario requires: A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. `... 10.1.1.1 130`) …",
+            "explanation": "**OSPF metric is too high** describes a different mechanism than this question tests. The right idea: A plain static route has AD 1, beating OSPF’s 110, so it is always installed.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The mask is wrong\" is incorrect because the scenario requires: A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. `... 10.1.1.1 130`) …",
+            "explanation": "**The mask is wrong** describes a different mechanism than this question tests. The right idea: A plain static route has AD 1, beating OSPF’s 110, so it is always installed.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Default routes override static\" is incorrect because the scenario requires: A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. `... 10.1.1.1 130`) …",
+            "explanation": "**Default routes override static** describes a different mechanism than this question tests. The right idea: A plain static route has AD 1, beating OSPF’s 110, so it is always installed.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -482,17 +482,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"OSPF, static, connected\" is incorrect because the scenario requires: By AD: connected 0 (most trusted), static 1, OSPF 110.",
+            "explanation": "**OSPF, static, connected** describes a different mechanism than this question tests. The right idea: By AD: connected 0 (most trusted), static 1, OSPF 110.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Static, connected, OSPF\" is incorrect because the scenario requires: By AD: connected 0 (most trusted), static 1, OSPF 110.",
+            "explanation": "**Static, connected, OSPF** describes a different mechanism than this question tests. The right idea: By AD: connected 0 (most trusted), static 1, OSPF 110.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Connected, OSPF, static\" is incorrect because the scenario requires: By AD: connected 0 (most trusted), static 1, OSPF 110.",
+            "explanation": "**Connected, OSPF, static** describes a different mechanism than this question tests. The right idea: By AD: connected 0 (most trusted), static 1, OSPF 110.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -527,19 +527,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"ICMP populates the routing table.\" is incorrect because the scenario requires: The correct answer is \"ICMP is used when routes are not reachable.\".",
+            "explanation": "**ICMP populates the routing table.** describes a different mechanism than this question tests. The right idea: The correct answer is \"ICMP is used when routes are not reachable.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ICMP maintains the routing table.\" is incorrect because the scenario requires: The correct answer is \"ICMP is used when routes are not reachable.\".",
+            "explanation": "**ICMP maintains the routing table.** describes a different mechanism than this question tests. The right idea: The correct answer is \"ICMP is used when routes are not reachable.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ICMP performs continuous diagnosis of the network paths.\" is incorrect because the scenario requires: The correct answer is \"ICMP is used when routes are not reachable.\".",
+            "explanation": "**ICMP performs continuous diagnosis of the network paths.** describes a different mechanism than this question tests. The right idea: The correct answer is \"ICMP is used when routes are not reachable.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -577,19 +577,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The route with the lowest cost is selected.\" is incorrect because the scenario requires: The correct answer is \"The route with the longest matching prefix is selected.\".",
+            "explanation": "**The route with the lowest cost is selected.** does not satisfy what the question asks. The correct answer is \"The route with the longest matching prefix is selected.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The route with the highest AD is selected.\" is incorrect because the scenario requires: The correct answer is \"The route with the longest matching prefix is selected.\".",
+            "explanation": "**The route with the highest AD is selected.** does not satisfy what the question asks. The correct answer is \"The route with the longest matching prefix is selected.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The route with the lowest AD is selected.\" is incorrect because the scenario requires: The correct answer is \"The route with the longest matching prefix is selected.\".",
+            "explanation": "**The route with the lowest AD is selected.** does not satisfy what the question asks. The correct answer is \"The route with the longest matching prefix is selected.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -629,19 +629,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"The route with the highest AD\" is incorrect because the scenario requires: The correct answer is \"The route with the lowest AD\".",
+            "explanation": "**The route with the highest AD** does not satisfy what the question asks. The correct answer is \"The route with the lowest AD\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The route with the lowest metric\" is incorrect because the scenario requires: The correct answer is \"The route with the lowest AD\".",
+            "explanation": "**The route with the lowest metric** does not satisfy what the question asks. The correct answer is \"The route with the lowest AD\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The route being populated from RIP\" is incorrect because the scenario requires: The correct answer is \"The route with the lowest AD\".",
+            "explanation": "**The route being populated from RIP** describes a different mechanism than this question tests. The right idea: The correct answer is \"The route with the lowest AD\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -678,19 +678,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The host route is the route a packet will take if no other route matches in the routing table.\" is incorrect because the scenario requires: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\".",
+            "explanation": "**The host route is the route a packet will take if no other route matches in the routing table.** describes a different mechanism than this question tests. The right idea: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The routing table creates host routers for the destination hosts it discovers.\" is incorrect because the scenario requires: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The routing table creates host routers for the destination hosts it discovers.** describes a different mechanism than this question tests. The right idea: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The host route is populated from HSRP.\" is incorrect because the scenario requires: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.\".",
+            "explanation": "**The host route is populated from HSRP.** describes a different mechanism than this question tests. The right idea: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -729,19 +729,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Prefix and network mask\" is incorrect because the scenario requires: The correct answer is \"Routing protocol code\".",
+            "explanation": "**Prefix and network mask** describes a different mechanism than this question tests. The right idea: The correct answer is \"Routing protocol code\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Metric\" is incorrect because the scenario requires: The correct answer is \"Routing protocol code\".",
+            "explanation": "**Metric** describes a different mechanism than this question tests. The right idea: The correct answer is \"Routing protocol code\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Next hop\" is incorrect because the scenario requires: The correct answer is \"Routing protocol code\".",
+            "explanation": "**Next hop** describes a different mechanism than this question tests. The right idea: The correct answer is \"Routing protocol code\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -777,20 +777,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Source IP\" is incorrect because the scenario requires: The correct answer is \"Destination IP address\".",
+            "explanation": "**Source IP** describes a different mechanism than this question tests. The right idea: The correct answer is \"Destination IP address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"TTL\" is incorrect because the scenario requires: The correct answer is \"Destination IP address\".",
+            "explanation": "**TTL** describes a different mechanism than this question tests. The right idea: The correct answer is \"Destination IP address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Destination MAC address\" is incorrect because the scenario requires: The correct answer is \"Destination IP address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Destination MAC address** does not satisfy what the question asks. The correct answer is \"Destination IP address\".",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           }
         ],
@@ -825,19 +825,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Link-state routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**Link-state routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Distance-vector routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**Distance-vector routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Dynamic routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**Dynamic routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -873,20 +873,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"The subnet mask is used in routing to determine the destination network.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is used by the host to determine the destination network.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The subnet mask is used in routing to determine the destination network.** does not satisfy what the question asks. The correct answer is \"The subnet mask is used by the host to determine the destination network.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The router uses its subnet mask when routing a packet.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is used by the host to determine the destination network.\".",
+            "explanation": "**The router uses its subnet mask when routing a packet.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The subnet mask is used by the host to determine the destination network.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.\" is incorrect because the scenario requires: The correct answer is \"The subnet mask is used by the host to determine the destination network.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.** does not satisfy what the question asks. The correct answer is \"The subnet mask is used by the host to determine the destination network.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           }
         ],
@@ -924,19 +924,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"IGMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "explanation": "**IGMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RARP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "explanation": "**RARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ICMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "explanation": "**ICMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -972,20 +972,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The destination IP address is changed to the router’s IP address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the router’s MAC address.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The destination MAC address is changed to the destination host’s MAC address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the router’s MAC address.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The source IP address is changed to the router’s IP address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the router’s MAC address.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           }
         ],
@@ -1020,19 +1020,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The destination IP address is changed to the original destination.\" is incorrect because the scenario requires: The correct answer is \"The packet’s TTL is decremented.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The destination IP address is changed to the original destination.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The packet’s TTL is decremented.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The source MAC address is changed to the original source MAC address.\" is incorrect because the scenario requires: The correct answer is \"The packet’s TTL is decremented.\".",
+            "explanation": "**The source MAC address is changed to the original source MAC address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The packet’s TTL is decremented.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"All of the above.\" is incorrect because the scenario requires: The correct answer is \"The packet’s TTL is decremented.\".",
+            "explanation": "**All of the above.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The packet’s TTL is decremented.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1069,20 +1069,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The destination IP address is changed to the router IP address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the destination host’s MAC address.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The destination MAC address is changed to the router’s MAC address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the destination host’s MAC address.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The source IP address is changed to the router’s IP address.\" is incorrect because the scenario requires: The correct answer is \"The destination MAC address is changed to the destination host’s MAC address.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           }
         ],
@@ -1120,19 +1120,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The host compares the IP address to its internal routing table.\" is incorrect because the scenario requires: The correct answer is \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result …",
+            "explanation": "**The host compares the IP address to its internal routing table.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The host performs ANDing on the destination subnet mask and the destination IP address, comparing the result to its own network address.\" is incorrect because the scenario requires: The correct answer is \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result …",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The host performs ANDing on the destination subnet mask and the destination IP address, comparing the result to its own network address.** does not satisfy what the question asks. The correct answer is \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The IP address is verified to be local to its network via ICMP.\" is incorrect because the scenario requires: The correct answer is \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result …",
+            "explanation": "**The IP address is verified to be local to its network via ICMP.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The host performs ANDing on its subnet mask and the destination IP address, comparing the result to its own network address.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1167,19 +1167,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Process switching\" is incorrect because the scenario requires: The correct answer is \"Cisco Express Forwarding\".",
+            "explanation": "**Process switching** describes a different mechanism than this question tests. The right idea: The correct answer is \"Cisco Express Forwarding\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Fast switching\" is incorrect because the scenario requires: The correct answer is \"Cisco Express Forwarding\".",
+            "explanation": "**Fast switching** describes a different mechanism than this question tests. The right idea: The correct answer is \"Cisco Express Forwarding\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Intelligent packet forwarding\" is incorrect because the scenario requires: The correct answer is \"Cisco Express Forwarding\".",
+            "explanation": "**Intelligent packet forwarding** describes a different mechanism than this question tests. The right idea: The correct answer is \"Cisco Express Forwarding\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1215,19 +1215,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"IP routing\" is incorrect because the scenario requires: The correct answer is \"Frame rewrite\".",
+            "explanation": "**IP routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Frame rewrite\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Packet hopping\" is incorrect because the scenario requires: The correct answer is \"Frame rewrite\".",
+            "explanation": "**Packet hopping** describes a different mechanism than this question tests. The right idea: The correct answer is \"Frame rewrite\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Packet switching\" is incorrect because the scenario requires: The correct answer is \"Frame rewrite\".",
+            "explanation": "**Packet switching** describes a different mechanism than this question tests. The right idea: The correct answer is \"Frame rewrite\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1264,19 +1264,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The router’s MAC address\" is incorrect because the scenario requires: The correct answer is \"The MAC address, in the form of a broadcast\".",
+            "explanation": "**The router’s MAC address** describes a different mechanism than this question tests. The right idea: The correct answer is \"The MAC address, in the form of a broadcast\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The host’s MAC address\" is incorrect because the scenario requires: The correct answer is \"The MAC address, in the form of a broadcast\".",
+            "explanation": "**The host’s MAC address** describes a different mechanism than this question tests. The right idea: The correct answer is \"The MAC address, in the form of a broadcast\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The MAC address, in the form of a multicast\" is incorrect because the scenario requires: The correct answer is \"The MAC address, in the form of a broadcast\".",
+            "explanation": "**The MAC address, in the form of a multicast** does not satisfy what the question asks. The correct answer is \"The MAC address, in the form of a broadcast\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1312,19 +1312,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"IP multicasting\" is incorrect because the scenario requires: The correct answer is \"ARP cache\".",
+            "explanation": "**IP multicasting** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP cache\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Frame casting\" is incorrect because the scenario requires: The correct answer is \"ARP cache\".",
+            "explanation": "**Frame casting** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP cache\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"IP cache\" is incorrect because the scenario requires: The correct answer is \"ARP cache\".",
+            "explanation": "**IP cache** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP cache\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1360,19 +1360,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The router accepts all incoming frames regardless of their destination MAC address.\" is incorrect because the scenario requires: The correct answer is \"The router decapsulates the packet and inspects the destination IP address.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The router accepts all incoming frames regardless of their destination MAC address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The router decapsulates the packet and inspects the destination IP address.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Routers do not need to decapsulate packets to inspect the destination IP address.\" is incorrect because the scenario requires: The correct answer is \"The router decapsulates the packet and inspects the destination IP address.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Routers do not need to decapsulate packets to inspect the destination IP address.** contradicts the expected behavior. The correct answer is \"The router decapsulates the packet and inspects the destination IP address.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Routers make routing decisions first by examining the source MAC address.\" is incorrect because the scenario requires: The correct answer is \"The router decapsulates the packet and inspects the destination IP address.\".",
+            "explanation": "**Routers make routing decisions first by examining the source MAC address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The router decapsulates the packet and inspects the destination IP address.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1408,19 +1408,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router#show arp\" is incorrect because the scenario requires: The correct answer is \"Router#show ip arp\".",
+            "explanation": "**Router#show arp** does not satisfy what the question asks. The correct answer is \"Router#show ip arp\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router#show arp table\" is incorrect because the scenario requires: The correct answer is \"Router#show ip arp\".",
+            "explanation": "**Router#show arp table** does not satisfy what the question asks. The correct answer is \"Router#show ip arp\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router#show arp cache\" is incorrect because the scenario requires: The correct answer is \"Router#show ip arp\".",
+            "explanation": "**Router#show arp cache** does not satisfy what the question asks. The correct answer is \"Router#show ip arp\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -1457,19 +1457,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"180 seconds\" is incorrect because the scenario requires: The correct answer is \"240 seconds\".",
+            "explanation": "**180 seconds** describes a different mechanism than this question tests. The right idea: The correct answer is \"240 seconds\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"300 seconds\" is incorrect because the scenario requires: The correct answer is \"240 seconds\".",
+            "explanation": "**300 seconds** describes a different mechanism than this question tests. The right idea: The correct answer is \"240 seconds\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"600 seconds\" is incorrect because the scenario requires: The correct answer is \"240 seconds\".",
+            "explanation": "**600 seconds** describes a different mechanism than this question tests. The right idea: The correct answer is \"240 seconds\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1506,20 +1506,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"As a packet travels through the routers, the TTL of the packet will increase by one.\" is incorrect because the scenario requires: The correct answer is \"When a route to the destination network is found, the router will attach the destination MAC addr…",
+            "explanation": "**As a packet travels through the routers, the TTL of the packet will increase by one.** describes a different mechanism than this question tests. The right idea: The correct answer is \"When a route to the destination network is found, the router will attach the destination MAC address for the next hop to the packet.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"When a packet travels through the router, the transport information will be checked for the destination network.\" is incorrect because the scenario requires: The correct answer is \"When a route to the destination network is found, the router will attach the destination MAC addr…",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"When a route to the destination network is found, the router will attach the destination IP address for the next hop to the packet.\" is incorrect because the scenario requires: The correct answer is \"When a route to the destination network is found, the router will attach the destination MAC addr…",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           }
         ],
@@ -1555,19 +1555,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"IGMP\" is incorrect because the scenario requires: The correct answer is \"ICMP\".",
+            "explanation": "**IGMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ICMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RARP\" is incorrect because the scenario requires: The correct answer is \"ICMP\".",
+            "explanation": "**RARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ICMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ARP\" is incorrect because the scenario requires: The correct answer is \"ICMP\".",
+            "explanation": "**ARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ICMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1603,19 +1603,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The router will discard the packet without notification.\" is incorrect because the scenario requires: The correct answer is \"The router will send back a destination unreachable message.\".",
+            "explanation": "**The router will discard the packet without notification.** does not satisfy what the question asks. The correct answer is \"The router will send back a destination unreachable message.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The router will change the TTL of the packet to 0.\" is incorrect because the scenario requires: The correct answer is \"The router will send back a destination unreachable message.\".",
+            "explanation": "**The router will change the TTL of the packet to 0.** does not satisfy what the question asks. The correct answer is \"The router will send back a destination unreachable message.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The router will send the packet back to the originating host.\" is incorrect because the scenario requires: The correct answer is \"The router will send back a destination unreachable message.\".",
+            "explanation": "**The router will send the packet back to the originating host.** does not satisfy what the question asks. The correct answer is \"The router will send back a destination unreachable message.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1650,19 +1650,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Packets are routed out one interface but come back on a different interface.\" is incorrect because the scenario requires: The correct answer is \"Packets are transmitted within a series of routers and never reach the destination.\".",
+            "explanation": "**Packets are routed out one interface but come back on a different interface.** does not satisfy what the question asks. The correct answer is \"Packets are transmitted within a series of routers and never reach the destination.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Packets reach the expiry TTL before reaching the destination network.\" is incorrect because the scenario requires: The correct answer is \"Packets are transmitted within a series of routers and never reach the destination.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Packets reach the expiry TTL before reaching the destination network.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Packets are transmitted within a series of routers and never reach the destination.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Packets are routed via an inefficient path.\" is incorrect because the scenario requires: The correct answer is \"Packets are transmitted within a series of routers and never reach the destination.\".",
+            "explanation": "**Packets are routed via an inefficient path.** does not satisfy what the question asks. The correct answer is \"Packets are transmitted within a series of routers and never reach the destination.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1697,19 +1697,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Flash\" is incorrect because the scenario requires: The correct answer is \"RAM\".",
+            "explanation": "**Flash** describes a different mechanism than this question tests. The right idea: The correct answer is \"RAM\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Startup configuration\" is incorrect because the scenario requires: The correct answer is \"RAM\".",
+            "explanation": "**Startup configuration** describes a different mechanism than this question tests. The right idea: The correct answer is \"RAM\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Running configuration\" is incorrect because the scenario requires: The correct answer is \"RAM\".",
+            "explanation": "**Running configuration** describes a different mechanism than this question tests. The right idea: The correct answer is \"RAM\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1746,19 +1746,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router#show cef\" is incorrect because the scenario requires: The correct answer is \"Router#show ip cef\".",
+            "explanation": "**Router#show cef** does not satisfy what the question asks. The correct answer is \"Router#show ip cef\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router#show cef nop\" is incorrect because the scenario requires: The correct answer is \"Router#show ip cef\".",
+            "explanation": "**Router#show cef nop** does not satisfy what the question asks. The correct answer is \"Router#show ip cef\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#show cef route\" is incorrect because the scenario requires: The correct answer is \"Router#show ip cef\".",
+            "explanation": "**Router#show cef route** does not satisfy what the question asks. The correct answer is \"Router#show ip cef\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -1794,19 +1794,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Destination IP address\" is incorrect because the scenario requires: The correct answer is \"Destination MAC address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Source IP address\" is incorrect because the scenario requires: The correct answer is \"Destination MAC address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Internal routes\" is incorrect because the scenario requires: The correct answer is \"Destination MAC address\".",
+            "explanation": "**Internal routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Destination MAC address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1842,19 +1842,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Flood the packet to all active interfaces\" is incorrect because the scenario requires: The correct answer is \"Drop the packet\".",
+            "explanation": "**Flood the packet to all active interfaces** describes a different mechanism than this question tests. The right idea: The correct answer is \"Drop the packet\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Multicast the packet to other routers\" is incorrect because the scenario requires: The correct answer is \"Drop the packet\".",
+            "explanation": "**Multicast the packet to other routers** describes a different mechanism than this question tests. The right idea: The correct answer is \"Drop the packet\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Send the original packet back to the source\" is incorrect because the scenario requires: The correct answer is \"Drop the packet\".",
+            "explanation": "**Send the original packet back to the source** describes a different mechanism than this question tests. The right idea: The correct answer is \"Drop the packet\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1891,19 +1891,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Default routing\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "explanation": "**Default routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Connected routes\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Dynamic routes\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "explanation": "**Dynamic routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Connected routes\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Static routes\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "explanation": "**Static routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Connected routes\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1940,19 +1940,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#ip route 0.0.0.0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "explanation": "**Router(config)#ip route 0.0.0.0/0 s0/0** does not satisfy what the question asks. The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config)#ipv6 route 0.0.0.0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "explanation": "**Router(config)#ipv6 route 0.0.0.0/0 s0/0** does not satisfy what the question asks. The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config)#ipv6 unicast-route ::0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "explanation": "**Router(config)#ipv6 unicast-route ::0/0 s0/0** does not satisfy what the question asks. The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1991,19 +1991,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RIPng\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "explanation": "**RIPng** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"OSPFv3\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "explanation": "**OSPFv3** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"EIGRPv6\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "explanation": "**EIGRPv6** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -2040,19 +2040,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router#show route\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
+            "explanation": "**Router#show route** does not satisfy what the question asks. The correct answer is \"Router#show ipv6 route\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router#show ip route\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
+            "explanation": "**Router#show ip route** does not satisfy what the question asks. The correct answer is \"Router#show ipv6 route\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#show route ipv6\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
+            "explanation": "**Router#show route ipv6** does not satisfy what the question asks. The correct answer is \"Router#show ipv6 route\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -2090,19 +2090,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The destination IP address is replaced with the default gateway when the destination is remote.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The destination IP address is replaced with the default gateway when the destination is remote.** does not satisfy what the question asks. The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The host sends the default gateway packets that are deemed remote via a broadcast.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "explanation": "**The host sends the default gateway packets that are deemed remote via a broadcast.** does not satisfy what the question asks. The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The host creates a dedicated connection with the default gateway for remote traffic.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "explanation": "**The host creates a dedicated connection with the default gateway for remote traffic.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -2138,19 +2138,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Router#show route\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "explanation": "**Router#show route** does not satisfy what the question asks. The correct answer is \"Router#show ip route\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router#show route table\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "explanation": "**Router#show route table** does not satisfy what the question asks. The correct answer is \"Router#show ip route\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#show routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
+            "explanation": "**Router#show routes** does not satisfy what the question asks. The correct answer is \"Router#show ip route\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -2187,19 +2187,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"IGMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "explanation": "**IGMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RARP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "explanation": "**RARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ICMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "explanation": "**ICMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -2237,19 +2237,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SNMP traps\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "explanation": "**SNMP traps** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ping\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Notifications\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "explanation": "**Notifications** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ping\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ARP\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "explanation": "**ARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ping\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -2285,19 +2285,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The distant router is not responding.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "explanation": "**The distant router is not responding.** contradicts the expected behavior. The correct answer is \"The distant router is responding.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The distant router has a high response time.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "explanation": "**The distant router has a high response time.** does not satisfy what the question asks. The correct answer is \"The distant router is responding.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The distant router has a low response time.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "explanation": "**The distant router has a low response time.** does not satisfy what the question asks. The correct answer is \"The distant router is responding.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

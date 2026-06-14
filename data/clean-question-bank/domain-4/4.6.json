@@ -31,20 +31,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Router#show ip dhcp lease\" is incorrect because the scenario requires: The correct answer is \"Router#show dhcp lease\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Router#show ip dhcp lease** does not satisfy what the question asks. The correct answer is \"Router#show dhcp lease\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router#show ip lease\" is incorrect because the scenario requires: The correct answer is \"Router#show dhcp lease\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Router#show ip lease** does not satisfy what the question asks. The correct answer is \"Router#show dhcp lease\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#show ip interface\" is incorrect because the scenario requires: The correct answer is \"Router#show dhcp lease\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Router#show ip interface** does not satisfy what the question asks. The correct answer is \"Router#show dhcp lease\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -81,20 +81,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The layer 3 destination is a unicast to the DHCP client.\" is incorrect because the scenario requires: The correct answer is \"The layer 2 source is the MAC address of the server.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The layer 2 destination is the MAC address of the DHCP client.\" is incorrect because the scenario requires: The correct answer is \"The layer 2 source is the MAC address of the server.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The layer 3 source is a link-local address of the client.\" is incorrect because the scenario requires: The correct answer is \"The layer 2 source is the MAC address of the server.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
@@ -129,20 +129,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#ip dhcp server 10.10.1.101\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip helper-address 10.10.1.101\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Router(config)#ip dhcp server 10.10.1.101** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip helper-address 10.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config-if)#ip dhcp server 10.10.1.101\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip helper-address 10.10.1.101\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Router(config-if)#ip dhcp server 10.10.1.101** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip helper-address 10.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config-if)#ip relay-agent 10.10.1.101\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip helper-address 10.10.1.101\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Router(config-if)#ip relay-agent 10.10.1.101** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip helper-address 10.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
@@ -178,20 +178,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"CIADDR\" is incorrect because the scenario requires: The correct answer is \"GIADDR\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**CIADDR** describes a different mechanism than this question tests. The right idea: The correct answer is \"GIADDR\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SIADDR\" is incorrect because the scenario requires: The correct answer is \"GIADDR\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**SIADDR** describes a different mechanism than this question tests. The right idea: The correct answer is \"GIADDR\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"CHADDR\" is incorrect because the scenario requires: The correct answer is \"GIADDR\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**CHADDR** describes a different mechanism than this question tests. The right idea: The correct answer is \"GIADDR\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
@@ -228,20 +228,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"A second DHCP server on the Host A network\" is incorrect because the scenario requires: The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**A second DHCP server on the Host A network** describes a different mechanism than this question tests. The right idea: The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"A DHCP relay agent on Router B interface Gi0/0\" is incorrect because the scenario requires: The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**A DHCP relay agent on Router B interface Gi0/0** does not satisfy what the question asks. The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"A DHCP relay agent on Switch A\" is incorrect because the scenario requires: The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**A DHCP relay agent on Switch A** does not satisfy what the question asks. The correct answer is \"A DHCP relay agent on Router A interface Gi0/0\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
@@ -276,20 +276,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router#debug dhcp\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip dhcp server packet\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Router#debug dhcp** does not satisfy what the question asks. The correct answer is \"Router#debug ip dhcp server packet\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router#show ip dhcp detail\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip dhcp server packet\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Router#show ip dhcp detail** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router#debug ip dhcp server packet\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#debug ip dhcp\" is incorrect because the scenario requires: The correct answer is \"Router#debug ip dhcp server packet\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Router#debug ip dhcp** does not satisfy what the question asks. The correct answer is \"Router#debug ip dhcp server packet\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -325,20 +325,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Stateful configuration of clients for IPv6 addressing\" is incorrect because the scenario requires: The correct answer is \"Configuration of clients with IPv6 options\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Stateful configuration of clients for IPv6 addressing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configuration of clients with IPv6 options\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Configuration of clients with the IPv6 network IDs\" is incorrect because the scenario requires: The correct answer is \"Configuration of clients with IPv6 options\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Configuration of clients with the IPv6 network IDs** does not satisfy what the question asks. The correct answer is \"Configuration of clients with IPv6 options\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Stateless configuration of clients for IPv6 addressing\" is incorrect because the scenario requires: The correct answer is \"Configuration of clients with IPv6 options\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Stateless configuration of clients for IPv6 addressing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configuration of clients with IPv6 options\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
@@ -374,20 +374,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"They lose their IP address immediately.\" is incorrect because the scenario requires: The correct answer is \"They lose their IP address after their entire lease has expired.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**They lose their IP address immediately.** does not satisfy what the question asks. The correct answer is \"They lose their IP address after their entire lease has expired.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"They lose their IP address after one-half of their lease has expired.\" is incorrect because the scenario requires: The correct answer is \"They lose their IP address after their entire lease has expired.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**They lose their IP address after one-half of their lease has expired.** does not satisfy what the question asks. The correct answer is \"They lose their IP address after their entire lease has expired.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"They lose their IP address after seven-eighths of their lease has expired.\" is incorrect because the scenario requires: The correct answer is \"They lose their IP address after their entire lease has expired.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**They lose their IP address after seven-eighths of their lease has expired.** does not satisfy what the question asks. The correct answer is \"They lose their IP address after their entire lease has expired.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
@@ -423,20 +423,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Stateful DHCPv6 supplies the network ID, host ID, and default router.\" is incorrect because the scenario requires: The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Stateful DHCPv6 supplies the network ID, host ID, and default router.** does not satisfy what the question asks. The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Stateful DHCPv6 communicates via broadcasts.\" is incorrect because the scenario requires: The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Stateful DHCPv6 communicates via broadcasts.** does not satisfy what the question asks. The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Stateful DHCPv6 works in conjunction with SLAAC.\" is incorrect because the scenario requires: The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Stateful DHCPv6 works in conjunction with SLAAC.** does not satisfy what the question asks. The correct answer is \"Stateful DHCPv6 supplies the network ID and host ID.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
@@ -472,20 +472,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RouterA(config)#ipv6 address dhcp gi 0/0\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#ipv6 address dhcp\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**RouterA(config)#ipv6 address dhcp gi 0/0** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#ipv6 address dhcp\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RouterA(config-if)#ipv6 address dhcpv6\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#ipv6 address dhcp\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**RouterA(config-if)#ipv6 address dhcpv6** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#ipv6 address dhcp\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"RouterA(config)#ipv6 address stateless\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#ipv6 address dhcp\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**RouterA(config)#ipv6 address stateless** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#ipv6 address dhcp\".",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
@@ -522,20 +522,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The server will contact the client to immediately relinquish the IP address.\" is incorrect because the scenario requires: The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**The server will contact the client to immediately relinquish the IP address.** does not satisfy what the question asks. The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The client will immediately renew its lease for the current IP address.\" is incorrect because the scenario requires: The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**The client will immediately renew its lease for the current IP address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The server will offer the IP address to another node, at which time the original client will relinquish the IP address.\" is incorrect because the scenario requires: The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**The server will offer the IP address to another node, at which time the original client will relinquish the IP address.** does not satisfy what the question asks. The correct answer is \"The server will offer the IP address to another node, which will cause a duplicate address.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
@@ -571,20 +571,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Nothing. The DHCP client will retain the lease.\" is incorrect because the scenario requires: The correct answer is \"The DHCP client will perform a DHCP rebinding.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**Nothing. The DHCP client will retain the lease.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The DHCP client will perform a DHCP rebinding.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The DHCP client will renew its lease.\" is incorrect because the scenario requires: The correct answer is \"The DHCP client will perform a DHCP rebinding.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**The DHCP client will renew its lease.** does not satisfy what the question asks. The correct answer is \"The DHCP client will perform a DHCP rebinding.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The DHCP client will relinquish the use of the IP address.\" is incorrect because the scenario requires: The correct answer is \"The DHCP client will perform a DHCP rebinding.\".",
-            "misconceptionTested": "Confusing DHCP roles (server vs relay vs client)",
+            "explanation": "**The DHCP client will relinquish the use of the IP address.** does not satisfy what the question asks. The correct answer is \"The DHCP client will perform a DHCP rebinding.",
+            "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],

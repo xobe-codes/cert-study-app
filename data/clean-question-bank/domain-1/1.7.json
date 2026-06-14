@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"8.8.8.0/24\" is incorrect because the scenario requires: 192.168.0.0/16 is one of the three RFC 1918 ranges.",
+            "explanation": "**8.8.8.0/24** describes a different mechanism than this question tests. The right idea: 192.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"203.0.113.0/24\" is incorrect because the scenario requires: 192.168.0.0/16 is one of the three RFC 1918 ranges.",
+            "explanation": "**203.0.113.0/24** describes a different mechanism than this question tests. The right idea: 192.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"169.254.1.0/24\" is incorrect because the scenario requires: 192.168.0.0/16 is one of the three RFC 1918 ranges.",
+            "explanation": "**169.254.1.0/24** describes a different mechanism than this question tests. The right idea: 192.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Public routable space\" is incorrect because the scenario requires: 10.0.0.0/8 is private per RFC 1918.",
+            "explanation": "**Public routable space** describes a different mechanism than this question tests. The right idea: 10.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Multicast only\" is incorrect because the scenario requires: 10.0.0.0/8 is private per RFC 1918.",
+            "explanation": "**Multicast only** describes a different mechanism than this question tests. The right idea: 10.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"APIPA\" is incorrect because the scenario requires: 10.0.0.0/8 is private per RFC 1918.",
+            "explanation": "**APIPA** describes a different mechanism than this question tests. The right idea: 10.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"No — public only\" is incorrect because the scenario requires: 172.16.0.0–172.31.255.255 is the 172.16.0.0/12 private range.",
+            "explanation": "**No — public only** contradicts the expected behavior. 172.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Only if DHCP assigns it\" is incorrect because the scenario requires: 172.16.0.0–172.31.255.255 is the 172.16.0.0/12 private range.",
+            "explanation": "**Only if DHCP assigns it** describes a different mechanism than this question tests. The right idea: 172.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Only on IPv6\" is incorrect because the scenario requires: 172.16.0.0–172.31.255.255 is the 172.16.0.0/12 private range.",
+            "explanation": "**Only on IPv6** describes a different mechanism than this question tests. The right idea: 172.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -155,18 +155,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Successful DHCP lease\" is incorrect because the scenario requires: 169.254.x.x is APIPA — self-assigned when DHCP fails.",
+            "explanation": "**Successful DHCP lease** describes a different mechanism than this question tests. The right idea: 169.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Static public IP configured\" is incorrect because the scenario requires: 169.254.x.x is APIPA — self-assigned when DHCP fails.",
+            "explanation": "**Static public IP configured** describes a different mechanism than this question tests. The right idea: 169.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"DNS cache flush\" is incorrect because the scenario requires: 169.254.x.x is APIPA — self-assigned when DHCP fails.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DNS cache flush** describes a different mechanism than this question tests. The right idea: 169.",
+            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -197,17 +197,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"They are too short\" is incorrect because the scenario requires: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
+            "explanation": "**They are too short** describes a different mechanism than this question tests. The right idea: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"They are IPv6 only\" is incorrect because the scenario requires: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
+            "explanation": "**They are IPv6 only** describes a different mechanism than this question tests. The right idea: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Firewalls block all IPv4\" is incorrect because the scenario requires: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
+            "explanation": "**Firewalls block all IPv4** describes a different mechanism than this question tests. The right idea: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -239,17 +239,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"10.1.1.1\" is incorrect because the scenario requires: 198.51.100.0/24 is documentation/public space — not RFC 1918 private.",
+            "explanation": "**10.1.1.1** describes a different mechanism than this question tests. The right idea: 198.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"172.16.1.1\" is incorrect because the scenario requires: 198.51.100.0/24 is documentation/public space — not RFC 1918 private.",
+            "explanation": "**172.16.1.1** describes a different mechanism than this question tests. The right idea: 198.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"192.168.1.1\" is incorrect because the scenario requires: 198.51.100.0/24 is documentation/public space — not RFC 1918 private.",
+            "explanation": "**192.168.1.1** describes a different mechanism than this question tests. The right idea: 198.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -279,8 +279,8 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"True\" is incorrect because the scenario requires: False — APIPA uses 169.254.0.0/16, separate from RFC 1918.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "This statement is **True**, but the tested fact is: False — APIPA uses 169.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -311,17 +311,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"STP\" is incorrect because the scenario requires: NAT (often PAT) translates many private addresses to one or few public IPs.",
+            "explanation": "**STP** describes a different mechanism than this question tests. The right idea: NAT (often PAT) translates many private addresses to one or few public IPs.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"VTP\" is incorrect because the scenario requires: NAT (often PAT) translates many private addresses to one or few public IPs.",
+            "explanation": "**VTP** describes a different mechanism than this question tests. The right idea: NAT (often PAT) translates many private addresses to one or few public IPs.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"LLDP\" is incorrect because the scenario requires: NAT (often PAT) translates many private addresses to one or few public IPs.",
+            "explanation": "**LLDP** describes a different mechanism than this question tests. The right idea: NAT (often PAT) translates many private addresses to one or few public IPs.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],

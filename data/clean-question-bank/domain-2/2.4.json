@@ -30,17 +30,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"2 interfaces\" is incorrect because the scenario requires: PAgP EtherChannel can bundle up to eight active interfaces.",
+            "explanation": "**2 interfaces** describes a different mechanism than this question tests. The right idea: PAgP EtherChannel can bundle up to eight active interfaces.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"16 interfaces\" is incorrect because the scenario requires: PAgP EtherChannel can bundle up to eight active interfaces.",
+            "explanation": "**16 interfaces** describes a different mechanism than this question tests. The right idea: PAgP EtherChannel can bundle up to eight active interfaces.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"4 interfaces\" is incorrect because the scenario requires: PAgP EtherChannel can bundle up to eight active interfaces.",
+            "explanation": "**4 interfaces** describes a different mechanism than this question tests. The right idea: PAgP EtherChannel can bundle up to eight active interfaces.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -74,17 +74,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"EtherChannel works with 802.1Q to block the redundant links.\" is incorrect because the scenario requires: EtherChannel acts as one logical Layer 2 link.",
+            "explanation": "**EtherChannel works with 802.1Q to block the redundant links.** does not satisfy what the question asks. EtherChannel acts as one logical Layer 2 link.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"EtherChannel can aggregate multiple links with varying speed.\" is incorrect because the scenario requires: EtherChannel acts as one logical Layer 2 link.",
+            "explanation": "**EtherChannel can aggregate multiple links with varying speed.** does not satisfy what the question asks. EtherChannel acts as one logical Layer 2 link.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"EtherChannel can aggregate interfaces across multiple stand- alone switches.\" is incorrect because the scenario requires: EtherChannel acts as one logical Layer 2 link.",
+            "explanation": "**EtherChannel can aggregate interfaces across multiple stand- alone switches.** does not satisfy what the question asks. EtherChannel acts as one logical Layer 2 link.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -119,17 +119,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"2.2 Gb/s\" is incorrect because the scenario requires: Links in an EtherChannel must use the same speed and duplex.",
+            "explanation": "**2.2 Gb/s** describes a different mechanism than this question tests. The right idea: Links in an EtherChannel must use the same speed and duplex.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"400 Mb/s\" is incorrect because the scenario requires: Links in an EtherChannel must use the same speed and duplex.",
+            "explanation": "**400 Mb/s** describes a different mechanism than this question tests. The right idea: Links in an EtherChannel must use the same speed and duplex.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"2.6 Gb/s\" is incorrect because the scenario requires: Links in an EtherChannel must use the same speed and duplex.",
+            "explanation": "**2.6 Gb/s** describes a different mechanism than this question tests. The right idea: Links in an EtherChannel must use the same speed and duplex.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -163,17 +163,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"802.1Q\" is incorrect because the scenario requires: LACP is the IEEE 802.3ad link aggregation standard.",
+            "explanation": "**802.1Q** describes a different mechanism than this question tests. The right idea: LACP is the IEEE 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"PAgP\" is incorrect because the scenario requires: LACP is the IEEE 802.3ad link aggregation standard.",
+            "explanation": "**PAgP** describes a different mechanism than this question tests. The right idea: LACP is the IEEE 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"802.1X\" is incorrect because the scenario requires: LACP is the IEEE 802.3ad link aggregation standard.",
+            "explanation": "**802.1X** describes a different mechanism than this question tests. The right idea: LACP is the IEEE 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -208,17 +208,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"EtherChannel\" is incorrect because the scenario requires: Use LACP for non-Cisco link aggregation compatibility.",
+            "explanation": "**EtherChannel** describes a different mechanism than this question tests. The right idea: Use LACP for non-Cisco link aggregation compatibility.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Channel Group\" is incorrect because the scenario requires: Use LACP for non-Cisco link aggregation compatibility.",
+            "explanation": "**Channel Group** describes a different mechanism than this question tests. The right idea: Use LACP for non-Cisco link aggregation compatibility.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"PAgP\" is incorrect because the scenario requires: Use LACP for non-Cisco link aggregation compatibility.",
+            "explanation": "**PAgP** describes a different mechanism than this question tests. The right idea: Use LACP for non-Cisco link aggregation compatibility.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -253,17 +253,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"2 interfaces\" is incorrect because the scenario requires: LACP can aggregate up to 16 interfaces, with eight active and others standby.",
+            "explanation": "**2 interfaces** describes a different mechanism than this question tests. The right idea: LACP can aggregate up to 16 interfaces, with eight active and others standby.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"8 interfaces\" is incorrect because the scenario requires: LACP can aggregate up to 16 interfaces, with eight active and others standby.",
+            "explanation": "**8 interfaces** describes a different mechanism than this question tests. The right idea: LACP can aggregate up to 16 interfaces, with eight active and others standby.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"4 interfaces\" is incorrect because the scenario requires: LACP can aggregate up to 16 interfaces, with eight active and others standby.",
+            "explanation": "**4 interfaces** describes a different mechanism than this question tests. The right idea: LACP can aggregate up to 16 interfaces, with eight active and others standby.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -298,17 +298,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"LACP off mode\" is incorrect because the scenario requires: on mode forms an unconditional port channel without LACP or PAgP.",
+            "explanation": "**LACP off mode** describes a different mechanism than this question tests. The right idea: on mode forms an unconditional port channel without LACP or PAgP.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"PAgP off mode\" is incorrect because the scenario requires: on mode forms an unconditional port channel without LACP or PAgP.",
+            "explanation": "**PAgP off mode** describes a different mechanism than this question tests. The right idea: on mode forms an unconditional port channel without LACP or PAgP.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"802.3ad mode\" is incorrect because the scenario requires: on mode forms an unconditional port channel without LACP or PAgP.",
+            "explanation": "**802.3ad mode** describes a different mechanism than this question tests. The right idea: on mode forms an unconditional port channel without LACP or PAgP.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -342,17 +342,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"PAgP can be used with non-Cisco products.\" is incorrect because the scenario requires: EtherChannel is a Cisco-centric term for port channeling.",
+            "explanation": "**PAgP can be used with non-Cisco products.** describes a different mechanism than this question tests. The right idea: EtherChannel is a Cisco-centric term for port channeling.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"LACP can only be used with other Cisco switches.\" is incorrect because the scenario requires: EtherChannel is a Cisco-centric term for port channeling.",
+            "explanation": "**LACP can only be used with other Cisco switches.** describes a different mechanism than this question tests. The right idea: EtherChannel is a Cisco-centric term for port channeling.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"PAgP can bundle several different links with varying speeds and duplexes together.\" is incorrect because the scenario requires: EtherChannel is a Cisco-centric term for port channeling.",
+            "explanation": "**PAgP can bundle several different links with varying speeds and duplexes together.** describes a different mechanism than this question tests. The right idea: EtherChannel is a Cisco-centric term for port channeling.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -386,17 +386,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"LACP\" is incorrect because the scenario requires: PAgP is Cisco proprietary.",
+            "explanation": "**LACP** describes a different mechanism than this question tests. The right idea: PAgP is Cisco proprietary.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"802.1Q\" is incorrect because the scenario requires: PAgP is Cisco proprietary.",
+            "explanation": "**802.1Q** describes a different mechanism than this question tests. The right idea: PAgP is Cisco proprietary.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"802.1ab\" is incorrect because the scenario requires: PAgP is Cisco proprietary.",
+            "explanation": "**802.1ab** describes a different mechanism than this question tests. The right idea: PAgP is Cisco proprietary.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -431,17 +431,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Every 60 seconds\" is incorrect because the scenario requires: PAgP sends control messages every 30 seconds.",
+            "explanation": "**Every 60 seconds** describes a different mechanism than this question tests. The right idea: PAgP sends control messages every 30 seconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Every 90 seconds\" is incorrect because the scenario requires: PAgP sends control messages every 30 seconds.",
+            "explanation": "**Every 90 seconds** describes a different mechanism than this question tests. The right idea: PAgP sends control messages every 30 seconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Every 120 seconds\" is incorrect because the scenario requires: PAgP sends control messages every 30 seconds.",
+            "explanation": "**Every 120 seconds** describes a different mechanism than this question tests. The right idea: PAgP sends control messages every 30 seconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -476,18 +476,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Passive mode on both sides\" is incorrect because the scenario requires: LACP active mode actively starts negotiation.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Passive mode on both sides** describes a different mechanism than this question tests. The right idea: LACP active mode actively starts negotiation.",
+            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Auto mode on both sides\" is incorrect because the scenario requires: LACP active mode actively starts negotiation.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Auto mode on both sides** describes a different mechanism than this question tests. The right idea: LACP active mode actively starts negotiation.",
+            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Desirable mode on both sides\" is incorrect because the scenario requires: LACP active mode actively starts negotiation.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Desirable mode on both sides** describes a different mechanism than this question tests. The right idea: LACP active mode actively starts negotiation.",
+            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -521,17 +521,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The channel group will use PAgP.\" is incorrect because the scenario requires: Passive plus active forms an LACP channel.",
+            "explanation": "**The channel group will use PAgP.** does not satisfy what the question asks. Passive plus active forms an LACP channel.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The channel group will not be formed.\" is incorrect because the scenario requires: Passive plus active forms an LACP channel.",
+            "explanation": "**The channel group will not be formed.** contradicts the expected behavior. Passive plus active forms an LACP channel.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The channel group will use EtherChannel.\" is incorrect because the scenario requires: Passive plus active forms an LACP channel.",
+            "explanation": "**The channel group will use EtherChannel.** does not satisfy what the question asks. Passive plus active forms an LACP channel.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -566,17 +566,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch#show port-channel\" is incorrect because the scenario requires: show etherchannel verifies EtherChannel information and negotiated protocol.",
+            "explanation": "**Switch#show port-channel** does not satisfy what the question asks. show etherchannel verifies EtherChannel information and negotiated protocol.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch#show interface\" is incorrect because the scenario requires: show etherchannel verifies EtherChannel information and negotiated protocol.",
+            "explanation": "**Switch#show interface** does not satisfy what the question asks. show etherchannel verifies EtherChannel information and negotiated protocol.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch#show run\" is incorrect because the scenario requires: show etherchannel verifies EtherChannel information and negotiated protocol.",
+            "explanation": "**Switch#show run** does not satisfy what the question asks. show etherchannel verifies EtherChannel information and negotiated protocol.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           }
         ],
@@ -611,17 +611,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The channel group will use PAgP.\" is incorrect because the scenario requires: Passive plus passive does not form LACP because neither side initiates.",
+            "explanation": "**The channel group will use PAgP.** does not satisfy what the question asks. Passive plus passive does not form LACP because neither side initiates.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The channel group will use LACP.\" is incorrect because the scenario requires: Passive plus passive does not form LACP because neither side initiates.",
+            "explanation": "**The channel group will use LACP.** does not satisfy what the question asks. Passive plus passive does not form LACP because neither side initiates.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"An unconditional port channel will be formed.\" is incorrect because the scenario requires: Passive plus passive does not form LACP because neither side initiates.",
+            "explanation": "**An unconditional port channel will be formed.** describes a different mechanism than this question tests. The right idea: Passive plus passive does not form LACP because neither side initiates.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -656,17 +656,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The channel group will use PAgP.\" is incorrect because the scenario requires: On plus on forms an unconditional port channel.",
+            "explanation": "**The channel group will use PAgP.** describes a different mechanism than this question tests. The right idea: On plus on forms an unconditional port channel.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The channel group will not be formed.\" is incorrect because the scenario requires: On plus on forms an unconditional port channel.",
+            "explanation": "**The channel group will not be formed.** contradicts the expected behavior. On plus on forms an unconditional port channel.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The channel group will use LACP.\" is incorrect because the scenario requires: On plus on forms an unconditional port channel.",
+            "explanation": "**The channel group will use LACP.** describes a different mechanism than this question tests. The right idea: On plus on forms an unconditional port channel.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],

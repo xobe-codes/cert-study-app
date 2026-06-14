@@ -30,19 +30,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch#archive tftp: running-config\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp: running-config\".",
+            "explanation": "**Switch#archive tftp: running-config** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch#copy tftp: running-config\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch#restore tftp://192.168.1.2 running-config\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp: running-config\".",
+            "explanation": "**Switch#restore tftp://192.168.1.2 running-config** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch#copy tftp: running-config\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch#copy server: running-config\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp: running-config\".",
+            "explanation": "**Switch#copy server: running-config** does not satisfy what the question asks. The correct answer is \"Switch#copy tftp: running-config\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -78,19 +78,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch#copy tftp ios\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp flash\".",
+            "explanation": "**Switch#copy tftp ios** does not satisfy what the question asks. The correct answer is \"Switch#copy tftp flash\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch#copy tftp nvram\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp flash\".",
+            "explanation": "**Switch#copy tftp nvram** does not satisfy what the question asks. The correct answer is \"Switch#copy tftp flash\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch#upgrade tftp flash\" is incorrect because the scenario requires: The correct answer is \"Switch#copy tftp flash\".",
+            "explanation": "**Switch#upgrade tftp flash** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch#copy tftp flash\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -127,19 +127,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router#boot tftp://192.168.1.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\".",
+            "explanation": "**Router#boot tftp://192.168.1.2** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router(config)#boot system c2900-universalk9-mz.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin\" is incorrect because the scenario requires: The correct answer is \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\".",
+            "explanation": "**Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin** does not satisfy what the question asks. The correct answer is \"Router(config)#boot system c2900-universalk9-mz.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin\" is incorrect because the scenario requires: The correct answer is \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\".",
+            "explanation": "**Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin** does not satisfy what the question asks. The correct answer is \"Router(config)#boot system c2900-universalk9-mz.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -176,19 +176,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS.\" is incorrect because the scenario requires: The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\".",
+            "explanation": "**The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Nothing needs to be done because the IOS is not storage on the flash memory card.\" is incorrect because the scenario requires: The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\".",
+            "explanation": "**Nothing needs to be done because the IOS is not storage on the flash memory card.** contradicts the expected behavior. The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Format the flash card with the FAT operating system and copy the IOS image to the card.\" is incorrect because the scenario requires: The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.\".",
+            "explanation": "**Format the flash card with the FAT operating system and copy the IOS image to the card.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The router will boot into the ROMMON, and from there you will need to TFTP download the IOS.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -224,19 +224,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#ip ftp username USER password USERPASS\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\".",
+            "explanation": "**Router(config)#ip ftp username USER password USERPASS** does not satisfy what the question asks. The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config)#ftp USER password USERPASS\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\".",
+            "explanation": "**Router(config)#ftp USER password USERPASS** does not satisfy what the question asks. The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config)#username USER password USERPASS\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\".",
+            "explanation": "**Router(config)#username USER password USERPASS** does not satisfy what the question asks. The correct answer is \"Router(config)#ip ftp username USER Router(config)#ip ftp password USERPASS\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

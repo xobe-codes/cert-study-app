@@ -31,18 +31,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Nothing. Routers cannot aggregate bandwidth from multiple connections.\" is incorrect because the scenario requires: A WLC connection can use EtherChannel/LAG to increase bandwidth.",
+            "explanation": "**Nothing. Routers cannot aggregate bandwidth from multiple connections.** contradicts the expected behavior. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Use RIP to balance the bandwidth.\" is incorrect because the scenario requires: A WLC connection can use EtherChannel/LAG to increase bandwidth.",
+            "explanation": "**Use RIP to balance the bandwidth.** describes a different mechanism than this question tests. The right idea: A WLC connection can use EtherChannel/LAG to increase bandwidth.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Use the wireless controller to perform inter-VLAN routing.\" is incorrect because the scenario requires: A WLC connection can use EtherChannel/LAG to increase bandwidth.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**Use the wireless controller to perform inter-VLAN routing.** describes a different mechanism than this question tests. The right idea: A WLC connection can use EtherChannel/LAG to increase bandwidth.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -76,17 +76,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Access port\" is incorrect because the scenario requires: A WLC link should be a trunk when several VLANs must be carried.",
+            "explanation": "**Access port** describes a different mechanism than this question tests. The right idea: A WLC link should be a trunk when several VLANs must be carried.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Voice port\" is incorrect because the scenario requires: A WLC link should be a trunk when several VLANs must be carried.",
+            "explanation": "**Voice port** describes a different mechanism than this question tests. The right idea: A WLC link should be a trunk when several VLANs must be carried.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Routed switch port\" is incorrect because the scenario requires: A WLC link should be a trunk when several VLANs must be carried.",
+            "explanation": "**Routed switch port** describes a different mechanism than this question tests. The right idea: A WLC link should be a trunk when several VLANs must be carried.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -121,17 +121,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"LACP\" is incorrect because the scenario requires: WLCs use LAG, not LACP/PAgP, for bundling links.",
+            "explanation": "**LACP** describes a different mechanism than this question tests. The right idea: WLCs use LAG, not LACP/PAgP, for bundling links.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"PAgP\" is incorrect because the scenario requires: WLCs use LAG, not LACP/PAgP, for bundling links.",
+            "explanation": "**PAgP** describes a different mechanism than this question tests. The right idea: WLCs use LAG, not LACP/PAgP, for bundling links.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"PortChannel\" is incorrect because the scenario requires: WLCs use LAG, not LACP/PAgP, for bundling links.",
+            "explanation": "**PortChannel** describes a different mechanism than this question tests. The right idea: WLCs use LAG, not LACP/PAgP, for bundling links.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -166,17 +166,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Round robin\" is incorrect because the scenario requires: WLC LAG load balancing is hash-based.",
+            "explanation": "**Round robin** describes a different mechanism than this question tests. The right idea: WLC LAG load balancing is hash-based.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"First in, first out (FIFO)\" is incorrect because the scenario requires: WLC LAG load balancing is hash-based.",
+            "explanation": "**First in, first out (FIFO)** describes a different mechanism than this question tests. The right idea: WLC LAG load balancing is hash-based.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Spill and fill\" is incorrect because the scenario requires: WLC LAG load balancing is hash-based.",
+            "explanation": "**Spill and fill** describes a different mechanism than this question tests. The right idea: WLC LAG load balancing is hash-based.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -211,17 +211,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"16\" is incorrect because the scenario requires: A WLC LAG supports up to eight bundled ports.",
+            "explanation": "**16** describes a different mechanism than this question tests. The right idea: A WLC LAG supports up to eight bundled ports.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"4\" is incorrect because the scenario requires: A WLC LAG supports up to eight bundled ports.",
+            "explanation": "**4** describes a different mechanism than this question tests. The right idea: A WLC LAG supports up to eight bundled ports.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"2\" is incorrect because the scenario requires: A WLC LAG supports up to eight bundled ports.",
+            "explanation": "**2** describes a different mechanism than this question tests. The right idea: A WLC LAG supports up to eight bundled ports.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -256,17 +256,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Upgrade the WLC to accommodate more ports.\" is incorrect because the scenario requires: Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
+            "explanation": "**Upgrade the WLC to accommodate more ports.** describes a different mechanism than this question tests. The right idea: Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Convert the current access ports to LAGs.\" is incorrect because the scenario requires: Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
+            "explanation": "**Convert the current access ports to LAGs.** describes a different mechanism than this question tests. The right idea: Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Add a second WLC to accommodate the new departments.\" is incorrect because the scenario requires: Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
+            "explanation": "**Add a second WLC to accommodate the new departments.** describes a different mechanism than this question tests. The right idea: Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -301,17 +301,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Access port\" is incorrect because the scenario requires: Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
+            "explanation": "**Access port** describes a different mechanism than this question tests. The right idea: Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Wireless port\" is incorrect because the scenario requires: Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
+            "explanation": "**Wireless port** describes a different mechanism than this question tests. The right idea: Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"LAG port\" is incorrect because the scenario requires: Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
+            "explanation": "**LAG port** describes a different mechanism than this question tests. The right idea: Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],

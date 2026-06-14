@@ -29,20 +29,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"The DHCP server is running on the layer 2 switch.\" is incorrect because the scenario requires: The correct answer is \"The device is on a layer 2 switched port on the same VLAN.\".",
+            "explanation": "**The DHCP server is running on the layer 2 switch.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The device is on a layer 2 switched port on the same VLAN.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The device is on a layer 3 routed port on the same VLAN.\" is incorrect because the scenario requires: The correct answer is \"The device is on a layer 2 switched port on the same VLAN.\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**The device is on a layer 3 routed port on the same VLAN.** does not satisfy what the question asks. The correct answer is \"The device is on a layer 2 switched port on the same VLAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Configuration of a dedicated IP address for monitoring DHCP transactions.\" is incorrect because the scenario requires: The correct answer is \"The device is on a layer 2 switched port on the same VLAN.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Configuration of a dedicated IP address for monitoring DHCP transactions.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The device is on a layer 2 switched port on the same VLAN.",
+            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           }
         ],
@@ -78,19 +78,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"VLAN traversal\" is incorrect because the scenario requires: The correct answer is \"Double tagging\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**VLAN traversal** describes a different mechanism than this question tests. The right idea: The correct answer is \"Double tagging\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Trunk popping\" is incorrect because the scenario requires: The correct answer is \"Double tagging\".",
+            "explanation": "**Trunk popping** describes a different mechanism than this question tests. The right idea: The correct answer is \"Double tagging\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Denial of service\" is incorrect because the scenario requires: The correct answer is \"Double tagging\".",
+            "explanation": "**Denial of service** describes a different mechanism than this question tests. The right idea: The correct answer is \"Double tagging\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -125,19 +125,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config-if)#dhcp snooping trust\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
+            "explanation": "**Switch(config-if)#dhcp snooping trust** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config)#ip dhcp snooping trust interface gi 2/3\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
+            "explanation": "**Switch(config)#ip dhcp snooping trust interface gi 2/3** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch(config-if)#ip dhcp trust\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
+            "explanation": "**Switch(config-if)#ip dhcp trust** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -172,19 +172,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch#show mac address-table\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "explanation": "**Switch#show mac address-table** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch#show interface\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "explanation": "**Switch#show interface** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch#show security\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "explanation": "**Switch#show security** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -220,20 +220,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Dynamic VLANs\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Dynamic VLANs** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ACLs\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
+            "explanation": "**ACLs** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"VLAN pruning\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**VLAN pruning** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
         ],
@@ -267,19 +267,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Access control lists\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
+            "explanation": "**Access control lists** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Wired Equivalent Privacy\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
+            "explanation": "**Wired Equivalent Privacy** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Static MAC addresses\" is incorrect because the scenario requires: The correct answer is \"Port security\".",
+            "explanation": "**Static MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -314,20 +314,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Destination MAC addresses\" is incorrect because the scenario requires: The correct answer is \"Source MAC addresses\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Source IP addresses\" is incorrect because the scenario requires: The correct answer is \"Source MAC addresses\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Destination IP addresses\" is incorrect because the scenario requires: The correct answer is \"Source MAC addresses\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           }
         ],
@@ -361,19 +361,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#switchport port-security\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security\".",
+            "explanation": "**Switch(config)#switchport port-security** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config)#port-security enable\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security\".",
+            "explanation": "**Switch(config)#port-security enable** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch(config-if)#port-security enable\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security\".",
+            "explanation": "**Switch(config-if)#port-security enable** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -408,19 +408,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"2 MAC addresses\" is incorrect because the scenario requires: The correct answer is \"1 MAC address\".",
+            "explanation": "**2 MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"1 MAC address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"0 MAC addresses\" is incorrect because the scenario requires: The correct answer is \"1 MAC address\".",
+            "explanation": "**0 MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"1 MAC address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"10 MAC addresses\" is incorrect because the scenario requires: The correct answer is \"1 MAC address\".",
+            "explanation": "**10 MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"1 MAC address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -455,19 +455,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Layer 0\" is incorrect because the scenario requires: The correct answer is \"Layer 2\".",
+            "explanation": "**Layer 0** describes a different mechanism than this question tests. The right idea: The correct answer is \"Layer 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Layer 1\" is incorrect because the scenario requires: The correct answer is \"Layer 2\".",
+            "explanation": "**Layer 1** is the wrong OSI layer here. The stem tests **Layer 2** behavior — switches forward frames using MAC addresses.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Layer 3\" is incorrect because the scenario requires: The correct answer is \"Layer 2\".",
+            "explanation": "**Layer 3** describes a different mechanism than this question tests. The right idea: The correct answer is \"Layer 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -502,19 +502,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"To allow or disallow VLANs\" is incorrect because the scenario requires: The correct answer is \"To prevent unauthorized access by MAC address\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
-            "needsExplanationReview": true
-          },
-          {
-            "choiceIndex": 1,
-            "explanation": "\"To allow or disallow IP addresses\" is incorrect because the scenario requires: The correct answer is \"To prevent unauthorized access by MAC address\".",
+            "explanation": "**To allow or disallow VLANs** describes a different mechanism than this question tests. The right idea: The correct answer is \"To prevent unauthorized access by MAC address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
+            "choiceIndex": 1,
+            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
+            "needsExplanationReview": true
+          },
+          {
             "choiceIndex": 3,
-            "explanation": "\"To prevent unauthorized access by users\" is incorrect because the scenario requires: The correct answer is \"To prevent unauthorized access by MAC address\".",
+            "explanation": "**To prevent unauthorized access by users** does not satisfy what the question asks. The correct answer is \"To prevent unauthorized access by MAC address\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -549,19 +549,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Port security works best in mobile environments.\" is incorrect because the scenario requires: The correct answer is \"Port security works best in static environments.\".",
+            "explanation": "**Port security works best in mobile environments.** does not satisfy what the question asks. The correct answer is \"Port security works best in static environments.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Port security requires a higher amount of memory.\" is incorrect because the scenario requires: The correct answer is \"Port security works best in static environments.\".",
+            "explanation": "**Port security requires a higher amount of memory.** does not satisfy what the question asks. The correct answer is \"Port security works best in static environments.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Port security always results in admin intervention to reset the port.\" is incorrect because the scenario requires: The correct answer is \"Port security works best in static environments.\".",
+            "explanation": "**Port security always results in admin intervention to reset the port.** does not satisfy what the question asks. The correct answer is \"Port security works best in static environments.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -596,19 +596,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"1 MAC address\" is incorrect because the scenario requires: The correct answer is \"2 MAC addresses\".",
+            "explanation": "**1 MAC address** describes a different mechanism than this question tests. The right idea: The correct answer is \"2 MAC addresses\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"0 MAC addresses\" is incorrect because the scenario requires: The correct answer is \"2 MAC addresses\".",
+            "explanation": "**0 MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"2 MAC addresses\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"10 MAC addresses\" is incorrect because the scenario requires: The correct answer is \"2 MAC addresses\".",
+            "explanation": "**10 MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"2 MAC addresses\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -644,19 +644,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Administrative shutdown\" is incorrect because the scenario requires: The correct answer is \"Err-disabled shutdown\".",
+            "explanation": "**Administrative shutdown** describes a different mechanism than this question tests. The right idea: The correct answer is \"Err-disabled shutdown\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Restricted access without logging\" is incorrect because the scenario requires: The correct answer is \"Err-disabled shutdown\".",
+            "explanation": "**Restricted access without logging** describes a different mechanism than this question tests. The right idea: The correct answer is \"Err-disabled shutdown\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Restricted access with logging\" is incorrect because the scenario requires: The correct answer is \"Err-disabled shutdown\".",
+            "explanation": "**Restricted access with logging** describes a different mechanism than this question tests. The right idea: The correct answer is \"Err-disabled shutdown\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -691,19 +691,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(confi…",
+            "explanation": "**SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(confi…",
+            "explanation": "**SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(confi…",
+            "explanation": "**SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -738,19 +738,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SwitchA(config-if)#switchport maximum 2\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
+            "explanation": "**SwitchA(config-if)#switchport maximum 2** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SwitchA(config-if)#port-security maximum 2\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
+            "explanation": "**SwitchA(config-if)#port-security maximum 2** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SwitchA(config-if)#switchport port-security limit 2\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
+            "explanation": "**SwitchA(config-if)#switchport port-security limit 2** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -785,19 +785,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config-if)#switchport port-security violation shutdown\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
+            "explanation": "**Switch(config-if)#switchport port-security violation shutdown** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config-if)#switchport port-security restrict\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
+            "explanation": "**Switch(config-if)#switchport port-security restrict** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config-if)#switchport port-security violation protect\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
+            "explanation": "**Switch(config-if)#switchport port-security violation protect** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -832,19 +832,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch#show running-configuration\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security interface gi 2/13\".",
+            "explanation": "**Switch#show running-configuration** does not satisfy what the question asks. The correct answer is \"Switch#show port-security interface gi 2/13\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch#show port-security details interface gi 2/13\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security interface gi 2/13\".",
+            "explanation": "**Switch#show port-security details interface gi 2/13** does not satisfy what the question asks. The correct answer is \"Switch#show port-security interface gi 2/13\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch#show port-security gi 2/13\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security interface gi 2/13\".",
+            "explanation": "**Switch#show port-security gi 2/13** does not satisfy what the question asks. The correct answer is \"Switch#show port-security interface gi 2/13\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -880,19 +880,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config-if)#switchport port-security restrict\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
+            "explanation": "**Switch(config-if)#switchport port-security restrict** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config-if)#switchport port-security violation protect\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
+            "explanation": "**Switch(config-if)#switchport port-security violation protect** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch(config-if)#switchport port-security violation restrict\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
+            "explanation": "**Switch(config-if)#switchport port-security violation restrict** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -927,19 +927,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config-if)#switchport port-security violation shutdown\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
+            "explanation": "**Switch(config-if)#switchport port-security violation shutdown** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config-if)#switchport port-security restrict\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
+            "explanation": "**Switch(config-if)#switchport port-security restrict** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch(config-if)#switchport port-security violation restrict\" is incorrect because the scenario requires: The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
+            "explanation": "**Switch(config-if)#switchport port-security violation restrict** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -974,19 +974,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch#show violations\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "explanation": "**Switch#show violations** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch#show port-security violations\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "explanation": "**Switch#show port-security violations** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch#show psec violations\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "explanation": "**Switch#show psec violations** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -1022,19 +1022,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Static port security\" is incorrect because the scenario requires: The correct answer is \"Sticky port security\".",
+            "explanation": "**Static port security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Sticky port security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Dynamic port security\" is incorrect because the scenario requires: The correct answer is \"Sticky port security\".",
+            "explanation": "**Dynamic port security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Sticky port security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Time limit port security\" is incorrect because the scenario requires: The correct answer is \"Sticky port security\".",
+            "explanation": "**Time limit port security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Sticky port security\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1071,19 +1071,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The port has been administratively shutdown.\" is incorrect because the scenario requires: The correct answer is \"The port has an access violation on it.\".",
+            "explanation": "**The port has been administratively shutdown.** does not satisfy what the question asks. The correct answer is \"The port has an access violation on it.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The port has bad wiring.\" is incorrect because the scenario requires: The correct answer is \"The port has an access violation on it.\".",
+            "explanation": "**The port has bad wiring.** does not satisfy what the question asks. The correct answer is \"The port has an access violation on it.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The port on the switch is configured as a trunk.\" is incorrect because the scenario requires: The correct answer is \"The port has an access violation on it.\".",
+            "explanation": "**The port on the switch is configured as a trunk.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The port has an access violation on it.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1119,19 +1119,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"SwitchA(config-if)#switchport port-security mac-address dynamic\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
+            "explanation": "**SwitchA(config-if)#switchport port-security mac-address dynamic** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SwitchA(config-if)#switchport port-security mac-address static\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
+            "explanation": "**SwitchA(config-if)#switchport port-security mac-address static** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SwitchA(config-if)#switchport port-security mac-address learn\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
+            "explanation": "**SwitchA(config-if)#switchport port-security mac-address learn** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1168,19 +1168,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SwitchA(config-if)#no port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
+            "explanation": "**SwitchA(config-if)#no port-security** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"SwitchA(config-if)#no shutdown\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
+            "explanation": "**SwitchA(config-if)#no shutdown** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SwitchA(config-if)#no switchport port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
+            "explanation": "**SwitchA(config-if)#no switchport port-security** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1216,19 +1216,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SwitchA(config-if)#switchport port-security mac-address sticky\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\".",
+            "explanation": "**SwitchA(config-if)#switchport port-security mac-address sticky** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\".",
+            "explanation": "**SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\".",
+            "explanation": "**SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1265,19 +1265,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch#show port-security details\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "explanation": "**Switch#show port-security details** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch#show mac address-table secure\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "explanation": "**Switch#show mac address-table secure** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch#show port-security address\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "explanation": "**Switch#show port-security address** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -1313,19 +1313,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch#clear err-disable\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
+            "explanation": "**Switch#clear err-disable** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch#clear switchport port-security\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
+            "explanation": "**Switch#clear switchport port-security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch#clear port-security violation\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
+            "explanation": "**Switch#clear port-security violation** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1361,19 +1361,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"SwitchA#show port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA#show running-config\".",
+            "explanation": "**SwitchA#show port-security** does not satisfy what the question asks. The correct answer is \"SwitchA#show running-config\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SwitchA#show port-security details\" is incorrect because the scenario requires: The correct answer is \"SwitchA#show running-config\".",
+            "explanation": "**SwitchA#show port-security details** does not satisfy what the question asks. The correct answer is \"SwitchA#show running-config\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SwitchA#show port-security status\" is incorrect because the scenario requires: The correct answer is \"SwitchA#show running-config\".",
+            "explanation": "**SwitchA#show port-security status** does not satisfy what the question asks. The correct answer is \"SwitchA#show running-config\".",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }

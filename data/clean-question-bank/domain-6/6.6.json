@@ -30,19 +30,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Network management station\" is incorrect because the scenario requires: The correct answer is \"Configuration management\".",
+            "explanation": "**Network management station** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configuration management\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Software-defined networking\" is incorrect because the scenario requires: The correct answer is \"Configuration management\".",
+            "explanation": "**Software-defined networking** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configuration management\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Centralized logging\" is incorrect because the scenario requires: The correct answer is \"Configuration management\".",
+            "explanation": "**Centralized logging** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configuration management\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -80,19 +80,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Cisco DNA Center\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Cisco DNA Center** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Chef\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Puppet\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Puppet** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -129,19 +129,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Playbook\" is incorrect because the scenario requires: The correct answer is \"Inventory\".",
+            "explanation": "**Playbook** describes a different mechanism than this question tests. The right idea: The correct answer is \"Inventory\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Settings\" is incorrect because the scenario requires: The correct answer is \"Inventory\".",
+            "explanation": "**Settings** describes a different mechanism than this question tests. The right idea: The correct answer is \"Inventory\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Modules\" is incorrect because the scenario requires: The correct answer is \"Inventory\".",
+            "explanation": "**Modules** describes a different mechanism than this question tests. The right idea: The correct answer is \"Inventory\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -178,19 +178,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Puppet\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Puppet** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Chef\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Cisco DNA Center\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Cisco DNA Center** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -226,19 +226,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Agent\" is incorrect because the scenario requires: The correct answer is \"Manifest\".",
+            "explanation": "**Agent** describes a different mechanism than this question tests. The right idea: The correct answer is \"Manifest\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Class\" is incorrect because the scenario requires: The correct answer is \"Manifest\".",
+            "explanation": "**Class** describes a different mechanism than this question tests. The right idea: The correct answer is \"Manifest\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Module\" is incorrect because the scenario requires: The correct answer is \"Manifest\".",
+            "explanation": "**Module** describes a different mechanism than this question tests. The right idea: The correct answer is \"Manifest\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -276,19 +276,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Cookbook\" is incorrect because the scenario requires: The correct answer is \"Recipe\".",
+            "explanation": "**Cookbook** describes a different mechanism than this question tests. The right idea: The correct answer is \"Recipe\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Crock Pot\" is incorrect because the scenario requires: The correct answer is \"Recipe\".",
+            "explanation": "**Crock Pot** describes a different mechanism than this question tests. The right idea: The correct answer is \"Recipe\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Chef Node\" is incorrect because the scenario requires: The correct answer is \"Recipe\".",
+            "explanation": "**Chef Node** describes a different mechanism than this question tests. The right idea: The correct answer is \"Recipe\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -324,19 +324,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Chef-Client\" is incorrect because the scenario requires: The correct answer is \"Ohai\".",
+            "explanation": "**Chef-Client** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ohai\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Chef Workstation\" is incorrect because the scenario requires: The correct answer is \"Ohai\".",
+            "explanation": "**Chef Workstation** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ohai\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Knife\" is incorrect because the scenario requires: The correct answer is \"Ohai\".",
+            "explanation": "**Knife** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ohai\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -371,19 +371,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"ANSIBLE_SETTINGS\" is incorrect because the scenario requires: The correct answer is \"ANSIBLE_CONFIG\".",
+            "explanation": "**ANSIBLE_SETTINGS** describes a different mechanism than this question tests. The right idea: The correct answer is \"ANSIBLE_CONFIG\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ansible_connection\" is incorrect because the scenario requires: The correct answer is \"ANSIBLE_CONFIG\".",
+            "explanation": "**ansible_connection** describes a different mechanism than this question tests. The right idea: The correct answer is \"ANSIBLE_CONFIG\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"/etc/ansible/hosts\" is incorrect because the scenario requires: The correct answer is \"ANSIBLE_CONFIG\".",
+            "explanation": "**/etc/ansible/hosts** describes a different mechanism than this question tests. The right idea: The correct answer is \"ANSIBLE_CONFIG\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -418,19 +418,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"man\" is incorrect because the scenario requires: The correct answer is \"ansible-doc\".",
+            "explanation": "**man** describes a different mechanism than this question tests. The right idea: The correct answer is \"ansible-doc\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"cat\" is incorrect because the scenario requires: The correct answer is \"ansible-doc\".",
+            "explanation": "**cat** describes a different mechanism than this question tests. The right idea: The correct answer is \"ansible-doc\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ad-hoc\" is incorrect because the scenario requires: The correct answer is \"ansible-doc\".",
+            "explanation": "**ad-hoc** describes a different mechanism than this question tests. The right idea: The correct answer is \"ansible-doc\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -466,19 +466,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Knife interface\" is incorrect because the scenario requires: The correct answer is \"Ad-hoc interface\".",
+            "explanation": "**Knife interface** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ad-hoc interface\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"ansible_playbook command\" is incorrect because the scenario requires: The correct answer is \"Ad-hoc interface\".",
+            "explanation": "**ansible_playbook command** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ad-hoc interface\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Ansible Tower\" is incorrect because the scenario requires: The correct answer is \"Ad-hoc interface\".",
+            "explanation": "**Ansible Tower** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ad-hoc interface\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -513,19 +513,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Resource\" is incorrect because the scenario requires: The correct answer is \"Facts\".",
+            "explanation": "**Resource** describes a different mechanism than this question tests. The right idea: The correct answer is \"Facts\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Class\" is incorrect because the scenario requires: The correct answer is \"Facts\".",
+            "explanation": "**Class** describes a different mechanism than this question tests. The right idea: The correct answer is \"Facts\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Module\" is incorrect because the scenario requires: The correct answer is \"Facts\".",
+            "explanation": "**Module** describes a different mechanism than this question tests. The right idea: The correct answer is \"Facts\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -562,19 +562,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Chef Workstation\" is incorrect because the scenario requires: The correct answer is \"Bookshelf\".",
+            "explanation": "**Chef Workstation** describes a different mechanism than this question tests. The right idea: The correct answer is \"Bookshelf\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Chef Node\" is incorrect because the scenario requires: The correct answer is \"Bookshelf\".",
+            "explanation": "**Chef Node** describes a different mechanism than this question tests. The right idea: The correct answer is \"Bookshelf\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Chef-Client\" is incorrect because the scenario requires: The correct answer is \"Bookshelf\".",
+            "explanation": "**Chef-Client** describes a different mechanism than this question tests. The right idea: The correct answer is \"Bookshelf\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -610,19 +610,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Chef\" is incorrect because the scenario requires: The correct answer is \"Ansible Tower\".",
+            "explanation": "**Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible Tower\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Puppet\" is incorrect because the scenario requires: The correct answer is \"Ansible Tower\".",
+            "explanation": "**Puppet** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible Tower\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Ansible\" is incorrect because the scenario requires: The correct answer is \"Ansible Tower\".",
+            "explanation": "**Ansible** does not satisfy what the question asks. The correct answer is \"Ansible Tower\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -659,19 +659,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Puppet\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Puppet** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Chef\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Python\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Python** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -707,19 +707,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Storage of the Bookshelf\" is incorrect because the scenario requires: The correct answer is \"CLI utility for the management of Chef\".",
+            "explanation": "**Storage of the Bookshelf** describes a different mechanism than this question tests. The right idea: The correct answer is \"CLI utility for the management of Chef\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Storage of the configuration of Chef\" is incorrect because the scenario requires: The correct answer is \"CLI utility for the management of Chef\".",
+            "explanation": "**Storage of the configuration of Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"CLI utility for the management of Chef\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Client-side agent\" is incorrect because the scenario requires: The correct answer is \"CLI utility for the management of Chef\".",
+            "explanation": "**Client-side agent** describes a different mechanism than this question tests. The right idea: The correct answer is \"CLI utility for the management of Chef\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -755,19 +755,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"IaaS helps maintain configuration over the life cycle of the host.\" is incorrect because the scenario requires: The correct answer is \"IaC solutions prevent drift with Idempotence.\".",
+            "explanation": "**IaaS helps maintain configuration over the life cycle of the host.** describes a different mechanism than this question tests. The right idea: The correct answer is \"IaC solutions prevent drift with Idempotence.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Configuration management prevents drift with NTP.\" is incorrect because the scenario requires: The correct answer is \"IaC solutions prevent drift with Idempotence.\".",
+            "explanation": "**Configuration management prevents drift with NTP.** describes a different mechanism than this question tests. The right idea: The correct answer is \"IaC solutions prevent drift with Idempotence.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Configuration management software requires per-host licensing.\" is incorrect because the scenario requires: The correct answer is \"IaC solutions prevent drift with Idempotence.\".",
+            "explanation": "**Configuration management software requires per-host licensing.** describes a different mechanism than this question tests. The right idea: The correct answer is \"IaC solutions prevent drift with Idempotence.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -804,19 +804,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Chef\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Puppet\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Puppet** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Cisco DNA Center\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "explanation": "**Cisco DNA Center** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -854,19 +854,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"YAML\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "explanation": "**YAML** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"CSV\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "explanation": "**CSV** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"XML\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "explanation": "**XML** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -901,19 +901,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Definition\" is incorrect because the scenario requires: The correct answer is \"Mapping\".",
+            "explanation": "**Definition** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mapping\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Lists\" is incorrect because the scenario requires: The correct answer is \"Mapping\".",
+            "explanation": "**Lists** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mapping\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Keys\" is incorrect because the scenario requires: The correct answer is \"Mapping\".",
+            "explanation": "**Keys** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mapping\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -948,19 +948,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"The file begins with a hashbang preprocessor.\" is incorrect because the scenario requires: The correct answer is \"The file begins with three dashes.\".",
+            "explanation": "**The file begins with a hashbang preprocessor.** does not satisfy what the question asks. The correct answer is \"The file begins with three dashes.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The contents are contained between curly brackets.\" is incorrect because the scenario requires: The correct answer is \"The file begins with three dashes.\".",
+            "explanation": "**The contents are contained between curly brackets.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The file begins with three dashes.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The contents are contained between square brackets.\" is incorrect because the scenario requires: The correct answer is \"The file begins with three dashes.\".",
+            "explanation": "**The contents are contained between square brackets.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The file begins with three dashes.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -995,19 +995,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"YAML\" is incorrect because the scenario requires: The correct answer is \"XML\".",
+            "explanation": "**YAML** describes a different mechanism than this question tests. The right idea: The correct answer is \"XML\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"JSON\" is incorrect because the scenario requires: The correct answer is \"XML\".",
+            "explanation": "**JSON** describes a different mechanism than this question tests. The right idea: The correct answer is \"XML\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"CSV\" is incorrect because the scenario requires: The correct answer is \"XML\".",
+            "explanation": "**CSV** describes a different mechanism than this question tests. The right idea: The correct answer is \"XML\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1042,19 +1042,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"JSON\" is incorrect because the scenario requires: The correct answer is \"YAML\".",
+            "explanation": "**JSON** describes a different mechanism than this question tests. The right idea: The correct answer is \"YAML\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"XML\" is incorrect because the scenario requires: The correct answer is \"YAML\".",
+            "explanation": "**XML** describes a different mechanism than this question tests. The right idea: The correct answer is \"YAML\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"CSV\" is incorrect because the scenario requires: The correct answer is \"YAML\".",
+            "explanation": "**CSV** describes a different mechanism than this question tests. The right idea: The correct answer is \"YAML\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1089,19 +1089,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Three dashes\" is incorrect because the scenario requires: The correct answer is \"A curly bracket\".",
+            "explanation": "**Three dashes** describes a different mechanism than this question tests. The right idea: The correct answer is \"A curly bracket\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"A square bracket\" is incorrect because the scenario requires: The correct answer is \"A curly bracket\".",
+            "explanation": "**A square bracket** describes a different mechanism than this question tests. The right idea: The correct answer is \"A curly bracket\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"A double quote\" is incorrect because the scenario requires: The correct answer is \"A curly bracket\".",
+            "explanation": "**A double quote** describes a different mechanism than this question tests. The right idea: The correct answer is \"A curly bracket\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1136,19 +1136,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The value that follows the square bracket is the value you are looking for.\" is incorrect because the scenario requires: The correct answer is \"There are several key-value pairs for the key you need.\".",
+            "explanation": "**The value that follows the square bracket is the value you are looking for.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There are several key-value pairs for the key you need.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The value is after the matching square bracket.\" is incorrect because the scenario requires: The correct answer is \"There are several key-value pairs for the key you need.\".",
+            "explanation": "**The value is after the matching square bracket.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There are several key-value pairs for the key you need.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The value is unknown.\" is incorrect because the scenario requires: The correct answer is \"There are several key-value pairs for the key you need.\".",
+            "explanation": "**The value is unknown.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There are several key-value pairs for the key you need.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1186,19 +1186,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The interface of Fa0/1 is capitalized.\" is incorrect because the scenario requires: The correct answer is \"There is a missing curly bracket.\".",
+            "explanation": "**The interface of Fa0/1 is capitalized.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There is a missing curly bracket.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The address should have a square bracket.\" is incorrect because the scenario requires: The correct answer is \"There is a missing curly bracket.\".",
+            "explanation": "**The address should have a square bracket.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There is a missing curly bracket.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Nothing is wrong.\" is incorrect because the scenario requires: The correct answer is \"There is a missing curly bracket.\".",
+            "explanation": "**Nothing is wrong.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There is a missing curly bracket.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1233,19 +1233,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Values can be used that contain spaces.\" is incorrect because the scenario requires: The correct answer is \"Hierarchical structure allows for programmability.\".",
+            "explanation": "**Values can be used that contain spaces.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hierarchical structure allows for programmability.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"There are multiple values for a particular key.\" is incorrect because the scenario requires: The correct answer is \"Hierarchical structure allows for programmability.\".",
+            "explanation": "**There are multiple values for a particular key.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hierarchical structure allows for programmability.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The files can be read line by line for every value.\" is incorrect because the scenario requires: The correct answer is \"Hierarchical structure allows for programmability.\".",
+            "explanation": "**The files can be read line by line for every value.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hierarchical structure allows for programmability.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1283,19 +1283,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"XML\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "explanation": "**XML** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"CSV\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "explanation": "**CSV** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"YAML\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "explanation": "**YAML** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1332,19 +1332,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The interface data is incorrect because it is missing a comma after the routes.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second …",
+            "explanation": "**The interface data is incorrect because it is missing a comma after the routes.** does not satisfy what the question asks. The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second route.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The interface data is incorrect because it contains an illegal underscore character.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second …",
+            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** does not satisfy what the question asks. The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second route.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Nothing is wrong with the exhibit.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second …",
+            "explanation": "**Nothing is wrong with the exhibit.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second route.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1381,19 +1381,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The interface data is incorrect because it is missing a comma after defaultgw.\" is incorrect because the scenario requires: The correct answer is \"Nothing is wrong with the exhibit.\".",
+            "explanation": "**The interface data is incorrect because it is missing a comma after defaultgw.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Nothing is wrong with the exhibit.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The interface data is incorrect because it is missing a subnet mask for the second IP address.\" is incorrect because the scenario requires: The correct answer is \"Nothing is wrong with the exhibit.\".",
+            "explanation": "**The interface data is incorrect because it is missing a subnet mask for the second IP address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Nothing is wrong with the exhibit.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The interface data is incorrect because it contains an illegal underscore character.\" is incorrect because the scenario requires: The correct answer is \"Nothing is wrong with the exhibit.\".",
+            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Nothing is wrong with the exhibit.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1430,19 +1430,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The interface data is incorrect because it is missing a comma after defaultgw.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of …",
+            "explanation": "**The interface data is incorrect because it is missing a comma after defaultgw.** does not satisfy what the question asks. The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The interface data is incorrect because it contains an illegal underscore character.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of …",
+            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** does not satisfy what the question asks. The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Nothing is wrong with the exhibit.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of …",
+            "explanation": "**Nothing is wrong with the exhibit.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

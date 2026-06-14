@@ -30,19 +30,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#password enable Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#enable secret Password20!\".",
+            "explanation": "**Router(config)#password enable Password20!** does not satisfy what the question asks. The correct answer is \"Router(config)#enable secret Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config)#enable Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#enable secret Password20!\".",
+            "explanation": "**Router(config)#enable Password20!** does not satisfy what the question asks. The correct answer is \"Router(config)#enable secret Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config)#secret enable Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#enable secret Password20!\".",
+            "explanation": "**Router(config)#secret enable Password20!** does not satisfy what the question asks. The correct answer is \"Router(config)#enable secret Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -80,19 +80,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#interface vlan 1\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#line vty 0 5\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch(config)#interface vlan 1** does not satisfy what the question asks. The correct answer is \"Switch(config)#line vty 0 5\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config)#line console 1\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#line vty 0 5\".",
+            "explanation": "**Switch(config)#line console 1** does not satisfy what the question asks. The correct answer is \"Switch(config)#line vty 0 5\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config)#line aux 1\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#line vty 0 5\".",
+            "explanation": "**Switch(config)#line aux 1** does not satisfy what the question asks. The correct answer is \"Switch(config)#line vty 0 5\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -128,19 +128,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"You originally entered the wrong password.\" is incorrect because the scenario requires: The correct answer is \"The enable secret password is set to something else.\".",
+            "explanation": "**You originally entered the wrong password.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The enable secret password is set to something else.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The password Password20! contains a special character.\" is incorrect because the scenario requires: The correct answer is \"The enable secret password is set to something else.\".",
+            "explanation": "**The password Password20! contains a special character.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The enable secret password is set to something else.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The password is too long and has been truncated.\" is incorrect because the scenario requires: The correct answer is \"The enable secret password is set to something else.\".",
+            "explanation": "**The password is too long and has been truncated.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The enable secret password is set to something else.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -176,19 +176,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config-line)#set password Password20! Router(config-line)#request login\" is incorrect because the scenario requires: The correct answer is \"Router(config-line)#password Password20! Router(config-line)#login\".",
+            "explanation": "**Router(config-line)#set password Password20! Router(config-line)#request login** does not satisfy what the question asks. The correct answer is \"Router(config-line)#password Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config-line)#password Password20! Router(config-line)#login password\" is incorrect because the scenario requires: The correct answer is \"Router(config-line)#password Password20! Router(config-line)#login\".",
+            "explanation": "**Router(config-line)#password Password20! Router(config-line)#login password** does not satisfy what the question asks. The correct answer is \"Router(config-line)#password Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config-line)#login password Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config-line)#password Password20! Router(config-line)#login\".",
+            "explanation": "**Router(config-line)#login password Password20!** does not satisfy what the question asks. The correct answer is \"Router(config-line)#password Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -225,19 +225,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The enable secret is not set.\" is incorrect because the scenario requires: The correct answer is \"The line login password is not set.\".",
+            "explanation": "**The enable secret is not set.** contradicts the expected behavior. The correct answer is \"The line login password is not set.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The enable password is not set.\" is incorrect because the scenario requires: The correct answer is \"The line login password is not set.\".",
+            "explanation": "**The enable password is not set.** contradicts the expected behavior. The correct answer is \"The line login password is not set.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The line is administratively down.\" is incorrect because the scenario requires: The correct answer is \"The line login password is not set.\".",
+            "explanation": "**The line is administratively down.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The line login password is not set.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -273,19 +273,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Setting the time and date\" is incorrect because the scenario requires: The correct answer is \"Setting the hostname and domain name\".",
+            "explanation": "**Setting the time and date** does not satisfy what the question asks. The correct answer is \"Setting the hostname and domain name\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Setting the key strength\" is incorrect because the scenario requires: The correct answer is \"Setting the hostname and domain name\".",
+            "explanation": "**Setting the key strength** does not satisfy what the question asks. The correct answer is \"Setting the hostname and domain name\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Setting the key repository\" is incorrect because the scenario requires: The correct answer is \"Setting the hostname and domain name\".",
+            "explanation": "**Setting the key repository** does not satisfy what the question asks. The correct answer is \"Setting the hostname and domain name\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -321,19 +321,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config-line)#version 2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ssh version 2\".",
+            "explanation": "**Router(config-line)#version 2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip ssh version 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config-ssh)#version 2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ssh version 2\".",
+            "explanation": "**Router(config-ssh)#version 2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip ssh version 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config)#ssh version 2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip ssh version 2\".",
+            "explanation": "**Router(config)#ssh version 2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip ssh version 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -370,19 +370,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#login ssh telnet\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#transport ssh telnet\".",
+            "explanation": "**Switch(config)#login ssh telnet** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#transport ssh telnet\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config-line)#login ssh telnet\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#transport ssh telnet\".",
+            "explanation": "**Switch(config-line)#login ssh telnet** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#transport ssh telnet\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch(config)#transport ssh telnet\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#transport ssh telnet\".",
+            "explanation": "**Switch(config)#transport ssh telnet** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#transport ssh telnet\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -420,19 +420,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Telnet has weak encryption.\" is incorrect because the scenario requires: The correct answer is \"SSH is encrypted.\".",
+            "explanation": "**Telnet has weak encryption.** describes a different mechanism than this question tests. The right idea: The correct answer is \"SSH is encrypted.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"SSH allows for file copy.\" is incorrect because the scenario requires: The correct answer is \"SSH is encrypted.\".",
+            "explanation": "**SSH allows for file copy.** describes a different mechanism than this question tests. The right idea: The correct answer is \"SSH is encrypted.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SSH makes it easier to create ACLs for access.\" is incorrect because the scenario requires: The correct answer is \"SSH is encrypted.\".",
+            "explanation": "**SSH makes it easier to create ACLs for access.** describes a different mechanism than this question tests. The right idea: The correct answer is \"SSH is encrypted.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -469,19 +469,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-li…",
+            "explanation": "**Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in** does not satisfy what the question asks. The correct answer is \"Switch(config)#access-list 1 permit host 192.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-li…",
+            "explanation": "**Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in** does not satisfy what the question asks. The correct answer is \"Switch(config)#access-list 1 permit host 192.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-li…",
+            "explanation": "**Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in** does not satisfy what the question asks. The correct answer is \"Switch(config)#access-list 1 permit host 192.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
@@ -517,19 +517,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The time and date need to be corrected.\" is incorrect because the scenario requires: The correct answer is \"The key strength needs to be 768 bits or higher.\".",
+            "explanation": "**The time and date need to be corrected.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The key strength needs to be 768 bits or higher.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The DNS server is not configured.\" is incorrect because the scenario requires: The correct answer is \"The key strength needs to be 768 bits or higher.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The DNS server is not configured.** contradicts the expected behavior. The correct answer is \"The key strength needs to be 768 bits or higher.",
+            "misconceptionTested": "Dragging DNS into a question about a different service or layer",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"There is no host record for the switch or router.\" is incorrect because the scenario requires: The correct answer is \"The key strength needs to be 768 bits or higher.\".",
+            "explanation": "**There is no host record for the switch or router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The key strength needs to be 768 bits or higher.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -566,19 +566,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config)#account user1 Router(config-acct)#password Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#username user1 password Password20!\".",
+            "explanation": "**Router(config)#account user1 Router(config-acct)#password Password20!** does not satisfy what the question asks. The correct answer is \"Router(config)#username user1 password Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config)#user user1 Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#username user1 password Password20!\".",
+            "explanation": "**Router(config)#user user1 Password20!** does not satisfy what the question asks. The correct answer is \"Router(config)#username user1 password Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config)#user-account user1 password Password20!\" is incorrect because the scenario requires: The correct answer is \"Router(config)#username user1 password Password20!\".",
+            "explanation": "**Router(config)#user-account user1 password Password20!** does not satisfy what the question asks. The correct answer is \"Router(config)#username user1 password Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -615,19 +615,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#generate crypto key rsa\" is incorrect because the scenario requires: The correct answer is \"Router(config)#crypto key generate rsa\".",
+            "explanation": "**Router(config)#generate crypto key rsa** does not satisfy what the question asks. The correct answer is \"Router(config)#crypto key generate rsa\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config)#crypto generate key rsa\" is incorrect because the scenario requires: The correct answer is \"Router(config)#crypto key generate rsa\".",
+            "explanation": "**Router(config)#crypto generate key rsa** does not satisfy what the question asks. The correct answer is \"Router(config)#crypto key generate rsa\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#crypto key generate rsa\" is incorrect because the scenario requires: The correct answer is \"Router(config)#crypto key generate rsa\".",
+            "explanation": "**Router#crypto key generate rsa** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router(config)#crypto key generate rsa\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -662,19 +662,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config)#exec-timeout 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 0 0\".",
+            "explanation": "**Switch(config)#exec-timeout 0** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#exec-timeout 0 0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config-line)#timeout 0 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 0 0\".",
+            "explanation": "**Switch(config-line)#timeout 0 0** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#exec-timeout 0 0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch(config-line)#no exec-timeout\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 0 0\".",
+            "explanation": "**Switch(config-line)#no exec-timeout** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#exec-timeout 0 0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -711,19 +711,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Console 0\" is incorrect because the scenario requires: The correct answer is \"VTY 0\".",
+            "explanation": "**Console 0** describes a different mechanism than this question tests. The right idea: The correct answer is \"VTY 0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"VTY 1\" is incorrect because the scenario requires: The correct answer is \"VTY 0\".",
+            "explanation": "**VTY 1** describes a different mechanism than this question tests. The right idea: The correct answer is \"VTY 0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"VTY 2\" is incorrect because the scenario requires: The correct answer is \"VTY 0\".",
+            "explanation": "**VTY 2** describes a different mechanism than this question tests. The right idea: The correct answer is \"VTY 0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -763,19 +763,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#new aaa model\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#login local\".",
+            "explanation": "**Switch(config)#new aaa model** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#login local\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config)#local authentication\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#login local\".",
+            "explanation": "**Switch(config)#local authentication** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#login local\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config-line)#local authentication\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#login local\".",
+            "explanation": "**Switch(config-line)#local authentication** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#login local\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -810,19 +810,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#exec-timeout 30 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 30 0\".",
+            "explanation": "**Switch(config)#exec-timeout 30 0** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#exec-timeout 30 0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config-line)#exec-timeout 0 30\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 30 0\".",
+            "explanation": "**Switch(config-line)#exec-timeout 0 30** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#exec-timeout 30 0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch(config-line)#timeout 30 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config-line)#exec-timeout 30 0\".",
+            "explanation": "**Switch(config-line)#timeout 30 0** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#exec-timeout 30 0\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -858,19 +858,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#no enable secret\" is incorrect because the scenario requires: The correct answer is \"Switch#clear line vty 2\".",
+            "explanation": "**Switch(config)#no enable secret** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch#clear line vty 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch#no line vty 2\" is incorrect because the scenario requires: The correct answer is \"Switch#clear line vty 2\".",
+            "explanation": "**Switch#no line vty 2** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch#clear line vty 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch#disconnect line vty 2\" is incorrect because the scenario requires: The correct answer is \"Switch#clear line vty 2\".",
+            "explanation": "**Switch#disconnect line vty 2** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch#clear line vty 2\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -905,19 +905,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"MOTD banner\" is incorrect because the scenario requires: The correct answer is \"Exec banner\".",
+            "explanation": "**MOTD banner** describes a different mechanism than this question tests. The right idea: The correct answer is \"Exec banner\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Login banner\" is incorrect because the scenario requires: The correct answer is \"Exec banner\".",
+            "explanation": "**Login banner** describes a different mechanism than this question tests. The right idea: The correct answer is \"Exec banner\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Incoming banner\" is incorrect because the scenario requires: The correct answer is \"Exec banner\".",
+            "explanation": "**Incoming banner** describes a different mechanism than this question tests. The right idea: The correct answer is \"Exec banner\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -955,19 +955,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Certificate\" is incorrect because the scenario requires: The correct answer is \"Token\".",
+            "explanation": "**Certificate** describes a different mechanism than this question tests. The right idea: The correct answer is \"Token\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Smart card\" is incorrect because the scenario requires: The correct answer is \"Token\".",
+            "explanation": "**Smart card** describes a different mechanism than this question tests. The right idea: The correct answer is \"Token\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"License\" is incorrect because the scenario requires: The correct answer is \"Token\".",
+            "explanation": "**License** describes a different mechanism than this question tests. The right idea: The correct answer is \"Token\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1004,19 +1004,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#password encryption\" is incorrect because the scenario requires: The correct answer is \"Router(config)#service password-encryption\".",
+            "explanation": "**Router(config)#password encryption** does not satisfy what the question asks. The correct answer is \"Router(config)#service password-encryption\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config)#service encryption\" is incorrect because the scenario requires: The correct answer is \"Router(config)#service password-encryption\".",
+            "explanation": "**Router(config)#service encryption** does not satisfy what the question asks. The correct answer is \"Router(config)#service password-encryption\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config)#password-encryption service\" is incorrect because the scenario requires: The correct answer is \"Router(config)#service password-encryption\".",
+            "explanation": "**Router(config)#password-encryption service** does not satisfy what the question asks. The correct answer is \"Router(config)#service password-encryption\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1054,19 +1054,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#enable secret 9\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#enable algorithm-type scrypt secret Password20!\".",
+            "explanation": "**Switch(config)#enable secret 9** does not satisfy what the question asks. The correct answer is \"Switch(config)#enable algorithm-type scrypt secret Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config)#service password-encryption scrypt\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#enable algorithm-type scrypt secret Password20!\".",
+            "explanation": "**Switch(config)#service password-encryption scrypt** does not satisfy what the question asks. The correct answer is \"Switch(config)#enable algorithm-type scrypt secret Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config)#enable secret algorithm-type scrypt\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#enable algorithm-type scrypt secret Password20!\".",
+            "explanation": "**Switch(config)#enable secret algorithm-type scrypt** does not satisfy what the question asks. The correct answer is \"Switch(config)#enable algorithm-type scrypt secret Password20!",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1102,19 +1102,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"MD5\" is incorrect because the scenario requires: The correct answer is \"Clear text\".",
+            "explanation": "**MD5** describes a different mechanism than this question tests. The right idea: The correct answer is \"Clear text\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"SHA-128\" is incorrect because the scenario requires: The correct answer is \"Clear text\".",
+            "explanation": "**SHA-128** describes a different mechanism than this question tests. The right idea: The correct answer is \"Clear text\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"SHA-256\" is incorrect because the scenario requires: The correct answer is \"Clear text\".",
+            "explanation": "**SHA-256** describes a different mechanism than this question tests. The right idea: The correct answer is \"Clear text\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1151,19 +1151,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Single-factor authentication\" is incorrect because the scenario requires: The correct answer is \"Multifactor authentication\".",
+            "explanation": "**Single-factor authentication** describes a different mechanism than this question tests. The right idea: The correct answer is \"Multifactor authentication\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RADIUS authentication\" is incorrect because the scenario requires: The correct answer is \"Multifactor authentication\".",
+            "explanation": "**RADIUS authentication** describes a different mechanism than this question tests. The right idea: The correct answer is \"Multifactor authentication\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Active Directory authentication\" is incorrect because the scenario requires: The correct answer is \"Multifactor authentication\".",
+            "explanation": "**Active Directory authentication** describes a different mechanism than this question tests. The right idea: The correct answer is \"Multifactor authentication\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1200,19 +1200,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Password expiration\" is incorrect because the scenario requires: The correct answer is \"Password complexity\".",
+            "explanation": "**Password expiration** describes a different mechanism than this question tests. The right idea: The correct answer is \"Password complexity\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Phishing protection\" is incorrect because the scenario requires: The correct answer is \"Password complexity\".",
+            "explanation": "**Phishing protection** describes a different mechanism than this question tests. The right idea: The correct answer is \"Password complexity\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Time restrictions\" is incorrect because the scenario requires: The correct answer is \"Password complexity\".",
+            "explanation": "**Time restrictions** describes a different mechanism than this question tests. The right idea: The correct answer is \"Password complexity\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

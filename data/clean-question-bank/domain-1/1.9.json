@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"FE80::/10\" is incorrect because the scenario requires: Global unicast = 2000::/3, the public/routable range.",
+            "explanation": "**FE80::/10** describes a different mechanism than this question tests. The right idea: Global unicast = 2000::/3, the public/routable range.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"FC00::/7\" is incorrect because the scenario requires: Global unicast = 2000::/3, the public/routable range.",
+            "explanation": "**FC00::/7** describes a different mechanism than this question tests. The right idea: Global unicast = 2000::/3, the public/routable range.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"FF00::/8\" is incorrect because the scenario requires: Global unicast = 2000::/3, the public/routable range.",
+            "explanation": "**FF00::/8** describes a different mechanism than this question tests. The right idea: Global unicast = 2000::/3, the public/routable range.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"FF02\" is incorrect because the scenario requires: Link-local addresses are FE80::/10.",
+            "explanation": "**FF02** describes a different mechanism than this question tests. The right idea: Link-local addresses are FE80::/10.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"2001\" is incorrect because the scenario requires: Link-local addresses are FE80::/10.",
+            "explanation": "**2001** describes a different mechanism than this question tests. The right idea: Link-local addresses are FE80::/10.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"FD00\" is incorrect because the scenario requires: Link-local addresses are FE80::/10.",
+            "explanation": "**FD00** describes a different mechanism than this question tests. The right idea: Link-local addresses are FE80::/10.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"2000::/3\" is incorrect because the scenario requires: Unique Local is FC00::/7, used in practice as FD00::/8.",
+            "explanation": "**2000::/3** describes a different mechanism than this question tests. The right idea: Unique Local is FC00::/7, used in practice as FD00::/8.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"FE80::/10\" is incorrect because the scenario requires: Unique Local is FC00::/7, used in practice as FD00::/8.",
+            "explanation": "**FE80::/10** describes a different mechanism than this question tests. The right idea: Unique Local is FC00::/7, used in practice as FD00::/8.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"FF00::/8\" is incorrect because the scenario requires: Unique Local is FC00::/7, used in practice as FD00::/8.",
+            "explanation": "**FF00::/8** describes a different mechanism than this question tests. The right idea: Unique Local is FC00::/7, used in practice as FD00::/8.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"FF02::1\" is incorrect because the scenario requires: FF02::2 = all routers; FF02::1 = all nodes.",
+            "explanation": "**FF02::1** describes a different mechanism than this question tests. The right idea: FF02::2 = all routers; FF02::1 = all nodes.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"FF02::5\" is incorrect because the scenario requires: FF02::2 = all routers; FF02::1 = all nodes.",
+            "explanation": "**FF02::5** describes a different mechanism than this question tests. The right idea: FF02::2 = all routers; FF02::1 = all nodes.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"224.0.0.2\" is incorrect because the scenario requires: FF02::2 = all routers; FF02::1 = all nodes.",
+            "explanation": "**224.0.0.2** describes a different mechanism than this question tests. The right idea: FF02::2 = all routers; FF02::1 = all nodes.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -195,8 +195,8 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"True\" is incorrect because the scenario requires: False — IPv6 has no broadcast; multicast (FF00::/8) replaces it.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "This statement is **True**, but the tested fact is: False — IPv6 has no broadcast; multicast (FF00::/8) replaces it.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -227,17 +227,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Multicast\" is incorrect because the scenario requires: Anycast = one address on multiple devices, delivered to the nearest.",
+            "explanation": "**Multicast** describes a different mechanism than this question tests. The right idea: Anycast = one address on multiple devices, delivered to the nearest.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Link-local\" is incorrect because the scenario requires: Anycast = one address on multiple devices, delivered to the nearest.",
+            "explanation": "**Link-local** describes a different mechanism than this question tests. The right idea: Anycast = one address on multiple devices, delivered to the nearest.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Broadcast\" is incorrect because the scenario requires: Anycast = one address on multiple devices, delivered to the nearest.",
+            "explanation": "**Broadcast** describes a different mechanism than this question tests. The right idea: Anycast = one address on multiple devices, delivered to the nearest.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -269,17 +269,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Across the internet\" is incorrect because the scenario requires: Link-local is never routed off the local link.",
+            "explanation": "**Across the internet** describes a different mechanism than this question tests. The right idea: Link-local is never routed off the local link.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Only by routers\" is incorrect because the scenario requires: Link-local is never routed off the local link.",
+            "explanation": "**Only by routers** describes a different mechanism than this question tests. The right idea: Link-local is never routed off the local link.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Only with NAT\" is incorrect because the scenario requires: Link-local is never routed off the local link.",
+            "explanation": "**Only with NAT** describes a different mechanism than this question tests. The right idea: Link-local is never routed off the local link.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -311,17 +311,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"FF02::2 (all routers)\" is incorrect because the scenario requires: All IPv6 hosts join FF02::1, the all-nodes group.",
+            "explanation": "**FF02::2 (all routers)** describes a different mechanism than this question tests. The right idea: All IPv6 hosts join FF02::1, the all-nodes group.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"FE80::1\" is incorrect because the scenario requires: All IPv6 hosts join FF02::1, the all-nodes group.",
+            "explanation": "**FE80::1** describes a different mechanism than this question tests. The right idea: All IPv6 hosts join FF02::1, the all-nodes group.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"2000::1\" is incorrect because the scenario requires: All IPv6 hosts join FF02::1, the all-nodes group.",
+            "explanation": "**2000::1** describes a different mechanism than this question tests. The right idea: All IPv6 hosts join FF02::1, the all-nodes group.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],

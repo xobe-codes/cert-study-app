@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"VMware Workstation on Windows\" is incorrect because the scenario requires: ESXi runs directly on hardware without a host OS underneath.",
+            "explanation": "**VMware Workstation on Windows** describes a different mechanism than this question tests. The right idea: ESXi runs directly on hardware without a host OS underneath.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Docker Desktop only\" is incorrect because the scenario requires: ESXi runs directly on hardware without a host OS underneath.",
+            "explanation": "**Docker Desktop only** describes a different mechanism than this question tests. The right idea: ESXi runs directly on hardware without a host OS underneath.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"A physical router\" is incorrect because the scenario requires: ESXi runs directly on hardware without a host OS underneath.",
+            "explanation": "**A physical router** describes a different mechanism than this question tests. The right idea: ESXi runs directly on hardware without a host OS underneath.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Directly on bare metal only\" is incorrect because the scenario requires: Type 2 is hosted — e.g. Workstation on Windows/macOS.",
+            "explanation": "**Directly on bare metal only** describes a different mechanism than this question tests. The right idea: Type 2 is hosted — e.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Inside a container only\" is incorrect because the scenario requires: Type 2 is hosted — e.g. Workstation on Windows/macOS.",
+            "explanation": "**Inside a container only** describes a different mechanism than this question tests. The right idea: Type 2 is hosted — e.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Without any VMs\" is incorrect because the scenario requires: Type 2 is hosted — e.g. Workstation on Windows/macOS.",
+            "explanation": "**Without any VMs** describes a different mechanism than this question tests. The right idea: Type 2 is hosted — e.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Include a full guest OS each\" is incorrect because the scenario requires: Containers isolate processes but share one kernel — lighter than full VMs.",
+            "explanation": "**Include a full guest OS each** describes a different mechanism than this question tests. The right idea: Containers isolate processes but share one kernel — lighter than full VMs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Cannot run on Linux\" is incorrect because the scenario requires: Containers isolate processes but share one kernel — lighter than full VMs.",
+            "explanation": "**Cannot run on Linux** contradicts the expected behavior. Containers isolate processes but share one kernel — lighter than full VMs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Replace physical switches\" is incorrect because the scenario requires: Containers isolate processes but share one kernel — lighter than full VMs.",
+            "explanation": "**Replace physical switches** describes a different mechanism than this question tests. The right idea: Containers isolate processes but share one kernel — lighter than full VMs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Wireless encryption\" is incorrect because the scenario requires: VRF creates separate routing/forwarding instances on one device.",
+            "explanation": "**Wireless encryption** describes a different mechanism than this question tests. The right idea: VRF creates separate routing/forwarding instances on one device.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Fiber transceiver support\" is incorrect because the scenario requires: VRF creates separate routing/forwarding instances on one device.",
+            "explanation": "**Fiber transceiver support** describes a different mechanism than this question tests. The right idea: VRF creates separate routing/forwarding instances on one device.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"DHCP server redundancy\" is incorrect because the scenario requires: VRF creates separate routing/forwarding instances on one device.",
+            "explanation": "**DHCP server redundancy** describes a different mechanism than this question tests. The right idea: VRF creates separate routing/forwarding instances on one device.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -197,17 +197,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Replacing DNS with VLANs\" is incorrect because the scenario requires: NFV virtualizes functions like firewall and router as software.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**Replacing DNS with VLANs** describes a different mechanism than this question tests. The right idea: NFV virtualizes functions like firewall and router as software.",
+            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Eliminating all routers\" is incorrect because the scenario requires: NFV virtualizes functions like firewall and router as software.",
+            "explanation": "**Eliminating all routers** describes a different mechanism than this question tests. The right idea: NFV virtualizes functions like firewall and router as software.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Using only WEP\" is incorrect because the scenario requires: NFV virtualizes functions like firewall and router as software.",
+            "explanation": "**Using only WEP** describes a different mechanism than this question tests. The right idea: NFV virtualizes functions like firewall and router as software.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -239,17 +239,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Only a container image\" is incorrect because the scenario requires: VMs are full guests with virtual hardware including vNICs.",
+            "explanation": "**Only a container image** describes a different mechanism than this question tests. The right idea: VMs are full guests with virtual hardware including vNICs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Shared kernel with all other VMs\" is incorrect because the scenario requires: VMs are full guests with virtual hardware including vNICs.",
+            "explanation": "**Shared kernel with all other VMs** describes a different mechanism than this question tests. The right idea: VMs are full guests with virtual hardware including vNICs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"No network interface\" is incorrect because the scenario requires: VMs are full guests with virtual hardware including vNICs.",
+            "explanation": "**No network interface** contradicts the expected behavior. VMs are full guests with virtual hardware including vNICs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -279,8 +279,8 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"True\" is incorrect because the scenario requires: False — VLAN = L2 broadcast domain; VRF = L3 routing table isolation.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "This statement is **True**, but the tested fact is: False — VLAN = L2 broadcast domain; VRF = L3 routing table isolation.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -311,17 +311,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Type 1 hypervisors\" is incorrect because the scenario requires: Docker packages apps into containers sharing the host kernel.",
+            "explanation": "**Type 1 hypervisors** describes a different mechanism than this question tests. The right idea: Docker packages apps into containers sharing the host kernel.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"WPA3\" is incorrect because the scenario requires: Docker packages apps into containers sharing the host kernel.",
+            "explanation": "**WPA3** describes a different mechanism than this question tests. The right idea: Docker packages apps into containers sharing the host kernel.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Spanning Tree\" is incorrect because the scenario requires: Docker packages apps into containers sharing the host kernel.",
+            "explanation": "**Spanning Tree** describes a different mechanism than this question tests. The right idea: Docker packages apps into containers sharing the host kernel.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],

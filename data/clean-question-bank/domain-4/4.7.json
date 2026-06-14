@@ -29,19 +29,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Layer 2 ASICs\" is incorrect because the scenario requires: The correct answer is \"Access control lists\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Layer 2 ASICs** is the wrong OSI layer here. The stem tests **Layer 3** behavior — routers forward based on IP addresses and routing tables.",
+            "misconceptionTested": "Choosing data link layer when the question is about network layer routing",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Route tables\" is incorrect because the scenario requires: The correct answer is \"Access control lists\".",
+            "explanation": "**Route tables** describes a different mechanism than this question tests. The right idea: The correct answer is \"Access control lists\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Frame filters\" is incorrect because the scenario requires: The correct answer is \"Access control lists\".",
+            "explanation": "**Frame filters** describes a different mechanism than this question tests. The right idea: The correct answer is \"Access control lists\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -78,19 +78,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Bandwidth\" is incorrect because the scenario requires: The correct answer is \"Jitter\".",
+            "explanation": "**Bandwidth** describes a different mechanism than this question tests. The right idea: The correct answer is \"Jitter\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Delay\" is incorrect because the scenario requires: The correct answer is \"Jitter\".",
+            "explanation": "**Delay** describes a different mechanism than this question tests. The right idea: The correct answer is \"Jitter\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Loss\" is incorrect because the scenario requires: The correct answer is \"Jitter\".",
+            "explanation": "**Loss** describes a different mechanism than this question tests. The right idea: The correct answer is \"Jitter\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -125,19 +125,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The Class of Service field is a layer 3 field.\" is incorrect because the scenario requires: The correct answer is \"The Class of Service field is only present in 802.1Q frames.\".",
+            "explanation": "**The Class of Service field is a layer 3 field.** does not satisfy what the question asks. The correct answer is \"The Class of Service field is only present in 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The Class of Service field is present from end to end of a transmission.\" is incorrect because the scenario requires: The correct answer is \"The Class of Service field is only present in 802.1Q frames.\".",
+            "explanation": "**The Class of Service field is present from end to end of a transmission.** does not satisfy what the question asks. The correct answer is \"The Class of Service field is only present in 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The Class of Service field is 6 bits.\" is incorrect because the scenario requires: The correct answer is \"The Class of Service field is only present in 802.1Q frames.\".",
+            "explanation": "**The Class of Service field is 6 bits.** does not satisfy what the question asks. The correct answer is \"The Class of Service field is only present in 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -175,19 +175,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Bandwidth\" is incorrect because the scenario requires: The correct answer is \"Loss\".",
+            "explanation": "**Bandwidth** describes a different mechanism than this question tests. The right idea: The correct answer is \"Loss\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Delay\" is incorrect because the scenario requires: The correct answer is \"Loss\".",
+            "explanation": "**Delay** describes a different mechanism than this question tests. The right idea: The correct answer is \"Loss\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Jitter\" is incorrect because the scenario requires: The correct answer is \"Loss\".",
+            "explanation": "**Jitter** describes a different mechanism than this question tests. The right idea: The correct answer is \"Loss\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -223,19 +223,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"DSCP AF 43\" is incorrect because the scenario requires: The correct answer is \"DSCP EF 46\".",
+            "explanation": "**DSCP AF 43** describes a different mechanism than this question tests. The right idea: The correct answer is \"DSCP EF 46\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"DSCP AF 11\" is incorrect because the scenario requires: The correct answer is \"DSCP EF 46\".",
+            "explanation": "**DSCP AF 11** describes a different mechanism than this question tests. The right idea: The correct answer is \"DSCP EF 46\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"DSCP AF 00\" is incorrect because the scenario requires: The correct answer is \"DSCP EF 46\".",
+            "explanation": "**DSCP AF 00** describes a different mechanism than this question tests. The right idea: The correct answer is \"DSCP EF 46\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -270,19 +270,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"10 ms\" is incorrect because the scenario requires: The correct answer is \"150 ms\".",
+            "explanation": "**10 ms** describes a different mechanism than this question tests. The right idea: The correct answer is \"150 ms\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"90 ms\" is incorrect because the scenario requires: The correct answer is \"150 ms\".",
+            "explanation": "**90 ms** describes a different mechanism than this question tests. The right idea: The correct answer is \"150 ms\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"300 ms\" is incorrect because the scenario requires: The correct answer is \"150 ms\".",
+            "explanation": "**300 ms** describes a different mechanism than this question tests. The right idea: The correct answer is \"150 ms\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -320,19 +320,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"CBWFQ\" is incorrect because the scenario requires: The correct answer is \"LLQ\".",
+            "explanation": "**CBWFQ** describes a different mechanism than this question tests. The right idea: The correct answer is \"LLQ\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"FIFO\" is incorrect because the scenario requires: The correct answer is \"LLQ\".",
+            "explanation": "**FIFO** describes a different mechanism than this question tests. The right idea: The correct answer is \"LLQ\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"CIR\" is incorrect because the scenario requires: The correct answer is \"LLQ\".",
+            "explanation": "**CIR** describes a different mechanism than this question tests. The right idea: The correct answer is \"LLQ\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -371,19 +371,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"LLQ\" is incorrect because the scenario requires: The correct answer is \"Policing\".",
+            "explanation": "**LLQ** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"CBWFQ\" is incorrect because the scenario requires: The correct answer is \"Policing\".",
+            "explanation": "**CBWFQ** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"FIFO\" is incorrect because the scenario requires: The correct answer is \"Policing\".",
+            "explanation": "**FIFO** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -421,19 +421,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Shaping drops packets over the configured bit rate to cause loss.\" is incorrect because the scenario requires: The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.\".",
+            "explanation": "**Shaping drops packets over the configured bit rate to cause loss.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Shaping holds packets in the queue over the configured bit rate to cause jitter.\" is incorrect because the scenario requires: The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.\".",
+            "explanation": "**Shaping holds packets in the queue over the configured bit rate to cause jitter.** does not satisfy what the question asks. The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Shaping slows packets in the queue over the configured bit rate to adhere to the speed.\" is incorrect because the scenario requires: The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.\".",
+            "explanation": "**Shaping slows packets in the queue over the configured bit rate to adhere to the speed.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -470,19 +470,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"LLQ\" is incorrect because the scenario requires: The correct answer is \"CBWFQ\".",
+            "explanation": "**LLQ** describes a different mechanism than this question tests. The right idea: The correct answer is \"CBWFQ\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"FIFO\" is incorrect because the scenario requires: The correct answer is \"CBWFQ\".",
+            "explanation": "**FIFO** describes a different mechanism than this question tests. The right idea: The correct answer is \"CBWFQ\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"PQ\" is incorrect because the scenario requires: The correct answer is \"CBWFQ\".",
+            "explanation": "**PQ** describes a different mechanism than this question tests. The right idea: The correct answer is \"CBWFQ\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -520,19 +520,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Policing holds packets in the queue over the configured bit rate to cause delay.\" is incorrect because the scenario requires: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.\".",
+            "explanation": "**Policing holds packets in the queue over the configured bit rate to cause delay.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Policing holds packets in the queue over the configured bit rate to cause jitter.\" is incorrect because the scenario requires: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.\".",
+            "explanation": "**Policing holds packets in the queue over the configured bit rate to cause jitter.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Policing slows packets in the queue over the configured bit rate to adhere to the bit rate.\" is incorrect because the scenario requires: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.\".",
+            "explanation": "**Policing slows packets in the queue over the configured bit rate to adhere to the bit rate.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -568,19 +568,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"To help police LAN applications\" is incorrect because the scenario requires: The correct answer is \"To maintain a contracted CIR\".",
+            "explanation": "**To help police LAN applications** describes a different mechanism than this question tests. The right idea: The correct answer is \"To maintain a contracted CIR\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"To help police WAN applications\" is incorrect because the scenario requires: The correct answer is \"To maintain a contracted CIR\".",
+            "explanation": "**To help police WAN applications** describes a different mechanism than this question tests. The right idea: The correct answer is \"To maintain a contracted CIR\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"To maintain a contracted burst rate\" is incorrect because the scenario requires: The correct answer is \"To maintain a contracted CIR\".",
+            "explanation": "**To maintain a contracted burst rate** does not satisfy what the question asks. The correct answer is \"To maintain a contracted CIR\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -619,19 +619,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"When the queue depth is full, a percentage of TCP packets are dropped.\" is incorrect because the scenario requires: The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\".",
+            "explanation": "**When the queue depth is full, a percentage of TCP packets are dropped.** does not satisfy what the question asks. The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"When the queue depth is empty, a percentage of TCP packets are dropped.\" is incorrect because the scenario requires: The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\".",
+            "explanation": "**When the queue depth is empty, a percentage of TCP packets are dropped.** does not satisfy what the question asks. The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped.\" is incorrect because the scenario requires: The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.\".",
+            "explanation": "**When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped.** does not satisfy what the question asks. The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -669,19 +669,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"AF31 marked traffic has a better queue than AF41 marked traffic.\" is incorrect because the scenario requires: The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.\".",
+            "explanation": "**AF31 marked traffic has a better queue than AF41 marked traffic.** does not satisfy what the question asks. The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Both AF31 and AF41 marked traffic has an equal queue.\" is incorrect because the scenario requires: The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Both AF31 and AF41 marked traffic has an equal queue.** describes a different mechanism than this question tests. The right idea: The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.",
+            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"During high congestion, AF41 queues will be dropped and AF31 queues won’t.\" is incorrect because the scenario requires: The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.\".",
+            "explanation": "**During high congestion, AF41 queues will be dropped and AF31 queues won’t.** describes a different mechanism than this question tests. The right idea: The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

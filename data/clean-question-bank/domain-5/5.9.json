@@ -30,19 +30,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SSID beaconing is enabled.\" is incorrect because the scenario requires: The correct answer is \"Status is disabled.\".",
+            "explanation": "**SSID beaconing is enabled.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Status is disabled.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Multicast support is disabled.\" is incorrect because the scenario requires: The correct answer is \"Status is disabled.\".",
+            "explanation": "**Multicast support is disabled.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Status is disabled.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Radio Policy is configured to all.\" is incorrect because the scenario requires: The correct answer is \"Status is disabled.\".",
+            "explanation": "**Radio Policy is configured to all.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Status is disabled.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -80,19 +80,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Two PSKs (one hex and one ASCII)\" is incorrect because the scenario requires: The correct answer is \"One PSK (one hex or one ASCII)\".",
+            "explanation": "**Two PSKs (one hex and one ASCII)** describes a different mechanism than this question tests. The right idea: The correct answer is \"One PSK (one hex or one ASCII)\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Four PSKs (two hex and two ASCII)\" is incorrect because the scenario requires: The correct answer is \"One PSK (one hex or one ASCII)\".",
+            "explanation": "**Four PSKs (two hex and two ASCII)** describes a different mechanism than this question tests. The right idea: The correct answer is \"One PSK (one hex or one ASCII)\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Unlimited number of PSKs\" is incorrect because the scenario requires: The correct answer is \"One PSK (one hex or one ASCII)\".",
+            "explanation": "**Unlimited number of PSKs** describes a different mechanism than this question tests. The right idea: The correct answer is \"One PSK (one hex or one ASCII)\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -131,19 +131,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"WPA-AES\" is incorrect because the scenario requires: The correct answer is \"WPA2-AES\".",
+            "explanation": "**WPA-AES** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-AES\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"WPA2-TKIP\" is incorrect because the scenario requires: The correct answer is \"WPA2-AES\".",
+            "explanation": "**WPA2-TKIP** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-AES\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"WPA2-RC4\" is incorrect because the scenario requires: The correct answer is \"WPA2-AES\".",
+            "explanation": "**WPA2-RC4** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-AES\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -181,19 +181,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"WPA-Enterprise\" is incorrect because the scenario requires: The correct answer is \"WPA2-Personal\".",
+            "explanation": "**WPA-Enterprise** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-Personal\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"WPA3-Enterprise\" is incorrect because the scenario requires: The correct answer is \"WPA2-Personal\".",
+            "explanation": "**WPA3-Enterprise** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-Personal\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"WPA-Personal\" is incorrect because the scenario requires: The correct answer is \"WPA2-Personal\".",
+            "explanation": "**WPA-Personal** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-Personal\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

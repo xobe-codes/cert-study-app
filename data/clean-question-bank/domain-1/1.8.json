@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"32\" is incorrect because the scenario requires: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
+            "explanation": "**32** describes a different mechanism than this question tests. The right idea: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"64\" is incorrect because the scenario requires: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
+            "explanation": "**64** describes a different mechanism than this question tests. The right idea: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"256\" is incorrect because the scenario requires: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
+            "explanation": "**256** describes a different mechanism than this question tests. The right idea: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"2001:db8:::1\" is incorrect because the scenario requires: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
+            "explanation": "**2001:db8:::1** describes a different mechanism than this question tests. The right idea: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"2001:db8::0:1::\" is incorrect because the scenario requires: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
+            "explanation": "**2001:db8::0:1::** describes a different mechanism than this question tests. The right idea: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"2001::db8::1\" is incorrect because the scenario requires: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
+            "explanation": "**2001::db8::1** describes a different mechanism than this question tests. The right idea: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -111,8 +111,8 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"True\" is incorrect because the scenario requires: False — `::` may appear only once, otherwise the number of zero groups is ambiguous.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "This statement is **True**, but the tested fact is: False — `::` may appear only once, otherwise the number of zero groups is ambiguous.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -143,17 +143,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"/24\" is incorrect because the scenario requires: /64 is standard for LANs and is required for SLAAC/EUI-64.",
+            "explanation": "**/24** describes a different mechanism than this question tests. The right idea: /64 is standard for LANs and is required for SLAAC/EUI-64.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"/48\" is incorrect because the scenario requires: /64 is standard for LANs and is required for SLAAC/EUI-64.",
+            "explanation": "**/48** describes a different mechanism than this question tests. The right idea: /64 is standard for LANs and is required for SLAAC/EUI-64.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"/128\" is incorrect because the scenario requires: /64 is standard for LANs and is required for SLAAC/EUI-64.",
+            "explanation": "**/128** describes a different mechanism than this question tests. The right idea: /64 is standard for LANs and is required for SLAAC/EUI-64.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -185,17 +185,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"FF00\" is incorrect because the scenario requires: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
+            "explanation": "**FF00** describes a different mechanism than this question tests. The right idea: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"FFFF\" is incorrect because the scenario requires: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
+            "explanation": "**FFFF** describes a different mechanism than this question tests. The right idea: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"FE80\" is incorrect because the scenario requires: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
+            "explanation": "**FE80** describes a different mechanism than this question tests. The right idea: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -227,17 +227,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"DHCPv6\" is incorrect because the scenario requires: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "explanation": "**DHCPv6** describes a different mechanism than this question tests. The right idea: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Static\" is incorrect because the scenario requires: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "explanation": "**Static** describes a different mechanism than this question tests. The right idea: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"NAT66\" is incorrect because the scenario requires: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "explanation": "**NAT66** describes a different mechanism than this question tests. The right idea: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -269,17 +269,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"ipv6 routing\" is incorrect because the scenario requires: `ipv6 unicast-routing` must be enabled globally.",
+            "explanation": "**ipv6 routing** describes a different mechanism than this question tests. The right idea: `ipv6 unicast-routing` must be enabled globally.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ip routing v6\" is incorrect because the scenario requires: `ipv6 unicast-routing` must be enabled globally.",
+            "explanation": "**ip routing v6** describes a different mechanism than this question tests. The right idea: `ipv6 unicast-routing` must be enabled globally.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"enable ipv6\" is incorrect because the scenario requires: `ipv6 unicast-routing` must be enabled globally.",
+            "explanation": "**enable ipv6** describes a different mechanism than this question tests. The right idea: `ipv6 unicast-routing` must be enabled globally.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -311,17 +311,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Trailing zeros\" is incorrect because the scenario requires: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
+            "explanation": "**Trailing zeros** describes a different mechanism than this question tests. The right idea: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"All zeros\" is incorrect because the scenario requires: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
+            "explanation": "**All zeros** describes a different mechanism than this question tests. The right idea: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"None\" is incorrect because the scenario requires: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
+            "explanation": "**None** describes a different mechanism than this question tests. The right idea: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -353,17 +353,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"show ip interface brief\" is incorrect because the scenario requires: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+            "explanation": "**show ip interface brief** describes a different mechanism than this question tests. The right idea: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"show ipv6 route\" is incorrect because the scenario requires: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+            "explanation": "**show ipv6 route** describes a different mechanism than this question tests. The right idea: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"show running-config\" is incorrect because the scenario requires: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+            "explanation": "**show running-config** describes a different mechanism than this question tests. The right idea: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           }
         ],
@@ -395,17 +395,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"32\" is incorrect because the scenario requires: 128 − 64 = 64 bits for the interface ID.",
+            "explanation": "**32** describes a different mechanism than this question tests. The right idea: 128 − 64 = 64 bits for the interface ID.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"48\" is incorrect because the scenario requires: 128 − 64 = 64 bits for the interface ID.",
+            "explanation": "**48** describes a different mechanism than this question tests. The right idea: 128 − 64 = 64 bits for the interface ID.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"128\" is incorrect because the scenario requires: 128 − 64 = 64 bits for the interface ID.",
+            "explanation": "**128** describes a different mechanism than this question tests. The right idea: 128 − 64 = 64 bits for the interface ID.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],

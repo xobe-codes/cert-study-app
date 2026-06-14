@@ -30,19 +30,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Anti-malware software\" is incorrect because the scenario requires: The correct answer is \"Training\".",
+            "explanation": "**Anti-malware software** describes a different mechanism than this question tests. The right idea: The correct answer is \"Training\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Antivirus software\" is incorrect because the scenario requires: The correct answer is \"Training\".",
+            "explanation": "**Antivirus software** describes a different mechanism than this question tests. The right idea: The correct answer is \"Training\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Certificates\" is incorrect because the scenario requires: The correct answer is \"Training\".",
+            "explanation": "**Certificates** describes a different mechanism than this question tests. The right idea: The correct answer is \"Training\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -79,19 +79,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Spam\" is incorrect because the scenario requires: The correct answer is \"Phishing\".",
+            "explanation": "**Spam** describes a different mechanism than this question tests. The right idea: The correct answer is \"Phishing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Password cracking\" is incorrect because the scenario requires: The correct answer is \"Phishing\".",
+            "explanation": "**Password cracking** describes a different mechanism than this question tests. The right idea: The correct answer is \"Phishing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Worm\" is incorrect because the scenario requires: The correct answer is \"Phishing\".",
+            "explanation": "**Worm** describes a different mechanism than this question tests. The right idea: The correct answer is \"Phishing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -126,19 +126,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Security\" is incorrect because the scenario requires: The correct answer is \"Privacy\".",
+            "explanation": "**Security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Privacy\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Degaussing\" is incorrect because the scenario requires: The correct answer is \"Privacy\".",
+            "explanation": "**Degaussing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Privacy\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Tempered\" is incorrect because the scenario requires: The correct answer is \"Privacy\".",
+            "explanation": "**Tempered** describes a different mechanism than this question tests. The right idea: The correct answer is \"Privacy\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -176,19 +176,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Phishing\" is incorrect because the scenario requires: The correct answer is \"Shoulder surfing\".",
+            "explanation": "**Phishing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Shoulder surfing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Tailgating\" is incorrect because the scenario requires: The correct answer is \"Shoulder surfing\".",
+            "explanation": "**Tailgating** describes a different mechanism than this question tests. The right idea: The correct answer is \"Shoulder surfing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Whaling\" is incorrect because the scenario requires: The correct answer is \"Shoulder surfing\".",
+            "explanation": "**Whaling** describes a different mechanism than this question tests. The right idea: The correct answer is \"Shoulder surfing\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -226,19 +226,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Biometric authentication\" is incorrect because the scenario requires: The correct answer is \"Least privilege\".",
+            "explanation": "**Biometric authentication** describes a different mechanism than this question tests. The right idea: The correct answer is \"Least privilege\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Hardware tokens\" is incorrect because the scenario requires: The correct answer is \"Least privilege\".",
+            "explanation": "**Hardware tokens** describes a different mechanism than this question tests. The right idea: The correct answer is \"Least privilege\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Active Directory\" is incorrect because the scenario requires: The correct answer is \"Least privilege\".",
+            "explanation": "**Active Directory** describes a different mechanism than this question tests. The right idea: The correct answer is \"Least privilege\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -274,19 +274,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Multifactor authentication\" is incorrect because the scenario requires: The correct answer is \"Anti-malware software\".",
+            "explanation": "**Multifactor authentication** describes a different mechanism than this question tests. The right idea: The correct answer is \"Anti-malware software\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Software firewalls\" is incorrect because the scenario requires: The correct answer is \"Anti-malware software\".",
+            "explanation": "**Software firewalls** describes a different mechanism than this question tests. The right idea: The correct answer is \"Anti-malware software\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Antivirus software\" is incorrect because the scenario requires: The correct answer is \"Anti-malware software\".",
+            "explanation": "**Antivirus software** describes a different mechanism than this question tests. The right idea: The correct answer is \"Anti-malware software\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -326,19 +326,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"User authentication\" is incorrect because the scenario requires: The correct answer is \"Mantraps\".",
+            "explanation": "**User authentication** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mantraps\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Strong passwords\" is incorrect because the scenario requires: The correct answer is \"Mantraps\".",
+            "explanation": "**Strong passwords** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mantraps\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Change SSIDs\" is incorrect because the scenario requires: The correct answer is \"Mantraps\".",
+            "explanation": "**Change SSIDs** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mantraps\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

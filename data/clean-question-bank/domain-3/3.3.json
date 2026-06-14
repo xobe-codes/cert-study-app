@@ -27,17 +27,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"ip route 172.16.0.0 0.0.255.255 10.0.0.1\" is incorrect because the scenario requires: ip route <network> <subnet-mask> <next-hop>. /16 = 255.255.0.0.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "**ip route 172.16.0.0 0.0.255.255 10.0.0.1** does not satisfy what the question asks. ip route <network> <subnet-mask> <next-hop>.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"static route 172.16.0.0/16 10.0.0.1\" is incorrect because the scenario requires: ip route <network> <subnet-mask> <next-hop>. /16 = 255.255.0.0.",
+            "explanation": "**static route 172.16.0.0/16 10.0.0.1** describes a different mechanism than this question tests. The right idea: ip route <network> <subnet-mask> <next-hop>.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ip static-route 172.16.0.0 255.255.0.0 10.0.0.1\" is incorrect because the scenario requires: ip route <network> <subnet-mask> <next-hop>. /16 = 255.255.0.0.",
+            "explanation": "**ip static-route 172.16.0.0 255.255.0.0 10.0.0.1** describes a different mechanism than this question tests. The right idea: ip route <network> <subnet-mask> <next-hop>.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -69,17 +69,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"ip route 0.0.0.0 255.255.255.255 203.0.113.1\" is incorrect because the scenario requires: Default static route: destination 0.0.0.0 mask 0.0.0.0 (/0) matches all traffic.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "**ip route 0.0.0.0 255.255.255.255 203.0.113.1** does not satisfy what the question asks. Default static route: destination 0.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ip route default 203.0.113.1\" is incorrect because the scenario requires: Default static route: destination 0.0.0.0 mask 0.0.0.0 (/0) matches all traffic.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "**ip route default 203.0.113.1** describes a different mechanism than this question tests. The right idea: Default static route: destination 0.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ip default-route 203.0.113.1\" is incorrect because the scenario requires: Default static route: destination 0.0.0.0 mask 0.0.0.0 (/0) matches all traffic.",
+            "explanation": "**ip default-route 203.0.113.1** describes a different mechanism than this question tests. The right idea: Default static route: destination 0.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -111,18 +111,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"ip route 10.0.0.0 255.0.0.0 192.168.2.1 90\" is incorrect because the scenario requires: AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route. AD 90 would always beat OS…",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "**ip route 10.0.0.0 255.0.0.0 192.168.2.1 90** does not satisfy what the question asks. AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ip route 10.0.0.0 255.0.0.0 192.168.2.1\" is incorrect because the scenario requires: AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route. AD 90 would always beat OS…",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "**ip route 10.0.0.0 255.0.0.0 192.168.2.1** does not satisfy what the question asks. AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ip route 10.0.0.0 255.0.0.0 192.168.2.1 1\" is incorrect because the scenario requires: AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route. AD 90 would always beat OS…",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "**ip route 10.0.0.0 255.0.0.0 192.168.2.1 1** does not satisfy what the question asks. AD 130 is higher than OSPF AD 110, so the static is only installed when OSPF loses the route.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           }
         ],
         "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
@@ -153,17 +153,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Static routes require OSPF to advertise them\" is incorrect because the scenario requires: A static route requires its next-hop to be reachable via another routing table entry. If not reachable, the static is no…",
+            "explanation": "**Static routes require OSPF to advertise them** describes a different mechanism than this question tests. The right idea: A static route requires its next-hop to be reachable via another routing table entry.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Static routes must use exit interface only\" is incorrect because the scenario requires: A static route requires its next-hop to be reachable via another routing table entry. If not reachable, the static is no…",
+            "explanation": "**Static routes must use exit interface only** describes a different mechanism than this question tests. The right idea: A static route requires its next-hop to be reachable via another routing table entry.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The mask is incompatible\" is incorrect because the scenario requires: A static route requires its next-hop to be reachable via another routing table entry. If not reachable, the static is no…",
+            "explanation": "**The mask is incompatible** describes a different mechanism than this question tests. The right idea: A static route requires its next-hop to be reachable via another routing table entry.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -195,17 +195,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"ip route 2001:db8:1::/48 2001:db8::1\" is incorrect because the scenario requires: IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`. Requires `ipv6 unicast-routing` globally.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "**ip route 2001:db8:1::/48 2001:db8::1** describes a different mechanism than this question tests. The right idea: IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1\" is incorrect because the scenario requires: IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`. Requires `ipv6 unicast-routing` globally.",
+            "explanation": "**ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1** describes a different mechanism than this question tests. The right idea: IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ipv6 route 2001:db8:1:: /48 2001:db8::1\" is incorrect because the scenario requires: IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`. Requires `ipv6 unicast-routing` globally.",
+            "explanation": "**ipv6 route 2001:db8:1:: /48 2001:db8::1** does not satisfy what the question asks. IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -238,17 +238,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"ipv6 route ff00::/8 <next-hop>\" is incorrect because the scenario requires: IPv6 default route is ::/0 (prefix length 0 matches everything).",
+            "explanation": "**ipv6 route ff00::/8 <next-hop>** describes a different mechanism than this question tests. The right idea: IPv6 default route is ::/0 (prefix length 0 matches everything).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"ipv6 route 0::0/0 <next-hop>\" is incorrect because the scenario requires: IPv6 default route is ::/0 (prefix length 0 matches everything).",
+            "explanation": "**ipv6 route 0::0/0 <next-hop>** describes a different mechanism than this question tests. The right idea: IPv6 default route is ::/0 (prefix length 0 matches everything).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ipv6 default-gateway <next-hop>\" is incorrect because the scenario requires: IPv6 default route is ::/0 (prefix length 0 matches everything).",
+            "explanation": "**ipv6 default-gateway <next-hop>** describes a different mechanism than this question tests. The right idea: IPv6 default route is ::/0 (prefix length 0 matches everything).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -280,18 +280,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"show ip route\" is incorrect because the scenario requires: `show ip route static` filters to entries with source code S.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "**show ip route** does not satisfy what the question asks. `show ip route static` filters to entries with source code S.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"show running-config | section route\" is incorrect because the scenario requires: `show ip route static` filters to entries with source code S.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "**show running-config | section route** describes a different mechanism than this question tests. The right idea: `show ip route static` filters to entries with source code S.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"show ip protocols\" is incorrect because the scenario requires: `show ip route static` filters to entries with source code S.",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+            "explanation": "**show ip protocols** describes a different mechanism than this question tests. The right idea: `show ip route static` filters to entries with source code S.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           }
         ],
         "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
@@ -322,17 +322,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The route disappears from the table\" is incorrect because the scenario requires: On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one —…",
+            "explanation": "**The route disappears from the table** describes a different mechanism than this question tests. The right idea: On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one — inefficient on multi-access segments.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The route has AD 255\" is incorrect because the scenario requires: On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one —…",
+            "explanation": "**The route has AD 255** describes a different mechanism than this question tests. The right idea: On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one — inefficient on multi-access segments.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The router uses OSPF to resolve the path\" is incorrect because the scenario requires: On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one —…",
+            "explanation": "**The router uses OSPF to resolve the path** describes a different mechanism than this question tests. The right idea: On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one — inefficient on multi-access segments.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -367,20 +367,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#ip route 205.34.54.85/24 205.34.55.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route 205.34.54.85/24 205.34.55.2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip route 205.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip route 205.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 205.34.54.85 255.255.255.248 205.34.55.2\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85** does not satisfy what the question asks. The correct answer is \"Router(config)#ip route 205.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -414,19 +414,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Link-state routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**Link-state routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Distance-vector routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**Distance-vector routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Dynamic routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**Dynamic routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -462,19 +462,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Directly connected routes\" is incorrect because the scenario requires: The correct answer is \"Dynamic routing\".",
+            "explanation": "**Directly connected routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Dynamic routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Default routing\" is incorrect because the scenario requires: The correct answer is \"Dynamic routing\".",
+            "explanation": "**Default routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Dynamic routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Static routing\" is incorrect because the scenario requires: The correct answer is \"Dynamic routing\".",
+            "explanation": "**Static routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Dynamic routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -512,19 +512,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RIP routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**RIP routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"OSPF routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**OSPF routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Default routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**Default routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -562,19 +562,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RIP routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "explanation": "**RIP routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"OSPF routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "explanation": "**OSPF routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Static routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "explanation": "**Static routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -612,19 +612,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"BGP\" is incorrect because the scenario requires: The correct answer is \"RIP\".",
+            "explanation": "**BGP** describes a different mechanism than this question tests. The right idea: The correct answer is \"RIP\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"OSPF\" is incorrect because the scenario requires: The correct answer is \"RIP\".",
+            "explanation": "**OSPF** describes a different mechanism than this question tests. The right idea: The correct answer is \"RIP\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"EIGRP\" is incorrect because the scenario requires: The correct answer is \"RIP\".",
+            "explanation": "**EIGRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"RIP\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -660,19 +660,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Lower router RAM usage\" is incorrect because the scenario requires: The correct answer is \"Resiliency when routes become unavailable\".",
+            "explanation": "**Lower router RAM usage** describes a different mechanism than this question tests. The right idea: The correct answer is \"Resiliency when routes become unavailable\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Lower router CPU usage\" is incorrect because the scenario requires: The correct answer is \"Resiliency when routes become unavailable\".",
+            "explanation": "**Lower router CPU usage** describes a different mechanism than this question tests. The right idea: The correct answer is \"Resiliency when routes become unavailable\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Less bandwidth usage\" is incorrect because the scenario requires: The correct answer is \"Resiliency when routes become unavailable\".",
+            "explanation": "**Less bandwidth usage** describes a different mechanism than this question tests. The right idea: The correct answer is \"Resiliency when routes become unavailable\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -708,19 +708,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Default routing\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "explanation": "**Default routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Connected routes\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Dynamic routes\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "explanation": "**Dynamic routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Connected routes\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Static routes\" is incorrect because the scenario requires: The correct answer is \"Connected routes\".",
+            "explanation": "**Static routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Connected routes\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -756,19 +756,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#ip route 0.0.0.0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route 0.0.0.0/0 s0/0** does not satisfy what the question asks. The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config)#ipv6 route 0.0.0.0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "explanation": "**Router(config)#ipv6 route 0.0.0.0/0 s0/0** does not satisfy what the question asks. The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config)#ipv6 unicast-route ::0/0 s0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
+            "explanation": "**Router(config)#ipv6 unicast-route ::0/0 s0/0** does not satisfy what the question asks. The correct answer is \"Router(config)#ipv6 route ::0/0 s0/0\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -806,19 +806,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RIPng\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "explanation": "**RIPng** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"OSPFv3\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "explanation": "**OSPFv3** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"EIGRPv6\" is incorrect because the scenario requires: The correct answer is \"All of the above\".",
+            "explanation": "**EIGRPv6** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -854,20 +854,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router#show route\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show route** does not satisfy what the question asks. The correct answer is \"Router#show ipv6 route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router#show ip route\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show ip route** does not satisfy what the question asks. The correct answer is \"Router#show ipv6 route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#show route ipv6\" is incorrect because the scenario requires: The correct answer is \"Router#show ipv6 route\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show route ipv6** does not satisfy what the question asks. The correct answer is \"Router#show ipv6 route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -904,19 +904,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The destination IP address is replaced with the default gateway when the destination is remote.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**The destination IP address is replaced with the default gateway when the destination is remote.** does not satisfy what the question asks. The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The host sends the default gateway packets that are deemed remote via a broadcast.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "explanation": "**The host sends the default gateway packets that are deemed remote via a broadcast.** does not satisfy what the question asks. The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The host creates a dedicated connection with the default gateway for remote traffic.\" is incorrect because the scenario requires: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.\".",
+            "explanation": "**The host creates a dedicated connection with the default gateway for remote traffic.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -952,20 +952,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Router#show route\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show route** does not satisfy what the question asks. The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router#show route table\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show route table** does not satisfy what the question asks. The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#show routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip route\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show routes** does not satisfy what the question asks. The correct answer is \"Router#show ip route\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -1001,19 +1001,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"IGMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "explanation": "**IGMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RARP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "explanation": "**RARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ICMP\" is incorrect because the scenario requires: The correct answer is \"ARP\".",
+            "explanation": "**ICMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"ARP\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1051,19 +1051,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"SNMP traps\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "explanation": "**SNMP traps** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ping\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Notifications\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "explanation": "**Notifications** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ping\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"ARP\" is incorrect because the scenario requires: The correct answer is \"Ping\".",
+            "explanation": "**ARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ping\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1099,19 +1099,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The distant router is not responding.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "explanation": "**The distant router is not responding.** contradicts the expected behavior. The correct answer is \"The distant router is responding.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The distant router has a high response time.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "explanation": "**The distant router has a high response time.** does not satisfy what the question asks. The correct answer is \"The distant router is responding.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The distant router has a low response time.\" is incorrect because the scenario requires: The correct answer is \"The distant router is responding.\".",
+            "explanation": "**The distant router has a low response time.** does not satisfy what the question asks. The correct answer is \"The distant router is responding.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1146,20 +1146,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#ip route 192.168.4.0/24 serial 0/1\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route 192.168.4.0/24 serial 0/1** does not satisfy what the question asks. The correct answer is \"Router(config)#ip route 192.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config)#ip route 192.168.4.0/24 interface serial 0/1\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route 192.168.4.0/24 interface serial 0/1** does not satisfy what the question asks. The correct answer is \"Router(config)#ip route 192.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.4.0 255.255.255.0 serial 0/1\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1** does not satisfy what the question asks. The correct answer is \"Router(config)#ip route 192.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -1194,19 +1194,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2.\" is incorrect because the scenario requires: The correct answer is \"The command is only used for the management plane of the router itself.\".",
+            "explanation": "**The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The command is only used for the management plane of the router itself.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The command is used for dynamic routing only.\" is incorrect because the scenario requires: The correct answer is \"The command is only used for the management plane of the router itself.\".",
+            "explanation": "**The command is used for dynamic routing only.** does not satisfy what the question asks. The correct answer is \"The command is only used for the management plane of the router itself.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The specified gateway is wrong.\" is incorrect because the scenario requires: The correct answer is \"The command is only used for the management plane of the router itself.\".",
+            "explanation": "**The specified gateway is wrong.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The command is only used for the management plane of the router itself.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1244,20 +1244,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1** does not satisfy what the question asks. The correct answer is \"RouterA(config)#ip route 192.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1** does not satisfy what the question asks. The correct answer is \"RouterA(config)#ip route 192.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1** does not satisfy what the question asks. The correct answer is \"RouterA(config)#ip route 192.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -1292,19 +1292,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The router creates a /32 route for the IP address.\" is incorrect because the scenario requires: The correct answer is \"All of the above.\".",
+            "explanation": "**The router creates a /32 route for the IP address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The router creates a summary address for the network.\" is incorrect because the scenario requires: The correct answer is \"All of the above.\".",
+            "explanation": "**The router creates a summary address for the network.** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The router creates a routing update if dynamic routing is configured.\" is incorrect because the scenario requires: The correct answer is \"All of the above.\".",
+            "explanation": "**The router creates a routing update if dynamic routing is configured.** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1341,20 +1341,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router#show ip\" is incorrect because the scenario requires: The correct answer is \"Router#show ip interfaces brief\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show ip** does not satisfy what the question asks. The correct answer is \"Router#show ip interfaces brief\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router#show interfaces\" is incorrect because the scenario requires: The correct answer is \"Router#show ip interfaces brief\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show interfaces** does not satisfy what the question asks. The correct answer is \"Router#show ip interfaces brief\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#show ip brief\" is incorrect because the scenario requires: The correct answer is \"Router#show ip interfaces brief\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show ip brief** does not satisfy what the question asks. The correct answer is \"Router#show ip interfaces brief\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -1390,20 +1390,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"The interface speed is incorrect.\" is incorrect because the scenario requires: The correct answer is \"The interface is administratively shut down.\".",
+            "explanation": "**The interface speed is incorrect.** does not satisfy what the question asks. The correct answer is \"The interface is administratively shut down.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The interface bandwidth is not set.\" is incorrect because the scenario requires: The correct answer is \"The interface is administratively shut down.\".",
+            "explanation": "**The interface bandwidth is not set.** contradicts the expected behavior. The correct answer is \"The interface is administratively shut down.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The route will not show up until you save the config.\" is incorrect because the scenario requires: The correct answer is \"The interface is administratively shut down.\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**The route will not show up until you save the config.** contradicts the expected behavior. The correct answer is \"The interface is administratively shut down.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -1438,19 +1438,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Adding networks is an easy task for network administrators.\" is incorrect because the scenario requires: The correct answer is \"It reduces bandwidth used by router-to-router communications.\".",
+            "explanation": "**Adding networks is an easy task for network administrators.** describes a different mechanism than this question tests. The right idea: The correct answer is \"It reduces bandwidth used by router-to-router communications.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"It is suited for large networks because changes will not disturb routing.\" is incorrect because the scenario requires: The correct answer is \"It reduces bandwidth used by router-to-router communications.\".",
+            "explanation": "**It is suited for large networks because changes will not disturb routing.** contradicts the expected behavior. The correct answer is \"It reduces bandwidth used by router-to-router communications.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"It allows for configuration by any network admin in the network.\" is incorrect because the scenario requires: The correct answer is \"It reduces bandwidth used by router-to-router communications.\".",
+            "explanation": "**It allows for configuration by any network admin in the network.** describes a different mechanism than this question tests. The right idea: The correct answer is \"It reduces bandwidth used by router-to-router communications.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1485,19 +1485,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RAM\" is incorrect because the scenario requires: The correct answer is \"Startup configuration\".",
+            "explanation": "**RAM** describes a different mechanism than this question tests. The right idea: The correct answer is \"Startup configuration\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Flash\" is incorrect because the scenario requires: The correct answer is \"Startup configuration\".",
+            "explanation": "**Flash** describes a different mechanism than this question tests. The right idea: The correct answer is \"Startup configuration\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Routing database\" is incorrect because the scenario requires: The correct answer is \"Startup configuration\".",
+            "explanation": "**Routing database** describes a different mechanism than this question tests. The right idea: The correct answer is \"Startup configuration\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1534,20 +1534,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip route 192.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip route 192.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.0.0 255.255.240.0 198.43.23.2\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip route 192.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -1582,19 +1582,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"If the first one fails to route to the destination, the second route will succeed.\" is incorrect because the scenario requires: The correct answer is \"If the first interface goes down, the second route will become active.\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**If the first one fails to route to the destination, the second route will succeed.** does not satisfy what the question asks. The correct answer is \"If the first interface goes down, the second route will become active.",
+            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"If there is a high amount of traffic on the first interface, the second route will become active.\" is incorrect because the scenario requires: The correct answer is \"If the first interface goes down, the second route will become active.\".",
+            "explanation": "**If there is a high amount of traffic on the first interface, the second route will become active.** describes a different mechanism than this question tests. The right idea: The correct answer is \"If the first interface goes down, the second route will become active.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"If there is a routing loop on the first interface, the second will overcome the loop.\" is incorrect because the scenario requires: The correct answer is \"If the first interface goes down, the second route will become active.\".",
+            "explanation": "**If there is a routing loop on the first interface, the second will overcome the loop.** describes a different mechanism than this question tests. The right idea: The correct answer is \"If the first interface goes down, the second route will become active.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1631,19 +1631,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"S 208.43.34.24/29 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 208.43.34.17/32 is directly connected, Serial 0/0/0\".",
+            "explanation": "**S 208.43.34.24/29 is directly connected, Serial 0/0/0** does not satisfy what the question asks. The correct answer is \"S 208.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"S 208.43.34.8/29 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 208.43.34.17/32 is directly connected, Serial 0/0/0\".",
+            "explanation": "**S 208.43.34.8/29 is directly connected, Serial 0/0/0** does not satisfy what the question asks. The correct answer is \"S 208.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"S 208.43.34.17/29 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 208.43.34.17/32 is directly connected, Serial 0/0/0\".",
+            "explanation": "**S 208.43.34.17/29 is directly connected, Serial 0/0/0** does not satisfy what the question asks. The correct answer is \"S 208.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1680,19 +1680,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The 172.30.0/16 network\" is incorrect because the scenario requires: The correct answer is \"The 192.168.4.0/24 network\".",
+            "explanation": "**The 172.30.0/16 network** describes a different mechanism than this question tests. The right idea: The correct answer is \"The 192.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The 192.168.128.0/24 network\" is incorrect because the scenario requires: The correct answer is \"The 192.168.4.0/24 network\".",
+            "explanation": "**The 192.168.128.0/24 network** does not satisfy what the question asks. The correct answer is \"The 192.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The 192.168.0.0/16 network\" is incorrect because the scenario requires: The correct answer is \"The 192.168.4.0/24 network\".",
+            "explanation": "**The 192.168.0.0/16 network** does not satisfy what the question asks. The correct answer is \"The 192.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1729,20 +1729,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RouterB(config)#ip route 198.44.4.0/24 198.55.4.9\" is incorrect because the scenario requires: The correct answer is \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterB(config)#ip route 198.44.4.0/24 198.55.4.9** does not satisfy what the question asks. The correct answer is \"RouterB(config)#ip route 198.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10\" is incorrect because the scenario requires: The correct answer is \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10** does not satisfy what the question asks. The correct answer is \"RouterB(config)#ip route 198.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0\" is incorrect because the scenario requires: The correct answer is \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0** does not satisfy what the question asks. The correct answer is \"RouterB(config)#ip route 198.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -1778,19 +1778,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"S 194.22.34.64/28 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 194.22.34.48/28 is directly connected, Serial 0/0/0\".",
+            "explanation": "**S 194.22.34.64/28 is directly connected, Serial 0/0/0** does not satisfy what the question asks. The correct answer is \"S 194.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"S 194.22.34.54/28 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 194.22.34.48/28 is directly connected, Serial 0/0/0\".",
+            "explanation": "**S 194.22.34.54/28 is directly connected, Serial 0/0/0** does not satisfy what the question asks. The correct answer is \"S 194.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"S 194.22.34.32/28 is directly connected, Serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"S 194.22.34.48/28 is directly connected, Serial 0/0/0\".",
+            "explanation": "**S 194.22.34.32/28 is directly connected, Serial 0/0/0** does not satisfy what the question asks. The correct answer is \"S 194.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1826,20 +1826,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)# ipv6 route ::/0 serial 0/0\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0** does not satisfy what the question asks. The correct answer is \"Router(config)# ipv6 route ::/0 serial 0/0\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)# ipv6 route ::/0 serial 0/0\".",
+            "explanation": "**Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0** does not satisfy what the question asks. The correct answer is \"Router(config)# ipv6 route ::/0 serial 0/0\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config)# ip route ::/0 serial 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)# ipv6 route ::/0 serial 0/0\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)# ip route ::/0 serial 0/0** does not satisfy what the question asks. The correct answer is \"Router(config)# ipv6 route ::/0 serial 0/0\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -1873,19 +1873,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router(config)#ip route fc00:0:0:1 serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route fc00:0:0:1 serial 0/0/0** does not satisfy what the question asks. The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Router(config)#ip route fc00:0:0:1/64 serial 0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router(config)#ip route fc00:0:0:1/64 serial 0/0** does not satisfy what the question asks. The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\".",
+            "explanation": "**Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0** does not satisfy what the question asks. The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1923,19 +1923,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"IP address of 192.168.4.5\" is incorrect because the scenario requires: The correct answer is \"IP address of 192.168.4.2\".",
+            "explanation": "**IP address of 192.168.4.5** does not satisfy what the question asks. The correct answer is \"IP address of 192.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Interface Serial 0/0/1\" is incorrect because the scenario requires: The correct answer is \"IP address of 192.168.4.2\".",
+            "explanation": "**Interface Serial 0/0/1** describes a different mechanism than this question tests. The right idea: The correct answer is \"IP address of 192.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Interface Serial 0/2/0\" is incorrect because the scenario requires: The correct answer is \"IP address of 192.168.4.2\".",
+            "explanation": "**Interface Serial 0/2/0** describes a different mechanism than this question tests. The right idea: The correct answer is \"IP address of 192.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -1974,19 +1974,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"OSPF routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "explanation": "**OSPF routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"EIGRP routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "explanation": "**EIGRP routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"RIP routing\" is incorrect because the scenario requires: The correct answer is \"Default routing\".",
+            "explanation": "**RIP routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -2021,19 +2021,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"There is less administrative overhead.\" is incorrect because the scenario requires: The correct answer is \"It is extremely secure.\".",
+            "explanation": "**There is less administrative overhead.** describes a different mechanism than this question tests. The right idea: The correct answer is \"It is extremely secure.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"It can create resiliency in a network.\" is incorrect because the scenario requires: The correct answer is \"It is extremely secure.\".",
+            "explanation": "**It can create resiliency in a network.** describes a different mechanism than this question tests. The right idea: The correct answer is \"It is extremely secure.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"It is extremely scalable without issues.\" is incorrect because the scenario requires: The correct answer is \"It is extremely secure.\".",
+            "explanation": "**It is extremely scalable without issues.** does not satisfy what the question asks. The correct answer is \"It is extremely secure.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -2072,19 +2072,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RIP routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**RIP routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"OSPF routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**OSPF routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"EIGRP routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**EIGRP routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -2120,19 +2120,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Dynamic routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**Dynamic routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Directly connected routes\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**Directly connected routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Default routing\" is incorrect because the scenario requires: The correct answer is \"Static routing\".",
+            "explanation": "**Default routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static routing\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -2168,20 +2168,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Router#show static routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip routes static\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show static routes** does not satisfy what the question asks. The correct answer is \"Router#show ip routes static\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Router#show ip static routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip routes static\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show ip static routes** does not satisfy what the question asks. The correct answer is \"Router#show ip routes static\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Router#show ip routes\" is incorrect because the scenario requires: The correct answer is \"Router#show ip routes static\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**Router#show ip routes** does not satisfy what the question asks. The correct answer is \"Router#show ip routes static\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -2216,19 +2216,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The router will calculate a network ID of 2000:0db8::.\" is incorrect because the scenario requires: The correct answer is \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.\".",
+            "explanation": "**The router will calculate a network ID of 2000:0db8::.** does not satisfy what the question asks. The correct answer is \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0.\" is incorrect because the scenario requires: The correct answer is \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.\".",
+            "explanation": "**The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0.\" is incorrect because the scenario requires: The correct answer is \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.\".",
+            "explanation": "**The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0.** does not satisfy what the question asks. The correct answer is \"The router will calculate a network ID of 2000:0db8:4400:2300::/64 for Serial 0/0.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -2266,19 +2266,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Multicast addresses do not get added to the routing tables.\" is incorrect because the scenario requires: The correct answer is \"Link-local addresses do not get added to the routing tables.\".",
+            "explanation": "**Multicast addresses do not get added to the routing tables.** contradicts the expected behavior. The correct answer is \"Link-local addresses do not get added to the routing tables.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Only one route statement can be in the routing table at a time for an interface.\" is incorrect because the scenario requires: The correct answer is \"Link-local addresses do not get added to the routing tables.\".",
+            "explanation": "**Only one route statement can be in the routing table at a time for an interface.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Link-local addresses do not get added to the routing tables.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Broadcast addresses do not get added to the routing tables.\" is incorrect because the scenario requires: The correct answer is \"Link-local addresses do not get added to the routing tables.\".",
+            "explanation": "**Broadcast addresses do not get added to the routing tables.** contradicts the expected behavior. The correct answer is \"Link-local addresses do not get added to the routing tables.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -2317,19 +2317,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RouterB(config-if )#ipv6 address default\" is incorrect because the scenario requires: The correct answer is \"RouterB(config-if)#ipv6 address autoconfig default\".",
+            "explanation": "**RouterB(config-if )#ipv6 address default** does not satisfy what the question asks. The correct answer is \"RouterB(config-if)#ipv6 address autoconfig default\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RouterB(config)#ip route ::/0 serial 0/3/0\" is incorrect because the scenario requires: The correct answer is \"RouterB(config-if)#ipv6 address autoconfig default\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterB(config)#ip route ::/0 serial 0/3/0** does not satisfy what the question asks. The correct answer is \"RouterB(config-if)#ipv6 address autoconfig default\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"RouterB(config-if)#ipv6 address slaac\" is incorrect because the scenario requires: The correct answer is \"RouterB(config-if)#ipv6 address autoconfig default\".",
+            "explanation": "**RouterB(config-if)#ipv6 address slaac** does not satisfy what the question asks. The correct answer is \"RouterB(config-if)#ipv6 address autoconfig default\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -2365,20 +2365,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RouterA(config)#ip default-network 192.168.2.6\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6\".",
+            "explanation": "**RouterA(config)#ip default-network 192.168.2.6** does not satisfy what the question asks. The correct answer is \"RouterA(config)#ip route 0.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RouterA(config)#ip route default-gateway 192.168.2.6\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterA(config)#ip route default-gateway 192.168.2.6** does not satisfy what the question asks. The correct answer is \"RouterA(config)#ip route 0.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.6\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6** does not satisfy what the question asks. The correct answer is \"RouterA(config)#ip route 0.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -2414,20 +2414,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RouterA#show ip rip\" is incorrect because the scenario requires: The correct answer is \"RouterA#show ip route rip\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterA#show ip rip** does not satisfy what the question asks. The correct answer is \"RouterA#show ip route rip\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"RouterA#show ip route\" is incorrect because the scenario requires: The correct answer is \"RouterA#show ip route rip\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterA#show ip route** does not satisfy what the question asks. The correct answer is \"RouterA#show ip route rip\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"RouterA#show ip rip route\" is incorrect because the scenario requires: The correct answer is \"RouterA#show ip route rip\".",
-            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "explanation": "**RouterA#show ip rip route** does not satisfy what the question asks. The correct answer is \"RouterA#show ip route rip\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],

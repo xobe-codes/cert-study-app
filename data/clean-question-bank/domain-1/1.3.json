@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"10 m\" is incorrect because the scenario requires: UTP Ethernet is limited to about 100 meters per segment.",
+            "explanation": "**10 m** describes a different mechanism than this question tests. The right idea: UTP Ethernet is limited to about 100 meters per segment.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"500 m\" is incorrect because the scenario requires: UTP Ethernet is limited to about 100 meters per segment.",
+            "explanation": "**500 m** describes a different mechanism than this question tests. The right idea: UTP Ethernet is limited to about 100 meters per segment.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"1 km\" is incorrect because the scenario requires: UTP Ethernet is limited to about 100 meters per segment.",
+            "explanation": "**1 km** describes a different mechanism than this question tests. The right idea: UTP Ethernet is limited to about 100 meters per segment.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Crossover\" is incorrect because the scenario requires: PC-to-switch is unlike devices — straight-through.",
+            "explanation": "**Crossover** describes a different mechanism than this question tests. The right idea: PC-to-switch is unlike devices — straight-through.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Console rollover\" is incorrect because the scenario requires: PC-to-switch is unlike devices — straight-through.",
+            "explanation": "**Console rollover** describes a different mechanism than this question tests. The right idea: PC-to-switch is unlike devices — straight-through.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Fiber SM only\" is incorrect because the scenario requires: PC-to-switch is unlike devices — straight-through.",
+            "explanation": "**Fiber SM only** describes a different mechanism than this question tests. The right idea: PC-to-switch is unlike devices — straight-through.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Multimode orange\" is incorrect because the scenario requires: Single-mode fiber (often yellow) supports long laser-based runs.",
+            "explanation": "**Multimode orange** describes a different mechanism than this question tests. The right idea: Single-mode fiber (often yellow) supports long laser-based runs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Copper Cat5\" is incorrect because the scenario requires: Single-mode fiber (often yellow) supports long laser-based runs.",
+            "explanation": "**Copper Cat5** describes a different mechanism than this question tests. The right idea: Single-mode fiber (often yellow) supports long laser-based runs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Coax\" is incorrect because the scenario requires: Single-mode fiber (often yellow) supports long laser-based runs.",
+            "explanation": "**Coax** describes a different mechanism than this question tests. The right idea: Single-mode fiber (often yellow) supports long laser-based runs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -156,17 +156,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RJ-45\" is incorrect because the scenario requires: LC is the dominant fiber connector on SFP/SFP+ transceivers.",
+            "explanation": "**RJ-45** describes a different mechanism than this question tests. The right idea: LC is the dominant fiber connector on SFP/SFP+ transceivers.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"DB-9\" is incorrect because the scenario requires: LC is the dominant fiber connector on SFP/SFP+ transceivers.",
+            "explanation": "**DB-9** describes a different mechanism than this question tests. The right idea: LC is the dominant fiber connector on SFP/SFP+ transceivers.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"USB-C\" is incorrect because the scenario requires: LC is the dominant fiber connector on SFP/SFP+ transceivers.",
+            "explanation": "**USB-C** describes a different mechanism than this question tests. The right idea: LC is the dominant fiber connector on SFP/SFP+ transceivers.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -198,17 +198,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"100 Mbps\" is incorrect because the scenario requires: Cat6a is rated for 10 Gbps at 100 m.",
+            "explanation": "**100 Mbps** describes a different mechanism than this question tests. The right idea: Cat6a is rated for 10 Gbps at 100 m.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"1 Gbps\" is incorrect because the scenario requires: Cat6a is rated for 10 Gbps at 100 m.",
+            "explanation": "**1 Gbps** describes a different mechanism than this question tests. The right idea: Cat6a is rated for 10 Gbps at 100 m.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"40 Gbps\" is incorrect because the scenario requires: Cat6a is rated for 10 Gbps at 100 m.",
+            "explanation": "**40 Gbps** describes a different mechanism than this question tests. The right idea: Cat6a is rated for 10 Gbps at 100 m.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -240,17 +240,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Straight-through\" is incorrect because the scenario requires: Like devices historically required crossover to swap TX/RX pairs.",
+            "explanation": "**Straight-through** describes a different mechanism than this question tests. The right idea: Like devices historically required crossover to swap TX/RX pairs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Console\" is incorrect because the scenario requires: Like devices historically required crossover to swap TX/RX pairs.",
+            "explanation": "**Console** describes a different mechanism than this question tests. The right idea: Like devices historically required crossover to swap TX/RX pairs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Serial DCE\" is incorrect because the scenario requires: Like devices historically required crossover to swap TX/RX pairs.",
+            "explanation": "**Serial DCE** describes a different mechanism than this question tests. The right idea: Like devices historically required crossover to swap TX/RX pairs.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -282,17 +282,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Increase CPU speed\" is incorrect because the scenario requires: SFPs let you choose copper or fiber media per port without changing the switch.",
+            "explanation": "**Increase CPU speed** describes a different mechanism than this question tests. The right idea: SFPs let you choose copper or fiber media per port without changing the switch.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Replace STP\" is incorrect because the scenario requires: SFPs let you choose copper or fiber media per port without changing the switch.",
+            "explanation": "**Replace STP** describes a different mechanism than this question tests. The right idea: SFPs let you choose copper or fiber media per port without changing the switch.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Encrypt traffic\" is incorrect because the scenario requires: SFPs let you choose copper or fiber media per port without changing the switch.",
+            "explanation": "**Encrypt traffic** describes a different mechanism than this question tests. The right idea: SFPs let you choose copper or fiber media per port without changing the switch.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -322,8 +322,8 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"False\" is incorrect because the scenario requires: True — MM is commonly orange (OM2) or aqua (OM3/OM4); SM is often yellow.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "This statement is **False**, but the tested fact is: True — MM is commonly orange (OM2) or aqua (OM3/OM4); SM is often yellow.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

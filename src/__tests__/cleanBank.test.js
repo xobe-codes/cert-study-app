@@ -52,17 +52,19 @@ describe('clean question bank (all domains)', () => {
     expect(errors).toEqual([])
   })
 
-  it('generateAnswerReview produces incorrect entries for each wrong choice', () => {
+  it('generateAnswerReview produces distinct incorrect entries', () => {
     const q = {
-      question: 'Test?',
-      choices: ['A', 'B', 'C', 'D'],
+      question: 'When a switch learns a MAC address, which address does it record?',
+      choices: ['Destination MAC', 'Source MAC', 'Both', 'Neither — IP only'],
       correctIndex: 1,
-      explanation: 'B is correct because…',
-      concept: 'nat',
+      explanation: 'Switches learn by reading the SOURCE MAC address and the port it arrived on.',
+      concept: 'mac learning',
     }
     const ar = generateAnswerReview(q)
     expect(ar.incorrect).toHaveLength(3)
-    expect(ar.correct.explanation).toContain('B')
+    const texts = ar.incorrect.map(i => i.explanation)
+    expect(new Set(texts).size).toBe(3)
+    expect(texts.every(t => !/scenario requires/i.test(t))).toBe(true)
   })
 
   it('detects leak patterns in utility', () => {

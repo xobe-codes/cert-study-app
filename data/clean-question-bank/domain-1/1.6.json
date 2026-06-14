@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"64\" is incorrect because the scenario requires: /26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
+            "explanation": "**64** describes a different mechanism than this question tests. The right idea: /26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"30\" is incorrect because the scenario requires: /26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
+            "explanation": "**30** describes a different mechanism than this question tests. The right idea: /26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"126\" is incorrect because the scenario requires: /26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
+            "explanation": "**126** describes a different mechanism than this question tests. The right idea: /26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"16\" is incorrect because the scenario requires: Block size = 256 − 224 = 32.",
+            "explanation": "**16** describes a different mechanism than this question tests. The right idea: Block size = 256 − 224 = 32.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"64\" is incorrect because the scenario requires: Block size = 256 − 224 = 32.",
+            "explanation": "**64** describes a different mechanism than this question tests. The right idea: Block size = 256 − 224 = 32.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"8\" is incorrect because the scenario requires: Block size = 256 − 224 = 32.",
+            "explanation": "**8** describes a different mechanism than this question tests. The right idea: Block size = 256 − 224 = 32.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -114,17 +114,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"192.168.10.255\" is incorrect because the scenario requires: Block 64 → first subnet is .0–.63, so broadcast = .63.",
+            "explanation": "**192.168.10.255** describes a different mechanism than this question tests. The right idea: Block 64 → first subnet is .",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"192.168.10.127\" is incorrect because the scenario requires: Block 64 → first subnet is .0–.63, so broadcast = .63.",
+            "explanation": "**192.168.10.127** describes a different mechanism than this question tests. The right idea: Block 64 → first subnet is .",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"192.168.10.64\" is incorrect because the scenario requires: Block 64 → first subnet is .0–.63, so broadcast = .63.",
+            "explanation": "**192.168.10.64** does not satisfy what the question asks. Block 64 → first subnet is .",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -156,17 +156,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"172.16.0.0\" is incorrect because the scenario requires: Block 64 → boundaries .0/.64/.128/.192; 100 falls in .64–.127, so the subnet is 172.16.0.64.",
+            "explanation": "**172.16.0.0** describes a different mechanism than this question tests. The right idea: Block 64 → boundaries .",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"172.16.0.96\" is incorrect because the scenario requires: Block 64 → boundaries .0/.64/.128/.192; 100 falls in .64–.127, so the subnet is 172.16.0.64.",
+            "explanation": "**172.16.0.96** describes a different mechanism than this question tests. The right idea: Block 64 → boundaries .",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"172.16.0.128\" is incorrect because the scenario requires: Block 64 → boundaries .0/.64/.128/.192; 100 falls in .64–.127, so the subnet is 172.16.0.64.",
+            "explanation": "**172.16.0.128** describes a different mechanism than this question tests. The right idea: Block 64 → boundaries .",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -198,17 +198,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"/26\" is incorrect because the scenario requires: /27 → 2^5 − 2 = 30 usable hosts exactly.",
+            "explanation": "**/26** describes a different mechanism than this question tests. The right idea: /27 → 2^5 − 2 = 30 usable hosts exactly.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"/28\" is incorrect because the scenario requires: /27 → 2^5 − 2 = 30 usable hosts exactly.",
+            "explanation": "**/28** describes a different mechanism than this question tests. The right idea: /27 → 2^5 − 2 = 30 usable hosts exactly.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"/29\" is incorrect because the scenario requires: /27 → 2^5 − 2 = 30 usable hosts exactly.",
+            "explanation": "**/29** describes a different mechanism than this question tests. The right idea: /27 → 2^5 − 2 = 30 usable hosts exactly.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -240,17 +240,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"1\" is incorrect because the scenario requires: /30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
+            "explanation": "**1** describes a different mechanism than this question tests. The right idea: /30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"4\" is incorrect because the scenario requires: /30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
+            "explanation": "**4** describes a different mechanism than this question tests. The right idea: /30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"0\" is incorrect because the scenario requires: /30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
+            "explanation": "**0** describes a different mechanism than this question tests. The right idea: /30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -282,17 +282,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"6\" is incorrect because the scenario requires: Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
+            "explanation": "**6** describes a different mechanism than this question tests. The right idea: Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"16\" is incorrect because the scenario requires: Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
+            "explanation": "**16** describes a different mechanism than this question tests. The right idea: Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"3\" is incorrect because the scenario requires: Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
+            "explanation": "**3** describes a different mechanism than this question tests. The right idea: Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -324,17 +324,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"/26\" is incorrect because the scenario requires: 240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
+            "explanation": "**/26** describes a different mechanism than this question tests. The right idea: 240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"/27\" is incorrect because the scenario requires: 240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
+            "explanation": "**/27** describes a different mechanism than this question tests. The right idea: 240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"/29\" is incorrect because the scenario requires: 240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
+            "explanation": "**/29** describes a different mechanism than this question tests. The right idea: 240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -367,17 +367,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"10.0.0.1 – 10.0.0.7\" is incorrect because the scenario requires: Block 8 → network .0, broadcast .7, usable .1–.6.",
+            "explanation": "**10.0.0.1 – 10.0.0.7** does not satisfy what the question asks. Block 8 → network .",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"10.0.0.0 – 10.0.0.7\" is incorrect because the scenario requires: Block 8 → network .0, broadcast .7, usable .1–.6.",
+            "explanation": "**10.0.0.0 – 10.0.0.7** describes a different mechanism than this question tests. The right idea: Block 8 → network .",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"10.0.0.1 – 10.0.0.14\" is incorrect because the scenario requires: Block 8 → network .0, broadcast .7, usable .1–.6.",
+            "explanation": "**10.0.0.1 – 10.0.0.14** does not satisfy what the question asks. Block 8 → network .",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -409,17 +409,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"26\" is incorrect because the scenario requires: 32 − 26 = 6 host bits.",
+            "explanation": "**26** describes a different mechanism than this question tests. The right idea: 32 − 26 = 6 host bits.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"8\" is incorrect because the scenario requires: 32 − 26 = 6 host bits.",
+            "explanation": "**8** describes a different mechanism than this question tests. The right idea: 32 − 26 = 6 host bits.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"4\" is incorrect because the scenario requires: 32 − 26 = 6 host bits.",
+            "explanation": "**4** describes a different mechanism than this question tests. The right idea: 32 − 26 = 6 host bits.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -449,8 +449,8 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"True\" is incorrect because the scenario requires: False — both are reserved, which is why hosts = 2^h − 2.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "This statement is **True**, but the tested fact is: False — both are reserved, which is why hosts = 2^h − 2.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -481,17 +481,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"/25\" is incorrect because the scenario requires: /24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
+            "explanation": "**/25** describes a different mechanism than this question tests. The right idea: /24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"/23\" is incorrect because the scenario requires: /24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
+            "explanation": "**/23** describes a different mechanism than this question tests. The right idea: /24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"/26\" is incorrect because the scenario requires: /24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
+            "explanation": "**/26** describes a different mechanism than this question tests. The right idea: /24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],

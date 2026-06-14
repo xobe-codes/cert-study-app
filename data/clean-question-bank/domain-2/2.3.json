@@ -30,17 +30,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"CDP\" is incorrect because the scenario requires: LLDP is IEEE 802.1AB and provides standards-based neighbor discovery.",
+            "explanation": "**CDP** describes a different mechanism than this question tests. The right idea: LLDP is IEEE 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"802.1b\" is incorrect because the scenario requires: LLDP is IEEE 802.1AB and provides standards-based neighbor discovery.",
+            "explanation": "**802.1b** describes a different mechanism than this question tests. The right idea: LLDP is IEEE 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"802.1a\" is incorrect because the scenario requires: LLDP is IEEE 802.1AB and provides standards-based neighbor discovery.",
+            "explanation": "**802.1a** describes a different mechanism than this question tests. The right idea: LLDP is IEEE 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -75,17 +75,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#cdp disable\" is incorrect because the scenario requires: no cdp run disables CDP globally.",
+            "explanation": "**Switch(config)#cdp disable** does not satisfy what the question asks. no cdp run disables CDP globally.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config-if)#no cdp enable\" is incorrect because the scenario requires: no cdp run disables CDP globally.",
+            "explanation": "**Switch(config-if)#no cdp enable** does not satisfy what the question asks. no cdp run disables CDP globally.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config)#no cdp\" is incorrect because the scenario requires: no cdp run disables CDP globally.",
+            "explanation": "**Switch(config)#no cdp** does not satisfy what the question asks. no cdp run disables CDP globally.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -120,17 +120,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Every 30 seconds\" is incorrect because the scenario requires: CDP advertises every 60 seconds by default.",
+            "explanation": "**Every 30 seconds** describes a different mechanism than this question tests. The right idea: CDP advertises every 60 seconds by default.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Every 90 seconds\" is incorrect because the scenario requires: CDP advertises every 60 seconds by default.",
+            "explanation": "**Every 90 seconds** describes a different mechanism than this question tests. The right idea: CDP advertises every 60 seconds by default.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Every 180 seconds\" is incorrect because the scenario requires: CDP advertises every 60 seconds by default.",
+            "explanation": "**Every 180 seconds** describes a different mechanism than this question tests. The right idea: CDP advertises every 60 seconds by default.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -164,17 +164,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"802.1ab\" is incorrect because the scenario requires: CDP is Cisco proprietary neighbor discovery.",
+            "explanation": "**802.1ab** describes a different mechanism than this question tests. The right idea: CDP is Cisco proprietary neighbor discovery.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"LLDP\" is incorrect because the scenario requires: CDP is Cisco proprietary neighbor discovery.",
+            "explanation": "**LLDP** describes a different mechanism than this question tests. The right idea: CDP is Cisco proprietary neighbor discovery.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"802.1a\" is incorrect because the scenario requires: CDP is Cisco proprietary neighbor discovery.",
+            "explanation": "**802.1a** describes a different mechanism than this question tests. The right idea: CDP is Cisco proprietary neighbor discovery.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -209,17 +209,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"30 seconds\" is incorrect because the scenario requires: CDP holdtime defaults to 180 seconds.",
+            "explanation": "**30 seconds** describes a different mechanism than this question tests. The right idea: CDP holdtime defaults to 180 seconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"60 seconds\" is incorrect because the scenario requires: CDP holdtime defaults to 180 seconds.",
+            "explanation": "**60 seconds** describes a different mechanism than this question tests. The right idea: CDP holdtime defaults to 180 seconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"90 seconds\" is incorrect because the scenario requires: CDP holdtime defaults to 180 seconds.",
+            "explanation": "**90 seconds** describes a different mechanism than this question tests. The right idea: CDP holdtime defaults to 180 seconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -254,17 +254,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#cdp disable\" is incorrect because the scenario requires: no cdp enable disables CDP on one interface.",
+            "explanation": "**Switch(config)#cdp disable** does not satisfy what the question asks. no cdp enable disables CDP on one interface.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config)#no cdp\" is incorrect because the scenario requires: no cdp enable disables CDP on one interface.",
+            "explanation": "**Switch(config)#no cdp** does not satisfy what the question asks. no cdp enable disables CDP on one interface.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch(config-if)#no cdp run\" is incorrect because the scenario requires: no cdp enable disables CDP on one interface.",
+            "explanation": "**Switch(config-if)#no cdp run** does not satisfy what the question asks. no cdp enable disables CDP on one interface.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -299,17 +299,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch#sh cdp neighbors all\" is incorrect because the scenario requires: show cdp entry * gives detailed CDP neighbor information.",
+            "explanation": "**Switch#sh cdp neighbors all** does not satisfy what the question asks. show cdp entry * gives detailed CDP neighbor information.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch#sh cdp neighbors *\" is incorrect because the scenario requires: show cdp entry * gives detailed CDP neighbor information.",
+            "explanation": "**Switch#sh cdp neighbors *** does not satisfy what the question asks. show cdp entry * gives detailed CDP neighbor information.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch#sh cdp entries all\" is incorrect because the scenario requires: show cdp entry * gives detailed CDP neighbor information.",
+            "explanation": "**Switch#sh cdp entries all** does not satisfy what the question asks. show cdp entry * gives detailed CDP neighbor information.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -344,17 +344,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch#lldp run\" is incorrect because the scenario requires: lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "explanation": "**Switch#lldp run** describes a different mechanism than this question tests. The right idea: lldp run enables LLDP globally, including LLDP-MED capabilities.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config)#lldp enable\" is incorrect because the scenario requires: lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "explanation": "**Switch(config)#lldp enable** does not satisfy what the question asks. lldp run enables LLDP globally, including LLDP-MED capabilities.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch#lldp enable\" is incorrect because the scenario requires: lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "explanation": "**Switch#lldp enable** describes a different mechanism than this question tests. The right idea: lldp run enables LLDP globally, including LLDP-MED capabilities.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -389,17 +389,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch#show lldp\" is incorrect because the scenario requires: show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "explanation": "**Switch#show lldp** does not satisfy what the question asks. show lldp neighbor detail shows detailed LLDP neighbor information.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch#show lldp devices\" is incorrect because the scenario requires: show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "explanation": "**Switch#show lldp devices** does not satisfy what the question asks. show lldp neighbor detail shows detailed LLDP neighbor information.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch#show cdp neighbor detail\" is incorrect because the scenario requires: show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "explanation": "**Switch#show cdp neighbor detail** does not satisfy what the question asks. show lldp neighbor detail shows detailed LLDP neighbor information.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           }
         ],
@@ -434,17 +434,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"60 seconds\" is incorrect because the scenario requires: LLDP advertises every 30 seconds by default.",
+            "explanation": "**60 seconds** describes a different mechanism than this question tests. The right idea: LLDP advertises every 30 seconds by default.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"90 seconds\" is incorrect because the scenario requires: LLDP advertises every 30 seconds by default.",
+            "explanation": "**90 seconds** describes a different mechanism than this question tests. The right idea: LLDP advertises every 30 seconds by default.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"120 seconds\" is incorrect because the scenario requires: LLDP advertises every 30 seconds by default.",
+            "explanation": "**120 seconds** describes a different mechanism than this question tests. The right idea: LLDP advertises every 30 seconds by default.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -479,17 +479,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config-if)#no lldp\" is incorrect because the scenario requires: no lldp transmit suppresses outgoing LLDP on an interface.",
+            "explanation": "**Switch(config-if)#no lldp** does not satisfy what the question asks. no lldp transmit suppresses outgoing LLDP on an interface.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config-if)#no lldp receive\" is incorrect because the scenario requires: no lldp transmit suppresses outgoing LLDP on an interface.",
+            "explanation": "**Switch(config-if)#no lldp receive** does not satisfy what the question asks. no lldp transmit suppresses outgoing LLDP on an interface.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch(config-if)#no lldp enable\" is incorrect because the scenario requires: no lldp transmit suppresses outgoing LLDP on an interface.",
+            "explanation": "**Switch(config-if)#no lldp enable** does not satisfy what the question asks. no lldp transmit suppresses outgoing LLDP on an interface.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -524,17 +524,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"30 seconds\" is incorrect because the scenario requires: LLDP holdtime defaults to 120 seconds.",
+            "explanation": "**30 seconds** describes a different mechanism than this question tests. The right idea: LLDP holdtime defaults to 120 seconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"60 seconds\" is incorrect because the scenario requires: LLDP holdtime defaults to 120 seconds.",
+            "explanation": "**60 seconds** describes a different mechanism than this question tests. The right idea: LLDP holdtime defaults to 120 seconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"90 seconds\" is incorrect because the scenario requires: LLDP holdtime defaults to 120 seconds.",
+            "explanation": "**90 seconds** describes a different mechanism than this question tests. The right idea: LLDP holdtime defaults to 120 seconds.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -571,18 +571,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The advertisement was seen 162 seconds ago.\" is incorrect because the scenario requires: CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+            "explanation": "**The advertisement was seen 162 seconds ago.** describes a different mechanism than this question tests. The right idea: CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch B interface Gi0/1 connects to Switch A.\" is incorrect because the scenario requires: CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+            "explanation": "**Switch B interface Gi0/1 connects to Switch A.** does not satisfy what the question asks. CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The IP address of Switch B is 192.168.1.1.\" is incorrect because the scenario requires: CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The IP address of Switch B is 192.168.1.1.** describes a different mechanism than this question tests. The right idea: CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+            "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -616,17 +616,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch(config)#cdp disable\" is incorrect because the scenario requires: no cdp enable disables CDP advertisements on one interface.",
+            "explanation": "**Switch(config)#cdp disable** does not satisfy what the question asks. no cdp enable disables CDP advertisements on one interface.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Switch(config-if)#no cdp\" is incorrect because the scenario requires: no cdp enable disables CDP advertisements on one interface.",
+            "explanation": "**Switch(config-if)#no cdp** does not satisfy what the question asks. no cdp enable disables CDP advertisements on one interface.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch(config-if)#no cdp disable\" is incorrect because the scenario requires: no cdp enable disables CDP advertisements on one interface.",
+            "explanation": "**Switch(config-if)#no cdp disable** does not satisfy what the question asks. no cdp enable disables CDP advertisements on one interface.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -661,17 +661,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Switch#show cdp\" is incorrect because the scenario requires: show cdp interface shows interfaces advertising CDP.",
+            "explanation": "**Switch#show cdp** does not satisfy what the question asks. show cdp interface shows interfaces advertising CDP.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Switch#show interface\" is incorrect because the scenario requires: show cdp interface shows interfaces advertising CDP.",
+            "explanation": "**Switch#show interface** does not satisfy what the question asks. show cdp interface shows interfaces advertising CDP.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Switch#show interface cdp\" is incorrect because the scenario requires: show cdp interface shows interfaces advertising CDP.",
+            "explanation": "**Switch#show interface cdp** does not satisfy what the question asks. show cdp interface shows interfaces advertising CDP.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
           }
         ],

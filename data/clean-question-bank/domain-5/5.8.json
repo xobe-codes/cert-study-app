@@ -31,19 +31,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Enable WPA2\" is incorrect because the scenario requires: The correct answer is \"Enable MAC filtering\".",
+            "explanation": "**Enable WPA2** describes a different mechanism than this question tests. The right idea: The correct answer is \"Enable MAC filtering\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Enable port security\" is incorrect because the scenario requires: The correct answer is \"Enable MAC filtering\".",
+            "explanation": "**Enable port security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Enable MAC filtering\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Disable SSID broadcasts\" is incorrect because the scenario requires: The correct answer is \"Enable MAC filtering\".",
+            "explanation": "**Disable SSID broadcasts** describes a different mechanism than this question tests. The right idea: The correct answer is \"Enable MAC filtering\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -79,19 +79,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Creation of a PSK\" is incorrect because the scenario requires: The correct answer is \"Certificate infrastructure\".",
+            "explanation": "**Creation of a PSK** describes a different mechanism than this question tests. The right idea: The correct answer is \"Certificate infrastructure\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"192-bit key strength\" is incorrect because the scenario requires: The correct answer is \"Certificate infrastructure\".",
+            "explanation": "**192-bit key strength** describes a different mechanism than this question tests. The right idea: The correct answer is \"Certificate infrastructure\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"802.11ac\" is incorrect because the scenario requires: The correct answer is \"Certificate infrastructure\".",
+            "explanation": "**802.11ac** describes a different mechanism than this question tests. The right idea: The correct answer is \"Certificate infrastructure\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -128,19 +128,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"TKIP\" is incorrect because the scenario requires: The correct answer is \"MIC\".",
+            "explanation": "**TKIP** describes a different mechanism than this question tests. The right idea: The correct answer is \"MIC\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"AES\" is incorrect because the scenario requires: The correct answer is \"MIC\".",
+            "explanation": "**AES** describes a different mechanism than this question tests. The right idea: The correct answer is \"MIC\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"CRC\" is incorrect because the scenario requires: The correct answer is \"MIC\".",
+            "explanation": "**CRC** describes a different mechanism than this question tests. The right idea: The correct answer is \"MIC\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -176,19 +176,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"64-bit\" is incorrect because the scenario requires: The correct answer is \"192-bit\".",
+            "explanation": "**64-bit** describes a different mechanism than this question tests. The right idea: The correct answer is \"192-bit\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"128-bit\" is incorrect because the scenario requires: The correct answer is \"192-bit\".",
+            "explanation": "**128-bit** describes a different mechanism than this question tests. The right idea: The correct answer is \"192-bit\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"256-bit\" is incorrect because the scenario requires: The correct answer is \"192-bit\".",
+            "explanation": "**256-bit** describes a different mechanism than this question tests. The right idea: The correct answer is \"192-bit\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -223,19 +223,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"WPA was released at the same time as WEP.\" is incorrect because the scenario requires: The correct answer is \"WPA was released as a fix for poor encryption.\".",
+            "explanation": "**WPA was released at the same time as WEP.** does not satisfy what the question asks. The correct answer is \"WPA was released as a fix for poor encryption.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"WPA was released as a fix for poor coverage.\" is incorrect because the scenario requires: The correct answer is \"WPA was released as a fix for poor encryption.\".",
+            "explanation": "**WPA was released as a fix for poor coverage.** does not satisfy what the question asks. The correct answer is \"WPA was released as a fix for poor encryption.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The Wi-Fi Alliance wanted to rebrand WEP with WPA.\" is incorrect because the scenario requires: The correct answer is \"WPA was released as a fix for poor encryption.\".",
+            "explanation": "**The Wi-Fi Alliance wanted to rebrand WEP with WPA.** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA was released as a fix for poor encryption.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -270,19 +270,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The use of certificates\" is incorrect because the scenario requires: The correct answer is \"Frame-level encryption\".",
+            "explanation": "**The use of certificates** describes a different mechanism than this question tests. The right idea: The correct answer is \"Frame-level encryption\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Pre-shared keys\" is incorrect because the scenario requires: The correct answer is \"Frame-level encryption\".",
+            "explanation": "**Pre-shared keys** describes a different mechanism than this question tests. The right idea: The correct answer is \"Frame-level encryption\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"CRC checking\" is incorrect because the scenario requires: The correct answer is \"Frame-level encryption\".",
+            "explanation": "**CRC checking** describes a different mechanism than this question tests. The right idea: The correct answer is \"Frame-level encryption\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -318,19 +318,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"RC4\" is incorrect because the scenario requires: The correct answer is \"AES-CCMP\".",
+            "explanation": "**RC4** describes a different mechanism than this question tests. The right idea: The correct answer is \"AES-CCMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"MD5\" is incorrect because the scenario requires: The correct answer is \"AES-CCMP\".",
+            "explanation": "**MD5** describes a different mechanism than this question tests. The right idea: The correct answer is \"AES-CCMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"SHA1\" is incorrect because the scenario requires: The correct answer is \"AES-CCMP\".",
+            "explanation": "**SHA1** describes a different mechanism than this question tests. The right idea: The correct answer is \"AES-CCMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -367,19 +367,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Certificate support\" is incorrect because the scenario requires: The correct answer is \"SAE authentication\".",
+            "explanation": "**Certificate support** describes a different mechanism than this question tests. The right idea: The correct answer is \"SAE authentication\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Per-frame encryption\" is incorrect because the scenario requires: The correct answer is \"SAE authentication\".",
+            "explanation": "**Per-frame encryption** describes a different mechanism than this question tests. The right idea: The correct answer is \"SAE authentication\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"TKIP\" is incorrect because the scenario requires: The correct answer is \"SAE authentication\".",
+            "explanation": "**TKIP** describes a different mechanism than this question tests. The right idea: The correct answer is \"SAE authentication\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -417,19 +417,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"NTP server\" is incorrect because the scenario requires: The correct answer is \"RADIUS server\".",
+            "explanation": "**NTP server** describes a different mechanism than this question tests. The right idea: The correct answer is \"RADIUS server\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"PSK\" is incorrect because the scenario requires: The correct answer is \"RADIUS server\".",
+            "explanation": "**PSK** describes a different mechanism than this question tests. The right idea: The correct answer is \"RADIUS server\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Captive portal\" is incorrect because the scenario requires: The correct answer is \"RADIUS server\".",
+            "explanation": "**Captive portal** describes a different mechanism than this question tests. The right idea: The correct answer is \"RADIUS server\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -467,19 +467,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"802.1X\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "explanation": "**802.1X** describes a different mechanism than this question tests. The right idea: The correct answer is \"TKIP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"AES\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "explanation": "**AES** describes a different mechanism than this question tests. The right idea: The correct answer is \"TKIP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"MAC filtering\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "explanation": "**MAC filtering** describes a different mechanism than this question tests. The right idea: The correct answer is \"TKIP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -517,19 +517,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"AES\" is incorrect because the scenario requires: The correct answer is \"PSK\".",
+            "explanation": "**AES** describes a different mechanism than this question tests. The right idea: The correct answer is \"PSK\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Certificates\" is incorrect because the scenario requires: The correct answer is \"PSK\".",
+            "explanation": "**Certificates** describes a different mechanism than this question tests. The right idea: The correct answer is \"PSK\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"TKIP\" is incorrect because the scenario requires: The correct answer is \"PSK\".",
+            "explanation": "**TKIP** describes a different mechanism than this question tests. The right idea: The correct answer is \"PSK\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -567,19 +567,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"AES\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "explanation": "**AES** describes a different mechanism than this question tests. The right idea: The correct answer is \"TKIP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"CCMP\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "explanation": "**CCMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"TKIP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"PSK\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "explanation": "**PSK** describes a different mechanism than this question tests. The right idea: The correct answer is \"TKIP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
+import { resolveIncorrectItem } from '../answerReviewLogic.js'
 import { COLORS, accentColors } from '../ui/appTheme.js'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
@@ -38,6 +39,24 @@ function ReviewBlock({ icon, title, accent, children, collapsible, defaultOpen =
   )
 }
 
+function WrongChoiceReview({ q, item }) {
+  const resolved = resolveIncorrectItem(q, item)
+  const letter = CHOICE_LETTERS[resolved.choiceIndex] || resolved.choiceIndex
+  return (
+    <>
+      <RichText text={resolved.explanation} />
+      {resolved.misconceptionTested && (
+        <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
+          Trap tested: {resolved.misconceptionTested}
+        </div>
+      )}
+      {resolved.needsExplanationReview && (
+        <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.amber }}>⚠ Explanation pending review</div>
+      )}
+    </>
+  )
+}
+
 /** Post-reveal breakdown — correct + your pick expanded; other distractors collapsed. */
 export default function AnswerReview({ q, selected }) {
   const correctIdx = q.correctIndex
@@ -55,42 +74,21 @@ export default function AnswerReview({ q, selected }) {
     : []
   const otherWrong = incorrect.filter(item => item.choiceIndex !== selectedWrongIdx)
 
-  const renderWrong = (item) => (
-    <div key={item.choiceIndex} style={{ marginBottom: otherWrong.length > 1 ? 10 : 0 }}>
-      <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.rose, marginBottom: 4 }}>
-        {CHOICE_LETTERS[item.choiceIndex] || item.choiceIndex}
-      </div>
-      {item.explanation
-        ? <RichText text={item.explanation} />
-        : <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>This option doesn't fit the scenario above — see the correct-answer explanation for why.</div>}
-      {item.misconceptionTested && (
-        <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Trap tested: {item.misconceptionTested}</div>
-      )}
-      {item.needsExplanationReview && (
-        <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.amber }}>⚠ Explanation pending review</div>
-      )}
-    </div>
-  )
-
   return (
     <div style={{ marginTop: 8 }}>
       <ReviewBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint">
         <RichText text={ar?.correct?.explanation || q.explanation} />
       </ReviewBlock>
-      {yourWrong.length > 0 && (
-        <ReviewBlock icon="❌" title={`YOUR ANSWER: ${CHOICE_LETTERS[selectedWrongIdx]}`} accent="rose">
-          {yourWrong.map(item => (
-            <div key={item.choiceIndex}>
-              {item.explanation
-                ? <RichText text={item.explanation} />
-                : <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>This option doesn't fit the scenario above — see the correct-answer explanation for why.</div>}
-              {item.misconceptionTested && (
-                <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Trap tested: {item.misconceptionTested}</div>
-              )}
-            </div>
-          ))}
+      {yourWrong.map(item => (
+        <ReviewBlock
+          key={item.choiceIndex}
+          icon="❌"
+          title={`WHY ${CHOICE_LETTERS[item.choiceIndex]} IS WRONG`}
+          accent="rose"
+        >
+          <WrongChoiceReview q={q} item={item} />
         </ReviewBlock>
-      )}
+      ))}
       {otherWrong.length > 0 && (
         <ReviewBlock
           icon="📋"
@@ -99,7 +97,18 @@ export default function AnswerReview({ q, selected }) {
           collapsible
           defaultOpen={false}
         >
-          {otherWrong.map(renderWrong)}
+          {otherWrong.map(item => (
+            <ReviewBlock
+              key={item.choiceIndex}
+              icon="❌"
+              title={`WHY ${CHOICE_LETTERS[item.choiceIndex]} IS WRONG`}
+              accent="rose"
+              collapsible
+              defaultOpen={false}
+            >
+              <WrongChoiceReview q={q} item={item} />
+            </ReviewBlock>
+          ))}
         </ReviewBlock>
       )}
       {ar?.examTip && <ReviewBlock icon="💡" title="EXAM TIP" accent="amber"><RichText text={ar.examTip} /></ReviewBlock>}

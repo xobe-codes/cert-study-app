@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"1, 2, 3\" is incorrect because the scenario requires: Channels 1, 6, and 11 are the standard non-overlapping set in 2.4 GHz.",
+            "explanation": "**1, 2, 3** describes a different mechanism than this question tests. The right idea: Channels 1, 6, and 11 are the standard non-overlapping set in 2.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"6, 7, 8\" is incorrect because the scenario requires: Channels 1, 6, and 11 are the standard non-overlapping set in 2.4 GHz.",
+            "explanation": "**6, 7, 8** describes a different mechanism than this question tests. The right idea: Channels 1, 6, and 11 are the standard non-overlapping set in 2.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"11, 12, 13 only in all regions\" is incorrect because the scenario requires: Channels 1, 6, and 11 are the standard non-overlapping set in 2.4 GHz.",
+            "explanation": "**11, 12, 13 only in all regions** describes a different mechanism than this question tests. The right idea: Channels 1, 6, and 11 are the standard non-overlapping set in 2.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Longer range than 2.4 with fewer channels\" is incorrect because the scenario requires: 5 GHz has more spectrum and speed; 2.4 GHz penetrates farther.",
+            "explanation": "**Longer range than 2.4 with fewer channels** describes a different mechanism than this question tests. The right idea: 5 GHz has more spectrum and speed; 2.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"No encryption support\" is incorrect because the scenario requires: 5 GHz has more spectrum and speed; 2.4 GHz penetrates farther.",
+            "explanation": "**No encryption support** contradicts the expected behavior. 5 GHz has more spectrum and speed; 2.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Only WEP\" is incorrect because the scenario requires: 5 GHz has more spectrum and speed; 2.4 GHz penetrates farther.",
+            "explanation": "**Only WEP** describes a different mechanism than this question tests. The right idea: 5 GHz has more spectrum and speed; 2.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"WEP compatibility\" is incorrect because the scenario requires: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+            "explanation": "**WEP compatibility** describes a different mechanism than this question tests. The right idea: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Open unsecured networks\" is incorrect because the scenario requires: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+            "explanation": "**Open unsecured networks** describes a different mechanism than this question tests. The right idea: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Removing AES\" is incorrect because the scenario requires: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+            "explanation": "**Removing AES** describes a different mechanism than this question tests. The right idea: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -153,8 +153,8 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"True\" is incorrect because the scenario requires: False — WEP is cryptographically broken.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "This statement is **True**, but the tested fact is: False — WEP is cryptographically broken.",
+            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -185,17 +185,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Wi‑Fi 3\" is incorrect because the scenario requires: 802.11ax = Wi‑Fi 6 (802.11ac = Wi‑Fi 5, 802.11n = Wi‑Fi 4).",
+            "explanation": "**Wi‑Fi 3** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "\"Wi‑Fi 4\" is incorrect because the scenario requires: 802.11ax = Wi‑Fi 6 (802.11ac = Wi‑Fi 5, 802.11n = Wi‑Fi 4).",
+            "explanation": "**Wi‑Fi 4** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Wi‑Fi 5\" is incorrect because the scenario requires: 802.11ax = Wi‑Fi 6 (802.11ac = Wi‑Fi 5, 802.11n = Wi‑Fi 4).",
+            "explanation": "**Wi‑Fi 5** describes a different mechanism than this question tests. The right idea: 802.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -227,18 +227,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"The encryption key\" is incorrect because the scenario requires: SSID identifies the WLAN broadcast by the AP.",
+            "explanation": "**The encryption key** describes a different mechanism than this question tests. The right idea: SSID identifies the WLAN broadcast by the AP.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"The MAC of the AP\" is incorrect because the scenario requires: SSID identifies the WLAN broadcast by the AP.",
+            "explanation": "**The MAC of the AP** describes a different mechanism than this question tests. The right idea: SSID identifies the WLAN broadcast by the AP.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"The VLAN ID only\" is incorrect because the scenario requires: SSID identifies the WLAN broadcast by the AP.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**The VLAN ID only** describes a different mechanism than this question tests. The right idea: SSID identifies the WLAN broadcast by the AP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -269,17 +269,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Reduces throughput\" is incorrect because the scenario requires: Wider channels carry more data but reduce the number of non-overlapping channels.",
+            "explanation": "**Reduces throughput** describes a different mechanism than this question tests. The right idea: Wider channels carry more data but reduce the number of non-overlapping channels.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Eliminates interference\" is incorrect because the scenario requires: Wider channels carry more data but reduce the number of non-overlapping channels.",
+            "explanation": "**Eliminates interference** describes a different mechanism than this question tests. The right idea: Wider channels carry more data but reduce the number of non-overlapping channels.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"Disables 5 GHz\" is incorrect because the scenario requires: Wider channels carry more data but reduce the number of non-overlapping channels.",
+            "explanation": "**Disables 5 GHz** describes a different mechanism than this question tests. The right idea: Wider channels carry more data but reduce the number of non-overlapping channels.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -311,17 +311,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "\"Routing table size\" is incorrect because the scenario requires: RSSI measures how strongly the client hears the AP (and vice versa).",
+            "explanation": "**Routing table size** describes a different mechanism than this question tests. The right idea: RSSI measures how strongly the client hears the AP (and vice versa).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"DNS latency\" is incorrect because the scenario requires: RSSI measures how strongly the client hears the AP (and vice versa).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DNS latency** describes a different mechanism than this question tests. The right idea: RSSI measures how strongly the client hears the AP (and vice versa).",
+            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"NAT port count\" is incorrect because the scenario requires: RSSI measures how strongly the client hears the AP (and vice versa).",
+            "explanation": "**NAT port count** describes a different mechanism than this question tests. The right idea: RSSI measures how strongly the client hears the AP (and vice versa).",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],

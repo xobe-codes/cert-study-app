@@ -27,27 +27,27 @@
       ],
       "answerReview": {
         "correct": {
-          "explanation": "AAA stands for Authentication (proving who you are), Authorization (what you're allowed to do), and Accounting (logging what you did)."
+          "choiceIndex": 0,
+          "explanation": "AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"Access, Audit, Administration\" isn't the AAA expansion — it swaps in unrelated terms that don't match the standard framework.",
-            "misconceptionTested": "Guessing plausible-sounding A-words instead of recalling the specific AAA terms."
+            "explanation": "**Access, Audit, Administration** describes a different mechanism than this question tests. The right idea: AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"Availability\" is part of the CIA security triad (Confidentiality, Integrity, Availability), not AAA — mixing the two frameworks is a common mix-up.",
-            "misconceptionTested": "Confusing the AAA framework with the CIA triad."
+            "explanation": "**Authentication, Auditing, Availability** does not satisfy what the question asks. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "This reorders the correct words but starts with Authorization instead of Authentication — order matters because it reflects the logical sequence: identify first, then authorize, then log.",
-            "misconceptionTested": "Knowing the three correct words but not their correct order/sequence."
+            "explanation": "**Authorization, Access, Accounting** does not satisfy what the question asks. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "Remember the order: Authentication happens first (who are you), then Authorization (what can you do), then Accounting (what did you do).",
-        "memoryHook": "AAA = 'Who, What, Did' — Who are you, What can you do, what did you Do."
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
     },
     {
@@ -70,27 +70,27 @@
       ],
       "answerReview": {
         "correct": {
-          "explanation": "TACACS+ uses TCP port 49, giving it reliable, connection-oriented communication between the network device and the AAA server."
+          "choiceIndex": 1,
+          "explanation": "TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "UDP 1812 is RADIUS's authentication/authorization port, not TACACS+'s.",
-            "misconceptionTested": "Swapping the TACACS+ and RADIUS port numbers."
+            "explanation": "**UDP port 1812** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Port 49 is correct, but TACACS+ uses TCP, not UDP — getting the protocol right matters as much as the port number.",
-            "misconceptionTested": "Remembering the right port number but the wrong transport protocol."
+            "explanation": "**UDP port 49** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "1812 is a RADIUS port number, not TACACS+'s — this combines the wrong port with the right transport protocol (TCP).",
-            "misconceptionTested": "Mixing the correct transport protocol with the wrong port number from RADIUS."
+            "explanation": "**TCP port 1812** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "Pair them up: TACACS+ = TCP/49. RADIUS = UDP/1812 (auth) and UDP/1813 (accounting).",
-        "memoryHook": "TACACS+ → 'T' for TCP, and 49 is a 'classic' single port."
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
     },
     {
@@ -113,27 +113,27 @@
       ],
       "answerReview": {
         "correct": {
-          "explanation": "RADIUS uses UDP port 1812 for authentication and authorization, and UDP port 1813 for accounting (modern standard; older implementations used 1645/1646)."
+          "choiceIndex": 1,
+          "explanation": "RADIUS uses UDP port 1812 for authentication and authorization, and UDP port 1813 for accounting (older implementations used 1645/1646)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "TCP 49/50 belong to TACACS+'s family of ideas (TACACS+ uses TCP 49) — RADIUS doesn't use TCP at all by default.",
-            "misconceptionTested": "Mixing TACACS+'s TCP transport into a RADIUS question."
+            "explanation": "**TCP 49 and TCP 50** describes a different mechanism than this question tests. The right idea: RADIUS uses UDP port 1812 for authentication and authorization, and UDP port 1813 for accounting (older implementations used 1645/1646).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "RADIUS uses UDP, not TCP — 'TCP 1812 and TCP 1813' gets the port numbers right but the transport protocol wrong.",
-            "misconceptionTested": "Knowing the RADIUS port numbers but forgetting RADIUS is UDP-based."
+            "explanation": "**TCP 1812 and TCP 1813** describes a different mechanism than this question tests. The right idea: RADIUS uses UDP port 1812 for authentication and authorization, and UDP port 1813 for accounting (older implementations used 1645/1646).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "UDP 161/162 are SNMP ports (161 for queries, 162 for traps) — an unrelated management protocol, not RADIUS.",
-            "misconceptionTested": "Confusing RADIUS AAA ports with SNMP monitoring ports."
+            "explanation": "**UDP 161 and UDP 162** describes a different mechanism than this question tests. The right idea: RADIUS uses UDP port 1812 for authentication and authorization, and UDP port 1813 for accounting (older implementations used 1645/1646).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "RADIUS = UDP. TACACS+ = TCP. RADIUS splits auth/authz (1812) and accounting (1813) into separate ports; TACACS+ uses one port (49) for everything.",
-        "memoryHook": "RADIUS rhymes with 'fast and loose' — UDP is connectionless ('loose'), matching RADIUS's UDP transport."
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
     },
     {
@@ -157,27 +157,27 @@
       ],
       "answerReview": {
         "correct": {
+          "choiceIndex": 1,
           "explanation": "TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This reverses the two protocols' behavior — TACACS+ is the one that encrypts the full packet body, and RADIUS is the one limited to encrypting only the password.",
-            "misconceptionTested": "Swapping which protocol provides the stronger (full-packet) encryption."
+            "explanation": "**TACACS+ encrypts only the password; RADIUS encrypts the entire packet body** does not satisfy what the question asks. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Both protocols DO support encryption (TACACS+ full-packet, RADIUS password-only) — neither is fully unencrypted.",
-            "misconceptionTested": "Assuming one or both AAA protocols have no encryption at all."
+            "explanation": "**Neither protocol supports encryption** describes a different mechanism than this question tests. The right idea: TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "TACACS+ and RADIUS differ meaningfully in encryption scope — they are not identical in how much of the packet is protected.",
-            "misconceptionTested": "Assuming all AAA protocols handle encryption the same way."
+            "explanation": "**Both encrypt the entire packet body identically** describes a different mechanism than this question tests. The right idea: TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
+            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "This is the #1 TACACS+ vs RADIUS exam difference: TACACS+ = encrypts whole packet body; RADIUS = encrypts only the password.",
-        "memoryHook": "TACACS+ wraps the WHOLE package; RADIUS only seals the envelope's password field."
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
     },
     {
@@ -200,27 +200,27 @@
       ],
       "answerReview": {
         "correct": {
+          "choiceIndex": 0,
           "explanation": "aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "\"ip aaa enable\" is not a real IOS command — AAA configuration commands use the \"aaa\" keyword directly, not under \"ip\".",
-            "misconceptionTested": "Guessing a plausible-sounding but non-existent command syntax."
+            "explanation": "**ip aaa enable** describes a different mechanism than this question tests. The right idea: aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "\"service aaa\" is not the command that enables AAA — \"service\" commands in IOS configure other features (e.g., service password-encryption), not the AAA model itself.",
-            "misconceptionTested": "Confusing the 'service' command family with the 'aaa new-model' enabler."
+            "explanation": "**service aaa** describes a different mechanism than this question tests. The right idea: aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "\"aaa start\" is not a valid IOS command — the actual enabling command is specifically \"aaa new-model\".",
-            "misconceptionTested": "Inventing a command name based on what 'sounds right' rather than the actual IOS syntax."
+            "explanation": "**aaa start** describes a different mechanism than this question tests. The right idea: aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "aaa new-model must be configured before any aaa authentication, aaa authorization, or aaa accounting commands will have any effect.",
-        "memoryHook": "'New model' = switching the device from default line-password auth to the full AAA model."
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
     },
     {
@@ -243,27 +243,27 @@
       ],
       "answerReview": {
         "correct": {
+          "choiceIndex": 1,
           "explanation": "The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The presence of 'local' as a second method means login is NOT denied if TACACS+ fails — it falls back to the local database instead.",
-            "misconceptionTested": "Ignoring the fallback method listed after the primary method."
+            "explanation": "**Only TACACS+ can be used; if it fails, login is denied** describes a different mechanism than this question tests. The right idea: The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Method lists are tried in the order listed — 'group tacacs+ local' means TACACS+ is tried FIRST, then local, not the reverse.",
-            "misconceptionTested": "Reversing the priority order of methods in a method list."
+            "explanation": "**The switch authenticates against the local database first, then TACACS+** describes a different mechanism than this question tests. The right idea: The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "This command works with TACACS+ alone — it doesn't require a RADIUS server to be configured for it to take effect.",
-            "misconceptionTested": "Assuming an AAA method list requires every possible AAA protocol to be configured."
+            "explanation": "**This command has no effect without a RADIUS server configured** describes a different mechanism than this question tests. The right idea: The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "Method lists are evaluated left to right; each method is tried only if the previous one is unavailable (not just if it fails the login) — 'local' as a fallback prevents lockout if the AAA server is down.",
-        "memoryHook": "Read method lists like a sentence, left to right: 'try TACACS+, then local.'"
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
     },
     {
@@ -286,27 +286,27 @@
       ],
       "answerReview": {
         "correct": {
-          "explanation": "The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server. \"Cisco123\" vs \"cisco123\" is a case mismatch and will cause authentication to fail even though the server is reachable."
+          "choiceIndex": 1,
+          "explanation": "The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server. A mismatch causes authentication to fail even though the server is reachable."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "TACACS+ DOES support (and requires) a shared secret key for encrypting communication — that's the whole point of the key configuration.",
-            "misconceptionTested": "Assuming a feature doesn't exist when actually the question is testing a misconfiguration of that feature."
+            "explanation": "**TACACS+ does not support shared secret keys** contradicts the expected behavior. The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switching to RADIUS wouldn't fix a key mismatch — RADIUS also requires a matching shared secret, and the underlying problem (mismatched keys) would persist.",
-            "misconceptionTested": "Treating a configuration error as a reason to change protocols instead of fixing the configuration."
+            "explanation": "**The device needs to use RADIUS instead** describes a different mechanism than this question tests. The right idea: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Shared secret keys must be IDENTICAL on both sides to work — TACACS+ does not require or support having different keys on each end.",
-            "misconceptionTested": "Inventing a requirement (different keys on each side) that's the opposite of how shared secrets work."
+            "explanation": "**TACACS+ requires the keys to be different on each side** describes a different mechanism than this question tests. The right idea: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "When the AAA server is reachable (ping/connectivity works) but authentication still fails, suspect a shared-secret key mismatch — keys are case-sensitive and must match exactly.",
-        "memoryHook": "'Reachable but rejected' → check the shared secret key, not the network path."
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
     },
     {
@@ -329,27 +329,27 @@
       ],
       "answerReview": {
         "correct": {
+          "choiceIndex": 1,
           "explanation": "Authorization determines what an authenticated user is permitted to do — e.g., which privilege level or command set they can access — separate from verifying their identity (authentication) or logging their actions (accounting)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Authentication only verifies WHO the user is (identity) — it doesn't determine what privilege level or commands they're permitted to use afterward.",
-            "misconceptionTested": "Confusing 'proving identity' with 'granting permissions' — these are two separate AAA stages."
+            "explanation": "**Authentication** describes a different mechanism than this question tests. The right idea: Authorization determines what an authenticated user is permitted to do — e.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "Accounting logs what a user DID after being authenticated and authorized — it doesn't decide whether they're allowed to enter privileged EXEC mode in the first place.",
-            "misconceptionTested": "Confusing the logging function (accounting) with the permission-granting function (authorization)."
+            "explanation": "**Accounting** describes a different mechanism than this question tests. The right idea: Authorization determines what an authenticated user is permitted to do — e.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "'Auditing' isn't one of the three AAA components (Authentication, Authorization, Accounting) — accounting covers the audit/logging role.",
-            "misconceptionTested": "Substituting a similar-sounding but non-AAA term ('auditing') for one of the actual three A's."
+            "explanation": "**Auditing** describes a different mechanism than this question tests. The right idea: Authorization determines what an authenticated user is permitted to do — e.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "If the question is about WHAT a user is allowed to do (privilege level, command access), the answer is Authorization — not Authentication or Accounting.",
-        "memoryHook": "Authentication = 'prove it's you.' Authorization = 'here's what you're allowed to touch.'"
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
     },
     {
@@ -372,27 +372,27 @@
       ],
       "answerReview": {
         "correct": {
-          "explanation": "Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing for compliance requires."
+          "choiceIndex": 2,
+          "explanation": "Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Authentication only confirms who logged in — it doesn't produce an ongoing log of every command an administrator subsequently runs.",
-            "misconceptionTested": "Assuming the login event itself constitutes a full activity log."
+            "explanation": "**Authentication** describes a different mechanism than this question tests. The right idea: Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Authorization controls what an admin is permitted to do, but it's accounting that records what they actually DID — the question asks for a log of actions, not permission rules.",
-            "misconceptionTested": "Confusing permission settings (authorization) with activity logs (accounting)."
+            "explanation": "**Authorization** describes a different mechanism than this question tests. The right idea: Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Encryption protects data in transit/at rest — it doesn't produce a log of which commands were run by which administrator.",
-            "misconceptionTested": "Selecting a security-sounding term (encryption) unrelated to the AAA logging function being asked about."
+            "explanation": "**Encryption** describes a different mechanism than this question tests. The right idea: Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "Whenever you see 'log,' 'audit,' 'record of actions,' or 'who did what,' the answer is Accounting.",
-        "memoryHook": "Accounting = the network's receipt printer — it records every transaction (command) after the fact."
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
     },
     {
@@ -416,27 +416,27 @@
       ],
       "answerReview": {
         "correct": {
-          "explanation": "TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.1X)."
+          "choiceIndex": 1,
+          "explanation": "TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.1X scenarios)."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RADIUS absolutely can authenticate users — it's widely used for network access authentication (e.g., 802.1X, VPN). This overstates RADIUS's limitations.",
-            "misconceptionTested": "Dismissing RADIUS entirely instead of recognizing it's used for different scenarios than TACACS+."
+            "explanation": "**RADIUS cannot authenticate users at all** contradicts the expected behavior. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 2,
-            "explanation": "RADIUS is actually the MORE common choice for wireless client authentication (802.1X) — this reverses the typical use cases of the two protocols.",
-            "misconceptionTested": "Swapping the typical use cases: TACACS+ for device admin, RADIUS for network access (including wireless)."
+            "explanation": "**TACACS+ is required for wireless client authentication, which RADIUS cannot do** contradicts the expected behavior. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Bandwidth usage isn't the reason TACACS+ is chosen for device administration — the real reason is its granular, per-command authorization model.",
-            "misconceptionTested": "Picking an unsubstantiated efficiency claim instead of the actual functional reason (per-command authorization)."
+            "explanation": "**TACACS+ uses less bandwidth than RADIUS in all cases** describes a different mechanism than this question tests. The right idea: TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
-        "examTip": "Rule of thumb: TACACS+ → device administration (router/switch CLI access control). RADIUS → network access (802.1X, VPN, wireless authentication).",
-        "memoryHook": "TACACS+ = 'T' for Terminal (device admin). RADIUS = 'R' for Radio/remote access (network access)."
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
     }
   ]
