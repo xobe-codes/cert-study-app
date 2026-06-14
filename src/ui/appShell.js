@@ -7,6 +7,7 @@ export function buildAppShellCss(colors) {
     html, body, #root {
       width: 100%;
       max-width: 100%;
+      min-height: 100%;
       height: 100%;
       margin: 0;
       padding: 0;
@@ -14,6 +15,13 @@ export function buildAppShellCss(colors) {
       overflow-x: hidden;
       overscroll-behavior-x: none;
       touch-action: pan-y;
+      background-color: ${colors.bg};
+      background-image:
+        radial-gradient(120vmax 62vmax at 50% -18%, ${colors.glowA}, transparent 58%),
+        radial-gradient(90vmax 48vmax at 100% 0%, ${colors.glowB}, transparent 52%),
+        radial-gradient(90vmax 48vmax at 0% 100%, ${colors.glowB}, transparent 52%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
     #root {
       display: flex;
@@ -21,6 +29,22 @@ export function buildAppShellCss(colors) {
       min-height: 0;
       min-width: 0;
       align-items: center;
+      position: relative;
+      isolation: isolate;
+    }
+    #root::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: linear-gradient(
+        90deg,
+        color-mix(in srgb, ${colors.bg} 92%, #000 8%) 0%,
+        transparent min(20vw, 140px),
+        transparent calc(100% - min(20vw, 140px)),
+        color-mix(in srgb, ${colors.bg} 92%, #000 8%) 100%
+      );
     }
     .app-shell {
       width: 100%;
@@ -34,14 +58,18 @@ export function buildAppShellCss(colors) {
       flex-direction: column;
       min-height: 0;
       margin: 0 auto;
-      background:
-        radial-gradient(1100px 560px at 50% -12%, ${colors.glowA}, transparent 60%),
-        radial-gradient(760px 460px at 100% 0%, ${colors.glowB}, transparent 55%),
-        ${colors.bg};
+      position: relative;
+      z-index: 1;
+      background: transparent;
       color: ${colors.silver};
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      position: relative;
       box-sizing: border-box;
+    }
+    @media (min-width: ${SITE_COLUMN_MAX + 1}px) {
+      .app-shell {
+        border-left: 1px solid color-mix(in srgb, ${colors.border} 65%, transparent);
+        border-right: 1px solid color-mix(in srgb, ${colors.border} 65%, transparent);
+      }
     }
     @supports (height: 100dvh) {
       .app-shell { height: 100dvh; }
