@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef, useId } from 'react'
 import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from './data/ccnaCurated.js'
 import { getLab, labsForObjective, labsByDomain, normalizeCliLine, labProgress, troubleshootingLabs } from './data/ccnaLabs.js'
-import { allSkillQuestions } from './data/ccnaSkillQuestions.js'
 import {
   TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
   shuffleArrayCopy, computeBankMix, normalizeQuestionForBank, inferSkill,
@@ -5963,11 +5962,21 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase()
-    if (!q) return ALL_OBJECTIVES.slice(0, 12) // show first 12 when empty
+    if (!q) {
+      const recent = ALL_OBJECTIVES
+        .map(o => ({ o, last: progress[o.id]?.lastSeen || 0 }))
+        .filter(x => x.last > 0)
+        .sort((a, b) => b.last - a.last)
+        .slice(0, 5)
+        .map(x => x.o)
+      const seen = new Set(recent.map(o => o.id))
+      const fill = ALL_OBJECTIVES.filter(o => !seen.has(o.id)).slice(0, Math.max(0, 12 - recent.length))
+      return [...recent, ...fill]
+    }
     return ALL_OBJECTIVES.filter(o =>
       o.id.toLowerCase().includes(q) || o.title.toLowerCase().includes(q)
     ).slice(0, 15)
-  }, [query])
+  }, [query, progress])
 
   function pick(obj) {
     const domain = DOMAINS.find(d => d.objectives.some(o => o.id === obj.id))
@@ -6018,7 +6027,7 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
             <div style={{ padding: 20, textAlign: 'center', color: COLORS.silverMid, fontSize: 13 }}>No objectives match "{query}"</div>
           )}
         </div>
-        {!query && <div style={{ padding: '8px 16px', fontSize: 11, color: COLORS.silverDim, borderTop: `1px solid ${COLORS.border}` }}>Showing first 12 of {ALL_OBJECTIVES.length} objectives — type to filter</div>}
+        {!query && <div style={{ padding: '8px 16px', fontSize: 11, color: COLORS.silverDim, borderTop: `1px solid ${COLORS.border}` }}>Recent objectives first · type to search all {ALL_OBJECTIVES.length}</div>}
       </div>
     </div>
   )
@@ -6164,7 +6173,8 @@ const DIAGNOSTIC_CAP = 18
 const DIAGNOSTIC_PER_OBJ = 2
 const DIAGNOSTIC_SKILL_MIN = 5 // ordering + troubleshooting in placement check
 
-function buildDiagnosticSet() {
+async function buildDiagnosticSet() {
+  const { allSkillQuestions } = await import('./data/ccnaSkillQuestions.js')
   const skillPool = allSkillQuestions().filter(q => isOrderingQuestion(q) || q.type === 'troubleshooting')
   const mcPool = []
   for (const obj of ALL_OBJECTIVES) {
@@ -6209,13 +6219,15 @@ function Onboarding({ onComplete, onSkip }) {
   }
 
   function start() {
-    const set = buildDiagnosticSet()
-    if (set.length === 0) { onComplete({}); return }
-    setTotal(set.length)
-    setResults({})
-    setAnswered(0)
-    setCurrent(set[0]); setQueue(set.slice(1)); setSelected(null); setRevealed(false)
-    setPhase('active')
+    ;(async () => {
+      const set = await buildDiagnosticSet()
+      if (set.length === 0) { onComplete({}); return }
+      setTotal(set.length)
+      setResults({})
+      setAnswered(0)
+      setCurrent(set[0]); setQueue(set.slice(1)); setSelected(null); setRevealed(false)
+      setPhase('active')
+    })()
   }
 
   function answer(idx) {
@@ -6326,6 +6338,36 @@ const ALL_EXAM_TRAPS = (() => {
   })
   return traps
 })()
+
+function HomeExtrasSection({ progress }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div style={{ marginBottom: 12 }}>
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%',
+          background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14,
+          padding: '12px 14px', cursor: 'pointer', fontFamily: 'inherit', marginBottom: open ? 8 : 0,
+        }}
+      >
+        <span style={{ flex: 1, textAlign: 'left' }}>
+          <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>EXAM PREP EXTRAS</span>
+          <span style={{ display: 'block', fontSize: 11, color: COLORS.silverMid, marginTop: 2 }}>Countdown · daily trap</span>
+        </span>
+        <span style={{ fontSize: 12, color: COLORS.silverMid, flexShrink: 0 }}>{open ? '▲' : '▼'}</span>
+      </button>
+      {open && (
+        <div>
+          <ExamCountdown progress={progress} />
+          <ExamTrapWidget />
+        </div>
+      )}
+    </div>
+  )
+}
 
 /* =========================================================================
    EXAM DATE COUNTDOWN — user sets their target exam date once; stored locally.
@@ -6665,8 +6707,7 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         </div>
       </div>
 
-      <ExamCountdown progress={progress} />
-      <ExamTrapWidget />
+      <HomeExtrasSection progress={progress} />
 
       <div role="group" aria-label="Course domains">
       {DOMAINS.map(domain => {
@@ -7601,6 +7642,51 @@ function TutorChat({ progress, missed, onBack }) {
   )
 }
 
+function parseAppHash() {
+  const raw = window.location.hash.replace(/^#/, '')
+  if (!raw) return null
+  const objMatch = raw.match(/^\/objective\/([^/]+)(?:\/(.+))?$/)
+  if (objMatch) {
+    const id = decodeURIComponent(objMatch[1])
+    const tab = objMatch[2] ? decodeURIComponent(objMatch[2]) : null
+    const obj = ALL_OBJECTIVES.find(o => o.id === id)
+    if (!obj) return null
+    const domain = DOMAINS.find(d => d.objectives.some(o => o.id === id))
+    if (!domain) return null
+    return {
+      view: 'objective',
+      objective: {
+        ...obj,
+        domainId: domain.id,
+        domainName: domain.name,
+        accent: domain.accent,
+        ...(tab ? { __initialTab: tab } : {}),
+      },
+    }
+  }
+  const simple = raw.replace(/^\//, '')
+  if (['mock', 'metrics', 'review', 'missed', 'labs', 'focus', 'tutor'].includes(simple)) {
+    return { view: simple }
+  }
+  return null
+}
+
+function syncAppHash(view, objective) {
+  if (typeof window === 'undefined') return
+  const base = window.location.pathname + window.location.search
+  let next = ''
+  if (view === 'objective' && objective) {
+    const tab = objective.__initialTab
+    next = tab ? `#/objective/${objective.id}/${encodeURIComponent(tab)}` : `#/objective/${objective.id}`
+  } else if (view !== 'home' && view !== 'onboarding' && view !== 'lab') {
+    next = `#/${view}`
+  }
+  const target = next ? base + next : base
+  if (window.location.pathname + window.location.search + window.location.hash !== target && (next || window.location.hash)) {
+    window.history.replaceState(null, '', target)
+  }
+}
+
 /* =========================================================================
    APP ROOT
    ========================================================================= */
@@ -7662,6 +7748,13 @@ export default function App() {
       if (!onboardDone) {
         if (Object.keys(p).length === 0) setView('onboarding')
         else await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
+      }
+      const hashRoute = parseAppHash()
+      if (hashRoute?.objective) {
+        setSelectedObjective(hashRoute.objective)
+        setView('objective')
+      } else if (hashRoute?.view) {
+        setView(hashRoute.view)
       }
       const updatedStreak = await bumpStreak()
       setStreak(updatedStreak)
@@ -7763,6 +7856,29 @@ export default function App() {
     }
     prevViewRef.current = view
   }, [view])
+
+  useEffect(() => {
+    if (!loaded) return
+    syncAppHash(view, selectedObjective)
+  }, [loaded, view, selectedObjective])
+
+  useEffect(() => {
+    if (!loaded) return
+    function onHashChange() {
+      const route = parseAppHash()
+      if (route?.objective) {
+        setSelectedObjective(route.objective)
+        setView('objective')
+      } else if (route?.view) {
+        setSelectedObjective(null)
+        setView(route.view)
+      } else {
+        setView('home')
+      }
+    }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [loaded])
 
   // Pull remote → merge with local → save → refresh UI → push merged back.
   // Deterministic and convergent, so it's safe to run on any device.
