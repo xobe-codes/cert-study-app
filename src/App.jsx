@@ -37,6 +37,7 @@ import RoutingDecoderMode from './RoutingDecoderMode.jsx'
 import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
 import { NavHintProvider, useNavHint } from './components/NavHintProvider.jsx'
 import SvgConfetti from './components/SvgConfetti.jsx'
+import RouteShell from './components/RouteShell.jsx'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 
 
@@ -365,6 +366,25 @@ async function callClaude(body, retries = 2, feature = 'other') {
     }
   }
   throw lastError || new Error('Unknown error contacting Claude API.')
+}
+
+// Text completion. `model` lets callers pick a tier (defaults to Sonnet).
+async function askClaude({ system, messages, max_tokens = 1000, model = MODEL, feature = 'other', retries = 2 }) {
+  const data = await callClaude({ model, max_tokens, system, messages }, retries, feature)
+  const text = data?.content?.find(b => b.type === 'text')?.text
+  if (!text) throw new Error('Claude API returned an empty response.')
+  return text
+}
+
+// Structured output via a forced tool call: Claude must return data matching
+// `schema`, so we get a guaranteed-shaped object instead of parsing JSON out of
+// prose. Eliminates the whole "unexpected format" failure class.
+async function askClaudeJSON({ system, messages, max_tokens = 1500, model = MODEL, schema, toolName = 'emit_result', feature = 'other', retries = 2 }) {
+  const tool = { name: toolName, description: 'Return the result as structured data.', input_schema: schema }
+  const data = await callClaude({
+    model, max_tokens, system, messages,
+    tools: [tool], tool_choice: { type: 'tool', name: toolName },
+  }, retries, feature)
   const block = data?.content?.find(b => b.type === 'tool_use')
   if (!block || !block.input) throw new Error('Claude returned no structured result. Please try again.')
   return block.input
@@ -2252,6 +2272,7 @@ function SubnetPracticeHome({ onBack }) {
 
 
 function ExplainTab({ objective, progress, onUpdateProgress }) {
+  const [content, setContent] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [recalled, setRecalled] = useState(false) // retrieval-practice gate
