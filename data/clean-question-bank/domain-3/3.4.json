@@ -27,18 +27,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Distance vector** describes a different mechanism than this question tests. The right idea: OSPF is a link-state IGP using LSAs and SPF.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Distance vector** does not answer the requirement in this stem. OSPF is a link-state IGP using LSAs and SPF.",
+            "misconceptionTested": "Selecting \"Distance vector\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Path vector** describes a different mechanism than this question tests. The right idea: OSPF is a link-state IGP using LSAs and SPF.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Path vector** does not answer the requirement in this stem. OSPF is a link-state IGP using LSAs and SPF.",
+            "misconceptionTested": "Selecting \"Path vector\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Static** describes a different mechanism than this question tests. The right idea: OSPF is a link-state IGP using LSAs and SPF.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Static** does not answer the requirement in this stem. OSPF is a link-state IGP using LSAs and SPF.",
+            "misconceptionTested": "Selecting \"Static\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -69,18 +69,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**90** describes a different mechanism than this question tests. The right idea: OSPF AD is 110.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**90** uses the wrong value. The tested fact calls for **110** — not 90.",
+            "misconceptionTested": "Selecting \"90\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**100** describes a different mechanism than this question tests. The right idea: OSPF AD is 110.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**100** uses the wrong value. The tested fact calls for **110** — not 100.",
+            "misconceptionTested": "Selecting \"100\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**120** describes a different mechanism than this question tests. The right idea: OSPF AD is 110.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**120** uses the wrong value. The tested fact calls for **110** — not 120.",
+            "misconceptionTested": "Selecting \"120\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -111,18 +111,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**10** describes a different mechanism than this question tests. The right idea: Cost = 100 Mbps reference ÷ 100 Mbps = 1.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**10** uses the wrong value. The tested fact calls for **100** — not 10.",
+            "misconceptionTested": "Selecting \"10\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**100** describes a different mechanism than this question tests. The right idea: Cost = 100 Mbps reference ÷ 100 Mbps = 1.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**100** uses the wrong value. The tested fact calls for **1** — not 100.",
+            "misconceptionTested": "Selecting \"100\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**64** describes a different mechanism than this question tests. The right idea: Cost = 100 Mbps reference ÷ 100 Mbps = 1.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**64** uses the wrong value. The tested fact calls for **100** — not 64.",
+            "misconceptionTested": "Selecting \"64\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -153,18 +153,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Lowest interface IP** describes a different mechanism than this question tests. The right idea: Highest loopback IP wins; otherwise the highest active interface IP.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Lowest interface IP** does not answer the requirement in this stem. Highest loopback IP wins; otherwise the highest active interface IP.",
+            "misconceptionTested": "Selecting \"Lowest interface IP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**MAC address** describes a different mechanism than this question tests. The right idea: Highest loopback IP wins; otherwise the highest active interface IP.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**MAC address** does not answer the requirement in this stem. Highest loopback IP wins; otherwise the highest active interface IP.",
+            "misconceptionTested": "Selecting \"MAC address\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Always 0.0.0.0** describes a different mechanism than this question tests. The right idea: Highest loopback IP wins; otherwise the highest active interface IP.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Always 0.0.0.0** does not answer the requirement in this stem. Highest loopback IP wins; otherwise the highest active interface IP.",
+            "misconceptionTested": "Selecting \"Always 0.0.0.0\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -195,18 +195,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Different hostnames** describes a different mechanism than this question tests. The right idea: Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Different hostnames** is a plausible symptom fix but does not match the most likely root cause here: Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
+            "misconceptionTested": "Selecting \"Different hostnames\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Different SNMP strings** describes a different mechanism than this question tests. The right idea: Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Different SNMP strings** is a plausible symptom fix but does not match the most likely root cause here: Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
+            "misconceptionTested": "Selecting \"Different SNMP strings\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Different banners** describes a different mechanism than this question tests. The right idea: Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Different banners** is a plausible symptom fix but does not match the most likely root cause here: Area, subnet/mask, hello/dead timers, and auth must match to form an adjacency.",
+            "misconceptionTested": "Selecting \"Different banners\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -237,18 +237,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**network 10.0.0.0 255.255.255.0 area 0** does not satisfy what the question asks. OSPF `network` uses a wildcard mask: 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**network 10.0.0.0 255.255.255.0 area 0** reflects a common trap: Using a subnet mask in the network statement. OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24).",
+            "misconceptionTested": "Using a subnet mask in the network statement"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ospf network 10.0.0.0/24** describes a different mechanism than this question tests. The right idea: OSPF `network` uses a wildcard mask: 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**ospf network 10.0.0.0/24** reflects a common trap: Using a subnet mask in the network statement. OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24).",
+            "misconceptionTested": "Using a subnet mask in the network statement"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**advertise 10.0.0.0 area 0** describes a different mechanism than this question tests. The right idea: OSPF `network` uses a wildcard mask: 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**advertise 10.0.0.0 area 0** uses the wrong value. The tested fact calls for **0** — not 10.",
+            "misconceptionTested": "Selecting \"advertise 10.0.0.0 area 0\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -279,18 +279,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Init** describes a different mechanism than this question tests. The right idea: Adjacent neighbors reach the Full state.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Init** does not answer which in this stem. Adjacent neighbors reach the Full state.",
+            "misconceptionTested": "Selecting \"Init\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**2-Way** describes a different mechanism than this question tests. The right idea: Adjacent neighbors reach the Full state.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**2-Way** does not answer which in this stem. Adjacent neighbors reach the Full state.",
+            "misconceptionTested": "Selecting \"2-Way\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Exchange** describes a different mechanism than this question tests. The right idea: Adjacent neighbors reach the Full state.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Exchange** does not answer which in this stem. Adjacent neighbors reach the Full state.",
+            "misconceptionTested": "Selecting \"Exchange\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -321,18 +321,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Stops advertising the network** describes a different mechanism than this question tests. The right idea: A passive interface is still advertised but sends no OSPF hellos (e.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Stops advertising the network** does not answer what does in this stem. A passive interface is still advertised but sends no OSPF hellos (e.",
+            "misconceptionTested": "Selecting \"Stops advertising the network\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Disables the interface** describes a different mechanism than this question tests. The right idea: A passive interface is still advertised but sends no OSPF hellos (e.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Disables the interface** does not answer what does in this stem. A passive interface is still advertised but sends no OSPF hellos (e.",
+            "misconceptionTested": "Selecting \"Disables the interface\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Forces DR election** describes a different mechanism than this question tests. The right idea: A passive interface is still advertised but sends no OSPF hellos (e.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "OSPF DR/BDR rules apply per multi-access segment — check network type and priority before assuming election results.",
+            "misconceptionTested": "Misapplying OSPF DR/BDR election rules"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -363,18 +363,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Lowest IP** describes a different mechanism than this question tests. The right idea: Highest priority wins; ties break on highest Router ID.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Lowest IP** does not answer the requirement in this stem. Highest priority wins; ties break on highest Router ID.",
+            "misconceptionTested": "Selecting \"Lowest IP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Lowest MAC** describes a different mechanism than this question tests. The right idea: Highest priority wins; ties break on highest Router ID.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Lowest MAC** does not answer the requirement in this stem. Highest priority wins; ties break on highest Router ID.",
+            "misconceptionTested": "Selecting \"Lowest MAC\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**First to boot only** describes a different mechanism than this question tests. The right idea: Highest priority wins; ties break on highest Router ID.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**First to boot only** does not answer the requirement in this stem. Highest priority wins; ties break on highest Router ID.",
+            "misconceptionTested": "Selecting \"First to boot only\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -409,19 +409,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RIP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**RIP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**EIGRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**EIGRP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**BGP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**BGP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -458,19 +458,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RIP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**RIP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**EIGRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**EIGRP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**BGP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**BGP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -505,19 +505,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Link-state protocols share the topology database among all routers.** does not satisfy what the question asks. The correct answer is \"Link-state protocols require routers to maintain their own topology database of the network.",
+            "explanation": "**Link-state protocols share the topology database among all routers.** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Link-state protocols allow routers to maintain a link-state database of all routers.** does not satisfy what the question asks. The correct answer is \"Link-state protocols require routers to maintain their own topology database of the network.",
+            "explanation": "**Link-state protocols allow routers to maintain a link-state database of all routers.** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Link-state protocols use multiple routes to the same destination.** does not satisfy what the question asks. The correct answer is \"Link-state protocols require routers to maintain their own topology database of the network.",
+            "explanation": "**Link-state protocols use multiple routes to the same destination.** does not answer the requirement in this stem. .",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           }
@@ -554,19 +554,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The only metric needed is hop count.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**The only metric needed is hop count.** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Link-state dynamic routing protocols support CIDR and VLSM.** does not satisfy what the question asks. The correct answer is \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Link-state dynamic routing protocols support CIDR and VLSM.** reflects a common trap: Comparing metrics across routing protocols. Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc.",
+            "misconceptionTested": "Comparing metrics across routing protocols",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**OSPF requires only a small amount of resources such as CPU and RAM.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Link-state dynamic routing protocols use triggered updates for recalculation of routing tables.",
+            "explanation": "**OSPF requires only a small amount of resources such as CPU and RAM.** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -601,19 +601,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Extremely small networks of three routers** describes a different mechanism than this question tests. The right idea: The correct answer is \"Large hierarchical networks like global networks\".",
+            "explanation": "**Extremely small networks of three routers** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Networks with routers that have a limited amount of RAM and CPU** describes a different mechanism than this question tests. The right idea: The correct answer is \"Large hierarchical networks like global networks\".",
+            "explanation": "**Networks with routers that have a limited amount of RAM and CPU** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Networks within organizations with limited training of network admins** describes a different mechanism than this question tests. The right idea: The correct answer is \"Large hierarchical networks like global networks\".",
+            "explanation": "**Networks within organizations with limited training of network admins** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -649,19 +649,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**EGP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**EGP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**EIGRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**EIGRP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**BGP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**BGP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -697,19 +697,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**BGP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**BGP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RIPv2** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**RIPv2** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**EGP** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF\".",
+            "explanation": "**EGP** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -744,19 +744,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Area 1** describes a different mechanism than this question tests. The right idea: The correct answer is \"Area 0\".",
+            "explanation": "**Area 1** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Area 10** describes a different mechanism than this question tests. The right idea: The correct answer is \"Area 0\".",
+            "explanation": "**Area 10** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Area 4** describes a different mechanism than this question tests. The right idea: The correct answer is \"Area 0\".",
+            "explanation": "**Area 4** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -793,20 +793,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Area border router** describes a different mechanism than this question tests. The right idea: The correct answer is \"Autonomous system boundary router\".",
+            "explanation": "**Area border router** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Autonomous system router** does not satisfy what the question asks. The correct answer is \"Autonomous system boundary router\".",
+            "explanation": "**Autonomous system router** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Area backup router** describes a different mechanism than this question tests. The right idea: The correct answer is \"Autonomous system boundary router\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "OSPF DR/BDR rules apply per multi-access segment — check network type and priority before assuming election results.",
+            "misconceptionTested": "Misapplying OSPF DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -842,19 +842,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**224.0.0.9** describes a different mechanism than this question tests. The right idea: The correct answer is \"224.",
+            "explanation": "**224.0.0.9** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**224.0.0.6** describes a different mechanism than this question tests. The right idea: The correct answer is \"224.",
+            "explanation": "**224.0.0.6** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**224.0.0.7** describes a different mechanism than this question tests. The right idea: The correct answer is \"224.",
+            "explanation": "**224.0.0.7** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -891,20 +891,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Autonomous system routers** describes a different mechanism than this question tests. The right idea: The correct answer is \"Area border routers\".",
+            "explanation": "**Autonomous system routers** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Autonomous system boundary routers** describes a different mechanism than this question tests. The right idea: The correct answer is \"Area border routers\".",
+            "explanation": "**Autonomous system boundary routers** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Area backup routers** describes a different mechanism than this question tests. The right idea: The correct answer is \"Area border routers\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "OSPF DR/BDR rules apply per multi-access segment — check network type and priority before assuming election results.",
+            "misconceptionTested": "Misapplying OSPF DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -939,19 +939,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**OSPF is a distance-vector protocol.** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF updates are event triggered.",
+            "explanation": "**OSPF is a distance-vector protocol.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**OSPF performs default auto-summarization.** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF updates are event triggered.",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**OSPF performs default auto-summarization.** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**OSPF broadcasts changes to the routing tables.** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF updates are event triggered.",
+            "explanation": "**OSPF broadcasts changes to the routing tables.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -987,19 +987,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The lowest IP address configured on the loopback interfaces** describes a different mechanism than this question tests. The right idea: The correct answer is \"The highest IP address configured on the router\".",
+            "explanation": "**The lowest IP address configured on the loopback interfaces** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The lowest IP address configured on the router** describes a different mechanism than this question tests. The right idea: The correct answer is \"The highest IP address configured on the router\".",
+            "explanation": "**The lowest IP address configured on the router** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The highest MAC address configured on the router** does not satisfy what the question asks. The correct answer is \"The highest IP address configured on the router\".",
+            "explanation": "**The highest MAC address configured on the router** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1034,19 +1034,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Two routers participating in OSPF routing** describes a different mechanism than this question tests. The right idea: The correct answer is \"A routed interface added to the OSPF process\".",
+            "explanation": "**Two routers participating in OSPF routing** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Two routers that share the same area ID** describes a different mechanism than this question tests. The right idea: The correct answer is \"A routed interface added to the OSPF process\".",
+            "explanation": "**Two routers that share the same area ID** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Two routers that share the same AS number** describes a different mechanism than this question tests. The right idea: The correct answer is \"A routed interface added to the OSPF process\".",
+            "explanation": "**Two routers that share the same AS number** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1083,20 +1083,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**An adjacency is formed between routers on the same link.** does not satisfy what the question asks. The correct answer is \"An adjacency is formed between the designated router (DR) and every neighbor router on the same area.",
+            "explanation": "**An adjacency is formed between routers on the same link.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**An adjacency is formed between the DR and every router in the same autonomous system.** does not satisfy what the question asks. The correct answer is \"An adjacency is formed between the designated router (DR) and every neighbor router on the same area.",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "OSPF DR/BDR rules apply per multi-access segment — check network type and priority before assuming election results.",
+            "misconceptionTested": "Misapplying OSPF DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**An adjacency is formed between the DR and every router in the same OSPF area.** does not satisfy what the question asks. The correct answer is \"An adjacency is formed between the designated router (DR) and every neighbor router on the same area.",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**An adjacency is formed between the DR and every router in the same OSPF area.** is not the behavior described here. .",
+            "misconceptionTested": "Misapplying OSPF DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -1132,20 +1132,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The DR is elected by the highest priority and highest RID in the same autonomous system.** does not satisfy what the question asks. The correct answer is \"The DR is elected by the highest priority and highest RID in the same area.",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "OSPF DR/BDR rules apply per multi-access segment — check network type and priority before assuming election results.",
+            "misconceptionTested": "Misapplying OSPF DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The DR is elected by the lowest priority and highest RID in the same area.** does not satisfy what the question asks. The correct answer is \"The DR is elected by the highest priority and highest RID in the same area.",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**The DR is elected by the lowest priority and highest RID in the same area.** is not the behavior described here. .",
+            "misconceptionTested": "Misapplying OSPF DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The DR is elected by the lowest priority and lowest RID.** does not satisfy what the question asks. The correct answer is \"The DR is elected by the highest priority and highest RID in the same area.",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**The DR is elected by the lowest priority and lowest RID.** is not the behavior described here. .",
+            "misconceptionTested": "Misapplying OSPF DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -1181,19 +1181,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The routing table database** describes a different mechanism than this question tests. The right idea: The correct answer is \"The neighborship database\".",
+            "explanation": "**The routing table database** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The topological database** describes a different mechanism than this question tests. The right idea: The correct answer is \"The neighborship database\".",
+            "explanation": "**The topological database** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The link-state database** describes a different mechanism than this question tests. The right idea: The correct answer is \"The neighborship database\".",
+            "explanation": "**The link-state database** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1228,19 +1228,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**OSPF uses autonomous systems for scalability.** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF uses areas for scalability.",
+            "explanation": "**OSPF uses autonomous systems for scalability.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**OSPF uses process IDs for scalability.** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF uses areas for scalability.",
+            "explanation": "**OSPF uses process IDs for scalability.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**OSPF uses RID for scalability.** describes a different mechanism than this question tests. The right idea: The correct answer is \"OSPF uses areas for scalability.",
+            "explanation": "**OSPF uses RID for scalability.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1275,19 +1275,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**An X.25 network** describes a different mechanism than this question tests. The right idea: The correct answer is \"A LAN\".",
+            "explanation": "**An X.25 network** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Frame Relay** describes a different mechanism than this question tests. The right idea: The correct answer is \"A LAN\".",
+            "explanation": "**Frame Relay** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ATM network** describes a different mechanism than this question tests. The right idea: The correct answer is \"A LAN\".",
+            "explanation": "**ATM network** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1323,19 +1323,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**224.0.0.9** describes a different mechanism than this question tests. The right idea: The correct answer is \"224.",
+            "explanation": "**224.0.0.9** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**224.0.0.5** describes a different mechanism than this question tests. The right idea: The correct answer is \"224.",
+            "explanation": "**224.0.0.5** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**224.0.0.7** describes a different mechanism than this question tests. The right idea: The correct answer is \"224.",
+            "explanation": "**224.0.0.7** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1371,20 +1371,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**An OSPF router area of 20** does not satisfy what the question asks. The correct answer is \"An OSPF router process ID of 20\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**An OSPF router area of 20** reflects a common trap: OSPF uses hop count like RIP. OSPF uses cost (bandwidth-based), not hop count.",
+            "misconceptionTested": "OSPF uses hop count like RIP",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**An OSPF router autonomous system of 20** does not satisfy what the question asks. The correct answer is \"An OSPF router process ID of 20\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**An OSPF router autonomous system of 20** reflects a common trap: OSPF uses hop count like RIP. OSPF uses cost (bandwidth-based), not hop count.",
+            "misconceptionTested": "OSPF uses hop count like RIP",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**An OSPF cost of 20** describes a different mechanism than this question tests. The right idea: The correct answer is \"An OSPF router process ID of 20\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**An OSPF cost of 20** reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           }
         ],
@@ -1419,20 +1419,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ospf** does not satisfy what the question asks. The correct answer is \"Router#show interface\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ospf** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show running-config** does not satisfy what the question asks. The correct answer is \"Router#show interface\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show running-config** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ospf interface** does not satisfy what the question asks. The correct answer is \"Router#show interface\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ospf interface** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -1468,20 +1468,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config-if)#ip cost 20000** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip ospf cost 20000\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Router(config-if)#ip cost 20000** reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#ip ospf cost 20000** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip ospf cost 20000\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Router(config)#ip ospf cost 20000** reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ip cost 20000** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip ospf cost 20000\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Router(config)#ip cost 20000** reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           }
         ],
@@ -1515,19 +1515,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255** does not satisfy what the question asks. The correct answer is \"Router(config)#router ospf 1 Router(config-router)#network 192.",
+            "explanation": "**Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255** does not satisfy what the question asks. The correct answer is \"Router(config)#router ospf 1 Router(config-router)#network 192.",
+            "explanation": "**Router(config)#ospf 0 Router(config-router)#network 192.168.1.0 0.0.0.255** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 255.255.255.0** does not satisfy what the question asks. The correct answer is \"Router(config)#router ospf 1 Router(config-router)#network 192.",
+            "explanation": "**Router(config)#router ospf 0 Router(config-router)#network 192.168.1.0 255.255.255.0** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1564,19 +1564,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**8 routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"4 routes\".",
+            "explanation": "**8 routes** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**16 routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"4 routes\".",
+            "explanation": "**16 routes** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**32 routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"4 routes\".",
+            "explanation": "**32 routes** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1613,19 +1613,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**255.255.224.0** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**255.255.224.0** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**0.0.32.255** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**0.0.32.255** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**0.0.224.255** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**0.0.224.255** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1661,20 +1661,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ospf equal-cost 10** does not satisfy what the question asks. The correct answer is \"Router(config-router)#maximum-paths 10\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Router(config)#ospf equal-cost 10** reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-router)#ospf equal-cost 10** does not satisfy what the question asks. The correct answer is \"Router(config-router)#maximum-paths 10\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Router(config-router)#ospf equal-cost 10** reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ospf maximum-paths 10** does not satisfy what the question asks. The correct answer is \"Router(config-router)#maximum-paths 10\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Router(config)#ospf maximum-paths 10** reflects a common trap: OSPF uses hop count like RIP. OSPF uses cost (bandwidth-based), not hop count.",
+            "misconceptionTested": "OSPF uses hop count like RIP",
             "needsExplanationReview": true
           }
         ],
@@ -1709,19 +1709,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**4 routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"32 routes\".",
+            "explanation": "**4 routes** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**8 routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"32 routes\".",
+            "explanation": "**8 routes** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**16 routes** describes a different mechanism than this question tests. The right idea: The correct answer is \"32 routes\".",
+            "explanation": "**16 routes** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1757,20 +1757,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip interface** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip interface** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show ip ospf rid** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf rid** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip ospf neighbor** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf neighbor** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -1806,19 +1806,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**0.0.0.16** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**0.0.0.16** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**255.255.255.240** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**255.255.255.240** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**0.0.0.240** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**0.0.0.240** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1854,20 +1854,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show router adjacency** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf neighbor\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show router adjacency** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show ip ospf** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf neighbor\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip ospf router** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf neighbor\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf router** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -1903,19 +1903,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**5 seconds** describes a different mechanism than this question tests. The right idea: The correct answer is \"10 seconds\".",
+            "explanation": "**5 seconds** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**30 seconds** describes a different mechanism than this question tests. The right idea: The correct answer is \"10 seconds\".",
+            "explanation": "**30 seconds** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**60 seconds** describes a different mechanism than this question tests. The right idea: The correct answer is \"10 seconds\".",
+            "explanation": "**60 seconds** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -1952,20 +1952,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config-if)#passive-interface** does not satisfy what the question asks. The correct answer is \"Router(config-router)#passive-interface gigabitethernet 0/1\".",
+            "explanation": "**Router(config-if)#passive-interface** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#passive-interface gigabitethernet 0/1** does not satisfy what the question asks. The correct answer is \"Router(config-router)#passive-interface gigabitethernet 0/1\".",
+            "explanation": "**Router(config)#passive-interface gigabitethernet 0/1** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-if)#passive-interface default** does not satisfy what the question asks. The correct answer is \"Router(config-router)#passive-interface gigabitethernet 0/1\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Router(config-if)#passive-interface default** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           }
         ],
@@ -2001,20 +2001,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show interfaces** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf interface\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show interfaces** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip routes** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf interface\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip routes** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip ospf brief** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf interface\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf brief** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -2050,19 +2050,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#interface fa 0/1 Router(config-if)#ip address 192.168.1.5 255.255.255.0** does not satisfy what the question asks. The correct answer is \"Router(config-router)#router-id 192.",
+            "explanation": "**Router(config)#interface fa 0/1 Router(config-if)#ip address 192.168.1.5 255.255.255.0** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.5 255.255.255.0** does not satisfy what the question asks. The correct answer is \"Router(config-router)#router-id 192.",
+            "explanation": "**Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.5 255.255.255.0** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-router)#rid 192.168.1.5** does not satisfy what the question asks. The correct answer is \"Router(config-router)#router-id 192.",
+            "explanation": "**Router(config-router)#rid 192.168.1.5** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2100,19 +2100,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config-router)#active-interface gigabitethernet 0/2** does not satisfy what the question asks. The correct answer is \"Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2\".",
+            "explanation": "**Router(config-router)#active-interface gigabitethernet 0/2** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-router)#passive-interface default Router(config-router)#active-interface gigabitethernet 0/2** does not satisfy what the question asks. The correct answer is \"Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Router(config-router)#passive-interface default Router(config-router)#active-interface gigabitethernet 0/2** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-router)#passive-interface gigabitethernet 0/2** does not satisfy what the question asks. The correct answer is \"Router(config-router)#passive-interface default Router(config-router)#no passive-interface gigabitethernet 0/2\".",
+            "explanation": "**Router(config-router)#passive-interface gigabitethernet 0/2** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2147,19 +2147,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-router)#shutdown Router(config-router)#no shutdown** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router#clear ip ospf\".",
+            "explanation": "**Router(config-router)#shutdown Router(config-router)#no shutdown** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-router)#clear ip ospf** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router#clear ip ospf\".",
+            "explanation": "**Router(config-router)#clear ip ospf** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#clear ospf** does not satisfy what the question asks. The correct answer is \"Router#clear ip ospf\".",
+            "explanation": "**Router#clear ospf** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2194,19 +2194,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ABRs sit between an autonomous system and OSPF.** describes a different mechanism than this question tests. The right idea: The correct answer is \"ABRs exchange Type 3 link-state advertisements between areas.",
+            "explanation": "**ABRs sit between an autonomous system and OSPF.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**ABRs exchange Type 1 link-state advertisements between areas.** does not satisfy what the question asks. The correct answer is \"ABRs exchange Type 3 link-state advertisements between areas.",
+            "explanation": "**ABRs exchange Type 1 link-state advertisements between areas.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ABRs exchange Type 2 link-state advertisements between areas.** does not satisfy what the question asks. The correct answer is \"ABRs exchange Type 3 link-state advertisements between areas.",
+            "explanation": "**ABRs exchange Type 2 link-state advertisements between areas.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2243,19 +2243,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config-router)#network 128.24.0.0/22 area 0 Router(config-router)#network 128.24.0.0/22 area 1** does not satisfy what the question asks. The correct answer is \"Router(config-router)#network 128.",
+            "explanation": "**Router(config-router)#network 128.24.0.0/22 area 0 Router(config-router)#network 128.24.0.0/22 area 1** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-router)#network 128.24.0.0 0.0.254.255 area 0 Router(config-router)#network 128.24.0.0 255.254.255 area 1** does not satisfy what the question asks. The correct answer is \"Router(config-router)#network 128.",
+            "explanation": "**Router(config-router)#network 128.24.0.0 0.0.254.255 area 0 Router(config-router)#network 128.24.0.0 255.254.255 area 1** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-router)#network 128.24.0.0 0.0.255.255** does not satisfy what the question asks. The correct answer is \"Router(config-router)#network 128.",
+            "explanation": "**Router(config-router)#network 128.24.0.0 0.0.255.255** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2291,20 +2291,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip ospf states** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf database\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf states** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show ip ospf neighbors** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf database\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf neighbors** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip ospf topology** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf database\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf topology** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -2338,19 +2338,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Interface Serial 0/3/0** describes a different mechanism than this question tests. The right idea: The correct answer is \"Interface GigabitEthernet 0/0\".",
+            "explanation": "**Interface Serial 0/3/0** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Interface Serial 0/3/0.1** describes a different mechanism than this question tests. The right idea: The correct answer is \"Interface GigabitEthernet 0/0\".",
+            "explanation": "**Interface Serial 0/3/0.1** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Interface Serial 0/3/0.2** describes a different mechanism than this question tests. The right idea: The correct answer is \"Interface GigabitEthernet 0/0\".",
+            "explanation": "**Interface Serial 0/3/0.2** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2387,19 +2387,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**There is a static route configured between the two routers.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router A is configured with a hello timer of 30.",
+            "explanation": "**There is a static route configured between the two routers.** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router A is configured with multiple area IDs.** does not satisfy what the question asks. The correct answer is \"Router A is configured with a hello timer of 30.",
+            "explanation": "**Router A is configured with multiple area IDs.** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router B is configured with a hello timer of 10.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router A is configured with a hello timer of 30.",
+            "explanation": "**Router B is configured with a hello timer of 10.** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2435,19 +2435,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Reduction of configuration complexity** describes a different mechanism than this question tests. The right idea: The correct answer is \"Fast convergence\".",
+            "explanation": "**Reduction of configuration complexity** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Increased bandwidth** describes a different mechanism than this question tests. The right idea: The correct answer is \"Fast convergence\".",
+            "explanation": "**Increased bandwidth** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Better security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Fast convergence\".",
+            "explanation": "**Better security** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2485,19 +2485,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router C** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router B\".",
+            "explanation": "**Router C** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router D** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router B\".",
+            "explanation": "**Router D** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router E** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router B\".",
+            "explanation": "**Router E** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2535,20 +2535,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ASBR** describes a different mechanism than this question tests. The right idea: The correct answer is \"ABR\".",
+            "explanation": "**ASBR** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**DR** describes a different mechanism than this question tests. The right idea: The correct answer is \"ABR\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "OSPF DR/BDR rules apply per multi-access segment — check network type and priority before assuming election results.",
+            "misconceptionTested": "Misapplying OSPF DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**BDR** describes a different mechanism than this question tests. The right idea: The correct answer is \"ABR\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**BDR** is not the behavior described here. .",
+            "misconceptionTested": "Misapplying OSPF DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -2584,19 +2584,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The process ID is incorrect.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The subnet mask is incorrect.",
+            "explanation": "**The process ID is incorrect.** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The area number is incorrect.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The subnet mask is incorrect.",
+            "explanation": "**The area number is incorrect.** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The network ID is incorrect.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The subnet mask is incorrect.",
+            "explanation": "**The network ID is incorrect.** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2635,19 +2635,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The link is a point-to-point connection.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The hello and dead timers do not match.",
+            "explanation": "**The link is a point-to-point connection.** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The process IDs do not match.** contradicts the expected behavior. The correct answer is \"The hello and dead timers do not match.",
+            "explanation": "**The process IDs do not match.** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The area IP addresses do not match.** contradicts the expected behavior. The correct answer is \"The hello and dead timers do not match.",
+            "explanation": "**The area IP addresses do not match.** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2683,19 +2683,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**EXSTART state** describes a different mechanism than this question tests. The right idea: The correct answer is \"FULL state\".",
+            "explanation": "**EXSTART state** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**INIT state** describes a different mechanism than this question tests. The right idea: The correct answer is \"FULL state\".",
+            "explanation": "**INIT state** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**EXCHANGE state** describes a different mechanism than this question tests. The right idea: The correct answer is \"FULL state\".",
+            "explanation": "**EXCHANGE state** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2734,20 +2734,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The neighbor is having a problem forming an adjacency.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Both routers have formed an adjacency.",
+            "explanation": "**The neighbor is having a problem forming an adjacency.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The neighbor’s OSPF process is recalculating cost.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Both routers have formed an adjacency.",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**The neighbor’s OSPF process is recalculating cost.** reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**This router’s OSPF process is recalculating cost.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Both routers have formed an adjacency.",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**This router’s OSPF process is recalculating cost.** reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           }
         ],
@@ -2785,19 +2785,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config-router)#ip ospf priority 25** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip ospf cost 25\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Router(config-router)#ip ospf priority 25** reflects a common trap: OSPF uses hop count like RIP. OSPF uses cost (bandwidth-based), not hop count.",
+            "misconceptionTested": "OSPF uses hop count like RIP",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-if)#ip ospf route primary** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip ospf cost 25\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**Router(config-if)#ip ospf route primary** reflects a common trap: OSPF uses hop count like RIP. OSPF uses cost (bandwidth-based), not hop count.",
+            "misconceptionTested": "OSPF uses hop count like RIP",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-router)#passive interface gi 0/0** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip ospf cost 25\".",
+            "explanation": "**Router(config-router)#passive interface gi 0/0** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2835,19 +2835,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**It is in the process of forming an adjacency.** describes a different mechanism than this question tests. The right idea: The correct answer is \"It will only form an adjacency with the DR or BDR.",
+            "explanation": "**It is in the process of forming an adjacency.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**It is the designated router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"It will only form an adjacency with the DR or BDR.",
+            "explanation": "**It is the designated router.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**It is not participating in this OSPF area.** contradicts the expected behavior. The correct answer is \"It will only form an adjacency with the DR or BDR.",
+            "explanation": "**It is not participating in this OSPF area.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -2887,20 +2887,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterD(config-router)#ospf priority** does not satisfy what the question asks. The correct answer is \"RouterD(config-if)#ip ospf priority 10\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**RouterD(config-router)#ospf priority** reflects a common trap: OSPF uses hop count like RIP. OSPF uses cost (bandwidth-based), not hop count.",
+            "misconceptionTested": "OSPF uses hop count like RIP",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RouterD(config-if)#ip address 192.168.5.2 255.255.255.0** does not satisfy what the question asks. The correct answer is \"RouterD(config-if)#ip ospf priority 10\".",
+            "explanation": "**RouterD(config-if)#ip address 192.168.5.2 255.255.255.0** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterD(config-if)#ip ospf cost 15** does not satisfy what the question asks. The correct answer is \"RouterD(config-if)#ip ospf priority 10\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**RouterD(config-if)#ip ospf cost 15** reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           }
         ],
@@ -2936,20 +2936,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ip ospf neighbor** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf interface\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf neighbor** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip ospf database** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf interface\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf database** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show ip ospf dr** does not satisfy what the question asks. The correct answer is \"Router#show ip ospf interface\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ospf dr** does not answer which in this stem. .",
+            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
         ],
@@ -2986,19 +2986,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The hello and dead timers do not match.** contradicts the expected behavior. The correct answer is \"The area IDs do not match.",
+            "explanation": "**The hello and dead timers do not match.** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**There is no designated router on the network.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The area IDs do not match.",
+            "explanation": "**There is no designated router on the network.** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The process IDs do not match.** contradicts the expected behavior. The correct answer is \"The area IDs do not match.",
+            "explanation": "**The process IDs do not match.** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -3036,19 +3036,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0** does not satisfy what the question asks. The correct answer is \"RouterA(config-router)#default-information originate\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**RouterA(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config-router)#default-route originate** does not satisfy what the question asks. The correct answer is \"RouterA(config-router)#default-information originate\".",
-            "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
+            "explanation": "**RouterA(config-router)#default-route originate** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config-router)#network 0.0.0.0 0.0.0.0 area 0** does not satisfy what the question asks. The correct answer is \"RouterA(config-router)#default-information originate\".",
+            "explanation": "**RouterA(config-router)#network 0.0.0.0 0.0.0.0 area 0** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -3084,19 +3084,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-if)#bandwidth 2048000000** does not satisfy what the question asks. The correct answer is \"Router(config-if)#bandwidth 2048\".",
+            "explanation": "**Router(config-if)#bandwidth 2048000000** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-if)#bandwidth 2.048** does not satisfy what the question asks. The correct answer is \"Router(config-if)#bandwidth 2048\".",
+            "explanation": "**Router(config-if)#bandwidth 2.048** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-if)#bandwidth 2048000** does not satisfy what the question asks. The correct answer is \"Router(config-if)#bandwidth 2048\".",
+            "explanation": "**Router(config-if)#bandwidth 2048000** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -3134,19 +3134,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#no ospf designated** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip ospf priority 0\".",
+            "explanation": "**Router(config)#no ospf designated** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-router)#no ospf designated** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip ospf priority 0\".",
+            "explanation": "**Router(config-router)#no ospf designated** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-router)#passive interface gi 0/0** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip ospf priority 0\".",
+            "explanation": "**Router(config-router)#passive interface gi 0/0** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -3182,19 +3182,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2/24** does not satisfy what the question asks. The correct answer is \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.",
+            "explanation": "**Router(config)#interface loopback 0 Router(config-if)#ip address 192.168.1.2/24** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2/24** does not satisfy what the question asks. The correct answer is \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.",
+            "explanation": "**Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2/24** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2 255.255.255.0** does not satisfy what the question asks. The correct answer is \"Router(config)#interface loopback 0 Router(config-if)#ip address 192.",
+            "explanation": "**Router(config)#interface loopback Router(config-if)#ip address 192.168.1.2 255.255.255.0** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -3229,19 +3229,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The provider edge (PE) routers can only host area 0.** does not satisfy what the question asks. The correct answer is \"Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0.",
+            "explanation": "**The provider edge (PE) routers can only host area 0.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The customer edge (CE) routers can only host area 0.** does not satisfy what the question asks. The correct answer is \"Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0.",
+            "explanation": "**The customer edge (CE) routers can only host area 0.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The customer edge (CE) routers must use GRE for OSPF.** does not satisfy what the question asks. The correct answer is \"Both the customer edge (CE) routers and the provider edge (PE) routers can participate in area 0.",
+            "explanation": "**The customer edge (CE) routers must use GRE for OSPF.** does not answer which in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -3278,19 +3278,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**100** describes a different mechanism than this question tests. The right idea: The correct answer is \"1\".",
+            "explanation": "**100** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**255** describes a different mechanism than this question tests. The right idea: The correct answer is \"1\".",
+            "explanation": "**255** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**32,768** describes a different mechanism than this question tests. The right idea: The correct answer is \"1\".",
+            "explanation": "**32,768** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -3327,19 +3327,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**You must use the shutdown and no shutdown commands on the interface with the highest IP address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"In privileged exec mode on the DR, you must enter the command clear ip ospf process x.",
+            "explanation": "**You must use the shutdown and no shutdown commands on the interface with the highest IP address.** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**In global configuration mode, you must enter the command ospf election force.** describes a different mechanism than this question tests. The right idea: The correct answer is \"In privileged exec mode on the DR, you must enter the command clear ip ospf process x.",
+            "explanation": "**In global configuration mode, you must enter the command ospf election force.** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**In privileged exec mode, you must enter the command clear ip ospf process x.** does not satisfy what the question asks. The correct answer is \"In privileged exec mode on the DR, you must enter the command clear ip ospf process x.",
+            "explanation": "**In privileged exec mode, you must enter the command clear ip ospf process x.** does not answer the requirement in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -3375,19 +3375,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router A is configured with multiple area IDs.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The two routers do not have the same hello timer of 30 seconds.",
+            "explanation": "**Router A is configured with multiple area IDs.** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router A is configured with a hello timer of 10.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The two routers do not have the same hello timer of 30 seconds.",
+            "explanation": "**Router A is configured with a hello timer of 10.** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router B is configured with a hello timer of 10.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The two routers do not have the same hello timer of 30 seconds.",
+            "explanation": "**Router B is configured with a hello timer of 10.** does not answer configure in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }
@@ -3422,19 +3422,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**90** describes a different mechanism than this question tests. The right idea: The correct answer is \"110\".",
+            "explanation": "**90** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**120** describes a different mechanism than this question tests. The right idea: The correct answer is \"110\".",
+            "explanation": "**120** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**200** describes a different mechanism than this question tests. The right idea: The correct answer is \"110\".",
+            "explanation": "**200** does not answer what is in this stem. .",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules",
             "needsExplanationReview": true
           }

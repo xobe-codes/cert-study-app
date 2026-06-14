@@ -30,20 +30,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Network management station** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configuration management\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Network management station** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Network management station\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Software-defined networking** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configuration management\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Software-defined networking** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Software-defined networking\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Centralized logging** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configuration management\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Centralized logging** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Centralized logging\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -80,20 +80,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Cisco DNA Center** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Cisco DNA Center** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Cisco DNA Center\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Puppet** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Puppet** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -129,20 +129,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Playbook** describes a different mechanism than this question tests. The right idea: The correct answer is \"Inventory\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Playbook** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Playbook\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Settings** describes a different mechanism than this question tests. The right idea: The correct answer is \"Inventory\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Settings** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Settings\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Modules** describes a different mechanism than this question tests. The right idea: The correct answer is \"Inventory\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Modules** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Modules\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -178,20 +178,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Puppet** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Puppet** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Cisco DNA Center** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Cisco DNA Center** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Cisco DNA Center\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -226,20 +226,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Agent** describes a different mechanism than this question tests. The right idea: The correct answer is \"Manifest\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Agent** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Agent\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Class** describes a different mechanism than this question tests. The right idea: The correct answer is \"Manifest\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Class** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Class\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Module** describes a different mechanism than this question tests. The right idea: The correct answer is \"Manifest\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Module** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Module\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -276,20 +276,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Cookbook** describes a different mechanism than this question tests. The right idea: The correct answer is \"Recipe\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Cookbook** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Cookbook\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Crock Pot** describes a different mechanism than this question tests. The right idea: The correct answer is \"Recipe\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Crock Pot** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Crock Pot\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Chef Node** describes a different mechanism than this question tests. The right idea: The correct answer is \"Recipe\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef Node** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Chef Node\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -324,20 +324,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Chef-Client** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ohai\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef-Client** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Chef-Client\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Chef Workstation** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ohai\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef Workstation** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Chef Workstation\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Knife** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ohai\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Knife** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Knife\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -371,20 +371,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ANSIBLE_SETTINGS** describes a different mechanism than this question tests. The right idea: The correct answer is \"ANSIBLE_CONFIG\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**ANSIBLE_SETTINGS** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"ANSIBLE_SETTINGS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ansible_connection** describes a different mechanism than this question tests. The right idea: The correct answer is \"ANSIBLE_CONFIG\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**ansible_connection** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"ansible_connection\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**/etc/ansible/hosts** describes a different mechanism than this question tests. The right idea: The correct answer is \"ANSIBLE_CONFIG\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**/etc/ansible/hosts** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"/etc/ansible/hosts\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -418,20 +418,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**man** describes a different mechanism than this question tests. The right idea: The correct answer is \"ansible-doc\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**man** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"man\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**cat** describes a different mechanism than this question tests. The right idea: The correct answer is \"ansible-doc\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**cat** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"cat\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ad-hoc** describes a different mechanism than this question tests. The right idea: The correct answer is \"ansible-doc\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**ad-hoc** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"ad-hoc\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -466,20 +466,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Knife interface** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ad-hoc interface\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Knife interface** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Knife interface\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**ansible_playbook command** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ad-hoc interface\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**ansible_playbook command** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"ansible_playbook command\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Ansible Tower** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ad-hoc interface\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Ansible Tower** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Ansible Tower\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -513,20 +513,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Resource** describes a different mechanism than this question tests. The right idea: The correct answer is \"Facts\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Resource** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Resource\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Class** describes a different mechanism than this question tests. The right idea: The correct answer is \"Facts\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Class** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Class\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Module** describes a different mechanism than this question tests. The right idea: The correct answer is \"Facts\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Module** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Module\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -562,20 +562,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Chef Workstation** describes a different mechanism than this question tests. The right idea: The correct answer is \"Bookshelf\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef Workstation** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Chef Workstation\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Chef Node** describes a different mechanism than this question tests. The right idea: The correct answer is \"Bookshelf\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef Node** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Chef Node\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Chef-Client** describes a different mechanism than this question tests. The right idea: The correct answer is \"Bookshelf\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef-Client** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Chef-Client\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -610,20 +610,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible Tower\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Puppet** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible Tower\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Puppet** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Ansible** does not satisfy what the question asks. The correct answer is \"Ansible Tower\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Ansible** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Ansible\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -659,20 +659,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Puppet** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Puppet** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Python** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Python** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Python\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -707,20 +707,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Storage of the Bookshelf** describes a different mechanism than this question tests. The right idea: The correct answer is \"CLI utility for the management of Chef\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Storage of the Bookshelf** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Storage of the Bookshelf\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Storage of the configuration of Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"CLI utility for the management of Chef\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Storage of the configuration of Chef** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Storage of the configuration of Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Client-side agent** describes a different mechanism than this question tests. The right idea: The correct answer is \"CLI utility for the management of Chef\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Client-side agent** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Client-side agent\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -755,20 +755,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IaaS helps maintain configuration over the life cycle of the host.** describes a different mechanism than this question tests. The right idea: The correct answer is \"IaC solutions prevent drift with Idempotence.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**IaaS helps maintain configuration over the life cycle of the host.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"IaaS helps maintain configuration over t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Configuration management prevents drift with NTP.** describes a different mechanism than this question tests. The right idea: The correct answer is \"IaC solutions prevent drift with Idempotence.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Configuration management prevents drift with NTP.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Configuration management prevents drift …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Configuration management software requires per-host licensing.** describes a different mechanism than this question tests. The right idea: The correct answer is \"IaC solutions prevent drift with Idempotence.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Configuration management software requires per-host licensing.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Configuration management software requir…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -804,20 +804,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Chef** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Chef** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Puppet** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Puppet** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Cisco DNA Center** describes a different mechanism than this question tests. The right idea: The correct answer is \"Ansible\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Cisco DNA Center** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Cisco DNA Center\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -854,20 +854,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**YAML** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**YAML** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"YAML\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**CSV** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CSV** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**XML** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**XML** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"XML\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -901,20 +901,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Definition** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mapping\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Definition** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Definition\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Lists** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mapping\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Lists** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Lists\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Keys** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mapping\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Keys** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Keys\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -948,20 +948,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The file begins with a hashbang preprocessor.** does not satisfy what the question asks. The correct answer is \"The file begins with three dashes.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The file begins with a hashbang preprocessor.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"The file begins with a hashbang preproce…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The contents are contained between curly brackets.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The file begins with three dashes.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The contents are contained between curly brackets.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"The contents are contained between curly…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The contents are contained between square brackets.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The file begins with three dashes.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The contents are contained between square brackets.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"The contents are contained between squar…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -995,20 +995,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**YAML** describes a different mechanism than this question tests. The right idea: The correct answer is \"XML\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**YAML** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"YAML\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**JSON** describes a different mechanism than this question tests. The right idea: The correct answer is \"XML\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**JSON** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"JSON\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**CSV** describes a different mechanism than this question tests. The right idea: The correct answer is \"XML\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CSV** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1042,20 +1042,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**JSON** describes a different mechanism than this question tests. The right idea: The correct answer is \"YAML\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**JSON** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"JSON\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**XML** describes a different mechanism than this question tests. The right idea: The correct answer is \"YAML\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**XML** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"XML\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**CSV** describes a different mechanism than this question tests. The right idea: The correct answer is \"YAML\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CSV** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1089,20 +1089,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Three dashes** describes a different mechanism than this question tests. The right idea: The correct answer is \"A curly bracket\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Three dashes** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Three dashes\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**A square bracket** describes a different mechanism than this question tests. The right idea: The correct answer is \"A curly bracket\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**A square bracket** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"A square bracket\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A double quote** describes a different mechanism than this question tests. The right idea: The correct answer is \"A curly bracket\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**A double quote** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"A double quote\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1136,20 +1136,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The value that follows the square bracket is the value you are looking for.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There are several key-value pairs for the key you need.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The value that follows the square bracket is the value you are looking for.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"The value that follows the square bracke…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The value is after the matching square bracket.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There are several key-value pairs for the key you need.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The value is after the matching square bracket.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"The value is after the matching square b…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The value is unknown.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There are several key-value pairs for the key you need.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The value is unknown.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"The value is unknown.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1186,20 +1186,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The interface of Fa0/1 is capitalized.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There is a missing curly bracket.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The interface of Fa0/1 is capitalized.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"The interface of Fa0/1 is capitalized.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The address should have a square bracket.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There is a missing curly bracket.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The address should have a square bracket.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"The address should have a square bracket…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Nothing is wrong.** describes a different mechanism than this question tests. The right idea: The correct answer is \"There is a missing curly bracket.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Nothing is wrong.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Nothing is wrong.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1233,20 +1233,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Values can be used that contain spaces.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hierarchical structure allows for programmability.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Values can be used that contain spaces.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Values can be used that contain spaces.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**There are multiple values for a particular key.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hierarchical structure allows for programmability.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**There are multiple values for a particular key.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"There are multiple values for a particul…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The files can be read line by line for every value.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hierarchical structure allows for programmability.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The files can be read line by line for every value.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The files can be read line by line for e…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1283,20 +1283,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**XML** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Automation questions hinge on the tool/API named in the stem — do not swap REST, Ansible, or controller roles.",
+            "misconceptionTested": "Swapping automation tools or API styles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**CSV** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CSV** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**YAML** describes a different mechanism than this question tests. The right idea: The correct answer is \"JSON\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**YAML** is not the behavior described here. .",
+            "misconceptionTested": "Swapping automation tools or API styles",
             "needsExplanationReview": true
           }
         ],
@@ -1332,20 +1332,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The interface data is incorrect because it is missing a comma after the routes.** does not satisfy what the question asks. The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second route.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The interface data is incorrect because it is missing a comma after the routes.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** does not satisfy what the question asks. The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second route.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Nothing is wrong with the exhibit.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second route.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Nothing is wrong with the exhibit.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Nothing is wrong with the exhibit.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1381,20 +1381,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The interface data is incorrect because it is missing a comma after defaultgw.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Nothing is wrong with the exhibit.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The interface data is incorrect because it is missing a comma after defaultgw.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The interface data is incorrect because it is missing a subnet mask for the second IP address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Nothing is wrong with the exhibit.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The interface data is incorrect because it is missing a subnet mask for the second IP address.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Nothing is wrong with the exhibit.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1430,20 +1430,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The interface data is incorrect because it is missing a comma after defaultgw.** does not satisfy what the question asks. The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The interface data is incorrect because it is missing a comma after defaultgw.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** does not satisfy what the question asks. The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Nothing is wrong with the exhibit.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Nothing is wrong with the exhibit.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Nothing is wrong with the exhibit.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

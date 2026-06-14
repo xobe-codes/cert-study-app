@@ -30,18 +30,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Autonomous WAPs with a WLC** describes a different mechanism than this question tests. The right idea: A high-density design is best served by lightweight APs controlled by a WLC.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Autonomous WAPs with a WLC** does not answer which in this stem. A high-density design is best served by lightweight APs controlled by a WLC.",
+            "misconceptionTested": "Selecting \"Autonomous WAPs with a WLC\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Autonomous WAPs without a WLC** describes a different mechanism than this question tests. The right idea: A high-density design is best served by lightweight APs controlled by a WLC.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Autonomous WAPs without a WLC** does not answer which in this stem. A high-density design is best served by lightweight APs controlled by a WLC.",
+            "misconceptionTested": "Selecting \"Autonomous WAPs without a WLC\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Lightweight WAPs without a WLC** does not satisfy what the question asks. A high-density design is best served by lightweight APs controlled by a WLC.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Lightweight WAPs without a WLC** does not answer which in this stem. A high-density design is best served by lightweight APs controlled by a WLC.",
+            "misconceptionTested": "Selecting \"Lightweight WAPs without a WLC\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -75,18 +75,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**BT mode** describes a different mechanism than this question tests. The right idea: Monitor mode can detect sources of wireless interference such as Bluetooth.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**BT mode** does not answer which in this stem. Monitor mode can detect sources of wireless interference such as Bluetooth.",
+            "misconceptionTested": "Selecting \"BT mode\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Sniffing mode** describes a different mechanism than this question tests. The right idea: Monitor mode can detect sources of wireless interference such as Bluetooth.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Sniffing mode** does not answer which in this stem. Monitor mode can detect sources of wireless interference such as Bluetooth.",
+            "misconceptionTested": "Selecting \"Sniffing mode\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Analysis mode** describes a different mechanism than this question tests. The right idea: Monitor mode can detect sources of wireless interference such as Bluetooth.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Analysis mode** does not answer which in this stem. Monitor mode can detect sources of wireless interference such as Bluetooth.",
+            "misconceptionTested": "Selecting \"Analysis mode\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -120,18 +120,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**BSS** does not satisfy what the question asks. IBSS is ad hoc wireless without infrastructure.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**BSS** does not answer which in this stem. IBSS is ad hoc wireless without infrastructure.",
+            "misconceptionTested": "Selecting \"BSS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**ESS** describes a different mechanism than this question tests. The right idea: IBSS is ad hoc wireless without infrastructure.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**ESS** does not answer which in this stem. IBSS is ad hoc wireless without infrastructure.",
+            "misconceptionTested": "Selecting \"ESS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DS** describes a different mechanism than this question tests. The right idea: IBSS is ad hoc wireless without infrastructure.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DS** does not answer which in this stem. IBSS is ad hoc wireless without infrastructure.",
+            "misconceptionTested": "Selecting \"DS\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -165,18 +165,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Non-root devices can connect to other non-root devices.** does not satisfy what the question asks. Non-root wireless devices connect to root devices.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Non-root devices can connect to other non-root devices.** does not answer which in this stem. Non-root wireless devices connect to root devices.",
+            "misconceptionTested": "Selecting \"Non-root devices can connect to other no…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Root devices can connect to other root devices.** does not satisfy what the question asks. Non-root wireless devices connect to root devices.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Root devices can connect to other root devices.** does not answer which in this stem. Non-root wireless devices connect to root devices.",
+            "misconceptionTested": "Selecting \"Root devices can connect to other root d…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Repeaters are considered root devices.** describes a different mechanism than this question tests. The right idea: Non-root wireless devices connect to root devices.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Repeaters are considered root devices.** does not answer which in this stem. Non-root wireless devices connect to root devices.",
+            "misconceptionTested": "Selecting \"Repeaters are considered root devices.\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -209,18 +209,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Lightweight WAP** describes a different mechanism than this question tests. The right idea: Autonomous APs can operate independently.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Lightweight WAP** does not answer which in this stem. Autonomous APs can operate independently.",
+            "misconceptionTested": "Selecting \"Lightweight WAP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**WLC** describes a different mechanism than this question tests. The right idea: Autonomous APs can operate independently.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WLC** does not answer which in this stem. Autonomous APs can operate independently.",
+            "misconceptionTested": "Selecting \"WLC\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Mesh** describes a different mechanism than this question tests. The right idea: Autonomous APs can operate independently.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Mesh** does not answer which in this stem. Autonomous APs can operate independently.",
+            "misconceptionTested": "Selecting \"Mesh\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -254,18 +254,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Point-to-point wireless bridge** describes a different mechanism than this question tests. The right idea: Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Point-to-point wireless bridge** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Mesh wireless network** describes a different mechanism than this question tests. The right idea: Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Mesh wireless network** does not answer which in this stem. Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
+            "misconceptionTested": "Selecting \"Mesh wireless network\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Autonomous wireless network** describes a different mechanism than this question tests. The right idea: Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Autonomous wireless network** does not answer which in this stem. Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
+            "misconceptionTested": "Selecting \"Autonomous wireless network\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -299,18 +299,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Wireless bridging** describes a different mechanism than this question tests. The right idea: A repeater can extend coverage for a small area at low cost.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Wireless bridging** does not answer the requirement in this stem. A repeater can extend coverage for a small area at low cost.",
+            "misconceptionTested": "Selecting \"Wireless bridging\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Mesh wireless system** describes a different mechanism than this question tests. The right idea: A repeater can extend coverage for a small area at low cost.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Mesh wireless system** does not answer the requirement in this stem. A repeater can extend coverage for a small area at low cost.",
+            "misconceptionTested": "Selecting \"Mesh wireless system\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Addition of a wireless LAN controller** describes a different mechanism than this question tests. The right idea: A repeater can extend coverage for a small area at low cost.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Addition of a wireless LAN controller** does not answer the requirement in this stem. A repeater can extend coverage for a small area at low cost.",
+            "misconceptionTested": "Selecting \"Addition of a wireless LAN controller\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -344,18 +344,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**BSS** describes a different mechanism than this question tests. The right idea: Lightweight APs require a wireless LAN controller.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**BSS** does not answer which in this stem. Lightweight APs require a wireless LAN controller.",
+            "misconceptionTested": "Selecting \"BSS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Bridges** describes a different mechanism than this question tests. The right idea: Lightweight APs require a wireless LAN controller.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Bridges** does not answer which in this stem. Lightweight APs require a wireless LAN controller.",
+            "misconceptionTested": "Selecting \"Bridges\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Autonomous WAP** describes a different mechanism than this question tests. The right idea: Lightweight APs require a wireless LAN controller.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Autonomous WAP** does not answer which in this stem. Lightweight APs require a wireless LAN controller.",
+            "misconceptionTested": "Selecting \"Autonomous WAP\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -389,18 +389,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Autonomous wireless network** describes a different mechanism than this question tests. The right idea: Mesh wireless networks can cover large public areas where cabling is not practical.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Autonomous wireless network** does not answer the requirement in this stem. Mesh wireless networks can cover large public areas where cabling is not practical.",
+            "misconceptionTested": "Selecting \"Autonomous wireless network\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Point-to-multipoint wireless bridges** describes a different mechanism than this question tests. The right idea: Mesh wireless networks can cover large public areas where cabling is not practical.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Point-to-multipoint wireless bridges** does not answer the requirement in this stem. Mesh wireless networks can cover large public areas where cabling is not practical.",
+            "misconceptionTested": "Selecting \"Point-to-multipoint wireless bridges\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Wireless repeaters** describes a different mechanism than this question tests. The right idea: Mesh wireless networks can cover large public areas where cabling is not practical.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Wireless repeaters** does not answer the requirement in this stem. Mesh wireless networks can cover large public areas where cabling is not practical.",
+            "misconceptionTested": "Selecting \"Wireless repeaters\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -435,18 +435,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data.** describes a different mechanism than this question tests. The right idea: Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data.** does not answer which in this stem. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
+            "misconceptionTested": "Selecting \"Flex Connect mode creates a CAPWAP tunne…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Local mode allows for switching of VLANs at the WAP.** describes a different mechanism than this question tests. The right idea: Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Local mode allows for switching of VLANs at the WAP.** does not answer which in this stem. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
+            "misconceptionTested": "Selecting \"Local mode allows for switching of VLANs…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Flex Connect mode allows for switching of VLANs at the WLC.** describes a different mechanism than this question tests. The right idea: Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Flex Connect mode allows for switching of VLANs at the WLC.** does not answer which in this stem. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
+            "misconceptionTested": "Selecting \"Flex Connect mode allows for switching o…\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

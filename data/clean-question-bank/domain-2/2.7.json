@@ -31,18 +31,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Nothing. Routers cannot aggregate bandwidth from multiple connections.** contradicts the expected behavior. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Nothing. Routers cannot aggregate bandwidth from multiple connections.** does not answer the requirement in this stem. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
+            "misconceptionTested": "Selecting \"Nothing. Routers cannot aggregate bandwi…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Use RIP to balance the bandwidth.** describes a different mechanism than this question tests. The right idea: A WLC connection can use EtherChannel/LAG to increase bandwidth.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Use RIP to balance the bandwidth.** does not answer the requirement in this stem. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
+            "misconceptionTested": "Selecting \"Use RIP to balance the bandwidth.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Use the wireless controller to perform inter-VLAN routing.** describes a different mechanism than this question tests. The right idea: A WLC connection can use EtherChannel/LAG to increase bandwidth.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Use the wireless controller to perform inter-VLAN routing.** does not answer the requirement in this stem. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
+            "misconceptionTested": "Selecting \"Use the wireless controller to perform i…\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -76,18 +76,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Access port** describes a different mechanism than this question tests. The right idea: A WLC link should be a trunk when several VLANs must be carried.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Access port** does not answer which in this stem. A WLC link should be a trunk when several VLANs must be carried.",
+            "misconceptionTested": "Selecting \"Access port\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Voice port** describes a different mechanism than this question tests. The right idea: A WLC link should be a trunk when several VLANs must be carried.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Voice port** does not answer which in this stem. A WLC link should be a trunk when several VLANs must be carried.",
+            "misconceptionTested": "Selecting \"Voice port\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Routed switch port** describes a different mechanism than this question tests. The right idea: A WLC link should be a trunk when several VLANs must be carried.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Routed switch port** does not answer which in this stem. A WLC link should be a trunk when several VLANs must be carried.",
+            "misconceptionTested": "Selecting \"Routed switch port\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -121,18 +121,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**LACP** describes a different mechanism than this question tests. The right idea: WLCs use LAG, not LACP/PAgP, for bundling links.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**LACP** does not answer which in this stem. WLCs use LAG, not LACP/PAgP, for bundling links.",
+            "misconceptionTested": "Selecting \"LACP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**PAgP** describes a different mechanism than this question tests. The right idea: WLCs use LAG, not LACP/PAgP, for bundling links.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**PAgP** does not answer which in this stem. WLCs use LAG, not LACP/PAgP, for bundling links.",
+            "misconceptionTested": "Selecting \"PAgP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**PortChannel** describes a different mechanism than this question tests. The right idea: WLCs use LAG, not LACP/PAgP, for bundling links.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**PortChannel** does not answer which in this stem. WLCs use LAG, not LACP/PAgP, for bundling links.",
+            "misconceptionTested": "Selecting \"PortChannel\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -166,18 +166,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Round robin** describes a different mechanism than this question tests. The right idea: WLC LAG load balancing is hash-based.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Round robin** does not answer the requirement in this stem. WLC LAG load balancing is hash-based.",
+            "misconceptionTested": "Selecting \"Round robin\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**First in, first out (FIFO)** describes a different mechanism than this question tests. The right idea: WLC LAG load balancing is hash-based.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**First in, first out (FIFO)** does not answer the requirement in this stem. WLC LAG load balancing is hash-based.",
+            "misconceptionTested": "Selecting \"First in, first out (FIFO)\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Spill and fill** describes a different mechanism than this question tests. The right idea: WLC LAG load balancing is hash-based.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Spill and fill** does not answer the requirement in this stem. WLC LAG load balancing is hash-based.",
+            "misconceptionTested": "Selecting \"Spill and fill\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -211,18 +211,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**16** describes a different mechanism than this question tests. The right idea: A WLC LAG supports up to eight bundled ports.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**16** does not answer what is in this stem. A WLC LAG supports up to eight bundled ports.",
+            "misconceptionTested": "Selecting \"16\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**4** describes a different mechanism than this question tests. The right idea: A WLC LAG supports up to eight bundled ports.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**4** does not answer what is in this stem. A WLC LAG supports up to eight bundled ports.",
+            "misconceptionTested": "Selecting \"4\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**2** describes a different mechanism than this question tests. The right idea: A WLC LAG supports up to eight bundled ports.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**2** does not answer what is in this stem. A WLC LAG supports up to eight bundled ports.",
+            "misconceptionTested": "Selecting \"2\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -256,18 +256,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Upgrade the WLC to accommodate more ports.** describes a different mechanism than this question tests. The right idea: Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Upgrade the WLC to accommodate more ports.** does not answer what is in this stem. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
+            "misconceptionTested": "Selecting \"Upgrade the WLC to accommodate more port…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Convert the current access ports to LAGs.** describes a different mechanism than this question tests. The right idea: Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Convert the current access ports to LAGs.** does not answer what is in this stem. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
+            "misconceptionTested": "Selecting \"Convert the current access ports to LAGs…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Add a second WLC to accommodate the new departments.** describes a different mechanism than this question tests. The right idea: Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Add a second WLC to accommodate the new departments.** does not answer what is in this stem. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
+            "misconceptionTested": "Selecting \"Add a second WLC to accommodate the new …\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -301,18 +301,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Access port** describes a different mechanism than this question tests. The right idea: Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Access port** does not answer configure in this stem. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
+            "misconceptionTested": "Selecting \"Access port\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Wireless port** describes a different mechanism than this question tests. The right idea: Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Wireless port** does not answer configure in this stem. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
+            "misconceptionTested": "Selecting \"Wireless port\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**LAG port** describes a different mechanism than this question tests. The right idea: Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**LAG port** does not answer configure in this stem. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
+            "misconceptionTested": "Selecting \"LAG port\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

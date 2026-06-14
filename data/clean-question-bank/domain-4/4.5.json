@@ -29,19 +29,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/161** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/514\".",
+            "explanation": "**UDP/161** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**TCP/162** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/514\".",
+            "explanation": "**TCP/162** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP/162** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/514\".",
+            "explanation": "**UDP/162** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
@@ -78,19 +78,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#syslog debugging** does not satisfy what the question asks. The correct answer is \"Router(config)#logging trap debugging\".",
+            "explanation": "**Router(config)#syslog debugging** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#logging debugging** does not satisfy what the question asks. The correct answer is \"Router(config)#logging trap debugging\".",
+            "explanation": "**Router(config)#logging debugging** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#log-level debugging** does not satisfy what the question asks. The correct answer is \"Router(config)#logging trap debugging\".",
+            "explanation": "**Router(config)#log-level debugging** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
@@ -126,19 +126,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#logging server 4** does not satisfy what the question asks. The correct answer is \"Switch(config)#logging trap 4\".",
+            "explanation": "**Switch(config)#logging server 4** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#logging trap 5** does not satisfy what the question asks. The correct answer is \"Switch(config)#logging trap 4\".",
+            "explanation": "**Switch(config)#logging trap 5** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#logging server 5** does not satisfy what the question asks. The correct answer is \"Switch(config)#logging trap 4\".",
+            "explanation": "**Switch(config)#logging server 5** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
@@ -174,19 +174,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#logging timestamps log datetime** does not satisfy what the question asks. The correct answer is \"Switch(config)#service timestamps log datetime\".",
+            "explanation": "**Switch(config)#logging timestamps log datetime** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#logging timestamps datetime** does not satisfy what the question asks. The correct answer is \"Switch(config)#service timestamps log datetime\".",
+            "explanation": "**Switch(config)#logging timestamps datetime** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#service datetime timestamps** does not satisfy what the question asks. The correct answer is \"Switch(config)#service timestamps log datetime\".",
+            "explanation": "**Switch(config)#service datetime timestamps** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
@@ -222,19 +222,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-line)#logging level 0** does not satisfy what the question asks. The correct answer is \"Router(config)#logging console 0\".",
+            "explanation": "**Router(config-line)#logging level 0** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#logging console 7** does not satisfy what the question asks. The correct answer is \"Router(config)#logging console 0\".",
+            "explanation": "**Router(config)#logging console 7** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-line)#logging level 7** does not satisfy what the question asks. The correct answer is \"Router(config)#logging console 0\".",
+            "explanation": "**Router(config-line)#logging level 7** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
@@ -270,19 +270,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#logging 1** does not satisfy what the question asks. The correct answer is \"Switch(config)#logging buffered 1\".",
+            "explanation": "**Switch(config)#logging 1** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#logging buffered 2** does not satisfy what the question asks. The correct answer is \"Switch(config)#logging buffered 1\".",
+            "explanation": "**Switch(config)#logging buffered 2** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#logging 2** does not satisfy what the question asks. The correct answer is \"Switch(config)#logging buffered 1\".",
+            "explanation": "**Switch(config)#logging 2** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
@@ -317,20 +317,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show commands** does not satisfy what the question asks. The correct answer is \"Switch#show history\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show commands** does not answer which in this stem. .",
+            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show log** does not satisfy what the question asks. The correct answer is \"Switch#show history\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show log** does not answer which in this stem. .",
+            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show buffer** does not satisfy what the question asks. The correct answer is \"Switch#show history\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show buffer** does not answer which in this stem. .",
+            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
@@ -368,19 +368,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Informational (6)** describes a different mechanism than this question tests. The right idea: The correct answer is \"Notifications (5)\".",
+            "explanation": "**Informational (6)** does not answer the requirement in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Warnings (4)** describes a different mechanism than this question tests. The right idea: The correct answer is \"Notifications (5)\".",
+            "explanation": "**Warnings (4)** does not answer the requirement in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Debugging (7)** describes a different mechanism than this question tests. The right idea: The correct answer is \"Notifications (5)\".",
+            "explanation": "**Debugging (7)** does not answer the requirement in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
@@ -415,20 +415,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show cpu** does not satisfy what the question asks. The correct answer is \"Router#show processes\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show cpu** does not answer which in this stem. .",
+            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show cpu-stats** does not satisfy what the question asks. The correct answer is \"Router#show processes\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show cpu-stats** does not answer which in this stem. .",
+            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show environment cpu** does not satisfy what the question asks. The correct answer is \"Router#show processes\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show environment cpu** does not answer which in this stem. .",
+            "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
@@ -464,19 +464,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#logging internal** does not satisfy what the question asks. The correct answer is \"Router(config)#logging buffered\".",
+            "explanation": "**Router(config)#logging internal** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#logging ram** does not satisfy what the question asks. The correct answer is \"Router(config)#logging buffered\".",
+            "explanation": "**Router(config)#logging ram** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#logging console** does not satisfy what the question asks. The correct answer is \"Router(config)#logging buffered\".",
+            "explanation": "**Router(config)#logging console** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
@@ -513,19 +513,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Broadcasts to a syslog server** describes a different mechanism than this question tests. The right idea: The correct answer is \"Console\".",
+            "explanation": "**Broadcasts to a syslog server** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TTY** describes a different mechanism than this question tests. The right idea: The correct answer is \"Console\".",
+            "explanation": "**TTY** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**NVRAM** describes a different mechanism than this question tests. The right idea: The correct answer is \"Console\".",
+            "explanation": "**NVRAM** does not answer which in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
@@ -562,19 +562,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Notification (5)** describes a different mechanism than this question tests. The right idea: The correct answer is \"Debugging (7)\".",
+            "explanation": "**Notification (5)** does not answer the requirement in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Informational (6)** describes a different mechanism than this question tests. The right idea: The correct answer is \"Debugging (7)\".",
+            "explanation": "**Informational (6)** does not answer the requirement in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Warning (4)** describes a different mechanism than this question tests. The right idea: The correct answer is \"Debugging (7)\".",
+            "explanation": "**Warning (4)** does not answer the requirement in this stem. .",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }

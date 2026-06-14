@@ -1,13 +1,24 @@
 /**
  * Choice-specific wrong-answer explanations (static, no API).
- * Used at build time and runtime when stored reviews are generic.
+ * Used at build time and runtime when stored reviews are low quality.
  */
+import {
+  isFallbackExplanation,
+  isGenericTrap,
+} from './answerReview/answerReviewQuality.js'
+import {
+  resolveWrongChoice,
+  resolveTrapLabel,
+  resolveStemAnchored,
+} from './answerReview/ckuTrapLibrary.js'
+import { goldAnswerReviewFor } from './answerReview/goldAnswerReviews.js'
 
-const GENERIC_WRONG_RE = /is incorrect because the scenario requires:/i
-
-export function isGenericWrongExplanation(text) {
-  return !text || GENERIC_WRONG_RE.test(text)
-}
+export { isFallbackExplanation, isFallbackExplanation as isGenericWrongExplanation } from './answerReview/answerReviewQuality.js'
+export {
+  scoreAnswerReview,
+  validateQuestionAnswerReview,
+  tierQuestion,
+} from './answerReview/answerReviewQuality.js'
 
 function firstSentence(text) {
   const t = String(text || '').trim()
@@ -29,75 +40,73 @@ function wrongChoice(q, choiceIndex) {
   return q.choices?.[choiceIndex] || ''
 }
 
+function ensureDistinctExplanations(q, incorrect) {
+  const used = new Map()
+  return incorrect.map(item => {
+    let { explanation, misconceptionTested } = item
+    if (used.has(explanation)) {
+      const wrong = wrongChoice(q, item.choiceIndex)
+      const fact = (q.explanation || '').split(/[.!?]/)[0]?.trim()
+      explanation = `**${wrong}** is not the behavior described here. ${fact}.`
+      misconceptionTested = inferTrapForChoice(q, item.choiceIndex)
+    }
+    used.set(explanation, item.choiceIndex)
+    return { ...item, explanation, misconceptionTested }
+  })
+}
+
 /** Choice-specific misconception trap labels. */
 export function inferTrapForChoice(q, choiceIndex) {
-  const wrong = wrongChoice(q, choiceIndex).toLowerCase()
+  const wrong = wrongChoice(q, choiceIndex)
   const { blob, correctLower } = ctx(q)
 
-  if (/both/.test(wrong) || (/source/.test(wrong) && /destination/.test(wrong))) {
+  const fromLib = resolveTrapLabel(q, choiceIndex)
+  if (fromLib) return fromLib
+
+  if (/both/.test(wrong.toLowerCase()) || (/source/.test(wrong.toLowerCase()) && /destination/.test(wrong.toLowerCase()))) {
     return 'Assuming both MAC addresses are learned into the CAM table'
   }
-  if (/destination/.test(wrong) && !/source/.test(wrong)) {
+  if (/destination/.test(wrong.toLowerCase()) && !/source/.test(wrong.toLowerCase())) {
     return 'Confusing source MAC (learning) with destination MAC (forwarding lookup)'
   }
-  if (/ip address|only ip|neither/.test(wrong) && /mac|layer 2|frame|switch/i.test(blob)) {
+  if (/ip address|only ip|neither/.test(wrong.toLowerCase()) && /mac|layer 2|frame|switch/i.test(blob)) {
     return 'Applying Layer 3 (IP) behavior to a Layer 2 switch process'
   }
-  if (/routing table/.test(wrong) && /mac|cam|switch|frame/i.test(blob)) {
+  if (/routing table/.test(wrong.toLowerCase()) && /mac|cam|switch|frame/i.test(blob)) {
     return 'Using router behavior (routing table) on a switch question'
   }
-  if (/mac address table|cam/.test(wrong) && /routing|router|ip route|layer 3/i.test(blob)) {
+  if (/mac address table|cam/.test(wrong.toLowerCase()) && /routing|router|ip route|layer 3/i.test(blob)) {
     return 'Using switch/L2 forwarding behavior on a router question'
   }
-  if (/dns/.test(wrong) && !/dns/i.test(correctLower)) {
-    return 'Dragging DNS into a question about a different service or layer'
-  }
-  if (/acl|access.?list/.test(wrong) && !/acl|access/i.test(correctLower + blob)) {
-    return 'Defaulting to ACLs when the stem tests something else'
-  }
-  if (/spanning tree|stp|etherchannel|port mirroring|vlan/i.test(wrong)) {
-    const snippet = correctLower.slice(0, 12).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    if (snippet && !new RegExp(snippet, 'i').test(blob)) {
-      if (!correctLower.includes('vlan') && /vlan/.test(wrong)) return 'Picking VLAN switching when inter-VLAN routing or another feature is required'
-    }
-  }
-  if (/layer\s*1\b/.test(wrong) && /layer\s*3|router|ip /i.test(blob)) return 'Choosing physical layer when the question is about network layer forwarding'
-  if (/layer\s*2\b/.test(wrong) && /layer\s*3|router|ip route/i.test(blob)) return 'Choosing data link layer when the question is about network layer routing'
-  if (/layer\s*7\b/.test(wrong) && /layer\s*[23]|switch|router|mac|ip /i.test(blob)) return 'Choosing application layer when the question is about L2/L3 mechanics'
-  if (/flood|broadcast|all ports/i.test(wrong) && /forward|mapped port|unicast/i.test(correctLower)) {
+  if (/flood|broadcast|all ports/i.test(wrong.toLowerCase()) && /forward|mapped port|unicast/i.test(correctLower)) {
     return 'Choosing flood behavior when the destination is already in the MAC table'
   }
-  if (/drop|discard/i.test(wrong) && /forward/i.test(correctLower)) {
-    return 'Choosing drop when the switch should forward to a known port'
-  }
-  if (/^true$/i.test(wrong.trim()) || /^false$/i.test(wrong.trim())) {
-    return 'Flipping the true/false fact without matching the scenario details'
-  }
-  if (/show |debug |configure |ip route|access-list/i.test(wrong)) {
-    return 'Choosing a plausible command that does not solve this specific scenario'
+  if (/drop|discard/i.test(wrong.toLowerCase()) && /forward|flood/i.test(correctLower)) {
+    return 'Choosing drop when the switch should forward or flood'
   }
 
+  const CONCEPT_TRAPS = {
+    nat: 'Confusing inside local, inside global, and outside addresses',
+    pat: 'Mixing up PAT/overload with static or dynamic NAT',
+    dhcp: 'Confusing DHCP server, relay agent, and client roles',
+    dns: 'Reversing forward vs reverse DNS lookup',
+    snmp: 'Mixing SNMP versions or trap vs inform behavior',
+    syslog: 'Misreading syslog severity (lower number = more severe)',
+    ntp: 'Confusing NTP stratum direction or client/server role',
+    ospf: 'OSPF neighbor requirements or DR/BDR election rules',
+    static: 'Static route next-hop vs exit-interface behavior',
+    acl: 'Standard vs extended ACL placement or wildcard masks',
+    'mac learning': 'Confusing how switches learn source MACs vs use destination MACs',
+    stp: 'Confusing STP port roles (root, designated, blocked)',
+    vlan: 'Confusing VLAN tagging, trunking, and access ports',
+  }
   const concept = (q.concept || '').toLowerCase()
   for (const [key, trap] of Object.entries(CONCEPT_TRAPS)) {
     if (concept.includes(key)) return trap
   }
-  return 'Picking a familiar term without matching the exact behavior tested'
-}
 
-const CONCEPT_TRAPS = {
-  nat: 'Confusing inside local, inside global, and outside addresses',
-  pat: 'Mixing up PAT/overload with static or dynamic NAT',
-  dhcp: 'Confusing DHCP server, relay agent, and client roles',
-  dns: 'Reversing forward vs reverse DNS lookup',
-  snmp: 'Mixing SNMP versions or trap vs inform behavior',
-  syslog: 'Misreading syslog severity (lower number = more severe)',
-  ntp: 'Confusing NTP stratum direction or client/server role',
-  ospf: 'OSPF neighbor requirements or DR/BDR election rules',
-  static: 'Static route next-hop vs exit-interface behavior',
-  acl: 'Standard vs extended ACL placement or wildcard masks',
-  'mac learning': 'Confusing how switches learn source MACs vs use destination MACs',
-  stp: 'Confusing STP port roles (root, designated, blocked)',
-  vlan: 'Confusing VLAN tagging, trunking, and access ports',
+  const anchored = resolveStemAnchored(wrong, q)
+  return anchored.trap
 }
 
 /** Build a teachable explanation for one wrong choice. */
@@ -107,6 +116,9 @@ export function buildWrongExplanation(q, choiceIndex) {
   const correctExpl = (q.explanation || '').trim() || `The correct answer is "${correct}".`
   if (!wrong) return 'This option does not fit the scenario.'
   if (wrong === correct) return 'This is the correct answer, not a distractor.'
+
+  const resolved = resolveWrongChoice(q, choiceIndex)
+  if (resolved?.explanation) return resolved.explanation
 
   const w = wrong.toLowerCase()
   const { blob, correctLower, question, expl } = ctx(q)
@@ -124,13 +136,16 @@ export function buildWrongExplanation(q, choiceIndex) {
     }
   }
 
-  // --- Switch forwarding (flood vs forward vs filter) ---
+  // --- Switch forwarding ---
   if (/switch|frame|flood|forward|mac address table/i.test(blob)) {
-    if (/flood|all ports|broadcast/i.test(w) && /forward|mapped|unicast|only the/i.test(correctLower)) {
+    if (/flood|all ports/i.test(w) && /forward|mapped|unicast|only the/i.test(correctLower)) {
       return 'Flooding happens for **unknown** unicast destinations. When the destination MAC is already mapped in the table, the switch forwards out that port only.'
     }
-    if (/drop|discard|filter/i.test(w) && /forward/i.test(correctLower)) {
-      return 'The switch should **forward** the frame to the port recorded in the MAC table, not drop it, when the destination is known on another port.'
+    if (/broadcast/i.test(w) && /forward|mapped|unicast|only the/i.test(correctLower)) {
+      return 'Broadcast frames are flooded by destination, but this stem is about a **known unicast** MAC — the switch forwards out the single mapped port, not a VLAN-wide flood.'
+    }
+    if (/drop|discard|filter/i.test(w) && /forward|flood/i.test(correctLower)) {
+      return 'The switch should **forward** or **flood** the frame — not drop it — when handling normal unknown/known unicast behavior in this scenario.'
     }
     if (/forward/i.test(w) && /flood/i.test(correctLower)) {
       return 'When the destination MAC is **not** in the table, the switch floods — it does not forward to a single known port.'
@@ -166,23 +181,12 @@ export function buildWrongExplanation(q, choiceIndex) {
     return `This statement is **${wrong.trim()}**, but the tested fact is: ${fact}`
   }
 
-  // --- Contrast wrong label with correct answer text ---
-  if (correct && wrong.length < 120) {
-    const contrast = firstSentence(correctExpl)
-    if (w.includes('not ') || /^no\b|^never\b|^cannot\b/i.test(w)) {
-      return `**${wrong}** contradicts the expected behavior. ${contrast}`
-    }
-    if (correctLower && !correctLower.includes(w.slice(0, Math.min(12, w.length)))) {
-      return `**${wrong}** describes a different mechanism than this question tests. The right idea: ${contrast}`
-    }
-  }
-
-  // --- Scenario keyword mismatch ---
+  // --- Troubleshooting scenarios ---
   if (question.includes('troubleshoot') || q.type === 'troubleshooting') {
-    return `**${wrong}** is a plausible guess but does not explain the symptom in the stem. Most likely cause: ${firstSentence(correctExpl)}`
+    return `**${wrong}** is a plausible symptom fix but does not match the most likely root cause here: ${firstSentence(correctExpl)}`
   }
 
-  return `**${wrong}** does not satisfy what the question asks. ${firstSentence(correctExpl)}`
+  return resolveStemAnchored(wrong, q).explanation
 }
 
 export function examTipFor(q) {
@@ -198,11 +202,15 @@ export function examTipFor(q) {
   if (c.includes('syslog')) return 'Lower syslog severity number = more critical (emergencies = 0).'
   if (c.includes('ospf')) return 'OSPF neighbors need matching area, hello/dead timers, and subnet on the link.'
   if (c.includes('static')) return 'Next-hop static routes need a recursive lookup to find the exit interface.'
+  if (/flood|unknown/i.test(blob)) return 'Unknown unicast → flood (same VLAN). Known unicast → forward one port.'
   return 'Eliminate answers that describe a different protocol, port, or command than the stem asks for.'
 }
 
 export function generateAnswerReview(q) {
   if (!Array.isArray(q.choices) || typeof q.correctIndex !== 'number') return null
+
+  const gold = goldAnswerReviewFor(q.id)
+  if (gold) return { ...gold }
 
   const correctExpl = (q.explanation || '').trim()
     || `The correct answer is "${q.choices[q.correctIndex]}".`
@@ -221,27 +229,30 @@ export function generateAnswerReview(q) {
     })
     .filter(Boolean)
 
-  const review = {
+  const distinct = ensureDistinctExplanations(q, incorrect)
+
+  return {
     correct: { choiceIndex: q.correctIndex, explanation: correctExpl },
-    incorrect,
+    incorrect: distinct,
     examTip: examTipFor(q),
+    ...(q.concept?.includes('pat') || q.concept?.includes('overload')
+      ? { memoryHook: 'PAT = many tenants, one door — ports are the apartment numbers.' }
+      : {}),
   }
-
-  if (q.concept?.includes('pat') || q.concept?.includes('overload')) {
-    review.memoryHook = 'PAT = many tenants, one door — ports are the apartment numbers.'
-  }
-
-  return review
 }
 
-/** Prefer stored review unless it is the generic template; then rebuild. */
+/** Prefer stored review unless low quality; then rebuild. */
 export function resolveIncorrectItem(q, item) {
   const stored = item?.explanation
-  if (stored && !isGenericWrongExplanation(stored)) {
+  const storedTrap = item?.misconceptionTested
+  const lowQuality = !stored || isFallbackExplanation(stored)
+  if (!lowQuality) {
     return {
       choiceIndex: item.choiceIndex,
       explanation: stored,
-      misconceptionTested: item.misconceptionTested || inferTrapForChoice(q, item.choiceIndex),
+      misconceptionTested: isGenericTrap(storedTrap)
+        ? inferTrapForChoice(q, item.choiceIndex)
+        : storedTrap,
       needsExplanationReview: item.needsExplanationReview,
     }
   }

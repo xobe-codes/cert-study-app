@@ -29,19 +29,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The DHCP server is running on the layer 2 switch.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The device is on a layer 2 switched port on the same VLAN.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The DHCP server is running on the layer 2 switch.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The DHCP server is running on the layer …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The device is on a layer 3 routed port on the same VLAN.** does not satisfy what the question asks. The correct answer is \"The device is on a layer 2 switched port on the same VLAN.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The device is on a layer 3 routed port on the same VLAN.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The device is on a layer 3 routed port o…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Configuration of a dedicated IP address for monitoring DHCP transactions.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The device is on a layer 2 switched port on the same VLAN.",
+            "explanation": "**Configuration of a dedicated IP address for monitoring DHCP transactions.** does not answer which in this stem. .",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           }
@@ -78,20 +78,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**VLAN traversal** describes a different mechanism than this question tests. The right idea: The correct answer is \"Double tagging\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**VLAN traversal** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"VLAN traversal\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Trunk popping** describes a different mechanism than this question tests. The right idea: The correct answer is \"Double tagging\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Trunk popping** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Trunk popping\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Denial of service** describes a different mechanism than this question tests. The right idea: The correct answer is \"Double tagging\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Denial of service** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Denial of service\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -125,20 +125,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config-if)#dhcp snooping trust** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#dhcp snooping trust** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#dhcp snooping trust\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#ip dhcp snooping trust interface gi 2/3** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config)#ip dhcp snooping trust interface gi 2/3** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config)#ip dhcp snooping trust in…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config-if)#ip dhcp trust** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#ip dhcp snooping trust\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#ip dhcp trust** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#ip dhcp trust\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -172,20 +172,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show mac address-table** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show mac address-table** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show mac address-table\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#show interface** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show interface** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show interface\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show security** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show security\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -220,20 +220,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Dynamic VLANs** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Dynamic VLANs** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Dynamic VLANs\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ACLs** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**ACLs** reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
+            "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VLAN pruning** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**VLAN pruning** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"VLAN pruning\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -267,20 +267,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Access control lists** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Access control lists** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Access control lists\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Wired Equivalent Privacy** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Wired Equivalent Privacy** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Wired Equivalent Privacy\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Static MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"Port security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Static MAC addresses** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Static MAC addresses\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -326,7 +326,7 @@
           },
           {
             "choiceIndex": 3,
-            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "explanation": "**Destination IP addresses** is not the behavior described here. .",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           }
@@ -361,20 +361,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#switchport port-security** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config)#switchport port-security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config)#switchport port-security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#port-security enable** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config)#port-security enable** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config)#port-security enable\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config-if)#port-security enable** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#port-security enable** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#port-security enable\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -408,20 +408,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**2 MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"1 MAC address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**2 MAC addresses** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"2 MAC addresses\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**0 MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"1 MAC address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**0 MAC addresses** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"0 MAC addresses\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**10 MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"1 MAC address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**10 MAC addresses** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"10 MAC addresses\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -455,20 +455,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Layer 0** describes a different mechanism than this question tests. The right idea: The correct answer is \"Layer 2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Layer 0** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Layer 0\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
             "explanation": "**Layer 1** is the wrong OSI layer here. The stem tests **Layer 2** behavior — switches forward frames using MAC addresses.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "misconceptionTested": "Selecting \"Layer 1\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Layer 3** describes a different mechanism than this question tests. The right idea: The correct answer is \"Layer 2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Layer 3** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Layer 3\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -502,8 +502,8 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**To allow or disallow VLANs** describes a different mechanism than this question tests. The right idea: The correct answer is \"To prevent unauthorized access by MAC address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**To allow or disallow VLANs** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"To allow or disallow VLANs\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
@@ -514,8 +514,8 @@
           },
           {
             "choiceIndex": 3,
-            "explanation": "**To prevent unauthorized access by users** does not satisfy what the question asks. The correct answer is \"To prevent unauthorized access by MAC address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**To prevent unauthorized access by users** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"To prevent unauthorized access by users\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -549,20 +549,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Port security works best in mobile environments.** does not satisfy what the question asks. The correct answer is \"Port security works best in static environments.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Port security works best in mobile environments.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Port security works best in mobile envir…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Port security requires a higher amount of memory.** does not satisfy what the question asks. The correct answer is \"Port security works best in static environments.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Port security requires a higher amount of memory.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Port security requires a higher amount o…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Port security always results in admin intervention to reset the port.** does not satisfy what the question asks. The correct answer is \"Port security works best in static environments.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Port security always results in admin intervention to reset the port.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Port security always results in admin in…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -596,20 +596,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**1 MAC address** describes a different mechanism than this question tests. The right idea: The correct answer is \"2 MAC addresses\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**1 MAC address** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"1 MAC address\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**0 MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"2 MAC addresses\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**0 MAC addresses** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"0 MAC addresses\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**10 MAC addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"2 MAC addresses\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**10 MAC addresses** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"10 MAC addresses\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -644,20 +644,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Administrative shutdown** describes a different mechanism than this question tests. The right idea: The correct answer is \"Err-disabled shutdown\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Administrative shutdown** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Administrative shutdown\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Restricted access without logging** describes a different mechanism than this question tests. The right idea: The correct answer is \"Err-disabled shutdown\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Restricted access without logging** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Restricted access without logging\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Restricted access with logging** describes a different mechanism than this question tests. The right idea: The correct answer is \"Err-disabled shutdown\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Restricted access with logging** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Restricted access with logging\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -691,20 +691,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#no switchport dynamic SwitchA(config-if)#switchport port-security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#no switchport dynamic…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport port-security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport mode acces…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport mode access SwitchA(config-if)#switchport nonnegotiateSwitchA(config-if)#switchport port-security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#switchport mode access SwitchA(config-if)#no dynamicSwitchA(config- if)#switchport port-security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport mode acces…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -738,20 +738,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SwitchA(config-if)#switchport maximum 2** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#switchport maximum 2** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport maximum 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SwitchA(config-if)#port-security maximum 2** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#port-security maximum 2** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#port-security maximum…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SwitchA(config-if)#switchport port-security limit 2** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security maximum 2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#switchport port-security limit 2** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -785,20 +785,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config-if)#switchport port-security violation shutdown** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#switchport port-security violation shutdown** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config-if)#switchport port-security restrict** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#switchport port-security restrict** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config-if)#switchport port-security violation protect** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation restrict\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#switchport port-security violation protect** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -832,20 +832,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show running-configuration** does not satisfy what the question asks. The correct answer is \"Switch#show port-security interface gi 2/13\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show running-configuration** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show running-configuration\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#show port-security details interface gi 2/13** does not satisfy what the question asks. The correct answer is \"Switch#show port-security interface gi 2/13\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show port-security details interface gi 2/13** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show port-security details interf…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show port-security gi 2/13** does not satisfy what the question asks. The correct answer is \"Switch#show port-security interface gi 2/13\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show port-security gi 2/13** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show port-security gi 2/13\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -880,20 +880,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config-if)#switchport port-security restrict** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#switchport port-security restrict** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config-if)#switchport port-security violation protect** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#switchport port-security violation protect** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config-if)#switchport port-security violation restrict** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation shutdown\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#switchport port-security violation restrict** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -927,20 +927,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config-if)#switchport port-security violation shutdown** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#switchport port-security violation shutdown** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config-if)#switchport port-security restrict** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#switchport port-security restrict** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config-if)#switchport port-security violation restrict** does not satisfy what the question asks. The correct answer is \"Switch(config-if)#switchport port-security violation protect\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-if)#switchport port-security violation restrict** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-if)#switchport port-securi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -974,20 +974,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show violations** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show violations** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show violations\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show port-security violations** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show port-security violations** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show port-security violations\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show psec violations** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show psec violations** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show psec violations\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1022,20 +1022,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Static port security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Sticky port security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Static port security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Static port security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Dynamic port security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Sticky port security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Dynamic port security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Dynamic port security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Time limit port security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Sticky port security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Time limit port security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Time limit port security\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1071,20 +1071,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The port has been administratively shutdown.** does not satisfy what the question asks. The correct answer is \"The port has an access violation on it.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The port has been administratively shutdown.** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"The port has been administratively shutd…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The port has bad wiring.** does not satisfy what the question asks. The correct answer is \"The port has an access violation on it.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The port has bad wiring.** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"The port has bad wiring.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The port on the switch is configured as a trunk.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The port has an access violation on it.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The port on the switch is configured as a trunk.** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"The port on the switch is configured as …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1119,20 +1119,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**SwitchA(config-if)#switchport port-security mac-address dynamic** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#switchport port-security mac-address dynamic** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SwitchA(config-if)#switchport port-security mac-address static** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#switchport port-security mac-address static** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SwitchA(config-if)#switchport port-security mac-address learn** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#switchport port-security mac-address learn** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1168,20 +1168,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SwitchA(config-if)#no port-security** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#no port-security** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#no port-security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SwitchA(config-if)#no shutdown** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#no shutdown** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#no shutdown\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SwitchA(config-if)#no switchport port-security** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#no switchport port-security** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#no switchport port-se…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1216,20 +1216,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SwitchA(config-if)#switchport port-security mac-address sticky** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#switchport port-security mac-address sticky** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#switchport port-security mac-address static 0334.56f3.e4e4** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4** does not satisfy what the question asks. The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA(config-if)#switchport port-secur…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1265,20 +1265,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show port-security details** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show port-security details** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show port-security details\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show mac address-table secure** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show mac address-table secure** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show mac address-table secure\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#show port-security address** does not satisfy what the question asks. The correct answer is \"Switch#show port-security\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show port-security address** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#show port-security address\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1313,20 +1313,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#clear err-disable** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch#clear err-disable** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#clear err-disable\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#clear switchport port-security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch#clear switchport port-security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#clear switchport port-security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#clear port-security violation** describes a different mechanism than this question tests. The right idea: The correct answer is \"Switch(config)#errdisable recovery cause psecure_violation\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch#clear port-security violation** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch#clear port-security violation\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1361,20 +1361,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**SwitchA#show port-security** does not satisfy what the question asks. The correct answer is \"SwitchA#show running-config\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**SwitchA#show port-security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA#show port-security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SwitchA#show port-security details** does not satisfy what the question asks. The correct answer is \"SwitchA#show running-config\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**SwitchA#show port-security details** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA#show port-security details\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SwitchA#show port-security status** does not satisfy what the question asks. The correct answer is \"SwitchA#show running-config\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**SwitchA#show port-security status** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SwitchA#show port-security status\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

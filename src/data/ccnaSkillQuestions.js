@@ -3,6 +3,7 @@
  * Merged into getCuratedQuestions() for zero-API quiz banks.
  */
 import { SKILL_QUESTIONS_EXTENDED } from './ccnaSkillQuestionsExtended.js'
+import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 
 function mergeSkillMaps(base, ext) {
   const out = { ...base }
@@ -312,11 +313,13 @@ const SKILL_QUESTIONS_CORE = {
 export const SKILL_QUESTIONS = mergeSkillMaps(SKILL_QUESTIONS_CORE, SKILL_QUESTIONS_EXTENDED)
 
 export function getSkillQuestions(objectiveId) {
-  return SKILL_QUESTIONS[objectiveId] || []
+  return (SKILL_QUESTIONS[objectiveId] || []).map(q =>
+    applyAnswerReviewToQuestion({ ...q, objectiveId }),
+  )
 }
 
 export function allSkillQuestions() {
   return Object.entries(SKILL_QUESTIONS).flatMap(([objectiveId, qs]) =>
-    qs.map(q => ({ ...q, objectiveId }))
+    qs.map(q => applyAnswerReviewToQuestion({ ...q, objectiveId })),
   )
 }

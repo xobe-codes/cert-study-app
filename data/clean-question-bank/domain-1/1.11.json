@@ -29,18 +29,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**1, 2, 3** describes a different mechanism than this question tests. The right idea: Channels 1, 6, and 11 are the standard non-overlapping set in 2.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**1, 2, 3** uses the wrong value. The tested fact calls for **6** — not 1.",
+            "misconceptionTested": "Selecting \"1, 2, 3\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**6, 7, 8** describes a different mechanism than this question tests. The right idea: Channels 1, 6, and 11 are the standard non-overlapping set in 2.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**6, 7, 8** uses the wrong value. The tested fact calls for **1** — not 6.",
+            "misconceptionTested": "Selecting \"6, 7, 8\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**11, 12, 13 only in all regions** describes a different mechanism than this question tests. The right idea: Channels 1, 6, and 11 are the standard non-overlapping set in 2.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**11, 12, 13 only in all regions** uses the wrong value. The tested fact calls for **1** — not 11.",
+            "misconceptionTested": "Selecting \"11, 12, 13 only in all regions\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -71,18 +71,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Longer range than 2.4 with fewer channels** describes a different mechanism than this question tests. The right idea: 5 GHz has more spectrum and speed; 2.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Longer range than 2.4 with fewer channels** reflects a common trap: Using adjacent 2.4 GHz channels (e.g. 3 and 4). They overlap — stick to 1, 6, 11 for non-overlapping 20 MHz cells.",
+            "misconceptionTested": "Using adjacent 2.4 GHz channels (e.g. 3 and 4)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**No encryption support** contradicts the expected behavior. 5 GHz has more spectrum and speed; 2.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**No encryption support** does not answer the requirement in this stem. 5 GHz has more spectrum and speed; 2.",
+            "misconceptionTested": "Selecting \"No encryption support\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Only WEP** describes a different mechanism than this question tests. The right idea: 5 GHz has more spectrum and speed; 2.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Only WEP** does not answer the requirement in this stem. 5 GHz has more spectrum and speed; 2.",
+            "misconceptionTested": "Selecting \"Only WEP\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -113,18 +113,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**WEP compatibility** describes a different mechanism than this question tests. The right idea: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "WEP is deprecated and insecure — CCNA expects WPA2/WPA3 for real deployments.",
+            "misconceptionTested": "Choosing WEP for compatibility"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Open unsecured networks** describes a different mechanism than this question tests. The right idea: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Open unsecured networks** does not answer the requirement in this stem. WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+            "misconceptionTested": "Selecting \"Open unsecured networks\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Removing AES** describes a different mechanism than this question tests. The right idea: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Removing AES** does not answer the requirement in this stem. WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+            "misconceptionTested": "Selecting \"Removing AES\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -154,7 +154,7 @@
           {
             "choiceIndex": 0,
             "explanation": "This statement is **True**, but the tested fact is: False — WEP is cryptographically broken.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -185,18 +185,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Wi‑Fi 3** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Wi‑Fi 3** uses the wrong value. The tested fact calls for **802** — not 3.",
+            "misconceptionTested": "Selecting \"Wi‑Fi 3\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Wi‑Fi 4** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Wi‑Fi 4** uses the wrong value. The tested fact calls for **802** — not 4.",
+            "misconceptionTested": "Selecting \"Wi‑Fi 4\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Wi‑Fi 5** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Wi‑Fi 5** uses the wrong value. The tested fact calls for **802** — not 5.",
+            "misconceptionTested": "Selecting \"Wi‑Fi 5\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -227,18 +227,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The encryption key** describes a different mechanism than this question tests. The right idea: SSID identifies the WLAN broadcast by the AP.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The encryption key** does not answer the requirement in this stem. SSID identifies the WLAN broadcast by the AP.",
+            "misconceptionTested": "Selecting \"The encryption key\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The MAC of the AP** describes a different mechanism than this question tests. The right idea: SSID identifies the WLAN broadcast by the AP.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The MAC of the AP** does not answer the requirement in this stem. SSID identifies the WLAN broadcast by the AP.",
+            "misconceptionTested": "Selecting \"The MAC of the AP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The VLAN ID only** describes a different mechanism than this question tests. The right idea: SSID identifies the WLAN broadcast by the AP.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The VLAN ID only** does not answer the requirement in this stem. SSID identifies the WLAN broadcast by the AP.",
+            "misconceptionTested": "Selecting \"The VLAN ID only\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -269,18 +269,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Reduces throughput** describes a different mechanism than this question tests. The right idea: Wider channels carry more data but reduce the number of non-overlapping channels.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Reduces throughput** does not answer the requirement in this stem. Wider channels carry more data but reduce the number of non-overlapping channels.",
+            "misconceptionTested": "Selecting \"Reduces throughput\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Eliminates interference** describes a different mechanism than this question tests. The right idea: Wider channels carry more data but reduce the number of non-overlapping channels.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Eliminates interference** does not answer the requirement in this stem. Wider channels carry more data but reduce the number of non-overlapping channels.",
+            "misconceptionTested": "Selecting \"Eliminates interference\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Disables 5 GHz** describes a different mechanism than this question tests. The right idea: Wider channels carry more data but reduce the number of non-overlapping channels.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Disables 5 GHz** does not answer the requirement in this stem. Wider channels carry more data but reduce the number of non-overlapping channels.",
+            "misconceptionTested": "Selecting \"Disables 5 GHz\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -311,18 +311,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Routing table size** describes a different mechanism than this question tests. The right idea: RSSI measures how strongly the client hears the AP (and vice versa).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Routing table size** does not answer the requirement in this stem. RSSI measures how strongly the client hears the AP (and vice versa).",
+            "misconceptionTested": "Selecting \"Routing table size\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**DNS latency** describes a different mechanism than this question tests. The right idea: RSSI measures how strongly the client hears the AP (and vice versa).",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
+            "explanation": "**DNS latency** does not answer the requirement in this stem. RSSI measures how strongly the client hears the AP (and vice versa).",
+            "misconceptionTested": "Selecting \"DNS latency\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**NAT port count** describes a different mechanism than this question tests. The right idea: RSSI measures how strongly the client hears the AP (and vice versa).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**NAT port count** does not answer the requirement in this stem. RSSI measures how strongly the client hears the AP (and vice versa).",
+            "misconceptionTested": "Selecting \"NAT port count\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

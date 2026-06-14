@@ -29,18 +29,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Layer 1** is the wrong OSI layer here. The stem tests **Layer 3** behavior — routers forward based on IP addresses and routing tables.",
-            "misconceptionTested": "Choosing physical layer when the question is about network layer forwarding"
+            "explanation": "**Layer 1** uses the wrong value. The tested fact calls for **3** — not 1.",
+            "misconceptionTested": "Selecting \"Layer 1\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Layer 2** is the wrong OSI layer here. The stem tests **Layer 3** behavior — routers forward based on IP addresses and routing tables.",
-            "misconceptionTested": "Choosing data link layer when the question is about network layer routing"
+            "explanation": "**Layer 2** uses the wrong value. The tested fact calls for **3** — not 2.",
+            "misconceptionTested": "Selecting \"Layer 2\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Layer 7** is the wrong OSI layer here. The stem tests **Layer 3** behavior — routers forward based on IP addresses and routing tables.",
-            "misconceptionTested": "Choosing application layer when the question is about L2/L3 mechanics"
+            "explanation": "**Layer 7** uses the wrong value. The tested fact calls for **3** — not 7.",
+            "misconceptionTested": "Selecting \"Layer 7\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -71,18 +71,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Routing tables** are for Layer 3 routers. Switches forward frames using a **MAC address (CAM) table**.",
-            "misconceptionTested": "Using router behavior (routing table) on a switch question"
+            "explanation": "**Routing table** reflects a common trap: More switches always mean better routing. Switches extend L2 domains; routing is an L3 function on routers or L3 switches.",
+            "misconceptionTested": "More switches always mean better routing"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**DNS cache** describes a different mechanism than this question tests. The right idea: L2 switches forward using the MAC address (CAM) table.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
+            "explanation": "**DNS cache** does not answer what does in this stem. L2 switches forward using the MAC address (CAM) table.",
+            "misconceptionTested": "Selecting \"DNS cache\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ACL list** describes a different mechanism than this question tests. The right idea: L2 switches forward using the MAC address (CAM) table.",
-            "misconceptionTested": "Defaulting to ACLs when the stem tests something else"
+            "explanation": "**ACL list** does not answer what does in this stem. L2 switches forward using the MAC address (CAM) table.",
+            "misconceptionTested": "Selecting \"ACL list\" without matching the scenario constraint"
           }
         ],
         "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
@@ -107,27 +107,27 @@
       ],
       "answerReview": {
         "correct": {
-          "choiceIndex": 1,
-          "explanation": "An L3 switch uses SVIs to route between VLANs locally."
+          "choiceIndex": 0,
+          "explanation": "Layer 3 switches provide inter-VLAN routing at switching speed; hubs do not segment broadcasts."
         },
         "incorrect": [
           {
-            "choiceIndex": 0,
-            "explanation": "**Port mirroring** describes a different mechanism than this question tests. The right idea: An L3 switch uses SVIs to route between VLANs locally.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "choiceIndex": 1,
+            "explanation": "A hub is a Layer 1 repeater — it repeats every frame out every port and does not segment broadcast domains or route between VLANs.",
+            "misconceptionTested": "Treating a hub like a switch or router"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Spanning Tree** describes a different mechanism than this question tests. The right idea: An L3 switch uses SVIs to route between VLANs locally.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "A WLAN controller manages access points and SSIDs — it does not replace a Layer 3 switch for inter-VLAN routing at line rate in a branch office.",
+            "misconceptionTested": "Expecting a WLAN controller to do L3 inter-VLAN routing"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**EtherChannel** describes a different mechanism than this question tests. The right idea: An L3 switch uses SVIs to route between VLANs locally.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "A cable modem connects a site to an ISP WAN — it is not the LAN device that segments VLANs and routes between them at enterprise line rate.",
+            "misconceptionTested": "Using WAN CPE where LAN switching/routing is required"
           }
         ],
-        "examTip": "Learning uses SOURCE MAC + ingress port. Forwarding uses DESTINATION MAC lookup."
+        "examTip": "Segment broadcasts + inter-VLAN routing at speed → L3 switch (or router). Hub = never."
       }
     },
     {
@@ -155,18 +155,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**It only blocks UDP** describes a different mechanism than this question tests. The right idea: NGFWs track connection state and inspect applications, not just IP/port.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**It only blocks UDP** does not answer the requirement in this stem. NGFWs track connection state and inspect applications, not just IP/port.",
+            "misconceptionTested": "Selecting \"It only blocks UDP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**It replaces switches** describes a different mechanism than this question tests. The right idea: NGFWs track connection state and inspect applications, not just IP/port.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**It replaces switches** does not answer the requirement in this stem. NGFWs track connection state and inspect applications, not just IP/port.",
+            "misconceptionTested": "Selecting \"It replaces switches\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**It operates only at Layer 1** describes a different mechanism than this question tests. The right idea: NGFWs track connection state and inspect applications, not just IP/port.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**It operates only at Layer 1** does not answer the requirement in this stem. NGFWs track connection state and inspect applications, not just IP/port.",
+            "misconceptionTested": "Selecting \"It operates only at Layer 1\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -197,18 +197,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DNS server** describes a different mechanism than this question tests. The right idea: Lightweight APs are managed by a WLC; they do not run full standalone config.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
+            "explanation": "**DNS server** does not answer the requirement in this stem. Lightweight APs are managed by a WLC; they do not run full standalone config.",
+            "misconceptionTested": "Selecting \"DNS server\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Core router only** describes a different mechanism than this question tests. The right idea: Lightweight APs are managed by a WLC; they do not run full standalone config.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Core router only** reflects a common trap: Calling an AP a router. An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing.",
+            "misconceptionTested": "Calling an AP a router"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DHCP relay** describes a different mechanism than this question tests. The right idea: Lightweight APs are managed by a WLC; they do not run full standalone config.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DHCP relay** does not answer the requirement in this stem. Lightweight APs are managed by a WLC; they do not run full standalone config.",
+            "misconceptionTested": "Selecting \"DHCP relay\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -239,18 +239,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Web server** describes a different mechanism than this question tests. The right idea: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Web server** does not answer which in this stem. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "misconceptionTested": "Selecting \"Web server\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**DNS server** describes a different mechanism than this question tests. The right idea: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
+            "explanation": "**DNS server** does not answer which in this stem. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "misconceptionTested": "Selecting \"DNS server\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Core router** describes a different mechanism than this question tests. The right idea: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Core router** does not answer which in this stem. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "misconceptionTested": "Selecting \"Core router\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -281,18 +281,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The access switch only** describes a different mechanism than this question tests. The right idea: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The access switch only** does not answer which in this stem. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "misconceptionTested": "Selecting \"The access switch only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The WLC** describes a different mechanism than this question tests. The right idea: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The WLC** does not answer which in this stem. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "misconceptionTested": "Selecting \"The WLC\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The DNS server** describes a different mechanism than this question tests. The right idea: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
+            "explanation": "**The DNS server** does not answer which in this stem. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "misconceptionTested": "Selecting \"The DNS server\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -322,7 +322,7 @@
           {
             "choiceIndex": 1,
             "explanation": "This statement is **False**, but the tested fact is: True — WLCs manage lightweight APs from a central point.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

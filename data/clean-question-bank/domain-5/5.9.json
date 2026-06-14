@@ -30,20 +30,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SSID beaconing is enabled.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Status is disabled.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SSID beaconing is enabled.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"SSID beaconing is enabled.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Multicast support is disabled.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Status is disabled.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Multicast support is disabled.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Multicast support is disabled.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Radio Policy is configured to all.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Status is disabled.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Radio Policy is configured to all.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Radio Policy is configured to all.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -80,20 +80,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Two PSKs (one hex and one ASCII)** describes a different mechanism than this question tests. The right idea: The correct answer is \"One PSK (one hex or one ASCII)\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Two PSKs (one hex and one ASCII)** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Two PSKs (one hex and one ASCII)\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Four PSKs (two hex and two ASCII)** describes a different mechanism than this question tests. The right idea: The correct answer is \"One PSK (one hex or one ASCII)\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Four PSKs (two hex and two ASCII)** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Four PSKs (two hex and two ASCII)\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Unlimited number of PSKs** describes a different mechanism than this question tests. The right idea: The correct answer is \"One PSK (one hex or one ASCII)\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Unlimited number of PSKs** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Unlimited number of PSKs\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -131,20 +131,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**WPA-AES** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-AES\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**WPA-AES** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"WPA-AES\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**WPA2-TKIP** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-AES\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**WPA2-TKIP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"WPA2-TKIP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**WPA2-RC4** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-AES\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**WPA2-RC4** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"WPA2-RC4\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -181,20 +181,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**WPA-Enterprise** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-Personal\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**WPA-Enterprise** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"WPA-Enterprise\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**WPA3-Enterprise** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-Personal\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**WPA3-Enterprise** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"WPA3-Enterprise\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**WPA-Personal** describes a different mechanism than this question tests. The right idea: The correct answer is \"WPA2-Personal\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**WPA-Personal** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"WPA-Personal\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

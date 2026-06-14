@@ -33,18 +33,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Access, Audit, Administration** describes a different mechanism than this question tests. The right idea: AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Access, Audit, Administration** does not answer the requirement in this stem. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
+            "misconceptionTested": "Selecting \"Access, Audit, Administration\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Authentication, Auditing, Availability** does not satisfy what the question asks. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Authentication, Auditing, Availability** does not answer the requirement in this stem. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
+            "misconceptionTested": "Selecting \"Authentication, Auditing, Availability\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Authorization, Access, Accounting** does not satisfy what the question asks. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Authorization, Access, Accounting** does not answer the requirement in this stem. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
+            "misconceptionTested": "Selecting \"Authorization, Access, Accounting\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -76,18 +76,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP port 1812** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**UDP port 1812** uses the wrong value. The tested fact calls for **49** — not 1812.",
+            "misconceptionTested": "Selecting \"UDP port 1812\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP port 49** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**UDP port 49** does not answer which in this stem. TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server.",
+            "misconceptionTested": "Selecting \"UDP port 49\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**TCP port 1812** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TCP port 1812** uses the wrong value. The tested fact calls for **49** — not 1812.",
+            "misconceptionTested": "Selecting \"TCP port 1812\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -119,18 +119,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**TCP 49 and TCP 50** describes a different mechanism than this question tests. The right idea: RADIUS uses UDP port 1812 for authentication and authorization, and UDP port 1813 for accounting (older implementations used 1645/1646).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TCP 49 and TCP 50** uses the wrong value. The tested fact calls for **1812** — not 49.",
+            "misconceptionTested": "Selecting \"TCP 49 and TCP 50\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TCP 1812 and TCP 1813** describes a different mechanism than this question tests. The right idea: RADIUS uses UDP port 1812 for authentication and authorization, and UDP port 1813 for accounting (older implementations used 1645/1646).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TCP 1812 and TCP 1813** uses the wrong value. The tested fact calls for **1813** — not 1812.",
+            "misconceptionTested": "Selecting \"TCP 1812 and TCP 1813\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**UDP 161 and UDP 162** describes a different mechanism than this question tests. The right idea: RADIUS uses UDP port 1812 for authentication and authorization, and UDP port 1813 for accounting (older implementations used 1645/1646).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**UDP 161 and UDP 162** uses the wrong value. The tested fact calls for **1812** — not 161.",
+            "misconceptionTested": "Selecting \"UDP 161 and UDP 162\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -163,17 +163,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**TACACS+ encrypts only the password; RADIUS encrypts the entire packet body** does not satisfy what the question asks. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TACACS+ encrypts only the password; RADIUS encrypts the entire packet body** does not answer what is in this stem. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
+            "misconceptionTested": "Selecting \"TACACS+ encrypts only the password; RADI…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Neither protocol supports encryption** describes a different mechanism than this question tests. The right idea: TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Neither protocol supports encryption** does not answer what is in this stem. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
+            "misconceptionTested": "Selecting \"Neither protocol supports encryption\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Both encrypt the entire packet body identically** describes a different mechanism than this question tests. The right idea: TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
+            "explanation": "**Both encrypt the entire packet body identically** does not answer what is in this stem. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
@@ -206,18 +206,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**ip aaa enable** describes a different mechanism than this question tests. The right idea: aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**ip aaa enable** does not answer which in this stem. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
+            "misconceptionTested": "Selecting \"ip aaa enable\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**service aaa** describes a different mechanism than this question tests. The right idea: aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**service aaa** does not answer which in this stem. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
+            "misconceptionTested": "Selecting \"service aaa\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**aaa start** describes a different mechanism than this question tests. The right idea: aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**aaa start** does not answer which in this stem. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
+            "misconceptionTested": "Selecting \"aaa start\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -249,18 +249,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Only TACACS+ can be used; if it fails, login is denied** describes a different mechanism than this question tests. The right idea: The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Only TACACS+ can be used; if it fails, login is denied** does not answer configure in this stem. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
+            "misconceptionTested": "Selecting \"Only TACACS+ can be used; if it fails, l…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The switch authenticates against the local database first, then TACACS+** describes a different mechanism than this question tests. The right idea: The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The switch authenticates against the local database first, then TACACS+** does not answer configure in this stem. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
+            "misconceptionTested": "Selecting \"The switch authenticates against the loc…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**This command has no effect without a RADIUS server configured** describes a different mechanism than this question tests. The right idea: The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**This command has no effect without a RADIUS server configured** does not answer configure in this stem. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
+            "misconceptionTested": "Selecting \"This command has no effect without a RAD…\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -292,18 +292,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**TACACS+ does not support shared secret keys** contradicts the expected behavior. The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TACACS+ does not support shared secret keys** is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
+            "misconceptionTested": "Selecting \"TACACS+ does not support shared secret k…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The device needs to use RADIUS instead** describes a different mechanism than this question tests. The right idea: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The device needs to use RADIUS instead** is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
+            "misconceptionTested": "Selecting \"The device needs to use RADIUS instead\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**TACACS+ requires the keys to be different on each side** describes a different mechanism than this question tests. The right idea: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TACACS+ requires the keys to be different on each side** is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
+            "misconceptionTested": "Selecting \"TACACS+ requires the keys to be differen…\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -335,18 +335,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Authentication** describes a different mechanism than this question tests. The right idea: Authorization determines what an authenticated user is permitted to do — e.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Authentication** does not answer which in this stem. Authorization determines what an authenticated user is permitted to do — e.",
+            "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Accounting** describes a different mechanism than this question tests. The right idea: Authorization determines what an authenticated user is permitted to do — e.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Accounting** does not answer which in this stem. Authorization determines what an authenticated user is permitted to do — e.",
+            "misconceptionTested": "Selecting \"Accounting\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Auditing** describes a different mechanism than this question tests. The right idea: Authorization determines what an authenticated user is permitted to do — e.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Auditing** does not answer which in this stem. Authorization determines what an authenticated user is permitted to do — e.",
+            "misconceptionTested": "Selecting \"Auditing\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -378,18 +378,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Authentication** describes a different mechanism than this question tests. The right idea: Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Authentication** does not answer which in this stem. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
+            "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Authorization** describes a different mechanism than this question tests. The right idea: Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Authorization** does not answer which in this stem. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
+            "misconceptionTested": "Selecting \"Authorization\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Encryption** describes a different mechanism than this question tests. The right idea: Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Encryption** does not answer which in this stem. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
+            "misconceptionTested": "Selecting \"Encryption\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -422,18 +422,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RADIUS cannot authenticate users at all** contradicts the expected behavior. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**RADIUS cannot authenticate users at all** does not answer which in this stem. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
+            "misconceptionTested": "Selecting \"RADIUS cannot authenticate users at all\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TACACS+ is required for wireless client authentication, which RADIUS cannot do** contradicts the expected behavior. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TACACS+ is required for wireless client authentication, which RADIUS cannot do** does not answer which in this stem. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
+            "misconceptionTested": "Selecting \"TACACS+ is required for wireless client …\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**TACACS+ uses less bandwidth than RADIUS in all cases** describes a different mechanism than this question tests. The right idea: TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TACACS+ uses less bandwidth than RADIUS in all cases** does not answer which in this stem. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
+            "misconceptionTested": "Selecting \"TACACS+ uses less bandwidth than RADIUS …\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

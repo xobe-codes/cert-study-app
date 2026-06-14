@@ -29,19 +29,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#ntp server 129.6.15.28** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router(config)#ntp server 129.",
+            "explanation": "**Router#ntp server 129.6.15.28** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ntp client 129.6.15.28** does not satisfy what the question asks. The correct answer is \"Router(config)#ntp server 129.",
+            "explanation": "**Router(config)#ntp client 129.6.15.28** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#ntp client 129.6.15.28** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router(config)#ntp server 129.",
+            "explanation": "**Router#ntp client 129.6.15.28** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
@@ -77,19 +77,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ntp server** does not satisfy what the question asks. The correct answer is \"Router(config)#ntp master\".",
+            "explanation": "**Router(config)#ntp server** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ntp clock source** does not satisfy what the question asks. The correct answer is \"Router(config)#ntp master\".",
+            "explanation": "**Router(config)#ntp clock source** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ntp trusted** does not satisfy what the question asks. The correct answer is \"Router(config)#ntp master\".",
+            "explanation": "**Router(config)#ntp trusted** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
@@ -125,20 +125,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ntp** does not satisfy what the question asks. The correct answer is \"Router#show clock detail\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ntp** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show time** does not satisfy what the question asks. The correct answer is \"Router#show clock detail\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show time** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show time source** does not satisfy what the question asks. The correct answer is \"Router#show clock detail\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show time source** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
@@ -174,20 +174,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show clock detail** does not satisfy what the question asks. The correct answer is \"Router#show ntp associations detail\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show clock detail** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ntp detail** does not satisfy what the question asks. The correct answer is \"Router#show ntp associations detail\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ntp detail** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ntp skew** does not satisfy what the question asks. The correct answer is \"Router#show ntp associations detail\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ntp skew** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
@@ -221,19 +221,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**TCP/161** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/123\".",
+            "explanation": "**TCP/161** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**TCP/123** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/123\".",
+            "explanation": "**TCP/123** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP/69** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/123\".",
+            "explanation": "**UDP/69** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
@@ -268,20 +268,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ntp** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router#debug ntp packets\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ntp** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip ntp** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router#debug ntp packets\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ntp** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#debug ntp messages** does not satisfy what the question asks. The correct answer is \"Router#debug ntp packets\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#debug ntp messages** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
@@ -316,20 +316,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Configure all devices to a public NTP server.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Always configure the time source to a DNS address.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Configure all devices to a public NTP server.** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Configure all devices to different NTP servers for redundancy.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Always configure the time source to a DNS address.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Configure all devices to different NTP servers for redundancy.** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Configure all devices as master servers.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Always configure the time source to a DNS address.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Configure all devices as master servers.** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
@@ -364,20 +364,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ntp** does not satisfy what the question asks. The correct answer is \"Router#show ntp status\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ntp** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip ntp status** does not satisfy what the question asks. The correct answer is \"Router#show ntp status\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip ntp status** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#debug ntp drift** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router#show ntp status\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#debug ntp drift** does not answer which in this stem. .",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
@@ -413,19 +413,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#clock timezone pacific** does not satisfy what the question asks. The correct answer is \"Router(config)#clock timezone pst -8 0\".",
+            "explanation": "**Router(config)#clock timezone pacific** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#timezone pacific** does not satisfy what the question asks. The correct answer is \"Router(config)#clock timezone pst -8 0\".",
+            "explanation": "**Router(config)#timezone pacific** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#timezone pst -8** does not satisfy what the question asks. The correct answer is \"Router(config)#clock timezone pst -8 0\".",
+            "explanation": "**Router(config)#timezone pst -8** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
@@ -461,19 +461,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Tunnel interface** describes a different mechanism than this question tests. The right idea: The correct answer is \"Loopback interface\".",
+            "explanation": "**Tunnel interface** does not answer configure in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**NTP interface** describes a different mechanism than this question tests. The right idea: The correct answer is \"Loopback interface\".",
+            "explanation": "**NTP interface** does not answer configure in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switched Virtual Interface (SVI)** describes a different mechanism than this question tests. The right idea: The correct answer is \"Loopback interface\".",
+            "explanation": "**Switched Virtual Interface (SVI)** does not answer configure in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
@@ -510,19 +510,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#ntp loopback 0** does not satisfy what the question asks. The correct answer is \"Switch(config)#ntp source loopback 0\".",
+            "explanation": "**Switch(config)#ntp loopback 0** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#ntp master loopback 0** does not satisfy what the question asks. The correct answer is \"Switch(config)#ntp source loopback 0\".",
+            "explanation": "**Switch(config)#ntp master loopback 0** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#ntp clock loopback 0** does not satisfy what the question asks. The correct answer is \"Switch(config)#ntp source loopback 0\".",
+            "explanation": "**Switch(config)#ntp clock loopback 0** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
@@ -558,19 +558,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#clock set 2:24:00 1 august 2019** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router#clock set 2:24:00 1 august 2019\".",
+            "explanation": "**Router(config)#clock set 2:24:00 1 august 2019** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#clock set 2:24:00 august 1 2019** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router#clock set 2:24:00 1 august 2019\".",
+            "explanation": "**Router(config)#clock set 2:24:00 august 1 2019** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#clock 2:24:00 1 august 2019** does not satisfy what the question asks. The correct answer is \"Router#clock set 2:24:00 1 august 2019\".",
+            "explanation": "**Router#clock 2:24:00 1 august 2019** does not answer which in this stem. .",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }

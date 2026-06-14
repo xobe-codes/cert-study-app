@@ -29,18 +29,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**32** describes a different mechanism than this question tests. The right idea: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**32** uses the wrong value. The tested fact calls for **6** — not 32.",
+            "misconceptionTested": "Selecting \"32\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**64** describes a different mechanism than this question tests. The right idea: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**64** uses the wrong value. The tested fact calls for **6** — not 64.",
+            "misconceptionTested": "Selecting \"64\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**256** describes a different mechanism than this question tests. The right idea: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**256** uses the wrong value. The tested fact calls for **6** — not 256.",
+            "misconceptionTested": "Selecting \"256\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -71,18 +71,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**2001:db8:::1** describes a different mechanism than this question tests. The right idea: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**2001:db8:::1** uses the wrong value. The tested fact calls for **8** — not 2001.",
+            "misconceptionTested": "Selecting \"2001:db8:::1\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**2001:db8::0:1::** describes a different mechanism than this question tests. The right idea: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**2001:db8::0:1::** uses the wrong value. The tested fact calls for **8** — not 2001.",
+            "misconceptionTested": "Selecting \"2001:db8::0:1::\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**2001::db8::1** describes a different mechanism than this question tests. The right idea: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**2001::db8::1** uses the wrong value. The tested fact calls for **8** — not 2001.",
+            "misconceptionTested": "Selecting \"2001::db8::1\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -112,7 +112,7 @@
           {
             "choiceIndex": 0,
             "explanation": "This statement is **True**, but the tested fact is: False — `::` may appear only once, otherwise the number of zero groups is ambiguous.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -143,18 +143,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**/24** describes a different mechanism than this question tests. The right idea: /64 is standard for LANs and is required for SLAAC/EUI-64.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**/24** uses the wrong value. The tested fact calls for **64** — not 24.",
+            "misconceptionTested": "Selecting \"/24\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**/48** describes a different mechanism than this question tests. The right idea: /64 is standard for LANs and is required for SLAAC/EUI-64.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**/48** uses the wrong value. The tested fact calls for **64** — not 48.",
+            "misconceptionTested": "Selecting \"/48\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**/128** describes a different mechanism than this question tests. The right idea: /64 is standard for LANs and is required for SLAAC/EUI-64.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**/128** uses the wrong value. The tested fact calls for **64** — not 128.",
+            "misconceptionTested": "Selecting \"/128\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -185,18 +185,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**FF00** describes a different mechanism than this question tests. The right idea: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FF00** uses the wrong value. The tested fact calls for **7** — not 00.",
+            "misconceptionTested": "Selecting \"FF00\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FFFF** describes a different mechanism than this question tests. The right idea: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FFFF** does not answer what is in this stem. FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
+            "misconceptionTested": "Selecting \"FFFF\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**FE80** describes a different mechanism than this question tests. The right idea: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FE80** uses the wrong value. The tested fact calls for **7** — not 80.",
+            "misconceptionTested": "Selecting \"FE80\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -227,18 +227,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DHCPv6** describes a different mechanism than this question tests. The right idea: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DHCPv6** does not answer what is in this stem. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "misconceptionTested": "Selecting \"DHCPv6\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Static** describes a different mechanism than this question tests. The right idea: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Static** does not answer what is in this stem. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "misconceptionTested": "Selecting \"Static\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**NAT66** describes a different mechanism than this question tests. The right idea: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**NAT66** does not answer what is in this stem. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "misconceptionTested": "Selecting \"NAT66\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -269,18 +269,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ipv6 routing** describes a different mechanism than this question tests. The right idea: `ipv6 unicast-routing` must be enabled globally.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**ipv6 routing** reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+            "misconceptionTested": "IPv6 needs NAT like IPv4"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ip routing v6** describes a different mechanism than this question tests. The right idea: `ipv6 unicast-routing` must be enabled globally.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**ip routing v6** does not answer which in this stem. `ipv6 unicast-routing` must be enabled globally.",
+            "misconceptionTested": "Selecting \"ip routing v6\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**enable ipv6** describes a different mechanism than this question tests. The right idea: `ipv6 unicast-routing` must be enabled globally.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**enable ipv6** reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+            "misconceptionTested": "IPv6 needs NAT like IPv4"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -311,18 +311,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Trailing zeros** describes a different mechanism than this question tests. The right idea: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Trailing zeros** reflects a common trap: Dropping trailing zeros in a hextet. Only leading zeros may be dropped (00a0 → a0, not a).",
+            "misconceptionTested": "Dropping trailing zeros in a hextet"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**All zeros** describes a different mechanism than this question tests. The right idea: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**All zeros** reflects a common trap: Dropping trailing zeros in a hextet. Only leading zeros may be dropped (00a0 → a0, not a).",
+            "misconceptionTested": "Dropping trailing zeros in a hextet"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**None** describes a different mechanism than this question tests. The right idea: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**None** does not answer which in this stem. Only leading zeros within a hextet may be dropped: 00a0 → a0.",
+            "misconceptionTested": "Selecting \"None\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -353,18 +353,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**show ip interface brief** describes a different mechanism than this question tests. The right idea: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**show ip interface brief** reflects a common trap: An interface has only one IPv6 address. Interfaces normally have at least a link-local (FE80::) and a global address.",
+            "misconceptionTested": "An interface has only one IPv6 address"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**show ipv6 route** describes a different mechanism than this question tests. The right idea: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**show ipv6 route** reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+            "misconceptionTested": "IPv6 needs NAT like IPv4"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**show running-config** describes a different mechanism than this question tests. The right idea: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**show running-config** does not answer which in this stem. `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+            "misconceptionTested": "Selecting \"show running-config\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -395,18 +395,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**32** describes a different mechanism than this question tests. The right idea: 128 − 64 = 64 bits for the interface ID.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**32** uses the wrong value. The tested fact calls for **128** — not 32.",
+            "misconceptionTested": "Selecting \"32\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**48** describes a different mechanism than this question tests. The right idea: 128 − 64 = 64 bits for the interface ID.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**48** uses the wrong value. The tested fact calls for **128** — not 48.",
+            "misconceptionTested": "Selecting \"48\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**128** describes a different mechanism than this question tests. The right idea: 128 − 64 = 64 bits for the interface ID.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**128** uses the wrong value. The tested fact calls for **64** — not 128.",
+            "misconceptionTested": "Selecting \"128\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

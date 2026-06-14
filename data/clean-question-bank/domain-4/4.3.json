@@ -29,19 +29,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A reverse lookup is when the request needs to be reversed to another DNS server.** does not satisfy what the question asks. The correct answer is \"A reverse lookup is the resolution of an IP address to FQDN.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer",
+            "explanation": "**A reverse lookup is when the request needs to be reversed to another DNS server.** does not answer which in this stem. .",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A reverse lookup is when the DNS queried can answer the request without asking another DNS server.** does not satisfy what the question asks. The correct answer is \"A reverse lookup is the resolution of an IP address to FQDN.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer",
+            "explanation": "**A reverse lookup is when the DNS queried can answer the request without asking another DNS server.** does not answer which in this stem. .",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A reverse lookup is the resolution of an FQDN to an IP address.** does not satisfy what the question asks. The correct answer is \"A reverse lookup is the resolution of an IP address to FQDN.",
+            "explanation": "**A reverse lookup is the resolution of an FQDN to an IP address.** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -77,19 +77,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The A record** describes a different mechanism than this question tests. The right idea: The correct answer is \"The PTR record\".",
+            "explanation": "**The A record** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The CName record** describes a different mechanism than this question tests. The right idea: The correct answer is \"The PTR record\".",
+            "explanation": "**The CName record** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The AAAA record** describes a different mechanism than this question tests. The right idea: The correct answer is \"The PTR record\".",
+            "explanation": "**The AAAA record** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -127,19 +127,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The DNS zone** describes a different mechanism than this question tests. The right idea: The correct answer is \"The DNS domain name\".",
+            "explanation": "**The DNS zone** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The host header** describes a different mechanism than this question tests. The right idea: The correct answer is \"The DNS domain name\".",
+            "explanation": "**The host header** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The hostname PTR record** describes a different mechanism than this question tests. The right idea: The correct answer is \"The DNS domain name\".",
+            "explanation": "**The hostname PTR record** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -176,19 +176,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DNS** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static hostname entries\".",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer",
+            "explanation": "**DNS** does not answer which in this stem. .",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**PTR records** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static hostname entries\".",
+            "explanation": "**PTR records** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**LLMNR** describes a different mechanism than this question tests. The right idea: The correct answer is \"Static hostname entries\".",
+            "explanation": "**LLMNR** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -225,19 +225,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The CName record** describes a different mechanism than this question tests. The right idea: The correct answer is \"The A record\".",
+            "explanation": "**The CName record** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The PTR record** describes a different mechanism than this question tests. The right idea: The correct answer is \"The A record\".",
+            "explanation": "**The PTR record** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The AAAA record** describes a different mechanism than this question tests. The right idea: The correct answer is \"The A record\".",
+            "explanation": "**The AAAA record** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -274,19 +274,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**An A record** describes a different mechanism than this question tests. The right idea: The correct answer is \"TTL\".",
+            "explanation": "**An A record** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SOA** describes a different mechanism than this question tests. The right idea: The correct answer is \"TTL\".",
+            "explanation": "**SOA** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Default of 5 minutes** describes a different mechanism than this question tests. The right idea: The correct answer is \"TTL\".",
+            "explanation": "**Default of 5 minutes** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -325,20 +325,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Discover** describes a different mechanism than this question tests. The right idea: The correct answer is \"Acknowledgment\".",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "DHCP DORA order matters — identify which message the stem describes before picking a step.",
+            "misconceptionTested": "Misordering or mislabeling DHCP messages",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Offer** describes a different mechanism than this question tests. The right idea: The correct answer is \"Acknowledgment\".",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "**Offer** is not the behavior described here. .",
+            "misconceptionTested": "Misordering or mislabeling DHCP messages",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Request** describes a different mechanism than this question tests. The right idea: The correct answer is \"Acknowledgment\".",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup",
+            "explanation": "**Request** is not the behavior described here. .",
+            "misconceptionTested": "Misordering or mislabeling DHCP messages",
             "needsExplanationReview": true
           }
         ],
@@ -373,19 +373,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Layer 3 multicast** describes a different mechanism than this question tests. The right idea: The correct answer is \"Layer 3 broadcast\".",
+            "explanation": "**Layer 3 multicast** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Layer 3 802.1Q** describes a different mechanism than this question tests. The right idea: The correct answer is \"Layer 3 broadcast\".",
+            "explanation": "**Layer 3 802.1Q** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Layer 3 unicast** describes a different mechanism than this question tests. The right idea: The correct answer is \"Layer 3 broadcast\".",
+            "explanation": "**Layer 3 unicast** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -422,19 +422,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**One-quarter of the lease** describes a different mechanism than this question tests. The right idea: The correct answer is \"One-half of the lease\".",
+            "explanation": "**One-quarter of the lease** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Seven-eighths of the lease** describes a different mechanism than this question tests. The right idea: The correct answer is \"One-half of the lease\".",
+            "explanation": "**Seven-eighths of the lease** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**End of the lease** describes a different mechanism than this question tests. The right idea: The correct answer is \"One-half of the lease\".",
+            "explanation": "**End of the lease** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -471,19 +471,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The DHCP server is responsible for maintaining the life cycle of an IP address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The DHCP client is responsible for maintaining the life cycle of an IP address.",
+            "explanation": "**The DHCP server is responsible for maintaining the life cycle of an IP address.** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**DHCP uses multicasting between the client and server.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The DHCP client is responsible for maintaining the life cycle of an IP address.",
+            "explanation": "**DHCP uses multicasting between the client and server.** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The DHCP lease is negotiated between client and server.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The DHCP client is responsible for maintaining the life cycle of an IP address.",
+            "explanation": "**The DHCP lease is negotiated between client and server.** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -520,19 +520,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**ICMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP\".",
+            "explanation": "**ICMP** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TCP** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP\".",
+            "explanation": "**TCP** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP\".",
+            "explanation": "**RARP** does not answer which in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -569,19 +569,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The IP address is still served to the client.** does not satisfy what the question asks. The correct answer is \"The IP address is removed from the DHCP pool.",
+            "explanation": "**The IP address is still served to the client.** does not answer the requirement in this stem. .",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The DHCP server will halt.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The IP address is removed from the DHCP pool.",
+            "explanation": "**The DHCP server will halt.** does not answer the requirement in this stem. .",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The DHCP will serve the IP address in the future.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The IP address is removed from the DHCP pool.",
+            "explanation": "**The DHCP will serve the IP address in the future.** does not answer the requirement in this stem. .",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           }

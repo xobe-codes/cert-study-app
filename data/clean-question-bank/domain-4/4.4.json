@@ -30,19 +30,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SNMP version 1** does not satisfy what the question asks. The correct answer is \"SNMP version 3\".",
+            "explanation": "**SNMP version 1** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SNMP version 2e** does not satisfy what the question asks. The correct answer is \"SNMP version 3\".",
+            "explanation": "**SNMP version 2e** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP version 2c** does not satisfy what the question asks. The correct answer is \"SNMP version 3\".",
+            "explanation": "**SNMP version 2c** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
@@ -80,19 +80,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Object identifiers (OIDs)** describes a different mechanism than this question tests. The right idea: The correct answer is \"Management information base\".",
+            "explanation": "**Object identifiers (OIDs)** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP agent** describes a different mechanism than this question tests. The right idea: The correct answer is \"Management information base\".",
+            "explanation": "**SNMP agent** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SNMP community string** describes a different mechanism than this question tests. The right idea: The correct answer is \"Management information base\".",
+            "explanation": "**SNMP community string** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
@@ -129,19 +129,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Syslog** describes a different mechanism than this question tests. The right idea: The correct answer is \"Network management station\".",
+            "explanation": "**Syslog** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Object identifier** describes a different mechanism than this question tests. The right idea: The correct answer is \"Network management station\".",
+            "explanation": "**Object identifier** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Management information base** describes a different mechanism than this question tests. The right idea: The correct answer is \"Network management station\".",
+            "explanation": "**Management information base** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
@@ -177,19 +177,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Get-request message** describes a different mechanism than this question tests. The right idea: The correct answer is \"Trap message\".",
+            "explanation": "**Get-request message** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Get-response message** describes a different mechanism than this question tests. The right idea: The correct answer is \"Trap message\".",
+            "explanation": "**Get-response message** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Set-request message** describes a different mechanism than this question tests. The right idea: The correct answer is \"Trap message\".",
+            "explanation": "**Set-request message** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
@@ -227,19 +227,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The SNMP community string** describes a different mechanism than this question tests. The right idea: The correct answer is \"Object identifiers (OIDs)\".",
+            "explanation": "**The SNMP community string** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The SNMP agent** describes a different mechanism than this question tests. The right idea: The correct answer is \"Object identifiers (OIDs)\".",
+            "explanation": "**The SNMP agent** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SNMP messages** describes a different mechanism than this question tests. The right idea: The correct answer is \"Object identifiers (OIDs)\".",
+            "explanation": "**SNMP messages** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
@@ -277,19 +277,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Trap messages are always encrypted.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Inform messages always use acknowledgments.",
+            "explanation": "**Trap messages are always encrypted.** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Inform messages do not use acknowledgments.** contradicts the expected behavior. The correct answer is \"Inform messages always use acknowledgments.",
+            "explanation": "**Inform messages do not use acknowledgments.** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Trap messages always use acknowledgments.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Inform messages always use acknowledgments.",
+            "explanation": "**Trap messages always use acknowledgments.** does not answer the requirement in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
@@ -325,19 +325,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Encryption** describes a different mechanism than this question tests. The right idea: The correct answer is \"Community strings\".",
+            "explanation": "**Encryption** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**User authentication** describes a different mechanism than this question tests. The right idea: The correct answer is \"Community strings\".",
+            "explanation": "**User authentication** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Message integrity** describes a different mechanism than this question tests. The right idea: The correct answer is \"Community strings\".",
+            "explanation": "**Message integrity** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
@@ -372,19 +372,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Encrypted communities** describes a different mechanism than this question tests. The right idea: The correct answer is \"Access control lists\".",
+            "explanation": "**Encrypted communities** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP callback security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Access control lists\".",
+            "explanation": "**SNMP callback security** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SHA-256** describes a different mechanism than this question tests. The right idea: The correct answer is \"Access control lists\".",
+            "explanation": "**SHA-256** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
@@ -420,19 +420,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps** does not satisfy what the question asks. The correct answer is \"Switch(config)#snmp-server host 192.",
+            "explanation": "**Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps** does not satisfy what the question asks. The correct answer is \"Switch(config)#snmp-server host 192.",
+            "explanation": "**Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#snmp contact trap 192.168.1.5 version 2c** does not satisfy what the question asks. The correct answer is \"Switch(config)#snmp-server host 192.",
+            "explanation": "**Switch(config)#snmp contact trap 192.168.1.5 version 2c** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
@@ -469,19 +469,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/161** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/162\".",
+            "explanation": "**UDP/161** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**TCP/162** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/162\".",
+            "explanation": "**TCP/162** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**UDP/514** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/162\".",
+            "explanation": "**UDP/514** does not answer which in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
@@ -518,20 +518,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show snmp** does not satisfy what the question asks. The correct answer is \"Switch#show snmp host\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show snmp** does not answer which in this stem. .",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show snmp community** does not satisfy what the question asks. The correct answer is \"Switch#show snmp host\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show snmp community** does not answer which in this stem. .",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show snmp notifications** does not satisfy what the question asks. The correct answer is \"Switch#show snmp host\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show snmp notifications** does not answer which in this stem. .",
+            "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
@@ -568,19 +568,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Configuring a group** does not satisfy what the question asks. The correct answer is \"Configuring a view\".",
+            "explanation": "**Configuring a group** does not answer configure in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Configuring a user** does not satisfy what the question asks. The correct answer is \"Configuring a view\".",
+            "explanation": "**Configuring a user** does not answer configure in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Configuring a community** does not satisfy what the question asks. The correct answer is \"Configuring a view\".",
+            "explanation": "**Configuring a community** does not answer configure in this stem. .",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }

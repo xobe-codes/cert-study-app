@@ -29,20 +29,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**To increase the possibility for misconfiguration** describes a different mechanism than this question tests. The right idea: The correct answer is \"To create an outcome that can be reproduced\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**To increase the possibility for misconfiguration** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"To increase the possibility for misconfi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**To decrease problems from the new configuration** describes a different mechanism than this question tests. The right idea: The correct answer is \"To create an outcome that can be reproduced\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**To decrease problems from the new configuration** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"To decrease problems from the new config…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**To allow you to do less work** describes a different mechanism than this question tests. The right idea: The correct answer is \"To create an outcome that can be reproduced\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**To allow you to do less work** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"To allow you to do less work\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -77,19 +77,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Copy and paste scripts built in Notepad++ into each router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Create a Python script to configure each router.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Copy and paste scripts built in Notepad++ into each router.** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Copy and paste scripts built in Notepad+…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Copy and paste scripts built in Excel into each router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Create a Python script to configure each router.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Copy and paste scripts built in Excel into each router.** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Copy and paste scripts built in Excel in…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Work with a partner so that both of you can double-check each other’s work and cut the time in half.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Create a Python script to configure each router.",
+            "explanation": "**Work with a partner so that both of you can double-check each other’s work and cut the time in half.** does not answer configure in this stem. .",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
             "needsExplanationReview": true
           }
@@ -124,20 +124,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Reduce the number of changes to be made** describes a different mechanism than this question tests. The right idea: The correct answer is \"Reduce the human error factor\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Reduce the number of changes to be made** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Reduce the number of changes to be made\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Reduce the complications that arise from changes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Reduce the human error factor\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Reduce the complications that arise from changes** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Reduce the complications that arise from…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Reduce the planning time for the changes** describes a different mechanism than this question tests. The right idea: The correct answer is \"Reduce the human error factor\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Reduce the planning time for the changes** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Reduce the planning time for the changes\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -173,20 +173,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**NetOps** describes a different mechanism than this question tests. The right idea: The correct answer is \"DevOps\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**NetOps** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"NetOps\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SysOps** describes a different mechanism than this question tests. The right idea: The correct answer is \"DevOps\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SysOps** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"SysOps\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SecOps** describes a different mechanism than this question tests. The right idea: The correct answer is \"DevOps\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SecOps** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"SecOps\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -221,20 +221,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Waterfall** describes a different mechanism than this question tests. The right idea: The correct answer is \"Lean and Agile\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Waterfall** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Waterfall\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Kanban** describes a different mechanism than this question tests. The right idea: The correct answer is \"Lean and Agile\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Kanban** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Kanban\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Scrum** describes a different mechanism than this question tests. The right idea: The correct answer is \"Lean and Agile\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Scrum** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Scrum\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -268,20 +268,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Testing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Monitoring\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Testing** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Testing\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Building** describes a different mechanism than this question tests. The right idea: The correct answer is \"Monitoring\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Building** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Building\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Planning** describes a different mechanism than this question tests. The right idea: The correct answer is \"Monitoring\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Planning** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Planning\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

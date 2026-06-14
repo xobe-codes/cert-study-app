@@ -29,18 +29,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**netstat** describes a different mechanism than this question tests. The right idea: ipconfig /all displays full IPv4/IPv6 client parameters.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**netstat** does not answer which in this stem. ipconfig /all displays full IPv4/IPv6 client parameters.",
+            "misconceptionTested": "Selecting \"netstat\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**arp -a** describes a different mechanism than this question tests. The right idea: ipconfig /all displays full IPv4/IPv6 client parameters.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**arp -a** does not answer which in this stem. ipconfig /all displays full IPv4/IPv6 client parameters.",
+            "misconceptionTested": "Selecting \"arp -a\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**route print only** describes a different mechanism than this question tests. The right idea: ipconfig /all displays full IPv4/IPv6 client parameters.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**route print only** does not answer which in this stem. ipconfig /all displays full IPv4/IPv6 client parameters.",
+            "misconceptionTested": "Selecting \"route print only\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -71,18 +71,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DNS server** describes a different mechanism than this question tests. The right idea: Same-subnet works but off-subnet fails → check default gateway.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
+            "explanation": "**DNS server** does not answer the requirement in this stem. Same-subnet works but off-subnet fails → check default gateway.",
+            "misconceptionTested": "Selecting \"DNS server\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Wrong VLAN on switch** describes a different mechanism than this question tests. The right idea: Same-subnet works but off-subnet fails → check default gateway.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Wrong VLAN on switch** reflects a common trap: Blaming DNS when the gateway is wrong. If remote IPs fail, fix gateway/routing before DNS.",
+            "misconceptionTested": "Blaming DNS when the gateway is wrong"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**WPA3** describes a different mechanism than this question tests. The right idea: Same-subnet works but off-subnet fails → check default gateway.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WPA3** does not answer the requirement in this stem. Same-subnet works but off-subnet fails → check default gateway.",
+            "misconceptionTested": "Selecting \"WPA3\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -113,18 +113,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Cable CRC errors** describes a different mechanism than this question tests. The right idea: IP works but names fail — troubleshoot DNS settings or server.",
+            "explanation": "**Cable CRC errors** does not answer the requirement in this stem. IP works but names fail — troubleshoot DNS settings or server.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Missing subnet mask** describes a different mechanism than this question tests. The right idea: IP works but names fail — troubleshoot DNS settings or server.",
+            "explanation": "**Missing subnet mask** does not answer the requirement in this stem. IP works but names fail — troubleshoot DNS settings or server.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**STP loop** describes a different mechanism than this question tests. The right idea: IP works but names fail — troubleshoot DNS settings or server.",
-            "misconceptionTested": "Reversing forward vs reverse DNS lookup"
+            "explanation": "**STP loop** is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           }
         ],
         "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
@@ -160,13 +160,13 @@
           },
           {
             "choiceIndex": 2,
-            "explanation": "**DHCP lease time only** describes a different mechanism than this question tests. The right idea: Traceroute reveals each router hop toward the destination.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DHCP lease time only** does not answer what does in this stem. Traceroute reveals each router hop toward the destination.",
+            "misconceptionTested": "Selecting \"DHCP lease time only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Wi‑Fi channel** describes a different mechanism than this question tests. The right idea: Traceroute reveals each router hop toward the destination.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Wi‑Fi channel** does not answer what does in this stem. Traceroute reveals each router hop toward the destination.",
+            "misconceptionTested": "Selecting \"Wi‑Fi channel\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -198,18 +198,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**OSPF neighbor table** describes a different mechanism than this question tests. The right idea: 169.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**OSPF neighbor table** does not answer the requirement in this stem. 169.",
+            "misconceptionTested": "Selecting \"OSPF neighbor table\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Fiber SM/MM type** describes a different mechanism than this question tests. The right idea: 169.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Fiber SM/MM type** does not answer the requirement in this stem. 169.",
+            "misconceptionTested": "Selecting \"Fiber SM/MM type\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VTP domain** describes a different mechanism than this question tests. The right idea: 169.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**VTP domain** does not answer the requirement in this stem. 169.",
+            "misconceptionTested": "Selecting \"VTP domain\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -240,18 +240,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Hostname → random IP** describes a different mechanism than this question tests. The right idea: Test gateway, then known public IP, then DNS name to isolate layer.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Hostname → random IP** is a plausible symptom fix but does not match the most likely root cause here: Test gateway, then known public IP, then DNS name to isolate layer.",
+            "misconceptionTested": "Selecting \"Hostname → random IP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Broadcast → multicast** describes a different mechanism than this question tests. The right idea: Test gateway, then known public IP, then DNS name to isolate layer.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Broadcast → multicast** is a plausible symptom fix but does not match the most likely root cause here: Test gateway, then known public IP, then DNS name to isolate layer.",
+            "misconceptionTested": "Selecting \"Broadcast → multicast\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Loopback only** describes a different mechanism than this question tests. The right idea: Test gateway, then known public IP, then DNS name to isolate layer.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Loopback only** is a plausible symptom fix but does not match the most likely root cause here: Test gateway, then known public IP, then DNS name to isolate layer.",
+            "misconceptionTested": "Selecting \"Loopback only\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -282,18 +282,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**show vlan brief** describes a different mechanism than this question tests. The right idea: ip route displays routes and the default gateway.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**show vlan brief** does not answer which in this stem. ip route displays routes and the default gateway.",
+            "misconceptionTested": "Selecting \"show vlan brief\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ifconfig only** describes a different mechanism than this question tests. The right idea: ip route displays routes and the default gateway.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**ifconfig only** does not answer which in this stem. ip route displays routes and the default gateway.",
+            "misconceptionTested": "Selecting \"ifconfig only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**debug ip routing** describes a different mechanism than this question tests. The right idea: ip route displays routes and the default gateway.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**debug ip routing** does not answer which in this stem. ip route displays routes and the default gateway.",
+            "misconceptionTested": "Selecting \"debug ip routing\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -324,18 +324,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Correct DNS** describes a different mechanism than this question tests. The right idea: Duplicate IPs cause ARP conflicts and flaky connectivity.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
+            "explanation": "**Correct DNS** does not answer the requirement in this stem. Duplicate IPs cause ARP conflicts and flaky connectivity.",
+            "misconceptionTested": "Selecting \"Correct DNS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Full-duplex on both ends** describes a different mechanism than this question tests. The right idea: Duplicate IPs cause ARP conflicts and flaky connectivity.",
+            "explanation": "**Full-duplex on both ends** does not answer the requirement in this stem. Duplicate IPs cause ARP conflicts and flaky connectivity.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Valid DHCP lease** describes a different mechanism than this question tests. The right idea: Duplicate IPs cause ARP conflicts and flaky connectivity.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Valid DHCP lease** does not answer the requirement in this stem. Duplicate IPs cause ARP conflicts and flaky connectivity.",
+            "misconceptionTested": "Selecting \"Valid DHCP lease\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

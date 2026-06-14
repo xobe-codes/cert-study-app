@@ -31,20 +31,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**User interface layout** describes a different mechanism than this question tests. The right idea: The correct answer is \"API reference\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**User interface layout** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"User interface layout\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Source code of the device** describes a different mechanism than this question tests. The right idea: The correct answer is \"API reference\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Source code of the device** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Source code of the device\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Data storage of the device** describes a different mechanism than this question tests. The right idea: The correct answer is \"API reference\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Data storage of the device** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Data storage of the device\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -82,20 +82,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**CLI** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CLI** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"CLI\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Syslog** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Syslog** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SSH** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SSH** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -132,20 +132,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Syslog** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Syslog** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**REST** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**REST** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"REST\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SSH** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SSH** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -183,20 +183,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**REST** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**REST** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"REST\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SNMP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**YAML** describes a different mechanism than this question tests. The right idea: The correct answer is \"NETCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**YAML** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"YAML\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -234,20 +234,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**NETCONF** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**NETCONF** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"NETCONF\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SNMP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Syslog** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Syslog** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -284,20 +284,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SNMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SNMP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNTP** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SNTP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SNTP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SOAP** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SOAP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SOAP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -336,20 +336,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Pass the username and password in every request.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Send a POST to the API for an authentication token.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Pass the username and password in every request.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Pass the username and password in every …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Send a GET to the API for an auth token.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Send a POST to the API for an authentication token.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Send a GET to the API for an auth token.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Send a GET to the API for an auth token.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Create a public private key pair for the Cisco DNA Center appliance.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Send a POST to the API for an authentication token.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Create a public private key pair for the Cisco DNA Center appliance.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Create a public private key pair for the…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -384,20 +384,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Memory cleanup** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data actions\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Memory cleanup** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Memory cleanup\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Replacement for REST-based APIs** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data actions\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Replacement for REST-based APIs** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Replacement for REST-based APIs\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Data encoding** describes a different mechanism than this question tests. The right idea: The correct answer is \"Data actions\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Data encoding** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Data encoding\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -434,20 +434,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**AD integrated** describes a different mechanism than this question tests. The right idea: The correct answer is \"Basic\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AD integrated** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"AD integrated\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SSL** describes a different mechanism than this question tests. The right idea: The correct answer is \"Basic\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SSL** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SSL\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Pass-through** describes a different mechanism than this question tests. The right idea: The correct answer is \"Basic\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Pass-through** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Pass-through\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -483,20 +483,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Add it as a variable named X-Auth-Token in the script.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Add it as a variable named X-Auth-Token in the script.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Add it as a variable named X-Auth-Token …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Pass the token in the URI of subsequent requests.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Pass the token in the URI of subsequent requests.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Pass the token in the URI of subsequent …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Perform a POST for the authentication token within 10 seconds of the subsequent request.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Place it in the header of the request as an X-Auth-Token element.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Perform a POST for the authentication token within 10 seconds of the subsequent request.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Perform a POST for the authentication to…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -536,20 +536,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SSL** describes a different mechanism than this question tests. The right idea: The correct answer is \"Base64\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SSL** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SSL\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**AAA** describes a different mechanism than this question tests. The right idea: The correct answer is \"Base64\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AAA** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"AAA\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Basic** describes a different mechanism than this question tests. The right idea: The correct answer is \"Base64\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Basic** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Basic\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -587,20 +587,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**OpenFlow** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**OpenFlow** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"OpenFlow\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SNMP** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**REST-based API** describes a different mechanism than this question tests. The right idea: The correct answer is \"RESTCONF\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Automation questions hinge on the tool/API named in the stem — do not swap REST, Ansible, or controller roles.",
+            "misconceptionTested": "Swapping automation tools or API styles",
             "needsExplanationReview": true
           }
         ],
@@ -638,20 +638,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**application/json** does not satisfy what the question asks. The correct answer is \"application/yang-data+json\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**application/json** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"application/json\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**data/json** describes a different mechanism than this question tests. The right idea: The correct answer is \"application/yang-data+json\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**data/json** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"data/json\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**data/yaml** describes a different mechanism than this question tests. The right idea: The correct answer is \"application/yang-data+json\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**data/yaml** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"data/yaml\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -689,20 +689,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Format your response correctly.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Restart the REST-based service.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Format your response correctly.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Format your response correctly.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Authenticate to the device first.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Restart the REST-based service.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Authenticate to the device first.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Authenticate to the device first.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Nothing; this code means OK.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Restart the REST-based service.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Nothing; this code means OK.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Nothing; this code means OK.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -740,20 +740,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Northbound interface** describes a different mechanism than this question tests. The right idea: The correct answer is \"Southbound interface\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Northbound interface** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Northbound interface\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Eastbound interface** describes a different mechanism than this question tests. The right idea: The correct answer is \"Southbound interface\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Eastbound interface** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Eastbound interface\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Westbound interface** describes a different mechanism than this question tests. The right idea: The correct answer is \"Southbound interface\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Westbound interface** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Westbound interface\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -788,20 +788,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**HTTP body** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP header\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**HTTP body** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"HTTP body\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Script variable** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP header\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Script variable** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Script variable\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Script data object** describes a different mechanism than this question tests. The right idea: The correct answer is \"HTTP header\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Script data object** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Script data object\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -838,20 +838,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**GET** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**GET** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"GET\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**PATCH** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**PATCH** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"PATCH\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DELETE** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**DELETE** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"DELETE\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -886,20 +886,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Backslash** describes a different mechanism than this question tests. The right idea: The correct answer is \"Question mark\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Backslash** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Backslash\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Forward slash** describes a different mechanism than this question tests. The right idea: The correct answer is \"Question mark\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Forward slash** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Forward slash\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Ampersand** describes a different mechanism than this question tests. The right idea: The correct answer is \"Question mark\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Ampersand** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Ampersand\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -934,20 +934,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**GET** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**GET** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"GET\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**UPDATE** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**UPDATE** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"UPDATE\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**PUT** describes a different mechanism than this question tests. The right idea: The correct answer is \"POST\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**PUT** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"PUT\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -983,20 +983,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The command is missing parameters.** does not satisfy what the question asks. The correct answer is \"The command has timed out.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The command is missing parameters.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"The command is missing parameters.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The command is restricted.** does not satisfy what the question asks. The correct answer is \"The command has timed out.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Automation questions hinge on the tool/API named in the stem — do not swap REST, Ansible, or controller roles.",
+            "misconceptionTested": "Swapping automation tools or API styles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The service is down.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The command has timed out.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The service is down.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"The service is down.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

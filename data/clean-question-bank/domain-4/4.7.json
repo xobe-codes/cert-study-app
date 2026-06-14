@@ -30,19 +30,19 @@
           {
             "choiceIndex": 1,
             "explanation": "**Layer 2 ASICs** is the wrong OSI layer here. The stem tests **Layer 3** behavior — routers forward based on IP addresses and routing tables.",
-            "misconceptionTested": "Choosing data link layer when the question is about network layer routing",
+            "misconceptionTested": "Selecting \"Layer 2 ASICs\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Route tables** describes a different mechanism than this question tests. The right idea: The correct answer is \"Access control lists\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Route tables** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Route tables\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Frame filters** describes a different mechanism than this question tests. The right idea: The correct answer is \"Access control lists\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Frame filters** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Frame filters\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -78,20 +78,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Bandwidth** describes a different mechanism than this question tests. The right idea: The correct answer is \"Jitter\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Bandwidth** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Bandwidth\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Delay** describes a different mechanism than this question tests. The right idea: The correct answer is \"Jitter\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Delay** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Delay\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Loss** describes a different mechanism than this question tests. The right idea: The correct answer is \"Jitter\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Loss** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Loss\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -125,20 +125,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The Class of Service field is a layer 3 field.** does not satisfy what the question asks. The correct answer is \"The Class of Service field is only present in 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The Class of Service field is a layer 3 field.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The Class of Service field is a layer 3 …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The Class of Service field is present from end to end of a transmission.** does not satisfy what the question asks. The correct answer is \"The Class of Service field is only present in 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The Class of Service field is present from end to end of a transmission.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The Class of Service field is present fr…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The Class of Service field is 6 bits.** does not satisfy what the question asks. The correct answer is \"The Class of Service field is only present in 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The Class of Service field is 6 bits.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The Class of Service field is 6 bits.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -175,20 +175,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Bandwidth** describes a different mechanism than this question tests. The right idea: The correct answer is \"Loss\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Bandwidth** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Bandwidth\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Delay** describes a different mechanism than this question tests. The right idea: The correct answer is \"Loss\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Delay** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Delay\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Jitter** describes a different mechanism than this question tests. The right idea: The correct answer is \"Loss\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Jitter** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Jitter\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -223,20 +223,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DSCP AF 43** describes a different mechanism than this question tests. The right idea: The correct answer is \"DSCP EF 46\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**DSCP AF 43** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"DSCP AF 43\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**DSCP AF 11** describes a different mechanism than this question tests. The right idea: The correct answer is \"DSCP EF 46\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**DSCP AF 11** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"DSCP AF 11\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DSCP AF 00** describes a different mechanism than this question tests. The right idea: The correct answer is \"DSCP EF 46\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**DSCP AF 00** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"DSCP AF 00\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -270,20 +270,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**10 ms** describes a different mechanism than this question tests. The right idea: The correct answer is \"150 ms\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**10 ms** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"10 ms\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**90 ms** describes a different mechanism than this question tests. The right idea: The correct answer is \"150 ms\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**90 ms** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"90 ms\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**300 ms** describes a different mechanism than this question tests. The right idea: The correct answer is \"150 ms\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**300 ms** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"300 ms\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -320,20 +320,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**CBWFQ** describes a different mechanism than this question tests. The right idea: The correct answer is \"LLQ\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CBWFQ** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"CBWFQ\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FIFO** describes a different mechanism than this question tests. The right idea: The correct answer is \"LLQ\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**FIFO** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"FIFO\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**CIR** describes a different mechanism than this question tests. The right idea: The correct answer is \"LLQ\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CIR** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"CIR\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -371,20 +371,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**LLQ** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**LLQ** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"LLQ\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**CBWFQ** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CBWFQ** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"CBWFQ\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**FIFO** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**FIFO** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"FIFO\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -421,20 +421,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Shaping drops packets over the configured bit rate to cause loss.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Shaping drops packets over the configured bit rate to cause loss.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Shaping drops packets over the configure…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Shaping holds packets in the queue over the configured bit rate to cause jitter.** does not satisfy what the question asks. The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Shaping holds packets in the queue over the configured bit rate to cause jitter.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Shaping holds packets in the queue over …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Shaping slows packets in the queue over the configured bit rate to adhere to the speed.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Shaping holds packets in the queue over the configured bit rate to cause delay.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Shaping slows packets in the queue over the configured bit rate to adhere to the speed.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Shaping slows packets in the queue over …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -470,20 +470,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**LLQ** describes a different mechanism than this question tests. The right idea: The correct answer is \"CBWFQ\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**LLQ** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"LLQ\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**FIFO** describes a different mechanism than this question tests. The right idea: The correct answer is \"CBWFQ\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**FIFO** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"FIFO\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**PQ** describes a different mechanism than this question tests. The right idea: The correct answer is \"CBWFQ\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**PQ** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"PQ\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -520,20 +520,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Policing holds packets in the queue over the configured bit rate to cause delay.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Policing holds packets in the queue over the configured bit rate to cause delay.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Policing holds packets in the queue over…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Policing holds packets in the queue over the configured bit rate to cause jitter.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Policing holds packets in the queue over the configured bit rate to cause jitter.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Policing holds packets in the queue over…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Policing slows packets in the queue over the configured bit rate to adhere to the bit rate.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Policing drops packets over the configured bit rate to cause loss.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Policing slows packets in the queue over the configured bit rate to adhere to the bit rate.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Policing slows packets in the queue over…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -568,20 +568,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**To help police LAN applications** describes a different mechanism than this question tests. The right idea: The correct answer is \"To maintain a contracted CIR\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**To help police LAN applications** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"To help police LAN applications\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**To help police WAN applications** describes a different mechanism than this question tests. The right idea: The correct answer is \"To maintain a contracted CIR\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**To help police WAN applications** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"To help police WAN applications\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**To maintain a contracted burst rate** does not satisfy what the question asks. The correct answer is \"To maintain a contracted CIR\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**To maintain a contracted burst rate** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"To maintain a contracted burst rate\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -619,20 +619,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**When the queue depth is full, a percentage of TCP packets are dropped.** does not satisfy what the question asks. The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**When the queue depth is full, a percentage of TCP packets are dropped.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"When the queue depth is full, a percenta…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**When the queue depth is empty, a percentage of TCP packets are dropped.** does not satisfy what the question asks. The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**When the queue depth is empty, a percentage of TCP packets are dropped.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"When the queue depth is empty, a percent…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped.** does not satisfy what the question asks. The correct answer is \"When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**When the queue depth is below the minimum threshold, a percentage of TCP packets are dropped.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"When the queue depth is below the minimu…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -669,20 +669,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**AF31 marked traffic has a better queue than AF41 marked traffic.** does not satisfy what the question asks. The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AF31 marked traffic has a better queue than AF41 marked traffic.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"AF31 marked traffic has a better queue t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Both AF31 and AF41 marked traffic has an equal queue.** describes a different mechanism than this question tests. The right idea: The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.",
+            "explanation": "**Both AF31 and AF41 marked traffic has an equal queue.** does not answer which in this stem. .",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**During high congestion, AF41 queues will be dropped and AF31 queues won’t.** describes a different mechanism than this question tests. The right idea: The correct answer is \"AF41 marked traffic has a better queue than AF31 marked traffic.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**During high congestion, AF41 queues will be dropped and AF31 queues won’t.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"During high congestion, AF41 queues will…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

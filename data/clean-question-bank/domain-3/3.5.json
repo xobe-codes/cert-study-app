@@ -31,20 +31,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Proxy ARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"VRRP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Proxy ARP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Proxy ARP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**GLBP** describes a different mechanism than this question tests. The right idea: The correct answer is \"VRRP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**GLBP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"GLBP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**HSRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"VRRP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**HSRP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"HSRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -79,20 +79,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**0000.0c** describes a different mechanism than this question tests. The right idea: The correct answer is \"07.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**0000.0c** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"0000.0c\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**oc07** describes a different mechanism than this question tests. The right idea: The correct answer is \"07.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**oc07** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"oc07\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**0a** describes a different mechanism than this question tests. The right idea: The correct answer is \"07.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**0a** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"0a\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -128,20 +128,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Proxy ARP** describes a different mechanism than this question tests. The right idea: The correct answer is \"GLBP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Proxy ARP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Proxy ARP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**VRRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"GLBP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**VRRP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"VRRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**HSRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"GLBP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**HSRP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"HSRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -176,20 +176,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**0000.0c** describes a different mechanism than this question tests. The right idea: The correct answer is \"01\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**0000.0c** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"0000.0c\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**0c07** describes a different mechanism than this question tests. The right idea: The correct answer is \"01\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**0c07** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"0c07\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**07.ac** describes a different mechanism than this question tests. The right idea: The correct answer is \"01\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**07.ac** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"07.ac\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -225,20 +225,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**110** describes a different mechanism than this question tests. The right idea: The correct answer is \"100\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**110** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"110\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**200** describes a different mechanism than this question tests. The right idea: The correct answer is \"100\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**200** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"200\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**10** does not satisfy what the question asks. The correct answer is \"100\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**10** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"10\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -272,20 +272,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**8** describes a different mechanism than this question tests. The right idea: The correct answer is \"256\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**8** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"8\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**16** describes a different mechanism than this question tests. The right idea: The correct answer is \"256\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**16** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"16\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**255** describes a different mechanism than this question tests. The right idea: The correct answer is \"256\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**255** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"255\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -319,20 +319,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/1935** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/1985\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**UDP/1935** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"UDP/1935\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP/1895** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/1985\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**UDP/1895** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"UDP/1895\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**UCP/3222** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/1985\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**UCP/3222** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"UCP/3222\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -367,20 +367,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**All routers in an HSRP group are active.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Only one router in an HSRP group can be active.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**All routers in an HSRP group are active.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"All routers in an HSRP group are active.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The virtual router sends hello packets to the HSRP group.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Only one router in an HSRP group can be active.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The virtual router sends hello packets to the HSRP group.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The virtual router sends hello packets t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**HSRP allows for per-packet load balancing.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Only one router in an HSRP group can be active.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**HSRP allows for per-packet load balancing.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"HSRP allows for per-packet load balancin…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -414,20 +414,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Unicast** describes a different mechanism than this question tests. The right idea: The correct answer is \"Multicast\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Unicast** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Unicast\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Broadcast** describes a different mechanism than this question tests. The right idea: The correct answer is \"Multicast\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Broadcast** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Broadcast\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Layer 2 flooding** describes a different mechanism than this question tests. The right idea: The correct answer is \"Multicast\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Layer 2 flooding** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Layer 2 flooding\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -463,20 +463,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Active router** describes a different mechanism than this question tests. The right idea: The correct answer is \"Virtual router\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Active router** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Active router\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Standby router** describes a different mechanism than this question tests. The right idea: The correct answer is \"Virtual router\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Standby router** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Standby router\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Monitor router** describes a different mechanism than this question tests. The right idea: The correct answer is \"Virtual router\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Monitor router** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Monitor router\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -511,20 +511,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Hello timer** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hold timer\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Hello timer** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Hello timer\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Standby timer** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hold timer\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Standby timer** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Standby timer\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Virtual timer** describes a different mechanism than this question tests. The right idea: The correct answer is \"Hold timer\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Virtual timer** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Virtual timer\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -559,20 +559,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/1935** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/3222\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**UDP/1935** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"UDP/1935\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**UDP/1985** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/3222\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**UDP/1985** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"UDP/1985\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP/1895** describes a different mechanism than this question tests. The right idea: The correct answer is \"UDP/3222\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**UDP/1895** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"UDP/1895\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -608,20 +608,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**HSRPv2 does not use hello packets.** contradicts the expected behavior. The correct answer is \"HSRPv2 uses milliseconds.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**HSRPv2 does not use hello packets.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"HSRPv2 does not use hello packets.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**HSRPv1 uses broadcasts, and HSRPv2 uses multicasts.** describes a different mechanism than this question tests. The right idea: The correct answer is \"HSRPv2 uses milliseconds.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**HSRPv1 uses broadcasts, and HSRPv2 uses multicasts.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"HSRPv1 uses broadcasts, and HSRPv2 uses …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**HSRPv1 supports IPv6.** describes a different mechanism than this question tests. The right idea: The correct answer is \"HSRPv2 uses milliseconds.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**HSRPv1 supports IPv6.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
@@ -657,20 +657,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The active router is responsible for responding to clients with the virtual router’s MAC address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The active router is responsible for responding to clients with the virtual router’s MAC address.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The active router is responsible for res…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The active virtual gateway will respond with a MAC address of the active router.** does not satisfy what the question asks. The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The active virtual gateway will respond with a MAC address of the active router.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The active virtual gateway will respond …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The virtual router is responsible for responding to tracking requests.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The active virtual gateway will respond with a MAC address of an active virtual forwarder.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The virtual router is responsible for responding to tracking requests.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The virtual router is responsible for re…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -707,20 +707,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The router with the lowest priority** does not satisfy what the question asks. The correct answer is \"The router with the highest priority and highest IP address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The router with the lowest priority** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The router with the lowest priority\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The router with the highest priority** does not satisfy what the question asks. The correct answer is \"The router with the highest priority and highest IP address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The router with the highest priority** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The router with the highest priority\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The router with the lowest priority and lowest IP address** does not satisfy what the question asks. The correct answer is \"The router with the highest priority and highest IP address\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The router with the lowest priority and lowest IP address** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The router with the lowest priority and …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -755,20 +755,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**2** describes a different mechanism than this question tests. The right idea: The correct answer is \"4\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**2** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**16** describes a different mechanism than this question tests. The right idea: The correct answer is \"4\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**16** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"16\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**1,024** describes a different mechanism than this question tests. The right idea: The correct answer is \"4\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**1,024** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"1,024\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -803,20 +803,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-if)#standby 1 priority 70** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 priority 150\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config-if)#standby 1 priority 70** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config-if)#standby 1 priority 70\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-if)#hsrp 1 priority 150** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 priority 150\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config-if)#hsrp 1 priority 150** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config-if)#hsrp 1 priority 150\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-if)#hsrp 1 priority 90** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 priority 150\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config-if)#hsrp 1 priority 90** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config-if)#hsrp 1 priority 90\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -850,20 +850,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**255** describes a different mechanism than this question tests. The right idea: The correct answer is \"4,096\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**255** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"255\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**256** describes a different mechanism than this question tests. The right idea: The correct answer is \"4,096\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**256** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"256\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**1,024** describes a different mechanism than this question tests. The right idea: The correct answer is \"4,096\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**1,024** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"1,024\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -900,20 +900,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**HSRPv1** describes a different mechanism than this question tests. The right idea: The correct answer is \"HSRPv2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**HSRPv1** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"HSRPv1\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**GLBP** describes a different mechanism than this question tests. The right idea: The correct answer is \"HSRPv2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**GLBP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"GLBP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VRRP** describes a different mechanism than this question tests. The right idea: The correct answer is \"HSRPv2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**VRRP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"VRRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -949,20 +949,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**It allows the protocol to effectively load-balance per packet.** describes a different mechanism than this question tests. The right idea: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**It allows the protocol to effectively load-balance per packet.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"It allows the protocol to effectively lo…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**It watches an upstream interface and fails over when the interface goes down.** describes a different mechanism than this question tests. The right idea: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**It watches an upstream interface and fails over when the interface goes down.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"It watches an upstream interface and fai…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**It ignores the priorities of the routers and elects an active router by highest IP address.** describes a different mechanism than this question tests. The right idea: The correct answer is \"When a standby router comes online, it allows for a re-election of the active router.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**It ignores the priorities of the routers and elects an active router by highest IP address.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"It ignores the priorities of the routers…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -997,20 +997,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Configure version 2 for all HSRP groups.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Configure version 2 for all HSRP groups.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Configure version 2 for all HSRP groups.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Configure PPPoE on the router interfaces.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Configure PPPoE on the router interfaces.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Configure PPPoE on the router interfaces…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Configure all routers in the HSRP as active routers.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Configure an HSRP group per VLAN and alternate the priority above 100.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Configure all routers in the HSRP as active routers.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Configure all routers in the HSRP as act…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1044,20 +1044,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA#show hsrp** does not satisfy what the question asks. The correct answer is \"RouterA#show standby\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**RouterA#show hsrp** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"RouterA#show hsrp\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA#show ip standby** does not satisfy what the question asks. The correct answer is \"RouterA#show standby\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**RouterA#show ip standby** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"RouterA#show ip standby\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA#show ip hsrp** does not satisfy what the question asks. The correct answer is \"RouterA#show standby\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**RouterA#show ip hsrp** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"RouterA#show ip hsrp\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1095,20 +1095,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The default priority is 150.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The HSRP group is not set for preemption.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The default priority is 150.** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The hold timer is set too high and needs to timeout.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The HSRP group is not set for preemption.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The hold timer is set too high and needs to timeout.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"The hold timer is set too high and needs…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router A’s IP address is too low.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The HSRP group is not set for preemption.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router A’s IP address is too low.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Router A’s IP address is too low.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1143,20 +1143,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#standby 1 preemption** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 preempt\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config)#standby 1 preemption** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config)#standby 1 preemption\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-if)#standby 1 preemption** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 preempt\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config-if)#standby 1 preemption** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config-if)#standby 1 preemption\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-if)#hsrp 1 preempt** does not satisfy what the question asks. The correct answer is \"Router(config-if)#standby 1 preempt\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config-if)#hsrp 1 preempt** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config-if)#hsrp 1 preempt\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1191,20 +1191,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#vrrp 1 10.1.2.3 gi 0/0** does not satisfy what the question asks. The correct answer is \"Router(config-if)#vrrp 1 ip 10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config)#vrrp 1 10.1.2.3 gi 0/0** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config)#vrrp 1 10.1.2.3 gi 0/0\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-if)#vrrp 1 10.1.2.3** does not satisfy what the question asks. The correct answer is \"Router(config-if)#vrrp 1 ip 10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config-if)#vrrp 1 10.1.2.3** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config-if)#vrrp 1 10.1.2.3\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp** does not satisfy what the question asks. The correct answer is \"Router(config-if)#vrrp 1 ip 10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config-if)#standby 1 10.1.2.3 Rou…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1240,20 +1240,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"RouterA(config-if)#standby 1 interface t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"RouterA(config-if)#standby 1 tracking se…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"RouterA(config-if)#interface serial 0/0/…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1287,20 +1287,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ip hsrp** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router#debug standby\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip hsrp** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router#show ip hsrp\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#debug ip hsrp** does not satisfy what the question asks. The correct answer is \"Router#debug standby\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#debug ip hsrp** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router#debug ip hsrp\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#debug ip standby** does not satisfy what the question asks. The correct answer is \"Router#debug standby\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#debug ip standby** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router#debug ip standby\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1336,20 +1336,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The active virtual gateway will respond with a MAC address of the active router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"GLBP allows for per-host load balancing.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The active virtual gateway will respond with a MAC address of the active router.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The active virtual gateway will respond …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**GLBP allows for per-subnet load balancing.** does not satisfy what the question asks. The correct answer is \"GLBP allows for per-host load balancing.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**GLBP allows for per-subnet load balancing.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"GLBP allows for per-subnet load balancin…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The virtual router is responsible for responding to tracking requests.** describes a different mechanism than this question tests. The right idea: The correct answer is \"GLBP allows for per-host load balancing.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The virtual router is responsible for responding to tracking requests.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The virtual router is responsible for re…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1384,20 +1384,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config-if)#standby 1 timers 200 msec 700 msec** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**RouterA(config-if)#standby 1 timers 200 msec 700 msec** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"RouterA(config-if)#standby 1 timers 200 …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RouterA(config-if)#standby 1 timers 700 msec 200 msec** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**RouterA(config-if)#standby 1 timers 700 msec 200 msec** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"RouterA(config-if)#standby 1 timers 700 …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config-if)#standby 1 timers msec 700 msec 200** does not satisfy what the question asks. The correct answer is \"RouterA(config-if)#standby 1 timers msec 200 msec 700\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**RouterA(config-if)#standby 1 timers msec 700 msec 200** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"RouterA(config-if)#standby 1 timers msec…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1433,20 +1433,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router A will become the active router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router C will become the active router.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router A will become the active router.** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Router A will become the active router.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router B will become the active router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router C will become the active router.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router B will become the active router.** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Router B will become the active router.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router D will become the active router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router C will become the active router.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router D will become the active router.** does not answer configure in this stem. .",
+            "misconceptionTested": "Selecting \"Router D will become the active router.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

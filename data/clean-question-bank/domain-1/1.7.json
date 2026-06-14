@@ -29,18 +29,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**8.8.8.0/24** describes a different mechanism than this question tests. The right idea: 192.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**8.8.8.0/24** uses the wrong value. The tested fact calls for **192** — not 8.",
+            "misconceptionTested": "Selecting \"8.8.8.0/24\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**203.0.113.0/24** describes a different mechanism than this question tests. The right idea: 192.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**203.0.113.0/24** uses the wrong value. The tested fact calls for **192** — not 203.",
+            "misconceptionTested": "Selecting \"203.0.113.0/24\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**169.254.1.0/24** describes a different mechanism than this question tests. The right idea: 192.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**169.254.1.0/24** uses the wrong value. The tested fact calls for **192** — not 169.",
+            "misconceptionTested": "Selecting \"169.254.1.0/24\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -71,18 +71,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Public routable space** describes a different mechanism than this question tests. The right idea: 10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Public routable space** reflects a common trap: Private addresses are secret/encrypted. Private means non-routable on the public Internet, not hidden from others on the same LAN.",
+            "misconceptionTested": "Private addresses are secret/encrypted"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Multicast only** describes a different mechanism than this question tests. The right idea: 10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Multicast only** does not answer the requirement in this stem. 10.",
+            "misconceptionTested": "Selecting \"Multicast only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**APIPA** describes a different mechanism than this question tests. The right idea: 10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**APIPA** does not answer the requirement in this stem. 10.",
+            "misconceptionTested": "Selecting \"APIPA\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -113,18 +113,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**No — public only** contradicts the expected behavior. 172.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**No — public only** does not answer the requirement in this stem. 172.",
+            "misconceptionTested": "Selecting \"No — public only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Only if DHCP assigns it** describes a different mechanism than this question tests. The right idea: 172.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Only if DHCP assigns it** does not answer the requirement in this stem. 172.",
+            "misconceptionTested": "Selecting \"Only if DHCP assigns it\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Only on IPv6** describes a different mechanism than this question tests. The right idea: 172.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Only on IPv6** uses the wrong value. The tested fact calls for **172** — not 6.",
+            "misconceptionTested": "Selecting \"Only on IPv6\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -155,18 +155,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Successful DHCP lease** describes a different mechanism than this question tests. The right idea: 169.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Successful DHCP lease** reflects a common trap: Treating 169.254.x.x as normal private DHCP address. 169.254 is APIPA — indicates DHCP failure, not RFC 1918.",
+            "misconceptionTested": "Treating 169.254.x.x as normal private DHCP address"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Static public IP configured** describes a different mechanism than this question tests. The right idea: 169.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Static public IP configured** does not answer what is in this stem. 169.",
+            "misconceptionTested": "Selecting \"Static public IP configured\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DNS cache flush** describes a different mechanism than this question tests. The right idea: 169.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
+            "explanation": "**DNS cache flush** does not answer what is in this stem. 169.",
+            "misconceptionTested": "Selecting \"DNS cache flush\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -197,18 +197,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**They are too short** describes a different mechanism than this question tests. The right idea: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**They are too short** does not answer the requirement in this stem. Private space is reused and non-routable on the Internet — NAT maps to a public address.",
+            "misconceptionTested": "Selecting \"They are too short\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**They are IPv6 only** describes a different mechanism than this question tests. The right idea: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**They are IPv6 only** does not answer the requirement in this stem. Private space is reused and non-routable on the Internet — NAT maps to a public address.",
+            "misconceptionTested": "Selecting \"They are IPv6 only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Firewalls block all IPv4** describes a different mechanism than this question tests. The right idea: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Firewalls block all IPv4** does not answer the requirement in this stem. Private space is reused and non-routable on the Internet — NAT maps to a public address.",
+            "misconceptionTested": "Selecting \"Firewalls block all IPv4\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -239,18 +239,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**10.1.1.1** describes a different mechanism than this question tests. The right idea: 198.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**10.1.1.1** uses the wrong value. The tested fact calls for **198** — not 10.",
+            "misconceptionTested": "Selecting \"10.1.1.1\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**172.16.1.1** describes a different mechanism than this question tests. The right idea: 198.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**172.16.1.1** uses the wrong value. The tested fact calls for **198** — not 172.",
+            "misconceptionTested": "Selecting \"172.16.1.1\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**192.168.1.1** describes a different mechanism than this question tests. The right idea: 198.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**192.168.1.1** uses the wrong value. The tested fact calls for **198** — not 192.",
+            "misconceptionTested": "Selecting \"192.168.1.1\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -280,7 +280,7 @@
           {
             "choiceIndex": 0,
             "explanation": "This statement is **True**, but the tested fact is: False — APIPA uses 169.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -311,17 +311,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**STP** describes a different mechanism than this question tests. The right idea: NAT (often PAT) translates many private addresses to one or few public IPs.",
-            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+            "explanation": "**STP** is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**VTP** describes a different mechanism than this question tests. The right idea: NAT (often PAT) translates many private addresses to one or few public IPs.",
+            "explanation": "**VTP** does not answer which in this stem. NAT (often PAT) translates many private addresses to one or few public IPs.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**LLDP** describes a different mechanism than this question tests. The right idea: NAT (often PAT) translates many private addresses to one or few public IPs.",
+            "explanation": "**LLDP** does not answer which in this stem. NAT (often PAT) translates many private addresses to one or few public IPs.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],

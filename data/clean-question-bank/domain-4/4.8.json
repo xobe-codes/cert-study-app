@@ -29,20 +29,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Setting the time and date** does not satisfy what the question asks. The correct answer is \"Setting the hostname and domain name\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Setting the time and date** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Setting the time and date\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Setting the key strength** does not satisfy what the question asks. The correct answer is \"Setting the hostname and domain name\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Setting the key strength** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Setting the key strength\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Setting the key repository** does not satisfy what the question asks. The correct answer is \"Setting the hostname and domain name\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Setting the key repository** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Setting the key repository\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -76,20 +76,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-line)#version 2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip ssh version 2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config-line)#version 2** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config-line)#version 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-ssh)#version 2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip ssh version 2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config-ssh)#version 2** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config-ssh)#version 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ssh version 2** does not satisfy what the question asks. The correct answer is \"Router(config)#ip ssh version 2\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config)#ssh version 2** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config)#ssh version 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -125,20 +125,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#login ssh telnet** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#transport ssh telnet\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Telnet sends credentials in cleartext — SSH is required for secure device management.",
+            "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config-line)#login ssh telnet** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#transport ssh telnet\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-line)#login ssh telnet** is not the behavior described here. .",
+            "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#transport ssh telnet** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#transport ssh telnet\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config)#transport ssh telnet** is not the behavior described here. .",
+            "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           }
         ],
@@ -173,20 +173,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Telnet has weak encryption.** describes a different mechanism than this question tests. The right idea: The correct answer is \"SSH is encrypted.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "Telnet sends credentials in cleartext — SSH is required for secure device management.",
+            "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SSH allows for file copy.** describes a different mechanism than this question tests. The right idea: The correct answer is \"SSH is encrypted.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SSH allows for file copy.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"SSH allows for file copy.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SSH makes it easier to create ACLs for access.** describes a different mechanism than this question tests. The right idea: The correct answer is \"SSH is encrypted.",
-            "misconceptionTested": "Defaulting to ACLs when the stem tests something else",
+            "explanation": "**SSH makes it easier to create ACLs for access.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"SSH makes it easier to create ACLs for a…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -222,20 +222,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The time and date need to be corrected.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The key strength needs to be 768 bits or higher.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The time and date need to be corrected.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"The time and date need to be corrected.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The DNS server is not configured.** contradicts the expected behavior. The correct answer is \"The key strength needs to be 768 bits or higher.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer",
+            "explanation": "**The DNS server is not configured.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"The DNS server is not configured.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**There is no host record for the switch or router.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The key strength needs to be 768 bits or higher.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**There is no host record for the switch or router.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"There is no host record for the switch o…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -270,20 +270,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#account user1 Router(config-acct)#password Password20!** does not satisfy what the question asks. The correct answer is \"Router(config)#username user1 password Password20!",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config)#account user1 Router(config-acct)#password Password20!** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config)#account user1 Router(conf…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#user user1 Password20!** does not satisfy what the question asks. The correct answer is \"Router(config)#username user1 password Password20!",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config)#user user1 Password20!** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config)#user user1 Password20!\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#user-account user1 password Password20!** does not satisfy what the question asks. The correct answer is \"Router(config)#username user1 password Password20!",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config)#user-account user1 password Password20!** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config)#user-account user1 passwo…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -318,20 +318,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#generate crypto key rsa** does not satisfy what the question asks. The correct answer is \"Router(config)#crypto key generate rsa\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config)#generate crypto key rsa** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config)#generate crypto key rsa\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#crypto generate key rsa** does not satisfy what the question asks. The correct answer is \"Router(config)#crypto key generate rsa\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router(config)#crypto generate key rsa** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router(config)#crypto generate key rsa\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#crypto key generate rsa** describes a different mechanism than this question tests. The right idea: The correct answer is \"Router(config)#crypto key generate rsa\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Router#crypto key generate rsa** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router#crypto key generate rsa\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -369,20 +369,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#new aaa model** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#login local\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config)#new aaa model** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config)#new aaa model\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#local authentication** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#login local\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config)#local authentication** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config)#local authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config-line)#local authentication** does not satisfy what the question asks. The correct answer is \"Switch(config-line)#login local\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Switch(config-line)#local authentication** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Switch(config-line)#local authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -417,20 +417,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**MOTD banner** describes a different mechanism than this question tests. The right idea: The correct answer is \"Login banner\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**MOTD banner** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"MOTD banner\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Exec banner** describes a different mechanism than this question tests. The right idea: The correct answer is \"Login banner\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Exec banner** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Exec banner\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Incoming banner** describes a different mechanism than this question tests. The right idea: The correct answer is \"Login banner\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Incoming banner** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Incoming banner\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

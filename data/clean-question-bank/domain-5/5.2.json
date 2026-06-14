@@ -30,20 +30,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Anti-malware software** describes a different mechanism than this question tests. The right idea: The correct answer is \"Training\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Anti-malware software** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Anti-malware software\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Antivirus software** describes a different mechanism than this question tests. The right idea: The correct answer is \"Training\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Antivirus software** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Antivirus software\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Certificates** describes a different mechanism than this question tests. The right idea: The correct answer is \"Training\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Certificates** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Certificates\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -79,20 +79,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Spam** describes a different mechanism than this question tests. The right idea: The correct answer is \"Phishing\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Spam** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Spam\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Password cracking** describes a different mechanism than this question tests. The right idea: The correct answer is \"Phishing\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Password cracking** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Password cracking\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Worm** describes a different mechanism than this question tests. The right idea: The correct answer is \"Phishing\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Worm** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Worm\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -126,20 +126,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Privacy\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Security** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Degaussing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Privacy\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Degaussing** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Degaussing\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Tempered** describes a different mechanism than this question tests. The right idea: The correct answer is \"Privacy\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Tempered** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Tempered\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -176,20 +176,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Phishing** describes a different mechanism than this question tests. The right idea: The correct answer is \"Shoulder surfing\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Phishing** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Phishing\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Tailgating** describes a different mechanism than this question tests. The right idea: The correct answer is \"Shoulder surfing\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Tailgating** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Tailgating\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Whaling** describes a different mechanism than this question tests. The right idea: The correct answer is \"Shoulder surfing\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Whaling** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Whaling\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -226,20 +226,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Biometric authentication** describes a different mechanism than this question tests. The right idea: The correct answer is \"Least privilege\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Biometric authentication** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Biometric authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Hardware tokens** describes a different mechanism than this question tests. The right idea: The correct answer is \"Least privilege\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Hardware tokens** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Hardware tokens\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Active Directory** describes a different mechanism than this question tests. The right idea: The correct answer is \"Least privilege\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Active Directory** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Active Directory\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -274,20 +274,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Multifactor authentication** describes a different mechanism than this question tests. The right idea: The correct answer is \"Anti-malware software\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Multifactor authentication** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Multifactor authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Software firewalls** describes a different mechanism than this question tests. The right idea: The correct answer is \"Anti-malware software\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Software firewalls** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Software firewalls\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Antivirus software** describes a different mechanism than this question tests. The right idea: The correct answer is \"Anti-malware software\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Antivirus software** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Antivirus software\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -326,20 +326,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**User authentication** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mantraps\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**User authentication** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"User authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Strong passwords** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mantraps\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Strong passwords** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Strong passwords\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Change SSIDs** describes a different mechanism than this question tests. The right idea: The correct answer is \"Mantraps\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Change SSIDs** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Change SSIDs\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

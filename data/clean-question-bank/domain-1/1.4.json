@@ -29,18 +29,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Correct routing** describes a different mechanism than this question tests. The right idea: CRC failures mean the frame checksum failed — physical or duplex problems.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Correct routing** does not answer the requirement in this stem. CRC failures mean the frame checksum failed — physical or duplex problems.",
+            "misconceptionTested": "Selecting \"Correct routing\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**DNS failure** describes a different mechanism than this question tests. The right idea: CRC failures mean the frame checksum failed — physical or duplex problems.",
-            "misconceptionTested": "Dragging DNS into a question about a different service or layer"
+            "explanation": "**DNS failure** does not answer the requirement in this stem. CRC failures mean the frame checksum failed — physical or duplex problems.",
+            "misconceptionTested": "Selecting \"DNS failure\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Valid VLAN tagging** describes a different mechanism than this question tests. The right idea: CRC failures mean the frame checksum failed — physical or duplex problems.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Valid VLAN tagging** does not answer the requirement in this stem. CRC failures mean the frame checksum failed — physical or duplex problems.",
+            "misconceptionTested": "Selecting \"Valid VLAN tagging\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -71,18 +71,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**show ip route** describes a different mechanism than this question tests. The right idea: show interfaces counters errors focuses on L1/L2 error statistics.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**show ip route** does not answer which in this stem. show interfaces counters errors focuses on L1/L2 error statistics.",
+            "misconceptionTested": "Selecting \"show ip route\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**show vlan brief** describes a different mechanism than this question tests. The right idea: show interfaces counters errors focuses on L1/L2 error statistics.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**show vlan brief** does not answer which in this stem. show interfaces counters errors focuses on L1/L2 error statistics.",
+            "misconceptionTested": "Selecting \"show vlan brief\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**show version** describes a different mechanism than this question tests. The right idea: show interfaces counters errors focuses on L1/L2 error statistics.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**show version** does not answer which in this stem. show interfaces counters errors focuses on L1/L2 error statistics.",
+            "misconceptionTested": "Selecting \"show version\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -113,18 +113,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**No connectivity at all** contradicts the expected behavior. Duplex mismatch causes errors and poor throughput while link may stay up.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**No connectivity at all** does not answer the requirement in this stem. Duplex mismatch causes errors and poor throughput while link may stay up.",
+            "misconceptionTested": "Selecting \"No connectivity at all\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Double speed** describes a different mechanism than this question tests. The right idea: Duplex mismatch causes errors and poor throughput while link may stay up.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Double speed** does not answer the requirement in this stem. Duplex mismatch causes errors and poor throughput while link may stay up.",
+            "misconceptionTested": "Selecting \"Double speed\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**STP blocking** describes a different mechanism than this question tests. The right idea: Duplex mismatch causes errors and poor throughput while link may stay up.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**STP blocking** is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -155,18 +155,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Normal operation** describes a different mechanism than this question tests. The right idea: Full-duplex switched ports should not collide — suspect mismatch or bad media.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Normal operation** reflects a common trap: Collisions are normal on all Ethernet links. Full-duplex switched links should have near-zero collisions.",
+            "misconceptionTested": "Collisions are normal on all Ethernet links"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**OSPF adjacency** describes a different mechanism than this question tests. The right idea: Full-duplex switched ports should not collide — suspect mismatch or bad media.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**OSPF adjacency** does not answer the requirement in this stem. Full-duplex switched ports should not collide — suspect mismatch or bad media.",
+            "misconceptionTested": "Selecting \"OSPF adjacency\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DHCP renewal** describes a different mechanism than this question tests. The right idea: Full-duplex switched ports should not collide — suspect mismatch or bad media.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**DHCP renewal** does not answer the requirement in this stem. Full-duplex switched ports should not collide — suspect mismatch or bad media.",
+            "misconceptionTested": "Selecting \"DHCP renewal\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -198,18 +198,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Reload the router** describes a different mechanism than this question tests. The right idea: Physical layer and speed/duplex alignment are the first checks for CRCs.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Reload the router** is a plausible symptom fix but does not match the most likely root cause here: Physical layer and speed/duplex alignment are the first checks for CRCs.",
+            "misconceptionTested": "Selecting \"Reload the router\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Change VLAN** describes a different mechanism than this question tests. The right idea: Physical layer and speed/duplex alignment are the first checks for CRCs.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Change VLAN** is a plausible symptom fix but does not match the most likely root cause here: Physical layer and speed/duplex alignment are the first checks for CRCs.",
+            "misconceptionTested": "Selecting \"Change VLAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Enable OSPF** describes a different mechanism than this question tests. The right idea: Physical layer and speed/duplex alignment are the first checks for CRCs.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Enable OSPF** is a plausible symptom fix but does not match the most likely root cause here: Physical layer and speed/duplex alignment are the first checks for CRCs.",
+            "misconceptionTested": "Selecting \"Enable OSPF\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -240,18 +240,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Oversized frames** describes a different mechanism than this question tests. The right idea: Runts are frames smaller than the minimum valid Ethernet size.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Oversized frames** does not answer the requirement in this stem. Runts are frames smaller than the minimum valid Ethernet size.",
+            "misconceptionTested": "Selecting \"Oversized frames\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Broadcast frames only** describes a different mechanism than this question tests. The right idea: Runts are frames smaller than the minimum valid Ethernet size.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Broadcast frames only** does not answer the requirement in this stem. Runts are frames smaller than the minimum valid Ethernet size.",
+            "misconceptionTested": "Selecting \"Broadcast frames only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Encrypted frames** describes a different mechanism than this question tests. The right idea: Runts are frames smaller than the minimum valid Ethernet size.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Encrypted frames** does not answer the requirement in this stem. Runts are frames smaller than the minimum valid Ethernet size.",
+            "misconceptionTested": "Selecting \"Encrypted frames\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -281,7 +281,7 @@
           {
             "choiceIndex": 1,
             "explanation": "This statement is **False**, but the tested fact is: True — link status does not guarantee error-free transmission.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -312,18 +312,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Wrong IP subnet** describes a different mechanism than this question tests. The right idea: EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Wrong IP subnet** does not answer the requirement in this stem. EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media.",
+            "misconceptionTested": "Selecting \"Wrong IP subnet\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Missing default route** describes a different mechanism than this question tests. The right idea: EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Missing default route** does not answer the requirement in this stem. EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media.",
+            "misconceptionTested": "Selecting \"Missing default route\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**WPA3 misconfig** describes a different mechanism than this question tests. The right idea: EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WPA3 misconfig** does not answer the requirement in this stem. EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media.",
+            "misconceptionTested": "Selecting \"WPA3 misconfig\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

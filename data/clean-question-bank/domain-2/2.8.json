@@ -29,18 +29,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SNMP** describes a different mechanism than this question tests. The right idea: Telnet provides terminal emulation over a network but is not encrypted.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**SNMP** does not answer which in this stem. Telnet provides terminal emulation over a network but is not encrypted.",
+            "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**HTTP** describes a different mechanism than this question tests. The right idea: Telnet provides terminal emulation over a network but is not encrypted.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**HTTP** does not answer which in this stem. Telnet provides terminal emulation over a network but is not encrypted.",
+            "misconceptionTested": "Selecting \"HTTP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**TFTP** describes a different mechanism than this question tests. The right idea: Telnet provides terminal emulation over a network but is not encrypted.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TFTP** does not answer which in this stem. Telnet provides terminal emulation over a network but is not encrypted.",
+            "misconceptionTested": "Selecting \"TFTP\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -73,18 +73,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#connect 198.56.33.3** describes a different mechanism than this question tests. The right idea: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Router#connect 198.56.33.3** does not answer which in this stem. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "misconceptionTested": "Selecting \"Router#connect 198.56.33.3\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#remote 198.56.33.3** describes a different mechanism than this question tests. The right idea: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Router#remote 198.56.33.3** does not answer which in this stem. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "misconceptionTested": "Selecting \"Router#remote 198.56.33.3\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#vty 198.56.33.3** describes a different mechanism than this question tests. The right idea: Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Router#vty 198.56.33.3** does not answer which in this stem. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "misconceptionTested": "Selecting \"Router#vty 198.56.33.3\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -119,18 +119,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/69** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**UDP/69** uses the wrong value. The tested fact calls for **49** — not 69.",
+            "misconceptionTested": "Selecting \"UDP/69\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**TCP/74** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TCP/74** uses the wrong value. The tested fact calls for **49** — not 74.",
+            "misconceptionTested": "Selecting \"TCP/74\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP/47** describes a different mechanism than this question tests. The right idea: TACACS+ uses TCP port 49.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**UDP/47** uses the wrong value. The tested fact calls for **49** — not 47.",
+            "misconceptionTested": "Selecting \"UDP/47\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -163,18 +163,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RADIUS** describes a different mechanism than this question tests. The right idea: SSH provides encrypted management access.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**RADIUS** does not answer which in this stem. SSH provides encrypted management access.",
+            "misconceptionTested": "Selecting \"RADIUS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**HTTP** describes a different mechanism than this question tests. The right idea: SSH provides encrypted management access.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**HTTP** does not answer which in this stem. SSH provides encrypted management access.",
+            "misconceptionTested": "Selecting \"HTTP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SFTP** describes a different mechanism than this question tests. The right idea: SSH provides encrypted management access.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**SFTP** does not answer which in this stem. SSH provides encrypted management access.",
+            "misconceptionTested": "Selecting \"SFTP\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -208,18 +208,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Symmetrical encryption** does not satisfy what the question asks. SSH uses public/private key asymmetric encryption.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Symmetrical encryption** does not answer which in this stem. SSH uses public/private key asymmetric encryption.",
+            "misconceptionTested": "Selecting \"Symmetrical encryption\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Code block ciphers** describes a different mechanism than this question tests. The right idea: SSH uses public/private key asymmetric encryption.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Code block ciphers** does not answer which in this stem. SSH uses public/private key asymmetric encryption.",
+            "misconceptionTested": "Selecting \"Code block ciphers\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**At-rest encryption** describes a different mechanism than this question tests. The right idea: SSH uses public/private key asymmetric encryption.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**At-rest encryption** does not answer which in this stem. SSH uses public/private key asymmetric encryption.",
+            "misconceptionTested": "Selecting \"At-rest encryption\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -253,18 +253,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**SSH** describes a different mechanism than this question tests. The right idea: WAP debug output appears on the console by default.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**SSH** does not answer the requirement in this stem. WAP debug output appears on the console by default.",
+            "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Logging server** describes a different mechanism than this question tests. The right idea: WAP debug output appears on the console by default.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Logging server** does not answer the requirement in this stem. WAP debug output appears on the console by default.",
+            "misconceptionTested": "Selecting \"Logging server\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Local storage** describes a different mechanism than this question tests. The right idea: WAP debug output appears on the console by default.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Local storage** does not answer the requirement in this stem. WAP debug output appears on the console by default.",
+            "misconceptionTested": "Selecting \"Local storage\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -298,18 +298,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**TACACS+** describes a different mechanism than this question tests. The right idea: RADIUS is an open standard originally proposed by the IETF.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TACACS+** does not answer which in this stem. RADIUS is an open standard originally proposed by the IETF.",
+            "misconceptionTested": "Selecting \"TACACS+\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Kerberos** describes a different mechanism than this question tests. The right idea: RADIUS is an open standard originally proposed by the IETF.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Kerberos** does not answer which in this stem. RADIUS is an open standard originally proposed by the IETF.",
+            "misconceptionTested": "Selecting \"Kerberos\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**LDAP** describes a different mechanism than this question tests. The right idea: RADIUS is an open standard originally proposed by the IETF.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**LDAP** does not answer which in this stem. RADIUS is an open standard originally proposed by the IETF.",
+            "misconceptionTested": "Selecting \"LDAP\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -343,18 +343,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**TACACS+** describes a different mechanism than this question tests. The right idea: SSH can use AES for encrypted credentials and session data.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**TACACS+** does not answer which in this stem. SSH can use AES for encrypted credentials and session data.",
+            "misconceptionTested": "Selecting \"TACACS+\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**HTTPS** describes a different mechanism than this question tests. The right idea: SSH can use AES for encrypted credentials and session data.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**HTTPS** does not answer which in this stem. SSH can use AES for encrypted credentials and session data.",
+            "misconceptionTested": "Selecting \"HTTPS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RADIUS** describes a different mechanism than this question tests. The right idea: SSH can use AES for encrypted credentials and session data.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**RADIUS** does not answer which in this stem. SSH can use AES for encrypted credentials and session data.",
+            "misconceptionTested": "Selecting \"RADIUS\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -389,18 +389,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**HTTPS** describes a different mechanism than this question tests. The right idea: A first-time autonomous AP setup commonly uses the console connection.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**HTTPS** does not answer the requirement in this stem. A first-time autonomous AP setup commonly uses the console connection.",
+            "misconceptionTested": "Selecting \"HTTPS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SSH** describes a different mechanism than this question tests. The right idea: A first-time autonomous AP setup commonly uses the console connection.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**SSH** does not answer the requirement in this stem. A first-time autonomous AP setup commonly uses the console connection.",
+            "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Telnet** describes a different mechanism than this question tests. The right idea: A first-time autonomous AP setup commonly uses the console connection.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Telnet** does not answer the requirement in this stem. A first-time autonomous AP setup commonly uses the console connection.",
+            "misconceptionTested": "Selecting \"Telnet\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -434,18 +434,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**19.2 kb/s** describes a different mechanism than this question tests. The right idea: Cisco console access commonly uses 9600 baud.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**19.2 kb/s** uses the wrong value. The tested fact calls for **9600** — not 19.",
+            "misconceptionTested": "Selecting \"19.2 kb/s\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**9600 kb/s** describes a different mechanism than this question tests. The right idea: Cisco console access commonly uses 9600 baud.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**9600 kb/s** does not answer what is in this stem. Cisco console access commonly uses 9600 baud.",
+            "misconceptionTested": "Selecting \"9600 kb/s\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**19200 baud** describes a different mechanism than this question tests. The right idea: Cisco console access commonly uses 9600 baud.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**19200 baud** uses the wrong value. The tested fact calls for **9600** — not 19200.",
+            "misconceptionTested": "Selecting \"19200 baud\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -478,18 +478,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**16 characters** describes a different mechanism than this question tests. The right idea: An SSID can be up to 32 characters.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**16 characters** uses the wrong value. The tested fact calls for **32** — not 16.",
+            "misconceptionTested": "Selecting \"16 characters\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**48 characters** describes a different mechanism than this question tests. The right idea: An SSID can be up to 32 characters.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**48 characters** uses the wrong value. The tested fact calls for **32** — not 48.",
+            "misconceptionTested": "Selecting \"48 characters\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**64 characters** describes a different mechanism than this question tests. The right idea: An SSID can be up to 32 characters.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**64 characters** uses the wrong value. The tested fact calls for **32** — not 64.",
+            "misconceptionTested": "Selecting \"64 characters\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -523,18 +523,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Access control lists for one SSID** describes a different mechanism than this question tests. The right idea: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Access control lists for one SSID** does not answer what is in this stem. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "misconceptionTested": "Selecting \"Access control lists for one SSID\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Dynamic VLANs for the SSID** describes a different mechanism than this question tests. The right idea: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Dynamic VLANs for the SSID** does not answer what is in this stem. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "misconceptionTested": "Selecting \"Dynamic VLANs for the SSID\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Access control lists for two SSIDs** describes a different mechanism than this question tests. The right idea: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Access control lists for two SSIDs** does not answer what is in this stem. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "misconceptionTested": "Selecting \"Access control lists for two SSIDs\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -568,18 +568,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**WPAN** describes a different mechanism than this question tests. The right idea: A town-wide wireless deployment is a WMAN.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WPAN** does not answer which in this stem. A town-wide wireless deployment is a WMAN.",
+            "misconceptionTested": "Selecting \"WPAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**WLAN** describes a different mechanism than this question tests. The right idea: A town-wide wireless deployment is a WMAN.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WLAN** does not answer which in this stem. A town-wide wireless deployment is a WMAN.",
+            "misconceptionTested": "Selecting \"WLAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**WWAN** describes a different mechanism than this question tests. The right idea: A town-wide wireless deployment is a WMAN.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WWAN** does not answer which in this stem. A town-wide wireless deployment is a WMAN.",
+            "misconceptionTested": "Selecting \"WWAN\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -613,18 +613,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**WLAN** describes a different mechanism than this question tests. The right idea: A short-range personal wireless network is a WPAN.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WLAN** does not answer what is in this stem. A short-range personal wireless network is a WPAN.",
+            "misconceptionTested": "Selecting \"WLAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**WMAN** describes a different mechanism than this question tests. The right idea: A short-range personal wireless network is a WPAN.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WMAN** does not answer what is in this stem. A short-range personal wireless network is a WPAN.",
+            "misconceptionTested": "Selecting \"WMAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**WWAN** describes a different mechanism than this question tests. The right idea: A short-range personal wireless network is a WPAN.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WWAN** does not answer what is in this stem. A short-range personal wireless network is a WPAN.",
+            "misconceptionTested": "Selecting \"WWAN\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -658,18 +658,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A trust boundary is where the QoS markings are first configured.** does not satisfy what the question asks. A QoS trust boundary is where the network begins trusting QoS markings.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**A trust boundary is where the QoS markings are first configured.** does not answer what is in this stem. A QoS trust boundary is where the network begins trusting QoS markings.",
+            "misconceptionTested": "Selecting \"A trust boundary is where the QoS markin…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**A trust boundary is where the QoS markings are stripped at the router.** does not satisfy what the question asks. A QoS trust boundary is where the network begins trusting QoS markings.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**A trust boundary is where the QoS markings are stripped at the router.** does not answer what is in this stem. A QoS trust boundary is where the network begins trusting QoS markings.",
+            "misconceptionTested": "Selecting \"A trust boundary is where the QoS markin…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A trust boundary is the separation of QoS queues based upon their priority.** does not satisfy what the question asks. A QoS trust boundary is where the network begins trusting QoS markings.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**A trust boundary is the separation of QoS queues based upon their priority.** does not answer what is in this stem. A QoS trust boundary is where the network begins trusting QoS markings.",
+            "misconceptionTested": "Selecting \"A trust boundary is the separation of Qo…\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -703,18 +703,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**802.11r** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**802.11r** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "misconceptionTested": "Selecting \"802.11r\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**802.1p** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**802.1p** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "misconceptionTested": "Selecting \"802.1p\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.11k** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**802.11k** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "misconceptionTested": "Selecting \"802.11k\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -748,18 +748,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Disable SSID broadcasting** describes a different mechanism than this question tests. The right idea: MAC filtering can restrict WLAN access to known corporate hosts.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Disable SSID broadcasting** does not answer the requirement in this stem. MAC filtering can restrict WLAN access to known corporate hosts.",
+            "misconceptionTested": "Selecting \"Disable SSID broadcasting\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Set a unique PSK** describes a different mechanism than this question tests. The right idea: MAC filtering can restrict WLAN access to known corporate hosts.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Set a unique PSK** does not answer the requirement in this stem. MAC filtering can restrict WLAN access to known corporate hosts.",
+            "misconceptionTested": "Selecting \"Set a unique PSK\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Add an LDAP server** describes a different mechanism than this question tests. The right idea: MAC filtering can restrict WLAN access to known corporate hosts.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Add an LDAP server** does not answer the requirement in this stem. MAC filtering can restrict WLAN access to known corporate hosts.",
+            "misconceptionTested": "Selecting \"Add an LDAP server\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -793,18 +793,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.11r** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**802.11r** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "misconceptionTested": "Selecting \"802.11r\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**802.11e** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**802.11e** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "misconceptionTested": "Selecting \"802.11e\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.11ac** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**802.11ac** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "misconceptionTested": "Selecting \"802.11ac\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -839,18 +839,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Bronze** describes a different mechanism than this question tests. The right idea: Platinum is the WLC QoS profile appropriate for voice.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Bronze** does not answer which in this stem. Platinum is the WLC QoS profile appropriate for voice.",
+            "misconceptionTested": "Selecting \"Bronze\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Silver** describes a different mechanism than this question tests. The right idea: Platinum is the WLC QoS profile appropriate for voice.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Silver** does not answer which in this stem. Platinum is the WLC QoS profile appropriate for voice.",
+            "misconceptionTested": "Selecting \"Silver\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Gold** describes a different mechanism than this question tests. The right idea: Platinum is the WLC QoS profile appropriate for voice.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Gold** does not answer which in this stem. Platinum is the WLC QoS profile appropriate for voice.",
+            "misconceptionTested": "Selecting \"Gold\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -886,18 +886,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Change the radio policy** describes a different mechanism than this question tests. The right idea: If a WLAN is disabled in the GUI, enabling status restores client access.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Change the radio policy** does not answer the requirement in this stem. If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "misconceptionTested": "Selecting \"Change the radio policy\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Enable Multicast VLAN Feature** describes a different mechanism than this question tests. The right idea: If a WLAN is disabled in the GUI, enabling status restores client access.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Enable Multicast VLAN Feature** does not answer the requirement in this stem. If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "misconceptionTested": "Selecting \"Enable Multicast VLAN Feature\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Enable Broadcast SSID** describes a different mechanism than this question tests. The right idea: If a WLAN is disabled in the GUI, enabling status restores client access.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Enable Broadcast SSID** does not answer the requirement in this stem. If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "misconceptionTested": "Selecting \"Enable Broadcast SSID\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -933,18 +933,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**WPA is enabled.** describes a different mechanism than this question tests. The right idea: The  WPA2 personal/PSK security.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WPA is enabled.** does not answer which in this stem. The  WPA2 personal/PSK security.",
+            "misconceptionTested": "Selecting \"WPA is enabled.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**WPA2 enterprise is enabled.** describes a different mechanism than this question tests. The right idea: The  WPA2 personal/PSK security.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WPA2 enterprise is enabled.** does not answer which in this stem. The  WPA2 personal/PSK security.",
+            "misconceptionTested": "Selecting \"WPA2 enterprise is enabled.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.1X is enabled.** describes a different mechanism than this question tests. The right idea: The  WPA2 personal/PSK security.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**802.1X is enabled.** uses the wrong value. The tested fact calls for **2** — not 802.",
+            "misconceptionTested": "Selecting \"802.1X is enabled.\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -978,18 +978,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Gold** describes a different mechanism than this question tests. The right idea: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Gold** does not answer which in this stem. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "misconceptionTested": "Selecting \"Gold\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Platinum** describes a different mechanism than this question tests. The right idea: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Platinum** does not answer which in this stem. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "misconceptionTested": "Selecting \"Platinum\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Silver** describes a different mechanism than this question tests. The right idea: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Silver** does not answer which in this stem. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "misconceptionTested": "Selecting \"Silver\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -1024,18 +1024,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**MAC filtering** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**MAC filtering** does not answer which in this stem. 802.",
+            "misconceptionTested": "Selecting \"MAC filtering\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**WPA2 PSK** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**WPA2 PSK** uses the wrong value. The tested fact calls for **802** — not 2.",
+            "misconceptionTested": "Selecting \"WPA2 PSK\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Fast Transitioning** describes a different mechanism than this question tests. The right idea: 802.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Fast Transitioning** does not answer which in this stem. 802.",
+            "misconceptionTested": "Selecting \"Fast Transitioning\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

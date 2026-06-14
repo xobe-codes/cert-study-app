@@ -27,18 +27,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Connected route** describes a different mechanism than this question tests. The right idea: O = OSPF.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Connected route** does not answer what does in this stem. O = OSPF.",
+            "misconceptionTested": "Selecting \"Connected route\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Static route** describes a different mechanism than this question tests. The right idea: O = OSPF.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Static route** does not answer what does in this stem. O = OSPF.",
+            "misconceptionTested": "Selecting \"Static route\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**EIGRP-learned route** describes a different mechanism than this question tests. The right idea: O = OSPF.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**EIGRP-learned route** does not answer what does in this stem. O = OSPF.",
+            "misconceptionTested": "Selecting \"EIGRP-learned route\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -69,18 +69,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The metric** describes a different mechanism than this question tests. The right idea: Format is [AD/metric].",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The metric** reflects a common trap: In [AD/metric], AD comes FIRST. Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets.",
+            "misconceptionTested": "In [AD/metric], AD comes FIRST"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The OSPF cost** describes a different mechanism than this question tests. The right idea: Format is [AD/metric].",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The OSPF cost** does not answer what does in this stem. Format is [AD/metric].",
+            "misconceptionTested": "Selecting \"The OSPF cost\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The hop count** describes a different mechanism than this question tests. The right idea: Format is [AD/metric].",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The hop count** does not answer what does in this stem. Format is [AD/metric].",
+            "misconceptionTested": "Selecting \"The hop count\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -111,18 +111,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**S 192.168.1.0/24 and C 192.168.1.1/32** describes a different mechanism than this question tests. The right idea: A connected (C) route to the subnet and a local (L) /32 for the router own interface IP are both auto-installed at AD 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**S 192.168.1.0/24 and C 192.168.1.1/32** uses the wrong value. The tested fact calls for **32** — not 192.",
+            "misconceptionTested": "Selecting \"S 192.168.1.0/24 and C 192.168.1.1/32\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**O 192.168.1.0/24 and C 192.168.1.1/24** describes a different mechanism than this question tests. The right idea: A connected (C) route to the subnet and a local (L) /32 for the router own interface IP are both auto-installed at AD 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**O 192.168.1.0/24 and C 192.168.1.1/24** uses the wrong value. The tested fact calls for **32** — not 192.",
+            "misconceptionTested": "Selecting \"O 192.168.1.0/24 and C 192.168.1.1/24\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**C 192.168.1.0/24 only** does not satisfy what the question asks. A connected (C) route to the subnet and a local (L) /32 for the router own interface IP are both auto-installed at AD 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**C 192.168.1.0/24 only** uses the wrong value. The tested fact calls for **32** — not 192.",
+            "misconceptionTested": "Selecting \"C 192.168.1.0/24 only\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -153,18 +153,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**It routes traffic to hosts on the subnet** describes a different mechanism than this question tests. The right idea: The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**It routes traffic to hosts on the subnet** reflects a common trap: The L route forwards traffic to end hosts. L routes exist only for the router own interface IPs — not for PCs or servers.",
+            "misconceptionTested": "The L route forwards traffic to end hosts"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**It is a backup for the connected route** describes a different mechanism than this question tests. The right idea: The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**It is a backup for the connected route** reflects a common trap: The L route is NOT a host route to a PC. L is the router own interface IP as a /32 — so the router processes packets addressed to itself.",
+            "misconceptionTested": "The L route is NOT a host route to a PC"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**It marks the default gateway** describes a different mechanism than this question tests. The right idea: The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**It marks the default gateway** does not answer what is in this stem. The L /32 lets the router recognize and process packets addressed directly to its own interface IP (e.",
+            "misconceptionTested": "Selecting \"It marks the default gateway\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -195,18 +195,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**E** describes a different mechanism than this question tests. The right idea: D = EIGRP (Diffusing Update Algorithm).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**E** does not answer which in this stem. D = EIGRP (Diffusing Update Algorithm).",
+            "misconceptionTested": "Selecting \"E\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**O** describes a different mechanism than this question tests. The right idea: D = EIGRP (Diffusing Update Algorithm).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**O** does not answer which in this stem. D = EIGRP (Diffusing Update Algorithm).",
+            "misconceptionTested": "Selecting \"O\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**R** describes a different mechanism than this question tests. The right idea: D = EIGRP (Diffusing Update Algorithm).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**R** does not answer which in this stem. D = EIGRP (Diffusing Update Algorithm).",
+            "misconceptionTested": "Selecting \"R\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -237,18 +237,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Marked with *, indicating preferred** describes a different mechanism than this question tests. The right idea: Connected and local routes are removed when the interface fails.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Marked with *, indicating preferred** does not answer the requirement in this stem. Connected and local routes are removed when the interface fails.",
+            "misconceptionTested": "Selecting \"Marked with *, indicating preferred\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Stays with an age timer** describes a different mechanism than this question tests. The right idea: Connected and local routes are removed when the interface fails.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Stays with an age timer** does not answer the requirement in this stem. Connected and local routes are removed when the interface fails.",
+            "misconceptionTested": "Selecting \"Stays with an age timer\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Converts to a static route** describes a different mechanism than this question tests. The right idea: Connected and local routes are removed when the interface fails.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Converts to a static route** reflects a common trap: The L route is NOT a host route to a PC. L is the router own interface IP as a /32 — so the router processes packets addressed to itself.",
+            "misconceptionTested": "The L route is NOT a host route to a PC"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -279,17 +279,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**0** describes a different mechanism than this question tests. The right idea: Static routes have AD 1 by default — one higher than connected (0) but lower than any dynamic protocol.",
+            "explanation": "**0** uses the wrong value. The tested fact calls for **1** — not 0.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**90** describes a different mechanism than this question tests. The right idea: Static routes have AD 1 by default — one higher than connected (0) but lower than any dynamic protocol.",
+            "explanation": "**90** uses the wrong value. The tested fact calls for **1** — not 90.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**110** describes a different mechanism than this question tests. The right idea: Static routes have AD 1 by default — one higher than connected (0) but lower than any dynamic protocol.",
+            "explanation": "**110** uses the wrong value. The tested fact calls for **1** — not 110.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -322,18 +322,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Administrative distance** describes a different mechanism than this question tests. The right idea: D = EIGRP.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Administrative distance** does not answer what is in this stem. D = EIGRP.",
+            "misconceptionTested": "Selecting \"Administrative distance\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**OSPF cost** describes a different mechanism than this question tests. The right idea: D = EIGRP.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**OSPF cost** does not answer what is in this stem. D = EIGRP.",
+            "misconceptionTested": "Selecting \"OSPF cost\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Hop count** describes a different mechanism than this question tests. The right idea: D = EIGRP.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Hop count** does not answer what is in this stem. D = EIGRP.",
+            "misconceptionTested": "Selecting \"Hop count\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -364,18 +364,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The router cannot reach any network** contradicts the expected behavior. The gateway of last resort message means a default route (0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The router cannot reach any network** does not answer what does in this stem. The gateway of last resort message means a default route (0.",
+            "misconceptionTested": "Selecting \"The router cannot reach any network\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The router is a DHCP server** describes a different mechanism than this question tests. The right idea: The gateway of last resort message means a default route (0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The router is a DHCP server** does not answer what does in this stem. The gateway of last resort message means a default route (0.",
+            "misconceptionTested": "Selecting \"The router is a DHCP server\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**OSPF elected a DR** describes a different mechanism than this question tests. The right idea: The gateway of last resort message means a default route (0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**OSPF elected a DR** does not answer what does in this stem. The gateway of last resort message means a default route (0.",
+            "misconceptionTested": "Selecting \"OSPF elected a DR\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -406,18 +406,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The route is unreachable** describes a different mechanism than this question tests. The right idea: An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The route is unreachable** does not answer the requirement in this stem. An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort).",
+            "misconceptionTested": "Selecting \"The route is unreachable\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The route is more than 24 hours old** describes a different mechanism than this question tests. The right idea: An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The route is more than 24 hours old** does not answer the requirement in this stem. An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort).",
+            "misconceptionTested": "Selecting \"The route is more than 24 hours old\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The route requires manual activation** describes a different mechanism than this question tests. The right idea: An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**The route requires manual activation** does not answer the requirement in this stem. An asterisk marks the route as the best path for that prefix or indicates it as the candidate default route (for the gateway of last resort).",
+            "misconceptionTested": "Selecting \"The route requires manual activation\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -454,20 +454,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Static route** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default route\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Static route** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Dynamic route** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default route\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Dynamic route** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**OSPF route** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default route\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**OSPF route** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           }
         ],
@@ -505,20 +505,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The 4 represents the administrative distance.** does not satisfy what the question asks. The correct answer is \"The 4 represents the metric.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The 4 represents the administrative distance.** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"The 4 represents the administrative dist…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The 4 represents the protocol.** does not satisfy what the question asks. The correct answer is \"The 4 represents the metric.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The 4 represents the protocol.** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"The 4 represents the protocol.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The 4 represents the position in the routing table.** does not satisfy what the question asks. The correct answer is \"The 4 represents the metric.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The 4 represents the position in the routing table.** reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
+            "misconceptionTested": "Forgetting AD 255 behavior",
             "needsExplanationReview": true
           }
         ],
@@ -554,20 +554,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip route 160.45.23.0 255.255.255.0** does not satisfy what the question asks. The correct answer is \"Router#show ip route 160.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip route 160.45.23.0 255.255.255.0** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router#show ip route 160.45.23.0 255.255…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show ip route bgp** does not satisfy what the question asks. The correct answer is \"Router#show ip route 160.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip route bgp** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router#show ip route bgp\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip route** does not satisfy what the question asks. The correct answer is \"Router#show ip route 160.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show ip route** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router#show ip route\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -605,20 +605,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The gateway 172.16.1.200** describes a different mechanism than this question tests. The right idea: The correct answer is \"The exit interface Serial 0/0\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The gateway 172.16.1.200** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The gateway 172.16.1.200\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The gateway 172.16.1.100** describes a different mechanism than this question tests. The right idea: The correct answer is \"The exit interface Serial 0/0\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The gateway 172.16.1.100** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The gateway 172.16.1.100\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The exit interface Ethernet0** does not satisfy what the question asks. The correct answer is \"The exit interface Serial 0/0\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The exit interface Ethernet0** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The exit interface Ethernet0\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -654,20 +654,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**S 203.80.16.0/19 is directly connected, Serial 0/0/0** describes a different mechanism than this question tests. The right idea: The correct answer is \"S 203.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**S 203.80.16.0/19 is directly connected, Serial 0/0/0** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"S 203.80.16.0/19 is directly connected, …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**S 203.80.48.0/19 is directly connected, Serial 0/0/0** describes a different mechanism than this question tests. The right idea: The correct answer is \"S 203.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**S 203.80.48.0/19 is directly connected, Serial 0/0/0** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"S 203.80.48.0/19 is directly connected, …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**S 203.80.53.22/19 is directly connected, Serial 0/0/0** describes a different mechanism than this question tests. The right idea: The correct answer is \"S 203.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**S 203.80.53.22/19 is directly connected, Serial 0/0/0** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"S 203.80.53.22/19 is directly connected,…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -704,20 +704,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The 10.0.0.0/8 is a route in the routing table.** does not satisfy what the question asks. The correct answer is \"The 10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The 10.0.0.0/8 is a route in the routing table.** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"The 10.0.0.0/8 is a route in the routing…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The 10.0.0.0/8 is the router’s network address.** does not satisfy what the question asks. The correct answer is \"The 10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The 10.0.0.0/8 is the router’s network address.** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"The 10.0.0.0/8 is the router’s network a…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The 10.0.0.0/8 has been populated from another router.** does not satisfy what the question asks. The correct answer is \"The 10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The 10.0.0.0/8 has been populated from another router.** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"The 10.0.0.0/8 has been populated from a…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -753,20 +753,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The number represents the current time.** does not satisfy what the question asks. The correct answer is \"The number represents the time the route has been in the routing table.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The number represents the current time.** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"The number represents the current time.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The number represents the delay in microseconds of the connection.** does not satisfy what the question asks. The correct answer is \"The number represents the time the route has been in the routing table.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The number represents the delay in microseconds of the connection.** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"The number represents the delay in micro…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The number represents the time the interface has been up.** does not satisfy what the question asks. The correct answer is \"The number represents the time the route has been in the routing table.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The number represents the time the interface has been up.** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"The number represents the time the inter…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -804,20 +804,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Interface Serial 0/2/0** does not satisfy what the question asks. The correct answer is \"Interface Serial 0/0/1\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Interface Serial 0/2/0** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Interface Serial 0/2/0\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**IP address 192.168.4.2** describes a different mechanism than this question tests. The right idea: The correct answer is \"Interface Serial 0/0/1\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**IP address 192.168.4.2** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"IP address 192.168.4.2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**IP address 198.22.34.3** describes a different mechanism than this question tests. The right idea: The correct answer is \"Interface Serial 0/0/1\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**IP address 198.22.34.3** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"IP address 198.22.34.3\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -853,20 +853,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**AD of 0** describes a different mechanism than this question tests. The right idea: The correct answer is \"AD of 1\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AD of 0** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"AD of 0\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**AD of 2** describes a different mechanism than this question tests. The right idea: The correct answer is \"AD of 1\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AD of 2** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"AD of 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**AD of 255** describes a different mechanism than this question tests. The right idea: The correct answer is \"AD of 1\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AD of 255** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"AD of 255\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -901,20 +901,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**AD of 90** describes a different mechanism than this question tests. The right idea: The correct answer is \"AD of 120\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AD of 90** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"AD of 90\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**AD of 100** describes a different mechanism than this question tests. The right idea: The correct answer is \"AD of 120\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AD of 100** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"AD of 100\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**AD of 110** describes a different mechanism than this question tests. The right idea: The correct answer is \"AD of 120\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AD of 110** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"AD of 110\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -948,20 +948,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ADs define protocol standards.** describes a different mechanism than this question tests. The right idea: The correct answer is \"ADs define reliability of routing protocols.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**ADs define protocol standards.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"ADs define protocol standards.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ADs allow for the shortest distance between routes.** describes a different mechanism than this question tests. The right idea: The correct answer is \"ADs define reliability of routing protocols.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**ADs allow for the shortest distance between routes.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"ADs allow for the shortest distance betw…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ADs are programmed by the administrator for path selection.** describes a different mechanism than this question tests. The right idea: The correct answer is \"ADs define reliability of routing protocols.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**ADs are programmed by the administrator for path selection.** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"ADs are programmed by the administrator …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -995,20 +995,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The AD is 1.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The AD is 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The AD is 1.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"The AD is 1.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The AD is 5.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The AD is 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The AD is 5.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"The AD is 5.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Directly connected networks do not have an AD.** contradicts the expected behavior. The correct answer is \"The AD is 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Directly connected networks do not have an AD.** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Directly connected networks do not have …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1043,20 +1043,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**100** describes a different mechanism than this question tests. The right idea: The correct answer is \"90\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**100** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"100\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**110** describes a different mechanism than this question tests. The right idea: The correct answer is \"90\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**110** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"110\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**120** describes a different mechanism than this question tests. The right idea: The correct answer is \"90\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**120** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"120\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1093,20 +1093,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The AD is a metric that routing protocols use to select the best route.** does not satisfy what the question asks. The correct answer is \"The AD is a rating of trust when multiple routes exist to the same destination.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The AD is a metric that routing protocols use to select the best route.** reflects a common trap: Comparing metrics across routing protocols. Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc.",
+            "misconceptionTested": "Comparing metrics across routing protocols",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The AD is a value assigned by network administrators for route selection.** does not satisfy what the question asks. The correct answer is \"The AD is a rating of trust when multiple routes exist to the same destination.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The AD is a value assigned by network administrators for route selection.** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The AD is a value associated with the cost to the destination.** does not satisfy what the question asks. The correct answer is \"The AD is a rating of trust when multiple routes exist to the same destination.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
+            "explanation": "**The AD is a value associated with the cost to the destination.** reflects a common trap: Assuming 1G and 10G have different OSPF cost by default. Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+            "misconceptionTested": "Assuming 1G and 10G have different OSPF cost by default",
             "needsExplanationReview": true
           }
         ],
@@ -1142,20 +1142,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Delay** describes a different mechanism than this question tests. The right idea: The correct answer is \"Bandwidth\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Delay** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Delay\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Reliability** describes a different mechanism than this question tests. The right idea: The correct answer is \"Bandwidth\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Reliability** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Reliability\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Load** describes a different mechanism than this question tests. The right idea: The correct answer is \"Bandwidth\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Load** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Load\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1194,20 +1194,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IGRP** does not satisfy what the question asks. The correct answer is \"EIGRP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**IGRP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"IGRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**OSPF** describes a different mechanism than this question tests. The right idea: The correct answer is \"EIGRP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**OSPF** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"OSPF\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RIP** describes a different mechanism than this question tests. The right idea: The correct answer is \"EIGRP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**RIP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"RIP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1243,20 +1243,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The route is chosen with the highest AD.** does not satisfy what the question asks. The correct answer is \"The route is chosen with the lowest AD.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The route is chosen with the highest AD.** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The route chosen has the lowest metric.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The route is chosen with the lowest AD.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The route chosen has the lowest metric.** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The route chosen has the highest metric.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The route is chosen with the lowest AD.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The route chosen has the highest metric.** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           }
         ],
@@ -1293,20 +1293,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RIPv1** describes a different mechanism than this question tests. The right idea: The correct answer is \"EIGRP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**RIPv1** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"RIPv1\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RIPv2** describes a different mechanism than this question tests. The right idea: The correct answer is \"EIGRP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**RIPv2** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"RIPv2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**BGP** describes a different mechanism than this question tests. The right idea: The correct answer is \"EIGRP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**BGP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"BGP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1343,20 +1343,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Delay, bandwidth, reliability, load** describes a different mechanism than this question tests. The right idea: The correct answer is \"108/bandwidth\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Delay, bandwidth, reliability, load** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Delay, bandwidth, reliability, load\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**K metrics** describes a different mechanism than this question tests. The right idea: The correct answer is \"108/bandwidth\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**K metrics** reflects a common trap: Comparing metrics across routing protocols. Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc.",
+            "misconceptionTested": "Comparing metrics across routing protocols",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Bandwidth** does not satisfy what the question asks. The correct answer is \"108/bandwidth\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Bandwidth** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Bandwidth\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1391,20 +1391,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**AD of 110 and a 10 Mb/s link** does not satisfy what the question asks. The correct answer is \"AD of 110 and a 100 Mb/s link\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AD of 110 and a 10 Mb/s link** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"AD of 110 and a 10 Mb/s link\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**AD of 1 and a 110 Mb/s link** describes a different mechanism than this question tests. The right idea: The correct answer is \"AD of 110 and a 100 Mb/s link\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AD of 1 and a 110 Mb/s link** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"AD of 1 and a 110 Mb/s link\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**AD of 110 and a 1 Gb/s link** does not satisfy what the question asks. The correct answer is \"AD of 110 and a 100 Mb/s link\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**AD of 110 and a 1 Gb/s link** does not answer what does in this stem. .",
+            "misconceptionTested": "Selecting \"AD of 110 and a 1 Gb/s link\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1440,20 +1440,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Local route** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default route\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Local route** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Dynamic route** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default route\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Dynamic route** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Loopback route** describes a different mechanism than this question tests. The right idea: The correct answer is \"Default route\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Loopback route** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           }
         ],
@@ -1489,20 +1489,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The host route is the route a packet will take if no other route matches in the routing table.** describes a different mechanism than this question tests. The right idea: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The host route is the route a packet will take if no other route matches in the routing table.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The host route is the route a packet wil…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The routing table creates host routers for the destination hosts it discovers.** describes a different mechanism than this question tests. The right idea: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.",
+            "explanation": "**The routing table creates host routers for the destination hosts it discovers.** does not answer which in this stem. .",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The host route is populated from HSRP.** describes a different mechanism than this question tests. The right idea: The correct answer is \"A host route is a specific route with a netmask of /32 for a specific host.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The host route is populated from HSRP.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The host route is populated from HSRP.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1539,20 +1539,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Prefix and network mask** describes a different mechanism than this question tests. The right idea: The correct answer is \"Routing protocol code\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Prefix and network mask** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Prefix and network mask\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Metric** describes a different mechanism than this question tests. The right idea: The correct answer is \"Routing protocol code\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Metric** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Next hop** describes a different mechanism than this question tests. The right idea: The correct answer is \"Routing protocol code\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Next hop** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Next hop\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1587,19 +1587,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The subnet mask is used in routing to determine the destination network.** does not satisfy what the question asks. The correct answer is \"The subnet mask is used by the host to determine the destination network.",
+            "explanation": "**The subnet mask is used in routing to determine the destination network.** does not answer which in this stem. .",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The router uses its subnet mask when routing a packet.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The subnet mask is used by the host to determine the destination network.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The router uses its subnet mask when routing a packet.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"The router uses its subnet mask when rou…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.** does not satisfy what the question asks. The correct answer is \"The subnet mask is used by the host to determine the destination network.",
+            "explanation": "**The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.** does not answer which in this stem. .",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           }
@@ -1637,20 +1637,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IP address route** describes a different mechanism than this question tests. The right idea: The correct answer is \"Local route\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**IP address route** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"IP address route\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Dynamic route** describes a different mechanism than this question tests. The right idea: The correct answer is \"Local route\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Dynamic route** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Dynamic route\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Static route** describes a different mechanism than this question tests. The right idea: The correct answer is \"Local route\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Static route** does not answer what is in this stem. .",
+            "misconceptionTested": "Selecting \"Static route\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -1687,20 +1687,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The destination IP address is replaced with the default gateway when the destination is remote.** does not satisfy what the question asks. The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
+            "explanation": "**The destination IP address is replaced with the default gateway when the destination is remote.** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The host sends the default gateway packets that are deemed remote via a broadcast.** does not satisfy what the question asks. The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The host sends the default gateway packets that are deemed remote via a broadcast.** reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "misconceptionTested": "A default route guarantees connectivity",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The host creates a dedicated connection with the default gateway for remote traffic.** describes a different mechanism than this question tests. The right idea: The correct answer is \"The host sends an ARP packet for the default gateway when the destination is remote.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**The host creates a dedicated connection with the default gateway for remote traffic.** reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "misconceptionTested": "A default route guarantees connectivity",
             "needsExplanationReview": true
           }
         ],
@@ -1735,20 +1735,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show route** does not satisfy what the question asks. The correct answer is \"Router#show ip route\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show route** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router#show route\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show route table** does not satisfy what the question asks. The correct answer is \"Router#show ip route\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show route table** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router#show route table\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show routes** does not satisfy what the question asks. The correct answer is \"Router#show ip route\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router#show routes** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Router#show routes\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

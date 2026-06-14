@@ -27,18 +27,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Bottom-up** describes a different mechanism than this question tests. The right idea: ACLs are read top-down and stop at the first match.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Bottom-up** does not answer the requirement in this stem. ACLs are read top-down and stop at the first match.",
+            "misconceptionTested": "Selecting \"Bottom-up\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Most-specific first automatically** describes a different mechanism than this question tests. The right idea: ACLs are read top-down and stop at the first match.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Most-specific first automatically** reflects a common trap: Misordering rules. First match wins — put specific rules before broad ones.",
+            "misconceptionTested": "Misordering rules"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Randomly** describes a different mechanism than this question tests. The right idea: ACLs are read top-down and stop at the first match.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Randomly** does not answer the requirement in this stem. ACLs are read top-down and stop at the first match.",
+            "misconceptionTested": "Selecting \"Randomly\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -68,7 +68,7 @@
           {
             "choiceIndex": 1,
             "explanation": "This statement is **False**, but the tested fact is: True — anything not explicitly permitted is denied.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -99,18 +99,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Close to the source** does not satisfy what the question asks. Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Close to the source** does not answer the requirement in this stem. Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
+            "misconceptionTested": "Selecting \"Close to the source\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**On every interface** describes a different mechanism than this question tests. The right idea: Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**On every interface** does not answer the requirement in this stem. Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
+            "misconceptionTested": "Selecting \"On every interface\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Only on trunks** describes a different mechanism than this question tests. The right idea: Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Only on trunks** does not answer the requirement in this stem. Standard ACLs match source only, so place them near the destination to avoid over-blocking.",
+            "misconceptionTested": "Selecting \"Only on trunks\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -141,18 +141,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Close to the destination** does not satisfy what the question asks. Extended ACLs are specific, so place near the source to drop traffic early.",
-            "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)"
+            "explanation": "**Close to the destination** reflects a common trap: Placing extended ACLs near the destination. Place extended ACLs near the source to drop traffic early.",
+            "misconceptionTested": "Placing extended ACLs near the destination"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**On the root bridge** describes a different mechanism than this question tests. The right idea: Extended ACLs are specific, so place near the source to drop traffic early.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**On the root bridge** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**On the DHCP server** describes a different mechanism than this question tests. The right idea: Extended ACLs are specific, so place near the source to drop traffic early.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**On the DHCP server** does not answer the requirement in this stem. Extended ACLs are specific, so place near the source to drop traffic early.",
+            "misconceptionTested": "Selecting \"On the DHCP server\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -183,18 +183,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**255.255.255.0** describes a different mechanism than this question tests. The right idea: Wildcard = inverse subnet mask; /24 → 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**255.255.255.0** uses the wrong value. The tested fact calls for **24** — not 255.",
+            "misconceptionTested": "Selecting \"255.255.255.0\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**0.0.0.0** describes a different mechanism than this question tests. The right idea: Wildcard = inverse subnet mask; /24 → 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**0.0.0.0** uses the wrong value. The tested fact calls for **24** — not 0.",
+            "misconceptionTested": "Selecting \"0.0.0.0\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**255.255.255.255** describes a different mechanism than this question tests. The right idea: Wildcard = inverse subnet mask; /24 → 0.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**255.255.255.255** uses the wrong value. The tested fact calls for **24** — not 255.",
+            "misconceptionTested": "Selecting \"255.255.255.255\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -225,18 +225,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**100–199** describes a different mechanism than this question tests. The right idea: Standard ACLs are 1–99 (and 1300–1999).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**100–199** uses the wrong value. The tested fact calls for **1** — not 100.",
+            "misconceptionTested": "Selecting \"100–199\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**200–299** describes a different mechanism than this question tests. The right idea: Standard ACLs are 1–99 (and 1300–1999).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**200–299** uses the wrong value. The tested fact calls for **1** — not 200.",
+            "misconceptionTested": "Selecting \"200–299\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**1300–2699 only** describes a different mechanism than this question tests. The right idea: Standard ACLs are 1–99 (and 1300–1999).",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**1300–2699 only** uses the wrong value. The tested fact calls for **1** — not 1300.",
+            "misconceptionTested": "Selecting \"1300–2699 only\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -267,18 +267,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Source IP** describes a different mechanism than this question tests. The right idea: Extended ACLs match source+destination IP, protocol, and ports.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Source IP** does not answer the requirement in this stem. Extended ACLs match source+destination IP, protocol, and ports.",
+            "misconceptionTested": "Selecting \"Source IP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Interface name** describes a different mechanism than this question tests. The right idea: Extended ACLs match source+destination IP, protocol, and ports.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Interface name** does not answer the requirement in this stem. Extended ACLs match source+destination IP, protocol, and ports.",
+            "misconceptionTested": "Selecting \"Interface name\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VLAN ID** describes a different mechanism than this question tests. The right idea: Extended ACLs match source+destination IP, protocol, and ports.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**VLAN ID** does not answer the requirement in this stem. Extended ACLs match source+destination IP, protocol, and ports.",
+            "misconceptionTested": "Selecting \"VLAN ID\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -309,17 +309,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**access-list 100 in** describes a different mechanism than this question tests. The right idea: `ip access-group 100 in` applies the ACL to the interface.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**access-list 100 in** does not answer which in this stem. `ip access-group 100 in` applies the ACL to the interface.",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ip access-list 100 inbound** describes a different mechanism than this question tests. The right idea: `ip access-group 100 in` applies the ACL to the interface.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+            "explanation": "**ip access-list 100 inbound** does not answer which in this stem. `ip access-group 100 in` applies the ACL to the interface.",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**apply acl 100 in** describes a different mechanism than this question tests. The right idea: `ip access-group 100 in` applies the ACL to the interface.",
+            "explanation": "**apply acl 100 in** does not answer which in this stem. `ip access-group 100 in` applies the ACL to the interface.",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks"
           }
         ],
@@ -351,18 +351,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ACLs ignore deny rules** describes a different mechanism than this question tests. The right idea: Top-down first-match means the earlier broad permit matches before the specific deny.",
-            "misconceptionTested": "Defaulting to ACLs when the stem tests something else"
+            "explanation": "**ACLs ignore deny rules** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Deny rules need a wildcard** describes a different mechanism than this question tests. The right idea: Top-down first-match means the earlier broad permit matches before the specific deny.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Deny rules need a wildcard** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The ACL is not applied** contradicts the expected behavior. Top-down first-match means the earlier broad permit matches before the specific deny.",
-            "misconceptionTested": "Defaulting to ACLs when the stem tests something else"
+            "explanation": "**The ACL is not applied** is a plausible symptom fix but does not match the most likely root cause here: Top-down first-match means the earlier broad permit matches before the specific deny.",
+            "misconceptionTested": "Selecting \"The ACL is not applied\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -395,19 +395,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**1 to 100** describes a different mechanism than this question tests. The right idea: The correct answer is \"1 to 99\".",
+            "explanation": "**1 to 100** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**100 to 199** describes a different mechanism than this question tests. The right idea: The correct answer is \"1 to 99\".",
+            "explanation": "**100 to 199** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**100 to 200** describes a different mechanism than this question tests. The right idea: The correct answer is \"1 to 99\".",
+            "explanation": "**100 to 200** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -442,19 +442,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Conditions can be based upon only the destination address.** does not satisfy what the question asks. The correct answer is \"Conditions can be based upon only the source address.",
+            "explanation": "**Conditions can be based upon only the destination address.** does not answer which in this stem. .",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Conditions can be based upon only the source address and source port.** does not satisfy what the question asks. The correct answer is \"Conditions can be based upon only the source address.",
+            "explanation": "**Conditions can be based upon only the source address and source port.** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Conditions can be based upon the source or destination address and source or destination port.** does not satisfy what the question asks. The correct answer is \"Conditions can be based upon only the source address.",
+            "explanation": "**Conditions can be based upon the source or destination address and source or destination port.** does not answer which in this stem. .",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
             "needsExplanationReview": true
           }
@@ -489,19 +489,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**1 to 99** describes a different mechanism than this question tests. The right idea: The correct answer is \"100 to 199\".",
+            "explanation": "**1 to 99** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**1 to 100** describes a different mechanism than this question tests. The right idea: The correct answer is \"100 to 199\".",
+            "explanation": "**1 to 100** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**100 to 200** describes a different mechanism than this question tests. The right idea: The correct answer is \"100 to 199\".",
+            "explanation": "**100 to 200** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -536,19 +536,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**permit any any** describes a different mechanism than this question tests. The right idea: The correct answer is \"deny any any\".",
+            "explanation": "**permit any any** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**log all** describes a different mechanism than this question tests. The right idea: The correct answer is \"deny any any\".",
+            "explanation": "**log all** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**End of ACL marker** describes a different mechanism than this question tests. The right idea: The correct answer is \"deny any any\".",
+            "explanation": "**End of ACL marker** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -583,20 +583,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken.** does not satisfy what the question asks. The correct answer is \"Packets are compared sequentially against each line in an access list until a match is made.",
+            "explanation": "**Packets are compared sequentially against each line in an access list, and the last matching condition is the action taken.** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Packets are compared, and if no matching rule exists, they are allowed.** does not satisfy what the question asks. The correct answer is \"Packets are compared sequentially against each line in an access list until a match is made.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "**Packets are compared, and if no matching rule exists, they are allowed.** reflects a common trap: Rule order doesn’t matter. Order is critical — the first matching rule wins and the rest are skipped.",
+            "misconceptionTested": "Rule order doesn’t matter",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**At the end of the ACL, there is an implicit allow.** describes a different mechanism than this question tests. The right idea: The correct answer is \"Packets are compared sequentially against each line in an access list until a match is made.",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "**At the end of the ACL, there is an implicit allow.** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           }
         ],
@@ -630,19 +630,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**More secure** describes a different mechanism than this question tests. The right idea: The correct answer is \"Less processing overhead\".",
+            "explanation": "**More secure** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**More specific rules** describes a different mechanism than this question tests. The right idea: The correct answer is \"Less processing overhead\".",
-            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "explanation": "**More specific rules** reflects a common trap: Misordering rules. First match wins — put specific rules before broad ones.",
+            "misconceptionTested": "Misordering rules",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Blocking of applications** describes a different mechanism than this question tests. The right idea: The correct answer is \"Less processing overhead\".",
+            "explanation": "**Blocking of applications** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -677,19 +677,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**1000 to 1999** describes a different mechanism than this question tests. The right idea: The correct answer is \"1300 to 1999\".",
+            "explanation": "**1000 to 1999** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**1100 to 1299** describes a different mechanism than this question tests. The right idea: The correct answer is \"1300 to 1999\".",
+            "explanation": "**1100 to 1299** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**2000 to 2699** describes a different mechanism than this question tests. The right idea: The correct answer is \"1300 to 1999\".",
+            "explanation": "**2000 to 2699** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -725,19 +725,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**255.240.0.0** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**255.240.0.0** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**0.0.240.255** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**0.0.240.255** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**255.3.0.0** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**255.3.0.0** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -772,20 +772,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#ip access-list 100 192.168.1.0 0.0.0.255** does not satisfy what the question asks. The correct answer is \"Router(config)#ip access-list 20 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#ip access-list 100 192.168.1.0 0.0.0.255** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ip access-list 1 192.168.1.0/24** does not satisfy what the question asks. The correct answer is \"Router(config)#ip access-list 20 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#ip access-list 1 192.168.1.0/24** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ip access-list 2 192.168.1.0 255.255.255.0** does not satisfy what the question asks. The correct answer is \"Router(config)#ip access-list 20 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#ip access-list 2 192.168.1.0 255.255.255.0** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
         ],
@@ -820,19 +820,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Defining the broadcast address** describes a different mechanism than this question tests. The right idea: The correct answer is \"Defining all addresses\".",
+            "explanation": "**Defining the broadcast address** does not answer configure in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Defining no addresses** describes a different mechanism than this question tests. The right idea: The correct answer is \"Defining all addresses\".",
+            "explanation": "**Defining no addresses** does not answer configure in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Defining the network address** describes a different mechanism than this question tests. The right idea: The correct answer is \"Defining all addresses\".",
+            "explanation": "**Defining the network address** does not answer configure in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -867,19 +867,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**An ACL can be applied in only one direction.** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above.",
+            "explanation": "**An ACL can be applied in only one direction.** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**An ACL can be applied only to a single protocol.** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above.",
+            "explanation": "**An ACL can be applied only to a single protocol.** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**An ACL can be applied only to a single port.** describes a different mechanism than this question tests. The right idea: The correct answer is \"All of the above.",
+            "explanation": "**An ACL can be applied only to a single port.** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -914,19 +914,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Standard** describes a different mechanism than this question tests. The right idea: The correct answer is \"Extended\".",
+            "explanation": "**Standard** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Dynamic** describes a different mechanism than this question tests. The right idea: The correct answer is \"Extended\".",
+            "explanation": "**Dynamic** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Expanded** describes a different mechanism than this question tests. The right idea: The correct answer is \"Extended\".",
+            "explanation": "**Expanded** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -961,19 +961,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**1000 to 1999** describes a different mechanism than this question tests. The right idea: The correct answer is \"2000 to 2699\".",
+            "explanation": "**1000 to 1999** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**1100 to 1299** describes a different mechanism than this question tests. The right idea: The correct answer is \"2000 to 2699\".",
+            "explanation": "**1100 to 1299** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**1300 to 1999** describes a different mechanism than this question tests. The right idea: The correct answer is \"2000 to 2699\".",
+            "explanation": "**1300 to 1999** does not answer the requirement in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -1009,19 +1009,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**255.255.255.128** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**255.255.255.128** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**0.0.0.128** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**0.0.0.128** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**0.0.0.63** describes a different mechanism than this question tests. The right idea: The correct answer is \"0.",
+            "explanation": "**0.0.0.63** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -1056,19 +1056,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Standard** describes a different mechanism than this question tests. The right idea: The correct answer is \"Named\".",
+            "explanation": "**Standard** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Dynamic** describes a different mechanism than this question tests. The right idea: The correct answer is \"Named\".",
+            "explanation": "**Dynamic** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Extended** describes a different mechanism than this question tests. The right idea: The correct answer is \"Named\".",
+            "explanation": "**Extended** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -1103,19 +1103,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Standard** describes a different mechanism than this question tests. The right idea: The correct answer is \"Dynamic\".",
+            "explanation": "**Standard** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Extended** describes a different mechanism than this question tests. The right idea: The correct answer is \"Dynamic\".",
+            "explanation": "**Extended** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Named** describes a different mechanism than this question tests. The right idea: The correct answer is \"Dynamic\".",
+            "explanation": "**Named** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -1150,20 +1150,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 20 deny 172.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 180 permit udp any 172.16.0.0 0.255.255.255 eq 161** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#access-list 130 permit permit ip any any** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 20 deny 172.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 130 permit permit ip any any** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 20 deny 172.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 150 deny any 172.16.0.0 0.255.255.255** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           }
         ],
@@ -1197,20 +1197,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#access-list 5 permit 192.168.1.5** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 5 permit host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 5 permit 192.168.1.5** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#access-list 5 permit 192.168.1.5/24** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 5 permit host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 5 permit 192.168.1.5/24** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 5 permit host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 5 permit 192.168.1.0 0.0.0.255** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
         ],
@@ -1246,20 +1246,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 101 deny tcp host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 101 deny tcp host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 101 deny tcp host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           }
         ],
@@ -1293,19 +1293,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Extended** describes a different mechanism than this question tests. The right idea: The correct answer is \"Standard\".",
+            "explanation": "**Extended** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Named** describes a different mechanism than this question tests. The right idea: The correct answer is \"Standard\".",
+            "explanation": "**Named** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Dynamic** describes a different mechanism than this question tests. The right idea: The correct answer is \"Standard\".",
+            "explanation": "**Dynamic** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -1341,20 +1341,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 199 deny tcp any host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 90 deny ip host 192.168.1.5 eq 22** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 199 deny tcp any host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 90 deny tcp any host 192.168.1.5 eq 22** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 199 deny tcp any host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 199 deny tcp host 192.168.1.5 any eq 23** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           }
         ],
@@ -1390,19 +1390,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Standard** describes a different mechanism than this question tests. The right idea: The correct answer is \"Extended\".",
+            "explanation": "**Standard** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Dynamic** describes a different mechanism than this question tests. The right idea: The correct answer is \"Extended\".",
+            "explanation": "**Dynamic** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Expanded** describes a different mechanism than this question tests. The right idea: The correct answer is \"Extended\".",
+            "explanation": "**Expanded** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -1437,20 +1437,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 143 permit tcp host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 99 deny tcp host 192.168.2.7 eq 443** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#access-list 189 deny any host 192.168.1.5 eq 22** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 143 permit tcp host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 189 deny any host 192.168.1.5 eq 22** reflects a common trap: Forgetting the implicit deny. An ACL with only permits blocks everything else via the implicit deny any.",
+            "misconceptionTested": "Forgetting the implicit deny",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#access-list 153 permit any host 192.168.4.5 eq 22** does not satisfy what the question asks. The correct answer is \"Router(config)#access-list 143 permit tcp host 192.",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 153 permit any host 192.168.4.5 eq 22** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
         ],
@@ -1484,19 +1484,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ip access-list 198 in fast 0/1** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip access-group 198 in\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#ip access-list 198 in fast 0/1** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-if)#ip access-list 198 in** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip access-group 198 in\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config-if)#ip access-list 198 in** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-if)#ip access-class 198 in** does not satisfy what the question asks. The correct answer is \"Router(config-if)#ip access-group 198 in\".",
+            "explanation": "**Router(config-if)#ip access-class 198 in** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -1533,19 +1533,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in** does not satisfy what the question asks. The correct answer is \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\".",
+            "explanation": "**Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out** does not satisfy what the question asks. The correct answer is \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\".",
+            "explanation": "**Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in** does not satisfy what the question asks. The correct answer is \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\".",
+            "explanation": "**Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -1582,20 +1582,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show access-list named_list** does not satisfy what the question asks. The correct answer is \"Switch#show ip access-list\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show access-list named_list** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show ip access-list named_list** does not satisfy what the question asks. The correct answer is \"Switch#show ip access-list\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show ip access-list named_list** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#show running-configuration** does not satisfy what the question asks. The correct answer is \"Switch#show ip access-list\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Switch#show running-configuration** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
         ],
@@ -1629,19 +1629,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Standard** describes a different mechanism than this question tests. The right idea: The correct answer is \"Extended\".",
+            "explanation": "**Standard** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Dynamic** describes a different mechanism than this question tests. The right idea: The correct answer is \"Extended\".",
+            "explanation": "**Dynamic** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Expanded** describes a different mechanism than this question tests. The right idea: The correct answer is \"Extended\".",
+            "explanation": "**Expanded** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
@@ -1676,20 +1676,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#access-list 101 allow host 192.168.1.5 any** does not satisfy what the question asks. The correct answer is \"Router(config)#ip access-list extended named_list\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#access-list 101 allow host 192.168.1.5 any** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#ip access-list named_list** does not satisfy what the question asks. The correct answer is \"Router(config)#ip access-list extended named_list\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#ip access-list named_list** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ip access-list 101 named_list** does not satisfy what the question asks. The correct answer is \"Router(config)#ip access-list extended named_list\".",
-            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "explanation": "**Router(config)#ip access-list 101 named_list** does not answer which in this stem. .",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }
         ],
@@ -1723,19 +1723,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Extended** describes a different mechanism than this question tests. The right idea: The correct answer is \"Standard\".",
+            "explanation": "**Extended** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Dynamic** describes a different mechanism than this question tests. The right idea: The correct answer is \"Standard\".",
+            "explanation": "**Dynamic** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Expanded** describes a different mechanism than this question tests. The right idea: The correct answer is \"Standard\".",
+            "explanation": "**Expanded** does not answer which in this stem. .",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }

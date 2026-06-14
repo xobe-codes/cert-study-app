@@ -29,20 +29,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Decreased problems** describes a different mechanism than this question tests. The right idea: The correct answer is \"Increased security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Decreased problems** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Decreased problems\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Increased throughput** describes a different mechanism than this question tests. The right idea: The correct answer is \"Increased security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Increased throughput** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Increased throughput\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Increased complexity** describes a different mechanism than this question tests. The right idea: The correct answer is \"Increased security\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Increased complexity** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Increased complexity\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -78,20 +78,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Controller-based networking is always in the form of hardware appliances.** does not satisfy what the question asks. The correct answer is \"Controller-based networking has a logically centralized control plane.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Controller-based networking is always in the form of hardware appliances.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Controller-based networking is always in…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Controller-based networking has a logically centralized data plane.** does not satisfy what the question asks. The correct answer is \"Controller-based networking has a logically centralized control plane.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Controller-based networking has a logically centralized data plane.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Controller-based networking has a logica…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Controller-based networking uses ASICs to centrally switch frames.** does not satisfy what the question asks. The correct answer is \"Controller-based networking has a logically centralized control plane.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Controller-based networking uses ASICs to centrally switch frames.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Controller-based networking uses ASICs t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -127,20 +127,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SDN** describes a different mechanism than this question tests. The right idea: The correct answer is \"SD-WAN\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SDN** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SDN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SD-LAN** describes a different mechanism than this question tests. The right idea: The correct answer is \"SD-WAN\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SD-LAN** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SD-LAN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VPN** describes a different mechanism than this question tests. The right idea: The correct answer is \"SD-WAN\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**VPN** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"VPN\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -175,20 +175,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Scalability** describes a different mechanism than this question tests. The right idea: The correct answer is \"Maturity\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Scalability** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Scalability\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Security** describes a different mechanism than this question tests. The right idea: The correct answer is \"Maturity\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Security** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Centralized provisioning** describes a different mechanism than this question tests. The right idea: The correct answer is \"Maturity\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Centralized provisioning** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Centralized provisioning\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -222,20 +222,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**CPU utilization** describes a different mechanism than this question tests. The right idea: The correct answer is \"QoS\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CPU utilization** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"CPU utilization\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Memory utilization** describes a different mechanism than this question tests. The right idea: The correct answer is \"QoS\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Memory utilization** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Memory utilization\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Forwarding of traffic** describes a different mechanism than this question tests. The right idea: The correct answer is \"QoS\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Forwarding of traffic** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Forwarding of traffic\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -270,20 +270,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**All data is centrally switched at the SDN controller.** describes a different mechanism than this question tests. The right idea: The correct answer is \"All SDN switches are stateless with respect to configuration.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**All data is centrally switched at the SDN controller.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"All data is centrally switched at the SD…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**All SDN switches are stateful with respect to configuration.** does not satisfy what the question asks. The correct answer is \"All SDN switches are stateless with respect to configuration.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**All SDN switches are stateful with respect to configuration.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"All SDN switches are stateful with respe…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**All data flowing through the switch is stateless.** describes a different mechanism than this question tests. The right idea: The correct answer is \"All SDN switches are stateless with respect to configuration.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**All data flowing through the switch is stateless.** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"All data flowing through the switch is s…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -318,20 +318,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Syslog** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Syslog** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SDN** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SDN** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"SDN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**CDP** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CDP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"CDP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -367,20 +367,20 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Trap** describes a different mechanism than this question tests. The right idea: The correct answer is \"NMS\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Trap** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Trap\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SNMP agent** describes a different mechanism than this question tests. The right idea: The correct answer is \"NMS\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**SNMP agent** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"SNMP agent\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Syslog server** describes a different mechanism than this question tests. The right idea: The correct answer is \"NMS\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**Syslog server** does not answer the requirement in this stem. .",
+            "misconceptionTested": "Selecting \"Syslog server\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
@@ -416,20 +416,20 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**CAPWAP** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**CAPWAP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"CAPWAP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**LWAPP** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**LWAPP** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"LWAPP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RESTCONF** describes a different mechanism than this question tests. The right idea: The correct answer is \"SNMP\".",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "explanation": "**RESTCONF** does not answer which in this stem. .",
+            "misconceptionTested": "Selecting \"RESTCONF\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],

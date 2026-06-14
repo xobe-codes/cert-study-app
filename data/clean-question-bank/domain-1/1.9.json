@@ -29,18 +29,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**FE80::/10** describes a different mechanism than this question tests. The right idea: Global unicast = 2000::/3, the public/routable range.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FE80::/10** uses the wrong value. The tested fact calls for **2000** — not 80.",
+            "misconceptionTested": "Selecting \"FE80::/10\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FC00::/7** describes a different mechanism than this question tests. The right idea: Global unicast = 2000::/3, the public/routable range.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FC00::/7** uses the wrong value. The tested fact calls for **2000** — not 00.",
+            "misconceptionTested": "Selecting \"FC00::/7\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**FF00::/8** describes a different mechanism than this question tests. The right idea: Global unicast = 2000::/3, the public/routable range.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FF00::/8** uses the wrong value. The tested fact calls for **2000** — not 00.",
+            "misconceptionTested": "Selecting \"FF00::/8\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -71,18 +71,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**FF02** describes a different mechanism than this question tests. The right idea: Link-local addresses are FE80::/10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FF02** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**2001** describes a different mechanism than this question tests. The right idea: Link-local addresses are FE80::/10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**2001** uses the wrong value. The tested fact calls for **80** — not 2001.",
+            "misconceptionTested": "Selecting \"2001\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**FD00** describes a different mechanism than this question tests. The right idea: Link-local addresses are FE80::/10.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FD00** uses the wrong value. The tested fact calls for **80** — not 00.",
+            "misconceptionTested": "Selecting \"FD00\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -113,18 +113,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**2000::/3** describes a different mechanism than this question tests. The right idea: Unique Local is FC00::/7, used in practice as FD00::/8.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**2000::/3** uses the wrong value. The tested fact calls for **00** — not 2000.",
+            "misconceptionTested": "Selecting \"2000::/3\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FE80::/10** describes a different mechanism than this question tests. The right idea: Unique Local is FC00::/7, used in practice as FD00::/8.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FE80::/10** uses the wrong value. The tested fact calls for **00** — not 80.",
+            "misconceptionTested": "Selecting \"FE80::/10\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**FF00::/8** describes a different mechanism than this question tests. The right idea: Unique Local is FC00::/7, used in practice as FD00::/8.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FF00::/8** uses the wrong value. The tested fact calls for **7** — not 00.",
+            "misconceptionTested": "Selecting \"FF00::/8\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -155,18 +155,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**FF02::1** describes a different mechanism than this question tests. The right idea: FF02::2 = all routers; FF02::1 = all nodes.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FF02::1** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FF02::5** describes a different mechanism than this question tests. The right idea: FF02::2 = all routers; FF02::1 = all nodes.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FF02::5** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**224.0.0.2** describes a different mechanism than this question tests. The right idea: FF02::2 = all routers; FF02::1 = all nodes.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**224.0.0.2** uses the wrong value. The tested fact calls for **02** — not 224.",
+            "misconceptionTested": "Selecting \"224.0.0.2\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -196,7 +196,7 @@
           {
             "choiceIndex": 0,
             "explanation": "This statement is **True**, but the tested fact is: False — IPv6 has no broadcast; multicast (FF00::/8) replaces it.",
-            "misconceptionTested": "Flipping the true/false fact without matching the scenario details"
+            "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -227,18 +227,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Multicast** describes a different mechanism than this question tests. The right idea: Anycast = one address on multiple devices, delivered to the nearest.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Multicast** reflects a common trap: Anycast and multicast are the same. Multicast delivers to ALL group members; anycast delivers to the NEAREST one.",
+            "misconceptionTested": "Anycast and multicast are the same"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Link-local** describes a different mechanism than this question tests. The right idea: Anycast = one address on multiple devices, delivered to the nearest.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Link-local** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Broadcast** describes a different mechanism than this question tests. The right idea: Anycast = one address on multiple devices, delivered to the nearest.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Broadcast** reflects a common trap: Looking for an IPv6 broadcast. There is none; multicast (FF00::/8) replaces broadcast.",
+            "misconceptionTested": "Looking for an IPv6 broadcast"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -269,18 +269,18 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Across the internet** describes a different mechanism than this question tests. The right idea: Link-local is never routed off the local link.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Across the internet** does not answer the requirement in this stem. Link-local is never routed off the local link.",
+            "misconceptionTested": "Selecting \"Across the internet\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Only by routers** describes a different mechanism than this question tests. The right idea: Link-local is never routed off the local link.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Only by routers** reflects a common trap: Global unicast is the only usable type on a router link. Routers often peer over link-local (FE80::) next hops for routing protocols.",
+            "misconceptionTested": "Global unicast is the only usable type on a router link"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Only with NAT** describes a different mechanism than this question tests. The right idea: Link-local is never routed off the local link.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**Only with NAT** reflects a common trap: Global unicast is the only usable type on a router link. Routers often peer over link-local (FE80::) next hops for routing protocols.",
+            "misconceptionTested": "Global unicast is the only usable type on a router link"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
@@ -311,18 +311,18 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**FF02::2 (all routers)** describes a different mechanism than this question tests. The right idea: All IPv6 hosts join FF02::1, the all-nodes group.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FF02::2 (all routers)** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FE80::1** describes a different mechanism than this question tests. The right idea: All IPv6 hosts join FF02::1, the all-nodes group.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**FE80::1** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**2000::1** describes a different mechanism than this question tests. The right idea: All IPv6 hosts join FF02::1, the all-nodes group.",
-            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+            "explanation": "**2000::1** uses the wrong value. The tested fact calls for **6** — not 2000.",
+            "misconceptionTested": "Selecting \"2000::1\" without matching the scenario constraint"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
