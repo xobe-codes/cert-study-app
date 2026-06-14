@@ -5454,6 +5454,8 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
         </div>
       )}
 
+      <AiCallsIndicator />
+
       <MetricsCollapsibleSection
         title="MASTERY OVERVIEW"
         summary={`${Math.round(overall * 100)}% course · ${masteredCount}/${objs.length} mastered`}
