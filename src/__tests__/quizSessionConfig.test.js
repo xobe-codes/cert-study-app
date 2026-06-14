@@ -1,7 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import {
-  QUIZ_SESSION_OPTIONS,
+  MIN_QUIZ_SESSION_SIZE,
   DEFAULT_QUIZ_SESSION_SIZE,
+  MAX_QUIZ_SESSION_SIZE,
+  clampQuizSessionSize,
   loadQuizSessionSize,
   saveQuizSessionSize,
 } from '../quizSessionConfig.js'
@@ -26,22 +28,22 @@ describe('quizSessionConfig', () => {
     expect(await loadQuizSessionSize()).toBe(DEFAULT_QUIZ_SESSION_SIZE)
   })
 
-  it('persists a valid session size', async () => {
-    await saveQuizSessionSize(8)
-    expect(await loadQuizSessionSize()).toBe(8)
+  it('persists any valid session size', async () => {
+    await saveQuizSessionSize(12)
+    expect(await loadQuizSessionSize()).toBe(12)
   })
 
-  it('ignores invalid stored values', async () => {
-    await globalThis.window.storage.setItem(STORAGE_KEYS.quizSessionSize, 99)
-    expect(await loadQuizSessionSize()).toBe(DEFAULT_QUIZ_SESSION_SIZE)
+  it('clamps stored values to the allowed range', async () => {
+    await globalThis.window.storage.setItem(STORAGE_KEYS.quizSessionSize, 250)
+    expect(await loadQuizSessionSize()).toBe(MAX_QUIZ_SESSION_SIZE)
   })
 
-  it('does not save invalid sizes', async () => {
-    await saveQuizSessionSize(7)
-    expect(await globalThis.window.storage.getItem(STORAGE_KEYS.quizSessionSize)).toBe(null)
+  it('clamps to a custom max (e.g. bank size)', () => {
+    expect(clampQuizSessionSize(20, { max: 8 })).toBe(8)
+    expect(clampQuizSessionSize(0, { max: 8 })).toBe(MIN_QUIZ_SESSION_SIZE)
   })
 
-  it('exposes expected option list', () => {
-    expect(QUIZ_SESSION_OPTIONS).toEqual([3, 5, 8, 10])
+  it('returns default for non-numeric input', () => {
+    expect(clampQuizSessionSize('abc')).toBe(DEFAULT_QUIZ_SESSION_SIZE)
   })
 })

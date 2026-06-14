@@ -30,7 +30,7 @@ import {
 import ExtraStudyMode from './ExtraStudyMode.jsx'
 import ExamTrapStudyMode from './ExamTrapStudyMode.jsx'
 import RoutingDecoderMode from './RoutingDecoderMode.jsx'
-import { QUIZ_SESSION_OPTIONS, DEFAULT_QUIZ_SESSION_SIZE, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
+import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
 
 
 /* =========================================================================
@@ -3020,9 +3020,32 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     loadQuizSessionSize().then(setSessionSize)
   }, [])
 
-  async function chooseSessionSize(size) {
-    setSessionSize(size)
-    await saveQuizSessionSize(size)
+  useEffect(() => {
+    if (bankSize > 0 && sessionSize > bankSize) {
+      setSessionSize(bankSize)
+      saveQuizSessionSize(bankSize)
+    }
+  }, [bankSize, sessionSize])
+
+  async function commitSessionSize(raw, max = MAX_QUIZ_SESSION_SIZE) {
+    const next = clampQuizSessionSize(raw, { max })
+    setSessionSize(next)
+    await saveQuizSessionSize(next)
+    return next
+  }
+
+  function onSessionSizeInput(e) {
+    const raw = e.target.value
+    if (raw === '') return
+    const n = parseInt(raw, 10)
+    if (!Number.isFinite(n)) return
+    const max = bankSize > 0 ? bankSize : MAX_QUIZ_SESSION_SIZE
+    setSessionSize(clampQuizSessionSize(n, { max }))
+  }
+
+  async function onSessionSizeBlur() {
+    const max = bankSize > 0 ? bankSize : MAX_QUIZ_SESSION_SIZE
+    await commitSessionSize(sessionSize, max)
   }
 
   // Keep the idle screen honest about how many questions are stored locally.
@@ -3204,6 +3227,8 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
 
   if (phase === 'idle') {
     const hasBank = bankSize >= QUIZ_BANK_MIN
+    const sessionMax = hasBank ? bankSize : MAX_QUIZ_SESSION_SIZE
+    const reviewCount = hasBank ? Math.min(sessionSize, bankSize) : sessionSize
     return (
       <div>
         <p style={styles.small}>
@@ -3214,33 +3239,28 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
         {hasBank && <BankMixDisplay questions={bankQuestions} />}
         {!hasBank && <AiBudgetWarning />}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-          <span style={{ fontSize: 12, color: COLORS.silverMid }}>Session length</span>
-          <div style={{ display: 'flex', gap: 4 }} role="group" aria-label="Quiz session length">
-            {QUIZ_SESSION_OPTIONS.map(n => {
-              const disabled = hasBank && bankSize < n
-              return (
-                <button
-                  key={n}
-                  type="button"
-                  disabled={disabled}
-                  aria-pressed={sessionSize === n}
-                  onClick={() => chooseSessionSize(n)}
-                  style={{
-                    ...styles.pill(sessionSize === n ? 'sky' : 'silver'),
-                    cursor: disabled ? 'default' : 'pointer',
-                    border: 'none',
-                    fontFamily: 'inherit',
-                    opacity: disabled ? 0.35 : 1,
-                    fontSize: 11,
-                    padding: '2px 9px',
-                    minHeight: 28,
-                  }}
-                >{n}</button>
-              )
-            })}
-          </div>
+          <label htmlFor={`quiz-session-size-${objective.id}`} style={{ fontSize: 12, color: COLORS.silverMid }}>Questions</label>
+          <input
+            id={`quiz-session-size-${objective.id}`}
+            type="number"
+            min={1}
+            max={sessionMax}
+            inputMode="numeric"
+            value={sessionSize}
+            onChange={onSessionSizeInput}
+            onBlur={onSessionSizeBlur}
+            aria-label="Number of quiz questions"
+            style={{
+              ...styles.input,
+              width: 56,
+              padding: '4px 8px',
+              fontSize: 13,
+              textAlign: 'center',
+            }}
+          />
+          {hasBank && <span style={{ fontSize: 12, color: COLORS.silverMid }}>of {bankSize} saved</span>}
         </div>
-        <button style={styles.primaryBtn} onClick={() => startQuiz(false)}>{hasBank ? `Review ${Math.min(sessionSize, bankSize)} questions` : 'Build question bank'}</button>
+        <button style={styles.primaryBtn} onClick={() => startQuiz(false)}>{hasBank ? `Review ${reviewCount} question${reviewCount === 1 ? '' : 's'}` : 'Build question bank'}</button>
         {hasBank && (
           <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => startQuiz(true)}>Generate new questions</button>
         )}
