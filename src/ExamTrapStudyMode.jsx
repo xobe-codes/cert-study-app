@@ -8,6 +8,7 @@ import {
   getAllDomain5ExamTraps,
   getAllDomain6ExamTraps,
 } from './data/knowledgeStudy.js'
+import { STATIC_COPY } from './ui/staticContentCopy.js'
 
 const DOMAINS = [
   { id: '1', label: 'Domain 1 — Network Fundamentals', getTraps: getAllDomain1ExamTraps },
@@ -68,7 +69,7 @@ export default function ExamTrapStudyMode({ styles, onBack }) {
       <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>Exam Trap Drill</h1>
       <DomainPicker domainId={domainId} onChange={switchDomain} styles={styles} />
-      <div style={styles.small}>{domain.label} · {traps.length} traps · static KB, no API used</div>
+      <div style={styles.small}>{domain.label} · {traps.length} traps · {STATIC_COPY.examTraps}</div>
       <div style={{ ...styles.card, marginTop: 12 }}>
         <div style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)', marginBottom: 8 }}>TRAP {idx + 1} / {traps.length}</div>
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 12 }}>{trap.trap || trap.title}</div>

@@ -12,6 +12,7 @@ import {
   buildStaticMockExamPool,
 } from './mockExamConfig.js'
 import { COLORS, styles } from './ui/appTheme.js'
+import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import Spinner from './components/Spinner.jsx'
@@ -203,7 +204,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
           <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.7 }}>
             <div>• {MOCK_EXAM_QUESTION_COUNT} questions, {MOCK_EXAM_DURATION_MIN} minute countdown</div>
             <div>• Weighted by official exam domain percentages</div>
-            <div>• <span style={{ color: COLORS.mint }}>{canUseStaticOnly ? '100% from your static bank' : `~${staticPct}% from your static question bank`}</span>{canUseStaticOnly ? ' — no API used' : ' — hybrid fills gaps with API'}</div>
+            <div>• <span style={{ color: COLORS.mint }}>{canUseStaticOnly ? '100% from your static bank' : `~${staticPct}% from your static question bank`}</span>{canUseStaticOnly ? ` — ${STATIC_COPY.mockStaticLine}` : ' — hybrid fills gaps on demand'}</div>
             <div>• Score report broken down by domain at the end</div>
             <div>• Once started, the timer runs continuously — find a quiet 2 hours, or submit early</div>
           </div>
@@ -221,7 +222,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
               style={{ width: 18, height: 18, accentColor: COLORS.brand }}
             />
             <span>
-              Static bank only (no API used)
+              {STATIC_COPY.mockStaticOnly}
               {!canUseStaticOnly && !bankReady && <span style={{ color: COLORS.silverMid }}> — loading bank…</span>}
             </span>
           </label>

@@ -9,6 +9,7 @@ import { useNavHint } from './components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 import { labsForObjective } from './data/ccnaLabs.js'
 import { COLORS, styles } from './ui/appTheme.js'
+import { STATIC_COPY } from './ui/staticContentCopy.js'
 
 export default function ObjectiveScreen({
   objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed,
@@ -262,7 +263,7 @@ export default function ObjectiveScreen({
             <span style={{ fontSize: 'var(--ccna-type-lg)' }} aria-hidden="true">🧪</span>
             <span style={{ flex: 1 }}>
               <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver }}>{objLabs.length === 1 ? objLabs[0].title : `${objLabs.length} hands-on labs`}</span>
-              <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Guided lab · ~{objLabs[0].estimatedTimeMinutes} min · no API used</span>
+              <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Guided lab · ~{objLabs[0].estimatedTimeMinutes} min · {STATIC_COPY.lab}</span>
             </span>
             <span style={{ color: COLORS.sky, fontSize: 'var(--ccna-type-sm)' }}>→</span>
           </button>

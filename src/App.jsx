@@ -13,6 +13,7 @@ import { parseRichTextSegments } from './lesson/richTextParse.js'
 import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme.js'
+import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { buildAppShellCss } from './ui/appShell.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import { STORAGE_KEYS } from './storageKeys.js'
@@ -1793,7 +1794,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
         <div style={{ ...styles.small, marginBottom: 12 }}>
           {preassessCount} questions in this check
           {quizPoolSize > 0 && <> · <strong style={{ color: COLORS.silver }}>{quizPoolSize}</strong> in full quiz bank</>}
-          {quizPoolSize >= preassessCount && ' · no API used'}
+          {quizPoolSize >= preassessCount && ` · ${STATIC_COPY.preassessPool}`}
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button style={styles.primaryBtn} onClick={start}>Test out</button>
@@ -2143,7 +2144,7 @@ function CuratedSources({ data }) {
               <span style={{ color: COLORS.silverDim }}> confidence {Math.round(s.confidence * 100)}%</span>
             </div>
           ))}
-          <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim }}>Paraphrased from the cited sources — no API used on this objective.</div>
+          <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim }}>{STATIC_COPY.sources}</div>
         </div>
       )}
     </div>
@@ -2188,7 +2189,7 @@ function BookRefPanel({ objective }) {
   return (
     <div style={{ ...styles.card, border: `1px solid ${COLORS.border}`, marginBottom: 12 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-        <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>⚡ QUICK REFERENCE · no API used</span>
+        <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>⚡ QUICK REFERENCE · {STATIC_COPY.quickRefPill}</span>
       </div>
       <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.65 }}>
         <RichText text={notes} />
@@ -3293,7 +3294,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
       const set = pickReviewSet(banked, breakdown.has ? breakdown.acc : null, sessionSize, { ckuIds })
       if (set.length === 0) throw new Error('No questions available for this objective yet.')
       setBankSize(banked.length)
-      setSourceLabel(usedApi ? 'Freshly generated · added to your bank' : `From your saved bank of ${banked.length} · no API used`)
+      setSourceLabel(usedApi ? 'Freshly generated · added to your bank' : STATIC_COPY.sessionBank(banked.length))
       setQueue(set.slice(1))
       setCurrent(set[0])
       setSelected(null)
@@ -3410,11 +3411,11 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
         <p style={{ ...styles.small, marginBottom: 10, color: COLORS.silverMid }}>
           {hasBank ? (
             <>
-              <strong style={{ color: COLORS.silver }}>{bankSize}</strong> question{bankSize === 1 ? '' : 's'} available in your bank — review reuses saved questions, no API used.
+              <strong style={{ color: COLORS.silver }}>{bankSize}</strong> question{bankSize === 1 ? '' : 's'} available in your bank — {STATIC_COPY.bankReview}.
             </>
           ) : curatedPoolSize > 0 ? (
             <>
-              <strong style={{ color: COLORS.silver }}>{curatedPoolSize}</strong> curated question{curatedPoolSize === 1 ? '' : 's'} for this topic — first session seeds your bank, no API used.
+              <strong style={{ color: COLORS.silver }}>{curatedPoolSize}</strong> curated question{curatedPoolSize === 1 ? '' : 's'} for this topic — {STATIC_COPY.curatedQuizPool}.
             </>
           ) : (
             <>Build a local bank for this topic (one-time API generation if the static pool is thin).</>
@@ -4436,7 +4437,7 @@ function LabsHub({ onBack, onOpenLab }) {
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>🧪 Hands-on Labs</h1>
-      <p style={{ ...styles.small, marginBottom: 14 }}>Guided config labs and troubleshooting scenarios — deterministic command checking, no API used, works offline.</p>
+      <p style={{ ...styles.small, marginBottom: 14 }}>Guided config labs and troubleshooting scenarios — {STATIC_COPY.lab}.</p>
       {tsLabs.length > 0 && (
         <div style={{ marginBottom: 18 }}>
           <div style={{ ...styles.small, fontWeight: 700, color: COLORS.amber, marginBottom: 8, letterSpacing: 0.4 }}>🔧 TROUBLESHOOTING SCENARIOS</div>
@@ -5001,7 +5002,7 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
           </button>
         )}
       </div>
-      <div style={{ ...styles.small, marginBottom: 10 }}>Everything below is computed locally from your activity — no API calls.</div>
+      <div style={{ ...styles.small, marginBottom: 10 }}>Everything below is {STATIC_COPY.metrics}.</div>
 
       {studyNext && (
         <div style={{ position: 'sticky', top: 0, zIndex: 5, background: COLORS.bg, paddingBottom: 10, marginBottom: 4 }}>
@@ -6330,7 +6331,7 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
     <div ref={dialogRef} className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="export-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
       <div className="ccna-sheet" style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
         <h2 id="export-modal-title" style={styles.h2}>Export Reports</h2>
-        <p style={{ ...styles.small, marginBottom: 12 }}>All reports are generated locally from your saved data — no API used, works offline.</p>
+        <p style={{ ...styles.small, marginBottom: 12 }}>All reports are {STATIC_COPY.reports}.</p>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
           {REPORTS.map(r => {
