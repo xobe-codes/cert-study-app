@@ -56,8 +56,6 @@ export default function SettingsSheet({
   onClearExamDate,
   quizSessionSize,
   onQuizSessionSizeChange,
-  socraticDefault,
-  onSocraticDefaultChange,
   reduceMotion,
   onReduceMotionChange,
   examMode,
@@ -184,12 +182,6 @@ export default function SettingsSheet({
         </button>
 
         <SectionLabel>AI</SectionLabel>
-        <ToggleRow
-          label="Socratic mode by default"
-          hint="Start Explain tab with guiding questions when AI is available."
-          checked={socraticDefault}
-          onChange={onSocraticDefaultChange}
-        />
         <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
           <button type="button" style={{ ...styles.secondaryBtn, flex: 1 }} disabled={!!busy} onClick={() => runAction('Clear tutor chat', onClearTutorChat)}>Clear tutor chat</button>
           <button type="button" style={{ ...styles.secondaryBtn, flex: 1 }} disabled={!!busy} onClick={() => runAction('Clear AI caches', onClearAiCaches)}>Clear AI caches</button>

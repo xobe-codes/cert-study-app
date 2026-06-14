@@ -1,5 +1,5 @@
 import { STORAGE_KEYS } from '../storageKeys.js'
-import { AI_CACHE_KEYS, SOCRATIC_DEFAULT_KEY } from './cacheKeys.js'
+import { AI_CACHE_KEYS } from './cacheKeys.js'
 import { DEFAULT_QUIZ_SESSION_SIZE, clampQuizSessionSize } from '../quizSessionConfig.js'
 
 export async function loadExamDate() {
@@ -22,20 +22,6 @@ export async function clearExamDate() {
   } catch {
     await window.storage.setItem(STORAGE_KEYS.examDate, null)
   }
-}
-
-export async function loadSocraticDefault() {
-  try {
-    const v = await window.storage.getItem(SOCRATIC_DEFAULT_KEY)
-    return !!v
-  } catch {
-    return false
-  }
-}
-
-export async function saveSocraticDefault(on) {
-  await window.storage.setItem(SOCRATIC_DEFAULT_KEY, on || null)
-  return on
 }
 
 export async function loadReduceMotion() {

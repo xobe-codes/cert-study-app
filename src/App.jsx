@@ -9,6 +9,14 @@ import { computeCkuWeakness, computeTrapWeakness } from './weaknessUtils.js'
 import { getLessonReference, hasLessonReference } from './lesson/knowledgeReference.js'
 import { buildConceptDetail } from './lesson/conceptDetail.js'
 import { pickReviewSet, computeCkuCoverage, getObjectiveCkuIds } from './lesson/quizCoverage.js'
+import {
+  READING_TIERS,
+  computeDefaultReadingTier,
+  getReadingTier,
+  readingTierHint,
+  studyMetaToProgress,
+  READING_TIER_KEYS,
+} from './lesson/readingTier.js'
 import { parseRichTextSegments } from './lesson/richTextParse.js'
 import { preloadCleanBank, getCleanBankStats } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
@@ -54,8 +62,6 @@ import {
   loadExamDate,
   saveExamDate,
   clearExamDate,
-  loadSocraticDefault,
-  saveSocraticDefault,
   loadReduceMotion,
   saveReduceMotion,
   applyReduceMotionPreference,
@@ -1283,9 +1289,6 @@ function SegmentedBar({ segments, accent = 'mint' }) {
    EXPLAIN TAB
    ========================================================================= */
 const EXPLAIN_CACHE_KEY = 'ccna_explain_cache_v2' // v2: structured sections (was prose)
-const EXPLAIN_STYLE_CACHE_KEY = 'ccna_explain_style_v1' // #19: cached style variants (exam/eli5)
-const SOCRATIC_MODE_KEY = 'ccna_socratic_mode'         // #15: Socratic tutor toggle preference
-const SOCRATIC_CACHE_KEY = 'ccna_socratic_cache_v1'    // #15: guiding questions per objective
 const EXPLAIN_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor. Use the provided reference notes as your primary source. If the notes don't fully cover something a CCNA candidate needs, fill the gap with accurate, exam-relevant CCNA 200-301 knowledge — but never contradict the reference notes. Produce a clear, layered explanation in the requested structured fields. Keep each field tight and scannable: short sentences, plain language. The "advanced" field holds deeper detail a learner can skip on first pass.${''}
 - definition: 1-2 sentence plain-language answer to "what is this?"
 - keyPoints: 3-5 of the most testable core facts (short phrases)
@@ -1827,7 +1830,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button style={styles.primaryBtn} onClick={start}>Test out</button>
-          <button style={styles.secondaryBtn} onClick={onStudy}>Study it</button>
+          <button style={styles.secondaryBtn} onClick={() => onStudy({ direct: true })}>Study it</button>
         </div>
       </div>
     )
@@ -1857,8 +1860,8 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
         )}
         <div style={{ display: 'flex', gap: 8 }}>
           {tier === 'ready'
-            ? <><button style={styles.primaryBtn} onClick={() => onTestedOut(questions, pct)}>Skip section</button><button style={styles.secondaryBtn} onClick={onStudy}>Review anyway</button></>
-            : <button style={styles.primaryBtn} onClick={onStudy}>{tier === 'partial' ? 'Review weak areas' : 'Start lesson'}</button>}
+            ? <><button style={styles.primaryBtn} onClick={() => onTestedOut(questions, pct)}>Skip section</button><button style={styles.secondaryBtn} onClick={() => onStudy({ preAssessPct: pct, reviewAnyway: true })}>Review anyway</button></>
+            : <button style={styles.primaryBtn} onClick={() => onStudy({ preAssessPct: pct })}>{tier === 'partial' ? 'Review weak areas' : 'Start lesson'}</button>}
         </div>
         </div>
       </>
@@ -2115,15 +2118,22 @@ function CuratedDiagram({ diagram, compact = false }) {
   )
 }
 
-const READING_TIERS = [
-  { key: 'beginner', label: 'Beginner' },
-  { key: 'intermediate', label: 'Intermediate' },
-  { key: 'examReady', label: 'Exam-ready' },
-]
 // Renders a curated objective's reading: source-grounded, no AI call. Reuses
 // the same ExplainBlock visual language as the AI path so it feels native.
-function CuratedReading({ data }) {
-  const [tier, setTier] = useState('intermediate')
+function CuratedReading({ data, progressEntry, onTierChange, onOpenReference }) {
+  const resolvedTier = useMemo(() => getReadingTier(progressEntry), [progressEntry])
+  const [tier, setTier] = useState(resolvedTier)
+  const hint = useMemo(() => readingTierHint(progressEntry, tier), [progressEntry, tier])
+
+  useEffect(() => {
+    setTier(getReadingTier(progressEntry))
+  }, [data.objectiveId, progressEntry?.readingTier, progressEntry?.testedOut, progressEntry?.preAssessPct])
+
+  function selectTier(key) {
+    setTier(key)
+    onTierChange?.(key)
+  }
+
   const r = data.reading
   const attribution = formatCuratedAttribution(r.sourceRefs, data.objectiveId)
   return (
@@ -2135,11 +2145,45 @@ function CuratedReading({ data }) {
           style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}
         />
       </div>
+      {hint && (
+        <div style={{
+          ...styles.card,
+          marginBottom: 10,
+          padding: '10px 12px',
+          borderColor: hint.type === 'testedOut' ? COLORS.mintBorder : COLORS.skyBorder,
+          background: hint.type === 'testedOut' ? COLORS.mintDim : COLORS.skyDim,
+        }}>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.45, color: COLORS.silver, marginBottom: hint.showFullWalkthrough || hint.showReferenceLink ? 8 : 0 }}>
+            {hint.message}
+          </div>
+          {(hint.showFullWalkthrough || hint.showReferenceLink) && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {hint.showFullWalkthrough && (
+                <button
+                  type="button"
+                  style={styles.secondaryBtn}
+                  onClick={() => selectTier(READING_TIER_KEYS.intermediate)}
+                >
+                  Full walkthrough
+                </button>
+              )}
+              {hint.showReferenceLink && onOpenReference && (
+                <button type="button" style={styles.secondaryBtn} onClick={onOpenReference}>
+                  Traps & commands →
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+      <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 6, letterSpacing: 0.4 }}>
+        READING DEPTH
+      </div>
       <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
         {READING_TIERS.map(t => {
           const active = tier === t.key
           return (
-            <button key={t.key} onClick={() => setTier(t.key)} style={{ flex: 1, minHeight: 36, borderRadius: 8, border: `1px solid ${active ? COLORS.skyBorder : COLORS.border}`, background: active ? COLORS.skyDim : COLORS.surface, color: active ? COLORS.sky : COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
+            <button key={t.key} onClick={() => selectTier(t.key)} style={{ flex: 1, minHeight: 36, borderRadius: 8, border: `1px solid ${active ? COLORS.skyBorder : COLORS.border}`, background: active ? COLORS.skyDim : COLORS.surface, color: active ? COLORS.sky : COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
           )
         })}
       </div>
@@ -2468,10 +2512,27 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
   }, [stage, objective.id])
 
   async function handleTestedOut(questions, pct) {
-    onUpdateProgress?.(objective.id, { testedOut: true, lastSeen: Date.now() })
+    onUpdateProgress?.(objective.id, {
+      testedOut: true,
+      preAssessPct: pct,
+      readingTier: READING_TIER_KEYS.examReady,
+      lastSeen: Date.now(),
+    })
     await seedTestedOutReview(objective.id, questions)
     logEvent('user_tested_out', { objectiveId: objective.id, score: pct })
-    setStage('lesson') // show the material; it's marked known + scheduled for review
+    setStage('lesson')
+  }
+
+  function enterLesson(studyMeta = {}) {
+    const entry = progress?.[objective.id] || {}
+    const metaFields = studyMetaToProgress(studyMeta)
+    const tier = computeDefaultReadingTier({ ...entry, ...metaFields })
+    onUpdateProgress?.(objective.id, {
+      ...metaFields,
+      readingTier: tier,
+      lastSeen: Date.now(),
+    })
+    setStage('lesson')
   }
 
   // Pre-assessment stage
@@ -2479,7 +2540,7 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
     return (
       <div>
         <KeyTermsCarousel objective={objective} />
-        <PreAssessment objective={objective} onTestedOut={handleTestedOut} onStudy={() => setStage('lesson')} />
+        <PreAssessment objective={objective} onTestedOut={handleTestedOut} onStudy={enterLesson} />
       </div>
     )
   }
@@ -2488,7 +2549,16 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
   const showReading = curated || recalled
   return (
     <div>
-      {testedOut && <div style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-xs)', marginBottom: 10, display: 'inline-block' }}>✓ Tested out — scheduled for review</div>}
+      {testedOut && (
+        <div style={{ marginBottom: 10, display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
+          <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-xs)', display: 'inline-block' }}>✓ Tested out — scheduled for review</span>
+          {showReference && (
+            <button type="button" style={styles.secondaryBtn} onClick={() => setLessonView('reference')}>
+              Traps & commands →
+            </button>
+          )}
+        </div>
+      )}
       <KeyTermsCarousel objective={objective} />
       <CkuCoverageChip objectiveId={objective.id} banked={bankedForCoverage} />
       <LessonViewTabs view={lessonView} onChange={setLessonView} showReference={showReference} />
@@ -2517,10 +2587,12 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
           )}
           {error && <ErrorBox message={error} onRetry={() => { setRecalled(true); fetchExplanation(true) }} />}
           {showReading && curated && (
-            <>
-              <CuratedReading data={curated} />
-              <StyleSwitcher objectiveId={objective.id} objectiveTitle={objective.title} />
-            </>
+            <CuratedReading
+              data={curated}
+              progressEntry={progress[objective.id]}
+              onTierChange={(key) => onUpdateProgress?.(objective.id, { readingTier: key })}
+              onOpenReference={showReference ? () => setLessonView('reference') : undefined}
+            />
           )}
           {showReading && !curated && <AiBudgetWarning />}
           {showReading && !curated && content && !loading && (
@@ -2530,7 +2602,6 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
               </div>
               <SourcesPanel objective={objective} />
               <AdjustExplanation onAdjust={(a) => fetchExplanation(true, a)} />
-              <StyleSwitcher objectiveId={objective.id} objectiveTitle={objective.title} />
             </>
           )}
         </>
@@ -2560,162 +2631,6 @@ function AdjustExplanation({ onAdjust }) {
               <button key={o.value} onClick={() => { setOpen(false); onAdjust(o.value) }} style={{ flex: '1 1 auto', minHeight: 40, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}`, color: COLORS.silver, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>{o.label}</button>
             ))}
           </div>
-        </div>
-      )}
-    </div>
-  )
-}
-
-/* ---- Style switcher (#19) — "Explain it differently" ---- */
-// 3 style modes. Standard = existing content (no API). Exam / ELI5 call Claude
-// and cache the result in localStorage keyed by objectiveId + style.
-const STYLE_OPTIONS = [
-  { value: 'standard', label: '📖 Standard' },
-  { value: 'exam', label: '🎯 Exam-focused' },
-  { value: 'eli5', label: '🗣️ ELI5' },
-]
-const STYLE_PROMPTS = {
-  exam: 'Rewrite this explanation focused purely on what will appear on the CCNA exam — key facts, commands, numbers, and common exam traps. Be concise.',
-  eli5: 'Explain this concept as simply as possible, like explaining to someone with no networking background. Use analogies.',
-}
-
-function StyleSwitcher({ objectiveId, objectiveTitle }) {
-  const [selected, setSelected] = useState('standard')
-  const [content, setContent] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  // #15: Socratic mode toggle
-  const [socraticOn, setSocraticOn] = useState(false)
-  const [socraticContent, setSocraticContent] = useState(null)
-  const [socraticLoading, setSocraticLoading] = useState(false)
-  const [socraticError, setSocraticError] = useState(null)
-
-  // Load persisted Socratic preference on mount
-  useEffect(() => {
-    window.storage.getItem(SOCRATIC_MODE_KEY).then(val => { if (val) setSocraticOn(true) })
-  }, [])
-
-  // Auto-fetch guiding questions whenever Socratic mode is ON or objectiveId changes
-  useEffect(() => {
-    if (!socraticOn) { setSocraticContent(null); setSocraticError(null); return }
-    let cancelled = false
-    ;(async () => {
-      setSocraticLoading(true)
-      setSocraticError(null)
-      try {
-        const cache = (await window.storage.getItem(SOCRATIC_CACHE_KEY)) || {}
-        if (cache[objectiveId]) { if (!cancelled) setSocraticContent(cache[objectiveId]); setSocraticLoading(false); return }
-        const text = await askClaude({
-          system: 'You are a Socratic tutor. Instead of explaining directly, ask 2-3 short guiding questions that help the learner discover the answer to the given CCNA topic themselves. Be concise — one question per line.',
-          messages: [{ role: 'user', content: `Topic: ${objectiveId}: ${objectiveTitle}` }],
-          max_tokens: 300, model: MODELS.fast, feature: 'explain',
-        })
-        cache[objectiveId] = text
-        await window.storage.setItem(SOCRATIC_CACHE_KEY, cache)
-        if (!cancelled) setSocraticContent(text)
-      } catch (err) {
-        if (!cancelled) setSocraticError(err.message)
-      } finally {
-        if (!cancelled) setSocraticLoading(false)
-      }
-    })()
-    return () => { cancelled = true }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [socraticOn, objectiveId])
-
-  async function toggleSocratic() {
-    const next = !socraticOn
-    setSocraticOn(next)
-    await window.storage.setItem(SOCRATIC_MODE_KEY, next || null)
-  }
-
-  async function switchTo(style) {
-    setSelected(style)
-    if (style === 'standard') { setContent(null); return }
-    setLoading(true)
-    setError(null)
-    try {
-      const cacheKey = `${objectiveId}::${style}`
-      const cache = (await window.storage.getItem(EXPLAIN_STYLE_CACHE_KEY)) || {}
-      if (cache[cacheKey]) { setContent(cache[cacheKey]); setLoading(false); return }
-      const refNotes = BOOK_REF[objectiveId] || ''
-      const text = await askClaude({
-        system: `You are a CCNA 200-301 tutor. ${STYLE_PROMPTS[style]}`,
-        messages: [{ role: 'user', content: `Objective ${objectiveId}: ${objectiveTitle}\n\nReference notes:\n${refNotes}` }],
-        max_tokens: 700,
-        model: MODELS.fast,
-        feature: 'explain',
-      })
-      cache[cacheKey] = text
-      await window.storage.setItem(EXPLAIN_STYLE_CACHE_KEY, cache)
-      setContent(text)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  return (
-    <div style={{ marginTop: 16 }}>
-      <div style={{ ...styles.small, fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>EXPLAIN IT DIFFERENTLY</div>
-      <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
-        {STYLE_OPTIONS.map(opt => {
-          const active = selected === opt.value
-          return (
-            <button
-              key={opt.value}
-              onClick={() => switchTo(opt.value)}
-              style={{
-                flex: '1 1 auto', minHeight: 38, borderRadius: 10, cursor: 'pointer',
-                background: active ? COLORS.brandDim : COLORS.surface,
-                border: `1px solid ${active ? COLORS.brandGlow : COLORS.border}`,
-                color: active ? COLORS.brandGlow : COLORS.silverMid,
-                fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 10px', fontFamily: 'inherit',
-              }}
-            >
-              {opt.label}
-            </button>
-          )
-        })}
-        {/* #15: Socratic mode toggle */}
-        <button
-          onClick={toggleSocratic}
-          style={{
-            flex: '1 1 auto', minHeight: 38, borderRadius: 10, cursor: 'pointer',
-            background: socraticOn ? COLORS.amberDim : COLORS.surface,
-            border: `1px solid ${socraticOn ? COLORS.amberBorder : COLORS.border}`,
-            color: socraticOn ? COLORS.amber : COLORS.silverMid,
-            fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 10px', fontFamily: 'inherit',
-          }}
-        >
-          🧠 Socratic Mode
-        </button>
-      </div>
-      {loading && <Spinner label="Rewriting explanation..." />}
-      {error && <ErrorBox message={error} onRetry={() => switchTo(selected)} />}
-      {!loading && !error && content && selected !== 'standard' && (
-        <div style={{ ...styles.card, background: COLORS.purpleDim, border: `1px solid ${COLORS.borderGlow}` }}>
-          <div style={{ ...styles.small, fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 8 }}>
-            {STYLE_OPTIONS.find(o => o.value === selected)?.label}
-          </div>
-          <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.6 }}><RichText text={content} /></div>
-        </div>
-      )}
-      {/* #15: Socratic guiding questions box */}
-      {socraticOn && (
-        <div style={{ marginTop: 8 }}>
-          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.amber, fontWeight: 600, marginBottom: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
-            ❓ Guiding questions mode
-          </div>
-          {socraticLoading && <Spinner label="Generating guiding questions..." />}
-          {socraticError && <ErrorBox message={socraticError} onRetry={() => setSocraticOn(s => s)} />}
-          {!socraticLoading && !socraticError && socraticContent && (
-            <div style={{ ...styles.card, background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}` }}>
-              <div style={{ ...styles.small, fontWeight: 700, color: COLORS.amber, marginBottom: 8 }}>🧠 Think it through first</div>
-              <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.7 }}><RichText text={socraticContent} /></div>
-            </div>
-          )}
         </div>
       )}
     </div>
@@ -6735,7 +6650,6 @@ export default function App() {
   const tourQueuedRef = useRef(false)
   const [settingsExamDate, setSettingsExamDate] = useState(null)
   const [settingsQuizSize, setSettingsQuizSize] = useState(5)
-  const [settingsSocratic, setSettingsSocratic] = useState(false)
   const [settingsReduceMotion, setSettingsReduceMotion] = useState(false)
   const [settingsExamMode, setSettingsExamMode] = useState(false)
   const [cleanBankStats, setCleanBankStats] = useState({ objectives: 0, questions: 0, genericExamTips: 0 })
@@ -6910,16 +6824,14 @@ export default function App() {
     if (!showSettings) return
     let cancelled = false
     ;(async () => {
-      const [exam, quiz, soc, examMode] = await Promise.all([
+      const [exam, quiz, examMode] = await Promise.all([
         loadExamDate(),
         loadQuizSessionSizePref(),
-        loadSocraticDefault(),
         loadExamMode(),
       ])
       if (!cancelled) {
         setSettingsExamDate(exam)
         setSettingsQuizSize(quiz)
-        setSettingsSocratic(soc)
         setSettingsExamMode(examMode)
       }
       await preloadCleanBank()
@@ -6941,11 +6853,6 @@ export default function App() {
   const handleQuizSessionSizeChange = useCallback(async (size) => {
     const saved = await saveQuizSessionSizePref(size)
     setSettingsQuizSize(saved)
-  }, [])
-
-  const handleSocraticDefaultChange = useCallback(async (on) => {
-    await saveSocraticDefault(on)
-    setSettingsSocratic(on)
   }, [])
 
   const handleReduceMotionChange = useCallback(async (on) => {
@@ -7406,8 +7313,6 @@ export default function App() {
           onClearExamDate={handleClearExamDate}
           quizSessionSize={settingsQuizSize}
           onQuizSessionSizeChange={handleQuizSessionSizeChange}
-          socraticDefault={settingsSocratic}
-          onSocraticDefaultChange={handleSocraticDefaultChange}
           reduceMotion={settingsReduceMotion}
           onReduceMotionChange={handleReduceMotionChange}
           examMode={settingsExamMode}

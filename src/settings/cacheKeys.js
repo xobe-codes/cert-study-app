@@ -11,4 +11,3 @@ export const AI_CACHE_KEYS = [
   'ccna_mistake_cache_v1',
 ]
 
-export const SOCRATIC_DEFAULT_KEY = 'ccna_socratic_mode'
