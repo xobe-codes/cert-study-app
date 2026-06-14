@@ -42,10 +42,13 @@ export default function McChoices({ q, selected, revealed, onSelect }) {
       style={{ outline: 'none' }}
     >
       {q.choices.map((choice, idx) => {
-        let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
+        let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver, borderWidth = 1, fontWeight = 400
         if (revealed) {
-          if (idx === q.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
-          else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
+          if (idx === q.correctIndex) {
+            bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint; fontWeight = 600
+          } else if (idx === selected) {
+            bg = COLORS.roseDim; border = COLORS.rose; color = COLORS.rose; borderWidth = 2; fontWeight = 700
+          }
         } else if (selected === idx) {
           bg = COLORS.purpleDim
           border = COLORS.purpleGlow
@@ -63,19 +66,20 @@ export default function McChoices({ q, selected, revealed, onSelect }) {
             onKeyDown={e => { if (!revealed && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onSelect(idx) } }}
             style={{
               display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
-              background: bg, border: `1px solid ${border}`, color, borderRadius: 10,
+              background: bg, border: `${borderWidth}px solid ${border}`, color, borderRadius: 10,
               padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4,
+              fontWeight, fontFamily: 'inherit',
             }}
           >
-            <span aria-hidden="true" style={{ fontWeight: 700, marginRight: 8, color: COLORS.silverMid }}>
-              {String.fromCharCode(65 + idx)}.
+            <span aria-hidden="true" style={{ fontWeight: 700, marginRight: 8, color: revealed && idx === selected && idx !== q.correctIndex ? COLORS.rose : COLORS.silverMid }}>
+              {revealed && idx === selected && idx !== q.correctIndex ? '✗ ' : ''}{String.fromCharCode(65 + idx)}.
             </span>
             {choice}
           </button>
         )
       })}
       {!revealed && (
-        <div style={{ ...styles.small, marginTop: 4 }}>Tip: press 1–{Math.min(choiceCount, 4)} or arrow keys to select</div>
+        <div className="mc-choices-tip" style={{ ...styles.small, marginTop: 4 }}>Tip: press 1–{Math.min(choiceCount, 4)} or arrow keys to select</div>
       )}
     </div>
   )

@@ -46,11 +46,11 @@ function accentColors(accent) {
 }
 
 const styles = {
-  page: { minHeight: '100vh', background: COLORS.bg, color: COLORS.silver, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', paddingBottom: 'calc(env(safe-area-inset-bottom) + 80px)', paddingTop: 'env(safe-area-inset-top)', paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' },
-  container: { maxWidth: 640, margin: '0 auto', padding: '16px 16px 40px' },
-  card: { background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14, padding: 16, marginBottom: 12, boxShadow: '0 4px 16px #00000033' },
+  page: { minHeight: '100dvh', background: COLORS.bg, color: COLORS.silver, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', paddingBottom: 'calc(env(safe-area-inset-bottom) + 80px)', paddingTop: 'env(safe-area-inset-top)', paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' },
+  container: { width: '100%', maxWidth: 680, margin: '0 auto', padding: '10px max(16px, env(safe-area-inset-left)) 24px max(16px, env(safe-area-inset-right))', boxSizing: 'border-box' },
+  card: { background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14, padding: 14, marginBottom: 10, boxShadow: '0 4px 16px #00000033' },
   cardHover: { background: COLORS.cardHover },
-  h1: { fontSize: 22, fontWeight: 700, color: COLORS.silver, margin: '4px 0 4px' },
+  h1: { fontSize: 20, fontWeight: 700, color: COLORS.silver, margin: '2px 0 4px', lineHeight: 1.25 },
   h2: { fontSize: 17, fontWeight: 600, color: COLORS.silver, margin: '0 0 8px' },
   small: { fontSize: 13, color: COLORS.silverMid },
   primaryBtn: {
@@ -71,11 +71,11 @@ const styles = {
     const c = accentColors(accent)
     return { display: 'inline-block', background: c.dim, border: `1px solid ${c.border}`, color: c.text, borderRadius: 999, padding: '3px 10px', fontSize: 12, fontWeight: 600 }
   },
-  tabBar: { display: 'flex', gap: 6, marginBottom: 14, flexWrap: 'wrap' },
+  tabBar: { display: 'flex', gap: 4, marginBottom: 10, flexWrap: 'wrap' },
   tabBtn: (active) => ({
-    flex: '1 1 auto', minHeight: 44, borderRadius: 10, border: `1px solid ${active ? COLORS.purpleGlow : COLORS.border}`,
+    flex: '1 1 auto', minHeight: 40, borderRadius: 10, border: `1px solid ${active ? COLORS.purpleGlow : COLORS.border}`,
     background: active ? COLORS.purpleDim : COLORS.surface, color: active ? COLORS.purpleGlow : COLORS.silverMid,
-    fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: '10px 8px',
+    fontSize: 12, fontWeight: 600, cursor: 'pointer', padding: '8px 6px',
   }),
   backBtn: { background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 15, cursor: 'pointer', padding: '10px 0', minHeight: 44, display: 'flex', alignItems: 'center', gap: 6 },
 }

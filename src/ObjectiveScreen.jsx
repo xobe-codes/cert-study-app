@@ -92,11 +92,11 @@ export default function ObjectiveScreen({
         })()}
       </div>
       <h1 style={styles.h1}>{objective.title}</h1>
-      <div style={{ ...styles.small, marginBottom: 10 }}>{objective.domainName}</div>
+      <div style={{ ...styles.small, marginBottom: 8 }}>{objective.domainName}</div>
 
       {/* Prev / Next navigation within domain */}
       {(prevObj || nextObj) && (
-        <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
           <button
             onClick={() => onSelectObjective?.(prevObj)}
             disabled={!prevObj}
@@ -124,7 +124,7 @@ export default function ObjectiveScreen({
         </div>
       )}
 
-      <div style={{ marginBottom: 14 }}>
+      <div style={{ marginBottom: 10 }}>
         {isOffline ? (
           <span style={{ ...styles.pill('mint'), fontSize: 11 }}>⤓ Available offline</span>
         ) : isPackaging ? (

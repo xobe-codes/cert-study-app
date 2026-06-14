@@ -1117,7 +1117,7 @@ function shuffleArray(arr) {
 
 function SectionLabel({ icon, label }) {
   return (
-    <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9, marginBottom: 12, display: 'flex', alignItems: 'center', gap: 5 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 5 }}>
       <span>{icon}</span><span>{label}</span>
     </div>
   )
@@ -1820,7 +1820,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
           <McChoices q={q} selected={selected} revealed={revealed} onSelect={answer} />
         )}
         {revealed && (
-          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
+          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={q} selected={selected} />
           </div>
@@ -1837,7 +1837,7 @@ function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen 
   const [open, setOpen] = useState(defaultOpen)
   const c = accentColors(accent)
   return (
-    <div style={{ borderLeft: `3px solid ${c.text}`, background: COLORS.card, borderRadius: 6, padding: '10px 12px', marginBottom: 8, boxShadow: '0 2px 10px #00000022' }}>
+    <div style={{ borderLeft: `3px solid ${c.text}`, background: c.dim, border: `1px solid ${c.border}`, borderRadius: 6, padding: '10px 12px', marginBottom: 8, boxShadow: '0 2px 10px #00000022' }}>
       <button
         onClick={() => collapsible && setOpen(o => !o)}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: collapsible ? 'pointer' : 'default', color: c.text }}
@@ -2549,23 +2549,12 @@ Spread difficulty from easy to hard. Tag each question with its type, difficulty
 function BankMixDisplay({ questions }) {
   const mix = computeBankMix(questions)
   if (!mix.total) return null
+  const typeLine = Object.entries(mix.types).sort((a, b) => b[1] - a[1]).map(([t, n]) => `${TYPE_LABEL[t] || t} ${n}`).join(' · ')
+  const skillLine = Object.entries(mix.skills).sort((a, b) => b[1] - a[1]).map(([s, n]) => `${SKILL_LABEL[s] || s} ${n}`).join(' · ')
   return (
-    <div style={{ marginTop: 10, padding: 10, borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}` }}>
-      <div style={{ ...styles.small, marginBottom: 6 }}>Question variety in your bank</div>
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 6 }}>
-        {Object.entries(mix.types).sort((a, b) => b[1] - a[1]).map(([t, n]) => (
-          <span key={t} style={{ ...styles.pill(t === 'troubleshooting' || t === 'ordering' ? 'sky' : 'silver'), fontSize: 10 }}>
-            {(TYPE_LABEL[t] || t)} · {n}
-          </span>
-        ))}
-      </div>
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-        {Object.entries(mix.skills).sort((a, b) => b[1] - a[1]).map(([s, n]) => (
-          <span key={s} style={{ ...styles.pill(s === 'troubleshoot' ? 'amber' : s === 'implement' ? 'sky' : 'mint'), fontSize: 10 }}>
-            {(SKILL_LABEL[s] || s)} · {n}
-          </span>
-        ))}
-      </div>
+    <div style={{ marginTop: 8, marginBottom: 8, padding: '8px 10px', borderRadius: 10, background: COLORS.surface, border: `1px solid ${COLORS.border}` }}>
+      <div style={{ fontSize: 11, color: COLORS.silverMid, lineHeight: 1.45 }}>{typeLine}</div>
+      {skillLine && <div style={{ fontSize: 11, color: COLORS.silverDim, lineHeight: 1.45, marginTop: 2 }}>{skillLine}</div>}
     </div>
   )
 }
@@ -2592,10 +2581,11 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
         let bg = COLORS.surface
         let border = COLORS.border
         let color = COLORS.silver
+        let borderWidth = 1
         if (revealed && correctOrder) {
           const ok = item === correctOrder[idx]
           if (ok) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
-          else { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
+          else { bg = COLORS.roseDim; border = COLORS.rose; color = COLORS.rose; borderWidth = 2 }
         }
         return (
           <div
@@ -2607,7 +2597,7 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
             onDragEnd={() => setDragIdx(null)}
             style={{
               display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, padding: '10px 12px',
-              background: bg, border: `1px solid ${border}`, borderRadius: 10, color,
+              background: bg, border: `${borderWidth}px solid ${border}`, borderRadius: 10, color,
               cursor: revealed ? 'default' : 'grab', lineHeight: 1.4, fontSize: 14,
               opacity: dragIdx === idx ? 0.55 : 1,
             }}
@@ -2658,7 +2648,6 @@ function AnswerReview({ q, selected }) {
         <ExplainBlock
           key={item.choiceIndex}
           icon="❌" title={`WHY ${CHOICE_LETTERS[item.choiceIndex] || item.choiceIndex} IS WRONG`} accent="rose"
-          collapsible defaultOpen={item.choiceIndex === selected}
         >
           {item.explanation
             ? <RichText text={item.explanation} />
@@ -3230,11 +3219,11 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     const sessionMax = hasBank ? bankSize : MAX_QUIZ_SESSION_SIZE
     const reviewCount = hasBank ? Math.min(sessionSize, bankSize) : sessionSize
     return (
-      <div>
-        <p style={styles.small}>
+      <div className="ccna-quiz-idle">
+        <p style={{ ...styles.small, marginBottom: 8 }}>
           {hasBank
-            ? `${bankSize} questions saved for this objective. Review sessions reuse them — no API call. Wrong answers and "Need practice" ratings come back first. Includes drag-and-drop ordering for design & implementation workflows.`
-            : 'Generate a question bank for this objective. Questions are stored so future reviews cost nothing — including drag-and-drop ordering drills.'}
+            ? `${bankSize} saved — review reuses your bank with no API call. Missed and weak items come back first.`
+            : 'Build a local question bank for this objective (one-time AI generation).'}
         </p>
         {hasBank && <BankMixDisplay questions={bankQuestions} />}
         {!hasBank && <AiBudgetWarning />}
@@ -3311,7 +3300,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={selectAnswer} />
         )}
         {revealed && (
-          <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
+          <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
@@ -5298,7 +5287,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
         )}
         {revealed && (
-          <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
+          <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={current} selected={selected} />
           </div>
@@ -5506,7 +5495,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
         )}
         {revealed && (
-          <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
+          <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={current} selected={selected} />
             {!isCorrect && isMcQuestion(current) && (
@@ -5658,7 +5647,7 @@ function Onboarding({ onComplete, onSkip }) {
             <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
           )}
           {revealed && (
-            <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
+            <div className="ccna-quiz-reveal" style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `2px solid ${isCorrect ? COLORS.mintBorder : COLORS.rose}` }} {...quizFeedbackA11y}>
               <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
               <AnswerReview q={current} selected={selected} />
             </div>
@@ -6802,7 +6791,21 @@ export default function App() {
         @keyframes ccna-sheet-in { from { transform: translateY(100%); } to { transform: none; } }
         .ccna-overlay { animation: ccna-overlay-in .2s ease both; }
         .ccna-sheet { animation: ccna-sheet-in .3s cubic-bezier(.2,.8,.2,1) both; }
-        @media (prefers-reduced-motion: reduce) {
+        @media (min-width: 768px) {
+          .ccna-container { max-width: 720px; padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); }
+        }
+        .ccna-quiz-idle {
+          display: flex; flex-direction: column; gap: 8px;
+          justify-content: center;
+          min-height: min(72dvh, 640px);
+        }
+        @media (max-height: 740px) {
+          .ccna-quiz-idle { min-height: 0; justify-content: flex-start; }
+          .mc-choices-tip { display: none; }
+        }
+        @media (max-width: 480px) {
+          .ccna-compact-p { font-size: 12px !important; line-height: 1.4 !important; }
+        }
           html { scroll-behavior: auto; }
           .ccna-view, .ccna-overlay, .ccna-sheet, .ccna-stagger > *, .ccna-quiz-reveal, .ccna-shimmer::after, .ccna-skeleton, .ccna-pulse { animation: none; }
           button:active:not(:disabled) { transform: none; }
@@ -6837,7 +6840,7 @@ export default function App() {
         style={{
           position: 'fixed',
           top: 'calc(env(safe-area-inset-top) + 10px)',
-          right: 12, zIndex: 200, width: 40, height: 40,
+          right: 'max(12px, env(safe-area-inset-right))', zIndex: 200, width: 40, height: 40,
           borderRadius: 999, border: `1px solid ${COLORS.border}`, background: COLORS.card,
           color: COLORS.silver, fontSize: 18, cursor: 'pointer', display: 'flex',
           alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 10px #00000033',
@@ -6846,7 +6849,7 @@ export default function App() {
         {theme === 'dark' ? '☀️' : '🌙'}
       </button>
       {!apiOnline && <OfflineBanner />}
-      <div style={styles.container} ref={mainRef}>
+      <div className="ccna-container" style={styles.container} ref={mainRef}>
         <div className="ccna-view">
         {view === 'onboarding' && <Onboarding onComplete={finishOnboarding} onSkip={skipOnboarding} />}
         {view === 'home' && (
