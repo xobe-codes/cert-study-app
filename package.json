@@ -8,6 +8,13 @@
     "build": "vite build",
     "preview": "vite preview",
     "compile:ccna": "node scripts/compileCcnaPackages.mjs",
+    "import:source-bank": "node scripts/importSourceBank.mjs",
+    "build:clean-bank": "node scripts/buildCleanBank.mjs",
+    "validate:clean-bank": "node scripts/validateCleanBank.mjs",
+    "build:kb": "node scripts/buildKnowledgeBase.mjs",
+    "compile:clean-questions": "node scripts/compileCleanQuestionsModule.mjs",
+    "compile:kb-module": "node scripts/compileKnowledgeBaseModule.mjs",
+    "kb:domain4": "npm run build:clean-bank && npm run validate:clean-bank && npm run build:kb && npm run compile:kb-module && npm run compile:clean-questions",
     "test": "vitest run",
     "lint": "eslint src"
   },

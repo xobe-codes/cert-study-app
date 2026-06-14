@@ -19,6 +19,7 @@
 import { IMPORTED_QUESTIONS } from './ccnaQuestionImports.js'
 import { SUPPLEMENTAL_QUESTIONS } from './ccnaQuestionSupplemental.js'
 import { getSkillQuestions } from './ccnaSkillQuestions.js'
+import { hasCleanBank, getImportedOrCleanQuestions } from './cleanQuestionAdapter.js'
 import {
   OBJ_11, OBJ_12, OBJ_13, OBJ_14, OBJ_17, OBJ_110, OBJ_111, OBJ_112,
 } from './ccnaCuratedDomain1Rest.js'
@@ -1977,13 +1978,21 @@ export function hasCuratedQuestions(objectiveId) {
 
 /** Curated + bulk-imported questions reshaped to the app's quiz-bank question shape. */
 export function getCuratedQuestions(objectiveId) {
+  if (hasCleanBank(objectiveId)) {
+    const clean = getImportedOrCleanQuestions(objectiveId)
+    const skill = getSkillQuestions(objectiveId)
+    return clean.concat(skill)
+  }
+
   const o = CURATED[objectiveId]
   const hand = (o?.questions || []).map(q => ({
     question: q.question, choices: q.choices, correctIndex: q.correctIndex,
     explanation: q.explanation, type: q.type, difficulty: q.difficulty, concept: q.concept,
     skill: q.skill, orderItems: q.orderItems, id: q.id,
+    ...(q.ckuIds?.length ? { ckuIds: q.ckuIds } : {}),
+    ...(q.answerReview ? { answerReview: q.answerReview } : {}),
   }))
-  const imported = IMPORTED_QUESTIONS[objectiveId] || []
+  const imported = getImportedOrCleanQuestions(objectiveId)
   const skill = getSkillQuestions(objectiveId)
   return hand.concat(imported, skill)
 }
