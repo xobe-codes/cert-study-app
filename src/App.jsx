@@ -3298,6 +3298,61 @@ const CONFIDENCE_OPTIONS = [
   { value: 'practice', label: 'Need practice', accent: COLORS.rose, dim: COLORS.roseDim, border: COLORS.roseBorder },
 ]
 
+const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),textarea,input:not([type="hidden"]),select,[tabindex]:not([tabindex="-1"])'
+
+function useFocusTrap(containerRef) {
+  useEffect(() => {
+    const root = containerRef.current
+    if (!root) return
+    const previous = document.activeElement
+
+    function focusables() {
+      return [...root.querySelectorAll(FOCUSABLE_SELECTOR)].filter(el => !el.hasAttribute('disabled'))
+    }
+
+    const nodes = focusables()
+    if (nodes.length) nodes[0].focus()
+    else {
+      root.tabIndex = -1
+      root.focus()
+    }
+
+    function onKeyDown(e) {
+      if (e.key !== 'Tab') return
+      const list = focusables()
+      if (!list.length) {
+        e.preventDefault()
+        return
+      }
+      const first = list[0]
+      const last = list[list.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+
+    root.addEventListener('keydown', onKeyDown)
+    return () => {
+      root.removeEventListener('keydown', onKeyDown)
+      if (previous?.focus) previous.focus()
+    }
+  }, [containerRef])
+}
+
+function objectiveTabId(objectiveId, tabName) {
+  return `obj-tab-${objectiveId}-${tabName.replace(/\s+/g, '-')}`
+}
+
+function objectivePanelId(objectiveId, tabName) {
+  return `obj-panel-${objectiveId}-${tabName.replace(/\s+/g, '-')}`
+}
+
+const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
+
 function QuizCompleteCard({
   title = 'Quiz complete',
   stats,
@@ -3640,7 +3695,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={selectAnswer} />
         )}
         {revealed && (
-          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
+          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
@@ -4953,9 +5008,19 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
         />
       )}
 
-      <div style={styles.tabBar}>
+      <div role="tablist" aria-label={`${objective.id} study activities`} style={styles.tabBar}>
         {tabs.map(t => (
-          <button key={t} style={styles.tabBtn(tab === t)} onClick={() => setTab(t)}>{t}</button>
+          <button
+            key={t}
+            type="button"
+            role="tab"
+            id={objectiveTabId(objective.id, t)}
+            aria-selected={tab === t}
+            aria-controls={objectivePanelId(objective.id, t)}
+            tabIndex={tab === t ? 0 : -1}
+            style={styles.tabBtn(tab === t)}
+            onClick={() => setTab(t)}
+          >{t}</button>
         ))}
       </div>
 
@@ -4970,10 +5035,20 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
         </button>
       )}
 
-      {tab === 'Explain' && <div><SectionLabel icon="📖" label="EXPLANATION" /><ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} /></div>}
-      {tab === 'Visual' && <div><SectionLabel icon="🖼" label="VISUAL AID" /><VisualAidTab objective={objective} /></div>}
+      {tab === 'Explain' && (
+        <div role="tabpanel" id={objectivePanelId(objective.id, 'Explain')} aria-labelledby={objectiveTabId(objective.id, 'Explain')}>
+          <SectionLabel icon="📖" label="EXPLANATION" />
+          <ExplainTab objective={objective} progress={progress} onUpdateProgress={onUpdateProgress} />
+        </div>
+      )}
+      {tab === 'Visual' && (
+        <div role="tabpanel" id={objectivePanelId(objective.id, 'Visual')} aria-labelledby={objectiveTabId(objective.id, 'Visual')}>
+          <SectionLabel icon="🖼" label="VISUAL AID" />
+          <VisualAidTab objective={objective} />
+        </div>
+      )}
       {tab === 'Quiz' && (
-        <div>
+        <div role="tabpanel" id={objectivePanelId(objective.id, 'Quiz')} aria-labelledby={objectiveTabId(objective.id, 'Quiz')}>
           <SectionLabel icon="❓" label="QUIZ" />
           <QuizTab
             objective={objective}
@@ -4988,11 +5063,36 @@ function ObjectiveScreen({ objective, progress, apiOnline, offlineReady, packagi
           />
         </div>
       )}
-      {tab === 'CLI Drill' && <div><SectionLabel icon="💻" label="CLI DRILL" /><CLIDrillTab objective={objective} /></div>}
-      {tab === 'Subnetting' && <div><SectionLabel icon="🧮" label="SUBNETTING PRACTICE" /><SubnettingTab /></div>}
-      {tab === 'VLSM' && <div><SectionLabel icon="🧮" label="VLSM PRACTICE" /><VLSMTab /></div>}
-      {tab === 'IPv6 Calc' && <div><SectionLabel icon="🔢" label="IPv6 CALCULATOR" /><IPv6CalcTab /></div>}
-      {tab === 'ACL Calc' && <div><SectionLabel icon="🔒" label="ACL WILDCARD CALCULATOR" /><ACLWildcardTab /></div>}
+      {tab === 'CLI Drill' && (
+        <div role="tabpanel" id={objectivePanelId(objective.id, 'CLI Drill')} aria-labelledby={objectiveTabId(objective.id, 'CLI Drill')}>
+          <SectionLabel icon="💻" label="CLI DRILL" />
+          <CLIDrillTab objective={objective} />
+        </div>
+      )}
+      {tab === 'Subnetting' && (
+        <div role="tabpanel" id={objectivePanelId(objective.id, 'Subnetting')} aria-labelledby={objectiveTabId(objective.id, 'Subnetting')}>
+          <SectionLabel icon="🧮" label="SUBNETTING PRACTICE" />
+          <SubnettingTab />
+        </div>
+      )}
+      {tab === 'VLSM' && (
+        <div role="tabpanel" id={objectivePanelId(objective.id, 'VLSM')} aria-labelledby={objectiveTabId(objective.id, 'VLSM')}>
+          <SectionLabel icon="🧮" label="VLSM PRACTICE" />
+          <VLSMTab />
+        </div>
+      )}
+      {tab === 'IPv6 Calc' && (
+        <div role="tabpanel" id={objectivePanelId(objective.id, 'IPv6 Calc')} aria-labelledby={objectiveTabId(objective.id, 'IPv6 Calc')}>
+          <SectionLabel icon="🔢" label="IPv6 CALCULATOR" />
+          <IPv6CalcTab />
+        </div>
+      )}
+      {tab === 'ACL Calc' && (
+        <div role="tabpanel" id={objectivePanelId(objective.id, 'ACL Calc')} aria-labelledby={objectiveTabId(objective.id, 'ACL Calc')}>
+          <SectionLabel icon="🔒" label="ACL WILDCARD CALCULATOR" />
+          <ACLWildcardTab />
+        </div>
+      )}
     </div>
   )
 }
@@ -5817,7 +5917,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
         )}
         {revealed && (
-          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
+          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={current} selected={selected} />
           </div>
@@ -5836,6 +5936,8 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
 function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
   const [query, setQuery] = useState('')
   const inputRef = useRef(null)
+  const dialogRef = useRef(null)
+  useFocusTrap(dialogRef)
 
   useEffect(() => { inputRef.current?.focus() }, [])
 
@@ -5862,7 +5964,13 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
   }
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 9999, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 60, padding: '60px 16px 16px' }}
+    <div
+      ref={dialogRef}
+      className="ccna-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search objectives"
+      style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: MODAL_Z, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 60, padding: '60px 16px 16px' }}
       onClick={e => { if (e.target === e.currentTarget) onClose() }}
     >
       <div style={{ width: '100%', maxWidth: 540, background: COLORS.card, borderRadius: 16, border: `1px solid ${COLORS.borderGlow}`, overflow: 'hidden' }}>
@@ -6007,7 +6115,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
           <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
         )}
         {revealed && (
-          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
+          <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
             <AnswerReview q={current} selected={selected} />
             {!isCorrect && isMcQuestion(current) && (
@@ -6154,7 +6262,7 @@ function Onboarding({ onComplete, onSkip }) {
             <McChoices q={current} selected={selected} revealed={revealed} onSelect={answer} />
           )}
           {revealed && (
-            <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }}>
+            <div style={{ marginTop: 8, padding: 12, borderRadius: 10, background: isCorrect ? COLORS.mintDim : COLORS.roseDim, border: `1px solid ${isCorrect ? COLORS.mintBorder : COLORS.roseBorder}` }} {...quizFeedbackA11y}>
               <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 13 }}>{isCorrect ? 'Correct' : 'Incorrect'}</div>
               <AnswerReview q={current} selected={selected} />
             </div>
@@ -7151,6 +7259,8 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
   const [copied, setCopied] = useState(false)
   const [importMsg, setImportMsg] = useState('')
   const fileRef = useRef(null)
+  const dialogRef = useRef(null)
+  useFocusTrap(dialogRef)
 
   async function handleFile(e) {
     const file = e.target.files?.[0]
@@ -7204,7 +7314,7 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
   }
 
   return (
-    <div className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="export-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
+    <div ref={dialogRef} className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="export-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
       <div className="ccna-sheet" style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
         <h2 id="export-modal-title" style={styles.h2}>Export Reports</h2>
         <p style={{ ...styles.small, marginBottom: 12 }}>All reports are generated locally from your saved data — no API, works offline.</p>
@@ -7263,13 +7373,15 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
 function SyncModal({ syncCode, lastSynced, busy, msg, online, onGenerate, onLink, onSyncNow, onUnlink, onClose }) {
   const [entry, setEntry] = useState('')
   const [copied, setCopied] = useState(false)
+  const dialogRef = useRef(null)
+  useFocusTrap(dialogRef)
 
   async function copyCode() {
     try { await navigator.clipboard.writeText(syncCode); setCopied(true); setTimeout(() => setCopied(false), 2000) } catch { setCopied(false) }
   }
 
   return (
-    <div className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="sync-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
+    <div ref={dialogRef} className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="sync-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
       <div className="ccna-sheet" style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
         <h2 id="sync-modal-title" style={styles.h2}>Cross-Device Sync</h2>
         <p style={{ ...styles.small, marginBottom: 12 }}>
