@@ -8,6 +8,7 @@ import {
   computeBankMix,
   normalizeQuestionForBank,
   shuffleArrayCopy,
+  randomizeQuestionOrder,
   SKILL_LABEL,
 } from '../questionUtils.js'
 
@@ -133,5 +134,16 @@ describe('shuffleArrayCopy', () => {
     expect(out).toHaveLength(4)
     expect(src).toEqual(copy)
     expect(out.sort().join()).toBe(src.sort().join())
+  })
+})
+
+describe('randomizeQuestionOrder', () => {
+  it('shuffles question lists without mutating input', () => {
+    const src = [{ id: 'a' }, { id: 'b' }, { id: 'c' }]
+    const copy = [...src]
+    const out = randomizeQuestionOrder(src)
+    expect(out).toHaveLength(3)
+    expect(src).toEqual(copy)
+    expect(out.map(q => q.id).sort().join()).toBe('a,b,c')
   })
 })

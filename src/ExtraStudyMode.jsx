@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { gradeQuestion, isMcQuestion } from './questionUtils.js'
+import { gradeQuestion, isMcQuestion, randomizeQuestionOrder } from './questionUtils.js'
 import { getShelvedPool, getShelvedStats, getPromoteHint } from './data/shelvedStudy.js'
 
 /**
@@ -13,7 +13,8 @@ export default function ExtraStudyMode({
   const [filter, setFilter] = useState('all')
   const pool = useMemo(() => {
     const p = getShelvedPool(filter).filter(q => isMcQuestion(q))
-    return p.length ? p : getShelvedPool(filter)
+    const base = p.length ? p : getShelvedPool(filter)
+    return randomizeQuestionOrder(base)
   }, [filter])
   const [idx, setIdx] = useState(0)
   const [selected, setSelected] = useState(null)

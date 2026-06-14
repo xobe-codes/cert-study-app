@@ -77,6 +77,11 @@ export function shuffleArrayCopy(arr) {
   return a
 }
 
+/** Randomize presentation order for a question list (new array, input unchanged). */
+export function randomizeQuestionOrder(questions) {
+  return shuffleArrayCopy(questions || [])
+}
+
 export function computeBankMix(questions) {
   const types = {}
   const skills = {}

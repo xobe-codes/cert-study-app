@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { randomizeQuestionOrder } from './questionUtils.js'
 import {
   getAllDomain1ExamTraps,
   getAllDomain2ExamTraps,
@@ -37,7 +38,7 @@ function DomainPicker({ domainId, onChange, styles }) {
 export default function ExamTrapStudyMode({ styles, onBack }) {
   const [domainId, setDomainId] = useState('1')
   const domain = DOMAINS.find(d => d.id === domainId) || DOMAINS[0]
-  const traps = useMemo(() => domain.getTraps(), [domain])
+  const traps = useMemo(() => randomizeQuestionOrder(domain.getTraps()), [domain])
   const [idx, setIdx] = useState(0)
   const [revealed, setRevealed] = useState(false)
   const trap = traps[idx]

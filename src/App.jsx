@@ -3,7 +3,7 @@ import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions
 import { getLab, labsForObjective, labsByDomain, normalizeCliLine, labProgress, troubleshootingLabs } from './data/ccnaLabs.js'
 import {
   TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
-  shuffleArrayCopy, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
+  shuffleArrayCopy, randomizeQuestionOrder, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
 } from './questionUtils.js'
 import { computeCkuWeakness, computeTrapWeakness } from './weaknessUtils.js'
 import { getKnowledgeForObjective, hasKnowledgeBase } from './data/knowledgeStudy.js'
@@ -602,14 +602,13 @@ function pickReviewSet(banked, accuracy = null, sessionSize = QUIZ_SESSION_SIZE)
     : accuracy < 0.5 ? { easy: -0.35, medium: 0, hard: 0.35 }    // struggling — favor easier
     : {}
   const typeBias = { troubleshooting: -0.45, ordering: -0.35 }
-  // Select by review priority (adaptively biased), then present easy -> hard within the session.
-  const diffRank = { easy: 0, medium: 1, hard: 2 }
-  return [...banked]
+  // Select by review priority (adaptively biased), then randomize session order.
+  const selected = [...banked]
     .map(q => ({ q, p: priority(q) + (diffBias[q.difficulty] ?? 0) + (typeBias[q.type] ?? 0), j: Math.random() }))
     .sort((a, b) => a.p - b.p || a.j - b.j)
     .slice(0, limit)
-    .sort((a, b) => (diffRank[a.q.difficulty] ?? 1) - (diffRank[b.q.difficulty] ?? 1))
     .map(x => x.q)
+  return randomizeQuestionOrder(selected)
 }
 // Records an attempt + optional confidence rating against a banked question.
 // `schedule` gates spaced-repetition: a question only joins the review queue
@@ -734,9 +733,8 @@ async function loadDueQuestions(limit = 20) {
       if (queue.length) { interleaved.push(queue.shift()); added = true; if (interleaved.length >= limit) break }
     }
   }
-  // Final sort preserves priority ordering across all sections
-  interleaved.sort((a, b) => (a._priority ?? 2) - (b._priority ?? 2))
-  return interleaved
+  // Final pass: randomize presentation order across sections.
+  return randomizeQuestionOrder(interleaved)
 }
 async function countDueQuestions() {
   const bank = await loadQuizBank()
@@ -1106,16 +1104,6 @@ function generateVLSMProblem() {
 /* =========================================================================
    MOCK EXAM — domain-weighted question selection
    ========================================================================= */
-
-function shuffleArray(arr) {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = randInt(0, i)
-    ;[a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
-}
-
 
 function SectionLabel({ icon, label }) {
   return (
@@ -1722,7 +1710,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
         // Use curated/imported questions if we have enough — zero API cost
         const staticQs = getCuratedQuestions(objective.id)
         if (staticQs.length >= 6) {
-          qs = shuffleArray(staticQs).slice(0, 6)
+          qs = randomizeQuestionOrder(staticQs).slice(0, 6)
         } else {
           const refNotes = BOOK_REF[objective.id] || ''
           const data = await askClaudeJSON({
@@ -1736,7 +1724,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
         cache[objective.id] = qs
         await window.storage.setItem(PREASSESS_CACHE_KEY, cache)
       }
-      setQuestions(qs); setIdx(0); setSelected(null); setRevealed(false); setResults([])
+      setQuestions(randomizeQuestionOrder(qs)); setIdx(0); setSelected(null); setRevealed(false); setResults([])
       setPhase('active')
       logEvent('user_started_preassessment', { objectiveId: objective.id })
     } catch (err) {
@@ -3222,15 +3210,22 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     const reviewCount = hasBank ? Math.min(sessionSize, bankSize) : sessionSize
     return (
       <div className="ccna-quiz-idle">
-        <p style={{ ...styles.small, marginBottom: 8 }}>
-          {hasBank
-            ? `${bankSize} saved — review reuses your bank with no API call. Missed and weak items come back first.`
-            : 'Build a local question bank for this objective (one-time AI generation).'}
+        <p style={{ fontSize: 15, fontWeight: 600, color: COLORS.silver, margin: '0 0 6px', lineHeight: 1.35 }}>
+          How many questions do you want?
         </p>
+        {hasBank ? (
+          <p style={{ ...styles.small, marginBottom: 8 }}>
+            You have <strong style={{ color: COLORS.silver }}>{bankSize}</strong> question{bankSize === 1 ? '' : 's'} to choose from — review reuses your bank with no API call. Missed and weak items come back first.
+          </p>
+        ) : (
+          <p style={{ ...styles.small, marginBottom: 8 }}>
+            Build a local question bank for this objective (one-time AI generation). Your session size applies once questions are saved.
+          </p>
+        )}
         {hasBank && <BankMixDisplay questions={bankQuestions} />}
         {!hasBank && <AiBudgetWarning />}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-          <label htmlFor={`quiz-session-size-${objective.id}`} style={{ fontSize: 12, color: COLORS.silverMid }}>Questions</label>
+          <label htmlFor={`quiz-session-size-${objective.id}`} style={{ fontSize: 12, color: COLORS.silverMid }}>This session</label>
           <input
             id={`quiz-session-size-${objective.id}`}
             type="number"
@@ -3240,7 +3235,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
             value={sessionSize}
             onChange={onSessionSizeInput}
             onBlur={onSessionSizeBlur}
-            aria-label="Number of quiz questions"
+            aria-label={`How many questions this session${hasBank ? `, up to ${bankSize} available` : ''}`}
             style={{
               ...styles.input,
               width: 56,
@@ -3249,7 +3244,11 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
               textAlign: 'center',
             }}
           />
-          {hasBank && <span style={{ fontSize: 12, color: COLORS.silverMid }}>of {bankSize} saved</span>}
+          {hasBank && (
+            <span style={{ fontSize: 12, color: COLORS.silverMid }}>
+              of {bankSize} available
+            </span>
+          )}
         </div>
         <button style={styles.primaryBtn} onClick={() => startQuiz(false)}>{hasBank ? `Review ${reviewCount} question${reviewCount === 1 ? '' : 's'}` : 'Build question bank'}</button>
         {hasBank && (
@@ -5214,7 +5213,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
         })
         sorted.slice(0, 3).forEach(q => questions.push({ ...q, objectiveId: id }))
       }
-      const shuffled = shuffleArray(questions).slice(0, REVIEW_SESSION_CAP)
+      const shuffled = randomizeQuestionOrder(questions).slice(0, REVIEW_SESSION_CAP)
       if (shuffled.length === 0) { setPhase('empty'); return }
       setTotal(shuffled.length)
       setCurrent(shuffled[0])
@@ -5414,7 +5413,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
 
   useEffect(() => {
     (async () => {
-      const due = await loadDueQuestions(REVIEW_SESSION_CAP)
+      const due = randomizeQuestionOrder(await loadDueQuestions(REVIEW_SESSION_CAP))
       if (due.length === 0) { setPhase('empty'); return }
       setTotal(due.length)
       setCurrent(due[0]); setQueue(due.slice(1)); setPhase('active')
@@ -5547,11 +5546,11 @@ async function buildDiagnosticSet() {
       .slice(0, DIAGNOSTIC_PER_OBJ)
       .forEach(q => mcPool.push({ ...q, objectiveId: obj.id }))
   }
-  const skillPick = shuffleArray(skillPool).slice(0, DIAGNOSTIC_SKILL_MIN)
+  const skillPick = randomizeQuestionOrder(skillPool).slice(0, DIAGNOSTIC_SKILL_MIN)
   const seen = new Set(skillPick.map(q => q.id || q.question))
-  const mcPick = shuffleArray(mcPool.filter(q => !seen.has(q.id || q.question)))
+  const mcPick = randomizeQuestionOrder(mcPool.filter(q => !seen.has(q.id || q.question)))
     .slice(0, Math.max(0, DIAGNOSTIC_CAP - skillPick.length))
-  return shuffleArray([...skillPick, ...mcPick]).slice(0, DIAGNOSTIC_CAP)
+  return randomizeQuestionOrder([...skillPick, ...mcPick]).slice(0, DIAGNOSTIC_CAP)
 }
 
 function Onboarding({ onComplete, onSkip }) {
@@ -5693,6 +5692,7 @@ function Onboarding({ onComplete, onSkip }) {
    ========================================================================= */
 function MissedReview({ missed, onBack, onRemove }) {
   const [revealedIdx, setRevealedIdx] = useState(null)
+  const items = useMemo(() => randomizeQuestionOrder(missed), [missed])
 
   if (missed.length === 0) {
     return (
@@ -5709,8 +5709,8 @@ function MissedReview({ missed, onBack, onRemove }) {
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>Missed Questions</h1>
       <p style={{ ...styles.small, marginBottom: 14 }}>{missed.length} question{missed.length === 1 ? '' : 's'} saved for review.</p>
-      {missed.map((m, idx) => (
-        <div key={idx} style={styles.card}>
+      {items.map((m, idx) => (
+        <div key={`${m.objectiveId}-${normalizeQuestionText(m.question)}-${idx}`} style={styles.card}>
           <div style={{ ...styles.small, marginBottom: 6 }}>{m.objectiveId}</div>
           <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 10, lineHeight: 1.5 }}>{m.question}</div>
           {m.choices.map((c, ci) => {
@@ -5738,7 +5738,7 @@ function MissedReview({ missed, onBack, onRemove }) {
                   explanation={m.explanation}
                 />
               )}
-              <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => onRemove(idx)}>Mark as reviewed (remove)</button>
+              <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => onRemove(missed.indexOf(m))}>Mark as reviewed (remove)</button>
             </div>
           ) : (
             <button style={{ ...styles.secondaryBtn, marginTop: 4 }} onClick={() => setRevealedIdx(idx)}>Show answer</button>
