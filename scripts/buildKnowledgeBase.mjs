@@ -6,8 +6,8 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { getCurated } from '../src/data/ccnaCurated.js'
-import { DOMAIN_3_OBJECTIVES, DOMAIN_4_OBJECTIVES } from './lib/cleanBankUtils.mjs'
+import { getCurated, curatedObjectiveIds, hasCuratedReading } from '../src/data/ccnaCurated.js'
+import { DOMAIN_3_OBJECTIVES, DOMAIN_4_OBJECTIVES, DOMAIN_2_OBJECTIVES, DOMAIN_5_OBJECTIVES, DOMAIN_6_OBJECTIVES, DOMAIN_1_OBJECTIVES } from './lib/cleanBankUtils.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -15,7 +15,7 @@ const KB_DIR = join(ROOT, 'data', 'knowledge-base')
 const CLEAN_DIR = join(ROOT, 'data', 'clean-question-bank')
 
 function loadCleanQuestions(objectiveId) {
-  for (const domainNum of [2, 3, 4, 5, 6]) {
+  for (const domainNum of [1, 2, 3, 4, 5, 6]) {
     const path = join(CLEAN_DIR, `domain-${domainNum}`, `${objectiveId}.json`)
     if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf-8')).questions || []
   }
@@ -33,7 +33,9 @@ function main() {
   const misconceptions = []
   const objectives = []
 
-  for (const objectiveId of [...DOMAIN_3_OBJECTIVES, ...DOMAIN_4_OBJECTIVES]) {
+  const kbObjectiveIds = [...curatedObjectiveIds].filter(id => hasCuratedReading(id)).sort()
+
+  for (const objectiveId of kbObjectiveIds) {
     const curated = getCurated(objectiveId)
     const cleanQs = loadCleanQuestions(objectiveId)
     const questionIds = cleanQs.map(q => q.id).filter(Boolean)
@@ -101,26 +103,16 @@ function main() {
   writeFileSync(join(KB_DIR, 'objectives.json'), JSON.stringify(objectives, null, 2))
 
   const chapters = [
-    {
-      chapterId: 'ch3-ip-connectivity',
-      chapterNumber: 3,
-      chapterTitle: 'IP Connectivity (Domain 3)',
-      domainId: 'connectivity',
-      objectiveIds: DOMAIN_3_OBJECTIVES,
-      summary: 'Routing table, forwarding, static routing, OSPFv2, FHRP — core CCNA IP Connectivity objectives.',
-    },
-    {
-      chapterId: 'ch4-ip-services',
-      chapterNumber: 4,
-      chapterTitle: 'IP Services (Domain 4)',
-      domainId: 'services',
-      objectiveIds: DOMAIN_4_OBJECTIVES,
-      summary: 'NAT/PAT, NTP, DHCP/DNS, SNMP, Syslog, DHCP relay, QoS, SSH, TFTP/FTP — core CCNA IP Services objectives.',
-    },
+    { chapterId: 'ch1-fundamentals', chapterNumber: 1, chapterTitle: 'Network Fundamentals', domainId: 'fundamentals', objectiveIds: DOMAIN_1_OBJECTIVES, summary: 'Components, topologies, cabling, switching, IPv4/IPv6, wireless, virtualization.' },
+    { chapterId: 'ch2-network-access', chapterNumber: 2, chapterTitle: 'Network Access', domainId: 'access', objectiveIds: DOMAIN_2_OBJECTIVES, summary: 'VLANs, trunking, CDP/LLDP, EtherChannel, STP, wireless architectures.' },
+    { chapterId: 'ch3-ip-connectivity', chapterNumber: 3, chapterTitle: 'IP Connectivity', domainId: 'connectivity', objectiveIds: DOMAIN_3_OBJECTIVES, summary: 'Routing table, forwarding, static routing, OSPFv2, FHRP, troubleshooting.' },
+    { chapterId: 'ch4-ip-services', chapterNumber: 4, chapterTitle: 'IP Services', domainId: 'services', objectiveIds: DOMAIN_4_OBJECTIVES, summary: 'NAT, NTP, DHCP/DNS, SNMP, Syslog, QoS, SSH, TFTP/FTP, management.' },
+    { chapterId: 'ch5-security', chapterNumber: 5, chapterTitle: 'Security Fundamentals', domainId: 'security', objectiveIds: DOMAIN_5_OBJECTIVES, summary: 'Threats, access control, AAA, ACLs, L2 security, wireless security, VPN.' },
+    { chapterId: 'ch6-automation', chapterNumber: 6, chapterTitle: 'Automation & Programmability', domainId: 'automation', objectiveIds: DOMAIN_6_OBJECTIVES, summary: 'Automation, SDN, DNA Center, REST, JSON, Ansible.' },
   ]
   writeFileSync(join(KB_DIR, 'chapters.json'), JSON.stringify(chapters, null, 2))
 
-  console.log('✓ Knowledge base extracted (Domains 3–4)')
+  console.log('✓ Knowledge base extracted (all curated objectives)')
   console.log(`  CKUs: ${ckus.length}`)
   console.log(`  Glossary: ${glossary.length}`)
   console.log(`  Commands: ${commands.length}`)

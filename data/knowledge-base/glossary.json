@@ -1,5 +1,545 @@
 [
   {
+    "id": "1.1-g1",
+    "term": "Default gateway",
+    "definition": "The L3 device (router or SVI) a host uses to reach other subnets.",
+    "ckuIds": [
+      "CKU-ROUTER"
+    ],
+    "objectiveId": "1.1"
+  },
+  {
+    "id": "1.1-g2",
+    "term": "SVI",
+    "definition": "Switch Virtual Interface — a routed VLAN interface on an L3 switch.",
+    "ckuIds": [
+      "CKU-SWITCH"
+    ],
+    "objectiveId": "1.1"
+  },
+  {
+    "id": "1.1-g3",
+    "term": "IPS/IDS",
+    "definition": "Intrusion Prevention/Detection System — identifies and blocks malicious traffic.",
+    "ckuIds": [
+      "CKU-FIREWALL"
+    ],
+    "objectiveId": "1.1"
+  },
+  {
+    "id": "1.10-g1",
+    "term": "Default gateway",
+    "definition": "The router IP a host uses to reach destinations outside its subnet.",
+    "ckuIds": [
+      "CKU-DNS-GW-ISSUES"
+    ],
+    "objectiveId": "1.10"
+  },
+  {
+    "id": "1.10-g2",
+    "term": "Traceroute",
+    "definition": "Tool listing each router hop toward a destination.",
+    "ckuIds": [
+      "CKU-PING-TRACE"
+    ],
+    "objectiveId": "1.10"
+  },
+  {
+    "id": "1.10-g3",
+    "term": "DHCP lease",
+    "definition": "Temporary assignment of IP parameters from a DHCP server.",
+    "ckuIds": [
+      "CKU-IPCONFIG"
+    ],
+    "objectiveId": "1.10"
+  },
+  {
+    "id": "1.11-g1",
+    "term": "SSID",
+    "definition": "Service Set Identifier — the human-readable wireless network name.",
+    "ckuIds": [
+      "CKU-80211-STANDARDS"
+    ],
+    "objectiveId": "1.11"
+  },
+  {
+    "id": "1.11-g2",
+    "term": "Attenuation",
+    "definition": "Loss of RF signal strength caused by distance and obstacles.",
+    "ckuIds": [
+      "CKU-WIFI-CHANNELS"
+    ],
+    "objectiveId": "1.11"
+  },
+  {
+    "id": "1.11-g3",
+    "term": "CCMP/AES",
+    "definition": "Encryption used by WPA2 for confidential WLAN data.",
+    "ckuIds": [
+      "CKU-WPA"
+    ],
+    "objectiveId": "1.11"
+  },
+  {
+    "id": "1.12-g1",
+    "term": "Hypervisor",
+    "definition": "Software/firmware that creates and runs virtual machines on hardware.",
+    "ckuIds": [
+      "CKU-HYPERVISOR"
+    ],
+    "objectiveId": "1.12"
+  },
+  {
+    "id": "1.12-g2",
+    "term": "VRF-lite",
+    "definition": "Cisco VRF without MPLS — separate routing tables on one router.",
+    "ckuIds": [
+      "CKU-VRF"
+    ],
+    "objectiveId": "1.12"
+  },
+  {
+    "id": "1.12-g3",
+    "term": "NFV",
+    "definition": "Deploying network services as virtualized software instead of dedicated appliances.",
+    "ckuIds": [
+      "CKU-NFV"
+    ],
+    "objectiveId": "1.12"
+  },
+  {
+    "id": "1.2-g1",
+    "term": "Collapsed core",
+    "definition": "Two-tier campus design merging distribution and core layers.",
+    "ckuIds": [
+      "CKU-CAMPUS-TIER"
+    ],
+    "objectiveId": "1.2"
+  },
+  {
+    "id": "1.2-g2",
+    "term": "East-west traffic",
+    "definition": "Server-to-server traffic within a data center (vs north-south to clients).",
+    "ckuIds": [
+      "CKU-SPINE-LEAF"
+    ],
+    "objectiveId": "1.2"
+  },
+  {
+    "id": "1.2-g3",
+    "term": "Shared responsibility",
+    "definition": "Cloud model dividing security/ops duties between provider and customer.",
+    "ckuIds": [
+      "CKU-CLOUD-ONPREM"
+    ],
+    "objectiveId": "1.2"
+  },
+  {
+    "id": "1.3-g1",
+    "term": "Auto-MDIX",
+    "definition": "Automatic crossover detection — modern ports adjust for straight or crossover cables.",
+    "ckuIds": [
+      "CKU-CABLE-TYPES"
+    ],
+    "objectiveId": "1.3"
+  },
+  {
+    "id": "1.3-g2",
+    "term": "Single-mode fiber",
+    "definition": "Fiber with a small core for long-distance laser transmission.",
+    "ckuIds": [
+      "CKU-FIBER"
+    ],
+    "objectiveId": "1.3"
+  },
+  {
+    "id": "1.3-g3",
+    "term": "Multimode fiber",
+    "definition": "Fiber with a larger core for shorter high-speed campus links.",
+    "ckuIds": [
+      "CKU-FIBER"
+    ],
+    "objectiveId": "1.3"
+  },
+  {
+    "id": "1.4-g1",
+    "term": "CRC error",
+    "definition": "Frame failed the cyclic redundancy check — indicates corruption in transit.",
+    "ckuIds": [
+      "CKU-CRC"
+    ],
+    "objectiveId": "1.4"
+  },
+  {
+    "id": "1.4-g2",
+    "term": "Late collision",
+    "definition": "Collision detected after the slot time — classic duplex mismatch symptom.",
+    "ckuIds": [
+      "CKU-COLLISIONS"
+    ],
+    "objectiveId": "1.4"
+  },
+  {
+    "id": "1.4-g3",
+    "term": "Auto-negotiation",
+    "definition": "Process where linked devices agree on highest common speed and duplex.",
+    "ckuIds": [
+      "CKU-DUPLEX-MISMATCH"
+    ],
+    "objectiveId": "1.4"
+  },
+  {
+    "id": "1.5-g1",
+    "term": "MAC address table",
+    "definition": "A switch's table of learned MAC-to-port (and VLAN) mappings, used to make forwarding decisions. Also called the CAM table.",
+    "ckuIds": [
+      "CKU-MAC-ADDRESS-TABLE"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-g2",
+    "term": "Learning",
+    "definition": "Recording the source MAC, VLAN, and ingress port of every received frame into the MAC address table.",
+    "ckuIds": [
+      "CKU-MAC-LEARNING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-g3",
+    "term": "Aging",
+    "definition": "Removing a dynamically learned MAC entry after a period (default 300s) of no traffic from that address.",
+    "ckuIds": [
+      "CKU-MAC-AGING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-g4",
+    "term": "Known unicast",
+    "definition": "A frame whose destination MAC is present in the MAC address table — forwarded out one port only.",
+    "ckuIds": [
+      "CKU-FRAME-FORWARDING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-g5",
+    "term": "Unknown unicast",
+    "definition": "A unicast frame whose destination MAC is NOT in the table — flooded out all ports in the VLAN except the source.",
+    "ckuIds": [
+      "CKU-FRAME-FLOODING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-g6",
+    "term": "Flooding",
+    "definition": "Sending a frame out every port in a VLAN except the one it arrived on — used for unknown unicast, broadcast, and multicast.",
+    "ckuIds": [
+      "CKU-FRAME-FLOODING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.6-g1",
+    "term": "Subnet mask",
+    "definition": "32-bit value of contiguous 1s (network) then 0s (host) that divides an IPv4 address.",
+    "ckuIds": [
+      "CKU-SUBNET-MASK"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-g2",
+    "term": "CIDR / prefix length",
+    "definition": "The /n notation giving the number of network bits in the mask.",
+    "ckuIds": [
+      "CKU-SUBNET-MASK"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-g3",
+    "term": "Block size",
+    "definition": "256 minus the interesting mask octet; the increment between subnet boundaries.",
+    "ckuIds": [
+      "CKU-BLOCK-SIZE"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-g4",
+    "term": "Network address",
+    "definition": "The first address of a subnet (host bits all 0); identifies the subnet, not a host.",
+    "ckuIds": [
+      "CKU-SUBNETTING"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-g5",
+    "term": "Broadcast address",
+    "definition": "The last address of a subnet (host bits all 1); reaches all hosts in the subnet.",
+    "ckuIds": [
+      "CKU-SUBNETTING"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-g6",
+    "term": "VLSM",
+    "definition": "Variable-Length Subnet Masking — using different masks per subnet to match each subnet’s size.",
+    "ckuIds": [
+      "CKU-SUBNETTING"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.7-g1",
+    "term": "RFC 1918",
+    "definition": "Standard defining private IPv4 address space for internal networks.",
+    "ckuIds": [
+      "CKU-RFC1918"
+    ],
+    "objectiveId": "1.7"
+  },
+  {
+    "id": "1.7-g2",
+    "term": "APIPA",
+    "definition": "Automatic self-assigned 169.254.x.x address when DHCP is unavailable.",
+    "ckuIds": [
+      "CKU-APIPA"
+    ],
+    "objectiveId": "1.7"
+  },
+  {
+    "id": "1.7-g3",
+    "term": "NAT",
+    "definition": "Network Address Translation — maps private addresses to public for Internet access.",
+    "ckuIds": [
+      "CKU-PUBLIC-PRIVATE"
+    ],
+    "objectiveId": "1.7"
+  },
+  {
+    "id": "1.8-g1",
+    "term": "Hextet",
+    "definition": "One of the eight 16-bit (4-hex-digit) groups in an IPv6 address.",
+    "ckuIds": [
+      "CKU-IPV6-ADDRESSING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.8-g2",
+    "term": "Prefix length",
+    "definition": "The /n marking the network portion of an IPv6 address (usually /64 on LANs).",
+    "ckuIds": [
+      "CKU-IPV6-ADDRESSING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.8-g3",
+    "term": "SLAAC",
+    "definition": "Stateless Address Autoconfiguration — host forms its address from the RA prefix.",
+    "ckuIds": [
+      "CKU-IPV6-SLAAC"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.8-g4",
+    "term": "Modified EUI-64",
+    "definition": "Method to derive a 64-bit interface ID from a 48-bit MAC (insert FFFE, flip U/L bit).",
+    "ckuIds": [
+      "CKU-MODIFIED-EUI-64"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.8-g5",
+    "term": "Interface ID",
+    "definition": "The host portion (lower bits) of an IPv6 address, 64 bits with a /64 prefix.",
+    "ckuIds": [
+      "CKU-IPV6-ADDRESSING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.9-g1",
+    "term": "Global unicast",
+    "definition": "Public, internet-routable IPv6 address (2000::/3).",
+    "ckuIds": [
+      "CKU-IPV6-GLOBAL-UNICAST"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "1.9-g2",
+    "term": "Unique local",
+    "definition": "Private IPv6 (FC00::/7, used as FD00::/8).",
+    "ckuIds": [
+      "CKU-IPV6-UNIQUE-LOCAL"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "1.9-g3",
+    "term": "Link-local",
+    "definition": "Auto-assigned FE80::/10 address used only on the local link.",
+    "ckuIds": [
+      "CKU-IPV6-LINK-LOCAL"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "1.9-g4",
+    "term": "Anycast",
+    "definition": "One address on multiple nodes; delivered to the nearest.",
+    "ckuIds": [
+      "CKU-IPV6-MULTICAST"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "1.9-g5",
+    "term": "Solicited-node multicast",
+    "definition": "FF02::1:FFxx:xxxx group used by Neighbor Discovery in place of ARP.",
+    "ckuIds": [
+      "CKU-IPV6-MULTICAST"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "2.1-g1",
+    "term": "VLAN",
+    "definition": "A logical Layer 2 broadcast domain configured on switches.",
+    "ckuIds": [
+      "CKU-VLAN"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.1-g2",
+    "term": "Access port",
+    "definition": "A switchport in one VLAN carrying untagged end-device traffic.",
+    "ckuIds": [
+      "CKU-ACCESS-PORT"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.1-g3",
+    "term": "Native VLAN",
+    "definition": "The untagged VLAN on a trunk; VLAN 1 by default.",
+    "ckuIds": [
+      "CKU-VLAN"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.1-g4",
+    "term": "Voice VLAN",
+    "definition": "A separate VLAN for IP-phone traffic on an access port.",
+    "ckuIds": [
+      "CKU-VOICE-VLAN"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.2-g1",
+    "term": "Trunk",
+    "definition": "A switch link carrying multiple VLANs using 802.1Q tagging.",
+    "ckuIds": [
+      "CKU-TRUNKING"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.2-g2",
+    "term": "802.1Q",
+    "definition": "The IEEE VLAN tagging standard; inserts a 4-byte tag with the VLAN ID.",
+    "ckuIds": [
+      "CKU-TRUNKING"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.2-g3",
+    "term": "Native VLAN",
+    "definition": "The VLAN sent untagged on a trunk; must match both ends.",
+    "ckuIds": [
+      "CKU-NATIVE-VLAN"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.2-g4",
+    "term": "DTP",
+    "definition": "Dynamic Trunking Protocol; auto-negotiates trunk/access.",
+    "ckuIds": [
+      "CKU-DTP"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.3-g1",
+    "term": "CDP",
+    "definition": "Cisco Discovery Protocol — L2 neighbor advertisement.",
+    "ckuIds": [
+      "CKU-CDP"
+    ],
+    "objectiveId": "2.3"
+  },
+  {
+    "id": "2.5-g1",
+    "term": "Spanning Tree Protocol",
+    "definition": "L2 protocol that blocks redundant paths to prevent loops.",
+    "ckuIds": [
+      "CKU-STP"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
+    "id": "2.5-g2",
+    "term": "Root bridge",
+    "definition": "The switch with the lowest Bridge ID; reference point of the tree.",
+    "ckuIds": [
+      "CKU-ROOT-BRIDGE"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
+    "id": "2.5-g3",
+    "term": "Root port",
+    "definition": "A non-root switch’s lowest-cost port toward the root.",
+    "ckuIds": [
+      "CKU-STP"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
+    "id": "2.5-g4",
+    "term": "PortFast",
+    "definition": "Feature letting access ports skip listening/learning.",
+    "ckuIds": [
+      "CKU-STP-PORTFAST"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
+    "id": "2.5-g5",
+    "term": "BPDU Guard",
+    "definition": "Err-disables a PortFast port that receives a BPDU.",
+    "ckuIds": [
+      "CKU-STP-PORTFAST"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
     "id": "3.1-g1",
     "term": "Source code",
     "definition": "A letter (C/L/S/O/D/R/B) indicating how the router learned each route.",
@@ -205,5 +745,77 @@
       "CKU-NAT-TERMS"
     ],
     "objectiveId": "4.1"
+  },
+  {
+    "id": "5.1-g1",
+    "term": "CIA triad",
+    "definition": "Confidentiality, Integrity, Availability — the three foundational security goals.",
+    "ckuIds": [
+      "CKU-CIA-TRIAD"
+    ],
+    "objectiveId": "5.1"
+  },
+  {
+    "id": "5.1-g2",
+    "term": "Vulnerability",
+    "definition": "A weakness that could be exploited (unpatched software, misconfiguration).",
+    "ckuIds": [
+      "CKU-VULN-THREAT-EXPLOIT"
+    ],
+    "objectiveId": "5.1"
+  },
+  {
+    "id": "5.1-g3",
+    "term": "Defense in depth",
+    "definition": "Layered security controls so one failure does not compromise the entire network.",
+    "ckuIds": [
+      "CKU-MITIGATION-TECHNIQUES"
+    ],
+    "objectiveId": "5.1"
+  },
+  {
+    "id": "5.5-g1",
+    "term": "ACL",
+    "definition": "Access Control List — ordered permit/deny rules for filtering traffic.",
+    "ckuIds": [
+      "CKU-ACL"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.5-g2",
+    "term": "Standard ACL",
+    "definition": "Matches source IP only; placed near the destination.",
+    "ckuIds": [
+      "CKU-ACL-STANDARD"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.5-g3",
+    "term": "Extended ACL",
+    "definition": "Matches src/dst IP, protocol, and ports; placed near the source.",
+    "ckuIds": [
+      "CKU-ACL-EXTENDED"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.5-g4",
+    "term": "Wildcard mask",
+    "definition": "Inverse subnet mask used in ACLs (0 = match, 1 = ignore).",
+    "ckuIds": [
+      "CKU-WILDCARD-MASK"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.5-g5",
+    "term": "Implicit deny",
+    "definition": "The unseen deny-all rule at the end of every ACL.",
+    "ckuIds": [
+      "CKU-ACL"
+    ],
+    "objectiveId": "5.5"
   }
 ]

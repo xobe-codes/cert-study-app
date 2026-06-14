@@ -20,12 +20,13 @@ import { IMPORTED_QUESTIONS } from './ccnaQuestionImports.js'
 import { SUPPLEMENTAL_QUESTIONS } from './ccnaQuestionSupplemental.js'
 import { getSkillQuestions } from './ccnaSkillQuestions.js'
 import { hasCleanBank, getImportedOrCleanQuestions } from './cleanQuestionAdapter.js'
+import { CLEAN_BANK_OBJECTIVES } from './ccnaCleanBankMeta.js'
 import {
   OBJ_11, OBJ_12, OBJ_13, OBJ_14, OBJ_17, OBJ_110, OBJ_111, OBJ_112,
 } from './ccnaCuratedDomain1Rest.js'
 import { READING_SUPPLEMENTS } from './curatedReadingSupplement.js'
 import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
-import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
+import { VISUAL_DIAGRAMS } from './visualDiagramSupplement.js'
 
 // Short source identifiers reused across records.
 export const CURATED_SOURCES = {
@@ -1971,14 +1972,21 @@ const CURATED = {
 /** Objective IDs that have ANY curated static content (reading and/or questions). */
 export const curatedObjectiveIds = new Set(Object.keys(CURATED))
 export function hasCurated(objectiveId) { return curatedObjectiveIds.has(objectiveId) }
-export function getCurated(objectiveId) { return CURATED[objectiveId] || null }
+export function getCurated(objectiveId) {
+  const o = CURATED[objectiveId] || null
+  if (!o) return null
+  const vis = VISUAL_DIAGRAMS[objectiveId]
+  return vis ? { ...o, diagram: vis } : o
+}
 
 /** True if this objective has a curated reading (source-grounded explanation, no AI). */
 export function hasCuratedReading(objectiveId) { return !!CURATED[objectiveId]?.reading }
 
 /** True if this objective has curated (static, zero-API) questions, hand-curated or bulk-imported. */
 export function hasCuratedQuestions(objectiveId) {
-  return (CURATED[objectiveId]?.questions?.length || 0) > 0 || (IMPORTED_QUESTIONS[objectiveId]?.length || 0) > 0
+  return (CURATED[objectiveId]?.questions?.length || 0) > 0
+    || (IMPORTED_QUESTIONS[objectiveId]?.length || 0) > 0
+    || CLEAN_BANK_OBJECTIVES.has(objectiveId)
 }
 
 /** Curated + bulk-imported questions reshaped to the app's quiz-bank question shape. */

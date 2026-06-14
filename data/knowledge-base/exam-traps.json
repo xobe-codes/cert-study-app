@@ -1,5 +1,357 @@
 [
   {
+    "id": "1.1-t1",
+    "trap": "Calling an AP a router.",
+    "correction": "An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing.",
+    "ckuIds": [
+      "CKU-AP-WLAN"
+    ],
+    "objectiveId": "1.1"
+  },
+  {
+    "id": "1.1-t2",
+    "trap": "Expecting an L2 switch to route VLANs.",
+    "correction": "Inter-VLAN routing requires an L3 device — router or L3 switch with SVIs.",
+    "ckuIds": [
+      "CKU-SWITCH"
+    ],
+    "objectiveId": "1.1"
+  },
+  {
+    "id": "1.10-t1",
+    "trap": "Blaming DNS when the gateway is wrong.",
+    "correction": "If remote IPs fail, fix gateway/routing before DNS.",
+    "ckuIds": [
+      "CKU-DNS-GW-ISSUES"
+    ],
+    "objectiveId": "1.10"
+  },
+  {
+    "id": "1.10-t2",
+    "trap": "Ignoring 169.254.x.x in ipconfig.",
+    "correction": "APIPA means DHCP failed — not a valid corporate address.",
+    "ckuIds": [
+      "CKU-IPCONFIG"
+    ],
+    "objectiveId": "1.10"
+  },
+  {
+    "id": "1.11-t1",
+    "trap": "Using adjacent 2.4 GHz channels (e.g. 3 and 4).",
+    "correction": "They overlap — stick to 1, 6, 11 for non-overlapping 20 MHz cells.",
+    "ckuIds": [
+      "CKU-WIFI-BANDS"
+    ],
+    "objectiveId": "1.11"
+  },
+  {
+    "id": "1.11-t2",
+    "trap": "Choosing WEP for compatibility.",
+    "correction": "WEP is insecure; use WPA2 minimum, WPA3 preferred.",
+    "ckuIds": [
+      "CKU-WPA"
+    ],
+    "objectiveId": "1.11"
+  },
+  {
+    "id": "1.12-t1",
+    "trap": "Saying containers include a full guest OS.",
+    "correction": "Containers share the host kernel — only apps/libs are packaged.",
+    "ckuIds": [
+      "CKU-CONTAINERS"
+    ],
+    "objectiveId": "1.12"
+  },
+  {
+    "id": "1.12-t2",
+    "trap": "Equating VRF with VLAN.",
+    "correction": "VRF isolates L3 routing; VLAN isolates L2 broadcast domains.",
+    "ckuIds": [
+      "CKU-VRF"
+    ],
+    "objectiveId": "1.12"
+  },
+  {
+    "id": "1.2-t1",
+    "trap": "Calling spine-leaf a WAN topology.",
+    "correction": "Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+    "ckuIds": [
+      "CKU-SPINE-LEAF"
+    ],
+    "objectiveId": "1.2"
+  },
+  {
+    "id": "1.2-t2",
+    "trap": "Assuming hub-and-spoke has automatic redundancy.",
+    "correction": "The hub is a single point of failure unless spokes are dual-homed or meshed.",
+    "ckuIds": [
+      "CKU-WAN-TOPO"
+    ],
+    "objectiveId": "1.2"
+  },
+  {
+    "id": "1.3-t1",
+    "trap": "Using MM fiber for km-scale links.",
+    "correction": "Long distance requires single-mode fiber and matching SM optics.",
+    "ckuIds": [
+      "CKU-FIBER"
+    ],
+    "objectiveId": "1.3"
+  },
+  {
+    "id": "1.3-t2",
+    "trap": "Always choosing crossover switch-to-switch.",
+    "correction": "Modern auto-MDIX usually allows straight-through between switches.",
+    "ckuIds": [
+      "CKU-CABLE-TYPES"
+    ],
+    "objectiveId": "1.3"
+  },
+  {
+    "id": "1.4-t1",
+    "trap": "Assuming up/up means healthy link.",
+    "correction": "Always check error counters — CRCs can climb while status stays up.",
+    "ckuIds": [
+      "CKU-IF-ERRORS"
+    ],
+    "objectiveId": "1.4"
+  },
+  {
+    "id": "1.4-t2",
+    "trap": "Forcing full-duplex on one side only.",
+    "correction": "Both ends must match — use auto-auto or identical manual settings.",
+    "ckuIds": [
+      "CKU-DUPLEX-MISMATCH"
+    ],
+    "objectiveId": "1.4"
+  },
+  {
+    "id": "1.5-t1",
+    "trap": "Thinking switches broadcast every frame.",
+    "correction": "Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port.",
+    "ckuIds": [
+      "CKU-FRAME-FLOODING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-t2",
+    "trap": "Believing flooding can cross VLAN boundaries.",
+    "correction": "Flooding is always confined to the frame's own VLAN.",
+    "ckuIds": [
+      "CKU-FRAME-FLOODING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-t3",
+    "trap": "Assuming the aging timer disconnects the device.",
+    "correction": "Aging only removes the table entry; the device itself is unaffected and will be relearned on its next frame.",
+    "ckuIds": [
+      "CKU-MAC-AGING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-t4",
+    "trap": "Forgetting same-port source/destination frames are filtered, not forwarded.",
+    "correction": "If both MACs map to the same ingress port, the switch does not forward the frame at all.",
+    "ckuIds": [
+      "CKU-FRAME-FORWARDING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.6-t1",
+    "trap": "Forgetting the “− 2” in the host formula.",
+    "correction": "Usable hosts = 2^h − 2 because the network and broadcast addresses can’t be assigned.",
+    "ckuIds": [
+      "CKU-SUBNETTING"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-t2",
+    "trap": "Confusing subnets (2^b) with hosts (2^h − 2).",
+    "correction": "Borrowed bits give the number of subnets; remaining host bits give hosts per subnet.",
+    "ckuIds": [
+      "CKU-SUBNETTING"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-t3",
+    "trap": "Using the wrong octet for block size.",
+    "correction": "Apply block size to the octet where the mask is neither 255 nor 0 (the interesting octet).",
+    "ckuIds": [
+      "CKU-BLOCK-SIZE"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-t4",
+    "trap": "Assuming /31 and /32 are normal host subnets.",
+    "correction": "/32 is a single host route; /31 is a special 2-address point-to-point (RFC 3021) with no broadcast.",
+    "ckuIds": [
+      "CKU-SUBNETTING"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.7-t1",
+    "trap": "Treating 169.254.x.x as normal private DHCP address.",
+    "correction": "169.254 is APIPA — indicates DHCP failure, not RFC 1918.",
+    "ckuIds": [
+      "CKU-APIPA"
+    ],
+    "objectiveId": "1.7"
+  },
+  {
+    "id": "1.7-t2",
+    "trap": "Thinking 172.16.0.0/16 is the whole 172 private block.",
+    "correction": "The private range is 172.16.0.0/12 (through 172.31.x.x).",
+    "ckuIds": [
+      "CKU-RFC1918"
+    ],
+    "objectiveId": "1.7"
+  },
+  {
+    "id": "1.8-t1",
+    "trap": "Using :: twice.",
+    "correction": "Only one :: per address is allowed.",
+    "ckuIds": [
+      "CKU-IPV6-SHORTENING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.8-t2",
+    "trap": "Dropping trailing zeros in a hextet.",
+    "correction": "Only leading zeros may be dropped (00a0 → a0, not a).",
+    "ckuIds": [
+      "CKU-IPV6-SHORTENING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.8-t3",
+    "trap": "Expecting SLAAC on a non-/64 prefix.",
+    "correction": "SLAAC requires a /64 prefix.",
+    "ckuIds": [
+      "CKU-IPV6-SLAAC"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.9-t1",
+    "trap": "Looking for an IPv6 broadcast.",
+    "correction": "There is none; multicast (FF00::/8) replaces broadcast.",
+    "ckuIds": [
+      "CKU-IPV6-MULTICAST"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "1.9-t2",
+    "trap": "Confusing FE80 and FF02.",
+    "correction": "FE80 = link-local unicast; FF02 = link-local multicast group.",
+    "ckuIds": [
+      "CKU-IPV6-LINK-LOCAL",
+      "CKU-IPV6-MULTICAST"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "1.9-t3",
+    "trap": "Treating ULA as routable.",
+    "correction": "FD00::/8 is private and should not be advertised to the internet.",
+    "ckuIds": [
+      "CKU-IPV6-UNIQUE-LOCAL"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "2.1-t1",
+    "trap": "Thinking same-VLAN devices need a router.",
+    "correction": "Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+    "ckuIds": [
+      "CKU-VLAN"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.1-t2",
+    "trap": "Leaving ports on VLAN 1.",
+    "correction": "Best practice moves user traffic off VLAN 1 and changes the native VLAN.",
+    "ckuIds": [
+      "CKU-VLAN"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.1-t3",
+    "trap": "Assigning a port to an uncreated VLAN.",
+    "correction": "Create the VLAN first or the port may go inactive.",
+    "ckuIds": [
+      "CKU-VLAN"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.2-t1",
+    "trap": "Mismatched native VLANs.",
+    "correction": "Native VLAN must match on both ends or traffic can leak (CDP warns).",
+    "ckuIds": [
+      "CKU-NATIVE-VLAN"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.2-t2",
+    "trap": "Thinking all VLANs are tagged.",
+    "correction": "The native VLAN is untagged; all others are tagged.",
+    "ckuIds": [
+      "CKU-NATIVE-VLAN"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.2-t3",
+    "trap": "Leaving DTP on for untrusted ports.",
+    "correction": "Disable DTP with switchport nonegotiate to prevent VLAN hopping.",
+    "ckuIds": [
+      "CKU-DTP"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.5-t1",
+    "trap": "Highest priority becomes root.",
+    "correction": "LOWEST Bridge ID (priority then MAC) becomes root.",
+    "ckuIds": [
+      "CKU-ROOT-BRIDGE"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
+    "id": "2.5-t2",
+    "trap": "PortFast on switch links.",
+    "correction": "PortFast belongs only on access/host ports; on switch links it risks loops.",
+    "ckuIds": [
+      "CKU-STP-PORTFAST"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
+    "id": "2.5-t3",
+    "trap": "Confusing root and designated ports.",
+    "correction": "Root port = best path to root (per switch); designated = forwarding port per segment.",
+    "ckuIds": [
+      "CKU-STP"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
     "id": "3.1-trap1",
     "trap": "The L route is NOT a host route to a PC.",
     "correction": "L is the router own interface IP as a /32 — so the router processes packets addressed to itself.",
@@ -134,5 +486,69 @@
       "CKU-NAT"
     ],
     "objectiveId": "4.1"
+  },
+  {
+    "id": "5.1-trap1",
+    "trap": "Integrity = detecting CHANGES (hashing). NOT keeping data private.",
+    "correction": "That is confidentiality. Integrity uses hashing to detect unauthorized modification.",
+    "ckuIds": [
+      "CKU-CIA-TRIAD"
+    ],
+    "objectiveId": "5.1"
+  },
+  {
+    "id": "5.1-trap2",
+    "trap": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity.",
+    "correction": "Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+    "ckuIds": [
+      "CKU-CIA-TRIAD",
+      "CKU-COMMON-THREATS"
+    ],
+    "objectiveId": "5.1"
+  },
+  {
+    "id": "5.5-t1",
+    "trap": "Forgetting the implicit deny.",
+    "correction": "An ACL with only permits blocks everything else via the implicit deny any.",
+    "ckuIds": [
+      "CKU-ACL"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.5-t2",
+    "trap": "Using a subnet mask in an ACL.",
+    "correction": "ACLs use WILDCARD masks (inverse): /24 → 0.0.0.255.",
+    "ckuIds": [
+      "CKU-WILDCARD-MASK"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.5-t3",
+    "trap": "Misordering rules.",
+    "correction": "First match wins — put specific rules before broad ones.",
+    "ckuIds": [
+      "CKU-ACL"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.5-t4",
+    "trap": "Placing extended ACLs near the destination.",
+    "correction": "Place extended ACLs near the source to drop traffic early.",
+    "ckuIds": [
+      "CKU-ACL-EXTENDED"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.6-t1",
+    "trap": "Port security works on trunk ports.",
+    "correction": "Configure port security on access ports (`switchport mode access`).",
+    "ckuIds": [
+      "CKU-PORT-SECURITY"
+    ],
+    "objectiveId": "5.6"
   }
 ]

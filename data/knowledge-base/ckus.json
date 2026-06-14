@@ -1,5 +1,1425 @@
 [
   {
+    "ckuId": "CKU-ROUTER",
+    "title": "Router",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.1"
+    ],
+    "summary": "A Layer 3 device that forwards packets between networks/subnets using its routing table. Connects different IP networks and is the default gateway for many LANs.",
+    "keyTerms": [
+      "L3 router",
+      "gateway router"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.1-c-q1",
+      "1.1-c-q6",
+      "1.1-c-q7"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SWITCH",
+    "title": "Switch (L2 and L3)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.1"
+    ],
+    "summary": "L2 switches forward frames using the MAC address table within a VLAN. L3 switches also route between VLANs via SVIs without a separate router.",
+    "keyTerms": [
+      "L2 switch",
+      "L3 switch",
+      "MLS"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.1-c-q2",
+      "1.1-c-q3"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-FIREWALL",
+    "title": "Next-Generation Firewall (NGFW)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.1"
+    ],
+    "summary": "Performs stateful packet filtering and application-aware inspection. Often integrates IPS/IDS to detect and block malicious traffic inline or via out-of-band analysis.",
+    "keyTerms": [
+      "NGFW",
+      "stateful firewall"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.1-c-q4"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-AP-WLAN",
+    "title": "Access Point and Controller",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.1"
+    ],
+    "summary": "APs bridge wireless clients to the wired LAN — autonomous (standalone) or lightweight (WLC-managed). Controllers (WLC, DNA Center) centralize config, monitoring, and policy for many APs.",
+    "keyTerms": [
+      "WAP",
+      "WLC",
+      "wireless controller"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.1-c-q5",
+      "1.1-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IPCONFIG",
+    "title": "Client IP Verification (ipconfig / ip)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.10"
+    ],
+    "summary": "Windows ipconfig /all shows IP, mask, gateway, DNS, MAC, and DHCP lease. Linux/macOS use ip addr, ip route, and resolv.conf for the same parameters.",
+    "keyTerms": [
+      "ifconfig",
+      "ip addr"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.10-c-q1",
+      "1.10-c-q5",
+      "1.10-c-q7"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-PING-TRACE",
+    "title": "Ping and Traceroute",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.10"
+    ],
+    "summary": "ping tests reachability (ICMP). traceroute/tracert shows the hop-by-hop path to isolate where connectivity fails.",
+    "keyTerms": [
+      "tracert",
+      "path analysis"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.10-c-q4",
+      "1.10-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-DNS-GW-ISSUES",
+    "title": "Gateway and DNS Issues",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.10"
+    ],
+    "summary": "Wrong/missing default gateway → local subnet works, remote fails. Wrong DNS → IP works but names fail. Duplicate IP or wrong mask breaks local reachability.",
+    "keyTerms": [
+      "default gateway",
+      "name resolution"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.10-c-q2",
+      "1.10-c-q3",
+      "1.10-c-q5",
+      "1.10-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-WIFI-BANDS",
+    "title": "2.4 GHz vs 5 GHz",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.11"
+    ],
+    "summary": "2.4 GHz: longer range, more interference, only three non-overlapping channels (1, 6, 11). 5 GHz: shorter range, many channels, less interference, higher throughput.",
+    "keyTerms": [
+      "dual-band",
+      "RF bands"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.11-c-q1",
+      "1.11-c-q2"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-80211-STANDARDS",
+    "title": "802.11 Standards (Wi‑Fi 4/5/6)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.11"
+    ],
+    "summary": "802.11 a/b/g/n/ac/ax — increasing speed and efficiency. ax (Wi‑Fi 6) adds OFDMA and better dense-client performance. SSID identifies the wireless network name.",
+    "keyTerms": [
+      "Wi-Fi 6",
+      "802.11ax"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.11-c-q5",
+      "1.11-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-WPA",
+    "title": "Wireless Encryption (WPA2/WPA3)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.11"
+    ],
+    "summary": "WEP is broken. WPA2 uses AES/CCMP. WPA3 strengthens key exchange with SAE and is the recommended choice for new deployments.",
+    "keyTerms": [
+      "WPA2-PSK",
+      "WPA3-SAE"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.11-c-q3",
+      "1.11-c-q4"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-WIFI-CHANNELS",
+    "title": "Channels and Channel Width",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.11"
+    ],
+    "summary": "Each band uses channels; wider channel width (20/40/80 MHz) increases speed but reduces non-overlapping options. RSSI measures signal strength; interference and attenuation affect coverage.",
+    "keyTerms": [
+      "RSSI",
+      "channel width"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.11-c-q7",
+      "1.11-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-HYPERVISOR",
+    "title": "Hypervisor (Type 1 vs Type 2)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.12"
+    ],
+    "summary": "Type 1 (bare metal, e.g. ESXi) runs directly on hardware. Type 2 (hosted, e.g. VMware Workstation) runs on top of a host OS. Each VM has its own guest OS and virtual NICs/switches.",
+    "keyTerms": [
+      "bare-metal hypervisor",
+      "hosted hypervisor"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.12-c-q1",
+      "1.12-c-q2",
+      "1.12-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-CONTAINERS",
+    "title": "Containers",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.12"
+    ],
+    "summary": "Virtualize at the OS level — share the host kernel. Lighter and faster to start than VMs; package an app and its dependencies (e.g. Docker).",
+    "keyTerms": [
+      "Docker",
+      "containerization"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.12-c-q3",
+      "1.12-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-VRF",
+    "title": "VRF (Virtual Routing and Forwarding)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.12"
+    ],
+    "summary": "Creates multiple isolated routing tables on one physical router — same as logical routers for different tenants or services without separate hardware.",
+    "keyTerms": [
+      "VRF-lite",
+      "multi-tenant routing"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.12-c-q4",
+      "1.12-c-q7"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-NFV",
+    "title": "Network Function Virtualization (NFV)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.12"
+    ],
+    "summary": "Runs network services (firewall, router, load balancer) as software on general-purpose hardware instead of dedicated appliances.",
+    "keyTerms": [
+      "vRouter",
+      "vFW"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.12-c-q5"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-CAMPUS-TIER",
+    "title": "Campus Tiered Design",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.2"
+    ],
+    "summary": "Classic three-tier: Access (end devices), Distribution (aggregation, policy, routing boundary), Core (high-speed backbone). Two-tier collapses distribution and core for smaller sites.",
+    "keyTerms": [
+      "three-tier",
+      "hierarchical design"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.2-c-q1",
+      "1.2-c-q5"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SPINE-LEAF",
+    "title": "Spine-Leaf (Clos)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.2"
+    ],
+    "summary": "Data-center fabric where every leaf switch connects to every spine switch — predictable, low-latency, non-blocking east-west traffic.",
+    "keyTerms": [
+      "Clos fabric",
+      "leaf-spine"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.2-c-q2",
+      "1.2-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-WAN-TOPO",
+    "title": "WAN Topologies",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.2"
+    ],
+    "summary": "Hub-and-spoke routes all sites through a central hub (cost-effective). Full mesh connects every site directly (redundant, expensive). Dual-homed adds backup links.",
+    "keyTerms": [
+      "hub-spoke",
+      "full mesh"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.2-c-q3",
+      "1.2-c-q4"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-CLOUD-ONPREM",
+    "title": "SOHO, On-Prem vs Cloud",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.2"
+    ],
+    "summary": "SOHO networks are small flat LANs, often one combo router/AP. On-prem = owned/managed locally. Cloud delivers compute/storage as IaaS/PaaS/SaaS with shared responsibility between provider and customer.",
+    "keyTerms": [
+      "cloud computing",
+      "SOHO",
+      "hybrid cloud"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.2-c-q6",
+      "1.2-c-q7"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-UTP",
+    "title": "Copper UTP (Cat5e/6/6a)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.3"
+    ],
+    "summary": "Unshielded twisted-pair copper with RJ-45 connectors. Max ~100 m per segment. Cat6a supports 10 Gbps. Straight-through connects unlike devices; crossover for like devices (legacy — auto-MDIX common).",
+    "keyTerms": [
+      "Ethernet copper",
+      "RJ-45"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.3-c-q1",
+      "1.3-c-q5"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-FIBER",
+    "title": "Fiber Optic (SM vs MM)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.3"
+    ],
+    "summary": "Single-mode (yellow, laser, long distance, smaller core) vs multimode (orange/aqua, LED/laser, shorter runs, larger core). Connectors include LC, SC, ST.",
+    "keyTerms": [
+      "single-mode",
+      "multimode"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.3-c-q3",
+      "1.3-c-q4",
+      "1.3-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-CABLE-TYPES",
+    "title": "Straight-Through vs Crossover",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.3"
+    ],
+    "summary": "Straight-through: pinouts match (TX→RX on unlike devices — PC to switch). Crossover swaps pairs for like devices (switch-to-switch on older gear). Modern NICs often auto-MDIX.",
+    "keyTerms": [
+      "T568A/B",
+      "auto-MDIX"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.3-c-q2",
+      "1.3-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SFP",
+    "title": "SFP / SFP+ Transceiver",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.3"
+    ],
+    "summary": "Hot-swappable modular transceivers in switch/router ports — copper or fiber media, enabling flexible uplinks without replacing the whole device.",
+    "keyTerms": [
+      "GBIC successor",
+      "mini-GBIC"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.3-c-q4",
+      "1.3-c-q7"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IF-ERRORS",
+    "title": "Interface Error Counters",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.4"
+    ],
+    "summary": "show interfaces (or show interfaces counters errors) reveals input/output errors, CRC, runts, giants, and collisions — symptoms of physical or duplex problems.",
+    "keyTerms": [
+      "interface statistics",
+      "error counters"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.4-c-q2",
+      "1.4-c-q6",
+      "1.4-c-q7"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-CRC",
+    "title": "CRC Errors",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.4"
+    ],
+    "summary": "Cyclic redundancy check failures indicate corrupted frames — often bad cable, loose connector, EMI, or duplex mismatch.",
+    "keyTerms": [
+      "FCS errors"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.4-c-q1",
+      "1.4-c-q5",
+      "1.4-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-DUPLEX-MISMATCH",
+    "title": "Duplex Mismatch",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.4"
+    ],
+    "summary": "One side half-duplex, other full-duplex causes late collisions, CRC errors, and slow/intermittent connectivity — common when one end is auto and the other forced.",
+    "keyTerms": [
+      "speed/duplex mismatch"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.4-c-q3",
+      "1.4-c-q5"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-COLLISIONS",
+    "title": "Collisions (Half-Duplex)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.4"
+    ],
+    "summary": "Excessive collisions occur on half-duplex links when two devices transmit simultaneously. Rare on modern full-duplex switched ports except with duplex mismatch.",
+    "keyTerms": [
+      "late collisions"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.4-c-q4"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-MAC-ADDRESS-TABLE",
+    "title": "MAC Address Table (CAM Table)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.5"
+    ],
+    "summary": "A switch keeps a table mapping learned source MAC addresses (and VLAN) to the port they were heard on. It is the basis for every forwarding decision a switch makes.",
+    "keyTerms": [
+      "CAM table",
+      "content-addressable memory table",
+      "bridging table"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.5-c-q8",
+      "1.5-c-q9"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-MAC-LEARNING",
+    "title": "MAC Address Learning",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.5"
+    ],
+    "summary": "For every frame received, the switch reads the SOURCE MAC address and the port it arrived on, then adds or refreshes that mapping in the MAC address table.",
+    "keyTerms": [
+      "source address learning",
+      "dynamic learning"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.5-c-q1",
+      "1.5-c-q10",
+      "1.5-c-q11"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-MAC-AGING",
+    "title": "MAC Address Table Aging",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.5"
+    ],
+    "summary": "Dynamically learned entries are removed if no frame from that MAC is seen before the aging timer expires — 300 seconds by default on Cisco switches. Keeps the table accurate as devices move or disconnect.",
+    "keyTerms": [
+      "aging timer",
+      "mac aging-time"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.5-c-q4",
+      "1.5-c-q11"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-FRAME-FORWARDING",
+    "title": "Frame Forwarding Decision (Known Unicast)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.5"
+    ],
+    "summary": "After learning, the switch looks up the DESTINATION MAC. If it matches an entry, the frame is forwarded out only that port (or filtered/dropped if the destination is on the same port the frame arrived on).",
+    "keyTerms": [
+      "known unicast forwarding",
+      "filtering"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.5-c-q2",
+      "1.5-c-q5",
+      "1.5-c-q12"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-FRAME-FLOODING",
+    "title": "Flooding (Unknown Unicast, Broadcast, Multicast)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.5"
+    ],
+    "summary": "If the destination MAC is not in the table (unknown unicast), or the frame is a broadcast (FFFF.FFFF.FFFF) or multicast, the switch floods it out every port in the same VLAN except the one it arrived on.",
+    "keyTerms": [
+      "unknown unicast",
+      "broadcast flooding",
+      "BUM traffic"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.5-c-q3",
+      "1.5-c-q6",
+      "1.5-c-q7",
+      "1.5-c-q10",
+      "1.5-c-q12"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IPV4-ADDRESSING",
+    "title": "IPv4 Addressing",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.6"
+    ],
+    "summary": "A 32-bit address written as four dotted-decimal octets, paired with a subnet mask that splits it into a network portion and a host portion.",
+    "keyTerms": [
+      "IPv4",
+      "dotted decimal"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SUBNET-MASK",
+    "title": "Subnet Mask",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.6"
+    ],
+    "summary": "A 32-bit value of contiguous 1s (network) then 0s (host). The prefix length (/n, CIDR) counts the 1s. Common masks: /24=255.255.255.0, /26=…192, /27=…224, /30=…252.",
+    "keyTerms": [
+      "mask",
+      "CIDR",
+      "prefix length"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.6-c-q8",
+      "1.6-c-q10"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SUBNETTING",
+    "title": "Subnetting",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.6"
+    ],
+    "summary": "Borrowing host bits to create more, smaller networks. Hosts per subnet = 2^h − 2 (network + broadcast unusable); number of subnets = 2^(borrowed bits).",
+    "keyTerms": [
+      "subnet",
+      "subnetwork"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.6-c-q1",
+      "1.6-c-q3",
+      "1.6-c-q5",
+      "1.6-c-q6",
+      "1.6-c-q7",
+      "1.6-c-q9",
+      "1.6-c-q11",
+      "1.6-c-q12"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-BLOCK-SIZE",
+    "title": "Block Size (Magic Number)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.6"
+    ],
+    "summary": "Block size = 256 − (the interesting mask octet). Subnet boundaries are multiples of the block size; it gives the network address, broadcast, and usable range fast.",
+    "keyTerms": [
+      "magic number",
+      "increment"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.6-c-q2",
+      "1.6-c-q3",
+      "1.6-c-q4",
+      "1.6-c-q9"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-RFC1918",
+    "title": "RFC 1918 Private Address Space",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.7"
+    ],
+    "summary": "Three private IPv4 ranges not routable on the public Internet: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16. Used inside organizations with NAT for Internet access.",
+    "keyTerms": [
+      "private IP",
+      "RFC1918"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.7-c-q1",
+      "1.7-c-q2",
+      "1.7-c-q3"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-PUBLIC-PRIVATE",
+    "title": "Public vs Private IPv4",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.7"
+    ],
+    "summary": "Public addresses are globally unique and Internet-routable. Private addresses are reused internally and must be translated (NAT) to reach the Internet.",
+    "keyTerms": [
+      "global vs private"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.7-c-q5",
+      "1.7-c-q6",
+      "1.7-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-APIPA",
+    "title": "APIPA (169.254.0.0/16)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.7"
+    ],
+    "summary": "Automatic Private IP Addressing — when DHCP fails, Windows (and others) self-assigns 169.254.x.x link-local address. Indicates no DHCP lease; limited local communication only.",
+    "keyTerms": [
+      "link-local IPv4",
+      "169.254"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.7-c-q4",
+      "1.7-c-q7"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IPV6-ADDRESSING",
+    "title": "IPv6 Addressing",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.8"
+    ],
+    "summary": "128-bit address written as 8 groups of 4 hex digits separated by colons; the prefix length (usually /64) marks the network portion.",
+    "keyTerms": [
+      "IPv6"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.8-c-q1",
+      "1.8-c-q4",
+      "1.8-c-q7",
+      "1.8-c-q9",
+      "1.8-c-q10"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IPV6-SHORTENING",
+    "title": "IPv6 Abbreviation Rules",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.8"
+    ],
+    "summary": "Omit leading zeros in each group; replace ONE run of all-zero groups with :: (only once per address).",
+    "keyTerms": [
+      "compression",
+      "::"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.8-c-q2",
+      "1.8-c-q3",
+      "1.8-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-MODIFIED-EUI-64",
+    "title": "Modified EUI-64",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.8"
+    ],
+    "summary": "Builds the 64-bit interface ID from a 48-bit MAC: split it, insert FFFE in the middle, and flip the 7th bit (U/L) of the first byte.",
+    "keyTerms": [
+      "EUI-64"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.8-c-q5"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IPV6-SLAAC",
+    "title": "SLAAC",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.8"
+    ],
+    "summary": "Stateless Address Autoconfiguration: a host forms its own IPv6 address from the prefix in a Router Advertisement plus an interface ID (EUI-64 or random).",
+    "keyTerms": [
+      "autoconfiguration",
+      "RA"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.8-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IPV6-GLOBAL-UNICAST",
+    "title": "Global Unicast (GUA)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.9"
+    ],
+    "summary": "Publicly routable IPv6, like a public IPv4. Range 2000::/3.",
+    "keyTerms": [
+      "GUA"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.9-c-q1"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IPV6-UNIQUE-LOCAL",
+    "title": "Unique Local (ULA)",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.9"
+    ],
+    "summary": "Private IPv6, like RFC1918. FC00::/7, in practice FD00::/8.",
+    "keyTerms": [
+      "ULA"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.9-c-q3"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IPV6-LINK-LOCAL",
+    "title": "Link-Local",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.9"
+    ],
+    "summary": "Auto-assigned on every IPv6 interface, used for on-link communication (neighbor discovery, routing protocols); never routed. FE80::/10.",
+    "keyTerms": [
+      "FE80"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.9-c-q2",
+      "1.9-c-q7"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IPV6-MULTICAST",
+    "title": "Multicast & Anycast",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.9"
+    ],
+    "summary": "IPv6 has no broadcast; multicast (FF00::/8) replaces it — e.g. FF02::1 all nodes, FF02::2 all routers. Anycast = one address on several devices, routed to the nearest.",
+    "keyTerms": [
+      "FF00",
+      "anycast"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "1.9-c-q4",
+      "1.9-c-q5",
+      "1.9-c-q6",
+      "1.9-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-VLAN",
+    "title": "VLAN",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.1"
+    ],
+    "summary": "A logical Layer 2 broadcast domain. Devices in the same VLAN communicate at L2 regardless of physical location; different VLANs require a router/L3 switch.",
+    "keyTerms": [
+      "virtual LAN"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "2.1-c-q1",
+      "2.1-c-q2",
+      "2.1-c-q4",
+      "2.1-c-q5",
+      "2.1-c-q7",
+      "2.1-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-ACCESS-PORT",
+    "title": "Access Port",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.1"
+    ],
+    "summary": "A switchport that belongs to exactly one VLAN and carries untagged traffic for an end device.",
+    "keyTerms": [
+      "access mode"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "2.1-c-q3"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-VOICE-VLAN",
+    "title": "Voice VLAN",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.1"
+    ],
+    "summary": "A second VLAN on an access port for IP phones, so voice and data traffic are separated on the same physical port.",
+    "keyTerms": [
+      "voice vlan"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "2.1-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-TRUNKING",
+    "title": "Trunking (802.1Q)",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.2"
+    ],
+    "summary": "A trunk carries traffic for multiple VLANs between switches using 802.1Q tagging — a 4-byte tag (12-bit VLAN ID) added to each frame.",
+    "keyTerms": [
+      "802.1Q",
+      "dot1q",
+      "tagging"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "2.2-c-q1",
+      "2.2-c-q2",
+      "2.2-c-q5",
+      "2.2-c-q7",
+      "2.2-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-NATIVE-VLAN",
+    "title": "Native VLAN",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.2"
+    ],
+    "summary": "The one VLAN whose frames cross an 802.1Q trunk UNtagged. Must match on both ends (default VLAN 1) or you get a native VLAN mismatch.",
+    "keyTerms": [
+      "untagged vlan"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "2.2-c-q3",
+      "2.2-c-q4"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-DTP",
+    "title": "DTP",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.2"
+    ],
+    "summary": "Dynamic Trunking Protocol auto-negotiates trunk vs access; often disabled for security with `switchport nonegotiate`.",
+    "keyTerms": [
+      "dynamic trunking"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "2.2-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-CDP",
+    "title": "Cisco Discovery Protocol (CDP)",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.3"
+    ],
+    "summary": "Cisco-proprietary L2 protocol that advertises device ID, IP, platform, and connected port every 60s (default). Enabled by default on Cisco gear.",
+    "keyTerms": [
+      "CDP"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-2.3-source-q001",
+      "obj-2.3-source-q002",
+      "obj-2.3-source-q003",
+      "obj-2.3-source-q004",
+      "obj-2.3-source-q005",
+      "obj-2.3-source-q006",
+      "obj-2.3-source-q007",
+      "obj-2.3-source-q008",
+      "obj-2.3-source-q009",
+      "obj-2.3-source-q010",
+      "obj-2.3-source-q011",
+      "obj-2.3-source-q012",
+      "obj-2.3-source-q013",
+      "obj-2.3-source-q014",
+      "obj-2.3-source-q015"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-LLDP",
+    "title": "Link Layer Discovery Protocol (LLDP)",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.3"
+    ],
+    "summary": "IEEE 802.1AB standard neighbor discovery — vendor-neutral alternative to CDP. Enabled with `lldp run`.",
+    "keyTerms": [
+      "LLDP",
+      "802.1AB"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-2.3-source-q001",
+      "obj-2.3-source-q002",
+      "obj-2.3-source-q003",
+      "obj-2.3-source-q004",
+      "obj-2.3-source-q005",
+      "obj-2.3-source-q006",
+      "obj-2.3-source-q007",
+      "obj-2.3-source-q008",
+      "obj-2.3-source-q009",
+      "obj-2.3-source-q010",
+      "obj-2.3-source-q011",
+      "obj-2.3-source-q012",
+      "obj-2.3-source-q013",
+      "obj-2.3-source-q014",
+      "obj-2.3-source-q015"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-ETHERCHANNEL",
+    "title": "EtherChannel / Port Channel",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.4"
+    ],
+    "summary": "Bundles 2–8 parallel links into one logical interface (Po) for bandwidth aggregation and STP treats it as a single link.",
+    "keyTerms": [
+      "port channel",
+      "link aggregation"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-2.4-source-q001",
+      "obj-2.4-source-q002",
+      "obj-2.4-source-q003",
+      "obj-2.4-source-q004",
+      "obj-2.4-source-q005",
+      "obj-2.4-source-q006",
+      "obj-2.4-source-q007",
+      "obj-2.4-source-q008",
+      "obj-2.4-source-q009",
+      "obj-2.4-source-q010",
+      "obj-2.4-source-q011",
+      "obj-2.4-source-q012",
+      "obj-2.4-source-q013",
+      "obj-2.4-source-q014",
+      "obj-2.4-source-q015"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-LACP",
+    "title": "LACP (802.3ad)",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.4"
+    ],
+    "summary": "Link Aggregation Control Protocol — standards-based negotiation (`channel-group X mode active/passive`). PAgP is Cisco-proprietary (`desirable/auto`).",
+    "keyTerms": [
+      "802.3ad"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-2.4-source-q001",
+      "obj-2.4-source-q002",
+      "obj-2.4-source-q003",
+      "obj-2.4-source-q004",
+      "obj-2.4-source-q005",
+      "obj-2.4-source-q006",
+      "obj-2.4-source-q007",
+      "obj-2.4-source-q008",
+      "obj-2.4-source-q009",
+      "obj-2.4-source-q010",
+      "obj-2.4-source-q011",
+      "obj-2.4-source-q012",
+      "obj-2.4-source-q013",
+      "obj-2.4-source-q014",
+      "obj-2.4-source-q015"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-STP",
+    "title": "Spanning Tree Protocol",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.5"
+    ],
+    "summary": "Prevents Layer 2 loops by blocking redundant switch paths, leaving one active path to the root bridge.",
+    "keyTerms": [
+      "STP",
+      "802.1D",
+      "spanning tree"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "2.5-c-q1",
+      "2.5-c-q4",
+      "2.5-c-q7",
+      "obj-2.5-source-q001",
+      "obj-2.5-source-q002",
+      "obj-2.5-source-q003",
+      "obj-2.5-source-q004",
+      "obj-2.5-source-q005",
+      "obj-2.5-source-q006",
+      "obj-2.5-source-q007",
+      "obj-2.5-source-q008",
+      "obj-2.5-source-q009",
+      "obj-2.5-source-q010",
+      "obj-2.5-source-q011",
+      "obj-2.5-source-q012",
+      "obj-2.5-source-q013",
+      "obj-2.5-source-q014",
+      "obj-2.5-source-q015",
+      "obj-2.5-source-q016",
+      "obj-2.5-source-q017",
+      "obj-2.5-source-q018",
+      "obj-2.5-source-q019",
+      "obj-2.5-source-q020",
+      "obj-2.5-source-q021",
+      "obj-2.5-source-q022",
+      "obj-2.5-source-q023",
+      "obj-2.5-source-q024",
+      "obj-2.5-source-q025",
+      "obj-2.5-source-q026",
+      "obj-2.5-source-q027",
+      "obj-2.5-source-q028",
+      "obj-2.5-source-q029",
+      "obj-2.5-source-q030",
+      "obj-2.5-source-q031",
+      "obj-2.5-source-q032",
+      "obj-2.5-source-q033",
+      "obj-2.5-source-q034",
+      "obj-2.5-source-q035",
+      "obj-2.5-source-q036",
+      "obj-2.5-source-q037",
+      "obj-2.5-source-q038",
+      "obj-2.5-source-q039",
+      "obj-2.5-source-q040",
+      "obj-2.5-source-q041",
+      "obj-2.5-source-q042",
+      "obj-2.5-source-q043",
+      "obj-2.5-source-q044",
+      "obj-2.5-source-q045",
+      "obj-2.5-source-q046"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-ROOT-BRIDGE",
+    "title": "Root Bridge Election",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.5"
+    ],
+    "summary": "The switch with the lowest Bridge ID (priority + MAC) becomes root; all others find the lowest-cost path to it. Default priority 32768.",
+    "keyTerms": [
+      "root election",
+      "bridge ID"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "2.5-c-q2",
+      "2.5-c-q3",
+      "2.5-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-STP-PORTFAST",
+    "title": "PortFast & BPDU Guard",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.5"
+    ],
+    "summary": "PortFast skips listening/learning on access ports for fast host connectivity; BPDU Guard err-disables a PortFast port that receives a BPDU (rogue switch).",
+    "keyTerms": [
+      "portfast",
+      "bpdu guard"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "2.5-c-q5",
+      "2.5-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-WLAN-ARCH",
+    "title": "Cisco Wireless Architectures",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.6"
+    ],
+    "summary": "Cisco wireless architectures: Autonomous APs are standalone. Lightweight APs tunnel to a WLC via CAPWAP. Cloud (Meraki) manages APs via dashboard. AP modes: Local, Monitor, FlexCon",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-WLAN-PHYS",
+    "title": "WLAN Physical Infrastructure",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.7"
+    ],
+    "summary": "WLAN physical infrastructure: APs connect via Ethernet/PoE. WLC connects over CAPWAP. Antennas: omnidirectional vs directional. Placement considers overlap, interference, and obstr",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-WLAN-CLIENT",
+    "title": "WLAN Client Connectivity",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.8"
+    ],
+    "summary": "WLAN client connectivity: Create WLAN/SSID, map VLAN, set WPA2/WPA3 Personal or Enterprise (802.1X). Configure band selection and QoS. Clients associate, authenticate, then DHCP on",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
     "ckuId": "CKU-ROUTING-TABLE-ENTRY",
     "title": "Routing Table Entry Structure",
     "domainId": "connectivity",
@@ -510,6 +1930,21 @@
     "needsReview": false
   },
   {
+    "ckuId": "CKU-ROUTE-TSHOOT",
+    "title": "Routing Troubleshooting",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.6"
+    ],
+    "summary": "Troubleshooting routing: Check interface status, protocol timers/area/auth mismatches, bad static routes, ACLs blocking routing traffic, asymmetric paths. Commands: show ip route, ",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
     "ckuId": "CKU-NAT",
     "title": "NAT",
     "domainId": "services",
@@ -600,6 +2035,21 @@
     "needsReview": false
   },
   {
+    "ckuId": "CKU-MGMT-CLOUD",
+    "title": "Local vs Cloud Management",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.10"
+    ],
+    "summary": "Local vs cloud management: On-prem CLI/controllers vs cloud dashboards (Meraki, DNA Center). Cloud simplifies multi-site ops but needs internet and trust in provider.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
     "ckuId": "CKU-NTP",
     "title": "Network Time Protocol",
     "domainId": "services",
@@ -684,6 +2134,34 @@
     "needsReview": false
   },
   {
+    "ckuId": "CKU-SNMP",
+    "title": "SNMP Operations",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.4"
+    ],
+    "summary": "SNMP: Manager, agent, MIB, OID. Polling (Get) and traps/informs. v1/v2c use community strings; v3 adds auth and encryption.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-4.4-source-q001",
+      "obj-4.4-source-q002",
+      "obj-4.4-source-q003",
+      "obj-4.4-source-q004",
+      "obj-4.4-source-q005",
+      "obj-4.4-source-q006",
+      "obj-4.4-source-q007",
+      "obj-4.4-source-q008",
+      "obj-4.4-source-q009",
+      "obj-4.4-source-q010",
+      "obj-4.4-source-q011",
+      "obj-4.4-source-q012"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
     "ckuId": "CKU-SYSLOG",
     "title": "Syslog",
     "domainId": "services",
@@ -740,6 +2218,645 @@
       "obj-4.6-source-q011",
       "obj-4.6-source-q012"
     ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-QOS-PHB",
+    "title": "QoS Per-Hop Behavior",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.7"
+    ],
+    "summary": "QoS per-hop behavior: Classification/marking (DSCP/CoS), queuing (LLQ for voice), shaping vs policing, WRED congestion avoidance. Trust boundaries define where markings are honored",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SSH",
+    "title": "SSH Remote Access",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.8"
+    ],
+    "summary": "SSH remote access: hostname + ip domain-name, crypto key generate rsa, username secret, line vty transport input ssh login local. Disable Telnet. show ip ssh to verify.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-4.8-source-q001",
+      "obj-4.8-source-q002",
+      "obj-4.8-source-q003",
+      "obj-4.8-source-q004",
+      "obj-4.8-source-q005",
+      "obj-4.8-source-q006",
+      "obj-4.8-source-q007",
+      "obj-4.8-source-q008",
+      "obj-4.8-source-q009"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-TFTP-FTP",
+    "title": "TFTP and FTP",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.9"
+    ],
+    "summary": "TFTP (UDP/69) and FTP (TCP/20-21) transfer IOS images and configs. TFTP is simple/unauthenticated; FTP adds auth but neither encrypts — use SFTP for security.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-CIA-TRIAD",
+    "title": "CIA Triad",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.1"
+    ],
+    "summary": "Confidentiality (encryption, access control), Integrity (hashing/checksums detect unauthorized changes), Availability (redundancy, DDoS mitigation). Every security control maps to one or more of these goals.",
+    "keyTerms": [
+      "CIA",
+      "confidentiality integrity availability"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "5.1-q1",
+      "5.1-q2",
+      "5.1-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-VULN-THREAT-EXPLOIT",
+    "title": "Vulnerability, Threat, Exploit",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.1"
+    ],
+    "summary": "Vulnerability = a weakness (unpatched software, misconfiguration). Threat = a potential danger that could exploit a vulnerability. Exploit = the actual code/method used. Risk = likelihood x impact.",
+    "keyTerms": [
+      "vulnerability",
+      "threat",
+      "exploit",
+      "risk"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "5.1-q3"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-COMMON-THREATS",
+    "title": "Common Network Threats",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.1"
+    ],
+    "summary": "Malware (virus, worm, Trojan, ransomware), Phishing/social engineering, DoS/DDoS (overwhelm availability), Man-in-the-middle (intercept/modify traffic), Spoofing (fake IP/MAC), Password attacks (brute force, dictionary).",
+    "keyTerms": [
+      "malware",
+      "phishing",
+      "DoS",
+      "DDoS",
+      "MITM",
+      "social engineering"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "5.1-q4",
+      "5.1-q5",
+      "5.1-q6",
+      "5.1-q8",
+      "5.1-q9",
+      "5.1-q10"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-MITIGATION-TECHNIQUES",
+    "title": "Mitigation Techniques",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.1"
+    ],
+    "summary": "Patching removes known vulnerabilities. Firewalls/ACLs filter traffic. Network segmentation limits blast radius. End-user security awareness training addresses social engineering. Defense in depth = multiple overlapping controls.",
+    "keyTerms": [
+      "mitigation",
+      "defense in depth",
+      "layered security"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "5.1-q7",
+      "5.1-q10"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-VPN",
+    "title": "VPN Types",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.10"
+    ],
+    "summary": "VPN types: Site-to-site (network-to-network IPsec) vs remote-access (client VPN). IPsec: encryption, integrity, IKE negotiations. SSL VPN uses HTTPS ports.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-5.5-source-q001",
+      "obj-5.5-source-q002",
+      "obj-5.5-source-q003",
+      "obj-5.5-source-q004",
+      "obj-5.5-source-q005",
+      "obj-5.5-source-q006",
+      "obj-5.5-source-q007",
+      "obj-5.5-source-q008",
+      "obj-5.5-source-q009",
+      "obj-5.5-source-q010",
+      "obj-5.5-source-q011",
+      "obj-5.5-source-q012",
+      "obj-5.5-source-q013",
+      "obj-5.5-source-q014",
+      "obj-5.5-source-q015",
+      "obj-5.5-source-q016",
+      "obj-5.5-source-q017"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SEGMENTATION",
+    "title": "Network Segmentation",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.11"
+    ],
+    "summary": "Network segmentation: Zones limit blast radius. Stateful firewalls, NGFW with DPI/IPS, microsegmentation for workload-level policy.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "5.11-legacy-q001",
+      "5.11-legacy-q002",
+      "5.11-legacy-q003",
+      "5.11-legacy-q004",
+      "5.11-legacy-q005",
+      "5.11-legacy-q006",
+      "5.11-legacy-q007",
+      "5.11-legacy-q008",
+      "5.11-legacy-q009",
+      "5.11-legacy-q010"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SECURITY-PROGRAM",
+    "title": "Security Program Elements",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.2"
+    ],
+    "summary": "User awareness training, physical access control, incident response, and risk assessment form a layered security program beyond technology alone.",
+    "keyTerms": [
+      "security policy"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-5.2-source-q001",
+      "obj-5.2-source-q002",
+      "obj-5.2-source-q003",
+      "obj-5.2-source-q004",
+      "obj-5.2-source-q005",
+      "obj-5.2-source-q006",
+      "obj-5.2-source-q007"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-CONSOLE-VTY",
+    "title": "Console and VTY Access",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.3"
+    ],
+    "summary": "Console = local serial/USB; VTY = remote Telnet/SSH lines. Secure with passwords, `login local`, and `transport input ssh`.",
+    "keyTerms": [
+      "line vty",
+      "line console"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-PRIVILEGE-LEVELS",
+    "title": "Privilege Levels",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.3"
+    ],
+    "summary": "Level 1 = user EXEC, level 15 = privileged EXEC (enable). `privilege exec level` can delegate specific commands.",
+    "keyTerms": [
+      "enable secret"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-AAA-SERVERS",
+    "title": "AAA with TACACS+ and RADIUS",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.4"
+    ],
+    "summary": "AAA with TACACS+/RADIUS: Authentication, authorization, accounting. TACACS+ (TCP/49) encrypts whole packet — common for device admin. RADIUS (UDP 1812) — common for network access ",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-ACL",
+    "title": "Access Control Lists",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.5"
+    ],
+    "summary": "Ordered rules that permit/deny traffic by criteria. Processed top-down, first match wins, with an implicit deny-all at the end.",
+    "keyTerms": [
+      "ACL",
+      "access-list"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "5.5-c-q1",
+      "5.5-c-q2",
+      "5.5-c-q8",
+      "5.5-c-q9",
+      "obj-5.6-source-q001",
+      "obj-5.6-source-q002",
+      "obj-5.6-source-q003",
+      "obj-5.6-source-q004",
+      "obj-5.6-source-q005",
+      "obj-5.6-source-q006",
+      "obj-5.6-source-q007",
+      "obj-5.6-source-q008",
+      "obj-5.6-source-q009",
+      "obj-5.6-source-q010",
+      "obj-5.6-source-q011",
+      "obj-5.6-source-q012",
+      "obj-5.6-source-q013",
+      "obj-5.6-source-q014",
+      "obj-5.6-source-q015",
+      "obj-5.6-source-q016",
+      "obj-5.6-source-q017",
+      "obj-5.6-source-q018",
+      "obj-5.6-source-q019",
+      "obj-5.6-source-q020",
+      "obj-5.6-source-q021",
+      "obj-5.6-source-q022",
+      "obj-5.6-source-q023",
+      "obj-5.6-source-q024",
+      "obj-5.6-source-q025",
+      "obj-5.6-source-q026",
+      "obj-5.6-source-q027",
+      "obj-5.6-source-q028",
+      "obj-5.6-source-q029"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-ACL-STANDARD",
+    "title": "Standard ACL",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.5"
+    ],
+    "summary": "Matches SOURCE IP only (numbered 1–99/1300–1999). Place close to the destination.",
+    "keyTerms": [
+      "standard access-list"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "5.5-c-q3",
+      "5.5-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-ACL-EXTENDED",
+    "title": "Extended ACL",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.5"
+    ],
+    "summary": "Matches source + destination IP, protocol, and ports (numbered 100–199/2000–2699 or named). Place close to the source.",
+    "keyTerms": [
+      "extended access-list"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "5.5-c-q4",
+      "5.5-c-q7"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-WILDCARD-MASK",
+    "title": "Wildcard Mask",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.5"
+    ],
+    "summary": "The inverse of a subnet mask used in ACLs: 0 = must match, 1 = don’t care. /24 → 0.0.0.255.",
+    "keyTerms": [
+      "inverse mask"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "5.5-c-q5",
+      "obj-5.6-source-q008",
+      "obj-5.6-source-q010",
+      "obj-5.6-source-q014"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-PORT-SECURITY",
+    "title": "Port Security",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.6"
+    ],
+    "summary": "Limits MAC addresses learned on access ports; violation modes protect/shutdown/restrict.",
+    "keyTerms": [
+      "port security"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-5.7-source-q001",
+      "obj-5.7-source-q002",
+      "obj-5.7-source-q003",
+      "obj-5.7-source-q004",
+      "obj-5.7-source-q005",
+      "obj-5.7-source-q006",
+      "obj-5.7-source-q007",
+      "obj-5.7-source-q008",
+      "obj-5.7-source-q009",
+      "obj-5.7-source-q010",
+      "obj-5.7-source-q011",
+      "obj-5.7-source-q012",
+      "obj-5.7-source-q013",
+      "obj-5.7-source-q014",
+      "obj-5.7-source-q015",
+      "obj-5.7-source-q016",
+      "obj-5.7-source-q017",
+      "obj-5.7-source-q018",
+      "obj-5.7-source-q019",
+      "obj-5.7-source-q020",
+      "obj-5.7-source-q021",
+      "obj-5.7-source-q022",
+      "obj-5.7-source-q023",
+      "obj-5.7-source-q024",
+      "obj-5.7-source-q025",
+      "obj-5.7-source-q026",
+      "obj-5.7-source-q027",
+      "obj-5.7-source-q028",
+      "obj-5.7-source-q029"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-DHCP-SNOOPING",
+    "title": "DHCP Snooping",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.6"
+    ],
+    "summary": "Builds binding table of IP-MAC-port; drops rogue DHCP offers on untrusted ports.",
+    "keyTerms": [
+      "dhcp snooping"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-5.7-source-q001",
+      "obj-5.7-source-q002",
+      "obj-5.7-source-q003",
+      "obj-5.7-source-q004",
+      "obj-5.7-source-q005",
+      "obj-5.7-source-q006",
+      "obj-5.7-source-q007",
+      "obj-5.7-source-q008",
+      "obj-5.7-source-q009",
+      "obj-5.7-source-q010",
+      "obj-5.7-source-q011",
+      "obj-5.7-source-q012",
+      "obj-5.7-source-q013",
+      "obj-5.7-source-q014",
+      "obj-5.7-source-q015",
+      "obj-5.7-source-q016",
+      "obj-5.7-source-q017",
+      "obj-5.7-source-q018",
+      "obj-5.7-source-q019",
+      "obj-5.7-source-q020",
+      "obj-5.7-source-q021",
+      "obj-5.7-source-q022",
+      "obj-5.7-source-q023",
+      "obj-5.7-source-q024",
+      "obj-5.7-source-q025",
+      "obj-5.7-source-q026",
+      "obj-5.7-source-q027",
+      "obj-5.7-source-q028",
+      "obj-5.7-source-q029"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-AAA-CONCEPTS",
+    "title": "AAA Concepts",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.7"
+    ],
+    "summary": "AAA concepts: Authentication (identity), authorization (permissions), accounting (audit logs). MFA combines factors. Works with TACACS+/RADIUS server groups.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-WLAN-SEC",
+    "title": "Wireless Security Protocols",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.8"
+    ],
+    "summary": "Wireless security: WEP broken; WPA/WPA2 (AES-CCMP) Personal vs Enterprise (802.1X). WPA3 adds SAE and PMF for stronger protection.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-WPA2-PSK",
+    "title": "WPA2-PSK WLAN",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.9"
+    ],
+    "summary": "WPA2-PSK WLAN: WLC WLAN with WPA2-AES, PSK passphrase, VLAN mapping. 4-way handshake derives per-session keys.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-5.10-source-q001",
+      "obj-5.10-source-q002",
+      "obj-5.10-source-q003",
+      "obj-5.10-source-q004"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-AUTOMATION",
+    "title": "Network Automation Impact",
+    "domainId": "automation",
+    "objectiveIds": [
+      "6.1"
+    ],
+    "summary": "Automation impact: Scripts/APIs (Ansible, Python) replace per-device CLI — faster, consistent, fewer errors. Infrastructure as Code for networks.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-6.1-source-q001",
+      "obj-6.1-source-q002",
+      "obj-6.1-source-q003",
+      "obj-6.1-source-q004",
+      "obj-6.1-source-q005",
+      "obj-6.1-source-q006"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SDN-TRAD",
+    "title": "Traditional vs Controller-Based",
+    "domainId": "automation",
+    "objectiveIds": [
+      "6.2"
+    ],
+    "summary": "Traditional vs controller-based: Distributed control plane per device vs centralized SDN controller (DNA Center, APIC-EM) pushing policy to data-plane devices.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SDN-ARCH",
+    "title": "SDN Architectures",
+    "domainId": "automation",
+    "objectiveIds": [
+      "6.3"
+    ],
+    "summary": "SDN architectures: Northbound APIs (REST to apps), southbound (NETCONF/OpenFlow to devices). Control plane centralized; data plane distributed.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-DNA",
+    "title": "DNA Center Management",
+    "domainId": "automation",
+    "objectiveIds": [
+      "6.4"
+    ],
+    "summary": "DNA Center vs traditional: Centralized design, policy, provisioning, assurance, image management, intent-based networking vs box-by-box CLI.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-REST",
+    "title": "REST APIs",
+    "domainId": "automation",
+    "objectiveIds": [
+      "6.5"
+    ],
+    "summary": "REST APIs: HTTP GET/POST/PUT/DELETE on resource URLs; JSON payloads; stateless; common codes 200/201/400/401/404/500.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-JSON-ANSIBLE",
+    "title": "JSON and Config Management",
+    "domainId": "automation",
+    "objectiveIds": [
+      "6.6"
+    ],
+    "summary": "JSON and config management: Key-value JSON for APIs. Ansible (YAML playbooks, SSH), Puppet/Chef (agents). Desired-state automation.",
+    "keyTerms": [],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [],
     "confidence": "high",
     "needsReview": false
   }

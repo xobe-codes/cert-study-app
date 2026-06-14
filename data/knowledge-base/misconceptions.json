@@ -1,5 +1,347 @@
 [
   {
+    "id": "1.1-x1",
+    "misconception": "More switches always mean better routing.",
+    "reality": "Switches extend L2 domains; routing is an L3 function on routers or L3 switches.",
+    "example": "Ten L2 switches in one VLAN still need one gateway for off-subnet traffic.",
+    "ckuIds": [
+      "CKU-ROUTER",
+      "CKU-SWITCH"
+    ],
+    "objectiveId": "1.1"
+  },
+  {
+    "id": "1.1-x2",
+    "misconception": "Firewalls and IPS are interchangeable.",
+    "reality": "Firewalls enforce access policy; IPS focuses on threat detection/prevention — often deployed together.",
+    "example": "An NGFW may integrate both, but they serve different primary roles.",
+    "ckuIds": [
+      "CKU-FIREWALL"
+    ],
+    "objectiveId": "1.1"
+  },
+  {
+    "id": "1.10-x1",
+    "misconception": "ping failure always means the remote host is down.",
+    "reality": "Firewalls may block ICMP; also local misconfig can fail before the path is tested.",
+    "example": "Wrong mask prevents reaching local gateway — ping never leaves the host correctly.",
+    "ckuIds": [
+      "CKU-PING-TRACE"
+    ],
+    "objectiveId": "1.10"
+  },
+  {
+    "id": "1.10-x2",
+    "misconception": "ipconfig renew fixes all network problems.",
+    "reality": "renew requests DHCP again but cannot fix server, relay, or wrong static config.",
+    "example": "Broken DHCP scope still assigns wrong gateway after renew.",
+    "ckuIds": [
+      "CKU-IPCONFIG"
+    ],
+    "objectiveId": "1.10"
+  },
+  {
+    "id": "1.11-x1",
+    "misconception": "More AP power always fixes coverage.",
+    "reality": "Higher power increases interference and sticky clients; proper placement and channel plan matter.",
+    "example": "Two APs on same channel at max power collide instead of cooperate.",
+    "ckuIds": [
+      "CKU-WIFI-CHANNELS"
+    ],
+    "objectiveId": "1.11"
+  },
+  {
+    "id": "1.11-x2",
+    "misconception": "5 GHz always means faster for every client.",
+    "reality": "Weak 5 GHz RSSI through walls may perform worse than stable 2.4 GHz.",
+    "example": "Far edge of building may need 2.4 GHz or additional APs.",
+    "ckuIds": [
+      "CKU-WIFI-BANDS"
+    ],
+    "objectiveId": "1.11"
+  },
+  {
+    "id": "1.12-x1",
+    "misconception": "Virtualization eliminates physical networks.",
+    "reality": "VMs/containers still need virtual and physical switching/routing underneath.",
+    "example": "vSwitch uplinks to physical top-of-rack switch.",
+    "ckuIds": [
+      "CKU-HYPERVISOR"
+    ],
+    "objectiveId": "1.12"
+  },
+  {
+    "id": "1.12-x2",
+    "misconception": "NFV and VMs are the same thing.",
+    "reality": "NFV is a use case — virtualized network functions; VMs are one way to host them (containers another).",
+    "example": "vFW may run as a VM or container on NFV infrastructure.",
+    "ckuIds": [
+      "CKU-NFV",
+      "CKU-HYPERVISOR"
+    ],
+    "objectiveId": "1.12"
+  },
+  {
+    "id": "1.2-x1",
+    "misconception": "Cloud means no local network.",
+    "reality": "Hybrid designs keep on-prem LAN/WAN while using cloud for apps or compute.",
+    "example": "Office LAN on-prem + Microsoft 365 SaaS.",
+    "ckuIds": [
+      "CKU-CLOUD-ONPREM"
+    ],
+    "objectiveId": "1.2"
+  },
+  {
+    "id": "1.2-x2",
+    "misconception": "More tiers always mean faster networks.",
+    "reality": "Tiers organize scale and policy; extra hops can add latency if over-engineered.",
+    "example": "SOHO needs one tier, not three.",
+    "ckuIds": [
+      "CKU-CAMPUS-TIER"
+    ],
+    "objectiveId": "1.2"
+  },
+  {
+    "id": "1.3-x1",
+    "misconception": "Fiber has no distance limit.",
+    "reality": "SM has much longer reach than MM, but both have spec limits and need correct optics.",
+    "example": "OM4 MM may reach ~400 m at 10G depending on grade.",
+    "ckuIds": [
+      "CKU-FIBER"
+    ],
+    "objectiveId": "1.3"
+  },
+  {
+    "id": "1.3-x2",
+    "misconception": "Higher Cat number means longer distance.",
+    "reality": "All UTP Ethernet stays ~100 m; higher categories support higher bandwidth.",
+    "example": "Cat6a = 10G at 100 m, not 1 km.",
+    "ckuIds": [
+      "CKU-UTP"
+    ],
+    "objectiveId": "1.3"
+  },
+  {
+    "id": "1.4-x1",
+    "misconception": "Collisions are normal on all Ethernet links.",
+    "reality": "Full-duplex switched links should have near-zero collisions.",
+    "example": "Persistent collisions on Gi0/1 → investigate duplex, not “busy network.”",
+    "ckuIds": [
+      "CKU-COLLISIONS"
+    ],
+    "objectiveId": "1.4"
+  },
+  {
+    "id": "1.4-x2",
+    "misconception": "CRC errors always mean replace the switch.",
+    "reality": "Most CRC issues are cable, SFP, or duplex — not the switch ASIC.",
+    "example": "Swap patch cable before RMA on the switch.",
+    "ckuIds": [
+      "CKU-CRC"
+    ],
+    "objectiveId": "1.4"
+  },
+  {
+    "id": "1.5-x1",
+    "misconception": "A switch needs to know a device's IP address to forward frames to it.",
+    "reality": "Switching is Layer 2 — only MAC addresses matter for the forwarding decision.",
+    "example": "Two PCs in the same VLAN communicate via MAC addresses alone; the switch never inspects IP.",
+    "ckuIds": [
+      "CKU-MAC-ADDRESS-TABLE"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-x2",
+    "misconception": "Flooding means something is broken.",
+    "reality": "Flooding unknown unicast/broadcast/multicast is normal, expected behavior — it is how a switch reaches devices it hasn't learned yet.",
+    "example": "The very first frame to any new device is always flooded.",
+    "ckuIds": [
+      "CKU-FRAME-FLOODING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-x3",
+    "misconception": "The MAC address table is the same as an ARP table.",
+    "reality": "The MAC address table (Layer 2, on switches) maps MAC→port; the ARP table (Layer 3, on routers/hosts) maps IP→MAC. They are different tables on different devices.",
+    "example": "`show mac address-table` vs `show arp`.",
+    "ckuIds": [
+      "CKU-MAC-ADDRESS-TABLE"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.6-x1",
+    "misconception": "A bigger prefix (/27) means a bigger network.",
+    "reality": "A larger prefix number means MORE network bits and FEWER hosts — a smaller subnet.",
+    "example": "/24 has 254 hosts; /27 has only 30.",
+    "ckuIds": [
+      "CKU-SUBNET-MASK"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-x2",
+    "misconception": "You can assign the .0 or .255 address to a host.",
+    "reality": "Within a subnet the all-0 host (network) and all-1 host (broadcast) are reserved.",
+    "example": "In 192.168.1.0/24, .0 and .255 are not assignable.",
+    "ckuIds": [
+      "CKU-SUBNETTING"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-x3",
+    "misconception": "The block size is always in the 4th octet.",
+    "reality": "It applies to whichever octet the mask splits — e.g. a /18 subnets in the 3rd octet.",
+    "example": "/18 = 255.255.192.0 → block 64 in the third octet.",
+    "ckuIds": [
+      "CKU-BLOCK-SIZE"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.7-x1",
+    "misconception": "Private addresses are secret/encrypted.",
+    "reality": "Private means non-routable on the public Internet, not hidden from others on the same LAN.",
+    "example": "192.168.1.10 is visible to all hosts on that subnet.",
+    "ckuIds": [
+      "CKU-RFC1918"
+    ],
+    "objectiveId": "1.7"
+  },
+  {
+    "id": "1.7-x2",
+    "misconception": "APIPA hosts can reach the Internet.",
+    "reality": "Without a valid address/gateway/DHCP, Internet access fails until DHCP is restored.",
+    "example": "169.254.x.x PC cannot NAT through a router without proper config.",
+    "ckuIds": [
+      "CKU-APIPA"
+    ],
+    "objectiveId": "1.7"
+  },
+  {
+    "id": "1.8-x1",
+    "misconception": "IPv6 needs NAT like IPv4.",
+    "reality": "IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+    "example": "A LAN gets a /64 of globally routable addresses.",
+    "ckuIds": [
+      "CKU-IPV6-ADDRESSING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.8-x2",
+    "misconception": "`::` represents exactly one zero hextet.",
+    "reality": "`::` represents one or more contiguous all-zero hextets — as many as needed to total 8.",
+    "example": "2001:db8::1 expands the :: to five zero hextets.",
+    "ckuIds": [
+      "CKU-IPV6-SHORTENING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.8-x3",
+    "misconception": "An interface has only one IPv6 address.",
+    "reality": "Interfaces normally have at least a link-local (FE80::) and a global address.",
+    "example": "show ipv6 interface brief lists both.",
+    "ckuIds": [
+      "CKU-IPV6-ADDRESSING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.9-x1",
+    "misconception": "Link-local addresses must be configured manually.",
+    "reality": "Every IPv6 interface auto-generates an FE80:: link-local address.",
+    "example": "It appears even with no global address set.",
+    "ckuIds": [
+      "CKU-IPV6-LINK-LOCAL"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "1.9-x2",
+    "misconception": "Anycast and multicast are the same.",
+    "reality": "Multicast delivers to ALL group members; anycast delivers to the NEAREST one.",
+    "example": "DNS root servers use anycast.",
+    "ckuIds": [
+      "CKU-IPV6-MULTICAST"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "1.9-x3",
+    "misconception": "Global unicast is the only usable type on a router link.",
+    "reality": "Routers often peer over link-local (FE80::) next hops for routing protocols.",
+    "example": "OSPFv3 neighbors use link-local addresses.",
+    "ckuIds": [
+      "CKU-IPV6-LINK-LOCAL"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "2.1-x1",
+    "misconception": "VLANs improve speed.",
+    "reality": "VLANs segment broadcast domains for organization/security, not raw speed.",
+    "example": "Smaller broadcast domains reduce flooding but don’t increase link rate.",
+    "ckuIds": [
+      "CKU-VLAN"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.1-x2",
+    "misconception": "A VLAN exists on only one switch.",
+    "reality": "A VLAN can span many switches over trunks.",
+    "example": "VLAN 10 on SW1 and SW2 is one broadcast domain via a trunk.",
+    "ckuIds": [
+      "CKU-VLAN"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.2-x1",
+    "misconception": "A trunk is faster than an access port.",
+    "reality": "A trunk simply carries multiple VLANs; speed depends on the physical link.",
+    "example": "A 1G trunk and 1G access port have the same link rate.",
+    "ckuIds": [
+      "CKU-TRUNKING"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.2-x2",
+    "misconception": "802.1Q encapsulates the whole frame.",
+    "reality": "802.1Q inserts a 4-byte tag into the existing frame; it does not wrap it.",
+    "example": "The tag sits after the source MAC.",
+    "ckuIds": [
+      "CKU-TRUNKING"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.5-x1",
+    "misconception": "STP load-balances across redundant links.",
+    "reality": "Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
+    "example": "A blocked link carries no data until the primary fails.",
+    "ckuIds": [
+      "CKU-STP"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
+    "id": "2.5-x2",
+    "misconception": "STP prevents routing loops.",
+    "reality": "STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
+    "example": "STP has no effect on IP routing.",
+    "ckuIds": [
+      "CKU-STP"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
     "id": "3.1-x1",
     "misconception": "The L route forwards traffic to end hosts.",
     "reality": "L routes exist only for the router own interface IPs — not for PCs or servers.",
@@ -110,5 +452,45 @@
       "CKU-PAT"
     ],
     "objectiveId": "4.1"
+  },
+  {
+    "id": "5.1-x1",
+    "misconception": "Integrity means keeping data private.",
+    "reality": "Integrity detects unauthorized changes (hashing); confidentiality keeps data private (encryption).",
+    "example": "SHA-256 hash verifies file integrity, not secrecy.",
+    "ckuIds": [
+      "CKU-CIA-TRIAD"
+    ],
+    "objectiveId": "5.1"
+  },
+  {
+    "id": "5.1-x2",
+    "misconception": "A vulnerability alone equals a breach.",
+    "reality": "A threat and exploit are also required — vulnerability is only the weakness.",
+    "example": "Unpatched server is vulnerable; attacker must actually exploit it.",
+    "ckuIds": [
+      "CKU-VULN-THREAT-EXPLOIT"
+    ],
+    "objectiveId": "5.1"
+  },
+  {
+    "id": "5.5-x1",
+    "misconception": "ACLs encrypt or deeply inspect traffic.",
+    "reality": "ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
+    "example": "An ACL permits TCP/443 but does not inspect the TLS payload.",
+    "ckuIds": [
+      "CKU-ACL"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.5-x2",
+    "misconception": "Rule order doesn’t matter.",
+    "reality": "Order is critical — the first matching rule wins and the rest are skipped.",
+    "example": "A broad permit above a specific deny makes the deny dead.",
+    "ckuIds": [
+      "CKU-ACL"
+    ],
+    "objectiveId": "5.5"
   }
 ]

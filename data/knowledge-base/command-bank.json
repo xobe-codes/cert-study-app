@@ -1,5 +1,450 @@
 [
   {
+    "id": "1.1-cmd1",
+    "command": "show ip route",
+    "mode": "privileged EXEC",
+    "purpose": "Display the router routing table (L3 forwarding decisions).",
+    "example": "R1# show ip route",
+    "ckuIds": [
+      "CKU-ROUTER"
+    ],
+    "objectiveId": "1.1"
+  },
+  {
+    "id": "1.1-cmd2",
+    "command": "show mac address-table",
+    "mode": "privileged EXEC",
+    "purpose": "Show L2 switch MAC-to-port mappings.",
+    "example": "SW1# show mac address-table",
+    "ckuIds": [
+      "CKU-SWITCH"
+    ],
+    "objectiveId": "1.1"
+  },
+  {
+    "id": "1.1-cmd3",
+    "command": "show wireless summary",
+    "mode": "privileged EXEC",
+    "purpose": "On a WLC, summarize registered APs and WLAN status.",
+    "example": "WLC# show wireless summary",
+    "ckuIds": [
+      "CKU-AP-WLAN"
+    ],
+    "objectiveId": "1.1"
+  },
+  {
+    "id": "1.10-cmd1",
+    "command": "ipconfig /all",
+    "mode": "Windows CLI",
+    "purpose": "Display IP, mask, gateway, DNS, MAC, and DHCP info.",
+    "example": "C:\\> ipconfig /all",
+    "ckuIds": [
+      "CKU-IPCONFIG"
+    ],
+    "objectiveId": "1.10"
+  },
+  {
+    "id": "1.10-cmd2",
+    "command": "ping / tracert",
+    "mode": "Windows CLI",
+    "purpose": "Test reachability and trace the path to a destination.",
+    "example": "C:\\> tracert 8.8.8.8",
+    "ckuIds": [
+      "CKU-PING-TRACE"
+    ],
+    "objectiveId": "1.10"
+  },
+  {
+    "id": "1.10-cmd3",
+    "command": "nslookup",
+    "mode": "Windows/Linux CLI",
+    "purpose": "Query DNS directly to test name resolution.",
+    "example": "C:\\> nslookup www.example.com",
+    "ckuIds": [
+      "CKU-DNS-GW-ISSUES"
+    ],
+    "objectiveId": "1.10"
+  },
+  {
+    "id": "1.11-cmd1",
+    "command": "show wlan summary",
+    "mode": "WLC privileged EXEC",
+    "purpose": "Summarize WLANs/SSIDs and status on a controller.",
+    "example": "WLC# show wlan summary",
+    "ckuIds": [
+      "CKU-80211-STANDARDS"
+    ],
+    "objectiveId": "1.11"
+  },
+  {
+    "id": "1.11-cmd2",
+    "command": "show dot11 associations",
+    "mode": "AP/WLC privileged EXEC",
+    "purpose": "View associated clients and RSSI/signal data.",
+    "example": "AP# show dot11 associations all-client",
+    "ckuIds": [
+      "CKU-WIFI-CHANNELS"
+    ],
+    "objectiveId": "1.11"
+  },
+  {
+    "id": "1.12-cmd1",
+    "command": "show ip route vrf <name>",
+    "mode": "privileged EXEC",
+    "purpose": "Display routing table for a specific VRF instance.",
+    "example": "R1# show ip route vrf CUSTOMER_A",
+    "ckuIds": [
+      "CKU-VRF"
+    ],
+    "objectiveId": "1.12"
+  },
+  {
+    "id": "1.12-cmd2",
+    "command": "docker ps",
+    "mode": "Linux shell",
+    "purpose": "List running containers on a Docker host.",
+    "example": "$ docker ps",
+    "ckuIds": [
+      "CKU-CONTAINERS"
+    ],
+    "objectiveId": "1.12"
+  },
+  {
+    "id": "1.2-cmd1",
+    "command": "show cdp neighbors",
+    "mode": "privileged EXEC",
+    "purpose": "Discover physical neighbor topology on Cisco devices.",
+    "example": "SW1# show cdp neighbors detail",
+    "ckuIds": [
+      "CKU-CAMPUS-TIER"
+    ],
+    "objectiveId": "1.2"
+  },
+  {
+    "id": "1.2-cmd2",
+    "command": "show ip interface brief",
+    "mode": "privileged EXEC",
+    "purpose": "Summarize interface IPs — useful when mapping WAN hub-spoke links.",
+    "example": "R1# show ip interface brief",
+    "ckuIds": [
+      "CKU-WAN-TOPO"
+    ],
+    "objectiveId": "1.2"
+  },
+  {
+    "id": "1.3-cmd1",
+    "command": "show interfaces status",
+    "mode": "privileged EXEC",
+    "purpose": "See port speed, duplex, and media type on a switch.",
+    "example": "SW1# show interfaces status",
+    "ckuIds": [
+      "CKU-UTP"
+    ],
+    "objectiveId": "1.3"
+  },
+  {
+    "id": "1.3-cmd2",
+    "command": "show interfaces transceiver",
+    "mode": "privileged EXEC",
+    "purpose": "Display SFP/SFP+ module type and optical levels.",
+    "example": "SW1# show interfaces transceiver",
+    "ckuIds": [
+      "CKU-SFP"
+    ],
+    "objectiveId": "1.3"
+  },
+  {
+    "id": "1.4-cmd1",
+    "command": "show interfaces counters errors",
+    "mode": "privileged EXEC",
+    "purpose": "Display CRC, input, output, and other interface error counters.",
+    "example": "SW1# show interfaces counters errors",
+    "ckuIds": [
+      "CKU-IF-ERRORS"
+    ],
+    "objectiveId": "1.4"
+  },
+  {
+    "id": "1.4-cmd2",
+    "command": "show interfaces <interface>",
+    "mode": "privileged EXEC",
+    "purpose": "Detailed status including errors, speed, and duplex for one port.",
+    "example": "SW1# show interfaces gigabitethernet0/1",
+    "ckuIds": [
+      "CKU-IF-ERRORS",
+      "CKU-DUPLEX-MISMATCH"
+    ],
+    "objectiveId": "1.4"
+  },
+  {
+    "id": "1.4-cmd3",
+    "command": "speed auto / duplex auto",
+    "mode": "interface config",
+    "purpose": "Enable auto-negotiation for speed and duplex on both ends.",
+    "example": "SW1(config-if)# duplex auto",
+    "ckuIds": [
+      "CKU-DUPLEX-MISMATCH"
+    ],
+    "objectiveId": "1.4"
+  },
+  {
+    "id": "1.5-cmd1",
+    "command": "show mac address-table",
+    "mode": "privileged EXEC",
+    "purpose": "Display the dynamic, static, and system MAC address table entries with VLAN and port.",
+    "example": "Switch# show mac address-table",
+    "ckuIds": [
+      "CKU-MAC-ADDRESS-TABLE"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-cmd2",
+    "command": "mac address-table aging-time <seconds> [vlan <id>]",
+    "mode": "global config",
+    "purpose": "Change the aging timer from the default 300 seconds.",
+    "example": "Switch(config)# mac address-table aging-time 600",
+    "ckuIds": [
+      "CKU-MAC-AGING"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.5-cmd3",
+    "command": "mac address-table static <mac> vlan <id> interface <intf>",
+    "mode": "global config",
+    "purpose": "Manually bind a MAC address to a VLAN and port — never ages out.",
+    "example": "Switch(config)# mac address-table static 0011.2233.4455 vlan 10 interface gi0/1",
+    "ckuIds": [
+      "CKU-MAC-ADDRESS-TABLE"
+    ],
+    "objectiveId": "1.5"
+  },
+  {
+    "id": "1.6-cmd1",
+    "command": "ip address <ip> <mask>",
+    "mode": "interface config",
+    "purpose": "Assign an IPv4 address and subnet mask to an interface.",
+    "example": "R1(config-if)# ip address 192.168.1.1 255.255.255.0",
+    "ckuIds": [
+      "CKU-IPV4-ADDRESSING",
+      "CKU-SUBNET-MASK"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-cmd2",
+    "command": "show ip interface brief",
+    "mode": "privileged EXEC",
+    "purpose": "List interfaces with their IP address and up/down status.",
+    "example": "R1# show ip interface brief",
+    "ckuIds": [
+      "CKU-IPV4-ADDRESSING"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.6-cmd3",
+    "command": "show ip route connected",
+    "mode": "privileged EXEC",
+    "purpose": "Show the connected/local routes created from interface addressing.",
+    "example": "R1# show ip route connected",
+    "ckuIds": [
+      "CKU-SUBNETTING"
+    ],
+    "objectiveId": "1.6"
+  },
+  {
+    "id": "1.7-cmd1",
+    "command": "ipconfig",
+    "mode": "Windows CLI",
+    "purpose": "View client IPv4 address — spot private vs APIPA ranges.",
+    "example": "C:\\> ipconfig",
+    "ckuIds": [
+      "CKU-APIPA",
+      "CKU-RFC1918"
+    ],
+    "objectiveId": "1.7"
+  },
+  {
+    "id": "1.7-cmd2",
+    "command": "show ip nat translations",
+    "mode": "privileged EXEC",
+    "purpose": "Verify NAT mapping private inside addresses to public outside.",
+    "example": "R1# show ip nat translations",
+    "ckuIds": [
+      "CKU-PUBLIC-PRIVATE"
+    ],
+    "objectiveId": "1.7"
+  },
+  {
+    "id": "1.8-cmd1",
+    "command": "ipv6 unicast-routing",
+    "mode": "global config",
+    "purpose": "Enable IPv6 routing on the device.",
+    "example": "R1(config)# ipv6 unicast-routing",
+    "ckuIds": [
+      "CKU-IPV6-ADDRESSING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.8-cmd2",
+    "command": "ipv6 address <addr>/<len>",
+    "mode": "interface config",
+    "purpose": "Assign a global IPv6 address and prefix to an interface.",
+    "example": "R1(config-if)# ipv6 address 2001:db8::1/64",
+    "ckuIds": [
+      "CKU-IPV6-ADDRESSING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.8-cmd3",
+    "command": "show ipv6 interface brief",
+    "mode": "privileged EXEC",
+    "purpose": "List IPv6 addresses and interface status.",
+    "example": "R1# show ipv6 interface brief",
+    "ckuIds": [
+      "CKU-IPV6-ADDRESSING"
+    ],
+    "objectiveId": "1.8"
+  },
+  {
+    "id": "1.9-cmd1",
+    "command": "show ipv6 interface",
+    "mode": "privileged EXEC",
+    "purpose": "Show an interface’s link-local, global addresses, and joined multicast groups.",
+    "example": "R1# show ipv6 interface g0/0",
+    "ckuIds": [
+      "CKU-IPV6-LINK-LOCAL",
+      "CKU-IPV6-MULTICAST"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "1.9-cmd2",
+    "command": "show ipv6 neighbors",
+    "mode": "privileged EXEC",
+    "purpose": "Display the IPv6 neighbor (NDP) table — the IPv6 equivalent of the ARP table.",
+    "example": "R1# show ipv6 neighbors",
+    "ckuIds": [
+      "CKU-IPV6-LINK-LOCAL"
+    ],
+    "objectiveId": "1.9"
+  },
+  {
+    "id": "2.1-cmd1",
+    "command": "vlan <id>",
+    "mode": "global config",
+    "purpose": "Create a VLAN (then name it).",
+    "example": "SW1(config)# vlan 10",
+    "ckuIds": [
+      "CKU-VLAN"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.1-cmd2",
+    "command": "switchport access vlan <id>",
+    "mode": "interface config",
+    "purpose": "Assign an access port to a VLAN.",
+    "example": "SW1(config-if)# switchport access vlan 10",
+    "ckuIds": [
+      "CKU-ACCESS-PORT"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.1-cmd3",
+    "command": "show vlan brief",
+    "mode": "privileged EXEC",
+    "purpose": "Display VLANs and their assigned ports.",
+    "example": "SW1# show vlan brief",
+    "ckuIds": [
+      "CKU-VLAN"
+    ],
+    "objectiveId": "2.1"
+  },
+  {
+    "id": "2.2-cmd1",
+    "command": "switchport mode trunk",
+    "mode": "interface config",
+    "purpose": "Configure the port as an 802.1Q trunk.",
+    "example": "SW1(config-if)# switchport mode trunk",
+    "ckuIds": [
+      "CKU-TRUNKING"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.2-cmd2",
+    "command": "switchport trunk native vlan <id>",
+    "mode": "interface config",
+    "purpose": "Set the untagged native VLAN (match both ends).",
+    "example": "SW1(config-if)# switchport trunk native vlan 99",
+    "ckuIds": [
+      "CKU-NATIVE-VLAN"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.2-cmd3",
+    "command": "show interfaces trunk",
+    "mode": "privileged EXEC",
+    "purpose": "Show trunk mode, native VLAN, and allowed/active VLANs.",
+    "example": "SW1# show interfaces trunk",
+    "ckuIds": [
+      "CKU-TRUNKING"
+    ],
+    "objectiveId": "2.2"
+  },
+  {
+    "id": "2.3-cmd1",
+    "command": "show cdp neighbors detail",
+    "mode": "privileged EXEC",
+    "purpose": "Display CDP neighbor table with port-level detail.",
+    "example": "Switch# show cdp neighbors detail",
+    "ckuIds": [
+      "CKU-CDP"
+    ],
+    "objectiveId": "2.3"
+  },
+  {
+    "id": "2.5-cmd1",
+    "command": "show spanning-tree",
+    "mode": "privileged EXEC",
+    "purpose": "Show the root bridge, port roles/states, and costs.",
+    "example": "SW1# show spanning-tree vlan 1",
+    "ckuIds": [
+      "CKU-STP",
+      "CKU-ROOT-BRIDGE"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
+    "id": "2.5-cmd2",
+    "command": "spanning-tree vlan <id> root primary",
+    "mode": "global config",
+    "purpose": "Lower priority so this switch becomes the root for a VLAN.",
+    "example": "SW1(config)# spanning-tree vlan 1 root primary",
+    "ckuIds": [
+      "CKU-ROOT-BRIDGE"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
+    "id": "2.5-cmd3",
+    "command": "spanning-tree portfast",
+    "mode": "interface config",
+    "purpose": "Enable PortFast on an access port.",
+    "example": "SW1(config-if)# spanning-tree portfast",
+    "ckuIds": [
+      "CKU-STP-PORTFAST"
+    ],
+    "objectiveId": "2.5"
+  },
+  {
     "id": "3.1-cmd1",
     "command": "show ip route",
     "mode": "privileged EXEC",
@@ -178,5 +623,38 @@
       "CKU-NAT"
     ],
     "objectiveId": "4.1"
+  },
+  {
+    "id": "5.5-cmd1",
+    "command": "access-list <1-99> permit <src> <wildcard>",
+    "mode": "global config",
+    "purpose": "Create a numbered standard ACL entry (source only).",
+    "example": "R1(config)# access-list 10 permit 192.168.1.0 0.0.0.255",
+    "ckuIds": [
+      "CKU-ACL-STANDARD"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.5-cmd2",
+    "command": "ip access-group <name|num> in|out",
+    "mode": "interface config",
+    "purpose": "Apply an ACL to an interface in a direction.",
+    "example": "R1(config-if)# ip access-group 100 in",
+    "ckuIds": [
+      "CKU-ACL"
+    ],
+    "objectiveId": "5.5"
+  },
+  {
+    "id": "5.5-cmd3",
+    "command": "show access-lists",
+    "mode": "privileged EXEC",
+    "purpose": "Display ACLs with hit counts.",
+    "example": "R1# show access-lists",
+    "ckuIds": [
+      "CKU-ACL"
+    ],
+    "objectiveId": "5.5"
   }
 ]

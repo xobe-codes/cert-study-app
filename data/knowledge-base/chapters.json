@@ -1,22 +1,61 @@
 [
   {
+    "chapterId": "ch1-fundamentals",
+    "chapterNumber": 1,
+    "chapterTitle": "Network Fundamentals",
+    "domainId": "fundamentals",
+    "objectiveIds": [
+      "1.1",
+      "1.2",
+      "1.3",
+      "1.4",
+      "1.5",
+      "1.6",
+      "1.7",
+      "1.8",
+      "1.9",
+      "1.10",
+      "1.11",
+      "1.12"
+    ],
+    "summary": "Components, topologies, cabling, switching, IPv4/IPv6, wireless, virtualization."
+  },
+  {
+    "chapterId": "ch2-network-access",
+    "chapterNumber": 2,
+    "chapterTitle": "Network Access",
+    "domainId": "access",
+    "objectiveIds": [
+      "2.1",
+      "2.2",
+      "2.3",
+      "2.4",
+      "2.5",
+      "2.6",
+      "2.7",
+      "2.8"
+    ],
+    "summary": "VLANs, trunking, CDP/LLDP, EtherChannel, STP, wireless architectures."
+  },
+  {
     "chapterId": "ch3-ip-connectivity",
     "chapterNumber": 3,
-    "chapterTitle": "IP Connectivity (Domain 3)",
+    "chapterTitle": "IP Connectivity",
     "domainId": "connectivity",
     "objectiveIds": [
       "3.1",
       "3.2",
       "3.3",
       "3.4",
-      "3.5"
+      "3.5",
+      "3.6"
     ],
-    "summary": "Routing table, forwarding, static routing, OSPFv2, FHRP — core CCNA IP Connectivity objectives."
+    "summary": "Routing table, forwarding, static routing, OSPFv2, FHRP, troubleshooting."
   },
   {
     "chapterId": "ch4-ip-services",
     "chapterNumber": 4,
-    "chapterTitle": "IP Services (Domain 4)",
+    "chapterTitle": "IP Services",
     "domainId": "services",
     "objectiveIds": [
       "4.1",
@@ -27,8 +66,44 @@
       "4.6",
       "4.7",
       "4.8",
-      "4.9"
+      "4.9",
+      "4.10"
     ],
-    "summary": "NAT/PAT, NTP, DHCP/DNS, SNMP, Syslog, DHCP relay, QoS, SSH, TFTP/FTP — core CCNA IP Services objectives."
+    "summary": "NAT, NTP, DHCP/DNS, SNMP, Syslog, QoS, SSH, TFTP/FTP, management."
+  },
+  {
+    "chapterId": "ch5-security",
+    "chapterNumber": 5,
+    "chapterTitle": "Security Fundamentals",
+    "domainId": "security",
+    "objectiveIds": [
+      "5.1",
+      "5.2",
+      "5.3",
+      "5.4",
+      "5.5",
+      "5.6",
+      "5.7",
+      "5.8",
+      "5.9",
+      "5.10",
+      "5.11"
+    ],
+    "summary": "Threats, access control, AAA, ACLs, L2 security, wireless security, VPN."
+  },
+  {
+    "chapterId": "ch6-automation",
+    "chapterNumber": 6,
+    "chapterTitle": "Automation & Programmability",
+    "domainId": "automation",
+    "objectiveIds": [
+      "6.1",
+      "6.2",
+      "6.3",
+      "6.4",
+      "6.5",
+      "6.6"
+    ],
+    "summary": "Automation, SDN, DNA Center, REST, JSON, Ansible."
   }
 ]

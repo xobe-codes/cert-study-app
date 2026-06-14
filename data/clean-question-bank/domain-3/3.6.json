@@ -1,0 +1,442 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "3.6",
+  "domain": 3,
+  "builtAt": "2026-06-14T02:38:22.077Z",
+  "source": "legacy-import-migration",
+  "questions": [
+    {
+      "id": "3.6-legacy-q001",
+      "question": "A router has a static route to 192.168.30.0/24 (administrative distance 1) and an OSPF-learned route to the same network (administrative distance 110). Both are in the routing table candidates. Which route is installed?",
+      "choices": [
+        "The OSPF route, because it is dynamically learned",
+        "The static route, because it has the lower administrative distance",
+        "Both routes, load-balanced equally",
+        "Neither route — the router flags a conflict"
+      ],
+      "correctIndex": 1,
+      "explanation": "When multiple sources offer a route to the same destination, the router prefers the route with the lowest administrative distance. A static route (AD 1) beats OSPF (AD 110).",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "administrative distance",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-ADMIN-DISTANCE",
+        "CKU-ROUTE-SELECTION"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "Lower administrative distance always wins, regardless of how the route was learned. A static route's AD of 1 beats OSPF's AD of 110."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "Being dynamically learned doesn't matter for route selection — AD is the deciding factor, and OSPF's AD (110) is higher than the static route's AD (1).",
+            "misconceptionTested": "Believing dynamic routing protocols are always preferred over static routes."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "Load balancing across multiple routes only happens when those routes have EQUAL administrative distance. Here the ADs differ (1 vs 110), so only the lower-AD route is installed.",
+            "misconceptionTested": "Assuming any two routes to the same network get load-balanced."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Routers don't flag AD differences as a 'conflict' — they silently install the lowest-AD route.",
+            "misconceptionTested": "Thinking the router needs a tie-breaker error when ADs differ."
+          }
+        ],
+        "examTip": "Memorize key ADs: Connected = 0, Static = 1, OSPF = 110, RIP = 120. Lowest AD wins, no matter the source.",
+        "memoryHook": "Think 'AD = trust score' — the lower the number, the more the router trusts that source."
+      }
+    },
+    {
+      "id": "3.6-legacy-q002",
+      "question": "A static route is configured pointing to a next-hop IP address rather than an exit interface. What additional step must the router perform before it can forward packets using this route?",
+      "choices": [
+        "A recursive lookup to find the exit interface for the next-hop IP",
+        "An ARP request to the destination host directly",
+        "A DNS lookup to resolve the next-hop IP",
+        "Nothing — next-hop routes forward immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": "A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP, adding extra processing versus a directly-attached exit-interface route.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "recursive route lookup",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-RECURSIVE-LOOKUP"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "A next-hop static route only gives an IP address, not an outgoing interface, so the router must perform a second routing-table lookup (recursive lookup) to find the interface that reaches that next-hop IP."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "ARP resolves a directly connected IP to a MAC address — it doesn't determine which interface to use for a remote next hop. ARP for the next hop happens only after the recursive lookup determines the outgoing interface.",
+            "misconceptionTested": "Confusing Layer 2 address resolution (ARP) with Layer 3 route resolution."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "DNS resolves hostnames to IP addresses; routing decisions already use IP addresses, so DNS plays no role here.",
+            "misconceptionTested": "Mixing up name resolution with route resolution."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Next-hop static routes are NOT installed without an extra step — unlike exit-interface static routes, they require the recursive lookup before they can be used for forwarding.",
+            "misconceptionTested": "Assuming next-hop and exit-interface static routes behave identically."
+          }
+        ],
+        "examTip": "Exit-interface static routes avoid the recursive lookup and are preferred on point-to-point links; next-hop routes are common on multi-access (e.g., Ethernet) segments.",
+        "memoryHook": "'Recursive' = the router has to look itself up again to find the way out."
+      }
+    },
+    {
+      "id": "3.6-legacy-q003",
+      "question": "A static route's exit interface goes down. What happens to that static route in the routing table?",
+      "choices": [
+        "It remains in the table but is marked inactive",
+        "It is removed from the routing table until the interface comes back up",
+        "It is automatically replaced by a default route",
+        "It stays active but stops forwarding traffic silently"
+      ],
+      "correctIndex": 1,
+      "explanation": "A static route depends on its exit interface (or a reachable next hop) being up. If the interface goes down, the route is removed from the routing table until reachability is restored.",
+      "type": "troubleshooting",
+      "difficulty": "medium",
+      "concept": "static route dependency",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-ROUTE-TABLE"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "A static route is only valid while its exit interface (or next hop) is reachable. If that interface goes down, IOS removes the route from the table entirely until reachability is restored."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "IOS doesn't keep a visible 'inactive' static route in show ip route — if the dependency is down, the route disappears from the table.",
+            "misconceptionTested": "Expecting an 'inactive' state to remain visible, as some other platforms show."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "Routers don't automatically substitute a default route for a failed static route — if no default route is separately configured, there's simply no route to that destination.",
+            "misconceptionTested": "Assuming automatic fallback behavior that isn't part of IOS routing."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "A removed route can't silently keep forwarding — removal from the table IS the mechanism, not a separate 'stays active but silent' state.",
+            "misconceptionTested": "Confusing interface-down behavior with silent packet drops on a still-active route."
+          }
+        ],
+        "examTip": "This is exactly why floating static routes (configured with a higher AD) are used as backups — when the primary route disappears, the floating route becomes active.",
+        "memoryHook": "No interface, no route — static routes 'live or die' with their exit path."
+      }
+    },
+    {
+      "id": "3.6-legacy-q004",
+      "question": "A host can ping devices on its local subnet but cannot reach any remote subnets, including the internet. The host's IP and subnet mask are correct. What is the most likely cause?",
+      "choices": [
+        "The host's DNS server is unreachable",
+        "The host is missing a default gateway, or the gateway is misconfigured",
+        "The switch port is in the wrong VLAN",
+        "The host has a duplicate IP address"
+      ],
+      "correctIndex": 1,
+      "explanation": "Local-subnet connectivity working but remote connectivity failing is the classic symptom of a missing or incorrect default gateway — the host has no way to route off-subnet traffic.",
+      "type": "troubleshooting",
+      "difficulty": "easy",
+      "concept": "default gateway",
+      "ckuIds": [
+        "CKU-DEFAULT-GATEWAY",
+        "CKU-ROUTING-TROUBLESHOOTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "Local-subnet pings working but remote pings failing is the textbook symptom of a missing or incorrect default gateway — the host has no way to route off-subnet traffic."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "A DNS issue prevents name resolution (e.g., browsing by hostname) but wouldn't explain failing pings to IP addresses on remote subnets.",
+            "misconceptionTested": "Conflating DNS (name resolution) failures with routing (Layer 3 path) failures."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "A wrong VLAN would typically also break local-subnet connectivity (wrong broadcast domain) — but the question states local pings work fine, ruling this out.",
+            "misconceptionTested": "Overlooking that 'local works, remote doesn't' rules out a Layer 2/VLAN misconfiguration."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "A duplicate IP usually causes intermittent or local connectivity issues, not a clean 'local works, remote fails' pattern.",
+            "misconceptionTested": "Assuming any IP-related problem must be a duplicate-address conflict."
+          }
+        ],
+        "examTip": "Always check the host's default gateway setting first when local connectivity works but remote/internet connectivity doesn't.",
+        "memoryHook": "Local ✅, remote ❌ → think Gateway."
+      }
+    },
+    {
+      "id": "3.6-legacy-q005",
+      "question": "Which command displays the router's current routing table, including the source (static, connected, or routing protocol) of each route?",
+      "choices": [
+        "show ip interface brief",
+        "show running-config",
+        "show ip route",
+        "show ip protocols"
+      ],
+      "correctIndex": 2,
+      "explanation": "show ip route lists all routes in the routing table along with a code (S, C, O, D, etc.) indicating how each route was learned.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "routing table verification",
+      "ckuIds": [
+        "CKU-SHOW-IP-ROUTE",
+        "CKU-ROUTE-TABLE"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "show ip route displays the full routing table, with a source code (C, S, O, D, etc.) for each entry showing how it was learned."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "show ip interface brief shows interface status and IP addresses, not the routing table or route sources.",
+            "misconceptionTested": "Confusing interface-status commands with routing-table commands."
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "show running-config shows the configuration as entered (including static route commands), but not the active, computed routing table with source codes.",
+            "misconceptionTested": "Thinking the configuration file is the same as the live routing table."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "show ip protocols shows configured routing protocol parameters (timers, networks advertised), not the routing table entries themselves.",
+            "misconceptionTested": "Mixing up routing-protocol configuration display with the routing table itself."
+          }
+        ],
+        "examTip": "Know the common route codes: C = connected, S = static, O = OSPF, D = EIGRP, R = RIP, B = BGP.",
+        "memoryHook": "'ip route' = the actual map the router is using right now."
+      }
+    },
+    {
+      "id": "3.6-legacy-q006",
+      "question": "A floating static route is configured with an administrative distance of 200 as a backup to a primary OSPF route. Under what condition does the floating static route appear as the active route in the routing table?",
+      "choices": [
+        "Only when the OSPF route is no longer available",
+        "Whenever the floating static route has a lower metric",
+        "Immediately, alongside the OSPF route, for load balancing",
+        "Only after the router reboots"
+      ],
+      "correctIndex": 0,
+      "explanation": "A floating static route is configured with a higher AD than the primary route so it stays out of the table (a backup) until the primary route disappears, at which point it becomes the best (and only) route.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "floating static route",
+      "ckuIds": [
+        "CKU-FLOATING-STATIC",
+        "CKU-ADMIN-DISTANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "A floating static route's higher AD (200) keeps it out of the table while the lower-AD OSPF route (110) is present. It only becomes active once the OSPF route disappears from the table."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "Floating static routes don't compare metrics with OSPF — administrative distance, not metric, governs which route is installed when both sources have a route.",
+            "misconceptionTested": "Thinking AD-based selection between sources works like metric-based tie-breaking within a single protocol."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "Two routes are only both installed for load balancing if they have EQUAL administrative distance. A floating static route (AD 200) and OSPF (AD 110) differ, so only OSPF is installed while available.",
+            "misconceptionTested": "Assuming a backup route is always active alongside the primary."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Floating static routes activate based on changes to the routing table (the primary route disappearing), not on a device reboot.",
+            "misconceptionTested": "Confusing route re-evaluation with a reboot event."
+          }
+        ],
+        "examTip": "Floating static routes are commonly used as backup WAN links — set their AD higher than the dynamic protocol's AD so they only activate on failure.",
+        "memoryHook": "'Floating' = it sits above the table until the primary route sinks out of view."
+      }
+    },
+    {
+      "id": "3.6-legacy-q007",
+      "question": "show ip route shows a correct entry for a remote network via a directly connected neighbor, but pings to that neighbor's interface fail. What should be checked first?",
+      "choices": [
+        "The OSPF process ID",
+        "Layer 1/2 status of the connecting link (interface up/up, cabling, duplex)",
+        "The router's hostname configuration",
+        "The NTP server configuration"
+      ],
+      "correctIndex": 1,
+      "explanation": "A correct routing table entry doesn't guarantee Layer 1/2 health. If pings to a directly connected neighbor fail, check the physical link first — interface status, cabling, and duplex/speed mismatches are the most common causes.",
+      "type": "troubleshooting",
+      "difficulty": "medium",
+      "concept": "routing troubleshooting layers",
+      "ckuIds": [
+        "CKU-INTERFACE-STATUS",
+        "CKU-ROUTING-TROUBLESHOOTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "A correct routing table entry only confirms the control plane has a path — it says nothing about the physical link's health. Check interface up/up status, cabling, and duplex/speed first."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "The OSPF process ID is a locally-significant configuration value and doesn't affect whether pings succeed to a directly connected neighbor.",
+            "misconceptionTested": "Assuming routing-protocol configuration explains a basic connectivity failure to a directly connected device."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "A hostname mismatch has no effect on IP reachability or ping success.",
+            "misconceptionTested": "Confusing cosmetic/identification configuration with Layer 3 reachability."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "NTP affects time synchronization (useful for logging/certificates), not basic IP connectivity to a neighbor.",
+            "misconceptionTested": "Treating an unrelated management protocol as the cause of a ping failure."
+          }
+        ],
+        "examTip": "Troubleshoot bottom-up: Layer 1 (cabling/interface status) → Layer 2 (duplex, encapsulation) → Layer 3 (IP, routing) — don't jump straight to routing protocol internals.",
+        "memoryHook": "'The routing table says yes, but the cable says no.'"
+      }
+    },
+    {
+      "id": "3.6-legacy-q008",
+      "question": "Two static routes are configured for the same destination network with the same administrative distance: one via 10.0.0.1 and one via 10.0.0.2. What is the result?",
+      "choices": [
+        "Only the first-configured route is installed",
+        "The router rejects both routes as a conflict",
+        "Both routes are installed for equal-cost load balancing",
+        "The route with the higher next-hop IP is preferred"
+      ],
+      "correctIndex": 2,
+      "explanation": "When two routes to the same destination have equal administrative distance (and, for static routes, equal implicit cost), the router installs both for equal-cost load balancing (per-destination or per-packet depending on platform).",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "equal-cost routes",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-LOAD-BALANCING"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "Two static routes to the same destination with equal AD (and equal implicit cost) are both installed, enabling equal-cost load balancing across both next hops."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "IOS doesn't discard the second equal-AD route — it installs both for load balancing rather than keeping only the first one configured.",
+            "misconceptionTested": "Assuming routers only ever keep a single 'winning' route, even when AD and cost are tied."
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "Equal-AD routes to the same destination aren't treated as configuration errors — this is the normal mechanism for equal-cost multipath.",
+            "misconceptionTested": "Thinking duplicate-looking routes must be a misconfiguration the router will reject."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Route installation doesn't compare next-hop IP address values — there's no 'higher IP wins' tie-breaker in IOS for this scenario.",
+            "misconceptionTested": "Inventing a tie-breaker rule (comparing IP values) that doesn't exist."
+          }
+        ],
+        "examTip": "Equal-cost load balancing can be per-destination or per-packet depending on platform/switching method — both static routes and dynamic protocols support it when AD/metric are equal.",
+        "memoryHook": "Same AD, same cost → the router shares the load instead of picking a favorite."
+      }
+    },
+    {
+      "id": "3.6-legacy-q009",
+      "question": "An administrator configures `ip route 0.0.0.0 0.0.0.0 203.0.113.1` on an edge router but hosts still cannot reach the internet, even though show ip route shows the route present. What is the most likely remaining issue?",
+      "choices": [
+        "The default route mask must be 255.255.255.255, not 0.0.0.0",
+        "203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts",
+        "Default routes are not supported on edge routers",
+        "The route needs to be redistributed into OSPF before it can be used"
+      ],
+      "correctIndex": 1,
+      "explanation": "A default route being present in the table doesn't guarantee end-to-end reachability. Common remaining causes are an unreachable next hop (203.0.113.1) or missing NAT/PAT translation for internal private addresses going to the internet.",
+      "type": "troubleshooting",
+      "difficulty": "hard",
+      "concept": "default route troubleshooting",
+      "ckuIds": [
+        "CKU-DEFAULT-ROUTE",
+        "CKU-NAT",
+        "CKU-ROUTING-TROUBLESHOOTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "A route being present in the table only means the router knows where to send default traffic — it doesn't guarantee the next hop is actually reachable, or that NAT/PAT is translating internal addresses for internet use."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "0.0.0.0 0.0.0.0 IS the correct mask for a default route (it matches everything). Changing it to 255.255.255.255 would make it a host route to 0.0.0.0, breaking it entirely.",
+            "misconceptionTested": "Believing the default route's wildcard/mask syntax is wrong when it's actually standard."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "Default routes are fully supported — and commonly required — on edge/internet-facing routers; this isn't a platform limitation.",
+            "misconceptionTested": "Assuming edge routers have special restrictions against default routes."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Redistribution into OSPF affects whether OTHER routers learn this route via OSPF — it has no bearing on whether THIS router can use the route itself to forward packets toward the internet.",
+            "misconceptionTested": "Confusing route redistribution (sharing with other routers) with the local router's own forwarding behavior."
+          }
+        ],
+        "examTip": "When 'the route is in the table but it still doesn't work,' check next-hop reachability and NAT/PAT — both are common culprits once the table itself looks correct.",
+        "memoryHook": "'In the table' ≠ 'actually gets there.' Check the next hop and NAT next."
+      }
+    },
+    {
+      "id": "3.6-legacy-q010",
+      "question": "A network has two routers, R1 and R2, both running OSPF. R1's routing table is missing a network that R2 advertises. Which command on R1 would best help confirm whether R1 and R2 have formed an OSPF neighbor adjacency?",
+      "choices": [
+        "show ip route ospf",
+        "show ip ospf neighbor",
+        "show ip interface brief",
+        "show vlan brief"
+      ],
+      "correctIndex": 1,
+      "explanation": "show ip ospf neighbor shows the state of OSPF adjacencies (e.g., FULL). If R1 and R2 haven't formed a FULL adjacency, R1 won't receive R2's routes regardless of what show ip route ospf shows.",
+      "type": "troubleshooting",
+      "difficulty": "medium",
+      "concept": "OSPF adjacency troubleshooting",
+      "ckuIds": [
+        "CKU-OSPF",
+        "CKU-OSPF-NEIGHBOR",
+        "CKU-ROUTING-TROUBLESHOOTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "show ip ospf neighbor shows adjacency state (e.g., FULL). If R1 and R2 haven't reached FULL, R1 won't receive R2's routes regardless of anything else."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "show ip route ospf only shows OSPF routes ALREADY in the table — if the adjacency never formed, this command simply shows nothing for that neighbor, without explaining why.",
+            "misconceptionTested": "Re-checking the symptom (missing route) instead of the underlying cause (adjacency state)."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "show ip interface brief confirms interfaces are up/up, which is necessary but not sufficient — two interfaces can be up/up while OSPF adjacency fails due to mismatched area, timers, network type, etc.",
+            "misconceptionTested": "Assuming interface up/up guarantees a routing protocol adjacency has formed."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "show vlan brief is a Layer 2 switching command and has no relevance to OSPF adjacency state between routers.",
+            "misconceptionTested": "Confusing switch VLAN configuration with router-to-router OSPF state."
+          }
+        ],
+        "examTip": "OSPF neighbors must match area ID, hello/dead intervals, network type/mask, and (if used) authentication — a mismatch on any of these prevents FULL adjacency.",
+        "memoryHook": "No FULL neighbor, no routes — check 'ospf neighbor' before chasing anything else."
+      }
+    }
+  ]
+}

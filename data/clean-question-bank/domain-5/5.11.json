@@ -1,0 +1,442 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "5.11",
+  "domain": 5,
+  "builtAt": "2026-06-14T02:38:22.087Z",
+  "source": "legacy-import-migration",
+  "questions": [
+    {
+      "id": "5.11-legacy-q001",
+      "question": "What is the primary security benefit of network segmentation?",
+      "choices": [
+        "It increases the total bandwidth available to every device",
+        "It limits the scope of a security breach by restricting lateral movement between segments",
+        "It eliminates the need for firewalls",
+        "It automatically encrypts all traffic on the network"
+      ],
+      "correctIndex": 1,
+      "explanation": "Segmentation divides a network into smaller zones with controlled boundaries, so that if one segment is compromised, an attacker's ability to move laterally to other segments is restricted.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "segmentation purpose",
+      "ckuIds": [
+        "CKU-SEGMENTATION",
+        "CKU-LATERAL-MOVEMENT"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "Segmentation divides a network into smaller zones with controlled boundaries, so that if one segment is compromised, an attacker's ability to move laterally to other segments is restricted."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "Segmentation is about isolating traffic into separate zones, not about increasing total available bandwidth — bandwidth isn't the security benefit being described.",
+            "misconceptionTested": "Confusing a performance/capacity claim with the security purpose of segmentation."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "Segmentation works alongside firewalls (often using them to enforce boundaries) — it doesn't eliminate the need for them.",
+            "misconceptionTested": "Assuming segmentation replaces other security controls rather than complementing them."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Segmentation controls which zones can communicate with each other — it doesn't automatically encrypt traffic; encryption is a separate control (e.g., TLS, IPsec).",
+            "misconceptionTested": "Conflating network segmentation with encryption, which are different security mechanisms."
+          }
+        ],
+        "examTip": "When you see 'contain a breach' or 'limit lateral movement' in a question, think segmentation (VLANs, ACLs, firewalls between zones).",
+        "memoryHook": "Segmentation = building interior walls so a fire in one room doesn't burn the whole house."
+      }
+    },
+    {
+      "id": "5.11-legacy-q002",
+      "question": "Which Layer 2 technology is the most common building block for network segmentation in a campus network?",
+      "choices": [
+        "VLANs",
+        "NAT",
+        "HSRP",
+        "CDP"
+      ],
+      "correctIndex": 0,
+      "explanation": "VLANs logically separate a switched network into multiple broadcast domains, forming the basic building block for segmenting users, devices, and traffic types.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "VLAN segmentation",
+      "ckuIds": [
+        "CKU-VLAN",
+        "CKU-SEGMENTATION"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "VLANs logically separate a switched network into multiple broadcast domains, forming the basic building block for segmenting users, devices, and traffic types at Layer 2."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "NAT translates IP addresses for routing between address spaces (e.g., private to public) — it's a Layer 3 address-translation tool, not a Layer 2 segmentation building block.",
+            "misconceptionTested": "Confusing address translation (NAT) with traffic/broadcast-domain segmentation (VLANs)."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "HSRP provides gateway redundancy/failover — it's a high-availability protocol, not a segmentation mechanism.",
+            "misconceptionTested": "Mistaking a redundancy protocol for a segmentation technology."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "CDP is a Cisco discovery protocol used to learn about directly connected neighbor devices — it has nothing to do with dividing a network into segments.",
+            "misconceptionTested": "Selecting a neighbor-discovery protocol as if it were a segmentation tool."
+          }
+        ],
+        "examTip": "VLANs are the foundational Layer 2 segmentation tool — almost every other segmentation concept (DMZ, guest network, voice VLAN) builds on top of VLANs.",
+        "memoryHook": "VLAN = Virtual LAN — a virtual wall dividing one physical switch into many logical networks."
+      }
+    },
+    {
+      "id": "5.11-legacy-q003",
+      "question": "What is the purpose of a DMZ (demilitarized zone) in network design?",
+      "choices": [
+        "To host internal-only file servers with no external access",
+        "To host externally-facing services (e.g., web/email servers) in a buffer zone, isolated from the internal network, between the internet and the internal LAN",
+        "To provide a backup path for routing protocols",
+        "To store network device configuration backups"
+      ],
+      "correctIndex": 1,
+      "explanation": "A DMZ is a segmented zone that exposes services to untrusted networks (like the internet) while keeping them isolated from the trusted internal network — so a compromise of a DMZ host doesn't directly expose internal systems.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "DMZ",
+      "ckuIds": [
+        "CKU-DMZ",
+        "CKU-SEGMENTATION"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "A DMZ is a segmented zone that exposes services to untrusted networks (like the internet) while keeping them isolated from the trusted internal network — so a compromise of a DMZ host doesn't directly expose internal systems."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "A DMZ is specifically for services that ARE externally accessible (web, email, etc.) — internal-only servers with no external access belong on the internal network, not the DMZ.",
+            "misconceptionTested": "Reversing the DMZ's purpose — it's for external-facing services, not internal-only ones."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "A DMZ is a network segmentation zone for hosting services, not a routing-protocol backup path mechanism.",
+            "misconceptionTested": "Confusing a security zone (DMZ) with a routing redundancy concept."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Configuration backups are a separate operational/management concern — a DMZ's purpose is hosting externally-reachable services securely, not storing backup files.",
+            "misconceptionTested": "Assigning an unrelated storage/operations function to the DMZ."
+          }
+        ],
+        "examTip": "DMZ = 'public-facing but isolated.' Anything reachable from the internet (web servers, mail relays) typically belongs in the DMZ, not the internal LAN.",
+        "memoryHook": "DMZ = the 'lobby' of the building — visitors (internet) can enter, but they can't walk into the offices (internal network)."
+      }
+    },
+    {
+      "id": "5.11-legacy-q004",
+      "question": "How does microsegmentation differ from traditional VLAN-based segmentation?",
+      "choices": [
+        "Microsegmentation applies granular security policies down to the individual workload or application level, often independent of physical/VLAN boundaries",
+        "Microsegmentation only works on wireless networks",
+        "Microsegmentation removes the need for any access control",
+        "Microsegmentation is identical to VLAN segmentation but uses smaller subnet masks"
+      ],
+      "correctIndex": 0,
+      "explanation": "Microsegmentation enforces security policy at a much finer granularity — often per-workload or per-application — commonly used in data centers and zero-trust architectures, going beyond coarse VLAN/subnet boundaries.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "microsegmentation",
+      "ckuIds": [
+        "CKU-MICROSEGMENTATION",
+        "CKU-SEGMENTATION",
+        "CKU-ZERO-TRUST"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "Microsegmentation enforces security policy at a much finer granularity — often per-workload or per-application — commonly used in data centers and zero-trust architectures, going beyond coarse VLAN/subnet boundaries."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "Microsegmentation is widely used in data centers and cloud environments (wired infrastructure), not limited to wireless networks.",
+            "misconceptionTested": "Assuming microsegmentation is a wireless-specific feature."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "Microsegmentation INCREASES granular access control (per-workload policies) — it doesn't remove access control, it makes it more precise.",
+            "misconceptionTested": "Assuming a more granular security model means less security enforcement."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Microsegmentation isn't just 'VLANs with smaller subnets' — it's a fundamentally different, often VLAN-independent policy model applied per workload/application.",
+            "misconceptionTested": "Reducing microsegmentation to a simple resizing of existing VLAN/subnet boundaries."
+          }
+        ],
+        "examTip": "Microsegmentation = fine-grained, workload-level policy (often software-defined / zero-trust); VLAN segmentation = coarser, network-boundary-level policy.",
+        "memoryHook": "VLANs build walls between rooms; microsegmentation puts a lock on every door inside each room."
+      }
+    },
+    {
+      "id": "5.11-legacy-q005",
+      "question": "Ransomware infects a single workstation on a flat, unsegmented network with no internal access controls. What is the most likely outcome compared to a properly segmented network?",
+      "choices": [
+        "The impact would be identical regardless of segmentation",
+        "The ransomware can more easily spread to other hosts and servers, since there are no internal boundaries restricting lateral movement",
+        "Segmentation would have caused the initial infection instead of preventing spread",
+        "A flat network automatically isolates infected hosts"
+      ],
+      "correctIndex": 1,
+      "explanation": "On a flat network, there are no internal boundaries to stop malware from reaching other hosts/servers once it's inside. Segmentation (VLANs, ACLs, firewalls between zones) contains the spread to the originating segment.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "segmentation and malware containment",
+      "ckuIds": [
+        "CKU-SEGMENTATION",
+        "CKU-LATERAL-MOVEMENT"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "On a flat network, there are no internal boundaries to stop malware from reaching other hosts/servers once it's inside. Segmentation (VLANs, ACLs, firewalls between zones) contains the spread to the originating segment."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "Segmentation directly changes the outcome by limiting lateral movement — a segmented network would NOT see identical impact to a flat one.",
+            "misconceptionTested": "Assuming segmentation has no effect on malware spread, when containing spread is its core purpose."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "Segmentation is a preventive/containment control — it doesn't cause infections; the ransomware enters through some other vector (phishing, exploit, etc.).",
+            "misconceptionTested": "Attributing the cause of infection to the security control meant to limit its impact."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "A flat network has NO internal boundaries by definition — it cannot 'automatically isolate' anything, which is precisely the problem described.",
+            "misconceptionTested": "Contradicting the definition of a flat network by assuming it has built-in isolation."
+          }
+        ],
+        "examTip": "Segmentation's value is most often tested through 'breach containment' or 'malware spread' scenarios — segmentation limits the blast radius.",
+        "memoryHook": "Flat network = open floor plan; one fire (infection) can spread everywhere with nothing to stop it."
+      }
+    },
+    {
+      "id": "5.11-legacy-q006",
+      "question": "Which mechanism is commonly used to enforce traffic policy BETWEEN VLANs (i.e., at the segmentation boundary)?",
+      "choices": [
+        "Spanning Tree Protocol",
+        "Access Control Lists (ACLs) on a Layer 3 device (router or multilayer switch)",
+        "CDP neighbor advertisements",
+        "DHCP relay"
+      ],
+      "correctIndex": 1,
+      "explanation": "While VLANs provide the segmentation boundary at Layer 2, enforcing what traffic is allowed to cross between VLANs is typically done with ACLs (or firewall rules) on the Layer 3 device routing between them.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "inter-VLAN policy enforcement",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-VLAN",
+        "CKU-SEGMENTATION"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "While VLANs provide the segmentation boundary at Layer 2, enforcing what traffic is allowed to cross between VLANs is typically done with ACLs (or firewall rules) on the Layer 3 device routing between them."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "Spanning Tree Protocol prevents Layer 2 loops — it has no role in enforcing which traffic can pass between VLANs.",
+            "misconceptionTested": "Confusing a loop-prevention protocol with a traffic-policy enforcement mechanism."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "CDP neighbor advertisements just share device/platform info with directly connected neighbors — they don't enforce or filter inter-VLAN traffic.",
+            "misconceptionTested": "Mistaking a discovery/advertisement protocol for an access-control mechanism."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "DHCP relay forwards DHCP requests across subnet boundaries so clients can get addresses — it doesn't enforce security policy on traffic between VLANs.",
+            "misconceptionTested": "Confusing an address-assignment helper protocol with traffic policy enforcement."
+          }
+        ],
+        "examTip": "VLANs create the boundaries; ACLs/firewall rules on the Layer 3 device (router or multilayer switch) enforce what's allowed to cross those boundaries.",
+        "memoryHook": "VLANs are the doorways between rooms; ACLs are the security guards standing in them."
+      }
+    },
+    {
+      "id": "5.11-legacy-q007",
+      "question": "Which statement best summarizes the \"zero trust\" principle as it relates to network segmentation?",
+      "choices": [
+        "Once a device is on the internal network, it is trusted to access anything",
+        "No device or user is implicitly trusted based on network location alone — every access request is verified, regardless of whether it originates inside or outside the perimeter",
+        "Zero trust means no authentication is required for internal traffic",
+        "Zero trust applies only to wireless networks"
+      ],
+      "correctIndex": 1,
+      "explanation": "Zero trust rejects the older model of \"trusted inside, untrusted outside.\" Every access request is verified based on identity and policy, regardless of network location — segmentation/microsegmentation is a key enabler of enforcing this.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "zero trust",
+      "ckuIds": [
+        "CKU-ZERO-TRUST",
+        "CKU-SEGMENTATION"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "Zero trust rejects the older model of \"trusted inside, untrusted outside.\" Every access request is verified based on identity and policy, regardless of network location — segmentation/microsegmentation is a key enabler of enforcing this."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "This describes the OLD perimeter-based trust model that zero trust specifically rejects — internal location no longer implies trust under zero trust.",
+            "misconceptionTested": "Describing the traditional 'trusted internal network' model as if it were zero trust."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "Zero trust requires MORE verification, not less — internal traffic is verified just like external traffic, not exempted from authentication.",
+            "misconceptionTested": "Assuming 'zero trust' means 'zero authentication' rather than 'zero implicit trust.'"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Zero trust is a general security architecture principle applied across wired, wireless, cloud, and on-prem environments — not limited to wireless.",
+            "misconceptionTested": "Narrowing a broad architectural principle to a single network type."
+          }
+        ],
+        "examTip": "The phrase to watch for is 'never trust, always verify' — zero trust removes the assumption that being on the internal network makes a device/user trustworthy.",
+        "memoryHook": "Zero trust: even your own employees show ID at every door, every time."
+      }
+    },
+    {
+      "id": "5.11-legacy-q008",
+      "question": "A company provides a guest Wi-Fi network for visitors. From a segmentation standpoint, what is the recommended design?",
+      "choices": [
+        "Place guest devices on the same VLAN and subnet as corporate devices for simplicity",
+        "Place guest traffic on a separate VLAN/subnet with restricted or no access to internal corporate resources, typically routed directly to the internet",
+        "Disable DHCP for guest devices so they can't get an IP address",
+        "Give guest devices a higher VLAN priority than corporate traffic"
+      ],
+      "correctIndex": 1,
+      "explanation": "Guest traffic should be segmented onto its own VLAN/subnet with policies that block or heavily restrict access to internal resources, isolating untrusted guest devices from the corporate network.",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "guest network segmentation",
+      "ckuIds": [
+        "CKU-SEGMENTATION",
+        "CKU-VLAN",
+        "CKU-GUEST-NETWORK"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "Guest traffic should be segmented onto its own VLAN/subnet with policies that block or heavily restrict access to internal resources, isolating untrusted guest devices from the corporate network."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "Placing guest devices on the same VLAN/subnet as corporate devices removes the security boundary entirely — guests would have direct Layer 2 access to internal traffic and devices, which is the opposite of best practice.",
+            "misconceptionTested": "Prioritizing configuration simplicity over the security risk of mixing trusted and untrusted devices."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "Disabling DHCP doesn't provide security — guests could still set static IPs, and it would just make the guest network unusable rather than secure it.",
+            "misconceptionTested": "Confusing 'making something inconvenient' with 'making it secure.'"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "VLAN priority affects QoS/traffic prioritization, not security isolation — giving guest traffic higher priority has nothing to do with restricting its access to internal resources.",
+            "misconceptionTested": "Confusing QoS prioritization with access-control segmentation."
+          }
+        ],
+        "examTip": "Guest networks are a classic segmentation use case: separate VLAN/subnet, internet-only access, no route to internal corporate VLANs.",
+        "memoryHook": "Guests get their own Wi-Fi 'room' with a door to the street (internet) but no door to the offices (corporate LAN)."
+      }
+    },
+    {
+      "id": "5.11-legacy-q009",
+      "question": "Which of the following is an example of segmenting a network based on traffic TYPE rather than user/department?",
+      "choices": [
+        "Putting the Sales department on VLAN 10 and Engineering on VLAN 20",
+        "Placing voice (VoIP) traffic on a separate VLAN from data traffic to isolate and prioritize it",
+        "Creating a separate VLAN for each floor of a building",
+        "Assigning a static IP to each printer"
+      ],
+      "correctIndex": 1,
+      "explanation": "A voice VLAN separates VoIP traffic from regular data traffic — this is segmentation based on traffic type/function rather than organizational grouping (department, location, etc.), though both are valid segmentation strategies.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "traffic-type segmentation",
+      "ckuIds": [
+        "CKU-SEGMENTATION",
+        "CKU-VOICE-VLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "A voice VLAN separates VoIP traffic from regular data traffic — this is segmentation based on traffic type/function rather than organizational grouping (department, location, etc.), though both are valid segmentation strategies."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "Sales on VLAN 10 and Engineering on VLAN 20 segments by ORGANIZATIONAL GROUP (department) — this is the example the question is asking you to distinguish FROM, not an example of traffic-type segmentation.",
+            "misconceptionTested": "Mistaking department-based segmentation for traffic-type-based segmentation."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "A separate VLAN per floor segments by PHYSICAL LOCATION, not by the type of traffic being carried.",
+            "misconceptionTested": "Confusing location-based segmentation with traffic-type-based segmentation."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Assigning static IPs to printers is an addressing/management choice, not a form of network segmentation by traffic type.",
+            "misconceptionTested": "Selecting an unrelated addressing practice instead of a segmentation strategy."
+          }
+        ],
+        "examTip": "Segmentation can be organized by department, location, device type, or traffic type (voice, data, IoT) — voice VLANs are the classic traffic-type example.",
+        "memoryHook": "Voice VLAN = giving phone calls their own express lane, separate from regular data traffic."
+      }
+    },
+    {
+      "id": "5.11-legacy-q010",
+      "question": "An organization separates its network management traffic (SSH, SNMP, syslog to network devices) onto a dedicated out-of-band management VLAN, inaccessible from general user VLANs. What security goal does this segmentation primarily achieve?",
+      "choices": [
+        "It increases the speed of management traffic only",
+        "It reduces the attack surface for network device management interfaces by isolating them from general user/endpoint traffic",
+        "It eliminates the need for AAA on network devices",
+        "It allows users to bypass authentication for management access"
+      ],
+      "correctIndex": 1,
+      "explanation": "An out-of-band management network isolates administrative access to infrastructure devices from general user traffic, significantly reducing the attack surface — a compromised user device can't directly reach management interfaces.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "out-of-band management segmentation",
+      "ckuIds": [
+        "CKU-SEGMENTATION",
+        "CKU-OUT-OF-BAND-MANAGEMENT"
+      ],
+      "answerReview": {
+        "correct": {
+          "explanation": "An out-of-band management network isolates administrative access to infrastructure devices from general user traffic, significantly reducing the attack surface — a compromised user device can't directly reach management interfaces."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "The goal of an out-of-band management VLAN is isolation/security, not raw speed — 'increases speed' isn't the security benefit being tested.",
+            "misconceptionTested": "Confusing a performance claim with the actual security purpose (attack-surface reduction)."
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "Segmenting management traffic onto its own VLAN doesn't remove the need for AAA — AAA (authentication/authorization/accounting) still controls WHO can use that management access once they reach it.",
+            "misconceptionTested": "Assuming network segmentation makes other security controls (like AAA) unnecessary."
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "Out-of-band management segmentation RESTRICTS access to management interfaces — it doesn't let users bypass authentication; if anything, it makes unauthorized access harder.",
+            "misconceptionTested": "Reversing the security effect — segmentation restricts access, it doesn't grant a bypass."
+          }
+        ],
+        "examTip": "Out-of-band (OOB) management = a dedicated, isolated path (VLAN or physical network) for managing infrastructure devices, separate from user/production traffic.",
+        "memoryHook": "OOB management = a private back hallway for IT staff, separate from the hallways everyone else uses."
+      }
+    }
+  ]
+}
