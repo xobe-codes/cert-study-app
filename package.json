@@ -18,6 +18,7 @@
     "promote:shelved": "node scripts/promoteShelved.mjs",
     "compile:kb-module": "node scripts/compileKnowledgeBaseModule.mjs",
     "build:domain1-clean-bank": "node scripts/buildDomain1CleanBank.mjs",
+    "build:curated-clean-bank": "node scripts/buildCuratedCleanBank.mjs",
     "kb:full": "npm run import:source-bank && npm run build:clean-bank && npm run build:domain1-clean-bank && npm run validate:clean-bank && npm run build:kb && npm run compile:kb-module && npm run compile:clean-questions && npm run compile:shelved-questions && npm run compile:ccna",
     "kb:domain4": "node scripts/buildCleanBank.mjs 4 && npm run validate:clean-bank && npm run compile:clean-questions",
     "test": "vitest run",

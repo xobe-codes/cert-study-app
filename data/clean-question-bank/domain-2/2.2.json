@@ -1,0 +1,344 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "2.2",
+  "domain": 2,
+  "builtAt": "2026-06-14T02:38:04.373Z",
+  "questions": [
+    {
+      "id": "2.2-c-q1",
+      "question": "What does a trunk link do?",
+      "choices": [
+        "Carries one VLAN only",
+        "Carries multiple VLANs between switches",
+        "Connects a PC to a switch",
+        "Routes between VLANs"
+      ],
+      "correctIndex": 1,
+      "explanation": "A trunk carries traffic for multiple VLANs between switches using 802.1Q.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "trunk purpose",
+      "ckuIds": [
+        "CKU-TRUNKING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "A trunk carries traffic for multiple VLANs between switches using 802.1Q."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Carries one VLAN only\" is incorrect because the scenario requires: A trunk carries traffic for multiple VLANs between switches using 802.1Q.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Connects a PC to a switch\" is incorrect because the scenario requires: A trunk carries traffic for multiple VLANs between switches using 802.1Q.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Routes between VLANs\" is incorrect because the scenario requires: A trunk carries traffic for multiple VLANs between switches using 802.1Q.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.2-c-q2",
+      "question": "How big is the 802.1Q tag added to a frame?",
+      "choices": [
+        "2 bytes",
+        "4 bytes",
+        "8 bytes",
+        "12 bytes"
+      ],
+      "correctIndex": 1,
+      "explanation": "The 802.1Q tag is 4 bytes and contains the 12-bit VLAN ID.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "tag size",
+      "ckuIds": [
+        "CKU-TRUNKING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The 802.1Q tag is 4 bytes and contains the 12-bit VLAN ID."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"2 bytes\" is incorrect because the scenario requires: The 802.1Q tag is 4 bytes and contains the 12-bit VLAN ID.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"8 bytes\" is incorrect because the scenario requires: The 802.1Q tag is 4 bytes and contains the 12-bit VLAN ID.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"12 bytes\" is incorrect because the scenario requires: The 802.1Q tag is 4 bytes and contains the 12-bit VLAN ID.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.2-c-q3",
+      "question": "On an 802.1Q trunk, how is the native VLAN’s traffic sent?",
+      "choices": [
+        "Double-tagged",
+        "Tagged",
+        "Untagged",
+        "Dropped"
+      ],
+      "correctIndex": 2,
+      "explanation": "Native VLAN frames cross the trunk untagged.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "native vlan",
+      "ckuIds": [
+        "CKU-NATIVE-VLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Native VLAN frames cross the trunk untagged."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Double-tagged\" is incorrect because the scenario requires: Native VLAN frames cross the trunk untagged.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Tagged\" is incorrect because the scenario requires: Native VLAN frames cross the trunk untagged.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Dropped\" is incorrect because the scenario requires: Native VLAN frames cross the trunk untagged.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "2.2-c-q4",
+      "question": "Two trunked switches log a native VLAN mismatch. What is the likely effect?",
+      "choices": [
+        "Trunk speed drops",
+        "Traffic from those VLANs can leak/merge",
+        "All VLANs stop",
+        "Nothing — it is cosmetic"
+      ],
+      "correctIndex": 1,
+      "explanation": "A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
+      "type": "troubleshooting",
+      "difficulty": "hard",
+      "concept": "native mismatch",
+      "ckuIds": [
+        "CKU-NATIVE-VLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Trunk speed drops\" is incorrect because the scenario requires: A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"All VLANs stop\" is incorrect because the scenario requires: A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Nothing — it is cosmetic\" is incorrect because the scenario requires: A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    },
+    {
+      "id": "2.2-c-q5",
+      "question": "Which command forces a port to trunk?",
+      "choices": [
+        "switchport mode access",
+        "switchport mode trunk",
+        "switchport trunk allowed vlan",
+        "switchport nonegotiate"
+      ],
+      "correctIndex": 1,
+      "explanation": "`switchport mode trunk` sets the port to trunking.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "config trunk",
+      "ckuIds": [
+        "CKU-TRUNKING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`switchport mode trunk` sets the port to trunking."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"switchport mode access\" is incorrect because the scenario requires: `switchport mode trunk` sets the port to trunking.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"switchport trunk allowed vlan\" is incorrect because the scenario requires: `switchport mode trunk` sets the port to trunking.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"switchport nonegotiate\" is incorrect because the scenario requires: `switchport mode trunk` sets the port to trunking.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.2-c-q6",
+      "question": "Which command disables DTP auto-negotiation on a port?",
+      "choices": [
+        "no dtp",
+        "switchport nonegotiate",
+        "switchport mode dynamic",
+        "no switchport trunk"
+      ],
+      "correctIndex": 1,
+      "explanation": "`switchport nonegotiate` stops DTP, a hardening best practice.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "DTP security",
+      "ckuIds": [
+        "CKU-DTP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`switchport nonegotiate` stops DTP, a hardening best practice."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"no dtp\" is incorrect because the scenario requires: `switchport nonegotiate` stops DTP, a hardening best practice.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"switchport mode dynamic\" is incorrect because the scenario requires: `switchport nonegotiate` stops DTP, a hardening best practice.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"no switchport trunk\" is incorrect because the scenario requires: `switchport nonegotiate` stops DTP, a hardening best practice.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.2-c-q7",
+      "question": "Which command shows trunk mode, native VLAN, and allowed VLANs?",
+      "choices": [
+        "show vlan brief",
+        "show interfaces trunk",
+        "show ip interface brief",
+        "show cdp neighbors"
+      ],
+      "correctIndex": 1,
+      "explanation": "`show interfaces trunk` lists trunking details.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "verify trunk",
+      "ckuIds": [
+        "CKU-TRUNKING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`show interfaces trunk` lists trunking details."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"show vlan brief\" is incorrect because the scenario requires: `show interfaces trunk` lists trunking details.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"show ip interface brief\" is incorrect because the scenario requires: `show interfaces trunk` lists trunking details.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"show cdp neighbors\" is incorrect because the scenario requires: `show interfaces trunk` lists trunking details.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.2-c-q8",
+      "question": "Which command limits a trunk to VLANs 10 and 20?",
+      "choices": [
+        "switchport access vlan 10,20",
+        "switchport trunk allowed vlan 10,20",
+        "vlan 10,20",
+        "switchport trunk native vlan 10"
+      ],
+      "correctIndex": 1,
+      "explanation": "`switchport trunk allowed vlan 10,20` prunes the trunk.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "allowed vlans",
+      "ckuIds": [
+        "CKU-TRUNKING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`switchport trunk allowed vlan 10,20` prunes the trunk."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"switchport access vlan 10,20\" is incorrect because the scenario requires: `switchport trunk allowed vlan 10,20` prunes the trunk.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"vlan 10,20\" is incorrect because the scenario requires: `switchport trunk allowed vlan 10,20` prunes the trunk.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"switchport trunk native vlan 10\" is incorrect because the scenario requires: `switchport trunk allowed vlan 10,20` prunes the trunk.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

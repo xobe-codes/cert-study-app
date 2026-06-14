@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "2.1",
+  "domain": 2,
+  "builtAt": "2026-06-14T02:38:04.363Z",
+  "questions": [
+    {
+      "id": "2.1-c-q1",
+      "question": "A VLAN is best described as a…",
+      "choices": [
+        "Collision domain",
+        "Logical broadcast domain",
+        "Physical cable",
+        "Routing protocol"
+      ],
+      "correctIndex": 1,
+      "explanation": "A VLAN is a logical broadcast domain at Layer 2.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "vlan definition",
+      "ckuIds": [
+        "CKU-VLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "A VLAN is a logical broadcast domain at Layer 2."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Collision domain\" is incorrect because the scenario requires: A VLAN is a logical broadcast domain at Layer 2.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Physical cable\" is incorrect because the scenario requires: A VLAN is a logical broadcast domain at Layer 2.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Routing protocol\" is incorrect because the scenario requires: A VLAN is a logical broadcast domain at Layer 2.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.1-c-q2",
+      "question": "Hosts in VLAN 10 cannot reach hosts in VLAN 20. What is required?",
+      "choices": [
+        "Another switch",
+        "A router or L3 switch",
+        "A longer cable",
+        "A trunk between the two hosts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Traffic between VLANs must be routed by a Layer 3 device.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "inter-vlan",
+      "ckuIds": [
+        "CKU-VLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Traffic between VLANs must be routed by a Layer 3 device."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Another switch\" is incorrect because the scenario requires: Traffic between VLANs must be routed by a Layer 3 device.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A longer cable\" is incorrect because the scenario requires: Traffic between VLANs must be routed by a Layer 3 device.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A trunk between the two hosts\" is incorrect because the scenario requires: Traffic between VLANs must be routed by a Layer 3 device.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.1-c-q3",
+      "question": "Which commands assign a port to VLAN 10 as an access port?",
+      "choices": [
+        "switchport trunk vlan 10",
+        "switchport mode access / switchport access vlan 10",
+        "vlan 10 / no shutdown",
+        "switchport voice vlan 10"
+      ],
+      "correctIndex": 1,
+      "explanation": "Set the mode to access, then assign the VLAN.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "access port config",
+      "ckuIds": [
+        "CKU-ACCESS-PORT"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Set the mode to access, then assign the VLAN."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"switchport trunk vlan 10\" is incorrect because the scenario requires: Set the mode to access, then assign the VLAN.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"vlan 10 / no shutdown\" is incorrect because the scenario requires: Set the mode to access, then assign the VLAN.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"switchport voice vlan 10\" is incorrect because the scenario requires: Set the mode to access, then assign the VLAN.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.1-c-q4",
+      "question": "Which command shows VLAN-to-port assignments?",
+      "choices": [
+        "show interfaces trunk",
+        "show vlan brief",
+        "show ip route",
+        "show mac address-table"
+      ],
+      "correctIndex": 1,
+      "explanation": "`show vlan brief` lists VLANs and their assigned ports.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "verify",
+      "ckuIds": [
+        "CKU-VLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`show vlan brief` lists VLANs and their assigned ports."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"show interfaces trunk\" is incorrect because the scenario requires: `show vlan brief` lists VLANs and their assigned ports.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"show ip route\" is incorrect because the scenario requires: `show vlan brief` lists VLANs and their assigned ports.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"show mac address-table\" is incorrect because the scenario requires: `show vlan brief` lists VLANs and their assigned ports.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.1-c-q5",
+      "question": "What is special about VLAN 1 by default?",
+      "choices": [
+        "It is the only routable VLAN",
+        "It is the default VLAN and default native VLAN",
+        "It cannot carry traffic",
+        "It is the voice VLAN"
+      ],
+      "correctIndex": 1,
+      "explanation": "VLAN 1 is the default VLAN for all ports and the default native VLAN; best practice avoids it for user data.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "default vlan",
+      "ckuIds": [
+        "CKU-VLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "VLAN 1 is the default VLAN for all ports and the default native VLAN; best practice avoids it for user data."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"It is the only routable VLAN\" is incorrect because the scenario requires: VLAN 1 is the default VLAN for all ports and the default native VLAN; best practice avoids it for user data.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"It cannot carry traffic\" is incorrect because the scenario requires: VLAN 1 is the default VLAN for all ports and the default native VLAN; best practice avoids it for user data.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"It is the voice VLAN\" is incorrect because the scenario requires: VLAN 1 is the default VLAN for all ports and the default native VLAN; best practice avoids it for user data.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.1-c-q6",
+      "question": "An IP phone and a PC share one switchport. How are their traffic types separated?",
+      "choices": [
+        "Two access VLANs are impossible",
+        "A data VLAN + a voice VLAN on the port",
+        "A trunk to the phone",
+        "Port security"
+      ],
+      "correctIndex": 1,
+      "explanation": "The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "voice vlan",
+      "ckuIds": [
+        "CKU-VOICE-VLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Two access VLANs are impossible\" is incorrect because the scenario requires: The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A trunk to the phone\" is incorrect because the scenario requires: The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Port security\" is incorrect because the scenario requires: The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.1-c-q7",
+      "question": "True or False: Devices in the same VLAN on two different switches can communicate at Layer 2 (given a trunk).",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — a trunk lets a VLAN span switches at Layer 2.",
+      "type": "true-false",
+      "difficulty": "easy",
+      "concept": "same vlan reach",
+      "ckuIds": [
+        "CKU-VLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "True — a trunk lets a VLAN span switches at Layer 2."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"False\" is incorrect because the scenario requires: True — a trunk lets a VLAN span switches at Layer 2.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "2.1-c-q8",
+      "question": "Which command creates VLAN 30?",
+      "choices": [
+        "vlan 30",
+        "switchport access vlan 30",
+        "create vlan 30",
+        "ip vlan 30"
+      ],
+      "correctIndex": 0,
+      "explanation": "`vlan 30` in global config creates the VLAN.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "create vlan",
+      "ckuIds": [
+        "CKU-VLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "`vlan 30` in global config creates the VLAN."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"switchport access vlan 30\" is incorrect because the scenario requires: `vlan 30` in global config creates the VLAN.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"create vlan 30\" is incorrect because the scenario requires: `vlan 30` in global config creates the VLAN.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ip vlan 30\" is incorrect because the scenario requires: `vlan 30` in global config creates the VLAN.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

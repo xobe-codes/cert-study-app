@@ -24,6 +24,7 @@ import {
   OBJ_11, OBJ_12, OBJ_13, OBJ_14, OBJ_17, OBJ_110, OBJ_111, OBJ_112,
 } from './ccnaCuratedDomain1Rest.js'
 import { READING_SUPPLEMENTS } from './curatedReadingSupplement.js'
+import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
 
 // Short source identifiers reused across records.
 export const CURATED_SOURCES = {
@@ -1963,6 +1964,7 @@ const CURATED = {
   [OBJ_25.objectiveId]: OBJ_25, [OBJ_34.objectiveId]: OBJ_34, [OBJ_41.objectiveId]: OBJ_41, [OBJ_55.objectiveId]: OBJ_55,
   [OBJ_31.objectiveId]: OBJ_31, [OBJ_33.objectiveId]: OBJ_33, [OBJ_51.objectiveId]: OBJ_51,
   ...READING_SUPPLEMENTS,
+  ...READING_SUPPLEMENTS_2,
 }
 
 /** Objective IDs that have ANY curated static content (reading and/or questions). */
