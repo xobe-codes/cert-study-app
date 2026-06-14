@@ -7341,7 +7341,7 @@ export default function App() {
             examMode={settingsExamMode}
           />
         )}
-        {view === 'mock' && <MockExam onExit={() => setView('home')} askClaudeJSON={askClaudeJSON} cachedSystem={cachedSystem} mockSchema={MOCK_SCHEMA} bookRef={BOOK_REF} />}
+        {view === 'mock' && <MockExam onExit={() => setView('home')} askClaudeJSON={askClaudeJSON} cachedSystem={cachedSystem} mockSchema={MOCK_SCHEMA} bookRef={BOOK_REF} examMode={settingsExamMode} />}
         {view === 'missed' && <MissedReview missed={missed} onBack={() => setView('home')} onRemove={removeMissed} />}
         {view === 'tutor' && <TutorChat progress={progress} missed={missed} onBack={() => setView('home')} />}
         {view === 'stats' && (

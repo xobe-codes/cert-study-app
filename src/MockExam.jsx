@@ -11,12 +11,22 @@ import {
   staticMockExamReady,
   buildStaticMockExamPool,
 } from './mockExamConfig.js'
-import { COLORS, styles } from './ui/appTheme.js'
+import {
+  buildDomainStudyPool,
+  countDomainStudyPool,
+  DOMAIN_STUDY_DEFAULT_SIZE,
+  DOMAIN_STUDY_SIZE_OPTIONS,
+  resolveSelectedDomains,
+  validateDomainStudyStart,
+} from './domainStudyConfig.js'
+import { COLORS, styles, accentColors } from './ui/appTheme.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
 import { summarizeWrongTraps } from './missed/missedTrapGroups.js'
+import { applyAnswerReviewToQuestion, inferTrapForChoice } from './answerReviewLogic.js'
+import DeferredExamTips from './components/DeferredExamTips.jsx'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
 import { useNavHint } from './components/NavHintProvider.jsx'
@@ -41,10 +51,15 @@ function formatSeconds(total) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSchema, bookRef = {} }) {
+export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSchema, bookRef = {}, examMode = false }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const [phase, setPhase] = useState('intro') // intro | loading | active | done | review | error
+  const [introTab, setIntroTab] = useState('full') // full | domain
+  const [selectedDomainIds, setSelectedDomainIds] = useState([])
+  const [studySessionSize, setStudySessionSize] = useState(DOMAIN_STUDY_DEFAULT_SIZE)
+  const [isStudyMode, setIsStudyMode] = useState(false)
+  const [introError, setIntroError] = useState(null)
   const [error, setError] = useState(null)
   const [questions, setQuestions] = useState([])
   const [current, setCurrent] = useState(0)
@@ -70,9 +85,42 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
     else setStaticOnly(false)
   }, [canUseStaticOnly])
 
+  const toggleDomain = useCallback((domainId) => {
+    setIntroError(null)
+    setSelectedDomainIds(prev => (
+      prev.includes(domainId) ? prev.filter(id => id !== domainId) : [...prev, domainId]
+    ))
+  }, [])
+
+  const startDomainStudy = useCallback(async () => {
+    setIntroError(null)
+    const validation = validateDomainStudyStart(selectedDomainIds, DOMAINS, getMcForObjective, studySessionSize)
+    if (!validation.ok) {
+      setIntroError(validation.error)
+      return
+    }
+    setPhase('loading')
+    setError(null)
+    setIsStudyMode(true)
+    try {
+      await preloadCleanBank()
+      const selected = resolveSelectedDomains(DOMAINS, selectedDomainIds)
+      const final = buildDomainStudyPool(selected, getMcForObjective, studySessionSize, shuffleArray)
+      if (final.length === 0) throw new Error('No questions were available for the selected domain(s).')
+      setQuestions(final)
+      setResponses({})
+      setCurrent(0)
+      setPhase('active')
+    } catch (err) {
+      setError(err.message)
+      setPhase('error')
+    }
+  }, [selectedDomainIds, studySessionSize, getMcForObjective])
+
   const start = useCallback(async () => {
     setPhase('loading')
     setError(null)
+    setIsStudyMode(false)
     try {
       await preloadCleanBank()
       const getMc = (id) => getCuratedQuestions(id).filter(isMcQuestion)
@@ -133,9 +181,9 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
     }
   }, [staticOnly])
 
-  // Countdown timer
+  // Countdown timer (full mock exam only — study mode has no countdown)
   useEffect(() => {
-    if (phase !== 'active') return
+    if (phase !== 'active' || isStudyMode) return
     const id = setInterval(() => {
       setSecondsLeft(s => {
         if (s <= 1) {
@@ -147,7 +195,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
       })
     }, 1000)
     return () => clearInterval(id)
-  }, [phase])
+  }, [phase, isStudyMode])
 
   function selectChoice(idx) {
     setResponses(r => ({ ...r, [current]: idx }))
@@ -187,65 +235,161 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
       questions,
       questions.map((_, idx) => responses[idx]),
     )
-    const result = { correct, total: questions.length, byDomain, trapDebrief }
-    // Persist to history
-    ;(async () => {
-      const hist = (await window.storage.getItem(STORAGE_KEYS.mockHistory)) || []
-      hist.push({ date: Date.now(), pct: Math.round((correct / Math.max(questions.length, 1)) * 100), correct, total: questions.length })
-      await window.storage.setItem(STORAGE_KEYS.mockHistory, hist.slice(-30)) // keep last 30 attempts
-    })()
+    const deferredTips = examMode && isStudyMode
+      ? questions.flatMap((q, idx) => {
+        const selected = responses[idx]
+        if (selected == null || selected === q.correctIndex) return []
+        const enriched = applyAnswerReviewToQuestion(q)
+        const tip = enriched.answerReview?.examTip
+        if (!tip) return []
+        return [{ tip, trap: inferTrapForChoice(enriched, selected) }]
+      })
+      : []
+    const result = { correct, total: questions.length, byDomain, trapDebrief, deferredTips }
+    if (!isStudyMode) {
+      ;(async () => {
+        const hist = (await window.storage.getItem(STORAGE_KEYS.mockHistory)) || []
+        hist.push({ date: Date.now(), pct: Math.round((correct / Math.max(questions.length, 1)) * 100), correct, total: questions.length })
+        await window.storage.setItem(STORAGE_KEYS.mockHistory, hist.slice(-30))
+      })()
+    }
     return result
-  }, [phase, questions, responses])
+  }, [phase, questions, responses, examMode, isStudyMode])
 
   if (phase === 'intro') {
     const staticCount = bankReady
       ? DOMAINS.flatMap(d => d.objectives).reduce((n, o) => n + getMcForObjective(o.id).length, 0)
       : 0
     const staticPct = Math.min(100, Math.round((Math.min(staticCount, MOCK_EXAM_QUESTION_COUNT) / MOCK_EXAM_QUESTION_COUNT) * 100))
+    const selectedDomains = resolveSelectedDomains(DOMAINS, selectedDomainIds)
+    const domainPoolSize = bankReady ? countDomainStudyPool(selectedDomains, getMcForObjective) : 0
     return (
       <div>
         <button style={styles.backBtn} onClick={onExit}>‹ Back</button>
         <h1 style={styles.h1}>Mock Exam</h1>
-        <div style={styles.card}>
-          <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.7 }}>
-            <div>• {MOCK_EXAM_QUESTION_COUNT} questions, {MOCK_EXAM_DURATION_MIN} minute countdown</div>
-            <div>• Weighted by official exam domain percentages</div>
-            <div>• <span style={{ color: COLORS.mint }}>{canUseStaticOnly ? '100% from your static bank' : `~${staticPct}% from your static question bank`}</span>{canUseStaticOnly ? ` — ${STATIC_COPY.mockStaticLine}` : ' — hybrid fills gaps on demand'}</div>
-            <div>• Score report broken down by domain at the end</div>
-            <div>• Once started, the timer runs continuously — find a quiet 2 hours, or submit early</div>
-          </div>
-          {bankReady && staticCount > 0 && (
-            <div style={{ ...styles.small, marginTop: 8, color: COLORS.silverMid }}>
-              {staticCount} multiple-choice questions in static bank for this exam
-            </div>
-          )}
-          <label style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontSize: 'var(--ccna-type-md)', cursor: 'pointer' }}>
-            <input
-              type="checkbox"
-              checked={staticOnly}
-              onChange={e => setStaticOnly(e.target.checked)}
-              disabled={!canUseStaticOnly && staticOnly}
-              style={{ width: 18, height: 18, accentColor: COLORS.brand }}
-            />
-            <span>
-              {STATIC_COPY.mockStaticOnly}
-              {!canUseStaticOnly && !bankReady && <span style={{ color: COLORS.silverMid }}> — loading bank…</span>}
-            </span>
-          </label>
+        <div style={styles.tabBar}>
+          <button
+            type="button"
+            style={styles.tabBtn(introTab === 'full')}
+            onClick={() => { setIntroTab('full'); setIntroError(null) }}
+          >
+            Full mock exam
+          </button>
+          <button
+            type="button"
+            style={styles.tabBtn(introTab === 'domain')}
+            onClick={() => { setIntroTab('domain'); setIntroError(null) }}
+          >
+            Study by domain
+          </button>
         </div>
-        <button style={styles.primaryBtn} onClick={start}>Start Mock Exam</button>
+        {introTab === 'full' ? (
+          <>
+            <div style={styles.card}>
+              <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.7 }}>
+                <div>• {MOCK_EXAM_QUESTION_COUNT} questions, {MOCK_EXAM_DURATION_MIN} minute countdown</div>
+                <div>• Weighted by official exam domain percentages</div>
+                <div>• <span style={{ color: COLORS.mint }}>{canUseStaticOnly ? '100% from your static bank' : `~${staticPct}% from your static question bank`}</span>{canUseStaticOnly ? ` — ${STATIC_COPY.mockStaticLine}` : ' — hybrid fills gaps on demand'}</div>
+                <div>• Score report broken down by domain at the end</div>
+                <div>• Once started, the timer runs continuously — find a quiet 2 hours, or submit early</div>
+              </div>
+              {bankReady && staticCount > 0 && (
+                <div style={{ ...styles.small, marginTop: 8, color: COLORS.silverMid }}>
+                  {staticCount} multiple-choice questions in static bank for this exam
+                </div>
+              )}
+              <label style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontSize: 'var(--ccna-type-md)', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={staticOnly}
+                  onChange={e => setStaticOnly(e.target.checked)}
+                  disabled={!canUseStaticOnly && staticOnly}
+                  style={{ width: 18, height: 18, accentColor: COLORS.brand }}
+                />
+                <span>
+                  {STATIC_COPY.mockStaticOnly}
+                  {!canUseStaticOnly && !bankReady && <span style={{ color: COLORS.silverMid }}> — loading bank…</span>}
+                </span>
+              </label>
+            </div>
+            <button style={styles.primaryBtn} onClick={start}>Start Mock Exam</button>
+          </>
+        ) : (
+          <>
+            <div style={styles.card}>
+              <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.7, marginBottom: 12 }}>
+                <div>• Pick one or more CCNA domains</div>
+                <div>• No countdown — study at your own pace</div>
+                <div>• Score + trap debrief scoped to your selection</div>
+                {examMode && <div>• Exam mode on — tips deferred until results</div>}
+              </div>
+              <div style={{ ...styles.small, marginBottom: 8 }}>Domains</div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {DOMAINS.map(d => {
+                  const active = selectedDomainIds.includes(d.id)
+                  const c = accentColors(d.accent)
+                  return (
+                    <button
+                      key={d.id}
+                      type="button"
+                      onClick={() => toggleDomain(d.id)}
+                      style={{
+                        ...styles.pill(d.accent),
+                        cursor: 'pointer',
+                        border: `2px solid ${active ? c.text : c.border}`,
+                        opacity: active ? 1 : 0.72,
+                        padding: '8px 12px',
+                        fontSize: 'var(--ccna-type-sm)',
+                      }}
+                    >
+                      {active ? '✓ ' : ''}{d.name}
+                    </button>
+                  )
+                })}
+              </div>
+              {bankReady && selectedDomainIds.length > 0 && (
+                <div style={{ ...styles.small, marginTop: 10, color: COLORS.silverMid }}>
+                  {domainPoolSize} question{domainPoolSize === 1 ? '' : 's'} available in selected domain{selectedDomainIds.length === 1 ? '' : 's'}
+                </div>
+              )}
+              <div style={{ ...styles.small, marginTop: 14, marginBottom: 8 }}>Session size</div>
+              <div style={{ display: 'flex', gap: 8 }}>
+                {DOMAIN_STUDY_SIZE_OPTIONS.map(size => (
+                  <button
+                    key={size}
+                    type="button"
+                    onClick={() => { setStudySessionSize(size); setIntroError(null) }}
+                    style={{
+                      ...styles.tabBtn(studySessionSize === size),
+                      flex: 1,
+                      fontSize: 'var(--ccna-type-sm)',
+                    }}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {introError && (
+              <div style={{ ...styles.small, color: COLORS.rose, marginBottom: 8 }}>{introError}</div>
+            )}
+            <button style={styles.primaryBtn} onClick={startDomainStudy} disabled={!bankReady}>
+              {bankReady ? 'Start study session' : 'Loading question bank…'}
+            </button>
+          </>
+        )}
       </div>
     )
   }
-  if (phase === 'loading') return <Spinner label="Building your exam..." />
-  if (phase === 'error') return <ErrorBox message={error} onRetry={start} />
+  if (phase === 'loading') return <Spinner label={isStudyMode ? 'Building your study session...' : 'Building your exam...'} />
+  if (phase === 'error') return <ErrorBox message={error} onRetry={isStudyMode ? startDomainStudy : start} />
 
   if (phase === 'done') {
     const pct = report.total > 0 ? Math.round((report.correct / report.total) * 100) : 0
     return (
       <div>
         <button style={styles.backBtn} onClick={onExit}>‹ Back to Home</button>
-        <h1 style={styles.h1}>Exam Results</h1>
+        <h1 style={styles.h1}>{isStudyMode ? 'Study Results' : 'Exam Results'}</h1>
         <div style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-display)', fontWeight: 700, color: pct >= 70 ? COLORS.mint : COLORS.rose }}>{pct}%</div>
           <div style={styles.small}>{report.correct} / {report.total} correct</div>
@@ -272,7 +416,9 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
         {report.trapDebrief?.length > 0 && (
           <div style={styles.card}>
             <h2 style={styles.h2}>Trap debrief</h2>
-            <p style={{ ...styles.small, marginBottom: 10 }}>Patterns behind your missed answers — study these before retaking.</p>
+            <p style={{ ...styles.small, marginBottom: 10 }}>
+              {isStudyMode ? 'Patterns behind your missed answers in this session.' : 'Patterns behind your missed answers — study these before retaking.'}
+            </p>
             <ul style={{ margin: 0, paddingLeft: 18, fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.5 }}>
               {report.trapDebrief.map((t, i) => (
                 <li key={i} style={{ marginBottom: 6 }}>
@@ -283,8 +429,22 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
             </ul>
           </div>
         )}
+        {report.deferredTips?.length > 0 && <DeferredExamTips tips={report.deferredTips} />}
         <button style={styles.primaryBtn} onClick={() => { setCurrent(0); setPhase('review') }}>Review answers</button>
-        <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={start}>Retake mock exam</button>
+        <button
+          style={{ ...styles.secondaryBtn, marginTop: 8 }}
+          onClick={isStudyMode ? startDomainStudy : start}
+        >
+          {isStudyMode ? 'Study again' : 'Retake mock exam'}
+        </button>
+        {isStudyMode && (
+          <button
+            style={{ ...styles.secondaryBtn, marginTop: 8, background: 'none', border: 'none', color: COLORS.silverMid }}
+            onClick={() => setPhase('intro')}
+          >
+            Change domains
+          </button>
+        )}
       </div>
     )
   }
@@ -316,7 +476,7 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
             <div style={{ fontWeight: 700, color: unanswered ? COLORS.amber : isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {unanswered ? 'Unanswered' : isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <AnswerReview q={q} selected={selected} />
+            <AnswerReview q={q} selected={selected} hideExamTip={examMode && isStudyMode} />
           </div>
         </div>
         <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
@@ -335,7 +495,12 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
         <div style={styles.small}>Question {current + 1} / {questions.length}</div>
-        <div style={{ ...styles.pill(secondsLeft < 600 ? 'rose' : 'sky') }}>{formatSeconds(secondsLeft)}</div>
+        {!isStudyMode && (
+          <div style={{ ...styles.pill(secondsLeft < 600 ? 'rose' : 'sky') }}>{formatSeconds(secondsLeft)}</div>
+        )}
+        {isStudyMode && (
+          <div style={{ ...styles.pill('mint') }}>Study mode</div>
+        )}
       </div>
       <div style={styles.card}>
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{q.question}</div>
@@ -346,13 +511,15 @@ export default function MockExam({ onExit, askClaudeJSON, cachedSystem, mockSche
         {current < questions.length - 1 ? (
           <button style={styles.primaryBtn} onClick={() => setCurrent(c => Math.min(questions.length - 1, c + 1))}>Next</button>
         ) : (
-          <button style={styles.primaryBtn} onClick={() => setPhase('done')}>Submit Exam</button>
+          <button style={styles.primaryBtn} onClick={() => setPhase('done')}>
+            {isStudyMode ? 'Finish session' : 'Submit Exam'}
+          </button>
         )}
       </div>
       <div style={{ ...styles.small, textAlign: 'center' }}>{answeredCount} / {questions.length} answered</div>
       {current === questions.length - 1 ? null : (
         <button style={{ ...styles.secondaryBtn, marginTop: 8, background: 'none', border: 'none', color: COLORS.silverMid }} onClick={() => setPhase('done')}>
-          Submit exam now
+          {isStudyMode ? 'Finish session now' : 'Submit exam now'}
         </button>
       )}
     </div>

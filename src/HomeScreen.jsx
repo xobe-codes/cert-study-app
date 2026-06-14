@@ -392,6 +392,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         <div style={sectionLabel}>STUDY MODES</div>
         <StudyModeCard title="Exam & review" subtitle="Mock exams, weak spots, and review">
           <StudyModeBtn primary onClick={onOpenMock}>Mock Exam</StudyModeBtn>
+          <div style={{ ...styles.small, marginTop: -4, marginBottom: 4, paddingLeft: 2 }}>Full exam · Study by domain</div>
           <StudyModeBtn onClick={onOpenFocus}>🎯 Weak Areas</StudyModeBtn>
           <StudyModeBtn onClick={onOpenMissed}>Missed ({missedCount})</StudyModeBtn>
           <StudyModeBtn onClick={onOpenExamTraps}>⚠️ Exam Traps</StudyModeBtn>
