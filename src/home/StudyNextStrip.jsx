@@ -1,5 +1,6 @@
 import React from 'react'
 import { COLORS, accentColors, styles } from '../ui/appTheme.js'
+import OverflowMarquee from '../components/OverflowMarquee.jsx'
 
 export default function StudyNextStrip({ next, onSelectObjective, onOpenReview, sticky = false }) {
   if (!next) return null
@@ -20,7 +21,10 @@ export default function StudyNextStrip({ next, onSelectObjective, onOpenReview, 
       }}
     >
       <span style={{ ...styles.pill(next.accent), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>STUDY NEXT</span>
-      <span style={{ flex: 1, fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver, lineHeight: 1.35 }}>{next.shortTitle}</span>
+      <OverflowMarquee
+        text={next.shortTitle}
+        style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver, lineHeight: 1.35 }}
+      />
       <span style={{ color: c.text, fontSize: 'var(--ccna-type-lg)', lineHeight: 1 }} aria-hidden="true">›</span>
     </button>
   )

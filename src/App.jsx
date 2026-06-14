@@ -1208,9 +1208,9 @@ function ProgressBar({ value, max = 1, label, sublabel, accent = 'purple', heigh
   return (
     <div style={{ marginBottom: 10 }}>
       {(label || sublabel) && (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4, gap: 8 }}>
-          {label && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver }}>{label}</span>}
-          {sublabel && <span style={{ fontSize: 'var(--ccna-type-xs)', color: c.text, fontWeight: 600, whiteSpace: 'nowrap' }}>{sublabel}</span>}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4, gap: 8, minWidth: 0 }}>
+          {label && <OverflowMarquee text={label} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver }} />}
+          {sublabel && <span style={{ fontSize: 'var(--ccna-type-xs)', color: c.text, fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0 }}>{sublabel}</span>}
         </div>
       )}
       <div style={{ background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 999, height, overflow: 'hidden' }}>
@@ -4846,9 +4846,12 @@ function ContentCoverage({ onOpen, bare = false }) {
               {r.objs.map(o => {
                 const c = hasCuratedReading(o.id), q = !c && hasCuratedQuestions(o.id), l = labsForObjective(o.id).length > 0
                 return (
-                  <button key={o.id} onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                  <button key={o.id} onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', minWidth: 0, background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                     <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : q ? COLORS.sky : COLORS.silverDim, flexShrink: 0 }} />
-                    <span style={{ flex: 1, fontSize: 'var(--ccna-type-xs)', color: c || q ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
+                    <OverflowMarquee
+                      text={`${o.id} ${o.title}`}
+                      style={{ fontSize: 'var(--ccna-type-xs)', color: c || q ? COLORS.silver : COLORS.silverMid }}
+                    />
                     {(c || q) && <CuratedStaticBadge objectiveId={o.id} fontSize={8} />}
                     {!c && !q && <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverDim }}>AI</span>}
                     {l && <span style={{ fontSize: 'var(--ccna-type-xs)' }}>🧪</span>}
@@ -5151,9 +5154,9 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
                 {overconfident.map(o => (
                   <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                     <span style={{ fontSize: 'var(--ccna-type-md)' }}>⚠️</span>
-                    <span style={{ flex: 1 }}>
-                      <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }}>{o.id} {o.title}</span>
-                      <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
+                    <span style={{ flex: 1, minWidth: 0 }}>
+                      <OverflowMarquee text={`${o.id} ${o.title}`} style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }} />
+                      <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
                     </span>
                     <span style={{ ...styles.pill('rose'), fontSize: 'var(--ccna-type-micro)' }}>Overconfident</span>
                   </button>
@@ -5166,9 +5169,9 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
                 {underconfident.map(o => (
                   <button key={o.id} onClick={() => open(o)} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', background: 'none', border: 'none', padding: '6px 0', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                     <span style={{ fontSize: 'var(--ccna-type-md)' }}>💪🏾</span>
-                    <span style={{ flex: 1 }}>
-                      <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }}>{o.id} {o.title}</span>
-                      <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
+                    <span style={{ flex: 1, minWidth: 0 }}>
+                      <OverflowMarquee text={`${o.id} ${o.title}`} style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }} />
+                      <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>Accuracy {Math.round(o.acc * 100)}% · Confidence {Math.round(o.conf * 100)}%</span>
                     </span>
                     <span style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-micro)' }}>Trust yourself</span>
                   </button>
@@ -5219,9 +5222,9 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
         {offlineInProgress.length === 0 && <div style={styles.small}>Open a topic's tabs (or tap "Make available offline") to start downloading assets.</div>}
         {offlineInProgress.map(({ o, d }) => (
           <div key={o.id} style={{ marginBottom: 10 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-              <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver }}>{o.id} {o.title}</span>
-              <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.mint, fontWeight: 600 }}>{d.count} of 4</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 4, minWidth: 0 }}>
+              <OverflowMarquee text={`${o.id} ${o.title}`} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver }} />
+              <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.mint, fontWeight: 600, flexShrink: 0 }}>{d.count} of 4</span>
             </div>
             <SegmentedBar segments={d.reqs} accent="mint" />
           </div>
@@ -5281,8 +5284,11 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
                         onClick={() => toggleBank(objId)}
                         style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 10, textAlign: 'left', background: isOpen ? c.dim : 'none', border: `1px solid ${isOpen ? c.border : COLORS.border}`, borderRadius: isOpen ? '10px 10px 0 0' : 10, cursor: 'pointer', padding: '10px 12px', fontFamily: 'inherit', transition: 'background 0.15s' }}
                       >
-                        <span style={{ flex: 1 }}>
-                          <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver }}>{objId}{obj ? ` ${obj.title}` : ''}</span>
+                        <span style={{ flex: 1, minWidth: 0 }}>
+                          <OverflowMarquee
+                            text={obj ? `${objId} ${obj.title}` : objId}
+                            style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver }}
+                          />
                           <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>
                             {qs.length} question{qs.length !== 1 ? 's' : ''} · {masteredCount} mastered
                           </span>
@@ -5298,8 +5304,8 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
                             const correctAnswer = Array.isArray(q.choices) ? q.choices[q.correctIndex] : ''
                             return (
                               <div key={q.id || i} style={{ padding: '10px 14px', borderTop: i > 0 ? `1px solid ${COLORS.border}` : 'none' }}>
-                                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 4 }}>
-                                  <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, flex: 1, lineHeight: 1.4 }}>{q.question}</span>
+                                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 4, minWidth: 0 }}>
+                                  <OverflowMarquee text={q.question} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.4 }} />
                                   <span style={{ ...styles.pill(badge.accent), fontSize: 'var(--ccna-type-micro)', whiteSpace: 'nowrap', flexShrink: 0 }}>{badge.label}</span>
                                 </div>
                                 {correctAnswer && (
@@ -5585,11 +5591,11 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
               <button
                 key={o.id}
                 onClick={() => pick(o)}
-                style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', padding: '12px 16px', background: 'none', border: 'none', borderBottom: `1px solid ${COLORS.border}`, color: COLORS.silver, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}
+                style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', minWidth: 0, padding: '12px 16px', background: 'none', border: 'none', borderBottom: `1px solid ${COLORS.border}`, color: COLORS.silver, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}
               >
                 <StatusDot status={status} />
                 <span style={{ ...styles.pill(domain?.accent || 'purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{o.id}</span>
-                <span style={{ flex: 1, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }}>{o.title}</span>
+                <OverflowMarquee text={o.title} style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }} />
                 {(hasCuratedReading(o.id) || hasCuratedQuestions(o.id)) && (
                   <CuratedStaticBadge objectiveId={o.id} fontSize={8} />
                 )}

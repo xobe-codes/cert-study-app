@@ -86,32 +86,6 @@ export default function OverflowMarquee({
       >
         {text}
       </span>
-      {shouldAnimate && (
-        <style>{`
-          @keyframes ccna-attribution-marquee {
-            0%, 100% { transform: translateX(0); }
-            6% { transform: translateX(0); }
-            28% { transform: translateX(calc(-1 * var(--ccna-marquee-distance))); }
-            28.5% { transform: translateX(0); }
-            34% { transform: translateX(0); }
-            56% { transform: translateX(calc(-1 * var(--ccna-marquee-distance))); }
-            56.5% { transform: translateX(0); }
-            62% { transform: translateX(0); }
-            84% { transform: translateX(calc(-1 * var(--ccna-marquee-distance))); }
-            84.5% { transform: translateX(0); }
-            94% { transform: translateX(0); }
-          }
-          .ccna-overflow-marquee__track {
-            animation-name: ccna-attribution-marquee;
-            animation-timing-function: linear;
-            animation-fill-mode: forwards;
-            animation-iteration-count: 1;
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .ccna-overflow-marquee__track { animation: none !important; }
-          }
-        `}</style>
-      )}
     </div>
   )
 }

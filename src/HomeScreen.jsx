@@ -4,6 +4,7 @@ import { COLORS, accentColors, styles } from './ui/appTheme.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import { getCurated, hasCuratedReading, hasCuratedQuestions } from './data/ccnaCurated.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
+import OverflowMarquee from './components/OverflowMarquee.jsx'
 import { getShelvedStats } from './data/shelvedStudy.js'
 import { REVIEW_SESSION_CAP } from './home/homeConstants.js'
 import {
@@ -444,12 +445,13 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                     <button
                       key={o.id}
                       onClick={() => onSelectObjective({ ...o, domainId: domain.id, domainName: domain.name, accent: domain.accent })}
-                      style={{ display: 'flex', alignItems: 'center', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: '8px 0', textAlign: 'left', borderBottom: `1px solid ${COLORS.border}` }}
+                      style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', minWidth: 0, background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: '8px 0', textAlign: 'left', borderBottom: `1px solid ${COLORS.border}` }}
                     >
                       <StatusDot status={status} />
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: 'var(--ccna-type-sm)' }}>{o.id} {o.title}</div>
-                      </div>
+                      <OverflowMarquee
+                        text={`${o.id} ${o.title}`}
+                        style={{ fontSize: 'var(--ccna-type-sm)' }}
+                      />
                       {(() => {
                         if (hasCuratedReading(o.id) || hasCuratedQuestions(o.id)) {
                           return <CuratedStaticBadge objectiveId={o.id} fontSize={9} />

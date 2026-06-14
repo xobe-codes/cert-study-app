@@ -577,6 +577,25 @@ export function buildAppShellCss(colors) {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    @keyframes ccna-attribution-marquee {
+      0%, 100% { transform: translateX(0); }
+      6% { transform: translateX(0); }
+      28% { transform: translateX(calc(-1 * var(--ccna-marquee-distance))); }
+      28.5% { transform: translateX(0); }
+      34% { transform: translateX(0); }
+      56% { transform: translateX(calc(-1 * var(--ccna-marquee-distance))); }
+      56.5% { transform: translateX(0); }
+      62% { transform: translateX(0); }
+      84% { transform: translateX(calc(-1 * var(--ccna-marquee-distance))); }
+      84.5% { transform: translateX(0); }
+      94% { transform: translateX(0); }
+    }
+    .ccna-overflow-marquee__track {
+      animation-name: ccna-attribution-marquee;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+    }
     .objective-header-scroll {
       flex-shrink: 0;
     }
@@ -780,6 +799,7 @@ export function buildAppShellCss(colors) {
       .nav-hint-retry-arrow,
       .nav-hint-next-head { animation: none; stroke-dashoffset: 0; }
       .svg-confetti-piece { animation: none; opacity: 0; }
+      .ccna-overflow-marquee__track { animation: none !important; }
     }
     .svg-confetti-layer {
       position: fixed;
