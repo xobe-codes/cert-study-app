@@ -49,6 +49,25 @@ export function correctAnswerLabel(q) {
   return ''
 }
 
+/** Shape for missed-question bank entries (includes CKU linkage when present). */
+export function buildMissedEntry(objectiveId, q, extra = {}) {
+  return {
+    objectiveId,
+    question: q.question,
+    choices: q.choices,
+    correctIndex: q.correctIndex,
+    orderItems: q.orderItems,
+    explanation: q.explanation,
+    concept: q.concept,
+    type: q.type,
+    skill: q.skill || inferSkill(q),
+    ...(q.ckuIds?.length ? { ckuIds: q.ckuIds } : {}),
+    ...(q.answerReview ? { answerReview: q.answerReview } : {}),
+    addedAt: Date.now(),
+    ...extra,
+  }
+}
+
 export function shuffleArrayCopy(arr) {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {
@@ -81,6 +100,7 @@ export function normalizeQuestionForBank(q, objectiveId, counter) {
     skill: q.skill || inferSkill(q),
     ratings: q.ratings || [],
     attempts: q.attempts || [],
+    ...(q.ckuIds?.length ? { ckuIds: q.ckuIds } : {}),
     ...(q.answerReview ? { answerReview: q.answerReview } : {}),
   }
   if (isOrderingQuestion(q)) {

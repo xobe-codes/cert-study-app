@@ -3,8 +3,10 @@ import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions
 import { getLab, labsForObjective, labsByDomain, normalizeCliLine, labProgress, troubleshootingLabs } from './data/ccnaLabs.js'
 import {
   TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
-  shuffleArrayCopy, computeBankMix, normalizeQuestionForBank, inferSkill,
+  shuffleArrayCopy, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
 } from './questionUtils.js'
+import { computeCkuWeakness, computeTrapWeakness } from './weaknessUtils.js'
+import { getKnowledgeForObjective, hasKnowledgeBase, getAllDomain4ExamTraps } from './data/knowledgeStudy.js'
 
 /* =========================================================================
    DESIGN TOKENS
@@ -260,6 +262,12 @@ const COMMAND_DRILLS = {
     { prompt: 'On interface Gi0/1, enable HSRP group 1 with virtual IP 192.168.1.1', answer: ['standby 1 ip 192.168.1.1'], hint: 'standby <group> ip <virtual-ip>' },
     { prompt: 'Set this router\'s HSRP priority to 150 for group 1', answer: ['standby 1 priority 150'], hint: 'standby <group> priority <value> (default is 100)' },
     { prompt: 'Enable preemption for HSRP group 1', answer: ['standby 1 preempt'], hint: 'standby <group> preempt' },
+  ],
+  '4.1': [
+    { prompt: 'Mark interface Gi0/0 as the inside NAT interface', answer: ['ip nat inside'], hint: 'Applied on the private/LAN-facing interface.' },
+    { prompt: 'Mark interface Gi0/1 as the outside NAT interface', answer: ['ip nat outside'], hint: 'Applied on the public/WAN-facing interface.' },
+    { prompt: 'Configure PAT overload on Gi0/1 for ACL 1', answer: ['ip nat inside source list 1 interface gigabitethernet0/1 overload', 'ip nat inside source list 1 interface gi0/1 overload'], hint: 'ip nat inside source list <acl> interface <if> overload' },
+    { prompt: 'Show active NAT translations', answer: ['show ip nat translations'], hint: 'Verify NAT mappings in privileged EXEC.' },
   ],
   '4.6': [
     { prompt: 'Create a DHCP pool named LAN_POOL', answer: ['ip dhcp pool LAN_POOL', 'ip dhcp pool lan_pool'], hint: 'Global config command.' },
@@ -2625,6 +2633,86 @@ function BookRefPanel({ objective }) {
   )
 }
 
+function KnowledgeStudyPanel({ objectiveId }) {
+  const kb = useMemo(() => getKnowledgeForObjective(objectiveId), [objectiveId])
+  if (!kb || !hasKnowledgeBase(objectiveId)) return null
+  const hasContent = kb.glossary.length || kb.commands.length || kb.examTraps.length
+  if (!hasContent) return null
+  return (
+    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.skyBorder}` }}>
+      <SectionLabel icon="📚" label="KNOWLEDGE BASE" />
+      {kb.objective?.summary && <div style={{ fontSize: 13, lineHeight: 1.5, marginBottom: 10 }}><RichText text={kb.objective.summary} /></div>}
+      {kb.glossary.length > 0 && (
+        <ExplainBlock icon="📖" title="GLOSSARY" accent="sky" collapsible defaultOpen={false}>
+          {kb.glossary.map(g => (
+            <div key={g.id || g.term} style={{ marginBottom: 8 }}>
+              <div style={{ fontWeight: 600, fontSize: 13 }}>{g.term}</div>
+              <div style={{ fontSize: 12, color: COLORS.silverMid }}>{g.definition}</div>
+            </div>
+          ))}
+        </ExplainBlock>
+      )}
+      {kb.commands.length > 0 && (
+        <ExplainBlock icon="⌨️" title="COMMAND BANK" accent="mint" collapsible defaultOpen={false}>
+          {kb.commands.map(c => (
+            <div key={c.id || c.command} style={{ marginBottom: 8, fontSize: 12 }}>
+              <code style={{ color: COLORS.mint }}>{c.command}</code>
+              <div style={{ color: COLORS.silverMid, marginTop: 2 }}>{c.purpose}</div>
+            </div>
+          ))}
+        </ExplainBlock>
+      )}
+      {kb.examTraps.length > 0 && (
+        <ExplainBlock icon="⚠️" title="EXAM TRAPS" accent="amber" collapsible defaultOpen={false}>
+          {kb.examTraps.map(t => (
+            <div key={t.id || t.trap} style={{ marginBottom: 8, fontSize: 12, lineHeight: 1.4 }}>
+              <div style={{ fontWeight: 600 }}>{t.trap || t.title}</div>
+              {(t.avoid || t.correction) && <div style={{ color: COLORS.silverMid }}>{t.avoid || t.correction}</div>}
+            </div>
+          ))}
+        </ExplainBlock>
+      )}
+    </div>
+  )
+}
+
+function ExamTrapStudyMode({ onBack }) {
+  const traps = useMemo(() => getAllDomain4ExamTraps(), [])
+  const [idx, setIdx] = useState(0)
+  const [revealed, setRevealed] = useState(false)
+  const trap = traps[idx]
+  if (!traps.length) {
+    return (
+      <div>
+        <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+        <div style={styles.small}>No exam traps in the knowledge base yet.</div>
+      </div>
+    )
+  }
+  return (
+    <div>
+      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
+      <h1 style={styles.h1}>Exam Trap Drill</h1>
+      <div style={styles.small}>Domain 4 — IP Services · static KB, no API</div>
+      <div style={{ ...styles.card, marginTop: 12 }}>
+        <div style={{ ...styles.pill('amber'), fontSize: 10, marginBottom: 8 }}>TRAP {idx + 1} / {traps.length}</div>
+        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 12 }}>{trap.trap || trap.title}</div>
+        {!revealed
+          ? <button style={styles.primaryBtn} onClick={() => setRevealed(true)}>Reveal how to avoid it</button>
+          : (
+            <div style={{ fontSize: 13, lineHeight: 1.5 }}>
+              {trap.avoid || trap.correction || trap.explanation || 'Review the related objective reading and quiz explanations.'}
+            </div>
+          )}
+      </div>
+      <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
+        <button style={styles.secondaryBtn} disabled={idx === 0} onClick={() => { setIdx(i => i - 1); setRevealed(false) }}>Previous</button>
+        <button style={styles.secondaryBtn} disabled={idx >= traps.length - 1} onClick={() => { setIdx(i => i + 1); setRevealed(false) }}>Next</button>
+      </div>
+    </div>
+  )
+}
+
 function ExplainTab({ objective, progress, onUpdateProgress }) {
   const [content, setContent] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -2699,6 +2787,7 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
     <div>
       {testedOut && <div style={{ ...styles.pill('mint'), fontSize: 11, marginBottom: 10, display: 'inline-block' }}>✓ Tested out — scheduled for review</div>}
       <KeyTermsCarousel objective={objective} />
+      <KnowledgeStudyPanel objectiveId={objective.id} />
 
       {!curated && <BookRefPanel objective={objective} />}
 
@@ -3556,18 +3645,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
     if (!correct) {
-      onMissed({
-        objectiveId: objective.id,
-        question: current.question,
-        choices: current.choices,
-        correctIndex: current.correctIndex,
-        selectedIndex: idx,
-        explanation: current.explanation,
-        concept: current.concept,
-        type: current.type,
-        skill: current.skill,
-        addedAt: Date.now(),
-      })
+      onMissed(buildMissedEntry(objective.id, current, { selectedIndex: idx }))
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
         setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
@@ -3591,17 +3669,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
     if (!correct) {
-      onMissed({
-        objectiveId: objective.id,
-        question: current.question,
-        orderItems: current.orderItems,
-        orderAnswer: orderDraft,
-        explanation: current.explanation,
-        concept: current.concept,
-        type: current.type,
-        skill: current.skill,
-        addedAt: Date.now(),
-      })
+      onMissed(buildMissedEntry(objective.id, current, { orderAnswer: orderDraft }))
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
         setQueue(q => [q[0], current, ...q.slice(1)].filter(Boolean))
@@ -5387,6 +5455,8 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
   // ---- Weak areas ----
   const weak = [...studied].filter(o => o.status !== 'mastered').sort((a, b) => a.mastery - b.mastery).slice(0, 6)
   const missedTop = Object.entries(summary.missedByObj).sort((a, b) => b[1] - a[1]).slice(0, 5)
+  const ckuWeak = computeCkuWeakness(missed || []).slice(0, 6)
+  const trapWeak = computeTrapWeakness(missed || []).slice(0, 5)
 
   // ---- Confidence vs accuracy ----
   const quads = { strong: [], reassure: [], hidden: [], priority: [] }
@@ -5558,6 +5628,26 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
               const o = ALL_OBJECTIVES.find(x => x.id === id)
               return <div key={id} style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 2 }}>{id} {o ? o.title : ''} — <span style={{ color: COLORS.rose }}>missed {n}×</span></div>
             })}
+          </div>
+        )}
+        {ckuWeak.length > 0 && (
+          <div style={{ marginTop: 10 }}>
+            <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>Weak CKUs (from missed bank)</div>
+            {ckuWeak.map(({ id, count }) => (
+              <div key={id} style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 2 }}>
+                {id} — <span style={{ color: COLORS.amber }}>missed {count}×</span>
+              </div>
+            ))}
+          </div>
+        )}
+        {trapWeak.length > 0 && (
+          <div style={{ marginTop: 10 }}>
+            <div style={{ ...styles.small, fontWeight: 600, marginBottom: 4 }}>Repeated exam traps</div>
+            {trapWeak.map(({ trap, count }) => (
+              <div key={trap} style={{ fontSize: 12, color: COLORS.silverMid, marginBottom: 2 }}>
+                {trap} — <span style={{ color: COLORS.amber }}>{count}×</span>
+              </div>
+            ))}
           </div>
         )}
       </MetricsCollapsibleSection>
@@ -5870,7 +5960,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
-    if (!correct) onMissed({ objectiveId: current.objectiveId, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
+    if (!correct) onMissed(buildMissedEntry(current.objectiveId, current, { selectedIndex: idx }))
   }
   function submitOrder() {
     if (revealed || !isOrderingQuestion(current)) return
@@ -5879,7 +5969,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
-    if (!correct) onMissed({ objectiveId: current.objectiveId, question: current.question, orderItems: current.orderItems, orderAnswer: orderDraft, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now() })
+    if (!correct) onMissed(buildMissedEntry(current.objectiveId, current, { orderAnswer: orderDraft }))
   }
   function next() {
     if (queue.length === 0) { setPhase('done'); onDone?.(); return }
@@ -6502,7 +6592,7 @@ function SessionRecapCard() {
   )
 }
 
-function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, onImportPick, syncOn }) {
+function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onImportPick, syncOn }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -6692,6 +6782,9 @@ function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline
         <div style={{ display: 'flex', gap: 8 }}>
           <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenFocus}>🎯 Focus Mode</button>
           <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenLabs}>🧪 Labs</button>
+        </div>
+        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenExamTraps}>⚠️ Exam Traps</button>
         </div>
       </div>
 
@@ -7691,7 +7784,7 @@ function syncAppHash(view, objective) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | focus
+  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | focus | examtraps
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -8147,6 +8240,7 @@ export default function App() {
             onOpenSync={() => setShowSync(true)}
             onOpenReview={() => setView('review')}
             onOpenFocus={() => setView('focus')}
+            onOpenExamTraps={() => setView('examtraps')}
             onImportPick={pickImportFile}
             dueCount={dueCount}
             syncOn={!!syncCode}
@@ -8179,6 +8273,7 @@ export default function App() {
         {view === 'lab' && selectedLab && <LabView bundle={getLab(selectedLab)} onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')} />}
         {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
         {view === 'focus' && <FocusModeSession progress={progress} onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} />}
+        {view === 'examtraps' && <ExamTrapStudyMode onBack={() => setView('home')} />}
         </div>
       </div>
       {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}
