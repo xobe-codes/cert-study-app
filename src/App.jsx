@@ -10,7 +10,7 @@ import { getLessonReference, hasLessonReference } from './lesson/knowledgeRefere
 import { buildConceptDetail } from './lesson/conceptDetail.js'
 import { pickReviewSet, computeCkuCoverage, getObjectiveCkuIds } from './lesson/quizCoverage.js'
 import { parseRichTextSegments } from './lesson/richTextParse.js'
-import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
+import { preloadCleanBank, getCleanBankStats } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
@@ -43,7 +43,28 @@ import { NavHintProvider, useNavHint } from './components/NavHintProvider.jsx'
 import StudyBlockProvider, { useStudyBlock } from './components/StudyBlockProvider.jsx'
 import SvgConfetti from './components/SvgConfetti.jsx'
 import RouteShell from './components/RouteShell.jsx'
+import SettingsSheet from './components/SettingsSheet.jsx'
+import AppTour from './components/AppTour.jsx'
+import BottomNav from './components/BottomNav.jsx'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
+import {
+  loadExamDate,
+  saveExamDate,
+  clearExamDate,
+  loadSocraticDefault,
+  saveSocraticDefault,
+  loadReduceMotion,
+  saveReduceMotion,
+  applyReduceMotionPreference,
+  clearTutorChat,
+  clearAiCaches,
+  resetStudyProgress,
+  loadQuizSessionSizePref,
+  saveQuizSessionSizePref,
+  loadTourDone,
+  saveTourDone,
+} from './settings/settingsActions.js'
+import pkg from '../package.json'
 
 
 /* =========================================================================
@@ -675,7 +696,7 @@ async function loadDueQuestions(limit = 20) {
   const progress = await loadProgress()
   const now = Date.now()
   // If exam date is set and within 30 days, boost troubleshooting questions
-  const examDate = await window.storage.getItem('ccna_exam_date_v1')
+  const examDate = await window.storage.getItem(STORAGE_KEYS.examDate)
   const daysToExam = examDate ? Math.ceil((new Date(examDate) - now) / 86400000) : 999
   const nearExam = daysToExam > 0 && daysToExam <= 30
 
@@ -6604,9 +6625,9 @@ function syncAppHash(view, objective) {
 /* =========================================================================
    APP SHELL — study-block aware layout wrapper
    ========================================================================= */
-function AppShell({ view, compactTopChrome, children }) {
+function AppShell({ view, compactTopChrome, withBottomNav, children }) {
   const { isActive } = useStudyBlock()
-  const className = `app-shell${compactTopChrome ? ' app-shell--compact-top' : ''}${view === 'objective' && isActive ? ' app-shell--deep-work' : ''}`
+  const className = `app-shell${compactTopChrome ? ' app-shell--compact-top' : ''}${view === 'objective' && isActive ? ' app-shell--deep-work' : ''}${withBottomNav ? ' app-shell--with-bottom-nav' : ''}`
   return <div className={className}>{children}</div>
 }
 
@@ -6626,6 +6647,15 @@ export default function App() {
   const [packagingId, setPackagingId] = useState(null) // objective id currently being packaged
   const [showSync, setShowSync] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
+  const [showTour, setShowTour] = useState(false)
+  const onboardingReplayRef = useRef(false)
+  const tourQueuedRef = useRef(false)
+  const [settingsExamDate, setSettingsExamDate] = useState(null)
+  const [settingsQuizSize, setSettingsQuizSize] = useState(5)
+  const [settingsSocratic, setSettingsSocratic] = useState(false)
+  const [settingsReduceMotion, setSettingsReduceMotion] = useState(false)
+  const [cleanBankStats, setCleanBankStats] = useState({ objectives: 0, questions: 0 })
   const importFileRef = useRef(null)
   const mainRef = useRef(null)
   const homeScrollRef = useRef(0)
@@ -6679,6 +6709,9 @@ export default function App() {
       setLastSynced(last || null)
       setDueCount(due)
       setLoaded(true)
+      const reduceMotion = await loadReduceMotion()
+      applyReduceMotionPreference(reduceMotion)
+      setSettingsReduceMotion(reduceMotion)
       if (!onboardDone) {
         if (Object.keys(p).length === 0) setView('onboarding')
         else await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
@@ -6731,31 +6764,128 @@ export default function App() {
     return () => clearTimeout(t)
   }, [loaded, apiOnline])
   const finishOnboarding = useCallback(async (results) => {
-    setProgress(prev => {
-      const next = { ...prev }
-      for (const [objectiveId, r] of Object.entries(results || {})) {
-        const entry = next[objectiveId] || { status: 'unseen', quizScores: [] }
-        const newScores = [...(entry.quizScores || []), { score: r.correct, total: r.total, date: Date.now() }]
-        const { score: masteryScore, mastered } = computeMastery({ quizScores: newScores, confidenceRatings: entry.confidenceRatings || [] })
-        next[objectiveId] = { ...entry, status: mastered ? 'mastered' : 'in_progress', quizScores: newScores, masteryScore, lastSeen: Date.now() }
-      }
-      saveProgress(next)
-      return next
-    })
+    if (!onboardingReplayRef.current) {
+      setProgress(prev => {
+        const next = { ...prev }
+        for (const [objectiveId, r] of Object.entries(results || {})) {
+          const entry = next[objectiveId] || { status: 'unseen', quizScores: [] }
+          const newScores = [...(entry.quizScores || []), { score: r.correct, total: r.total, date: Date.now() }]
+          const { score: masteryScore, mastered } = computeMastery({ quizScores: newScores, confidenceRatings: entry.confidenceRatings || [] })
+          next[objectiveId] = { ...entry, status: mastered ? 'mastered' : 'in_progress', quizScores: newScores, masteryScore, lastSeen: Date.now() }
+        }
+        saveProgress(next)
+        return next
+      })
+      logEvent('user_completed_onboarding', { objectivesCovered: Object.keys(results || {}).length })
+    } else {
+      logEvent('user_replayed_onboarding', { objectivesCovered: Object.keys(results || {}).length })
+    }
+    onboardingReplayRef.current = false
     await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
-    logEvent('user_completed_onboarding', { objectivesCovered: Object.keys(results || {}).length })
     setView('home')
   }, [])
 
   const skipOnboarding = useCallback(async () => {
+    onboardingReplayRef.current = false
     await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
     logEvent('user_skipped_onboarding', {})
     setView('home')
   }, [])
 
+  const replayPlacementCheck = useCallback(() => {
+    onboardingReplayRef.current = true
+    setView('onboarding')
+  }, [])
+
+  const completeTour = useCallback(async () => {
+    await saveTourDone(true)
+    setShowTour(false)
+  }, [])
+
+  const skipTour = useCallback(async () => {
+    await saveTourDone(true)
+    setShowTour(false)
+  }, [])
+
+  const showTourAgain = useCallback(() => {
+    setShowTour(true)
+  }, [])
+
+  useEffect(() => {
+    if (!loaded || view !== 'home' || showTour || tourQueuedRef.current) return
+    ;(async () => {
+      const tourDone = await loadTourDone()
+      if (!tourDone) {
+        tourQueuedRef.current = true
+        setShowTour(true)
+      }
+    })()
+  }, [loaded, view, showTour])
+
+  useEffect(() => {
+    if (!showSettings) return
+    let cancelled = false
+    ;(async () => {
+      const [exam, quiz, soc] = await Promise.all([
+        loadExamDate(),
+        loadQuizSessionSizePref(),
+        loadSocraticDefault(),
+      ])
+      if (!cancelled) {
+        setSettingsExamDate(exam)
+        setSettingsQuizSize(quiz)
+        setSettingsSocratic(soc)
+      }
+      await preloadCleanBank()
+      if (!cancelled) setCleanBankStats(getCleanBankStats())
+    })()
+    return () => { cancelled = true }
+  }, [showSettings])
+
+  const handleSaveExamDate = useCallback(async (iso) => {
+    const saved = await saveExamDate(iso)
+    setSettingsExamDate(saved)
+  }, [])
+
+  const handleClearExamDate = useCallback(async () => {
+    await clearExamDate()
+    setSettingsExamDate(null)
+  }, [])
+
+  const handleQuizSessionSizeChange = useCallback(async (size) => {
+    const saved = await saveQuizSessionSizePref(size)
+    setSettingsQuizSize(saved)
+  }, [])
+
+  const handleSocraticDefaultChange = useCallback(async (on) => {
+    await saveSocraticDefault(on)
+    setSettingsSocratic(on)
+  }, [])
+
+  const handleReduceMotionChange = useCallback(async (on) => {
+    await saveReduceMotion(on)
+    setSettingsReduceMotion(on)
+  }, [])
+
+  const handleClearTutorChat = useCallback(() => clearTutorChat(), [])
+
   const refreshOffline = useCallback(async () => {
     setOfflineReady(await loadOfflineReadyIds())
   }, [])
+
+  const handleClearAiCaches = useCallback(async () => {
+    await clearAiCaches()
+    await refreshOffline()
+  }, [refreshOffline])
+
+  const handleResetProgress = useCallback(async () => {
+    await resetStudyProgress()
+    setProgress({})
+    setMissed([])
+    setStreak({ count: 0, lastStudyDate: null })
+    setDueCount(0)
+    await refreshOffline()
+  }, [refreshOffline])
 
   const refreshDue = useCallback(async () => {
     setDueCount(await countDueQuestions())
@@ -6771,7 +6901,7 @@ export default function App() {
       const tag = document.activeElement?.tagName
       if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return
       e.preventDefault()
-      if (!showExport && !showSync) setShowSearch(true)
+      if (!showExport && !showSync && !showSettings) setShowSearch(true)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -6975,11 +7105,14 @@ export default function App() {
 
   const routeScrolls = view !== 'objective' && view !== 'tutor'
   const compactTopChrome = view === 'objective' || view === 'tutor'
+  const chromeOverlayOpen = showExport || showSync || showSearch || showSettings || showTour
+  const showBottomNav = !chromeOverlayOpen && !['onboarding', 'objective', 'tutor', 'lab'].includes(view)
+  const bottomNavActive = showSettings ? 'more' : showSearch ? 'search' : view === 'home' ? 'home' : null
 
   return (
     <NavHintProvider>
     <StudyBlockProvider onFocusBlockCompleted={handleFocusBlockCompleted}>
-    <AppShell view={view} compactTopChrome={compactTopChrome}>
+    <AppShell view={view} compactTopChrome={compactTopChrome} withBottomNav={showBottomNav}>
       <style>{`
         ${buildAppShellCss(COLORS)}
         ${THEME_CSS}
@@ -7047,17 +7180,6 @@ export default function App() {
           <OfflineBanner />
         </div>
       )}
-      <div className="app-chrome-top app-chrome-toolbar site-column">
-        <button
-          type="button"
-          className="app-chrome-theme"
-          onClick={toggleTheme}
-          aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-          title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
-        >
-          {theme === 'dark' ? '☀️' : '🌙'}
-        </button>
-      </div>
       <RouteShell scroll={routeScrolls} ref={mainRef}>
         {view === 'onboarding' && <Onboarding onComplete={finishOnboarding} onSkip={skipOnboarding} />}
         {view === 'home' && (
@@ -7072,20 +7194,17 @@ export default function App() {
             onOpenMock={() => setView('mock')}
             onOpenMissed={() => setView('missed')}
             onOpenTutor={() => setView('tutor')}
-            onOpenExport={() => setShowExport(true)}
             onOpenMetrics={() => setView('metrics')}
             onOpenStats={() => setView('stats')}
+            onOpenSettings={() => setShowSettings(true)}
             onOpenLabs={() => setView('labs')}
-            onOpenSync={() => setShowSync(true)}
             onOpenReview={() => setView('review')}
             onOpenFocus={() => setView('focus')}
             onOpenExamTraps={() => setView('examtraps')}
             onOpenSubnet={() => setView('subnet')}
             onOpenRouting={() => setView('routing')}
             onOpenExtraStudy={() => setView('extrastudy')}
-            onImportPick={pickImportFile}
             dueCount={dueCount}
-            syncOn={!!syncCode}
             openDomain={openDomain}
             onOpenDomain={setOpenDomain}
             commandDrills={COMMAND_DRILLS}
@@ -7161,18 +7280,13 @@ export default function App() {
           />
         )}
       </RouteShell>
-      {!showExport && !showSync && !showSearch && (
-        <div className="app-chrome-bottom site-column">
-          <button
-            type="button"
-            className="app-chrome-search"
-            onClick={() => setShowSearch(true)}
-            title="Search objectives (⌘K)"
-            aria-label="Search objectives"
-          >
-            🔍 Search
-          </button>
-        </div>
+      {showBottomNav && (
+        <BottomNav
+          active={bottomNavActive}
+          onHome={() => setView('home')}
+          onSearch={() => setShowSearch(true)}
+          onMore={() => setShowSettings(true)}
+        />
       )}
       {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}
       {showSearch && <GlobalSearchModal progress={progress} onSelectObjective={selectObjective} onClose={() => setShowSearch(false)} />}
@@ -7190,6 +7304,36 @@ export default function App() {
           onClose={() => setShowSync(false)}
         />
       )}
+      {showSettings && (
+        <SettingsSheet
+          onClose={() => setShowSettings(false)}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+          examDate={settingsExamDate}
+          onSaveExamDate={handleSaveExamDate}
+          onClearExamDate={handleClearExamDate}
+          quizSessionSize={settingsQuizSize}
+          onQuizSessionSizeChange={handleQuizSessionSizeChange}
+          socraticDefault={settingsSocratic}
+          onSocraticDefaultChange={handleSocraticDefaultChange}
+          reduceMotion={settingsReduceMotion}
+          onReduceMotionChange={handleReduceMotionChange}
+          onReplayPlacement={replayPlacementCheck}
+          onShowTour={showTourAgain}
+          onOpenSync={() => setShowSync(true)}
+          onOpenExport={() => setShowExport(true)}
+          onImportPick={pickImportFile}
+          onClearTutorChat={handleClearTutorChat}
+          onClearAiCaches={handleClearAiCaches}
+          onResetProgress={handleResetProgress}
+          offlineReadyCount={offlineReady.size}
+          objectiveCount={ALL_OBJECTIVES.length}
+          cleanBankObjectives={cleanBankStats.objectives}
+          cleanBankQuestions={cleanBankStats.questions}
+          appVersion={pkg.version}
+        />
+      )}
+      {showTour && <AppTour onComplete={completeTour} onSkip={skipTour} />}
     </AppShell>
     </StudyBlockProvider>
     </NavHintProvider>

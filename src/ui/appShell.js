@@ -144,6 +144,57 @@ export function buildAppShellCss(colors) {
       z-index: 120;
       background: linear-gradient(to top, ${colors.bg} 70%, transparent);
     }
+    .app-bottom-nav {
+      flex-shrink: 0;
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+      border-top: 1px solid ${colors.border};
+      background: color-mix(in srgb, ${colors.bg} 94%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding-bottom: env(safe-area-inset-bottom);
+      z-index: 125;
+    }
+    .app-bottom-nav-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      min-height: 56px;
+      padding: 8px 4px 10px;
+      background: none;
+      border: none;
+      color: ${colors.silverMid};
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .app-bottom-nav-btn--active {
+      color: ${colors.brandGlow};
+    }
+    .app-bottom-nav-icon {
+      font-size: 18px;
+      line-height: 1;
+    }
+    .app-shell--with-bottom-nav .route-inner.ccna-container.page-fill {
+      padding-bottom: calc(64px + env(safe-area-inset-bottom));
+    }
+    html[data-reduce-motion="true"] .ccna-view,
+    html[data-reduce-motion="true"] .ccna-overlay,
+    html[data-reduce-motion="true"] .ccna-sheet,
+    html[data-reduce-motion="true"] .ccna-stagger > *,
+    html[data-reduce-motion="true"] .ccna-quiz-reveal,
+    html[data-reduce-motion="true"] .ccna-shimmer::after,
+    html[data-reduce-motion="true"] .ccna-skeleton,
+    html[data-reduce-motion="true"] .ccna-pulse,
+    html[data-reduce-motion="true"] button:active:not(:disabled) {
+      animation: none !important;
+      transform: none !important;
+    }
     [data-theme="dark"] .app-shell .app-chrome-bottom {
       background: linear-gradient(to top, color-mix(in srgb, ${colors.bg} 88%, transparent) 70%, transparent);
     }
@@ -178,8 +229,24 @@ export function buildAppShellCss(colors) {
       box-shadow: ${colors.cardShadow || '0 2px 10px #00000033'};
       flex-shrink: 0;
     }
+    .app-chrome-settings {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid ${colors.border};
+      background: ${colors.surface};
+      color: ${colors.silver};
+      font-size: 17px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: ${colors.cardShadow || '0 2px 10px #00000033'};
+      flex-shrink: 0;
+    }
     [data-theme="dark"] .app-shell .app-chrome-search,
     [data-theme="dark"] .app-shell .app-chrome-theme,
+    [data-theme="dark"] .app-shell .app-chrome-settings,
     [data-theme="dark"] .app-shell .app-chrome-bottom {
       backdrop-filter: blur(14px) saturate(1.1);
       -webkit-backdrop-filter: blur(14px) saturate(1.1);
@@ -572,7 +639,8 @@ export function buildAppShellCss(colors) {
         pointer-events: none;
         flex: none;
       }
-      .app-shell--compact-top .app-chrome-toolbar .app-chrome-theme {
+      .app-shell--compact-top .app-chrome-toolbar .app-chrome-theme,
+      .app-shell--compact-top .app-chrome-toolbar .app-chrome-settings {
         pointer-events: auto;
         width: 36px;
         height: 36px;
@@ -582,7 +650,7 @@ export function buildAppShellCss(colors) {
         padding-top: calc(env(safe-area-inset-top) + 2px);
       }
       .app-shell--compact-top .objective-header {
-        padding-right: 44px;
+        padding-right: 0;
       }
       .app-shell--compact-top .objective-wayfind-row .objective-back-btn {
         min-height: 40px;

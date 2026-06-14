@@ -31,7 +31,7 @@ const ALL_EXAM_TRAPS = (() => {
   return traps
 })()
 
-function HomeExtrasSection({ progress }) {
+function HomeExtrasSection({ progress, onOpenSettings }) {
   const [open, setOpen] = useState(false)
   return (
     <div style={{ marginBottom: 12 }}>
@@ -47,13 +47,13 @@ function HomeExtrasSection({ progress }) {
       >
         <span style={{ flex: 1, textAlign: 'left' }}>
           <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>EXAM PREP EXTRAS</span>
-          <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>Countdown · daily trap</span>
+          <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>Exam countdown · daily trap</span>
         </span>
         <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, flexShrink: 0 }}>{open ? '▲' : '▼'}</span>
       </button>
       {open && (
         <div>
-          <ExamCountdown progress={progress} />
+          <ExamCountdown progress={progress} onOpenSettings={onOpenSettings} />
           <ExamTrapWidget />
         </div>
       )}
@@ -65,42 +65,23 @@ function HomeExtrasSection({ progress }) {
    EXAM DATE COUNTDOWN — user sets their target exam date once; stored locally.
    Shows days remaining and a simple daily target (objectives to study per day).
    ========================================================================= */
-function ExamCountdown({ progress }) {
+function ExamCountdown({ progress, onOpenSettings }) {
   const [examDate, setExamDate] = useState(null)
-  const [editing, setEditing] = useState(false)
-  const [inputVal, setInputVal] = useState('')
 
   useEffect(() => {
+    let cancelled = false
     ;(async () => {
-      const saved = await window.storage.getItem('ccna_exam_date_v1')
-      if (saved) setExamDate(saved)
+      const saved = await window.storage.getItem(STORAGE_KEYS.examDate)
+      if (!cancelled && saved) setExamDate(saved)
     })()
+    return () => { cancelled = true }
   }, [])
 
-  async function save() {
-    if (!inputVal) return
-    await window.storage.setItem('ccna_exam_date_v1', inputVal)
-    setExamDate(inputVal); setEditing(false)
-  }
-  async function clear() {
-    await window.storage.removeItem?.('ccna_exam_date_v1') || window.storage.setItem('ccna_exam_date_v1', null)
-    setExamDate(null); setEditing(false)
-  }
-
-  if (editing || !examDate) {
+  if (!examDate) {
     return (
       <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.border}` }}>
-        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, color: COLORS.silver, marginBottom: 8 }}>📅 Set your exam date</div>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-          <input
-            type="date"
-            value={inputVal}
-            onChange={e => setInputVal(e.target.value)}
-            style={{ flex: 1, minWidth: 140, background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 8, padding: '8px 10px', color: COLORS.silver, fontFamily: 'inherit', fontSize: 'var(--ccna-type-sm)' }}
-          />
-          <button style={{ ...styles.primaryBtn, flex: 0 }} onClick={save}>Set</button>
-          {examDate && <button style={{ ...styles.secondaryBtn, flex: 0 }} onClick={() => setEditing(false)}>Cancel</button>}
-        </div>
+        <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginBottom: 8 }}>📅 No exam date set</div>
+        <button type="button" style={{ ...styles.secondaryBtn, fontSize: 'var(--ccna-type-sm)' }} onClick={onOpenSettings}>Set exam date in Settings →</button>
       </div>
     )
   }
@@ -111,7 +92,7 @@ function ExamCountdown({ progress }) {
   if (daysLeft < 0) return (
     <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.mintBorder}` }}>
       <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.mint, fontWeight: 600 }}>🎓 Exam date passed — good luck with results!</div>
-      <button style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginTop: 4 }} onClick={() => setEditing(true)}>Update date</button>
+      <button type="button" style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginTop: 4, fontFamily: 'inherit' }} onClick={onOpenSettings}>Update in Settings</button>
     </div>
   )
 
@@ -126,7 +107,7 @@ function ExamCountdown({ progress }) {
           <div style={{ fontSize: 'var(--ccna-type-xl)', fontWeight: 700, color: accentColors(urgency).text }}>{daysLeft} day{daysLeft !== 1 ? 's' : ''}</div>
           <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>until exam · {target.toLocaleDateString()}</div>
         </div>
-        <button style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0' }} onClick={() => setEditing(true)}>Edit</button>
+        <button type="button" style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0', fontFamily: 'inherit' }} onClick={onOpenSettings}>Edit</button>
       </div>
       {unstudied > 0 && daysLeft > 0 && (
         <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.silver }}>
@@ -194,7 +175,36 @@ function SessionRecapCard() {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenExport, onOpenMetrics, onOpenStats, onOpenSync, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onOpenSubnet, onOpenRouting, onOpenExtraStudy, onImportPick, syncOn, commandDrills = {} }) {
+function StudyModeCard({ title, subtitle, children }) {
+  return (
+    <div style={{ ...styles.card, marginBottom: 10, padding: 12 }}>
+      <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, marginBottom: 2 }}>{title}</div>
+      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 10 }}>{subtitle}</div>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{children}</div>
+    </div>
+  )
+}
+
+function StudyModeBtn({ onClick, children, primary, disabled }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        ...(primary ? styles.primaryBtn : styles.secondaryBtn),
+        flex: '1 1 calc(50% - 4px)',
+        minWidth: 120,
+        fontSize: 'var(--ccna-type-sm)',
+        marginBottom: 0,
+      }}
+    >
+      {children}
+    </button>
+  )
+}
+
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {} }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -289,18 +299,12 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           >×</button>
           <div style={{ fontWeight: 700, fontSize: 'var(--ccna-type-md)', color: COLORS.sky, marginBottom: 6 }}>📱 New device?</div>
           <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginBottom: 10 }}>
-            Export your progress from another device and import it here to pick up where you left off.
+            Open <strong>More → Settings</strong> to import progress from another device.
           </div>
-          <div style={{ display: 'flex', gap: 8 }}>
-            <button
-              style={{ ...styles.secondaryBtn, flex: 1, fontSize: 'var(--ccna-type-sm)', border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
-              onClick={onOpenExport}
-            >⬆ Export</button>
-            <button
-              style={{ ...styles.secondaryBtn, flex: 1, fontSize: 'var(--ccna-type-sm)', border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
-              onClick={onImportPick}
-            >⬇ Import</button>
-          </div>
+          <button
+            style={{ ...styles.secondaryBtn, width: '100%', fontSize: 'var(--ccna-type-sm)', border: `1px solid ${COLORS.skyBorder}`, color: COLORS.sky }}
+            onClick={onOpenSettings}
+          >Open Settings</button>
         </div>
       )}
 
@@ -385,40 +389,22 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
       <div style={{ marginBottom: 12 }}>
         <div style={sectionLabel}>STUDY MODES</div>
-        <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-          <button style={{ ...styles.primaryBtn, flex: 1 }} onClick={onOpenMock}>Mock Exam</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenMissed}>Missed ({missedCount})</button>
-        </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenFocus}>🎯 Weak Areas</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenLabs}>🧪 Labs</button>
-        </div>
-        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenExamTraps}>⚠️ Exam Traps</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenSubnet}>🔢 Subnetting</button>
-        </div>
-        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenRouting}>🛣 Routing Decoder</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenExtraStudy}>📚 Extra Study ({getShelvedStats().total})</button>
-        </div>
+        <StudyModeCard title="Exam & review" subtitle="Mock exams, weak spots, and review">
+          <StudyModeBtn primary onClick={onOpenMock}>Mock Exam</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenFocus}>🎯 Weak Areas</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenMissed}>Missed ({missedCount})</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenExamTraps}>⚠️ Exam Traps</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenTutor} disabled={!apiOnline}>AI Tutor</StudyModeBtn>
+        </StudyModeCard>
+        <StudyModeCard title="Labs & drills" subtitle="Hands-on practice and extra content">
+          <StudyModeBtn onClick={onOpenLabs}>🧪 Labs</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenSubnet}>🔢 Subnetting</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenRouting}>🛣 Routing</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenExtraStudy}>📚 Extra Study ({getShelvedStats().total})</StudyModeBtn>
+        </StudyModeCard>
       </div>
 
-      <div style={{ marginBottom: 16 }}>
-        <div style={sectionLabel}>TOOLS</div>
-        <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenStats}>📈 Stats</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenMetrics}>📊 Metrics</button>
-        </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenTutor} disabled={!apiOnline}>AI Tutor</button>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenSync}>☁ Sync{syncOn ? ' ✓' : ''}</button>
-        </div>
-        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          <button style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onOpenExport}>Export Reports</button>
-        </div>
-      </div>
-
-      <HomeExtrasSection progress={progress} />
+      <HomeExtrasSection progress={progress} onOpenSettings={onOpenSettings} />
 
       <div role="group" aria-label="Course domains">
       {DOMAINS.map(domain => {
