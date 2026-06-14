@@ -5,6 +5,7 @@ import {
   resolvePrimaryCkuExamTip,
   GENERIC_EXAM_TIP_RE,
 } from '../answerReview/examTipLogic.js'
+import { goldExamTipFor, GOLD_EXAM_TIPS_BY_ID, GOLD_OBJECTIVE_EXAM_TIPS } from '../answerReview/goldExamTips.js'
 
 const MAC_Q = {
   id: '1.5-c-q1',
@@ -75,5 +76,22 @@ describe('examTipLogic', () => {
   it('returns null CKU tip when no traps linked', () => {
     expect(resolvePrimaryCkuExamTip({ ckuIds: [] })).toBeNull()
     expect(resolvePrimaryCkuExamTip({ ckuIds: ['UNKNOWN-CKU'] })).toBeNull()
+  })
+
+  it('goldExamTipFor prefers question id over objective fallback', () => {
+    const q = { id: '1.5-c-q3', objectiveId: '1.5' }
+    expect(goldExamTipFor(q)).toBe(GOLD_EXAM_TIPS_BY_ID['1.5-c-q3'])
+    expect(goldExamTipFor({ objectiveId: '1.5' })).toBe(GOLD_OBJECTIVE_EXAM_TIPS['1.5'])
+    expect(goldExamTipFor({ id: 'unknown', objectiveId: '9.9' })).toBeNull()
+  })
+
+  it('examTipFor uses gold tips before stem and CKU heuristics', () => {
+    const floodGold = examTipFor({ id: '1.5-c-q3', objectiveId: '1.5', question: 'Unknown unicast destination' })
+    expect(floodGold).toBe(GOLD_EXAM_TIPS_BY_ID['1.5-c-q3'])
+    expect(floodGold).toMatch(/flood/i)
+
+    const macGold = examTipFor({ ...MAC_Q, objectiveId: '1.5' })
+    expect(macGold).toBe(GOLD_OBJECTIVE_EXAM_TIPS['1.5'])
+    expect(macGold).toMatch(/learn source MAC/i)
   })
 })

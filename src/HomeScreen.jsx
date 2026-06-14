@@ -20,6 +20,7 @@ import StatusLabel from './components/StatusLabel.jsx'
 import ProgressRing from './components/ProgressRing.jsx'
 import { todayStr } from './home/sessionUtils.js'
 import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './home/sessionRecap.js'
+import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 
 const ALL_EXAM_TRAPS = (() => {
   const traps = []
@@ -138,6 +139,40 @@ function ExamTrapWidget() {
 }
 
 /* ---- Session recap card (#16) ---- */
+function TopTrapPatterns({ missed, onOpenMissed }) {
+  const trapGroups = useMemo(() => groupMissedByTrap(missed || []), [missed])
+  const top = trapGroups.slice(0, 3)
+  if (!top.length) return null
+
+  return (
+    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.rose, letterSpacing: 0.5 }}>⚠️ YOUR TOP TRAP PATTERNS</div>
+        <button
+          type="button"
+          onClick={onOpenMissed}
+          style={{ background: 'none', border: 'none', color: COLORS.rose, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
+        >
+          Review missed →
+        </button>
+      </div>
+      {top.map((g, i) => (
+        <div
+          key={g.trap}
+          style={{
+            display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: i < top.length - 1 ? 8 : 0,
+            paddingBottom: i < top.length - 1 ? 8 : 0,
+            borderBottom: i < top.length - 1 ? `1px solid ${COLORS.roseBorder}` : 'none',
+          }}
+        >
+          <span style={{ ...styles.pill('rose'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{g.count}×</span>
+          <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45 }}>{g.trap}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function SessionRecapCard() {
   const [dismissed, setDismissed] = useState(isRecapDismissed())
   // Read session data once on mount (HomeScreen remounts on each return to Home)
@@ -351,6 +386,8 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       )}
 
       <SessionRecapCard />
+
+      <TopTrapPatterns missed={missed} onOpenMissed={onOpenMissed} />
 
       <div style={styles.card}>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>

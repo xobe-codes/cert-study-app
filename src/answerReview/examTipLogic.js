@@ -2,6 +2,7 @@
  * Stem- and CKU-aware exam tips for quiz answer review.
  */
 import { CKU_TRAP_INDEX } from './ckuTrapIndex.js'
+import { goldExamTipFor } from './goldExamTips.js'
 
 export const GENERIC_EXAM_TIP_RE = [
   /eliminate answers that describe a different protocol, port, or command/i,
@@ -116,7 +117,8 @@ function scenarioExamTip(q) {
 
 /** Build a question-specific exam tip (no generic fallback). */
 export function examTipFor(q) {
-  return resolvePrimaryCkuExamTip(q)
+  return goldExamTipFor(q)
+    || resolvePrimaryCkuExamTip(q)
     || stemExamTip(q)
     || conceptExamTip(q)
     || typeExamTip(q)

@@ -345,6 +345,34 @@ export function buildAppShellCss(colors) {
     .objective-header {
       flex-shrink: 0;
     }
+    .objective-header--sticky {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .objective-header--sticky .objective-sticky-chrome {
+      position: static;
+      box-shadow: none;
+      background: linear-gradient(
+        to bottom,
+        color-mix(in srgb, ${colors.bg} 96%, transparent) 0%,
+        color-mix(in srgb, ${colors.bg} 88%, transparent) 88%,
+        transparent 100%
+      );
+      padding-bottom: 6px;
+      margin-bottom: 0;
+    }
+    .objective-title--header {
+      margin-bottom: 6px;
+      font-size: var(--ccna-type-lg);
+      -webkit-line-clamp: 2;
+    }
+    .objective-body-intro {
+      flex-shrink: 0;
+      margin-bottom: 12px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid color-mix(in srgb, ${colors.border} 55%, transparent);
+    }
     .objective-wayfind-row {
       display: flex;
       align-items: center;
@@ -596,18 +624,8 @@ export function buildAppShellCss(colors) {
       animation-fill-mode: forwards;
       animation-iteration-count: 1;
     }
-    .objective-header-scroll {
-      flex-shrink: 0;
-    }
     .objective-sticky-chrome {
-      position: sticky;
-      top: 0;
-      z-index: 40;
       flex-shrink: 0;
-      padding-bottom: 4px;
-      margin-bottom: 4px;
-      background: linear-gradient(to bottom, color-mix(in srgb, ${colors.bg} 94%, transparent) 75%, transparent);
-      box-shadow: 0 4px 14px #00000018;
     }
     .objective-sticky-chrome .objective-tab-bar {
       margin-bottom: 0 !important;
@@ -639,8 +657,8 @@ export function buildAppShellCss(colors) {
       .objective-reading-prose {
         max-width: 68ch;
       }
-      .objective-header-scroll h1 {
-        font-size: var(--ccna-type-display);
+      .objective-title--header {
+        font-size: var(--ccna-type-xl);
       }
     }
     @media (max-width: 640px) {

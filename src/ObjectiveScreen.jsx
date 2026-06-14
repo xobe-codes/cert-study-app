@@ -159,9 +159,9 @@ export default function ObjectiveScreen({
     </div>
   )
 
-  const headerDetails = (
+  const headerCompact = (
     <>
-      <div className="objective-meta-row" style={{ marginBottom: 6, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
+      <div className="objective-meta-row" style={{ marginBottom: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
         <span style={styles.pill(objective.accent)}>{objective.id}</span>
         <span><StatusLabel status={status} /></span>
         {(() => {
@@ -171,32 +171,26 @@ export default function ObjectiveScreen({
           return <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)' }}>API on demand</span>
         })()}
       </div>
-      <h1 className="objective-title">{objective.title}</h1>
+      <h1 className="objective-title objective-title--header">{objective.title}</h1>
+    </>
+  )
+
+  const bodyIntro = (
+    <div className="objective-body-intro">
       {whyLine && (
-        <p style={{ ...styles.small, marginBottom: 6, lineHeight: 1.45, color: COLORS.silverMid }}>
-          Why it matters: {whyLine}
+        <p style={{ ...styles.small, marginBottom: 8, lineHeight: 1.45, color: COLORS.silverMid }}>
+          {whyLine}
         </p>
       )}
-      <div className="objective-domain" style={{ ...styles.small, marginBottom: 6 }}>{objective.domainName}</div>
-      <MasteryChecklist progressEntry={progress[objective.id]} compact />
+      <div className="objective-domain" style={{ ...styles.small, marginBottom: 8 }}>{objective.domainName}</div>
 
       <div className="objective-actions-row">
         {(prevObj || nextObj) && (
           <div className="objective-nav-row">
-            <button
-              type="button"
-              className="objective-sibling-btn"
-              onClick={() => handleSelectSibling(prevObj)}
-              disabled={!prevObj}
-            >
+            <button type="button" className="objective-sibling-btn" onClick={() => handleSelectSibling(prevObj)} disabled={!prevObj}>
               ‹ {prevObj ? prevObj.id : '—'}
             </button>
-            <button
-              type="button"
-              className="objective-sibling-btn objective-sibling-btn--next"
-              onClick={() => handleSelectSibling(nextObj)}
-              disabled={!nextObj}
-            >
+            <button type="button" className="objective-sibling-btn objective-sibling-btn--next" onClick={() => handleSelectSibling(nextObj)} disabled={!nextObj}>
               {nextObj ? nextObj.id : '—'} ›
             </button>
           </div>
@@ -207,12 +201,7 @@ export default function ObjectiveScreen({
           ) : isPackaging ? (
             <span style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-xs)' }}>Downloading…</span>
           ) : (
-            <button
-              type="button"
-              className="objective-offline-btn"
-              onClick={() => onPackage?.(objective)}
-              disabled={!apiOnline}
-            >
+            <button type="button" className="objective-offline-btn" onClick={() => onPackage?.(objective)} disabled={!apiOnline}>
               {apiOnline ? '⤓ Save offline' : 'Offline only'}
             </button>
           )}
@@ -232,6 +221,8 @@ export default function ObjectiveScreen({
         </div>
       )}
 
+      <MasteryChecklist progressEntry={progress[objective.id]} compact />
+
       {(progress[objective.id]?.quizScores || []).length > 0 && (
         <ProgressBar
           value={computeMastery(progress[objective.id]).score}
@@ -242,32 +233,22 @@ export default function ObjectiveScreen({
           height={7}
         />
       )}
-    </>
+    </div>
   )
 
   return (
     <div className={`objective-shell${deepRead ? ' objective-shell--deep-read' : ''}`}>
-      <div className="objective-header">
-        {isActive ? (
-          <>
-            <div className="objective-header-scroll">{headerDetails}</div>
-            <div className="objective-sticky-chrome">
-              {backRow}
-              {studyBlockRow}
-              {tabBar}
-            </div>
-          </>
-        ) : (
-          <>
-            {backRow}
-            {studyBlockRow}
-            {headerDetails}
-            {tabBar}
-          </>
-        )}
+      <div className="objective-header objective-header--sticky">
+        <div className="objective-sticky-chrome">
+          {backRow}
+          {studyBlockRow}
+          {headerCompact}
+          {tabBar}
+        </div>
       </div>
 
       <div className="objective-body internal-scroll">
+        {bodyIntro}
         {objLabs.length > 0 && (
           <button type="button" className="objective-lab-cta ccna-hover" onClick={() => onOpenLab?.(objLabs[0].id)}>
             <span style={{ fontSize: 'var(--ccna-type-lg)' }} aria-hidden="true">🧪</span>

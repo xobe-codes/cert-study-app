@@ -41,7 +41,7 @@
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
+        "examTip": "Forwarding order: **longest prefix match** first, then **lowest AD**, then **best metric**."
       }
     },
     {

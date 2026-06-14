@@ -1257,7 +1257,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP: hosts use **virtual IP/MAC**; know **Active vs Standby** and preempt/priority."
       }
     },
     {

@@ -69,20 +69,22 @@ export function getCuratedBundleLabel(objectiveId) {
   return `${parts.join(' · ')} · offline`
 }
 
-/** Short reading preview for mastered objectives (plain text, no markdown). */
+/** Exam-relevant one-liner for lesson header. */
 export function getObjectiveWhyLine(objectiveId) {
   const data = getCurated(objectiveId)
+  const trap = data?.examTraps?.[0]
+  if (trap?.trap) {
+    const t = String(trap.trap).replace(/\*\*/g, '').trim()
+    return `Shows up when ${t.charAt(0).toLowerCase()}${t.slice(1)}`
+  }
   const reading = data?.reading
   if (!reading) return null
-  const raw = reading.realWorld
-    || reading.keyPoints?.[0]
-    || data.examTraps?.[0]?.trap
-    || reading.definition
+  const raw = reading.realWorld || reading.keyPoints?.[0] || reading.definition
   if (!raw) return null
   const plain = String(raw).replace(/\*\*/g, '').replace(/\s+/g, ' ').trim()
   if (!plain) return null
-  if (plain.length <= 140) return plain
-  return `${plain.slice(0, 139)}…`
+  if (plain.length <= 130) return plain
+  return `${plain.slice(0, 129)}…`
 }
 
 /** Short reading preview for mastered objectives (plain text, no markdown). */

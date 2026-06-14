@@ -11080,7 +11080,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
+        "examTip": "Route table: **C/L = AD 0**; compare **AD between sources**, **metric within** one protocol."
       }
     },
     {
@@ -11279,7 +11279,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
+        "examTip": "Route table: **C/L = AD 0**; compare **AD between sources**, **metric within** one protocol."
       }
     },
     {
@@ -11328,7 +11328,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
+        "examTip": "Route table: **C/L = AD 0**; compare **AD between sources**, **metric within** one protocol."
       }
     },
     {
@@ -11379,7 +11379,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Route table: **C/L = AD 0**; compare **AD between sources**, **metric within** one protocol."
       }
     },
     {
@@ -12354,7 +12354,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
+        "examTip": "Forwarding order: **longest prefix match** first, then **lowest AD**, then **best metric**."
       }
     },
     {
@@ -15879,7 +15879,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
       }
     },
     {
@@ -16315,7 +16315,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
       }
     },
     {
@@ -16364,7 +16364,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
       }
     },
     {
@@ -16558,7 +16558,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
       }
     },
     {
@@ -16952,7 +16952,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
       }
     },
     {
@@ -17093,7 +17093,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Static\" without matching the scenario constraint"
           }
         ],
-        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24)"
+        "examTip": "OSPF won't go FULL without matching **area, hello/dead, subnet, and auth** on the link."
       }
     },
     {
@@ -17862,7 +17862,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -17960,7 +17960,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -19312,7 +19312,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -19554,7 +19554,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -19604,7 +19604,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -19704,7 +19704,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -19803,7 +19803,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -19904,7 +19904,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -19956,7 +19956,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -20055,7 +20055,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -20105,7 +20105,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -21751,7 +21751,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "HSRP: hosts use **virtual IP/MAC**; know **Active vs Standby** and preempt/priority."
       }
     },
     {
@@ -22423,7 +22423,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT fails silently without **inside/outside** — label interfaces before reading address types."
       }
     },
     {
@@ -22800,7 +22800,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -22847,7 +22847,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -22894,7 +22894,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -23031,7 +23031,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -23078,7 +23078,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -23261,7 +23261,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -23358,7 +23358,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -23408,7 +23408,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -23458,7 +23458,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -23606,7 +23606,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -23658,7 +23658,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -23857,7 +23857,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     }
   ],
@@ -26442,7 +26442,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP relay = **ip helper-address** on the **client VLAN interface** toward the server."
       }
     },
     {
@@ -30771,7 +30771,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
+        "examTip": "AAA order: **Authentication → Authorization → Accounting** — match the stem verb."
       }
     },
     {
@@ -31304,7 +31304,7 @@ export const CLEAN_QUESTIONS = {
             "misconceptionTested": "Selecting \"Randomly\" without matching the scenario constraint"
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Extended ACLs go **near the source**; standard ACLs **near the destination** — placement is the trap."
       }
     },
     {
@@ -32526,7 +32526,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL: **first match wins**, implicit deny at end; **wildcard 0 = must match**."
       }
     },
     {
@@ -32670,7 +32670,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL: **first match wins**, implicit deny at end; **wildcard 0 = must match**."
       }
     },
     {
@@ -32813,7 +32813,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL: **first match wins**, implicit deny at end; **wildcard 0 = must match**."
       }
     },
     {
@@ -32862,7 +32862,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL: **first match wins**, implicit deny at end; **wildcard 0 = must match**."
       }
     },
     {
@@ -34094,7 +34094,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
+        "examTip": "Port security / DHCP snooping: **trusted vs untrusted** port role is the setup trap."
       }
     },
     {
@@ -34191,7 +34191,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
+        "examTip": "Port security / DHCP snooping: **trusted vs untrusted** port role is the setup trap."
       }
     },
     {
@@ -34288,7 +34288,7 @@ export const CLEAN_QUESTIONS = {
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
+        "examTip": "Port security / DHCP snooping: **trusted vs untrusted** port role is the setup trap."
       }
     },
     {

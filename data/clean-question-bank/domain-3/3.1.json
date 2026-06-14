@@ -522,7 +522,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Assuming the lowest AD route always wins — AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD"
+        "examTip": "Route table: **C/L = AD 0**; compare **AD between sources**, **metric within** one protocol."
       }
     },
     {
@@ -721,7 +721,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
+        "examTip": "Route table: **C/L = AD 0**; compare **AD between sources**, **metric within** one protocol."
       }
     },
     {
@@ -770,7 +770,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
+        "examTip": "Route table: **C/L = AD 0**; compare **AD between sources**, **metric within** one protocol."
       }
     },
     {
@@ -821,7 +821,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Route table: **C/L = AD 0**; compare **AD between sources**, **metric within** one protocol."
       }
     },
     {

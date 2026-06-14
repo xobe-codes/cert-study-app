@@ -245,7 +245,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP relay = **ip helper-address** on the **client VLAN interface** toward the server."
       }
     },
     {

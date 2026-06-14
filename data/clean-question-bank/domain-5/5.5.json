@@ -41,7 +41,7 @@
             "misconceptionTested": "Selecting \"Randomly\" without matching the scenario constraint"
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "Extended ACLs go **near the source**; standard ACLs **near the destination** — placement is the trap."
       }
     },
     {
@@ -1263,7 +1263,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL: **first match wins**, implicit deny at end; **wildcard 0 = must match**."
       }
     },
     {
@@ -1407,7 +1407,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL: **first match wins**, implicit deny at end; **wildcard 0 = must match**."
       }
     },
     {
@@ -1550,7 +1550,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL: **first match wins**, implicit deny at end; **wildcard 0 = must match**."
       }
     },
     {
@@ -1599,7 +1599,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Forgetting the implicit deny — An ACL with only permits blocks everything else via the implicit deny any"
+        "examTip": "ACL: **first match wins**, implicit deny at end; **wildcard 0 = must match**."
       }
     },
     {

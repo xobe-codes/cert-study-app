@@ -41,7 +41,7 @@
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT fails silently without **inside/outside** — label interfaces before reading address types."
       }
     },
     {
@@ -418,7 +418,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -465,7 +465,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -512,7 +512,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -649,7 +649,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -696,7 +696,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -879,7 +879,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -976,7 +976,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -1026,7 +1026,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -1076,7 +1076,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -1224,7 +1224,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -1276,7 +1276,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     },
     {
@@ -1475,7 +1475,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Expecting static NAT to serve many hosts — Static NAT is 1:1; use PAT/overload for many-to-one"
+        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
       }
     }
   ]

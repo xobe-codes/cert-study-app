@@ -41,7 +41,7 @@
             "misconceptionTested": "Selecting \"Static\" without matching the scenario constraint"
           }
         ],
-        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24)"
+        "examTip": "OSPF won't go FULL without matching **area, hello/dead, subnet, and auth** on the link."
       }
     },
     {
@@ -810,7 +810,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -908,7 +908,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -2260,7 +2260,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -2502,7 +2502,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -2552,7 +2552,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF items love **neighbor requirements** and **DR/BDR on multi-access** segments."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -2652,7 +2652,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -2751,7 +2751,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -2852,7 +2852,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -2904,7 +2904,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Assuming 1G and 10G have different OSPF cost by default — Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth"
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -3003,7 +3003,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "OSPF neighbors need matching **area, hello/dead, subnet/mask, and auth** — one mismatch blocks FULL."
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {
@@ -3053,7 +3053,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: Treating the default route as a normal match — 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches"
+        "examTip": "OSPF: neighbor **area + timers + subnet + auth** must match — DR/BDR only on multi-access."
       }
     },
     {

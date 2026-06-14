@@ -1088,7 +1088,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "L2 security features need correct **trusted vs untrusted** port roles — wrong trust breaks the feature."
+        "examTip": "Port security / DHCP snooping: **trusted vs untrusted** port role is the setup trap."
       }
     },
     {
@@ -1185,7 +1185,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
+        "examTip": "Port security / DHCP snooping: **trusted vs untrusted** port role is the setup trap."
       }
     },
     {
@@ -1282,7 +1282,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **layer2 security** before picking a familiar-sounding wrong term."
+        "examTip": "Port security / DHCP snooping: **trusted vs untrusted** port role is the setup trap."
       }
     },
     {

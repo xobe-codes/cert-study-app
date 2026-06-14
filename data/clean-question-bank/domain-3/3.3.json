@@ -1261,7 +1261,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
       }
     },
     {
@@ -1697,7 +1697,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
       }
     },
     {
@@ -1746,7 +1746,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
       }
     },
     {
@@ -1940,7 +1940,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
       }
     },
     {
@@ -2334,7 +2334,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
       }
     },
     {
