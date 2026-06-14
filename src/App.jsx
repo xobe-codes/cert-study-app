@@ -16,6 +16,8 @@ import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { buildAppShellCss } from './ui/appShell.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
+import OverflowMarquee from './components/OverflowMarquee.jsx'
+import { formatCuratedAttribution } from './curatedDisplay.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
@@ -2118,12 +2120,15 @@ const READING_TIERS = [
 function CuratedReading({ data }) {
   const [tier, setTier] = useState('intermediate')
   const r = data.reading
-  const srcNames = [...new Set(r.sourceRefs.map(s => s.sourceName.replace(/ —.*$/, '').replace(/\s*\(.*\)$/, '')))]
+  const attribution = formatCuratedAttribution(r.sourceRefs, data.objectiveId)
   return (
     <div className="ccna-stagger objective-reading-prose lesson-prose">
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'nowrap' }}>
         <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
-        <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{srcNames.join(' · ')}</span>
+        <OverflowMarquee
+          text={attribution}
+          style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}
+        />
       </div>
       <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
         {READING_TIERS.map(t => {

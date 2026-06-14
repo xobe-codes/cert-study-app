@@ -1,9 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import {
   difficultyAccent,
+  formatCuratedAttribution,
+  getCuratedBundleLabel,
   getObjectiveDifficulty,
   getCkuDifficulty,
   getCuratedPreview,
+  shortSourceLabel,
 } from '../curatedDisplay.js'
 
 describe('curatedDisplay', () => {
@@ -27,5 +30,25 @@ describe('curatedDisplay', () => {
     const preview = getCuratedPreview('3.2')
     expect(preview).toBeTruthy()
     expect(preview).not.toMatch(/\*\*/)
+  })
+
+  it('shortens long source names for display', () => {
+    expect(shortSourceLabel("Jeremy's IT Lab — CCNA 200-301 Notes")).toBe("Jeremy's IT Lab")
+    expect(shortSourceLabel('Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)')).toBe('Odom Vol 1')
+  })
+
+  it('formats exam topic + grounded sources', () => {
+    const line = formatCuratedAttribution([
+      { sourceName: "Jeremy's IT Lab — CCNA 200-301 Notes" },
+      { sourceName: 'Cisco Press CCNA 200-301 Official Cert Guide, Vol 1 (Odom)' },
+      { sourceName: 'Cisco CCNA 200-301 v1.1 Exam Topics' },
+    ], '1.1')
+    expect(line).toBe("CCNA 200-301 topic 1.1 · from Jeremy's IT Lab & Odom Vol 1")
+  })
+
+  it('describes bundled content types per objective', () => {
+    const label = getCuratedBundleLabel('3.2')
+    expect(label).toMatch(/lesson/)
+    expect(label).toMatch(/offline/)
   })
 })

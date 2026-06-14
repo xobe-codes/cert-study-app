@@ -215,7 +215,7 @@ export default function SettingsSheet({
         <p style={{ ...styles.small, marginBottom: 16, lineHeight: 1.5 }}>
           CCNA 200-301 Study Tool v{appVersion}<br />
           {objectiveCount} exam objectives · {cleanBankObjectives} with curated banks · {cleanBankQuestions > 0 ? `${cleanBankQuestions} bundled questions` : 'bundled questions load on first quiz'}<br />
-          Most lessons work offline — bundled · instant.
+          Most lessons work offline — curated content ships in the app.
         </p>
 
         {msg && <div style={{ ...styles.small, color: COLORS.mint, marginBottom: 8 }}>{msg}</div>}

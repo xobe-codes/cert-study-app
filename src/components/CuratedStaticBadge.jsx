@@ -1,15 +1,15 @@
 import React from 'react'
 import { hasCuratedQuestions, hasCuratedReading } from '../data/ccnaCurated.js'
-import { getObjectiveDifficulty } from '../curatedDisplay.js'
+import { getCuratedBundleLabel, getObjectiveDifficulty } from '../curatedDisplay.js'
 import { COLORS } from '../ui/appTheme.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
 import DifficultyPill from './DifficultyPill.jsx'
 
-/** Difficulty pill + benefit-first label for bundled curated content. */
+/** Difficulty pill + what's-included label for curated content. */
 export default function CuratedStaticBadge({
   objectiveId,
   fontSize = 10,
-  staticLabel = STATIC_COPY.badge,
+  staticLabel,
   /** @deprecated use staticLabel */
   noApiLabel,
   showStatic = true,
@@ -18,7 +18,7 @@ export default function CuratedStaticBadge({
 }) {
   const difficulty = getObjectiveDifficulty(objectiveId)
   const isStatic = hasCuratedReading(objectiveId) || hasCuratedQuestions(objectiveId)
-  const label = noApiLabel || staticLabel
+  const label = noApiLabel || staticLabel || getCuratedBundleLabel(objectiveId) || STATIC_COPY.badge
   const visible = showNoApi !== undefined ? showNoApi : showStatic
   if (!isStatic) return null
 

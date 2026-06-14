@@ -1,11 +1,11 @@
 /**
- * Benefit-first labels for curated / bundled content.
- * Prefer what the learner gets (instant, included) over what we skip (API calls).
+ * Learner-facing labels for curated / bundled content.
+ * Prefer what's included (lesson, quiz, offline) over delivery jargon.
  */
 export const STATIC_COPY = {
-  badge: 'bundled · instant',
-  sources: 'Bundled in the app — loads instantly',
-  quickRefPill: 'BUNDLED · INSTANT',
+  badge: 'curated · offline-ready',
+  sources: 'Chapter-level citations are in SOURCES above.',
+  quickRefPill: 'CURATED · OFFLINE',
   bankReview: 'from your saved bank — instant review',
   curatedQuizPool: 'curated pool — starts instantly',
   preassessPool: 'bundled check — instant start',
