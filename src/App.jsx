@@ -11,6 +11,7 @@ import { preloadCleanBank } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme.js'
 import { buildAppShellCss } from './ui/appShell.js'
+import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import Spinner from './components/Spinner.jsx'
@@ -1431,7 +1432,7 @@ function KeyTermsCarousel({ objective }) {
             <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9 }}>🃏 KEY TERMS</div>
             <div style={{ ...styles.small, fontSize: 'var(--ccna-type-xs)', marginTop: 1 }}>Tap a card to flip</div>
           </div>
-          {fromCurated && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>CURATED · NO AI</span>}
+          {fromCurated && <CuratedStaticBadge objectiveId={objective.id} fontSize={9} />}
         </div>
         <button
           style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
@@ -1598,7 +1599,7 @@ function CuratedVisualAid({ data }) {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
-        <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-xs)' }}>📚 CURATED · NO AI</span>
+        <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
       </div>
       {data.diagram && <CuratedDiagram diagram={data.diagram} />}
       {pf?.steps?.length > 0 && (
@@ -2103,7 +2104,7 @@ function CuratedReading({ data }) {
   return (
     <div className="ccna-stagger">
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
-        <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-xs)' }}>📚 CURATED · NO AI</span>
+        <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
         <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{srcNames.join(' · ')}</span>
       </div>
       <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
@@ -4741,8 +4742,7 @@ function ContentCoverage({ onOpen, bare = false }) {
                   <button key={o.id} onClick={() => onOpen({ ...o, domainId: r.id, domainName: r.name, accent: r.accent })} style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%', background: 'none', border: 'none', padding: '4px 0', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                     <span style={{ width: 7, height: 7, borderRadius: 999, background: c ? COLORS.mint : q ? COLORS.sky : COLORS.silverDim, flexShrink: 0 }} />
                     <span style={{ flex: 1, fontSize: 'var(--ccna-type-xs)', color: c || q ? COLORS.silver : COLORS.silverMid }}>{o.id} {o.title}</span>
-                    {c && <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.mint }}>CURATED</span>}
-                    {q && <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.sky }}>QUESTIONS</span>}
+                    {(c || q) && <CuratedStaticBadge objectiveId={o.id} fontSize={8} noApiLabel="no API" />}
                     {!c && !q && <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverDim }}>AI</span>}
                     {l && <span style={{ fontSize: 'var(--ccna-type-xs)' }}>🧪</span>}
                   </button>
@@ -5483,7 +5483,9 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
                 <StatusDot status={status} />
                 <span style={{ ...styles.pill(domain?.accent || 'purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{o.id}</span>
                 <span style={{ flex: 1, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }}>{o.title}</span>
-                {hasCuratedReading(o.id) && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>C</span>}
+                {(hasCuratedReading(o.id) || hasCuratedQuestions(o.id)) && (
+                  <CuratedStaticBadge objectiveId={o.id} fontSize={8} noApiLabel="no API" />
+                )}
               </button>
             )
           })}

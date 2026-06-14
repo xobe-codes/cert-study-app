@@ -3,6 +3,7 @@ import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from './ui/appTheme.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import { getCurated, hasCuratedReading, hasCuratedQuestions } from './data/ccnaCurated.js'
+import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import { getShelvedStats } from './data/shelvedStudy.js'
 import { REVIEW_SESSION_CAP } from './home/homeConstants.js'
 import {
@@ -464,8 +465,9 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                         <div style={{ fontSize: 'var(--ccna-type-sm)' }}>{o.id} {o.title}</div>
                       </div>
                       {(() => {
-                        if (hasCuratedReading(o.id)) return <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)', marginLeft: 6, flexShrink: 0 }}>C</span>
-                        if (hasCuratedQuestions(o.id)) return <span style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-micro)', marginLeft: 6, flexShrink: 0 }}>Q</span>
+                        if (hasCuratedReading(o.id) || hasCuratedQuestions(o.id)) {
+                          return <CuratedStaticBadge objectiveId={o.id} fontSize={9} />
+                        }
                         return null
                       })()}
                       {offlineReady?.has(o.id) && <span style={{ color: COLORS.mint, fontSize: 'var(--ccna-type-sm)', marginLeft: 8, flexShrink: 0 }}>⤓</span>}
