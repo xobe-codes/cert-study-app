@@ -12,7 +12,7 @@ import { getShelvedStats } from './data/shelvedStudy.js'
 import ExtraStudyMode from './ExtraStudyMode.jsx'
 import ExamTrapStudyMode from './ExamTrapStudyMode.jsx'
 import RoutingDecoderMode from './RoutingDecoderMode.jsx'
-import { buildMockExamDomainCounts, MOCK_EXAM_QUESTION_COUNT, MOCK_EXAM_DURATION_MIN, MOCK_EXAM_AI_CAP } from './mockExamConfig.js'
+import { buildMockExamDomainCounts, MOCK_EXAM_QUESTION_COUNT, MOCK_EXAM_DURATION_MIN, MOCK_EXAM_AI_CAP, staticMockExamReady, buildStaticMockExamPool } from './mockExamConfig.js'
 
 /* =========================================================================
    DESIGN TOKENS
@@ -3092,32 +3092,82 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
 }
 
 function McChoices({ q, selected, revealed, onSelect }) {
-  if (!isMcQuestion(q)) return null
-  return q.choices.map((choice, idx) => {
-    let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
-    if (revealed) {
-      if (idx === q.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
-      else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
+  const groupRef = useRef(null)
+  const isMc = isMcQuestion(q)
+  const choiceCount = q?.choices?.length || 0
+
+  useEffect(() => {
+    const root = groupRef.current
+    if (!root || !isMc || revealed) return
+
+    function onGroupKeyDown(e) {
+      const digit = parseInt(e.key, 10)
+      if (digit >= 1 && digit <= choiceCount) {
+        e.preventDefault()
+        onSelect(digit - 1)
+        return
+      }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault()
+        onSelect(selected == null ? 0 : (selected + 1) % choiceCount)
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault()
+        onSelect(selected == null ? choiceCount - 1 : (selected - 1 + choiceCount) % choiceCount)
+      }
     }
-    return (
-      <button
-        key={idx}
-        type="button"
-        role="radio"
-        aria-checked={selected === idx}
-        aria-label={`Choice ${String.fromCharCode(65 + idx)}: ${choice}`}
-        onClick={() => onSelect(idx)}
-        onKeyDown={e => { if (!revealed && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onSelect(idx) } }}
-        style={{
-          display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
-          background: bg, border: `1px solid ${border}`, color, borderRadius: 10,
-          padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4,
-        }}
-      >
-        {choice}
-      </button>
-    )
-  })
+
+    root.addEventListener('keydown', onGroupKeyDown)
+    return () => root.removeEventListener('keydown', onGroupKeyDown)
+  }, [isMc, revealed, selected, choiceCount, onSelect])
+
+  if (!isMc) return null
+
+  return (
+    <div
+      ref={groupRef}
+      role="radiogroup"
+      aria-label="Answer choices"
+      tabIndex={revealed ? -1 : 0}
+      style={{ outline: 'none' }}
+    >
+      {q.choices.map((choice, idx) => {
+        let bg = COLORS.surface, border = COLORS.border, color = COLORS.silver
+        if (revealed) {
+          if (idx === q.correctIndex) { bg = COLORS.mintDim; border = COLORS.mintBorder; color = COLORS.mint }
+          else if (idx === selected) { bg = COLORS.roseDim; border = COLORS.roseBorder; color = COLORS.rose }
+        } else if (selected === idx) {
+          bg = COLORS.purpleDim
+          border = COLORS.purpleGlow
+          color = COLORS.purpleGlow
+        }
+        return (
+          <button
+            key={idx}
+            type="button"
+            role="radio"
+            aria-checked={selected === idx}
+            tabIndex={-1}
+            aria-label={`Choice ${String.fromCharCode(65 + idx)}: ${choice}`}
+            onClick={() => onSelect(idx)}
+            onKeyDown={e => { if (!revealed && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onSelect(idx) } }}
+            style={{
+              display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
+              background: bg, border: `1px solid ${border}`, color, borderRadius: 10,
+              padding: '12px 14px', fontSize: 14, cursor: revealed ? 'default' : 'pointer', lineHeight: 1.4,
+            }}
+          >
+            <span aria-hidden="true" style={{ fontWeight: 700, marginRight: 8, color: COLORS.silverMid }}>
+              {String.fromCharCode(65 + idx)}.
+            </span>
+            {choice}
+          </button>
+        )
+      })}
+      {!revealed && (
+        <div style={{ ...styles.small, marginTop: 4 }}>Tip: press 1–{Math.min(choiceCount, 4)} or arrow keys to select</div>
+      )}
+    </div>
+  )
 }
 
 /* ---- Answer review (static, no API) — shows why the correct choice is right
@@ -6935,27 +6985,57 @@ function MockExam({ onExit }) {
   const [current, setCurrent] = useState(0)
   const [responses, setResponses] = useState({}) // qIndex -> selectedIndex
   const [secondsLeft, setSecondsLeft] = useState(MOCK_EXAM_DURATION_MIN * 60)
+  const [staticOnly, setStaticOnly] = useState(true)
+  const [bankReady, setBankReady] = useState(false)
+
+  useEffect(() => {
+    preloadCleanBank().then(() => setBankReady(true))
+  }, [])
+
+  const getMcForObjective = useCallback((objectiveId) => (
+    getCuratedQuestions(objectiveId).filter(isMcQuestion)
+  ), [])
+
+  const canUseStaticOnly = useMemo(() => (
+    bankReady && staticMockExamReady(DOMAINS, getMcForObjective)
+  ), [bankReady, getMcForObjective])
+
+  useEffect(() => {
+    if (canUseStaticOnly) setStaticOnly(true)
+    else setStaticOnly(false)
+  }, [canUseStaticOnly])
 
   const start = useCallback(async () => {
     setPhase('loading')
     setError(null)
     try {
       await preloadCleanBank()
+      const getMc = (id) => getCuratedQuestions(id).filter(isMcQuestion)
+
+      if (staticOnly) {
+        if (!staticMockExamReady(DOMAINS, getMc)) {
+          throw new Error('Not enough static questions for a full exam. Turn off static-only or add more questions to the bank.')
+        }
+        const final = buildStaticMockExamPool(DOMAINS, getMc, shuffleArray)
+        setQuestions(final)
+        setResponses({})
+        setCurrent(0)
+        setSecondsLeft(MOCK_EXAM_DURATION_MIN * 60)
+        setPhase('active')
+        return
+      }
+
       const domainCounts = buildMockExamDomainCounts(DOMAINS).filter(dc => dc.count > 0)
 
-      // For each domain, try to fill the needed count from the static bank first.
-      // Only call AI for objectives that have no imported questions.
       const all = []
       let aiUsed = 0
       await Promise.all(domainCounts.map(async ({ domain, count }) => {
-        // Collect all static questions for this domain
         const staticPool = shuffleArray(
-          domain.objectives.flatMap(o => getCuratedQuestions(o.id).filter(isMcQuestion).map(q => ({ ...q, objectiveId: o.id })))
+          domain.objectives.flatMap(o => getCuratedQuestions(o.id).filter(isMcQuestion).map(q => ({ ...q, objectiveId: o.id }))),
         )
         const fromStatic = staticPool.slice(0, count)
         all.push(...fromStatic)
 
-        // Only call AI if static pool is too thin (capped per exam)
         const aiCount = Math.min(count - fromStatic.length, Math.max(0, MOCK_EXAM_AI_CAP - aiUsed))
         if (aiCount <= 0) return
         aiUsed += aiCount
@@ -6986,7 +7066,7 @@ function MockExam({ onExit }) {
       setError(err.message.includes('JSON') ? 'Claude returned an unexpected format while building the exam. Please try again.' : err.message)
       setPhase('error')
     }
-  }, [])
+  }, [staticOnly])
 
   // Countdown timer
   useEffect(() => {
@@ -7033,7 +7113,9 @@ function MockExam({ onExit }) {
   }, [phase, questions, responses])
 
   if (phase === 'intro') {
-    const staticCount = DOMAINS.flatMap(d => d.objectives).reduce((n, o) => n + getCuratedQuestions(o.id).length, 0)
+    const staticCount = bankReady
+      ? DOMAINS.flatMap(d => d.objectives).reduce((n, o) => n + getMcForObjective(o.id).length, 0)
+      : 0
     const staticPct = Math.min(100, Math.round((Math.min(staticCount, MOCK_EXAM_QUESTION_COUNT) / MOCK_EXAM_QUESTION_COUNT) * 100))
     return (
       <div>
@@ -7043,10 +7125,23 @@ function MockExam({ onExit }) {
           <div style={{ fontSize: 14, lineHeight: 1.7 }}>
             <div>• {MOCK_EXAM_QUESTION_COUNT} questions, {MOCK_EXAM_DURATION_MIN} minute countdown</div>
             <div>• Weighted by official exam domain percentages</div>
-            <div>• <span style={{ color: COLORS.mint }}>~{staticPct}% from your static question bank</span> — no API needed for those</div>
+            <div>• <span style={{ color: COLORS.mint }}>{canUseStaticOnly ? '100% from your static bank' : `~${staticPct}% from your static question bank`}</span>{canUseStaticOnly ? ' — no API needed' : ' — hybrid fills gaps with AI'}</div>
             <div>• Score report broken down by domain at the end</div>
             <div>• Once started, the timer runs continuously — find a quiet 2 hours, or submit early</div>
           </div>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontSize: 14, cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={staticOnly}
+              onChange={e => setStaticOnly(e.target.checked)}
+              disabled={!canUseStaticOnly && staticOnly}
+              style={{ width: 18, height: 18, accentColor: COLORS.purple }}
+            />
+            <span>
+              Static bank only (no API)
+              {!canUseStaticOnly && !bankReady && <span style={{ color: COLORS.silverMid }}> — loading bank…</span>}
+            </span>
+          </label>
         </div>
         <button style={styles.primaryBtn} onClick={start}>Start Mock Exam</button>
       </div>
@@ -7101,20 +7196,7 @@ function MockExam({ onExit }) {
       </div>
       <div style={styles.card}>
         <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 14, lineHeight: 1.5 }}>{q.question}</div>
-        {q.choices.map((choice, idx) => (
-          <button
-            key={idx}
-            onClick={() => selectChoice(idx)}
-            style={{
-              display: 'block', width: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
-              background: selected === idx ? COLORS.purpleDim : COLORS.surface,
-              border: `1px solid ${selected === idx ? COLORS.purpleGlow : COLORS.border}`,
-              color: COLORS.silver, borderRadius: 10, padding: '12px 14px', fontSize: 14, cursor: 'pointer', lineHeight: 1.4,
-            }}
-          >
-            {choice}
-          </button>
-        ))}
+        <McChoices q={q} selected={selected ?? null} revealed={false} onSelect={selectChoice} />
       </div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
         <button style={styles.secondaryBtn} disabled={current === 0} onClick={() => setCurrent(c => Math.max(0, c - 1))}>Previous</button>

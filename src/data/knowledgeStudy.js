@@ -42,8 +42,20 @@ export function getAllDomain3ExamTraps() {
   return trapsForDomain(DOMAIN_3)
 }
 
+export function getAllDomain1ExamTraps() {
+  return trapsForDomain(DOMAIN_1)
+}
+
+export function getAllDomain2ExamTraps() {
+  return trapsForDomain(DOMAIN_2)
+}
+
 export function getAllDomain5ExamTraps() {
   return trapsForDomain(DOMAIN_5)
+}
+
+export function getAllDomain6ExamTraps() {
+  return trapsForDomain(DOMAIN_6)
 }
 
 export function getAllExamTraps() {
