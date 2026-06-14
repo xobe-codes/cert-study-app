@@ -5,4 +5,14 @@ export default defineConfig({
   plugins: [react()],
   // Cloudflare Pages serves the app at the domain root.
   base: '/',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('ccnaQuestionImports')) return 'question-imports'
+          if (id.includes('ccnaSkillQuestions')) return 'skill-questions'
+        },
+      },
+    },
+  },
 })
