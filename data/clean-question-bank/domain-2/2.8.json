@@ -452,6 +452,50 @@
       }
     },
     {
+      "id": "obj-2.9-source-q001",
+      "question": "What is the maximum length of an SSID?",
+      "choices": [
+        "16 characters",
+        "32 characters",
+        "48 characters",
+        "64 characters"
+      ],
+      "correctIndex": 1,
+      "explanation": "An SSID can be up to 32 characters.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "An SSID can be up to 32 characters."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"16 characters\" is incorrect because the scenario requires: An SSID can be up to 32 characters.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"48 characters\" is incorrect because the scenario requires: An SSID can be up to 32 characters.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"64 characters\" is incorrect because the scenario requires: An SSID can be up to 32 characters.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-2.9-source-q002",
       "question": "You are running a WLC for a WLAN. You want to allow for guests to be segmented to the guest VLAN. What is the simplest implementation you can configure on the WLC?",
       "choices": [
@@ -490,6 +534,141 @@
           {
             "choiceIndex": 3,
             "explanation": "\"Access control lists for two SSIDs\" is incorrect because the scenario requires: A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q003",
+      "question": "You company has been contracted to implement a 802.11 wireless system for a small town. Which type of implementation is this considered?",
+      "choices": [
+        "WMAN",
+        "WPAN",
+        "WLAN",
+        "WWAN"
+      ],
+      "correctIndex": 0,
+      "explanation": "A town-wide wireless deployment is a WMAN.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-WMAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "A town-wide wireless deployment is a WMAN."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"WPAN\" is incorrect because the scenario requires: A town-wide wireless deployment is a WMAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"WLAN\" is incorrect because the scenario requires: A town-wide wireless deployment is a WMAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"WWAN\" is incorrect because the scenario requires: A town-wide wireless deployment is a WMAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q004",
+      "question": "What is the term for a small wireless network that does not extend past 30 feet?",
+      "choices": [
+        "WPAN",
+        "WLAN",
+        "WMAN",
+        "WWAN"
+      ],
+      "correctIndex": 0,
+      "explanation": "A short-range personal wireless network is a WPAN.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-WPAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "A short-range personal wireless network is a WPAN."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"WLAN\" is incorrect because the scenario requires: A short-range personal wireless network is a WPAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"WMAN\" is incorrect because the scenario requires: A short-range personal wireless network is a WPAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"WWAN\" is incorrect because the scenario requires: A short-range personal wireless network is a WPAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q005",
+      "question": "What is the definition of a trust boundary in relation to QoS?",
+      "choices": [
+        "A trust boundary is where the QoS markings are first configured.",
+        "A trust boundary is where the QoS markings are stripped at the router.",
+        "A trust boundary is where the network begins to trust the QoS markings from devices.",
+        "A trust boundary is the separation of QoS queues based upon their priority."
+      ],
+      "correctIndex": 2,
+      "explanation": "A QoS trust boundary is where the network begins trusting QoS markings.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-QOS-TRUST-BOUNDARY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "A QoS trust boundary is where the network begins trusting QoS markings."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"A trust boundary is where the QoS markings are first configured.\" is incorrect because the scenario requires: A QoS trust boundary is where the network begins trusting QoS markings.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"A trust boundary is where the QoS markings are stripped at the router.\" is incorrect because the scenario requires: A QoS trust boundary is where the network begins trusting QoS markings.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A trust boundary is the separation of QoS queues based upon their priority.\" is incorrect because the scenario requires: A QoS trust boundary is where the network begins trusting QoS markings.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -678,6 +857,100 @@
       }
     },
     {
+      "id": "obj-2.9-source-q010",
+      "question": "WLC WLAN summary — MaintDept:\nProfile Name: MaintDept\nStatus: Disabled\nRadio Policy: All\nMulticast VLAN: Disabled\nBroadcast SSID: Disabled\n\nYou were just notified by your maintenance department that they lost all wireless connectivity. Earlier you had a contractor working on the WLC. You log into the WLC and click on the WLAN of MaintDept shown below. What can you do to correct the problem?",
+      "choices": [
+        "Enable the status",
+        "Change the radio policy",
+        "Enable Multicast VLAN Feature",
+        "Enable Broadcast SSID"
+      ],
+      "correctIndex": 0,
+      "explanation": "If a WLAN is disabled in the GUI, enabling status restores client access.",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-WLAN-STATUS"
+      ],
+      "objectiveId": "2.8",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "If a WLAN is disabled in the GUI, enabling status restores client access."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Change the radio policy\" is incorrect because the scenario requires: If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Enable Multicast VLAN Feature\" is incorrect because the scenario requires: If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Enable Broadcast SSID\" is incorrect because the scenario requires: If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q011",
+      "question": "WLC WLAN security — CorpWLAN:\nSecurity Policy: WPA2\nAuthentication Key Mgmt: PSK\nEncryption: AES-CCMP (WPA2 Personal)\n\nWhich statement is true about the WLAN below?",
+      "choices": [
+        "WPA is enabled.",
+        "WPA2 enterprise is enabled.",
+        "WPA2 personal is enabled.",
+        "802.1X is enabled."
+      ],
+      "correctIndex": 2,
+      "explanation": "The  WPA2 personal/PSK security.",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-WPA2-PSK"
+      ],
+      "objectiveId": "2.8",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The  WPA2 personal/PSK security."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"WPA is enabled.\" is incorrect because the scenario requires: The  WPA2 personal/PSK security.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"WPA2 enterprise is enabled.\" is incorrect because the scenario requires: The  WPA2 personal/PSK security.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.1X is enabled.\" is incorrect because the scenario requires: The  WPA2 personal/PSK security.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-2.9-source-q012",
       "question": "You need to set up a WLAN for connectivity to send and receive large files to roaming clients. The WLAN will exist with other WLAN traffic. Which QoS profile should the new WLAN be associated with?",
       "choices": [
@@ -716,6 +989,52 @@
           {
             "choiceIndex": 3,
             "explanation": "\"Silver\" is incorrect because the scenario requires: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.9-source-q013",
+      "question": "Which type of security can be implemented on a WLAN that requires the host PC to present a certificate before being allowed onto the wireless network?",
+      "choices": [
+        "MAC filtering",
+        "802.1X",
+        "WPA2 PSK",
+        "Fast Transitioning"
+      ],
+      "correctIndex": 1,
+      "explanation": "802.1X can require certificate-based authentication for WLAN access.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wlan",
+      "ckuIds": [
+        "CKU-WLAN",
+        "CKU-SSID",
+        "CKU-WLAN-GUI",
+        "CKU-802.1X",
+        "CKU-CERTIFICATES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "802.1X can require certificate-based authentication for WLAN access."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"MAC filtering\" is incorrect because the scenario requires: 802.1X can require certificate-based authentication for WLAN access.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"WPA2 PSK\" is incorrect because the scenario requires: 802.1X can require certificate-based authentication for WLAN access.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Fast Transitioning\" is incorrect because the scenario requires: 802.1X can require certificate-based authentication for WLAN access.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],

@@ -291,6 +291,53 @@
       }
     },
     {
+      "id": "obj-4.5-source-q007",
+      "question": "Which command can see the commands you previously entered?",
+      "choices": [
+        "Switch#show commands",
+        "Switch#show log",
+        "Switch#show history",
+        "Switch#show buffer"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Switch#show history\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#show commands\" is incorrect because the scenario requires: The correct answer is \"Switch#show history\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#show log\" is incorrect because the scenario requires: The correct answer is \"Switch#show history\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#show buffer\" is incorrect because the scenario requires: The correct answer is \"Switch#show history\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
+    },
+    {
       "id": "obj-4.5-source-q008",
       "question": "Syslog configuration excerpt:\nlogging trap informational\nlogging host 192.168.1.100\n! informational = severity level 6\n\nWhat severity is being logged to in the configuration below?",
       "choices": [
@@ -334,6 +381,53 @@
           {
             "choiceIndex": 3,
             "explanation": "\"Debugging (7)\" is incorrect because the scenario requires: The correct answer is \"Notifications (5)\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Lower syslog severity number = more critical (emergencies = 0)."
+      }
+    },
+    {
+      "id": "obj-4.5-source-q009",
+      "question": "You need to check the current CPU utilization on a router. Which command achieve this?",
+      "choices": [
+        "Router#show cpu",
+        "Router#show cpu-stats",
+        "Router#show processes",
+        "Router#show environment cpu"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "syslog",
+      "ckuIds": [
+        "CKU-SYSLOG",
+        "CKU-SYSLOG-UDP-514",
+        "CKU-SYSLOG-SEVERITY"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Router#show processes\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router#show cpu\" is incorrect because the scenario requires: The correct answer is \"Router#show processes\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router#show cpu-stats\" is incorrect because the scenario requires: The correct answer is \"Router#show processes\".",
+            "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#show environment cpu\" is incorrect because the scenario requires: The correct answer is \"Router#show processes\".",
             "misconceptionTested": "Syslog severity numbering (lower number = more severe)",
             "needsExplanationReview": true
           }

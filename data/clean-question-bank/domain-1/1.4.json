@@ -1,0 +1,333 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.4",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.4-c-q1",
+      "question": "CRC errors on an interface most often indicate…",
+      "choices": [
+        "Correct routing",
+        "Frame corruption on the wire",
+        "DNS failure",
+        "Valid VLAN tagging"
+      ],
+      "correctIndex": 1,
+      "explanation": "CRC failures mean the frame checksum failed — physical or duplex problems.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "crc meaning",
+      "ckuIds": [
+        "CKU-CRC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "CRC failures mean the frame checksum failed — physical or duplex problems."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Correct routing\" is incorrect because the scenario requires: CRC failures mean the frame checksum failed — physical or duplex problems.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"DNS failure\" is incorrect because the scenario requires: CRC failures mean the frame checksum failed — physical or duplex problems.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Valid VLAN tagging\" is incorrect because the scenario requires: CRC failures mean the frame checksum failed — physical or duplex problems.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.4-c-q2",
+      "question": "Which command best shows interface CRC and collision counters?",
+      "choices": [
+        "show ip route",
+        "show interfaces counters errors",
+        "show vlan brief",
+        "show version"
+      ],
+      "correctIndex": 1,
+      "explanation": "show interfaces counters errors focuses on L1/L2 error statistics.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "verify command",
+      "ckuIds": [
+        "CKU-IF-ERRORS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "show interfaces counters errors focuses on L1/L2 error statistics."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"show ip route\" is incorrect because the scenario requires: show interfaces counters errors focuses on L1/L2 error statistics.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"show vlan brief\" is incorrect because the scenario requires: show interfaces counters errors focuses on L1/L2 error statistics.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"show version\" is incorrect because the scenario requires: show interfaces counters errors focuses on L1/L2 error statistics.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.4-c-q3",
+      "question": "Switch port forced full-duplex; PC auto-negotiates half-duplex. Expected symptom?",
+      "choices": [
+        "No connectivity at all",
+        "Slow performance with CRC and late collisions",
+        "Double speed",
+        "STP blocking"
+      ],
+      "correctIndex": 1,
+      "explanation": "Duplex mismatch causes errors and poor throughput while link may stay up.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "duplex mismatch",
+      "ckuIds": [
+        "CKU-DUPLEX-MISMATCH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Duplex mismatch causes errors and poor throughput while link may stay up."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"No connectivity at all\" is incorrect because the scenario requires: Duplex mismatch causes errors and poor throughput while link may stay up.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Double speed\" is incorrect because the scenario requires: Duplex mismatch causes errors and poor throughput while link may stay up.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"STP blocking\" is incorrect because the scenario requires: Duplex mismatch causes errors and poor throughput while link may stay up.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.4-c-q4",
+      "question": "On a modern full-duplex switch access port, sustained collisions suggest…",
+      "choices": [
+        "Normal operation",
+        "Duplex mismatch or misconfiguration",
+        "OSPF adjacency",
+        "DHCP renewal"
+      ],
+      "correctIndex": 1,
+      "explanation": "Full-duplex switched ports should not collide — suspect mismatch or bad media.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "collisions",
+      "ckuIds": [
+        "CKU-COLLISIONS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Full-duplex switched ports should not collide — suspect mismatch or bad media."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Normal operation\" is incorrect because the scenario requires: Full-duplex switched ports should not collide — suspect mismatch or bad media.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"OSPF adjacency\" is incorrect because the scenario requires: Full-duplex switched ports should not collide — suspect mismatch or bad media.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"DHCP renewal\" is incorrect because the scenario requires: Full-duplex switched ports should not collide — suspect mismatch or bad media.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.4-c-q5",
+      "question": "First step when CRC errors increment on one link?",
+      "choices": [
+        "Reload the router",
+        "Check/replace cable and verify speed/duplex",
+        "Change VLAN",
+        "Enable OSPF"
+      ],
+      "correctIndex": 1,
+      "explanation": "Physical layer and speed/duplex alignment are the first checks for CRCs.",
+      "type": "troubleshooting",
+      "difficulty": "medium",
+      "concept": "fix order",
+      "ckuIds": [
+        "CKU-CRC",
+        "CKU-DUPLEX-MISMATCH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Physical layer and speed/duplex alignment are the first checks for CRCs."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Reload the router\" is incorrect because the scenario requires: Physical layer and speed/duplex alignment are the first checks for CRCs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Change VLAN\" is incorrect because the scenario requires: Physical layer and speed/duplex alignment are the first checks for CRCs.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Enable OSPF\" is incorrect because the scenario requires: Physical layer and speed/duplex alignment are the first checks for CRCs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.4-c-q6",
+      "question": "Runt frames are…",
+      "choices": [
+        "Oversized frames",
+        "Undersized frames below minimum Ethernet size",
+        "Broadcast frames only",
+        "Encrypted frames"
+      ],
+      "correctIndex": 1,
+      "explanation": "Runts are frames smaller than the minimum valid Ethernet size.",
+      "type": "definition",
+      "difficulty": "hard",
+      "concept": "runts",
+      "ckuIds": [
+        "CKU-IF-ERRORS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Runts are frames smaller than the minimum valid Ethernet size."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Oversized frames\" is incorrect because the scenario requires: Runts are frames smaller than the minimum valid Ethernet size.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Broadcast frames only\" is incorrect because the scenario requires: Runts are frames smaller than the minimum valid Ethernet size.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Encrypted frames\" is incorrect because the scenario requires: Runts are frames smaller than the minimum valid Ethernet size.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.4-c-q7",
+      "question": "True or False: An interface can show up/up while still accumulating CRC errors.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — link status does not guarantee error-free transmission.",
+      "type": "true-false",
+      "difficulty": "easy",
+      "concept": "link up errors",
+      "ckuIds": [
+        "CKU-IF-ERRORS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "True — link status does not guarantee error-free transmission."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"False\" is incorrect because the scenario requires: True — link status does not guarantee error-free transmission.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.4-c-q8",
+      "question": "CRC errors appear only on a cable running parallel to power lines. Likely cause?",
+      "choices": [
+        "Wrong IP subnet",
+        "Electromagnetic interference on copper",
+        "Missing default route",
+        "WPA3 misconfig"
+      ],
+      "correctIndex": 1,
+      "explanation": "EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "emi",
+      "ckuIds": [
+        "CKU-CRC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Wrong IP subnet\" is incorrect because the scenario requires: EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Missing default route\" is incorrect because the scenario requires: EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"WPA3 misconfig\" is incorrect because the scenario requires: EMI corrupts electrical signals on UTP — reroute cable or use shielded/fiber media.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

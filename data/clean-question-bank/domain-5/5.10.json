@@ -51,6 +51,54 @@
       }
     },
     {
+      "id": "obj-5.5-source-q002",
+      "question": "Which tunnel protocol is a Cisco proprietary protocol?",
+      "choices": [
+        "GRE",
+        "PPP",
+        "IPsec",
+        "SSL"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC",
+        "CKU-IPS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"GRE\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"PPP\" is incorrect because the scenario requires: The correct answer is \"GRE\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"IPsec\" is incorrect because the scenario requires: The correct answer is \"GRE\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SSL\" is incorrect because the scenario requires: The correct answer is \"GRE\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-5.5-source-q003",
       "question": "Which layer 3 protocol does GRE use?",
       "choices": [
@@ -91,6 +139,104 @@
             "choiceIndex": 3,
             "explanation": "\"Protocol 57\" is incorrect because the scenario requires: The correct answer is \"Protocol 47\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q004",
+      "question": "Router A tunnel config:\ninterface Tunnel0\n ip address 192.168.2.1 255.255.255.0\n tunnel source Serial0/0/0\n tunnel destination 203.0.113.2\n! No ip route to remote tunnel endpoint network\n\nyou are configuring a GRE tunnel. What is wrong with this configuration?",
+      "choices": [
+        "Nothing is wrong with the configuration.",
+        "The destination on Router A of the tunnel is incorrect.",
+        "The network is unrouteable.",
+        "The serial interfaces are on different networks."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "objectiveId": "5.10",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The network is unrouteable.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Nothing is wrong with the configuration.\" is incorrect because the scenario requires: The correct answer is \"The network is unrouteable.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The destination on Router A of the tunnel is incorrect.\" is incorrect because the scenario requires: The correct answer is \"The network is unrouteable.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The serial interfaces are on different networks.\" is incorrect because the scenario requires: The correct answer is \"The network is unrouteable.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q005",
+      "question": "GRE topology:\nRouter A: LAN 192.168.2.0/24, Tunnel0 192.168.2.1, peer Router B LAN 192.168.3.0/24\nSerial link: 203.0.113.0/30 (A=203.0.113.1, B=203.0.113.2)\n\nyou are configuring a GRE tunnel and need to configure a route statement on Router A. Which is the correct route statement?",
+      "choices": [
+        "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0",
+        "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0",
+        "Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1",
+        "Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "objectiveId": "5.10",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],
@@ -192,6 +338,104 @@
       }
     },
     {
+      "id": "obj-5.5-source-q008",
+      "question": "GRE tunnel carries traffic directly between tunnel endpoints:\nRouter A ping/traceroute to 192.168.3.50 crosses one GRE hop (tunnel encapsulation).\n\nif you do a traceroute on Router A to a destination of 192.168.3.50, how many hops will show?",
+      "choices": [
+        "One hop",
+        "Two hops",
+        "Four hops",
+        "Zero hops"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "objectiveId": "5.10",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"One hop\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Two hops\" is incorrect because the scenario requires: The correct answer is \"One hop\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Four hops\" is incorrect because the scenario requires: The correct answer is \"One hop\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Zero hops\" is incorrect because the scenario requires: The correct answer is \"One hop\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q009",
+      "question": "Router A Tunnel0 up/up but missing route to 192.168.3.0/24 via tunnel.\nCannot ping remote tunnel endpoint LAN 192.168.3.1\n\nYou are configuring a GRE tunnel. However, you cannot ping from Router A to 192.168.3.1. What is the problem?",
+      "choices": [
+        "The tunnel numbers do not match.",
+        "The destination on Router A of the tunnel is incorrect.",
+        "The routes are wrong.",
+        "The serial interfaces do not match."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "objectiveId": "5.10",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"The routes are wrong.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The tunnel numbers do not match.\" is incorrect because the scenario requires: The correct answer is \"The routes are wrong.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The destination on Router A of the tunnel is incorrect.\" is incorrect because the scenario requires: The correct answer is \"The routes are wrong.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The serial interfaces do not match.\" is incorrect because the scenario requires: The correct answer is \"The routes are wrong.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-5.5-source-q010",
       "question": "Which protocol helps resolve and direct traffic for DMVPN connections?",
       "choices": [
@@ -232,6 +476,55 @@
           {
             "choiceIndex": 3,
             "explanation": "\"GRE\" is incorrect because the scenario requires: The correct answer is \"NHRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.5-source-q011",
+      "question": "Serial link between routers:\nRouter A S0/0/0: encapsulation ppp\nRouter B S0/0/0: encapsulation hdlc\n\nYou have configured a point-to-point dedicated line between two locations. However, you cannot ping between the two routers. What is the problem?",
+      "choices": [
+        "The interface is administratively shut down.",
+        "There is a wiring problem.",
+        "There is a protocol mismatch.",
+        "There is an IP address mismatch."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "vpn",
+      "ckuIds": [
+        "CKU-VPN",
+        "CKU-GRE",
+        "CKU-IPSEC"
+      ],
+      "objectiveId": "5.10",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"There is a protocol mismatch.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The interface is administratively shut down.\" is incorrect because the scenario requires: The correct answer is \"There is a protocol mismatch.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"There is a wiring problem.\" is incorrect because the scenario requires: The correct answer is \"There is a protocol mismatch.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"There is an IP address mismatch.\" is incorrect because the scenario requires: The correct answer is \"There is a protocol mismatch.\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

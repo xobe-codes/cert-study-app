@@ -1218,6 +1218,55 @@
       }
     },
     {
+      "id": "obj-5.6-source-q019",
+      "question": "Network layout:\nHost 192.168.2.6 on user VLAN\nHR web server 192.168.1.3 port 80\nOther servers and Internet should remain reachable\n\nyou need to block traffic from the host 192.168.2.6 to the HR web application server but allow it to get to all other servers and the Internet. Which command(s) will achieve this?",
+      "choices": [
+        "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any",
+        "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any",
+        "Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any",
+        "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "objectiveId": "5.5",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#ac…",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#access-list 101 deny host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#ac…",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any eq 80\" is incorrect because the scenario requires: The correct answer is \"Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#ac…",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-5.6-source-q020",
       "question": "Which type of access list limits you to describing traffic by source address?",
       "choices": [
@@ -1313,6 +1362,55 @@
       }
     },
     {
+      "id": "obj-5.6-source-q022",
+      "question": "ACL requirement:\nBlock host network → HR web app (TCP/80) while permitting intranet web server access\nNeeds protocol/port matching → extended ACL\n\nyou need to block traffic from the host network to the HR web application and allow all traffic to get to the intranet web server. Which type of ACL would you use?",
+      "choices": [
+        "Standard",
+        "Dynamic",
+        "Extended",
+        "Expanded"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "objectiveId": "5.5",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Extended\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Standard\" is incorrect because the scenario requires: The correct answer is \"Extended\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Dynamic\" is incorrect because the scenario requires: The correct answer is \"Extended\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Expanded\" is incorrect because the scenario requires: The correct answer is \"Extended\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-5.6-source-q023",
       "question": "Which statement configures a valid access list?",
       "choices": [
@@ -1399,6 +1497,104 @@
           {
             "choiceIndex": 2,
             "explanation": "\"Router(config-if)#ip access-class 198 in\" is incorrect because the scenario requires: The correct answer is \"Router(config-if)#ip access-group 198 in\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q025",
+      "question": "Topology:\nGi0/0: user network (hosts)\nGi0/2: HR network (to be blocked from host network)\nACL 2: deny host network, permit other traffic — apply outbound on HR-facing interface\n\nyou want to block the host network from accessing the HR network. Which commands will place the access list on the proper interface to make it effective?",
+      "choices": [
+        "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in",
+        "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out",
+        "Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in",
+        "Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "objectiveId": "5.5",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in\" is incorrect because the scenario requires: The correct answer is \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out\" is incorrect because the scenario requires: The correct answer is \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 in\" is incorrect because the scenario requires: The correct answer is \"Router(config)#interface gi 0/2 Router(config-if)#ip access-group 2 out\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.6-source-q026",
+      "question": "Switch# show ip access-list named_list\nExtended IP access list named_list\n    10 deny tcp host 192.168.2.6 host 192.168.1.3 eq www\n    20 permit ip any any\n\nWhich command can see the output below with the line numbers?",
+      "choices": [
+        "Switch#show access-list named_list",
+        "Switch#show ip access-list named_list",
+        "Switch#show running-configuration",
+        "Switch#show ip access-list"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "acl",
+      "ckuIds": [
+        "CKU-ACL",
+        "CKU-STANDARD-ACL",
+        "CKU-EXTENDED-ACL"
+      ],
+      "objectiveId": "5.5",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Switch#show ip access-list\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#show access-list named_list\" is incorrect because the scenario requires: The correct answer is \"Switch#show ip access-list\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#show ip access-list named_list\" is incorrect because the scenario requires: The correct answer is \"Switch#show ip access-list\".",
+            "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#show running-configuration\" is incorrect because the scenario requires: The correct answer is \"Switch#show ip access-list\".",
             "misconceptionTested": "Standard vs extended ACL placement or wildcard masks",
             "needsExplanationReview": true
           }

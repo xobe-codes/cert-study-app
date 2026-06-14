@@ -1,5 +1,152 @@
 [
   {
+    "id": "3.1-cmd1",
+    "command": "show ip route",
+    "mode": "privileged EXEC",
+    "purpose": "Display the full IPv4 routing table with source codes, [AD/metric], next-hop, and interface.",
+    "example": "R1# show ip route",
+    "ckuIds": [
+      "CKU-ROUTING-TABLE-ENTRY",
+      "CKU-ROUTE-SOURCE-CODES"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.1-cmd2",
+    "command": "show ip route <prefix>",
+    "mode": "privileged EXEC",
+    "purpose": "Show details for a specific destination prefix, including which route was selected.",
+    "example": "R1# show ip route 10.1.1.0",
+    "ckuIds": [
+      "CKU-ROUTING-TABLE-ENTRY"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.1-cmd3",
+    "command": "show ip route connected",
+    "mode": "privileged EXEC",
+    "purpose": "Filter the routing table to connected (C) routes only.",
+    "example": "R1# show ip route connected",
+    "ckuIds": [
+      "CKU-CONNECTED-LOCAL-ROUTES"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.2-cmd1",
+    "command": "show ip route",
+    "mode": "privileged EXEC",
+    "purpose": "Display the IPv4 routing table, including source code, [AD/metric], next hop, and interface.",
+    "example": "R1# show ip route",
+    "ckuIds": [
+      "CKU-LONGEST-PREFIX-MATCH",
+      "CKU-ADMINISTRATIVE-DISTANCE"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-cmd2",
+    "command": "show ip route <subnet>",
+    "mode": "privileged EXEC",
+    "purpose": "Show details for a specific route, listing the administrative distance and metric plainly.",
+    "example": "R1# show ip route 10.2.2.0",
+    "ckuIds": [
+      "CKU-ADMINISTRATIVE-DISTANCE",
+      "CKU-METRIC"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-cmd3",
+    "command": "ip route <net> <mask> <next-hop> [AD]",
+    "mode": "global config",
+    "purpose": "Configure a static route; the optional trailing AD creates a floating static backup.",
+    "example": "R1(config)# ip route 10.0.0.0 255.0.0.0 10.1.1.1 130",
+    "ckuIds": [
+      "CKU-ADMINISTRATIVE-DISTANCE",
+      "CKU-DEFAULT-ROUTE"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.3-cmd1",
+    "command": "ip route <net> <mask> <next-hop>",
+    "mode": "global config",
+    "purpose": "Configure an IPv4 static route to a destination via next-hop IP.",
+    "example": "R1(config)# ip route 172.16.0.0 255.255.0.0 10.0.0.1",
+    "ckuIds": [
+      "CKU-STATIC-ROUTE-SYNTAX"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.3-cmd2",
+    "command": "ip route 0.0.0.0 0.0.0.0 <next-hop>",
+    "mode": "global config",
+    "purpose": "Configure a default static route (gateway of last resort).",
+    "example": "R1(config)# ip route 0.0.0.0 0.0.0.0 203.0.113.1",
+    "ckuIds": [
+      "CKU-DEFAULT-STATIC-ROUTE"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.3-cmd3",
+    "command": "ipv6 route <prefix>/<len> <next-hop>",
+    "mode": "global config",
+    "purpose": "Configure an IPv6 static route (requires ipv6 unicast-routing globally).",
+    "example": "R1(config)# ipv6 route 2001:db8::/32 2001:db8::1",
+    "ckuIds": [
+      "CKU-IPV6-STATIC-ROUTE"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.3-cmd4",
+    "command": "show ip route static",
+    "mode": "privileged EXEC",
+    "purpose": "Verify installed IPv4 static routes.",
+    "example": "R1# show ip route static",
+    "ckuIds": [
+      "CKU-STATIC-ROUTE-SYNTAX"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.4-cmd1",
+    "command": "router ospf <pid>",
+    "mode": "global config",
+    "purpose": "Enter OSPF configuration for a process.",
+    "example": "R1(config)# router ospf 1",
+    "ckuIds": [
+      "CKU-OSPF"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
+    "id": "3.4-cmd2",
+    "command": "network <addr> <wildcard> area <id>",
+    "mode": "router config",
+    "purpose": "Advertise matching interfaces into an OSPF area.",
+    "example": "R1(config-router)# network 10.0.0.0 0.0.0.255 area 0",
+    "ckuIds": [
+      "CKU-OSPF"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
+    "id": "3.4-cmd3",
+    "command": "show ip ospf neighbor",
+    "mode": "privileged EXEC",
+    "purpose": "Show OSPF neighbors and their adjacency state.",
+    "example": "R1# show ip ospf neighbor",
+    "ckuIds": [
+      "CKU-OSPF-NEIGHBOR"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
     "id": "4.1-cmd1",
     "command": "ip nat inside source static <local> <global>",
     "mode": "global config",

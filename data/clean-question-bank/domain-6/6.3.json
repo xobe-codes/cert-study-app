@@ -145,6 +145,56 @@
       }
     },
     {
+      "id": "obj-6.3-source-q004",
+      "question": "Which current Cisco SDN solution is data center focused?",
+      "choices": [
+        "Cisco APIC-EM",
+        "OpenDaylight",
+        "Cisco SD-WAN",
+        "Cisco ACI"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-API",
+        "CKU-SDN",
+        "CKU-SD-WAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Cisco ACI\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Cisco APIC-EM\" is incorrect because the scenario requires: The correct answer is \"Cisco ACI\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OpenDaylight\" is incorrect because the scenario requires: The correct answer is \"Cisco ACI\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Cisco SD-WAN\" is incorrect because the scenario requires: The correct answer is \"Cisco ACI\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-6.3-source-q005",
       "question": "Your company has an application they need remote office/branch office employees to directly access. Which Cisco SDN solution should you implement?",
       "choices": [
@@ -286,6 +336,57 @@
           {
             "choiceIndex": 3,
             "explanation": "\"The SDN controller complements the control plane of the SDN device.\" is incorrect because the scenario requires: The correct answer is \"The SDN controller replaces the control plane of the SDN.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q008",
+      "question": "Which platform is Cisco’s SDN controller offering for enterprise connectivity?",
+      "choices": [
+        "APIC-EM",
+        "OpenSDN",
+        "OpenStack",
+        "OpenDaylight"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-API",
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-DNA-PLATFORM"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"APIC-EM\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OpenSDN\" is incorrect because the scenario requires: The correct answer is \"APIC-EM\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"OpenStack\" is incorrect because the scenario requires: The correct answer is \"APIC-EM\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"OpenDaylight\" is incorrect because the scenario requires: The correct answer is \"APIC-EM\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -741,6 +842,53 @@
       }
     },
     {
+      "id": "obj-6.3-source-q018",
+      "question": "Identify the maximum hop count of fabric switching?",
+      "choices": [
+        "1 hop",
+        "3 hops",
+        "4 hops",
+        "5 hops"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"3 hops\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"1 hop\" is incorrect because the scenario requires: The correct answer is \"3 hops\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"4 hops\" is incorrect because the scenario requires: The correct answer is \"3 hops\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"5 hops\" is incorrect because the scenario requires: The correct answer is \"3 hops\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-6.3-source-q019",
       "question": "Which component of an SDN is where the MTU is set?",
       "choices": [
@@ -983,6 +1131,55 @@
           {
             "choiceIndex": 3,
             "explanation": "\"VTP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.3-source-q024",
+      "question": "Which next-hop packet forwarding protocol is used with SDN switching networks?",
+      "choices": [
+        "ECMP",
+        "OSPF",
+        "MPLS",
+        "CLOS"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "sdn architecture",
+      "ckuIds": [
+        "CKU-SDN-ARCHITECTURE",
+        "CKU-SPINE-LEAF",
+        "CKU-CONTROL-PLANE",
+        "CKU-SDN",
+        "CKU-ECMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"ECMP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"OSPF\" is incorrect because the scenario requires: The correct answer is \"ECMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"MPLS\" is incorrect because the scenario requires: The correct answer is \"ECMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"CLOS\" is incorrect because the scenario requires: The correct answer is \"ECMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

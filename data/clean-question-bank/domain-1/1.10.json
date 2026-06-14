@@ -1,0 +1,345 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.10",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.10-c-q1",
+      "question": "Which Windows command shows IP address, mask, gateway, and DNS?",
+      "choices": [
+        "netstat",
+        "ipconfig /all",
+        "arp -a",
+        "route print only"
+      ],
+      "correctIndex": 1,
+      "explanation": "ipconfig /all displays full IPv4/IPv6 client parameters.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "ipconfig",
+      "ckuIds": [
+        "CKU-IPCONFIG"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "ipconfig /all displays full IPv4/IPv6 client parameters."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"netstat\" is incorrect because the scenario requires: ipconfig /all displays full IPv4/IPv6 client parameters.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"arp -a\" is incorrect because the scenario requires: ipconfig /all displays full IPv4/IPv6 client parameters.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"route print only\" is incorrect because the scenario requires: ipconfig /all displays full IPv4/IPv6 client parameters.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.10-c-q2",
+      "question": "A PC pings another host on the same /24 but cannot ping 8.8.8.8. Most likely issue?",
+      "choices": [
+        "DNS server",
+        "Default gateway",
+        "Wrong VLAN on switch",
+        "WPA3"
+      ],
+      "correctIndex": 1,
+      "explanation": "Same-subnet works but off-subnet fails → check default gateway.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "gateway symptom",
+      "ckuIds": [
+        "CKU-DNS-GW-ISSUES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Same-subnet works but off-subnet fails → check default gateway."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"DNS server\" is incorrect because the scenario requires: Same-subnet works but off-subnet fails → check default gateway.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Wrong VLAN on switch\" is incorrect because the scenario requires: Same-subnet works but off-subnet fails → check default gateway.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"WPA3\" is incorrect because the scenario requires: Same-subnet works but off-subnet fails → check default gateway.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.10-c-q3",
+      "question": "ping 203.0.113.1 succeeds but ping www.example.com fails. Likely cause?",
+      "choices": [
+        "Cable CRC errors",
+        "DNS resolution failure",
+        "Missing subnet mask",
+        "STP loop"
+      ],
+      "correctIndex": 1,
+      "explanation": "IP works but names fail — troubleshoot DNS settings or server.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "dns symptom",
+      "ckuIds": [
+        "CKU-DNS-GW-ISSUES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "IP works but names fail — troubleshoot DNS settings or server."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Cable CRC errors\" is incorrect because the scenario requires: IP works but names fail — troubleshoot DNS settings or server.",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Missing subnet mask\" is incorrect because the scenario requires: IP works but names fail — troubleshoot DNS settings or server.",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"STP loop\" is incorrect because the scenario requires: IP works but names fail — troubleshoot DNS settings or server.",
+            "misconceptionTested": "Reversing forward vs reverse DNS lookup"
+          }
+        ],
+        "examTip": "Forward lookup = name→IP; reverse lookup = IP→name."
+      }
+    },
+    {
+      "id": "1.10-c-q4",
+      "question": "What does tracert (traceroute) show?",
+      "choices": [
+        "MAC address table",
+        "Hop-by-hop path to a destination",
+        "DHCP lease time only",
+        "Wi‑Fi channel"
+      ],
+      "correctIndex": 1,
+      "explanation": "Traceroute reveals each router hop toward the destination.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "tracert",
+      "ckuIds": [
+        "CKU-PING-TRACE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Traceroute reveals each router hop toward the destination."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"MAC address table\" is incorrect because the scenario requires: Traceroute reveals each router hop toward the destination.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"DHCP lease time only\" is incorrect because the scenario requires: Traceroute reveals each router hop toward the destination.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Wi‑Fi channel\" is incorrect because the scenario requires: Traceroute reveals each router hop toward the destination.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.10-c-q5",
+      "question": "ipconfig shows 169.254.10.5. What should you check first?",
+      "choices": [
+        "OSPF neighbor table",
+        "DHCP server/reachability",
+        "Fiber SM/MM type",
+        "VTP domain"
+      ],
+      "correctIndex": 1,
+      "explanation": "169.254.x.x means DHCP failed — verify DHCP service, relay, and VLAN.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "apipa client",
+      "ckuIds": [
+        "CKU-DNS-GW-ISSUES",
+        "CKU-IPCONFIG"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "169.254.x.x means DHCP failed — verify DHCP service, relay, and VLAN."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"OSPF neighbor table\" is incorrect because the scenario requires: 169.254.x.x means DHCP failed — verify DHCP service, relay, and VLAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Fiber SM/MM type\" is incorrect because the scenario requires: 169.254.x.x means DHCP failed — verify DHCP service, relay, and VLAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"VTP domain\" is incorrect because the scenario requires: 169.254.x.x means DHCP failed — verify DHCP service, relay, and VLAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.10-c-q6",
+      "question": "Best initial ping sequence for Internet troubleshooting?",
+      "choices": [
+        "Hostname → random IP",
+        "Gateway → remote IP → hostname",
+        "Broadcast → multicast",
+        "Loopback only"
+      ],
+      "correctIndex": 1,
+      "explanation": "Test gateway, then known public IP, then DNS name to isolate layer.",
+      "type": "troubleshooting",
+      "difficulty": "medium",
+      "concept": "ping order",
+      "ckuIds": [
+        "CKU-PING-TRACE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Test gateway, then known public IP, then DNS name to isolate layer."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Hostname → random IP\" is incorrect because the scenario requires: Test gateway, then known public IP, then DNS name to isolate layer.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Broadcast → multicast\" is incorrect because the scenario requires: Test gateway, then known public IP, then DNS name to isolate layer.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Loopback only\" is incorrect because the scenario requires: Test gateway, then known public IP, then DNS name to isolate layer.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.10-c-q7",
+      "question": "On Linux, which command shows the routing table including default gateway?",
+      "choices": [
+        "ip route",
+        "show vlan brief",
+        "ifconfig only",
+        "debug ip routing"
+      ],
+      "correctIndex": 0,
+      "explanation": "ip route displays routes and the default gateway.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "linux verify",
+      "ckuIds": [
+        "CKU-IPCONFIG"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "ip route displays routes and the default gateway."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"show vlan brief\" is incorrect because the scenario requires: ip route displays routes and the default gateway.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ifconfig only\" is incorrect because the scenario requires: ip route displays routes and the default gateway.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"debug ip routing\" is incorrect because the scenario requires: ip route displays routes and the default gateway.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.10-c-q8",
+      "question": "Two PCs intermittently lose connectivity with ARP warnings. Suspect…",
+      "choices": [
+        "Duplicate IP address",
+        "Correct DNS",
+        "Full-duplex on both ends",
+        "Valid DHCP lease"
+      ],
+      "correctIndex": 0,
+      "explanation": "Duplicate IPs cause ARP conflicts and flaky connectivity.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "duplicate ip",
+      "ckuIds": [
+        "CKU-DNS-GW-ISSUES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Duplicate IPs cause ARP conflicts and flaky connectivity."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Correct DNS\" is incorrect because the scenario requires: Duplicate IPs cause ARP conflicts and flaky connectivity.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Full-duplex on both ends\" is incorrect because the scenario requires: Duplicate IPs cause ARP conflicts and flaky connectivity.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Valid DHCP lease\" is incorrect because the scenario requires: Duplicate IPs cause ARP conflicts and flaky connectivity.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

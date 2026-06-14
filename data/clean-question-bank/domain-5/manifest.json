@@ -2,7 +2,7 @@
   "schemaVersion": "ccna-clean-question-bank-v1",
   "domain": "5",
   "domainName": "Security Fundamentals",
-  "builtAt": "2026-06-14T01:59:59.734Z",
+  "builtAt": "2026-06-14T02:10:16.419Z",
   "objectives": {
     "5.1": {
       "active": 24
@@ -11,29 +11,29 @@
       "active": 7
     },
     "5.3": {
-      "active": 24
+      "active": 25
     },
     "5.10": {
-      "active": 11
+      "active": 17
     },
     "5.5": {
-      "active": 34
+      "active": 38
     },
     "5.6": {
-      "active": 26
+      "active": 29
     },
     "5.7": {
-      "active": 11
+      "active": 13
     },
     "5.8": {
-      "active": 10
+      "active": 12
     },
     "5.9": {
-      "active": 2
+      "active": 4
     }
   },
   "totals": {
-    "active": 149,
+    "active": 169,
     "shelved": 0
   }
 }

@@ -1,5 +1,114 @@
 [
   {
+    "id": "3.1-trap1",
+    "trap": "The L route is NOT a host route to a PC.",
+    "correction": "L is the router own interface IP as a /32 — so the router processes packets addressed to itself.",
+    "ckuIds": [
+      "CKU-CONNECTED-LOCAL-ROUTES"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.1-trap2",
+    "trap": "In [AD/metric], AD comes FIRST.",
+    "correction": "Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets.",
+    "ckuIds": [
+      "CKU-ROUTING-TABLE-ENTRY"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.2-t1",
+    "trap": "Assuming the lowest AD route always wins.",
+    "correction": "AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+    "ckuIds": [
+      "CKU-LONGEST-PREFIX-MATCH",
+      "CKU-ADMINISTRATIVE-DISTANCE"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-t2",
+    "trap": "Comparing metrics across routing protocols.",
+    "correction": "Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc.",
+    "ckuIds": [
+      "CKU-METRIC"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-t3",
+    "trap": "Treating the default route as a normal match.",
+    "correction": "0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+    "ckuIds": [
+      "CKU-DEFAULT-ROUTE"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-t4",
+    "trap": "Forgetting AD 255 behavior.",
+    "correction": "A route with AD 255 is considered unusable and is never installed in the routing table.",
+    "ckuIds": [
+      "CKU-ADMINISTRATIVE-DISTANCE"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.3-trap1",
+    "trap": "A floating static needs AD HIGHER than the dynamic protocol.",
+    "correction": "Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup.",
+    "ckuIds": [
+      "CKU-FLOATING-STATIC"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.3-trap2",
+    "trap": "IPv6 static routes require `ipv6 unicast-routing` globally first.",
+    "correction": "Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+    "ckuIds": [
+      "CKU-IPV6-STATIC-ROUTE"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.4-t1",
+    "trap": "Using a subnet mask in the network statement.",
+    "correction": "OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24).",
+    "ckuIds": [
+      "CKU-OSPF"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
+    "id": "3.4-t2",
+    "trap": "Assuming 1G and 10G have different OSPF cost by default.",
+    "correction": "Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+    "ckuIds": [
+      "CKU-OSPF-COST"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
+    "id": "3.4-t3",
+    "trap": "Expecting DR/BDR on point-to-point links.",
+    "correction": "DR/BDR are only elected on multi-access (e.g. Ethernet) segments.",
+    "ckuIds": [
+      "CKU-OSPF-NEIGHBOR"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
+    "id": "3.5-t1",
+    "trap": "Confusing HSRP Active with DR in OSPF.",
+    "correction": "HSRP Active forwards traffic for the virtual IP; unrelated to OSPF DR.",
+    "ckuIds": [
+      "CKU-HSRP"
+    ],
+    "objectiveId": "3.5"
+  },
+  {
     "id": "4.1-t1",
     "trap": "Forgetting the inside/outside interface tags.",
     "correction": "Without `ip nat inside`/`outside`, NAT translates nothing.",

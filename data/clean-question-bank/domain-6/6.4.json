@@ -448,6 +448,53 @@
       }
     },
     {
+      "id": "obj-6.4-source-q010",
+      "question": "Which feature does Cisco Prime Infrastructure provide that Cisco DNA Center cannot provide?",
+      "choices": [
+        "Client coverage heat maps",
+        "Client triangulation support",
+        "Device configuration backup",
+        "Application health"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "cisco dna center",
+      "ckuIds": [
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-APIC-EM",
+        "CKU-DNA-ASSURANCE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"Device configuration backup\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Client coverage heat maps\" is incorrect because the scenario requires: The correct answer is \"Device configuration backup\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Client triangulation support\" is incorrect because the scenario requires: The correct answer is \"Device configuration backup\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Application health\" is incorrect because the scenario requires: The correct answer is \"Device configuration backup\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-6.4-source-q011",
       "question": "Which method(s) of connectivity must be configured for network discovery inside of the Cisco DNA Center?",
       "choices": [

@@ -542,6 +542,53 @@
       }
     },
     {
+      "id": "obj-2.3-source-q013",
+      "question": "CDP neighbor detail (SwitchB):\nDevice ID: SwitchB\nEntry address(es): IP 192.168.1.2\nPlatform: cisco WS-C2960, Capabilities: Switch\nInterface: GigabitEthernet0/2, Port ID (outgoing port): GigabitEthernet0/1\nHoldtime: 162 sec\n\nThe following output shows the output of the CDP details. Which statement is correct about what is displayed?",
+      "choices": [
+        "The advertisement was seen 162 seconds ago.",
+        "Switch B interface Gi0/1 connects to Switch A.",
+        "Switch B interface Gi0/2 connects to Switch A.",
+        "The IP address of Switch B is 192.168.1.1."
+      ],
+      "correctIndex": 2,
+      "explanation": "CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "cdp",
+      "ckuIds": [
+        "CKU-CDP",
+        "CKU-LLDP",
+        "CKU-LAYER2-DISCOVERY",
+        "CKU-CDP-OUTPUT-INTERPRETATION"
+      ],
+      "objectiveId": "2.3",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "CDP detail output identifies the local and remote interfaces, holdtime, and management address."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The advertisement was seen 162 seconds ago.\" is incorrect because the scenario requires: CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch B interface Gi0/1 connects to Switch A.\" is incorrect because the scenario requires: CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The IP address of Switch B is 192.168.1.1.\" is incorrect because the scenario requires: CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-2.3-source-q014",
       "question": "You have a layer 2 connection to your ISP. You want to make sure that you do not send information on the capabilities of your switch, but you don’t want to affect the use of CDP. Which command will you configure?",
       "choices": [

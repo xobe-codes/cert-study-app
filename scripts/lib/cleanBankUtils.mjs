@@ -6,6 +6,8 @@
 export const SCHEMA_VERSION = 'ccna-clean-question-bank-v1'
 
 export const DOMAIN_4_OBJECTIVES = ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9']
+export const DOMAIN_3_OBJECTIVES = ['3.1', '3.2', '3.3', '3.4', '3.5']
+export const DOMAIN_1_OBJECTIVES = ['1.1', '1.2', '1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9', '1.10', '1.11', '1.12']
 
 export const DOMAIN_4_SOURCE_FILES = [
   { appId: '4.1', file: 'domain4-ip-services-validation/objective-4.1-nat-inside-source-source-questions.json' },

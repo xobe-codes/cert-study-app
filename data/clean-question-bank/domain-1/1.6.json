@@ -1,0 +1,502 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.6",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.6-c-q1",
+      "question": "How many usable host addresses are in a `/26` subnet?",
+      "choices": [
+        "64",
+        "62",
+        "30",
+        "126"
+      ],
+      "correctIndex": 1,
+      "explanation": "/26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "hosts per subnet",
+      "ckuIds": [
+        "CKU-SUBNETTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "/26 has 6 host bits → 2^6 − 2 = 62 usable hosts."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"64\" is incorrect because the scenario requires: /26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"30\" is incorrect because the scenario requires: /26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"126\" is incorrect because the scenario requires: /26 has 6 host bits → 2^6 − 2 = 62 usable hosts.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q2",
+      "question": "What is the block size for a `/27` mask (`255.255.255.224`)?",
+      "choices": [
+        "16",
+        "32",
+        "64",
+        "8"
+      ],
+      "correctIndex": 1,
+      "explanation": "Block size = 256 − 224 = 32.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "block size",
+      "ckuIds": [
+        "CKU-BLOCK-SIZE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Block size = 256 − 224 = 32."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"16\" is incorrect because the scenario requires: Block size = 256 − 224 = 32.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"64\" is incorrect because the scenario requires: Block size = 256 − 224 = 32.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"8\" is incorrect because the scenario requires: Block size = 256 − 224 = 32.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q3",
+      "question": "What is the broadcast address of `192.168.10.0/26`?",
+      "choices": [
+        "192.168.10.255",
+        "192.168.10.63",
+        "192.168.10.127",
+        "192.168.10.64"
+      ],
+      "correctIndex": 1,
+      "explanation": "Block 64 → first subnet is .0–.63, so broadcast = .63.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "broadcast address",
+      "ckuIds": [
+        "CKU-BLOCK-SIZE",
+        "CKU-SUBNETTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Block 64 → first subnet is .0–.63, so broadcast = .63."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"192.168.10.255\" is incorrect because the scenario requires: Block 64 → first subnet is .0–.63, so broadcast = .63.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"192.168.10.127\" is incorrect because the scenario requires: Block 64 → first subnet is .0–.63, so broadcast = .63.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"192.168.10.64\" is incorrect because the scenario requires: Block 64 → first subnet is .0–.63, so broadcast = .63.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q4",
+      "question": "Which subnet does host `172.16.0.100/26` belong to?",
+      "choices": [
+        "172.16.0.0",
+        "172.16.0.64",
+        "172.16.0.96",
+        "172.16.0.128"
+      ],
+      "correctIndex": 1,
+      "explanation": "Block 64 → boundaries .0/.64/.128/.192; 100 falls in .64–.127, so the subnet is 172.16.0.64.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "find the subnet",
+      "ckuIds": [
+        "CKU-BLOCK-SIZE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Block 64 → boundaries .0/.64/.128/.192; 100 falls in .64–.127, so the subnet is 172.16.0.64."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"172.16.0.0\" is incorrect because the scenario requires: Block 64 → boundaries .0/.64/.128/.192; 100 falls in .64–.127, so the subnet is 172.16.0.64.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"172.16.0.96\" is incorrect because the scenario requires: Block 64 → boundaries .0/.64/.128/.192; 100 falls in .64–.127, so the subnet is 172.16.0.64.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"172.16.0.128\" is incorrect because the scenario requires: Block 64 → boundaries .0/.64/.128/.192; 100 falls in .64–.127, so the subnet is 172.16.0.64.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q5",
+      "question": "Which mask provides at least 30 usable hosts with the fewest addresses wasted?",
+      "choices": [
+        "/26",
+        "/27",
+        "/28",
+        "/29"
+      ],
+      "correctIndex": 1,
+      "explanation": "/27 → 2^5 − 2 = 30 usable hosts exactly.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "mask for host count",
+      "ckuIds": [
+        "CKU-SUBNETTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "/27 → 2^5 − 2 = 30 usable hosts exactly."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"/26\" is incorrect because the scenario requires: /27 → 2^5 − 2 = 30 usable hosts exactly.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"/28\" is incorrect because the scenario requires: /27 → 2^5 − 2 = 30 usable hosts exactly.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"/29\" is incorrect because the scenario requires: /27 → 2^5 − 2 = 30 usable hosts exactly.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q6",
+      "question": "How many usable hosts does a `/30` subnet provide?",
+      "choices": [
+        "1",
+        "2",
+        "4",
+        "0"
+      ],
+      "correctIndex": 1,
+      "explanation": "/30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "point-to-point",
+      "ckuIds": [
+        "CKU-SUBNETTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "/30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"1\" is incorrect because the scenario requires: /30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"4\" is incorrect because the scenario requires: /30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"0\" is incorrect because the scenario requires: /30 → 2^2 − 2 = 2 usable hosts — perfect for a router-to-router link.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q7",
+      "question": "Borrowing 3 host bits from a `/24`, how many subnets do you create?",
+      "choices": [
+        "6",
+        "8",
+        "16",
+        "3"
+      ],
+      "correctIndex": 1,
+      "explanation": "Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "number of subnets",
+      "ckuIds": [
+        "CKU-SUBNETTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Number of subnets = 2^(borrowed bits) = 2^3 = 8."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"6\" is incorrect because the scenario requires: Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"16\" is incorrect because the scenario requires: Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"3\" is incorrect because the scenario requires: Number of subnets = 2^(borrowed bits) = 2^3 = 8.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q8",
+      "question": "What is the CIDR prefix for the mask `255.255.255.240`?",
+      "choices": [
+        "/26",
+        "/27",
+        "/28",
+        "/29"
+      ],
+      "correctIndex": 2,
+      "explanation": "240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "CIDR conversion",
+      "ckuIds": [
+        "CKU-SUBNET-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"/26\" is incorrect because the scenario requires: 240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"/27\" is incorrect because the scenario requires: 240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"/29\" is incorrect because the scenario requires: 240 = 11110000 → 4 bits in the last octet; 24 + 4 = /28.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q9",
+      "question": "What is the usable host range of `10.0.0.0/29`?",
+      "choices": [
+        "10.0.0.1 – 10.0.0.6",
+        "10.0.0.1 – 10.0.0.7",
+        "10.0.0.0 – 10.0.0.7",
+        "10.0.0.1 – 10.0.0.14"
+      ],
+      "correctIndex": 0,
+      "explanation": "Block 8 → network .0, broadcast .7, usable .1–.6.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "usable range",
+      "ckuIds": [
+        "CKU-BLOCK-SIZE",
+        "CKU-SUBNETTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Block 8 → network .0, broadcast .7, usable .1–.6."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"10.0.0.1 – 10.0.0.7\" is incorrect because the scenario requires: Block 8 → network .0, broadcast .7, usable .1–.6.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"10.0.0.0 – 10.0.0.7\" is incorrect because the scenario requires: Block 8 → network .0, broadcast .7, usable .1–.6.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"10.0.0.1 – 10.0.0.14\" is incorrect because the scenario requires: Block 8 → network .0, broadcast .7, usable .1–.6.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q10",
+      "question": "How many host bits are in a `/26` address?",
+      "choices": [
+        "26",
+        "6",
+        "8",
+        "4"
+      ],
+      "correctIndex": 1,
+      "explanation": "32 − 26 = 6 host bits.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "network/host bits",
+      "ckuIds": [
+        "CKU-SUBNET-MASK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "32 − 26 = 6 host bits."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"26\" is incorrect because the scenario requires: 32 − 26 = 6 host bits.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"8\" is incorrect because the scenario requires: 32 − 26 = 6 host bits.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"4\" is incorrect because the scenario requires: 32 − 26 = 6 host bits.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q11",
+      "question": "True or False: The network and broadcast addresses of a subnet can be assigned to hosts.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — both are reserved, which is why hosts = 2^h − 2.",
+      "type": "true-false",
+      "difficulty": "easy",
+      "concept": "reserved addresses",
+      "ckuIds": [
+        "CKU-SUBNETTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "False — both are reserved, which is why hosts = 2^h − 2."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"True\" is incorrect because the scenario requires: False — both are reserved, which is why hosts = 2^h − 2.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.6-c-q12",
+      "question": "A LAN needs 200 hosts. What is the smallest standard mask that fits?",
+      "choices": [
+        "/24",
+        "/25",
+        "/23",
+        "/26"
+      ],
+      "correctIndex": 0,
+      "explanation": "/24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "mask selection",
+      "ckuIds": [
+        "CKU-SUBNETTING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "/24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"/25\" is incorrect because the scenario requires: /24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"/23\" is incorrect because the scenario requires: /24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"/26\" is incorrect because the scenario requires: /24 → 2^8 − 2 = 254 usable, the smallest mask that holds 200 hosts (/25 gives only 126).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

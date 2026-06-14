@@ -46,7 +46,7 @@ function main() {
     if (errors.length > 50) console.error(`  … and ${errors.length - 50} more`)
     process.exit(1)
   }
-  console.log(`✓ Clean bank valid — ${total} questions across domains 2–6`)
+  console.log(`✓ Clean bank valid — ${total} questions across domains 1–6`)
 }
 
 main()

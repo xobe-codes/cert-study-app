@@ -683,6 +683,55 @@
       }
     },
     {
+      "id": "obj-5.3-source-q015",
+      "question": "Switch# show users\n    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 0          local\n   1 vty 0     admin      192.168.1.50         0          local\n   2 vty 1                idle                 5          local\n\nyou have listed all management sessions on the switch. On which line are you connected?",
+      "choices": [
+        "Console 0",
+        "VTY 0",
+        "VTY 1",
+        "VTY 2"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "local device access",
+      "ckuIds": [
+        "CKU-LOCAL-DEVICE-ACCESS",
+        "CKU-ENABLE-SECRET",
+        "CKU-LINE-PASSWORD"
+      ],
+      "objectiveId": "5.3",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"VTY 0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Console 0\" is incorrect because the scenario requires: The correct answer is \"VTY 0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"VTY 1\" is incorrect because the scenario requires: The correct answer is \"VTY 0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"VTY 2\" is incorrect because the scenario requires: The correct answer is \"VTY 0\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-5.3-source-q016",
       "question": "You want to turn on local authentication so that a user must supply a username and password when managing the switch. You have created the username and password combinations on the switch. Which command direct SSH and Telnet to use this authentication model?",
       "choices": [

@@ -675,6 +675,56 @@
       }
     },
     {
+      "id": "obj-3.1-source-q006",
+      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
+      "choices": [
+        "The 10.0.0.0/8 is a route in the routing table.",
+        "The 10.0.0.0/8 is a summarization of the routes in the table.",
+        "The 10.0.0.0/8 is the router’s network address.",
+        "The 10.0.0.0/8 has been populated from another router."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-DR-BDR"
+      ],
+      "objectiveId": "3.1",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The 10.0.0.0/8 is a summarization of the routes in the table.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The 10.0.0.0/8 is a route in the routing table.\" is incorrect because the scenario requires: The correct answer is \"The 10.0.0.0/8 is a summarization of the routes in the table.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The 10.0.0.0/8 is the router’s network address.\" is incorrect because the scenario requires: The correct answer is \"The 10.0.0.0/8 is a summarization of the routes in the table.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The 10.0.0.0/8 has been populated from another router.\" is incorrect because the scenario requires: The correct answer is \"The 10.0.0.0/8 is a summarization of the routes in the table.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-3.1-source-q007",
       "question": "Routing table excerpt:\nO    192.168.10.0/24 [110/20] via 10.0.0.2, 00:05:00, GigabitEthernet0/0\nCodes: C=connected, S=static, O=OSPF. Bracket shows [AD/metric].\n\nWhat does the underlined number represent?",
       "choices": [
@@ -1064,6 +1114,55 @@
       }
     },
     {
+      "id": "obj-3.1-source-q015",
+      "question": "Which must be configured so that EIGRP can calculate the best route?",
+      "choices": [
+        "Bandwidth",
+        "Delay",
+        "Reliability",
+        "Load"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-BANDWIDTH",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Bandwidth\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Delay\" is incorrect because the scenario requires: The correct answer is \"Bandwidth\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Reliability\" is incorrect because the scenario requires: The correct answer is \"Bandwidth\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Load\" is incorrect because the scenario requires: The correct answer is \"Bandwidth\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-3.1-source-q016",
       "question": "You perform a show ip route on the router and see several routes with an AD of 90. Which routing protocol has generated these route statements?",
       "choices": [
@@ -1157,6 +1256,56 @@
           {
             "choiceIndex": 3,
             "explanation": "\"The route chosen has the highest metric.\" is incorrect because the scenario requires: The correct answer is \"The route is chosen with the lowest AD.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-3.1-source-q018",
+      "question": "You have a network with varied bandwidths and need to choose a dynamic routing protocol. Which would you choose for optimal performance?",
+      "choices": [
+        "RIPv1",
+        "RIPv2",
+        "EIGRP",
+        "BGP"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "routing table",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE",
+        "CKU-ROUTE-CODE",
+        "CKU-PREFIX",
+        "CKU-BANDWIDTH",
+        "CKU-RIP",
+        "CKU-EIGRP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"EIGRP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RIPv1\" is incorrect because the scenario requires: The correct answer is \"EIGRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RIPv2\" is incorrect because the scenario requires: The correct answer is \"EIGRP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"BGP\" is incorrect because the scenario requires: The correct answer is \"EIGRP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

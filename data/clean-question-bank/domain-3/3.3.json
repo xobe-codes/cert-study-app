@@ -1215,6 +1215,56 @@
       }
     },
     {
+      "id": "obj-3.3-source-q019",
+      "question": "Topology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nwhich route statement needs to be configured on Router A to allow routing to Network B?",
+      "choices": [
+        "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1",
+        "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1",
+        "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2",
+        "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-ROUTE-STATEMENT"
+      ],
+      "objectiveId": "3.3",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
       "id": "obj-3.3-source-q020",
       "question": "When you configure an IP address on a router interface, what happens to the routing table?",
       "choices": [
@@ -1602,6 +1652,104 @@
       }
     },
     {
+      "id": "obj-3.3-source-q028",
+      "question": "Router routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nwhich network is routable?",
+      "choices": [
+        "The 172.30.0/16 network",
+        "The 192.168.128.0/24 network",
+        "The 192.168.0.0/16 network",
+        "The 192.168.4.0/24 network"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "objectiveId": "3.3",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"The 192.168.4.0/24 network\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The 172.30.0/16 network\" is incorrect because the scenario requires: The correct answer is \"The 192.168.4.0/24 network\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The 192.168.128.0/24 network\" is incorrect because the scenario requires: The correct answer is \"The 192.168.4.0/24 network\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The 192.168.0.0/16 network\" is incorrect because the scenario requires: The correct answer is \"The 192.168.4.0/24 network\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q029",
+      "question": "Topology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nwhat must be configured on Router B to allow routing to Network A?",
+      "choices": [
+        "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9",
+        "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10",
+        "RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0",
+        "RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "objectiveId": "3.3",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterB(config)#ip route 198.44.4.0/24 198.55.4.9\" is incorrect because the scenario requires: The correct answer is \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10\" is incorrect because the scenario requires: The correct answer is \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0\" is incorrect because the scenario requires: The correct answer is \"RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/1\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
       "id": "obj-3.3-source-q030",
       "question": "Which route statement is configured when an IP address of 194.22.34.54/28 is configured on an interface?",
       "choices": [
@@ -1738,6 +1886,56 @@
           {
             "choiceIndex": 3,
             "explanation": "\"Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0\" is incorrect because the scenario requires: The correct answer is \"Router(config)#ipv6 route fc00:0:0:1/64 serial 0/0/0\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q033",
+      "question": "Router B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nwhich interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
+      "choices": [
+        "IP address of 192.168.4.2",
+        "IP address of 192.168.4.5",
+        "Interface Serial 0/0/1",
+        "Interface Serial 0/2/0"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DR-BDR"
+      ],
+      "objectiveId": "3.3",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"IP address of 192.168.4.2\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"IP address of 192.168.4.5\" is incorrect because the scenario requires: The correct answer is \"IP address of 192.168.4.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Interface Serial 0/0/1\" is incorrect because the scenario requires: The correct answer is \"IP address of 192.168.4.2\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Interface Serial 0/2/0\" is incorrect because the scenario requires: The correct answer is \"IP address of 192.168.4.2\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
@@ -2081,6 +2279,57 @@
           {
             "choiceIndex": 3,
             "explanation": "\"Broadcast addresses do not get added to the routing tables.\" is incorrect because the scenario requires: The correct answer is \"Link-local addresses do not get added to the routing tables.\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "obj-3.3-source-q041",
+      "question": "Topology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nwhich command on Router B will allow hosts on Network B to reach the Internet?",
+      "choices": [
+        "RouterB(config-if )#ipv6 address default",
+        "RouterB(config)#ip route ::/0 serial 0/3/0",
+        "RouterB(config-if)#ipv6 address autoconfig default",
+        "RouterB(config-if)#ipv6 address slaac"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "static routing",
+      "ckuIds": [
+        "CKU-STATIC-ROUTING",
+        "CKU-IPV4-STATIC-ROUTE",
+        "CKU-IPV6-STATIC-ROUTE",
+        "CKU-DEFAULT-ROUTE",
+        "CKU-DR-BDR"
+      ],
+      "objectiveId": "3.3",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"RouterB(config-if)#ipv6 address autoconfig default\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterB(config-if )#ipv6 address default\" is incorrect because the scenario requires: The correct answer is \"RouterB(config-if)#ipv6 address autoconfig default\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterB(config)#ip route ::/0 serial 0/3/0\" is incorrect because the scenario requires: The correct answer is \"RouterB(config-if)#ipv6 address autoconfig default\".",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterB(config-if)#ipv6 address slaac\" is incorrect because the scenario requires: The correct answer is \"RouterB(config-if)#ipv6 address autoconfig default\".",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }

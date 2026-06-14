@@ -557,6 +557,57 @@
       }
     },
     {
+      "id": "obj-6.5-source-q012",
+      "question": "You are creating a script to directly configure a Cisco switch using the YANG data model. Which network API will you use to perform this task?",
+      "choices": [
+        "OpenFlow",
+        "RESTCONF",
+        "SNMP",
+        "REST-based API"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-API",
+        "CKU-SNMP",
+        "CKU-RESTCONF",
+        "CKU-YANG"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"RESTCONF\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"OpenFlow\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SNMP\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"REST-based API\" is incorrect because the scenario requires: The correct answer is \"RESTCONF\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-6.5-source-q013",
       "question": "Which is a RESTCONF content type that is used with a RESTCONF request?",
       "choices": [
@@ -651,6 +702,57 @@
           {
             "choiceIndex": 2,
             "explanation": "\"Nothing; this code means OK.\" is incorrect because the scenario requires: The correct answer is \"Restart the REST-based service.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.5-source-q015",
+      "question": "On which interface of the Cisco DNA Center would you most likely use a RESTCONF request?",
+      "choices": [
+        "Northbound interface",
+        "Eastbound interface",
+        "Westbound interface",
+        "Southbound interface"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "rest api",
+      "ckuIds": [
+        "CKU-REST-API",
+        "CKU-CRUD",
+        "CKU-HTTP-VERBS",
+        "CKU-RESTCONF",
+        "CKU-NORTHBOUND-API",
+        "CKU-SOUTHBOUND-API",
+        "CKU-CISCO-DNA-CENTER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Southbound interface\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Northbound interface\" is incorrect because the scenario requires: The correct answer is \"Southbound interface\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Eastbound interface\" is incorrect because the scenario requires: The correct answer is \"Southbound interface\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Westbound interface\" is incorrect because the scenario requires: The correct answer is \"Southbound interface\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

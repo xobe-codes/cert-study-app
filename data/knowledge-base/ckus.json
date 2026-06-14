@@ -1,5 +1,515 @@
 [
   {
+    "ckuId": "CKU-ROUTING-TABLE-ENTRY",
+    "title": "Routing Table Entry Structure",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.1"
+    ],
+    "summary": "Each entry shows: source code (C/S/O/D/R/B), destination prefix, [AD/metric] in brackets, next-hop IP, outgoing interface, and age timer for dynamic routes.",
+    "keyTerms": [
+      "routing entry"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.1-q2",
+      "3.1-q8",
+      "3.1-q9",
+      "3.1-q10"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-ROUTE-SOURCE-CODES",
+    "title": "Route Source Codes",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.1"
+    ],
+    "summary": "C=connected AD 0, L=local /32 AD 0, S=static AD 1, O=OSPF AD 110, D=EIGRP AD 90, R=RIP AD 120, B=BGP. The code tells you how the router learned the route.",
+    "keyTerms": [
+      "route codes",
+      "source codes"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.1-q1",
+      "3.1-q5",
+      "3.1-q7",
+      "3.1-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-CONNECTED-LOCAL-ROUTES",
+    "title": "Connected and Local Routes",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.1"
+    ],
+    "summary": "When an interface is up/up with an IP, the router auto-installs: a C route to the subnet and an L /32 for the router own interface IP. Both have AD 0 and are removed when the interface fails.",
+    "keyTerms": [
+      "connected route",
+      "local route",
+      "C route",
+      "L route"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.1-q3",
+      "3.1-q4",
+      "3.1-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-LONGEST-PREFIX-MATCH",
+    "title": "Longest Prefix Match",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.2"
+    ],
+    "summary": "When several routes match a packet’s destination, the router uses the route with the most specific (longest) prefix length, regardless of administrative distance or metric.",
+    "keyTerms": [
+      "most specific route",
+      "LPM",
+      "longest match"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.2-c-q1",
+      "3.2-c-q2",
+      "3.2-c-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-ADMINISTRATIVE-DISTANCE",
+    "title": "Administrative Distance",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.2"
+    ],
+    "summary": "A measure of how trustworthy a routing source is (lower = more trusted). Used to choose between routes to the SAME prefix learned from DIFFERENT sources. An AD of 255 means the route is never installed.",
+    "keyTerms": [
+      "AD",
+      "trustworthiness"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.2-c-q2",
+      "3.2-c-q3",
+      "3.2-c-q4",
+      "3.2-c-q5",
+      "3.2-c-q6",
+      "3.2-c-q10",
+      "3.2-c-q11",
+      "3.2-c-q12",
+      "obj-3.2-source-q001",
+      "obj-3.2-source-q002",
+      "obj-3.2-source-q003",
+      "obj-3.2-source-q004",
+      "obj-3.2-source-q005",
+      "obj-3.2-source-q006",
+      "obj-3.2-source-q007",
+      "obj-3.2-source-q008",
+      "obj-3.2-source-q009",
+      "obj-3.2-source-q010",
+      "obj-3.2-source-q011",
+      "obj-3.2-source-q012",
+      "obj-3.2-source-q013",
+      "obj-3.2-source-q014",
+      "obj-3.2-source-q015",
+      "obj-3.2-source-q016",
+      "obj-3.2-source-q017",
+      "obj-3.2-source-q018",
+      "obj-3.2-source-q019",
+      "obj-3.2-source-q020",
+      "obj-3.2-source-q021",
+      "obj-3.2-source-q022",
+      "obj-3.2-source-q023",
+      "obj-3.2-source-q024",
+      "obj-3.2-source-q025",
+      "obj-3.2-source-q026",
+      "obj-3.2-source-q027",
+      "obj-3.2-source-q028",
+      "obj-3.2-source-q029",
+      "obj-3.2-source-q030",
+      "obj-3.2-source-q031",
+      "obj-3.2-source-q032",
+      "obj-3.2-source-q033",
+      "obj-3.2-source-q034",
+      "obj-3.2-source-q035",
+      "obj-3.2-source-q036",
+      "obj-3.2-source-q037"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-METRIC",
+    "title": "Routing Protocol Metric",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.2"
+    ],
+    "summary": "A value a routing protocol assigns to a route to rank paths. Metrics are only comparable WITHIN the same protocol (OSPF cost vs EIGRP composite are not comparable); AD decides between protocols first, then metric breaks ties within one.",
+    "keyTerms": [
+      "cost",
+      "route metric"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.2-c-q2",
+      "3.2-c-q6",
+      "3.2-c-q7",
+      "3.2-c-q10",
+      "obj-3.2-source-q003",
+      "obj-3.2-source-q005"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-DEFAULT-ROUTE",
+    "title": "Default Route (Gateway of Last Resort)",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.2"
+    ],
+    "summary": "The route 0.0.0.0/0 (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches.",
+    "keyTerms": [
+      "gateway of last resort",
+      "0.0.0.0/0",
+      "quad-zero route"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.2-c-q8",
+      "3.2-c-q9",
+      "obj-3.2-source-q003",
+      "obj-3.2-source-q020",
+      "obj-3.2-source-q029",
+      "obj-3.2-source-q030",
+      "obj-3.2-source-q033"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-STATIC-ROUTE-SYNTAX",
+    "title": "IPv4 Static Route Syntax",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.3"
+    ],
+    "summary": "ip route <dest-network> <subnet-mask> {<next-hop-ip> | <exit-interface>} [AD]. Using a next-hop IP is preferred over exit-interface alone on multi-access Ethernet segments.",
+    "keyTerms": [
+      "static route",
+      "ip route command"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.3-q1",
+      "3.3-q4",
+      "3.3-q7",
+      "3.3-q8"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-DEFAULT-STATIC-ROUTE",
+    "title": "Default Static Route",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.3"
+    ],
+    "summary": "ip route 0.0.0.0 0.0.0.0 <next-hop> creates the gateway of last resort. Matches any destination when no more-specific route exists. Common on stub/edge routers connected to ISPs.",
+    "keyTerms": [
+      "default route",
+      "0.0.0.0/0",
+      "quad-zero"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.3-q2",
+      "3.3-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-FLOATING-STATIC",
+    "title": "Floating Static Route",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.3"
+    ],
+    "summary": "A static route with an AD higher than the primary dynamic route (e.g. AD 130 to back up OSPF AD 110). Not installed while the primary route is present; rises in when the primary fails.",
+    "keyTerms": [
+      "floating static",
+      "backup route",
+      "higher AD static"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.3-q3"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-IPV6-STATIC-ROUTE",
+    "title": "IPv6 Static Route Syntax",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.3"
+    ],
+    "summary": "ipv6 route <prefix>/<length> {<next-hop-ipv6> | <exit-interface>}. IPv6 default: ipv6 route ::/0 <next-hop>. Requires ipv6 unicast-routing globally.",
+    "keyTerms": [
+      "ipv6 route",
+      "IPv6 static"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.3-q5",
+      "3.3-q6",
+      "obj-3.3-source-q001",
+      "obj-3.3-source-q002",
+      "obj-3.3-source-q003",
+      "obj-3.3-source-q004",
+      "obj-3.3-source-q005",
+      "obj-3.3-source-q006",
+      "obj-3.3-source-q007",
+      "obj-3.3-source-q008",
+      "obj-3.3-source-q009",
+      "obj-3.3-source-q010",
+      "obj-3.3-source-q011",
+      "obj-3.3-source-q012",
+      "obj-3.3-source-q013",
+      "obj-3.3-source-q014",
+      "obj-3.3-source-q015",
+      "obj-3.3-source-q016",
+      "obj-3.3-source-q017",
+      "obj-3.3-source-q018",
+      "obj-3.3-source-q019",
+      "obj-3.3-source-q020",
+      "obj-3.3-source-q021",
+      "obj-3.3-source-q022",
+      "obj-3.3-source-q023",
+      "obj-3.3-source-q024",
+      "obj-3.3-source-q025",
+      "obj-3.3-source-q026",
+      "obj-3.3-source-q027",
+      "obj-3.3-source-q028",
+      "obj-3.3-source-q029",
+      "obj-3.3-source-q030",
+      "obj-3.3-source-q031",
+      "obj-3.3-source-q032",
+      "obj-3.3-source-q033",
+      "obj-3.3-source-q034",
+      "obj-3.3-source-q035",
+      "obj-3.3-source-q036",
+      "obj-3.3-source-q037",
+      "obj-3.3-source-q038",
+      "obj-3.3-source-q039",
+      "obj-3.3-source-q040",
+      "obj-3.3-source-q041",
+      "obj-3.3-source-q042",
+      "obj-3.3-source-q043"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-OSPF",
+    "title": "OSPFv2",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.4"
+    ],
+    "summary": "A link-state IGP: routers flood LSAs to build an identical LSDB per area, then run SPF (Dijkstra) to compute shortest paths. AD 110.",
+    "keyTerms": [
+      "OSPF",
+      "open shortest path first"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.4-c-q1",
+      "3.4-c-q2",
+      "3.4-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-OSPF-COST",
+    "title": "OSPF Cost (Metric)",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.4"
+    ],
+    "summary": "OSPF metric = reference bandwidth (default 100 Mbps) ÷ interface bandwidth; lower cost is preferred. Total path cost sums interface costs.",
+    "keyTerms": [
+      "ospf metric",
+      "cost"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.4-c-q3",
+      "obj-3.4-source-q021",
+      "obj-3.4-source-q023",
+      "obj-3.4-source-q025",
+      "obj-3.4-source-q027",
+      "obj-3.4-source-q028",
+      "obj-3.4-source-q049",
+      "obj-3.4-source-q050",
+      "obj-3.4-source-q052"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-OSPF-NEIGHBOR",
+    "title": "OSPF Neighbors & RID",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.4"
+    ],
+    "summary": "Neighbors must match area, subnet/mask, hello/dead timers, and authentication. Router ID = highest loopback IP, else highest active interface IP, or set manually.",
+    "keyTerms": [
+      "adjacency",
+      "router id",
+      "DR/BDR"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "3.4-c-q4",
+      "3.4-c-q5",
+      "3.4-c-q7",
+      "3.4-c-q8",
+      "3.4-c-q9"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-FHRP",
+    "title": "First Hop Redundancy Protocol",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.5"
+    ],
+    "summary": "Virtual default gateway shared by two+ routers so hosts keep connectivity if one router fails.",
+    "keyTerms": [
+      "FHRP",
+      "default gateway redundancy"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-3.5-source-q001",
+      "obj-3.5-source-q002",
+      "obj-3.5-source-q003",
+      "obj-3.5-source-q004",
+      "obj-3.5-source-q005",
+      "obj-3.5-source-q006",
+      "obj-3.5-source-q007",
+      "obj-3.5-source-q008",
+      "obj-3.5-source-q009",
+      "obj-3.5-source-q010",
+      "obj-3.5-source-q011",
+      "obj-3.5-source-q012",
+      "obj-3.5-source-q013",
+      "obj-3.5-source-q014",
+      "obj-3.5-source-q015",
+      "obj-3.5-source-q016",
+      "obj-3.5-source-q017",
+      "obj-3.5-source-q018",
+      "obj-3.5-source-q019",
+      "obj-3.5-source-q020",
+      "obj-3.5-source-q021",
+      "obj-3.5-source-q022",
+      "obj-3.5-source-q023",
+      "obj-3.5-source-q024",
+      "obj-3.5-source-q025",
+      "obj-3.5-source-q026",
+      "obj-3.5-source-q027",
+      "obj-3.5-source-q028",
+      "obj-3.5-source-q029",
+      "obj-3.5-source-q030"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-HSRP",
+    "title": "HSRP",
+    "domainId": "connectivity",
+    "objectiveIds": [
+      "3.5"
+    ],
+    "summary": "Cisco FHRP: virtual IP/MAC, Active/Standby routers, hello 3s, hold 10s, priority 0–255, preempt optional.",
+    "keyTerms": [
+      "Hot Standby Router Protocol"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-3.5-source-q001",
+      "obj-3.5-source-q002",
+      "obj-3.5-source-q003",
+      "obj-3.5-source-q004",
+      "obj-3.5-source-q005",
+      "obj-3.5-source-q006",
+      "obj-3.5-source-q007",
+      "obj-3.5-source-q008",
+      "obj-3.5-source-q009",
+      "obj-3.5-source-q010",
+      "obj-3.5-source-q011",
+      "obj-3.5-source-q012",
+      "obj-3.5-source-q013",
+      "obj-3.5-source-q014",
+      "obj-3.5-source-q015",
+      "obj-3.5-source-q016",
+      "obj-3.5-source-q017",
+      "obj-3.5-source-q018",
+      "obj-3.5-source-q019",
+      "obj-3.5-source-q020",
+      "obj-3.5-source-q021",
+      "obj-3.5-source-q022",
+      "obj-3.5-source-q023",
+      "obj-3.5-source-q024",
+      "obj-3.5-source-q025",
+      "obj-3.5-source-q026",
+      "obj-3.5-source-q027",
+      "obj-3.5-source-q028",
+      "obj-3.5-source-q029",
+      "obj-3.5-source-q030"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
     "ckuId": "CKU-NAT",
     "title": "NAT",
     "domainId": "services",
@@ -85,6 +595,150 @@
     "relatedQuestionIds": [
       "4.1-c-q4",
       "4.1-c-q6"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-NTP",
+    "title": "Network Time Protocol",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.2"
+    ],
+    "summary": "Synchronizes device clocks to an authoritative time source. Stratum 1 = atomic/GPS; client stratum = server stratum + 1.",
+    "keyTerms": [
+      "NTP"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-4.2-source-q001",
+      "obj-4.2-source-q002",
+      "obj-4.2-source-q003",
+      "obj-4.2-source-q004",
+      "obj-4.2-source-q005",
+      "obj-4.2-source-q006",
+      "obj-4.2-source-q007",
+      "obj-4.2-source-q008",
+      "obj-4.2-source-q009",
+      "obj-4.2-source-q010",
+      "obj-4.2-source-q011",
+      "obj-4.2-source-q012"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-DHCP",
+    "title": "DHCP (DORA)",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.3"
+    ],
+    "summary": "Dynamic Host Configuration Protocol assigns IP, mask, gateway, DNS via Discover/Offer/Request/Acknowledge.",
+    "keyTerms": [
+      "DORA"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-4.3-source-q007",
+      "obj-4.3-source-q008",
+      "obj-4.3-source-q009",
+      "obj-4.3-source-q010",
+      "obj-4.3-source-q011",
+      "obj-4.3-source-q012"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-DNS",
+    "title": "DNS",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.3"
+    ],
+    "summary": "Resolves names to IPs; DHCP option 6 can push DNS server addresses to clients.",
+    "keyTerms": [
+      "domain name system"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-4.3-source-q001",
+      "obj-4.3-source-q002",
+      "obj-4.3-source-q003",
+      "obj-4.3-source-q004",
+      "obj-4.3-source-q005",
+      "obj-4.3-source-q006",
+      "obj-4.3-source-q007",
+      "obj-4.3-source-q008",
+      "obj-4.3-source-q009",
+      "obj-4.3-source-q010",
+      "obj-4.3-source-q011",
+      "obj-4.3-source-q012"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-SYSLOG",
+    "title": "Syslog",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.5"
+    ],
+    "summary": "Standard logging to console, buffer, or remote collector. Severity 0 (emergency) to 7 (debug).",
+    "keyTerms": [
+      "logging"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-4.5-source-q001",
+      "obj-4.5-source-q002",
+      "obj-4.5-source-q003",
+      "obj-4.5-source-q004",
+      "obj-4.5-source-q005",
+      "obj-4.5-source-q006",
+      "obj-4.5-source-q007",
+      "obj-4.5-source-q008",
+      "obj-4.5-source-q009",
+      "obj-4.5-source-q010",
+      "obj-4.5-source-q011",
+      "obj-4.5-source-q012"
+    ],
+    "confidence": "high",
+    "needsReview": false
+  },
+  {
+    "ckuId": "CKU-DHCP-RELAY",
+    "title": "DHCP Relay (ip helper-address)",
+    "domainId": "services",
+    "objectiveIds": [
+      "4.6"
+    ],
+    "summary": "Forwards DHCP broadcasts from a client VLAN to a remote DHCP server by converting broadcast to unicast toward the server.",
+    "keyTerms": [
+      "ip helper-address"
+    ],
+    "examTraps": [],
+    "relatedCommands": [],
+    "relatedQuestionIds": [
+      "obj-4.6-source-q001",
+      "obj-4.6-source-q002",
+      "obj-4.6-source-q003",
+      "obj-4.6-source-q004",
+      "obj-4.6-source-q005",
+      "obj-4.6-source-q006",
+      "obj-4.6-source-q007",
+      "obj-4.6-source-q008",
+      "obj-4.6-source-q009",
+      "obj-4.6-source-q010",
+      "obj-4.6-source-q011",
+      "obj-4.6-source-q012"
     ],
     "confidence": "high",
     "needsReview": false

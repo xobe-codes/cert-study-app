@@ -1,5 +1,97 @@
 [
   {
+    "id": "3.1-x1",
+    "misconception": "The L route forwards traffic to end hosts.",
+    "reality": "L routes exist only for the router own interface IPs — not for PCs or servers.",
+    "example": "L 10.1.1.1/32 lets R1 accept SSH to 10.1.1.1, not route to a host.",
+    "ckuIds": [
+      "CKU-CONNECTED-LOCAL-ROUTES"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.1-x2",
+    "misconception": "Connected routes persist after an interface goes down.",
+    "reality": "C and L routes are removed immediately when the interface fails.",
+    "example": "Shut down Gi0/1 and its C/L entries vanish from the table.",
+    "ckuIds": [
+      "CKU-CONNECTED-LOCAL-ROUTES"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.2-x1",
+    "misconception": "A lower metric can beat a more-specific route.",
+    "reality": "Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+    "example": "A /26 route is used over a /24 route for an address in both, even if the /24 has a better metric.",
+    "ckuIds": [
+      "CKU-LONGEST-PREFIX-MATCH",
+      "CKU-METRIC"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-x2",
+    "misconception": "AD and metric do the same job.",
+    "reality": "AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+    "example": "Static (AD 1) beats OSPF (AD 110) regardless of OSPF’s metric.",
+    "ckuIds": [
+      "CKU-ADMINISTRATIVE-DISTANCE",
+      "CKU-METRIC"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-x3",
+    "misconception": "A default route guarantees connectivity.",
+    "reality": "It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+    "example": "A `0.0.0.0/0` pointing at a dead link drops everything not otherwise routed.",
+    "ckuIds": [
+      "CKU-DEFAULT-ROUTE"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.3-x1",
+    "misconception": "Exit-interface static routes are always preferred on Ethernet.",
+    "reality": "Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
+    "example": "ip route 10.0.0.0 255.0.0.0 Gi0/0 causes ARP storms; use a next-hop IP instead.",
+    "ckuIds": [
+      "CKU-STATIC-ROUTE-SYNTAX"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.3-x2",
+    "misconception": "A static route installs even if the next-hop is unreachable.",
+    "reality": "Recursive lookup must succeed — the next-hop must be reachable via another route.",
+    "example": "Static via 10.99.0.1 fails if no route to 10.99.0.0/24 exists.",
+    "ckuIds": [
+      "CKU-STATIC-ROUTE-SYNTAX"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.4-x1",
+    "misconception": "OSPF uses hop count like RIP.",
+    "reality": "OSPF uses cost (bandwidth-based), not hop count.",
+    "example": "A 2-hop fast path can beat a 1-hop slow path.",
+    "ckuIds": [
+      "CKU-OSPF-COST"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
+    "id": "3.4-x2",
+    "misconception": "Higher OSPF cost is better.",
+    "reality": "Lower cost is preferred — it represents a faster path.",
+    "example": "A 1G link (cost 1 by default) beats a slower link.",
+    "ckuIds": [
+      "CKU-OSPF-COST"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
     "id": "4.1-x1",
     "misconception": "NAT provides security/encryption.",
     "reality": "NAT hides addresses but does not encrypt; it is not a security control by itself.",

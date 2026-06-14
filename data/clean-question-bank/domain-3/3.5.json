@@ -1212,6 +1212,55 @@
       }
     },
     {
+      "id": "obj-3.5-source-q026",
+      "question": "HSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nYou are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
+      "choices": [
+        "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1",
+        "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1",
+        "RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1",
+        "RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "fhrp",
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP",
+        "CKU-VRRP"
+      ],
+      "objectiveId": "3.5",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking\" is incorrect because the scenario requires: The correct answer is \"RouterA(config-if)#standby 1 track serial 0/0/1 RouterB(config-if)#standby 1 track serial 0/0/1\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-3.5-source-q027",
       "question": "Which command will allow you to see real-time diagnostics of HSRP?",
       "choices": [

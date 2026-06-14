@@ -7,7 +7,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { getCurated } from '../src/data/ccnaCurated.js'
-import { DOMAIN_4_OBJECTIVES } from './lib/cleanBankUtils.mjs'
+import { DOMAIN_3_OBJECTIVES, DOMAIN_4_OBJECTIVES } from './lib/cleanBankUtils.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -33,7 +33,7 @@ function main() {
   const misconceptions = []
   const objectives = []
 
-  for (const objectiveId of DOMAIN_4_OBJECTIVES) {
+  for (const objectiveId of [...DOMAIN_3_OBJECTIVES, ...DOMAIN_4_OBJECTIVES]) {
     const curated = getCurated(objectiveId)
     const cleanQs = loadCleanQuestions(objectiveId)
     const questionIds = cleanQs.map(q => q.id).filter(Boolean)
@@ -100,17 +100,27 @@ function main() {
   writeFileSync(join(KB_DIR, 'misconceptions.json'), JSON.stringify(misconceptions, null, 2))
   writeFileSync(join(KB_DIR, 'objectives.json'), JSON.stringify(objectives, null, 2))
 
-  const chapters = [{
-    chapterId: 'ch4-ip-services',
-    chapterNumber: 4,
-    chapterTitle: 'IP Services (Domain 4)',
-    domainId: 'services',
-    objectiveIds: DOMAIN_4_OBJECTIVES,
-    summary: 'NAT/PAT, NTP, DHCP/DNS, SNMP, Syslog, DHCP relay, QoS, SSH, TFTP/FTP — core CCNA IP Services objectives.',
-  }]
+  const chapters = [
+    {
+      chapterId: 'ch3-ip-connectivity',
+      chapterNumber: 3,
+      chapterTitle: 'IP Connectivity (Domain 3)',
+      domainId: 'connectivity',
+      objectiveIds: DOMAIN_3_OBJECTIVES,
+      summary: 'Routing table, forwarding, static routing, OSPFv2, FHRP — core CCNA IP Connectivity objectives.',
+    },
+    {
+      chapterId: 'ch4-ip-services',
+      chapterNumber: 4,
+      chapterTitle: 'IP Services (Domain 4)',
+      domainId: 'services',
+      objectiveIds: DOMAIN_4_OBJECTIVES,
+      summary: 'NAT/PAT, NTP, DHCP/DNS, SNMP, Syslog, DHCP relay, QoS, SSH, TFTP/FTP — core CCNA IP Services objectives.',
+    },
+  ]
   writeFileSync(join(KB_DIR, 'chapters.json'), JSON.stringify(chapters, null, 2))
 
-  console.log('✓ Knowledge base extracted (Domain 4)')
+  console.log('✓ Knowledge base extracted (Domains 3–4)')
   console.log(`  CKUs: ${ckus.length}`)
   console.log(`  Glossary: ${glossary.length}`)
   console.log(`  Commands: ${commands.length}`)

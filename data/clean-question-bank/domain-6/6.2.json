@@ -99,6 +99,55 @@
       }
     },
     {
+      "id": "obj-6.2-source-q003",
+      "question": "Which term is used with controller-based networking that combines multiple sites to act as one single network?",
+      "choices": [
+        "SDN",
+        "SD-WAN",
+        "SD-LAN",
+        "VPN"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "controller based networking",
+      "ckuIds": [
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-CENTRALIZED-CONTROL-PLANE",
+        "CKU-VPN",
+        "CKU-SD-WAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"SD-WAN\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SDN\" is incorrect because the scenario requires: The correct answer is \"SD-WAN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SD-LAN\" is incorrect because the scenario requires: The correct answer is \"SD-WAN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"VPN\" is incorrect because the scenario requires: The correct answer is \"SD-WAN\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-6.2-source-q004",
       "question": "Which is a potential disadvantage with controller-based networking?",
       "choices": [
@@ -282,6 +331,104 @@
           {
             "choiceIndex": 3,
             "explanation": "\"CDP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.2-source-q008",
+      "question": "Identify the SNMP component that aggregates all SNMP messages and polled metrics?",
+      "choices": [
+        "Trap",
+        "SNMP agent",
+        "Syslog server",
+        "NMS"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "controller based networking",
+      "ckuIds": [
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-CENTRALIZED-CONTROL-PLANE",
+        "CKU-GRE",
+        "CKU-SNMP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"NMS\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Trap\" is incorrect because the scenario requires: The correct answer is \"NMS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SNMP agent\" is incorrect because the scenario requires: The correct answer is \"NMS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Syslog server\" is incorrect because the scenario requires: The correct answer is \"NMS\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.2-source-q009",
+      "question": "Which method for configuration is used with Cisco Prime Infrastructure?",
+      "choices": [
+        "SNMP",
+        "CAPWAP",
+        "LWAPP",
+        "RESTCONF"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "controller based networking",
+      "ckuIds": [
+        "CKU-CONTROLLER-BASED-NETWORKING",
+        "CKU-SDN",
+        "CKU-CENTRALIZED-CONTROL-PLANE",
+        "CKU-SNMP",
+        "CKU-RESTCONF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"SNMP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"CAPWAP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"LWAPP\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RESTCONF\" is incorrect because the scenario requires: The correct answer is \"SNMP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

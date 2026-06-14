@@ -99,6 +99,107 @@
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
       }
+    },
+    {
+      "id": "obj-5.10-source-q003",
+      "question": "You are configuring a WPA2 WLAN. Which security configuration should you use for the highest level of security?",
+      "choices": [
+        "WPA-AES",
+        "WPA2-TKIP",
+        "WPA2-RC4",
+        "WPA2-AES"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wlc gui wlan",
+      "ckuIds": [
+        "CKU-WLC-GUI-WLAN",
+        "CKU-WPA2-PSK",
+        "CKU-WLAN-STATUS",
+        "CKU-WPA2",
+        "CKU-WPA",
+        "CKU-AES-CCMP",
+        "CKU-TKIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"WPA2-AES\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"WPA-AES\" is incorrect because the scenario requires: The correct answer is \"WPA2-AES\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"WPA2-TKIP\" is incorrect because the scenario requires: The correct answer is \"WPA2-AES\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"WPA2-RC4\" is incorrect because the scenario requires: The correct answer is \"WPA2-AES\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.10-source-q004",
+      "question": "You are setting up a wireless network for a client. Their requirements are to minimize the infrastructure and support the highest security. Which wireless encryption standard should be configured to satisfy the requirements?",
+      "choices": [
+        "WPA-Enterprise",
+        "WPA2-Personal",
+        "WPA3-Enterprise",
+        "WPA-Personal"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wlc gui wlan",
+      "ckuIds": [
+        "CKU-WLC-GUI-WLAN",
+        "CKU-WPA2-PSK",
+        "CKU-WLAN-STATUS",
+        "CKU-WPA3",
+        "CKU-WPA2",
+        "CKU-WPA"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"WPA2-Personal\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"WPA-Enterprise\" is incorrect because the scenario requires: The correct answer is \"WPA2-Personal\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"WPA3-Enterprise\" is incorrect because the scenario requires: The correct answer is \"WPA2-Personal\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"WPA-Personal\" is incorrect because the scenario requires: The correct answer is \"WPA2-Personal\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
     }
   ]
 }

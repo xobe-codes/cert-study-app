@@ -1,20 +1,20 @@
 {
-  "builtAt": "2026-06-14T01:59:59.678Z",
+  "builtAt": "2026-06-14T02:10:16.344Z",
   "domains": {
     "2": {
       "schemaVersion": "ccna-clean-question-bank-v1",
       "domain": "2",
       "domainName": "Network Access",
-      "builtAt": "2026-06-14T01:59:59.686Z",
+      "builtAt": "2026-06-14T02:10:16.353Z",
       "objectives": {
         "2.3": {
-          "active": 14
+          "active": 15
         },
         "2.4": {
           "active": 15
         },
         "2.5": {
-          "active": 41
+          "active": 54
         },
         "2.6": {
           "active": 10
@@ -23,52 +23,52 @@
           "active": 7
         },
         "2.8": {
-          "active": 16
+          "active": 23
         }
       },
       "totals": {
-        "active": 103,
-        "shelved": 21
+        "active": 124,
+        "shelved": 0
       }
     },
     "3": {
       "schemaVersion": "ccna-clean-question-bank-v1",
       "domain": "3",
       "domainName": "IP Connectivity",
-      "builtAt": "2026-06-14T01:59:59.702Z",
+      "builtAt": "2026-06-14T02:10:16.376Z",
       "objectives": {
         "3.1": {
-          "active": 34
+          "active": 37
         },
         "3.2": {
           "active": 49
         },
         "3.3": {
-          "active": 46
+          "active": 51
         },
         "3.4": {
-          "active": 54
+          "active": 72
         },
         "3.5": {
-          "active": 29
+          "active": 30
         }
       },
       "totals": {
-        "active": 212,
-        "shelved": 27
+        "active": 239,
+        "shelved": 0
       }
     },
     "4": {
       "schemaVersion": "ccna-clean-question-bank-v1",
       "domain": "4",
       "domainName": "IP Services",
-      "builtAt": "2026-06-14T01:59:59.722Z",
+      "builtAt": "2026-06-14T02:10:16.403Z",
       "objectives": {
         "4.1": {
           "active": 32
         },
         "4.2": {
-          "active": 10
+          "active": 12
         },
         "4.3": {
           "active": 12
@@ -77,7 +77,7 @@
           "active": 12
         },
         "4.5": {
-          "active": 10
+          "active": 12
         },
         "4.6": {
           "active": 12
@@ -93,15 +93,15 @@
         }
       },
       "totals": {
-        "active": 116,
-        "shelved": 4
+        "active": 120,
+        "shelved": 0
       }
     },
     "5": {
       "schemaVersion": "ccna-clean-question-bank-v1",
       "domain": "5",
       "domainName": "Security Fundamentals",
-      "builtAt": "2026-06-14T01:59:59.734Z",
+      "builtAt": "2026-06-14T02:10:16.419Z",
       "objectives": {
         "5.1": {
           "active": 24
@@ -110,60 +110,60 @@
           "active": 7
         },
         "5.3": {
-          "active": 24
+          "active": 25
         },
         "5.10": {
-          "active": 11
+          "active": 17
         },
         "5.5": {
-          "active": 34
+          "active": 38
         },
         "5.6": {
-          "active": 26
+          "active": 29
         },
         "5.7": {
-          "active": 11
+          "active": 13
         },
         "5.8": {
-          "active": 10
+          "active": 12
         },
         "5.9": {
-          "active": 2
+          "active": 4
         }
       },
       "totals": {
-        "active": 149,
-        "shelved": 20
+        "active": 169,
+        "shelved": 0
       }
     },
     "6": {
       "schemaVersion": "ccna-clean-question-bank-v1",
       "domain": "6",
       "domainName": "Automation & Programmability",
-      "builtAt": "2026-06-14T01:59:59.750Z",
+      "builtAt": "2026-06-14T02:10:16.439Z",
       "objectives": {
         "6.1": {
           "active": 6
         },
         "6.2": {
-          "active": 6
+          "active": 9
         },
         "6.3": {
-          "active": 20
+          "active": 24
         },
         "6.4": {
-          "active": 10
+          "active": 11
         },
         "6.5": {
-          "active": 18
+          "active": 20
         },
         "6.6": {
-          "active": 24
+          "active": 30
         }
       },
       "totals": {
-        "active": 84,
-        "shelved": 16
+        "active": 100,
+        "shelved": 0
       }
     }
   }

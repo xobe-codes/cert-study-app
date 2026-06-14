@@ -6,9 +6,11 @@ import {
   shuffleArrayCopy, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
 } from './questionUtils.js'
 import { computeCkuWeakness, computeTrapWeakness } from './weaknessUtils.js'
-import { getKnowledgeForObjective, hasKnowledgeBase, getAllDomain4ExamTraps } from './data/knowledgeStudy.js'
+import { getKnowledgeForObjective, hasKnowledgeBase } from './data/knowledgeStudy.js'
 import { getShelvedStats } from './data/shelvedStudy.js'
 import ExtraStudyMode from './ExtraStudyMode.jsx'
+import ExamTrapStudyMode from './ExamTrapStudyMode.jsx'
+import RoutingDecoderMode from './RoutingDecoderMode.jsx'
 
 /* =========================================================================
    DESIGN TOKENS
@@ -1401,19 +1403,6 @@ function generateSubnetProblem() {
   }
 }
 
-const ROUTING_DRILL_ITEMS = [
-  { line: 'C    192.168.1.0/24 is directly connected, GigabitEthernet0/0', question: 'What is the routing source code for this entry?', answer: 'C', hint: 'Connected routes use code C.' },
-  { line: 'S    10.0.0.0/8 [1/0] via 203.0.113.1', question: 'What is the administrative distance for this static route?', answer: '1', hint: 'Static routes default to AD 1.' },
-  { line: 'O    172.16.0.0/16 [110/20] via 10.1.1.2, 00:05:00, GigabitEthernet0/1', question: 'What is the OSPF administrative distance?', answer: '110', hint: 'OSPF AD is 110.' },
-  { line: 'O    172.16.0.0/16 [110/20] via 10.1.1.2, 00:05:00, GigabitEthernet0/1', question: 'What is the outgoing interface?', answer: 'GigabitEthernet0/1', hint: 'Last field in the route line.' },
-  { line: 'S*   0.0.0.0/0 [1/0] via 203.0.113.1', question: 'What does the asterisk (*) indicate?', answer: 'default route', accept: ['default', 'default route'], hint: '0.0.0.0/0 is the default route.' },
-]
-
-function generateRoutingProblem() {
-  const item = ROUTING_DRILL_ITEMS[Math.floor(Math.random() * ROUTING_DRILL_ITEMS.length)]
-  return { ...item }
-}
-
 // VLSM: given a base network and a list of required host counts, allocate
 // subnets in descending order of size (largest-first allocation).
 function generateVLSMProblem() {
@@ -2704,44 +2693,6 @@ function DeeperHelpSection({ children }) {
   )
 }
 
-function RoutingTableDecoderMode({ onBack }) {
-  const [problem, setProblem] = useState(() => generateRoutingProblem())
-  const [answer, setAnswer] = useState('')
-  const [checked, setChecked] = useState(false)
-  const accepted = [problem.answer, ...(problem.accept || [])].map(a => a.toLowerCase())
-  const correct = accepted.includes((answer || '').trim().toLowerCase())
-
-  function next() {
-    setProblem(generateRoutingProblem())
-    setAnswer('')
-    setChecked(false)
-  }
-
-  return (
-    <div>
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Routing Table Decoder</h1>
-      <div style={styles.small}>Read the route line — static KB drill, no API.</div>
-      <div style={{ ...styles.card, marginTop: 12, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 13 }}>
-        {problem.line}
-      </div>
-      <div style={{ ...styles.card, marginTop: 10 }}>
-        <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>{problem.question}</div>
-        <input style={styles.input} value={answer} onChange={e => setAnswer(e.target.value)} placeholder="Your answer" />
-        {problem.hint && <div style={{ ...styles.small, marginTop: 6 }}>Hint: {problem.hint}</div>}
-        <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
-          <button style={styles.primaryBtn} onClick={() => setChecked(true)}>Check</button>
-          <button style={styles.secondaryBtn} onClick={next}>Next</button>
-        </div>
-        {checked && (
-          <div style={{ marginTop: 10, fontSize: 13, color: correct ? COLORS.mint : COLORS.rose }}>
-            {correct ? '✓ Correct' : `✗ Expected: ${problem.answer}`}
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
 
 function SubnetPracticeHome({ onBack }) {
   return (
@@ -2754,45 +2705,8 @@ function SubnetPracticeHome({ onBack }) {
   )
 }
 
-function ExamTrapStudyMode({ onBack }) {
-  const traps = useMemo(() => getAllDomain4ExamTraps(), [])
-  const [idx, setIdx] = useState(0)
-  const [revealed, setRevealed] = useState(false)
-  const trap = traps[idx]
-  if (!traps.length) {
-    return (
-      <div>
-        <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-        <div style={styles.small}>No exam traps in the knowledge base yet.</div>
-      </div>
-    )
-  }
-  return (
-    <div>
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Exam Trap Drill</h1>
-      <div style={styles.small}>Domain 4 — IP Services · static KB, no API</div>
-      <div style={{ ...styles.card, marginTop: 12 }}>
-        <div style={{ ...styles.pill('amber'), fontSize: 10, marginBottom: 8 }}>TRAP {idx + 1} / {traps.length}</div>
-        <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 12 }}>{trap.trap || trap.title}</div>
-        {!revealed
-          ? <button style={styles.primaryBtn} onClick={() => setRevealed(true)}>Reveal how to avoid it</button>
-          : (
-            <div style={{ fontSize: 13, lineHeight: 1.5 }}>
-              {trap.avoid || trap.correction || trap.explanation || 'Review the related objective reading and quiz explanations.'}
-            </div>
-          )}
-      </div>
-      <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-        <button style={styles.secondaryBtn} disabled={idx === 0} onClick={() => { setIdx(i => i - 1); setRevealed(false) }}>Previous</button>
-        <button style={styles.secondaryBtn} disabled={idx >= traps.length - 1} onClick={() => { setIdx(i => i + 1); setRevealed(false) }}>Next</button>
-      </div>
-    </div>
-  )
-}
 
 function ExplainTab({ objective, progress, onUpdateProgress }) {
-  const [content, setContent] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [recalled, setRecalled] = useState(false) // retrieval-practice gate
@@ -8363,9 +8277,9 @@ export default function App() {
         {view === 'lab' && selectedLab && <LabView bundle={getLab(selectedLab)} onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')} />}
         {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
         {view === 'focus' && <FocusModeSession progress={progress} onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} />}
-        {view === 'examtraps' && <ExamTrapStudyMode onBack={() => setView('home')} />}
+        {view === 'examtraps' && <ExamTrapStudyMode styles={styles} onBack={() => setView('home')} />}
         {view === 'subnet' && <SubnetPracticeHome onBack={() => setView('home')} />}
-        {view === 'routing' && <RoutingTableDecoderMode onBack={() => setView('home')} />}
+        {view === 'routing' && <RoutingDecoderMode styles={styles} COLORS={COLORS} onBack={() => setView('home')} />}
         {view === 'extrastudy' && (
           <ExtraStudyMode
             styles={styles}

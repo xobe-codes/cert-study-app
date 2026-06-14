@@ -1,5 +1,176 @@
 [
   {
+    "id": "3.1-g1",
+    "term": "Source code",
+    "definition": "A letter (C/L/S/O/D/R/B) indicating how the router learned each route.",
+    "ckuIds": [
+      "CKU-ROUTE-SOURCE-CODES"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.1-g2",
+    "term": "Connected route",
+    "definition": "A route automatically installed when an interface is up/up with an IP — AD 0.",
+    "ckuIds": [
+      "CKU-CONNECTED-LOCAL-ROUTES"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.1-g3",
+    "term": "Local route",
+    "definition": "A /32 route for the router own interface IP — lets it process traffic destined to itself.",
+    "ckuIds": [
+      "CKU-CONNECTED-LOCAL-ROUTES"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.1-g4",
+    "term": "Gateway of last resort",
+    "definition": "The default route (0.0.0.0/0) used when no more-specific route matches.",
+    "ckuIds": [
+      "CKU-ROUTING-TABLE-ENTRY"
+    ],
+    "objectiveId": "3.1"
+  },
+  {
+    "id": "3.2-g1",
+    "term": "Longest prefix match",
+    "definition": "The rule that a router forwards using the matching route with the most specific (longest) prefix length.",
+    "ckuIds": [
+      "CKU-LONGEST-PREFIX-MATCH"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-g2",
+    "term": "Administrative distance (AD)",
+    "definition": "A 0–255 trust rating for a routing source; lower is preferred. 255 means the route is never installed.",
+    "ckuIds": [
+      "CKU-ADMINISTRATIVE-DISTANCE"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-g3",
+    "term": "Metric",
+    "definition": "A routing protocol’s measure of how good a route is; only comparable within the same protocol.",
+    "ckuIds": [
+      "CKU-METRIC"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-g4",
+    "term": "Default route",
+    "definition": "The 0.0.0.0/0 route (gateway of last resort) that matches any destination but is the least specific.",
+    "ckuIds": [
+      "CKU-DEFAULT-ROUTE"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-g5",
+    "term": "Floating static route",
+    "definition": "A static route with a raised AD so it activates only when the preferred dynamic route is lost.",
+    "ckuIds": [
+      "CKU-ADMINISTRATIVE-DISTANCE"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.2-g6",
+    "term": "Gateway of last resort",
+    "definition": "The router’s chosen default route, used when no more-specific route matches.",
+    "ckuIds": [
+      "CKU-DEFAULT-ROUTE"
+    ],
+    "objectiveId": "3.2"
+  },
+  {
+    "id": "3.3-g1",
+    "term": "Static route",
+    "definition": "A manually configured routing table entry — AD 1 by default.",
+    "ckuIds": [
+      "CKU-STATIC-ROUTE-SYNTAX"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.3-g2",
+    "term": "Default route",
+    "definition": "0.0.0.0/0 (or ::/0) — matches any destination when nothing more specific exists.",
+    "ckuIds": [
+      "CKU-DEFAULT-STATIC-ROUTE"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.3-g3",
+    "term": "Floating static",
+    "definition": "A static route with raised AD that installs only when the primary dynamic route fails.",
+    "ckuIds": [
+      "CKU-FLOATING-STATIC"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.3-g4",
+    "term": "Recursive lookup",
+    "definition": "The router must resolve the next-hop IP via another route before installing the static.",
+    "ckuIds": [
+      "CKU-STATIC-ROUTE-SYNTAX"
+    ],
+    "objectiveId": "3.3"
+  },
+  {
+    "id": "3.4-g1",
+    "term": "OSPF",
+    "definition": "Open Shortest Path First — a link-state interior gateway protocol (AD 110).",
+    "ckuIds": [
+      "CKU-OSPF"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
+    "id": "3.4-g2",
+    "term": "LSA / LSDB",
+    "definition": "Link-State Advertisement; the database of LSAs all routers in an area share.",
+    "ckuIds": [
+      "CKU-OSPF"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
+    "id": "3.4-g3",
+    "term": "OSPF cost",
+    "definition": "Metric = reference bandwidth ÷ interface bandwidth; lower is preferred.",
+    "ckuIds": [
+      "CKU-OSPF-COST"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
+    "id": "3.4-g4",
+    "term": "Router ID",
+    "definition": "A 32-bit ID for an OSPF router (highest loopback, else interface IP, or manual).",
+    "ckuIds": [
+      "CKU-OSPF-NEIGHBOR"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
+    "id": "3.4-g5",
+    "term": "DR/BDR",
+    "definition": "Designated/Backup Designated Router that reduce LSA flooding on multi-access links.",
+    "ckuIds": [
+      "CKU-OSPF-NEIGHBOR"
+    ],
+    "objectiveId": "3.4"
+  },
+  {
     "id": "4.1-g1",
     "term": "NAT",
     "definition": "Network Address Translation — maps private to public IP addresses.",

@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.9",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.9-c-q1",
+      "question": "Which range is IPv6 global unicast (public)?",
+      "choices": [
+        "FE80::/10",
+        "2000::/3",
+        "FC00::/7",
+        "FF00::/8"
+      ],
+      "correctIndex": 1,
+      "explanation": "Global unicast = 2000::/3, the public/routable range.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "global unicast",
+      "ckuIds": [
+        "CKU-IPV6-GLOBAL-UNICAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Global unicast = 2000::/3, the public/routable range."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"FE80::/10\" is incorrect because the scenario requires: Global unicast = 2000::/3, the public/routable range.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"FC00::/7\" is incorrect because the scenario requires: Global unicast = 2000::/3, the public/routable range.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"FF00::/8\" is incorrect because the scenario requires: Global unicast = 2000::/3, the public/routable range.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.9-c-q2",
+      "question": "What does an IPv6 link-local address begin with?",
+      "choices": [
+        "FF02",
+        "2001",
+        "FE80",
+        "FD00"
+      ],
+      "correctIndex": 2,
+      "explanation": "Link-local addresses are FE80::/10.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "link-local",
+      "ckuIds": [
+        "CKU-IPV6-LINK-LOCAL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Link-local addresses are FE80::/10."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"FF02\" is incorrect because the scenario requires: Link-local addresses are FE80::/10.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"2001\" is incorrect because the scenario requires: Link-local addresses are FE80::/10.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"FD00\" is incorrect because the scenario requires: Link-local addresses are FE80::/10.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.9-c-q3",
+      "question": "Which is the IPv6 “private” (RFC1918-like) range commonly used?",
+      "choices": [
+        "FD00::/8",
+        "2000::/3",
+        "FE80::/10",
+        "FF00::/8"
+      ],
+      "correctIndex": 0,
+      "explanation": "Unique Local is FC00::/7, used in practice as FD00::/8.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "unique local",
+      "ckuIds": [
+        "CKU-IPV6-UNIQUE-LOCAL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Unique Local is FC00::/7, used in practice as FD00::/8."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"2000::/3\" is incorrect because the scenario requires: Unique Local is FC00::/7, used in practice as FD00::/8.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"FE80::/10\" is incorrect because the scenario requires: Unique Local is FC00::/7, used in practice as FD00::/8.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"FF00::/8\" is incorrect because the scenario requires: Unique Local is FC00::/7, used in practice as FD00::/8.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.9-c-q4",
+      "question": "Which multicast address reaches all routers on a link?",
+      "choices": [
+        "FF02::1",
+        "FF02::2",
+        "FF02::5",
+        "224.0.0.2"
+      ],
+      "correctIndex": 1,
+      "explanation": "FF02::2 = all routers; FF02::1 = all nodes.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "multicast",
+      "ckuIds": [
+        "CKU-IPV6-MULTICAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "FF02::2 = all routers; FF02::1 = all nodes."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"FF02::1\" is incorrect because the scenario requires: FF02::2 = all routers; FF02::1 = all nodes.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"FF02::5\" is incorrect because the scenario requires: FF02::2 = all routers; FF02::1 = all nodes.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"224.0.0.2\" is incorrect because the scenario requires: FF02::2 = all routers; FF02::1 = all nodes.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.9-c-q5",
+      "question": "True or False: IPv6 uses a broadcast address like IPv4.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — IPv6 has no broadcast; multicast (FF00::/8) replaces it.",
+      "type": "true-false",
+      "difficulty": "easy",
+      "concept": "no broadcast",
+      "ckuIds": [
+        "CKU-IPV6-MULTICAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "False — IPv6 has no broadcast; multicast (FF00::/8) replaces it."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"True\" is incorrect because the scenario requires: False — IPv6 has no broadcast; multicast (FF00::/8) replaces it.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.9-c-q6",
+      "question": "The same IPv6 address is configured on several servers and traffic goes to the nearest. What type is this?",
+      "choices": [
+        "Multicast",
+        "Anycast",
+        "Link-local",
+        "Broadcast"
+      ],
+      "correctIndex": 1,
+      "explanation": "Anycast = one address on multiple devices, delivered to the nearest.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "anycast",
+      "ckuIds": [
+        "CKU-IPV6-MULTICAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Anycast = one address on multiple devices, delivered to the nearest."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Multicast\" is incorrect because the scenario requires: Anycast = one address on multiple devices, delivered to the nearest.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Link-local\" is incorrect because the scenario requires: Anycast = one address on multiple devices, delivered to the nearest.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Broadcast\" is incorrect because the scenario requires: Anycast = one address on multiple devices, delivered to the nearest.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.9-c-q7",
+      "question": "Where can a link-local (FE80::) address be used?",
+      "choices": [
+        "Across the internet",
+        "Only on the local link",
+        "Only by routers",
+        "Only with NAT"
+      ],
+      "correctIndex": 1,
+      "explanation": "Link-local is never routed off the local link.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "link-local scope",
+      "ckuIds": [
+        "CKU-IPV6-LINK-LOCAL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Link-local is never routed off the local link."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Across the internet\" is incorrect because the scenario requires: Link-local is never routed off the local link.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Only by routers\" is incorrect because the scenario requires: Link-local is never routed off the local link.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Only with NAT\" is incorrect because the scenario requires: Link-local is never routed off the local link.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.9-c-q8",
+      "question": "Which multicast group does every IPv6 host join?",
+      "choices": [
+        "FF02::1 (all nodes)",
+        "FF02::2 (all routers)",
+        "FE80::1",
+        "2000::1"
+      ],
+      "correctIndex": 0,
+      "explanation": "All IPv6 hosts join FF02::1, the all-nodes group.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "all nodes",
+      "ckuIds": [
+        "CKU-IPV6-MULTICAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "All IPv6 hosts join FF02::1, the all-nodes group."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"FF02::2 (all routers)\" is incorrect because the scenario requires: All IPv6 hosts join FF02::1, the all-nodes group.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"FE80::1\" is incorrect because the scenario requires: All IPv6 hosts join FF02::1, the all-nodes group.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"2000::1\" is incorrect because the scenario requires: All IPv6 hosts join FF02::1, the all-nodes group.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

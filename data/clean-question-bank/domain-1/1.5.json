@@ -1,0 +1,503 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.5",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.5-c-q1",
+      "question": "When a switch learns a MAC address, which address does it record — source or destination?",
+      "choices": [
+        "Destination MAC of the frame",
+        "Source MAC of the frame",
+        "Both source and destination",
+        "Neither — only IP addresses"
+      ],
+      "correctIndex": 1,
+      "explanation": "Switches learn by reading the SOURCE MAC address and the port it arrived on.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "mac learning",
+      "ckuIds": [
+        "CKU-MAC-LEARNING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Switches learn by reading the SOURCE MAC address and the port it arrived on."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Destination MAC of the frame\" is incorrect because the scenario requires: Switches learn by reading the SOURCE MAC address and the port it arrived on.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Both source and destination\" is incorrect because the scenario requires: Switches learn by reading the SOURCE MAC address and the port it arrived on.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Neither — only IP addresses\" is incorrect because the scenario requires: Switches learn by reading the SOURCE MAC address and the port it arrived on.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.5-c-q2",
+      "question": "A frame arrives whose destination MAC IS in the MAC address table, mapped to a different port than it arrived on. What does the switch do?",
+      "choices": [
+        "Flood it out all ports",
+        "Drop the frame",
+        "Forward it out only the mapped port",
+        "Broadcast it within the VLAN"
+      ],
+      "correctIndex": 2,
+      "explanation": "A known unicast destination is forwarded out only the one port it is mapped to.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "forwarding decision",
+      "ckuIds": [
+        "CKU-FRAME-FORWARDING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "A known unicast destination is forwarded out only the one port it is mapped to."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Flood it out all ports\" is incorrect because the scenario requires: A known unicast destination is forwarded out only the one port it is mapped to.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Drop the frame\" is incorrect because the scenario requires: A known unicast destination is forwarded out only the one port it is mapped to.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Broadcast it within the VLAN\" is incorrect because the scenario requires: A known unicast destination is forwarded out only the one port it is mapped to.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.5-c-q3",
+      "question": "What does a switch do with a frame whose destination MAC is NOT in its MAC address table?",
+      "choices": [
+        "Drops it",
+        "Sends it back to the source",
+        "Floods it out all ports in the VLAN except the source port",
+        "Sends it to the default gateway"
+      ],
+      "correctIndex": 2,
+      "explanation": "Unknown unicast frames are flooded out every port in the same VLAN except the ingress port.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "flooding",
+      "ckuIds": [
+        "CKU-FRAME-FLOODING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Unknown unicast frames are flooded out every port in the same VLAN except the ingress port."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Drops it\" is incorrect because the scenario requires: Unknown unicast frames are flooded out every port in the same VLAN except the ingress port.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Sends it back to the source\" is incorrect because the scenario requires: Unknown unicast frames are flooded out every port in the same VLAN except the ingress port.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Sends it to the default gateway\" is incorrect because the scenario requires: Unknown unicast frames are flooded out every port in the same VLAN except the ingress port.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.5-c-q4",
+      "question": "What is the default MAC address table aging time on a Cisco switch?",
+      "choices": [
+        "30 seconds",
+        "60 seconds",
+        "300 seconds",
+        "3600 seconds"
+      ],
+      "correctIndex": 2,
+      "explanation": "The default aging time is 300 seconds (5 minutes) of inactivity.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "aging timer",
+      "ckuIds": [
+        "CKU-MAC-AGING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The default aging time is 300 seconds (5 minutes) of inactivity."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"30 seconds\" is incorrect because the scenario requires: The default aging time is 300 seconds (5 minutes) of inactivity.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"60 seconds\" is incorrect because the scenario requires: The default aging time is 300 seconds (5 minutes) of inactivity.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"3600 seconds\" is incorrect because the scenario requires: The default aging time is 300 seconds (5 minutes) of inactivity.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.5-c-q5",
+      "question": "PC-A and PC-B are both connected to the same switch port via a hub. PC-A sends a frame to PC-B. What does the switch do?",
+      "choices": [
+        "Forwards it out a different port",
+        "Floods it everywhere",
+        "Filters it — does not forward, since both are on the same port",
+        "Drops it as an error"
+      ],
+      "correctIndex": 2,
+      "explanation": "If source and destination MAC map to the same ingress port, the switch filters (does not forward) the frame.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "filtering",
+      "ckuIds": [
+        "CKU-FRAME-FORWARDING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "If source and destination MAC map to the same ingress port, the switch filters (does not forward) the frame."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Forwards it out a different port\" is incorrect because the scenario requires: If source and destination MAC map to the same ingress port, the switch filters (does not forward) the frame.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Floods it everywhere\" is incorrect because the scenario requires: If source and destination MAC map to the same ingress port, the switch filters (does not forward) the frame.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Drops it as an error\" is incorrect because the scenario requires: If source and destination MAC map to the same ingress port, the switch filters (does not forward) the frame.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.5-c-q6",
+      "question": "What MAC address represents a Layer 2 broadcast?",
+      "choices": [
+        "0000.0000.0000",
+        "FFFF.FFFF.FFFF",
+        "0000.0000.FFFF",
+        "AAAA.AAAA.AAAA"
+      ],
+      "correctIndex": 1,
+      "explanation": "FFFF.FFFF.FFFF is the Ethernet broadcast address; switches always flood broadcasts within the VLAN.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "broadcast",
+      "ckuIds": [
+        "CKU-FRAME-FLOODING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "FFFF.FFFF.FFFF is the Ethernet broadcast address; switches always flood broadcasts within the VLAN."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"0000.0000.0000\" is incorrect because the scenario requires: FFFF.FFFF.FFFF is the Ethernet broadcast address; switches always flood broadcasts within the VLAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"0000.0000.FFFF\" is incorrect because the scenario requires: FFFF.FFFF.FFFF is the Ethernet broadcast address; switches always flood broadcasts within the VLAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"AAAA.AAAA.AAAA\" is incorrect because the scenario requires: FFFF.FFFF.FFFF is the Ethernet broadcast address; switches always flood broadcasts within the VLAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.5-c-q7",
+      "question": "True or False: A switch may flood a frame out a port that is in a different VLAN than the frame.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — flooding is scoped per-VLAN; a frame is never flooded into a different VLAN.",
+      "type": "true-false",
+      "difficulty": "medium",
+      "concept": "flooding scope",
+      "ckuIds": [
+        "CKU-FRAME-FLOODING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "False — flooding is scoped per-VLAN; a frame is never flooded into a different VLAN."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"True\" is incorrect because the scenario requires: False — flooding is scoped per-VLAN; a frame is never flooded into a different VLAN.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.5-c-q8",
+      "question": "Which command displays the switch MAC address table?",
+      "choices": [
+        "show ip interface brief",
+        "show mac address-table",
+        "show vlan brief",
+        "show cdp neighbors"
+      ],
+      "correctIndex": 1,
+      "explanation": "`show mac address-table` lists learned (and static) MAC-to-port mappings.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "verify table",
+      "ckuIds": [
+        "CKU-MAC-ADDRESS-TABLE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`show mac address-table` lists learned (and static) MAC-to-port mappings."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"show ip interface brief\" is incorrect because the scenario requires: `show mac address-table` lists learned (and static) MAC-to-port mappings.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"show vlan brief\" is incorrect because the scenario requires: `show mac address-table` lists learned (and static) MAC-to-port mappings.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"show cdp neighbors\" is incorrect because the scenario requires: `show mac address-table` lists learned (and static) MAC-to-port mappings.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.5-c-q9",
+      "question": "How do you add a permanent (non-aging) MAC address entry to the table?",
+      "choices": [
+        "mac address-table aging-time 0",
+        "mac address-table static <mac> vlan <id> interface <intf>",
+        "switchport mode static",
+        "arp <mac> static"
+      ],
+      "correctIndex": 1,
+      "explanation": "`mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "static entries",
+      "ckuIds": [
+        "CKU-MAC-ADDRESS-TABLE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"mac address-table aging-time 0\" is incorrect because the scenario requires: `mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"switchport mode static\" is incorrect because the scenario requires: `mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"arp <mac> static\" is incorrect because the scenario requires: `mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out.",
+            "misconceptionTested": "Static route next-hop vs exit-interface behavior"
+          }
+        ],
+        "examTip": "Next-hop static routes need a recursive lookup to find the exit interface."
+      }
+    },
+    {
+      "id": "1.5-c-q10",
+      "question": "A brand-new server is plugged in and immediately receives a request from PC-A before it has sent any traffic. How does the switch deliver that first frame?",
+      "choices": [
+        "It cannot — the server is unknown",
+        "It floods the frame (unknown unicast) since the server's MAC isn't learned yet",
+        "It drops the frame and logs an error",
+        "It sends an ARP request first"
+      ],
+      "correctIndex": 1,
+      "explanation": "Until the switch learns the server's source MAC, frames addressed to it are unknown unicast and get flooded.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "first frame",
+      "ckuIds": [
+        "CKU-FRAME-FLOODING",
+        "CKU-MAC-LEARNING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Until the switch learns the server's source MAC, frames addressed to it are unknown unicast and get flooded."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"It cannot — the server is unknown\" is incorrect because the scenario requires: Until the switch learns the server's source MAC, frames addressed to it are unknown unicast and get flooded.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"It drops the frame and logs an error\" is incorrect because the scenario requires: Until the switch learns the server's source MAC, frames addressed to it are unknown unicast and get flooded.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"It sends an ARP request first\" is incorrect because the scenario requires: Until the switch learns the server's source MAC, frames addressed to it are unknown unicast and get flooded.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.5-c-q11",
+      "question": "A laptop is unplugged from port 1 and plugged into port 5 of the same switch. What happens to the MAC address table?",
+      "choices": [
+        "Nothing — the entry stays on port 1 forever",
+        "The switch immediately deletes all entries",
+        "The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame",
+        "The switch shuts down port 5"
+      ],
+      "correctIndex": 2,
+      "explanation": "Learning is continuous — the new frame from port 5 updates/relearns the mapping; the stale port-1 entry ages out.",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "relearning after move",
+      "ckuIds": [
+        "CKU-MAC-LEARNING",
+        "CKU-MAC-AGING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Learning is continuous — the new frame from port 5 updates/relearns the mapping; the stale port-1 entry ages out."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Nothing — the entry stays on port 1 forever\" is incorrect because the scenario requires: Learning is continuous — the new frame from port 5 updates/relearns the mapping; the stale port-1 entry ages out.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The switch immediately deletes all entries\" is incorrect because the scenario requires: Learning is continuous — the new frame from port 5 updates/relearns the mapping; the stale port-1 entry ages out.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The switch shuts down port 5\" is incorrect because the scenario requires: Learning is continuous — the new frame from port 5 updates/relearns the mapping; the stale port-1 entry ages out.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.5-c-q12",
+      "question": "How does a switch's forwarding behavior differ from a hub's?",
+      "choices": [
+        "They behave identically",
+        "A switch forwards known-unicast frames to only one port; a hub repeats every frame out every port",
+        "A hub uses a MAC address table; a switch does not",
+        "A switch only works at Layer 3"
+      ],
+      "correctIndex": 1,
+      "explanation": "A hub is a simple repeater (everything out every port); a switch learns and forwards intelligently, only flooding when necessary.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "switch vs hub",
+      "ckuIds": [
+        "CKU-FRAME-FORWARDING",
+        "CKU-FRAME-FLOODING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "A hub is a simple repeater (everything out every port); a switch learns and forwards intelligently, only flooding when necessary."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"They behave identically\" is incorrect because the scenario requires: A hub is a simple repeater (everything out every port); a switch learns and forwards intelligently, only flooding when n…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"A hub uses a MAC address table; a switch does not\" is incorrect because the scenario requires: A hub is a simple repeater (everything out every port); a switch learns and forwards intelligently, only flooding when n…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A switch only works at Layer 3\" is incorrect because the scenario requires: A hub is a simple repeater (everything out every port); a switch learns and forwards intelligently, only flooding when n…",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

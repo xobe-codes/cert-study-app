@@ -385,6 +385,55 @@
       }
     },
     {
+      "id": "obj-4.2-source-q009",
+      "question": "Which command sets the time zone of a router for Pacific Standard Time?",
+      "choices": [
+        "Router(config)#clock timezone pacific",
+        "Router(config)#clock timezone pst -8 0",
+        "Router(config)#timezone pacific",
+        "Router(config)#timezone pst -8"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-CLOCK",
+        "CKU-CLOCK-TIMEZONE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router(config)#clock timezone pst -8 0\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#clock timezone pacific\" is incorrect because the scenario requires: The correct answer is \"Router(config)#clock timezone pst -8 0\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#timezone pacific\" is incorrect because the scenario requires: The correct answer is \"Router(config)#clock timezone pst -8 0\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router(config)#timezone pst -8\" is incorrect because the scenario requires: The correct answer is \"Router(config)#clock timezone pst -8 0\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-4.2-source-q010",
       "question": "You are configuring NTP on your switch. You want to configure the switch so if any interface fails, NTP will still be available. Which type of interface should you use? Choose the best answer.",
       "choices": [
@@ -474,6 +523,54 @@
           {
             "choiceIndex": 3,
             "explanation": "\"Switch(config)#ntp clock loopback 0\" is incorrect because the scenario requires: The correct answer is \"Switch(config)#ntp source loopback 0\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-4.2-source-q012",
+      "question": "Which command set the router’s internal clock to 2:24 August 1, 2019?",
+      "choices": [
+        "Router(config)#clock set 2:24:00 1 august 2019",
+        "Router#clock set 2:24:00 1 august 2019",
+        "Router(config)#clock set 2:24:00 august 1 2019",
+        "Router#clock 2:24:00 1 august 2019"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "ntp",
+      "ckuIds": [
+        "CKU-NTP",
+        "CKU-NTP-CLIENT",
+        "CKU-NTP-SERVER",
+        "CKU-CLOCK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Router#clock set 2:24:00 1 august 2019\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Router(config)#clock set 2:24:00 1 august 2019\" is incorrect because the scenario requires: The correct answer is \"Router#clock set 2:24:00 1 august 2019\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Router(config)#clock set 2:24:00 august 1 2019\" is incorrect because the scenario requires: The correct answer is \"Router#clock set 2:24:00 1 august 2019\".",
+            "misconceptionTested": "Confusing NTP stratum direction or client/server role",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Router#clock 2:24:00 1 august 2019\" is incorrect because the scenario requires: The correct answer is \"Router#clock set 2:24:00 1 august 2019\".",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }

@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.12",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.12-c-q1",
+      "question": "Which is a Type 1 (bare-metal) hypervisor?",
+      "choices": [
+        "VMware Workstation on Windows",
+        "VMware ESXi",
+        "Docker Desktop only",
+        "A physical router"
+      ],
+      "correctIndex": 1,
+      "explanation": "ESXi runs directly on hardware without a host OS underneath.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "type1",
+      "ckuIds": [
+        "CKU-HYPERVISOR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "ESXi runs directly on hardware without a host OS underneath."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"VMware Workstation on Windows\" is incorrect because the scenario requires: ESXi runs directly on hardware without a host OS underneath.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Docker Desktop only\" is incorrect because the scenario requires: ESXi runs directly on hardware without a host OS underneath.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A physical router\" is incorrect because the scenario requires: ESXi runs directly on hardware without a host OS underneath.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.12-c-q2",
+      "question": "A Type 2 hypervisor runs…",
+      "choices": [
+        "Directly on bare metal only",
+        "On top of a host operating system",
+        "Inside a container only",
+        "Without any VMs"
+      ],
+      "correctIndex": 1,
+      "explanation": "Type 2 is hosted — e.g. Workstation on Windows/macOS.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "type2",
+      "ckuIds": [
+        "CKU-HYPERVISOR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Type 2 is hosted — e.g. Workstation on Windows/macOS."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Directly on bare metal only\" is incorrect because the scenario requires: Type 2 is hosted — e.g. Workstation on Windows/macOS.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Inside a container only\" is incorrect because the scenario requires: Type 2 is hosted — e.g. Workstation on Windows/macOS.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Without any VMs\" is incorrect because the scenario requires: Type 2 is hosted — e.g. Workstation on Windows/macOS.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.12-c-q3",
+      "question": "Containers differ from VMs because containers…",
+      "choices": [
+        "Include a full guest OS each",
+        "Share the host OS kernel",
+        "Cannot run on Linux",
+        "Replace physical switches"
+      ],
+      "correctIndex": 1,
+      "explanation": "Containers isolate processes but share one kernel — lighter than full VMs.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "containers",
+      "ckuIds": [
+        "CKU-CONTAINERS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Containers isolate processes but share one kernel — lighter than full VMs."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Include a full guest OS each\" is incorrect because the scenario requires: Containers isolate processes but share one kernel — lighter than full VMs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Cannot run on Linux\" is incorrect because the scenario requires: Containers isolate processes but share one kernel — lighter than full VMs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Replace physical switches\" is incorrect because the scenario requires: Containers isolate processes but share one kernel — lighter than full VMs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.12-c-q4",
+      "question": "VRF on a router provides…",
+      "choices": [
+        "Wireless encryption",
+        "Multiple isolated routing tables",
+        "Fiber transceiver support",
+        "DHCP server redundancy"
+      ],
+      "correctIndex": 1,
+      "explanation": "VRF creates separate routing/forwarding instances on one device.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "vrf",
+      "ckuIds": [
+        "CKU-VRF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "VRF creates separate routing/forwarding instances on one device."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Wireless encryption\" is incorrect because the scenario requires: VRF creates separate routing/forwarding instances on one device.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Fiber transceiver support\" is incorrect because the scenario requires: VRF creates separate routing/forwarding instances on one device.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"DHCP server redundancy\" is incorrect because the scenario requires: VRF creates separate routing/forwarding instances on one device.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.12-c-q5",
+      "question": "NFV (Network Function Virtualization) means…",
+      "choices": [
+        "Replacing DNS with VLANs",
+        "Running network services as software on general hardware",
+        "Eliminating all routers",
+        "Using only WEP"
+      ],
+      "correctIndex": 1,
+      "explanation": "NFV virtualizes functions like firewall and router as software.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "nfv",
+      "ckuIds": [
+        "CKU-NFV"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "NFV virtualizes functions like firewall and router as software."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Replacing DNS with VLANs\" is incorrect because the scenario requires: NFV virtualizes functions like firewall and router as software.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Eliminating all routers\" is incorrect because the scenario requires: NFV virtualizes functions like firewall and router as software.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Using only WEP\" is incorrect because the scenario requires: NFV virtualizes functions like firewall and router as software.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.12-c-q6",
+      "question": "Each virtual machine typically includes…",
+      "choices": [
+        "Only a container image",
+        "Its own guest OS and virtual NICs",
+        "Shared kernel with all other VMs",
+        "No network interface"
+      ],
+      "correctIndex": 1,
+      "explanation": "VMs are full guests with virtual hardware including vNICs.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "vm components",
+      "ckuIds": [
+        "CKU-HYPERVISOR"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "VMs are full guests with virtual hardware including vNICs."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Only a container image\" is incorrect because the scenario requires: VMs are full guests with virtual hardware including vNICs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Shared kernel with all other VMs\" is incorrect because the scenario requires: VMs are full guests with virtual hardware including vNICs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"No network interface\" is incorrect because the scenario requires: VMs are full guests with virtual hardware including vNICs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.12-c-q7",
+      "question": "True or False: VRF and VLAN provide the same type of isolation.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — VLAN = L2 broadcast domain; VRF = L3 routing table isolation.",
+      "type": "true-false",
+      "difficulty": "hard",
+      "concept": "vrf vs vlan",
+      "ckuIds": [
+        "CKU-VRF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "False — VLAN = L2 broadcast domain; VRF = L3 routing table isolation."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"True\" is incorrect because the scenario requires: False — VLAN = L2 broadcast domain; VRF = L3 routing table isolation.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.12-c-q8",
+      "question": "Docker is commonly associated with…",
+      "choices": [
+        "Type 1 hypervisors",
+        "Container packaging and deployment",
+        "WPA3",
+        "Spanning Tree"
+      ],
+      "correctIndex": 1,
+      "explanation": "Docker packages apps into containers sharing the host kernel.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "docker",
+      "ckuIds": [
+        "CKU-CONTAINERS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Docker packages apps into containers sharing the host kernel."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Type 1 hypervisors\" is incorrect because the scenario requires: Docker packages apps into containers sharing the host kernel.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"WPA3\" is incorrect because the scenario requires: Docker packages apps into containers sharing the host kernel.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Spanning Tree\" is incorrect because the scenario requires: Docker packages apps into containers sharing the host kernel.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

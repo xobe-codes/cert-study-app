@@ -356,6 +356,105 @@
       }
     },
     {
+      "id": "obj-5.8-source-q008",
+      "question": "Which protocol and port does RADIUS authentication use?",
+      "choices": [
+        "UDP/1845",
+        "UDP/1645",
+        "TCP/1645",
+        "UDP/1911"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-RADIUS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"UDP/1645\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"UDP/1845\" is incorrect because the scenario requires: The correct answer is \"UDP/1645\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"TCP/1645\" is incorrect because the scenario requires: The correct answer is \"UDP/1645\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"UDP/1911\" is incorrect because the scenario requires: The correct answer is \"UDP/1645\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.8-source-q009",
+      "question": "Which is an authentication protocol for AAA servers to secure Telnet authentication?",
+      "choices": [
+        "802.1X",
+        "TACACS+",
+        "AD",
+        "EAP"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "aaa",
+      "ckuIds": [
+        "CKU-AAA",
+        "CKU-AUTHENTICATION",
+        "CKU-AUTHORIZATION",
+        "CKU-TELNET",
+        "CKU-TACACS",
+        "CKU-802.1X",
+        "CKU-EAP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"TACACS+\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.1X\" is incorrect because the scenario requires: The correct answer is \"TACACS+\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"AD\" is incorrect because the scenario requires: The correct answer is \"TACACS+\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"EAP\" is incorrect because the scenario requires: The correct answer is \"TACACS+\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-5.8-source-q010",
       "question": "Which command configure the router to use a TACACS+ server and a backup of local for authentication of logins?",
       "choices": [

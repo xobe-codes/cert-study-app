@@ -1043,6 +1043,55 @@
       }
     },
     {
+      "id": "obj-5.7-source-q023",
+      "question": "Switch# show port-security interface Gi0/1\nPort Security              : Enabled\nPort Status                : Secure-shutdown\nViolation Mode             : Shutdown\nTotal MAC Addresses        : 1 (max 1)\nSecurity Violation Count   : 1\n\nYou received a call that a port is no longer active. The port has port security configured on it. What is the problem?",
+      "choices": [
+        "The port has been administratively shutdown.",
+        "The port has an access violation on it.",
+        "The port has bad wiring.",
+        "The port on the switch is configured as a trunk."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "objectiveId": "5.6",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The port has an access violation on it.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The port has been administratively shutdown.\" is incorrect because the scenario requires: The correct answer is \"The port has an access violation on it.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The port has bad wiring.\" is incorrect because the scenario requires: The correct answer is \"The port has an access violation on it.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The port on the switch is configured as a trunk.\" is incorrect because the scenario requires: The correct answer is \"The port has an access violation on it.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-5.7-source-q024",
       "question": "Which command allow the first MAC address learned on the port to be allowed to only pass traffic on the port via port security?",
       "choices": [
@@ -1083,6 +1132,55 @@
           {
             "choiceIndex": 3,
             "explanation": "\"SwitchA(config-if)#switchport port-security mac-address learn\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address sticky\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q025",
+      "question": "Switch# show port-security interface Gi0/2\nPort Status                : Secure-shutdown (violation)\nViolation Mode             : Shutdown\n\nYou receive a call that a port on the switch is not working. You determine that a port-security violation has been experienced. Once the violation has been remediated, how will you reset the port so that it functions again?",
+      "choices": [
+        "SwitchA(config-if)#no port-security",
+        "SwitchA(config-if)#no shutdown",
+        "SwitchA(config-if)#no switchport port-security",
+        "SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "objectiveId": "5.6",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SwitchA(config-if)#no port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SwitchA(config-if)#no shutdown\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"SwitchA(config-if)#no switchport port-security\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#shutdown SwitchA(config-if)#no shutdown\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }
@@ -1132,6 +1230,55 @@
             "choiceIndex": 3,
             "explanation": "\"SwitchA(config-if)#switchport port-security static 0334.56f3.e4e4\" is incorrect because the scenario requires: The correct answer is \"SwitchA(config-if)#switchport port-security mac-address 0334.56f3.e4e4\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.7-source-q027",
+      "question": "Switch# show port-security\nSecure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1        1              1            0                  Shutdown\nGi0/2        2              2            1                  Shutdown\n\nWhich command is used to see the output below?",
+      "choices": [
+        "Switch#show port-security details",
+        "Switch#show mac address-table secure",
+        "Switch#show port-security address",
+        "Switch#show port-security"
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "layer2 security",
+      "ckuIds": [
+        "CKU-LAYER2-SECURITY",
+        "CKU-DHCP-SNOOPING",
+        "CKU-PORT-SECURITY"
+      ],
+      "objectiveId": "5.6",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Switch#show port-security\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#show port-security details\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Switch#show mac address-table secure\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#show port-security address\" is incorrect because the scenario requires: The correct answer is \"Switch#show port-security\".",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario",
             "needsExplanationReview": true
           }
         ],

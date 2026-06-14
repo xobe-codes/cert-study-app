@@ -52,6 +52,54 @@
       }
     },
     {
+      "id": "obj-5.9-source-q002",
+      "question": "Which is a requirement of WPA2-Enterprise?",
+      "choices": [
+        "Creation of a PSK",
+        "Certificate infrastructure",
+        "192-bit key strength",
+        "802.11ac"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2",
+        "CKU-PSK"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"Certificate infrastructure\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Creation of a PSK\" is incorrect because the scenario requires: The correct answer is \"Certificate infrastructure\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"192-bit key strength\" is incorrect because the scenario requires: The correct answer is \"Certificate infrastructure\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.11ac\" is incorrect because the scenario requires: The correct answer is \"Certificate infrastructure\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-5.9-source-q003",
       "question": "Which mechanism in WPA prevents the altering and replay of data packets?",
       "choices": [
@@ -482,6 +530,56 @@
           {
             "choiceIndex": 3,
             "explanation": "\"TKIP\" is incorrect because the scenario requires: The correct answer is \"PSK\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-5.9-source-q012",
+      "question": "Which protocol will restrict you from achieving high throughput rates?",
+      "choices": [
+        "AES",
+        "TKIP",
+        "CCMP",
+        "PSK"
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "wireless security",
+      "ckuIds": [
+        "CKU-WIRELESS-SECURITY",
+        "CKU-WPA",
+        "CKU-WPA2",
+        "CKU-PSK",
+        "CKU-AES-CCMP",
+        "CKU-TKIP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"TKIP\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"AES\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"CCMP\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"PSK\" is incorrect because the scenario requires: The correct answer is \"TKIP\".",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

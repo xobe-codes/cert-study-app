@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.2",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.2-c-q1",
+      "question": "In a three-tier campus design, which tier connects end-user devices?",
+      "choices": [
+        "Core",
+        "Distribution",
+        "Access",
+        "Spine"
+      ],
+      "correctIndex": 2,
+      "explanation": "Access switches connect PCs, phones, and APs.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "access tier",
+      "ckuIds": [
+        "CKU-CAMPUS-TIER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Access switches connect PCs, phones, and APs."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Core\" is incorrect because the scenario requires: Access switches connect PCs, phones, and APs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Distribution\" is incorrect because the scenario requires: Access switches connect PCs, phones, and APs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Spine\" is incorrect because the scenario requires: Access switches connect PCs, phones, and APs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.2-c-q2",
+      "question": "Spine-leaf architecture is primarily used for…",
+      "choices": [
+        "SOHO Wi‑Fi",
+        "Data center east-west traffic",
+        "Dial-up WAN",
+        "Home gaming"
+      ],
+      "correctIndex": 1,
+      "explanation": "Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "spine-leaf",
+      "ckuIds": [
+        "CKU-SPINE-LEAF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SOHO Wi‑Fi\" is incorrect because the scenario requires: Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Dial-up WAN\" is incorrect because the scenario requires: Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Home gaming\" is incorrect because the scenario requires: Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.2-c-q3",
+      "question": "Ten branch offices send all WAN traffic through headquarters. Which topology is this?",
+      "choices": [
+        "Full mesh",
+        "Hub-and-spoke",
+        "Spine-leaf",
+        "Point-to-point only"
+      ],
+      "correctIndex": 1,
+      "explanation": "All spokes via one hub = hub-and-spoke.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "hub-spoke",
+      "ckuIds": [
+        "CKU-WAN-TOPO"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "All spokes via one hub = hub-and-spoke."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Full mesh\" is incorrect because the scenario requires: All spokes via one hub = hub-and-spoke.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Spine-leaf\" is incorrect because the scenario requires: All spokes via one hub = hub-and-spoke.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Point-to-point only\" is incorrect because the scenario requires: All spokes via one hub = hub-and-spoke.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.2-c-q4",
+      "question": "What is the main trade-off of a full-mesh WAN?",
+      "choices": [
+        "No redundancy",
+        "High cost/complexity for many links",
+        "Only works with fiber",
+        "Eliminates routing"
+      ],
+      "correctIndex": 1,
+      "explanation": "Full mesh connects every site to every other — resilient but expensive.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "full mesh",
+      "ckuIds": [
+        "CKU-WAN-TOPO"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Full mesh connects every site to every other — resilient but expensive."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"No redundancy\" is incorrect because the scenario requires: Full mesh connects every site to every other — resilient but expensive.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Only works with fiber\" is incorrect because the scenario requires: Full mesh connects every site to every other — resilient but expensive.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Eliminates routing\" is incorrect because the scenario requires: Full mesh connects every site to every other — resilient but expensive.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.2-c-q5",
+      "question": "A collapsed core campus design has how many tiers?",
+      "choices": [
+        "One",
+        "Two",
+        "Four",
+        "Five"
+      ],
+      "correctIndex": 1,
+      "explanation": "Two-tier merges distribution and core — access + collapsed distribution/core.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "two-tier",
+      "ckuIds": [
+        "CKU-CAMPUS-TIER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Two-tier merges distribution and core — access + collapsed distribution/core."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"One\" is incorrect because the scenario requires: Two-tier merges distribution and core — access + collapsed distribution/core.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Four\" is incorrect because the scenario requires: Two-tier merges distribution and core — access + collapsed distribution/core.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Five\" is incorrect because the scenario requires: Two-tier merges distribution and core — access + collapsed distribution/core.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.2-c-q6",
+      "question": "A home user has one wireless router providing NAT, DHCP, and Wi‑Fi. This is typical of…",
+      "choices": [
+        "Core datacenter",
+        "SOHO",
+        "Full mesh WAN",
+        "Spine fabric"
+      ],
+      "correctIndex": 1,
+      "explanation": "Small office/home office networks are simple, often one integrated gateway.",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "soho",
+      "ckuIds": [
+        "CKU-CLOUD-ONPREM"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Small office/home office networks are simple, often one integrated gateway."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Core datacenter\" is incorrect because the scenario requires: Small office/home office networks are simple, often one integrated gateway.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Full mesh WAN\" is incorrect because the scenario requires: Small office/home office networks are simple, often one integrated gateway.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Spine fabric\" is incorrect because the scenario requires: Small office/home office networks are simple, often one integrated gateway.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.2-c-q7",
+      "question": "In which cloud model does the customer manage the operating system but not the physical hardware?",
+      "choices": [
+        "SaaS",
+        "PaaS",
+        "IaaS",
+        "On-prem only"
+      ],
+      "correctIndex": 2,
+      "explanation": "IaaS provides VMs/infrastructure; the customer manages OS and above.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "cloud model",
+      "ckuIds": [
+        "CKU-CLOUD-ONPREM"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "IaaS provides VMs/infrastructure; the customer manages OS and above."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SaaS\" is incorrect because the scenario requires: IaaS provides VMs/infrastructure; the customer manages OS and above.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"PaaS\" is incorrect because the scenario requires: IaaS provides VMs/infrastructure; the customer manages OS and above.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"On-prem only\" is incorrect because the scenario requires: IaaS provides VMs/infrastructure; the customer manages OS and above.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.2-c-q8",
+      "question": "True or False: In spine-leaf, each leaf switch connects to every spine switch.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — full mesh between leaves and spines is the defining property.",
+      "type": "true-false",
+      "difficulty": "medium",
+      "concept": "spine connectivity",
+      "ckuIds": [
+        "CKU-SPINE-LEAF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "True — full mesh between leaves and spines is the defining property."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"False\" is incorrect because the scenario requires: True — full mesh between leaves and spines is the defining property.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

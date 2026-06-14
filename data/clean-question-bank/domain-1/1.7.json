@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.7",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.7-c-q1",
+      "question": "Which is an RFC 1918 private network?",
+      "choices": [
+        "8.8.8.0/24",
+        "192.168.50.0/24",
+        "203.0.113.0/24",
+        "169.254.1.0/24"
+      ],
+      "correctIndex": 1,
+      "explanation": "192.168.0.0/16 is one of the three RFC 1918 ranges.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "rfc1918 ranges",
+      "ckuIds": [
+        "CKU-RFC1918"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "192.168.0.0/16 is one of the three RFC 1918 ranges."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"8.8.8.0/24\" is incorrect because the scenario requires: 192.168.0.0/16 is one of the three RFC 1918 ranges.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"203.0.113.0/24\" is incorrect because the scenario requires: 192.168.0.0/16 is one of the three RFC 1918 ranges.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"169.254.1.0/24\" is incorrect because the scenario requires: 192.168.0.0/16 is one of the three RFC 1918 ranges.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.7-c-q2",
+      "question": "The 10.0.0.0/8 block is…",
+      "choices": [
+        "Public routable space",
+        "Private non-Internet-routable space",
+        "Multicast only",
+        "APIPA"
+      ],
+      "correctIndex": 1,
+      "explanation": "10.0.0.0/8 is private per RFC 1918.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "10 range",
+      "ckuIds": [
+        "CKU-RFC1918"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "10.0.0.0/8 is private per RFC 1918."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Public routable space\" is incorrect because the scenario requires: 10.0.0.0/8 is private per RFC 1918.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Multicast only\" is incorrect because the scenario requires: 10.0.0.0/8 is private per RFC 1918.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"APIPA\" is incorrect because the scenario requires: 10.0.0.0/8 is private per RFC 1918.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.7-c-q3",
+      "question": "Is 172.20.5.10 a private address?",
+      "choices": [
+        "No — public only",
+        "Yes — within 172.16.0.0/12",
+        "Only if DHCP assigns it",
+        "Only on IPv6"
+      ],
+      "correctIndex": 1,
+      "explanation": "172.16.0.0–172.31.255.255 is the 172.16.0.0/12 private range.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "172 range",
+      "ckuIds": [
+        "CKU-RFC1918"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "172.16.0.0–172.31.255.255 is the 172.16.0.0/12 private range."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"No — public only\" is incorrect because the scenario requires: 172.16.0.0–172.31.255.255 is the 172.16.0.0/12 private range.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Only if DHCP assigns it\" is incorrect because the scenario requires: 172.16.0.0–172.31.255.255 is the 172.16.0.0/12 private range.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Only on IPv6\" is incorrect because the scenario requires: 172.16.0.0–172.31.255.255 is the 172.16.0.0/12 private range.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.7-c-q4",
+      "question": "A Windows PC shows IP 169.254.88.3. What is the most likely cause?",
+      "choices": [
+        "Successful DHCP lease",
+        "DHCP failure / no lease obtained",
+        "Static public IP configured",
+        "DNS cache flush"
+      ],
+      "correctIndex": 1,
+      "explanation": "169.254.x.x is APIPA — self-assigned when DHCP fails.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "apipa",
+      "ckuIds": [
+        "CKU-APIPA"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "169.254.x.x is APIPA — self-assigned when DHCP fails."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Successful DHCP lease\" is incorrect because the scenario requires: 169.254.x.x is APIPA — self-assigned when DHCP fails.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Static public IP configured\" is incorrect because the scenario requires: 169.254.x.x is APIPA — self-assigned when DHCP fails.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"DNS cache flush\" is incorrect because the scenario requires: 169.254.x.x is APIPA — self-assigned when DHCP fails.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.7-c-q5",
+      "question": "Why must private addresses use NAT to reach the Internet?",
+      "choices": [
+        "They are too short",
+        "They are not globally unique and are not routed publicly",
+        "They are IPv6 only",
+        "Firewalls block all IPv4"
+      ],
+      "correctIndex": 1,
+      "explanation": "Private space is reused and non-routable on the Internet — NAT maps to a public address.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "public private",
+      "ckuIds": [
+        "CKU-PUBLIC-PRIVATE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Private space is reused and non-routable on the Internet — NAT maps to a public address."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"They are too short\" is incorrect because the scenario requires: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"They are IPv6 only\" is incorrect because the scenario requires: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Firewalls block all IPv4\" is incorrect because the scenario requires: Private space is reused and non-routable on the Internet — NAT maps to a public address.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.7-c-q6",
+      "question": "Which address is public (Internet-routable)?",
+      "choices": [
+        "10.1.1.1",
+        "172.16.1.1",
+        "198.51.100.50",
+        "192.168.1.1"
+      ],
+      "correctIndex": 2,
+      "explanation": "198.51.100.0/24 is documentation/public space — not RFC 1918 private.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "identify public",
+      "ckuIds": [
+        "CKU-PUBLIC-PRIVATE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "198.51.100.0/24 is documentation/public space — not RFC 1918 private."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"10.1.1.1\" is incorrect because the scenario requires: 198.51.100.0/24 is documentation/public space — not RFC 1918 private.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"172.16.1.1\" is incorrect because the scenario requires: 198.51.100.0/24 is documentation/public space — not RFC 1918 private.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"192.168.1.1\" is incorrect because the scenario requires: 198.51.100.0/24 is documentation/public space — not RFC 1918 private.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.7-c-q7",
+      "question": "True or False: APIPA addresses are in the same RFC 1918 private ranges as 192.168.x.x.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — APIPA uses 169.254.0.0/16, separate from RFC 1918.",
+      "type": "true-false",
+      "difficulty": "easy",
+      "concept": "apipa scope",
+      "ckuIds": [
+        "CKU-APIPA"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "False — APIPA uses 169.254.0.0/16, separate from RFC 1918."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"True\" is incorrect because the scenario requires: False — APIPA uses 169.254.0.0/16, separate from RFC 1918.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.7-c-q8",
+      "question": "Many PCs on 192.168.1.0/24 share one ISP public IP. Which technology enables this?",
+      "choices": [
+        "STP",
+        "NAT/PAT",
+        "VTP",
+        "LLDP"
+      ],
+      "correctIndex": 1,
+      "explanation": "NAT (often PAT) translates many private addresses to one or few public IPs.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "nat role",
+      "ckuIds": [
+        "CKU-PUBLIC-PRIVATE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "NAT (often PAT) translates many private addresses to one or few public IPs."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"STP\" is incorrect because the scenario requires: NAT (often PAT) translates many private addresses to one or few public IPs.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"VTP\" is incorrect because the scenario requires: NAT (often PAT) translates many private addresses to one or few public IPs.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"LLDP\" is incorrect because the scenario requires: NAT (often PAT) translates many private addresses to one or few public IPs.",
+            "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
+          }
+        ],
+        "examTip": "Mark inside/outside interfaces first — NAT does nothing without them."
+      }
+    }
+  ]
+}

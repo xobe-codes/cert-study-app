@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.11",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.11-c-q1",
+      "question": "Which 2.4 GHz channels are non-overlapping in common planning?",
+      "choices": [
+        "1, 2, 3",
+        "1, 6, 11",
+        "6, 7, 8",
+        "11, 12, 13 only in all regions"
+      ],
+      "correctIndex": 1,
+      "explanation": "Channels 1, 6, and 11 are the standard non-overlapping set in 2.4 GHz.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "2.4 channels",
+      "ckuIds": [
+        "CKU-WIFI-BANDS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Channels 1, 6, and 11 are the standard non-overlapping set in 2.4 GHz."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"1, 2, 3\" is incorrect because the scenario requires: Channels 1, 6, and 11 are the standard non-overlapping set in 2.4 GHz.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"6, 7, 8\" is incorrect because the scenario requires: Channels 1, 6, and 11 are the standard non-overlapping set in 2.4 GHz.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"11, 12, 13 only in all regions\" is incorrect because the scenario requires: Channels 1, 6, and 11 are the standard non-overlapping set in 2.4 GHz.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.11-c-q2",
+      "question": "5 GHz Wi‑Fi typically offers…",
+      "choices": [
+        "Longer range than 2.4 with fewer channels",
+        "More channels and higher throughput but shorter range",
+        "No encryption support",
+        "Only WEP"
+      ],
+      "correctIndex": 1,
+      "explanation": "5 GHz has more spectrum and speed; 2.4 GHz penetrates farther.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "5ghz advantage",
+      "ckuIds": [
+        "CKU-WIFI-BANDS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "5 GHz has more spectrum and speed; 2.4 GHz penetrates farther."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Longer range than 2.4 with fewer channels\" is incorrect because the scenario requires: 5 GHz has more spectrum and speed; 2.4 GHz penetrates farther.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"No encryption support\" is incorrect because the scenario requires: 5 GHz has more spectrum and speed; 2.4 GHz penetrates farther.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Only WEP\" is incorrect because the scenario requires: 5 GHz has more spectrum and speed; 2.4 GHz penetrates farther.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.11-c-q3",
+      "question": "WPA3 improves on WPA2 primarily with…",
+      "choices": [
+        "WEP compatibility",
+        "SAE key exchange (stronger handshake)",
+        "Open unsecured networks",
+        "Removing AES"
+      ],
+      "correctIndex": 1,
+      "explanation": "WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "wpa3",
+      "ckuIds": [
+        "CKU-WPA"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "WPA3 uses SAE for more robust authentication vs WPA2-PSK."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"WEP compatibility\" is incorrect because the scenario requires: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Open unsecured networks\" is incorrect because the scenario requires: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Removing AES\" is incorrect because the scenario requires: WPA3 uses SAE for more robust authentication vs WPA2-PSK.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.11-c-q4",
+      "question": "True or False: WEP is acceptable for modern enterprise WLANs.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — WEP is cryptographically broken.",
+      "type": "true-false",
+      "difficulty": "easy",
+      "concept": "wep",
+      "ckuIds": [
+        "CKU-WPA"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "False — WEP is cryptographically broken."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"True\" is incorrect because the scenario requires: False — WEP is cryptographically broken.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.11-c-q5",
+      "question": "802.11ax is also known as…",
+      "choices": [
+        "Wi‑Fi 3",
+        "Wi‑Fi 4",
+        "Wi‑Fi 5",
+        "Wi‑Fi 6"
+      ],
+      "correctIndex": 3,
+      "explanation": "802.11ax = Wi‑Fi 6 (802.11ac = Wi‑Fi 5, 802.11n = Wi‑Fi 4).",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "80211ax",
+      "ckuIds": [
+        "CKU-80211-STANDARDS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "802.11ax = Wi‑Fi 6 (802.11ac = Wi‑Fi 5, 802.11n = Wi‑Fi 4)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Wi‑Fi 3\" is incorrect because the scenario requires: 802.11ax = Wi‑Fi 6 (802.11ac = Wi‑Fi 5, 802.11n = Wi‑Fi 4).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Wi‑Fi 4\" is incorrect because the scenario requires: 802.11ax = Wi‑Fi 6 (802.11ac = Wi‑Fi 5, 802.11n = Wi‑Fi 4).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Wi‑Fi 5\" is incorrect because the scenario requires: 802.11ax = Wi‑Fi 6 (802.11ac = Wi‑Fi 5, 802.11n = Wi‑Fi 4).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.11-c-q6",
+      "question": "The SSID is…",
+      "choices": [
+        "The encryption key",
+        "The wireless network name",
+        "The MAC of the AP",
+        "The VLAN ID only"
+      ],
+      "correctIndex": 1,
+      "explanation": "SSID identifies the WLAN broadcast by the AP.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "ssid",
+      "ckuIds": [
+        "CKU-80211-STANDARDS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "SSID identifies the WLAN broadcast by the AP."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The encryption key\" is incorrect because the scenario requires: SSID identifies the WLAN broadcast by the AP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The MAC of the AP\" is incorrect because the scenario requires: SSID identifies the WLAN broadcast by the AP.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The VLAN ID only\" is incorrect because the scenario requires: SSID identifies the WLAN broadcast by the AP.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.11-c-q7",
+      "question": "Doubling channel width from 20 MHz to 40 MHz generally…",
+      "choices": [
+        "Reduces throughput",
+        "Increases potential throughput but uses more spectrum",
+        "Eliminates interference",
+        "Disables 5 GHz"
+      ],
+      "correctIndex": 1,
+      "explanation": "Wider channels carry more data but reduce the number of non-overlapping channels.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "channel width",
+      "ckuIds": [
+        "CKU-WIFI-CHANNELS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Wider channels carry more data but reduce the number of non-overlapping channels."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Reduces throughput\" is incorrect because the scenario requires: Wider channels carry more data but reduce the number of non-overlapping channels.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Eliminates interference\" is incorrect because the scenario requires: Wider channels carry more data but reduce the number of non-overlapping channels.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Disables 5 GHz\" is incorrect because the scenario requires: Wider channels carry more data but reduce the number of non-overlapping channels.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.11-c-q8",
+      "question": "RSSI indicates…",
+      "choices": [
+        "Routing table size",
+        "Received signal strength",
+        "DNS latency",
+        "NAT port count"
+      ],
+      "correctIndex": 1,
+      "explanation": "RSSI measures how strongly the client hears the AP (and vice versa).",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "rssi",
+      "ckuIds": [
+        "CKU-WIFI-CHANNELS"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "RSSI measures how strongly the client hears the AP (and vice versa)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Routing table size\" is incorrect because the scenario requires: RSSI measures how strongly the client hears the AP (and vice versa).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"DNS latency\" is incorrect because the scenario requires: RSSI measures how strongly the client hears the AP (and vice versa).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"NAT port count\" is incorrect because the scenario requires: RSSI measures how strongly the client hears the AP (and vice versa).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

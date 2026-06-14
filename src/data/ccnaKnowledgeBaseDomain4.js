@@ -2,6 +2,516 @@
 export const DOMAIN_4_KB = {
   "ckus": [
     {
+      "ckuId": "CKU-ROUTING-TABLE-ENTRY",
+      "title": "Routing Table Entry Structure",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.1"
+      ],
+      "summary": "Each entry shows: source code (C/S/O/D/R/B), destination prefix, [AD/metric] in brackets, next-hop IP, outgoing interface, and age timer for dynamic routes.",
+      "keyTerms": [
+        "routing entry"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.1-q2",
+        "3.1-q8",
+        "3.1-q9",
+        "3.1-q10"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-ROUTE-SOURCE-CODES",
+      "title": "Route Source Codes",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.1"
+      ],
+      "summary": "C=connected AD 0, L=local /32 AD 0, S=static AD 1, O=OSPF AD 110, D=EIGRP AD 90, R=RIP AD 120, B=BGP. The code tells you how the router learned the route.",
+      "keyTerms": [
+        "route codes",
+        "source codes"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.1-q1",
+        "3.1-q5",
+        "3.1-q7",
+        "3.1-q8"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-CONNECTED-LOCAL-ROUTES",
+      "title": "Connected and Local Routes",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.1"
+      ],
+      "summary": "When an interface is up/up with an IP, the router auto-installs: a C route to the subnet and an L /32 for the router own interface IP. Both have AD 0 and are removed when the interface fails.",
+      "keyTerms": [
+        "connected route",
+        "local route",
+        "C route",
+        "L route"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.1-q3",
+        "3.1-q4",
+        "3.1-q6"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-LONGEST-PREFIX-MATCH",
+      "title": "Longest Prefix Match",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.2"
+      ],
+      "summary": "When several routes match a packet’s destination, the router uses the route with the most specific (longest) prefix length, regardless of administrative distance or metric.",
+      "keyTerms": [
+        "most specific route",
+        "LPM",
+        "longest match"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.2-c-q1",
+        "3.2-c-q2",
+        "3.2-c-q8"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-ADMINISTRATIVE-DISTANCE",
+      "title": "Administrative Distance",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.2"
+      ],
+      "summary": "A measure of how trustworthy a routing source is (lower = more trusted). Used to choose between routes to the SAME prefix learned from DIFFERENT sources. An AD of 255 means the route is never installed.",
+      "keyTerms": [
+        "AD",
+        "trustworthiness"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.2-c-q2",
+        "3.2-c-q3",
+        "3.2-c-q4",
+        "3.2-c-q5",
+        "3.2-c-q6",
+        "3.2-c-q10",
+        "3.2-c-q11",
+        "3.2-c-q12",
+        "obj-3.2-source-q001",
+        "obj-3.2-source-q002",
+        "obj-3.2-source-q003",
+        "obj-3.2-source-q004",
+        "obj-3.2-source-q005",
+        "obj-3.2-source-q006",
+        "obj-3.2-source-q007",
+        "obj-3.2-source-q008",
+        "obj-3.2-source-q009",
+        "obj-3.2-source-q010",
+        "obj-3.2-source-q011",
+        "obj-3.2-source-q012",
+        "obj-3.2-source-q013",
+        "obj-3.2-source-q014",
+        "obj-3.2-source-q015",
+        "obj-3.2-source-q016",
+        "obj-3.2-source-q017",
+        "obj-3.2-source-q018",
+        "obj-3.2-source-q019",
+        "obj-3.2-source-q020",
+        "obj-3.2-source-q021",
+        "obj-3.2-source-q022",
+        "obj-3.2-source-q023",
+        "obj-3.2-source-q024",
+        "obj-3.2-source-q025",
+        "obj-3.2-source-q026",
+        "obj-3.2-source-q027",
+        "obj-3.2-source-q028",
+        "obj-3.2-source-q029",
+        "obj-3.2-source-q030",
+        "obj-3.2-source-q031",
+        "obj-3.2-source-q032",
+        "obj-3.2-source-q033",
+        "obj-3.2-source-q034",
+        "obj-3.2-source-q035",
+        "obj-3.2-source-q036",
+        "obj-3.2-source-q037"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-METRIC",
+      "title": "Routing Protocol Metric",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.2"
+      ],
+      "summary": "A value a routing protocol assigns to a route to rank paths. Metrics are only comparable WITHIN the same protocol (OSPF cost vs EIGRP composite are not comparable); AD decides between protocols first, then metric breaks ties within one.",
+      "keyTerms": [
+        "cost",
+        "route metric"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.2-c-q2",
+        "3.2-c-q6",
+        "3.2-c-q7",
+        "3.2-c-q10",
+        "obj-3.2-source-q003",
+        "obj-3.2-source-q005"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-DEFAULT-ROUTE",
+      "title": "Default Route (Gateway of Last Resort)",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.2"
+      ],
+      "summary": "The route 0.0.0.0/0 (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches.",
+      "keyTerms": [
+        "gateway of last resort",
+        "0.0.0.0/0",
+        "quad-zero route"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.2-c-q8",
+        "3.2-c-q9",
+        "obj-3.2-source-q003",
+        "obj-3.2-source-q020",
+        "obj-3.2-source-q029",
+        "obj-3.2-source-q030",
+        "obj-3.2-source-q033"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-STATIC-ROUTE-SYNTAX",
+      "title": "IPv4 Static Route Syntax",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.3"
+      ],
+      "summary": "ip route <dest-network> <subnet-mask> {<next-hop-ip> | <exit-interface>} [AD]. Using a next-hop IP is preferred over exit-interface alone on multi-access Ethernet segments.",
+      "keyTerms": [
+        "static route",
+        "ip route command"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.3-q1",
+        "3.3-q4",
+        "3.3-q7",
+        "3.3-q8"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-DEFAULT-STATIC-ROUTE",
+      "title": "Default Static Route",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.3"
+      ],
+      "summary": "ip route 0.0.0.0 0.0.0.0 <next-hop> creates the gateway of last resort. Matches any destination when no more-specific route exists. Common on stub/edge routers connected to ISPs.",
+      "keyTerms": [
+        "default route",
+        "0.0.0.0/0",
+        "quad-zero"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.3-q2",
+        "3.3-q6"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-FLOATING-STATIC",
+      "title": "Floating Static Route",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.3"
+      ],
+      "summary": "A static route with an AD higher than the primary dynamic route (e.g. AD 130 to back up OSPF AD 110). Not installed while the primary route is present; rises in when the primary fails.",
+      "keyTerms": [
+        "floating static",
+        "backup route",
+        "higher AD static"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.3-q3"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-IPV6-STATIC-ROUTE",
+      "title": "IPv6 Static Route Syntax",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.3"
+      ],
+      "summary": "ipv6 route <prefix>/<length> {<next-hop-ipv6> | <exit-interface>}. IPv6 default: ipv6 route ::/0 <next-hop>. Requires ipv6 unicast-routing globally.",
+      "keyTerms": [
+        "ipv6 route",
+        "IPv6 static"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.3-q5",
+        "3.3-q6",
+        "obj-3.3-source-q001",
+        "obj-3.3-source-q002",
+        "obj-3.3-source-q003",
+        "obj-3.3-source-q004",
+        "obj-3.3-source-q005",
+        "obj-3.3-source-q006",
+        "obj-3.3-source-q007",
+        "obj-3.3-source-q008",
+        "obj-3.3-source-q009",
+        "obj-3.3-source-q010",
+        "obj-3.3-source-q011",
+        "obj-3.3-source-q012",
+        "obj-3.3-source-q013",
+        "obj-3.3-source-q014",
+        "obj-3.3-source-q015",
+        "obj-3.3-source-q016",
+        "obj-3.3-source-q017",
+        "obj-3.3-source-q018",
+        "obj-3.3-source-q019",
+        "obj-3.3-source-q020",
+        "obj-3.3-source-q021",
+        "obj-3.3-source-q022",
+        "obj-3.3-source-q023",
+        "obj-3.3-source-q024",
+        "obj-3.3-source-q025",
+        "obj-3.3-source-q026",
+        "obj-3.3-source-q027",
+        "obj-3.3-source-q028",
+        "obj-3.3-source-q029",
+        "obj-3.3-source-q030",
+        "obj-3.3-source-q031",
+        "obj-3.3-source-q032",
+        "obj-3.3-source-q033",
+        "obj-3.3-source-q034",
+        "obj-3.3-source-q035",
+        "obj-3.3-source-q036",
+        "obj-3.3-source-q037",
+        "obj-3.3-source-q038",
+        "obj-3.3-source-q039",
+        "obj-3.3-source-q040",
+        "obj-3.3-source-q041",
+        "obj-3.3-source-q042",
+        "obj-3.3-source-q043"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-OSPF",
+      "title": "OSPFv2",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.4"
+      ],
+      "summary": "A link-state IGP: routers flood LSAs to build an identical LSDB per area, then run SPF (Dijkstra) to compute shortest paths. AD 110.",
+      "keyTerms": [
+        "OSPF",
+        "open shortest path first"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.4-c-q1",
+        "3.4-c-q2",
+        "3.4-c-q6"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-OSPF-COST",
+      "title": "OSPF Cost (Metric)",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.4"
+      ],
+      "summary": "OSPF metric = reference bandwidth (default 100 Mbps) ÷ interface bandwidth; lower cost is preferred. Total path cost sums interface costs.",
+      "keyTerms": [
+        "ospf metric",
+        "cost"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.4-c-q3",
+        "obj-3.4-source-q021",
+        "obj-3.4-source-q023",
+        "obj-3.4-source-q025",
+        "obj-3.4-source-q027",
+        "obj-3.4-source-q028",
+        "obj-3.4-source-q049",
+        "obj-3.4-source-q050",
+        "obj-3.4-source-q052"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-OSPF-NEIGHBOR",
+      "title": "OSPF Neighbors & RID",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.4"
+      ],
+      "summary": "Neighbors must match area, subnet/mask, hello/dead timers, and authentication. Router ID = highest loopback IP, else highest active interface IP, or set manually.",
+      "keyTerms": [
+        "adjacency",
+        "router id",
+        "DR/BDR"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "3.4-c-q4",
+        "3.4-c-q5",
+        "3.4-c-q7",
+        "3.4-c-q8",
+        "3.4-c-q9"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-FHRP",
+      "title": "First Hop Redundancy Protocol",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.5"
+      ],
+      "summary": "Virtual default gateway shared by two+ routers so hosts keep connectivity if one router fails.",
+      "keyTerms": [
+        "FHRP",
+        "default gateway redundancy"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "obj-3.5-source-q001",
+        "obj-3.5-source-q002",
+        "obj-3.5-source-q003",
+        "obj-3.5-source-q004",
+        "obj-3.5-source-q005",
+        "obj-3.5-source-q006",
+        "obj-3.5-source-q007",
+        "obj-3.5-source-q008",
+        "obj-3.5-source-q009",
+        "obj-3.5-source-q010",
+        "obj-3.5-source-q011",
+        "obj-3.5-source-q012",
+        "obj-3.5-source-q013",
+        "obj-3.5-source-q014",
+        "obj-3.5-source-q015",
+        "obj-3.5-source-q016",
+        "obj-3.5-source-q017",
+        "obj-3.5-source-q018",
+        "obj-3.5-source-q019",
+        "obj-3.5-source-q020",
+        "obj-3.5-source-q021",
+        "obj-3.5-source-q022",
+        "obj-3.5-source-q023",
+        "obj-3.5-source-q024",
+        "obj-3.5-source-q025",
+        "obj-3.5-source-q026",
+        "obj-3.5-source-q027",
+        "obj-3.5-source-q028",
+        "obj-3.5-source-q029",
+        "obj-3.5-source-q030"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-HSRP",
+      "title": "HSRP",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.5"
+      ],
+      "summary": "Cisco FHRP: virtual IP/MAC, Active/Standby routers, hello 3s, hold 10s, priority 0–255, preempt optional.",
+      "keyTerms": [
+        "Hot Standby Router Protocol"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "obj-3.5-source-q001",
+        "obj-3.5-source-q002",
+        "obj-3.5-source-q003",
+        "obj-3.5-source-q004",
+        "obj-3.5-source-q005",
+        "obj-3.5-source-q006",
+        "obj-3.5-source-q007",
+        "obj-3.5-source-q008",
+        "obj-3.5-source-q009",
+        "obj-3.5-source-q010",
+        "obj-3.5-source-q011",
+        "obj-3.5-source-q012",
+        "obj-3.5-source-q013",
+        "obj-3.5-source-q014",
+        "obj-3.5-source-q015",
+        "obj-3.5-source-q016",
+        "obj-3.5-source-q017",
+        "obj-3.5-source-q018",
+        "obj-3.5-source-q019",
+        "obj-3.5-source-q020",
+        "obj-3.5-source-q021",
+        "obj-3.5-source-q022",
+        "obj-3.5-source-q023",
+        "obj-3.5-source-q024",
+        "obj-3.5-source-q025",
+        "obj-3.5-source-q026",
+        "obj-3.5-source-q027",
+        "obj-3.5-source-q028",
+        "obj-3.5-source-q029",
+        "obj-3.5-source-q030"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
       "ckuId": "CKU-NAT",
       "title": "NAT",
       "domainId": "services",
@@ -90,9 +600,324 @@ export const DOMAIN_4_KB = {
       ],
       "confidence": "high",
       "needsReview": false
+    },
+    {
+      "ckuId": "CKU-NTP",
+      "title": "Network Time Protocol",
+      "domainId": "services",
+      "objectiveIds": [
+        "4.2"
+      ],
+      "summary": "Synchronizes device clocks to an authoritative time source. Stratum 1 = atomic/GPS; client stratum = server stratum + 1.",
+      "keyTerms": [
+        "NTP"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "obj-4.2-source-q001",
+        "obj-4.2-source-q002",
+        "obj-4.2-source-q003",
+        "obj-4.2-source-q004",
+        "obj-4.2-source-q005",
+        "obj-4.2-source-q006",
+        "obj-4.2-source-q007",
+        "obj-4.2-source-q008",
+        "obj-4.2-source-q009",
+        "obj-4.2-source-q010",
+        "obj-4.2-source-q011",
+        "obj-4.2-source-q012"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-DHCP",
+      "title": "DHCP (DORA)",
+      "domainId": "services",
+      "objectiveIds": [
+        "4.3"
+      ],
+      "summary": "Dynamic Host Configuration Protocol assigns IP, mask, gateway, DNS via Discover/Offer/Request/Acknowledge.",
+      "keyTerms": [
+        "DORA"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "obj-4.3-source-q007",
+        "obj-4.3-source-q008",
+        "obj-4.3-source-q009",
+        "obj-4.3-source-q010",
+        "obj-4.3-source-q011",
+        "obj-4.3-source-q012"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-DNS",
+      "title": "DNS",
+      "domainId": "services",
+      "objectiveIds": [
+        "4.3"
+      ],
+      "summary": "Resolves names to IPs; DHCP option 6 can push DNS server addresses to clients.",
+      "keyTerms": [
+        "domain name system"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "obj-4.3-source-q001",
+        "obj-4.3-source-q002",
+        "obj-4.3-source-q003",
+        "obj-4.3-source-q004",
+        "obj-4.3-source-q005",
+        "obj-4.3-source-q006",
+        "obj-4.3-source-q007",
+        "obj-4.3-source-q008",
+        "obj-4.3-source-q009",
+        "obj-4.3-source-q010",
+        "obj-4.3-source-q011",
+        "obj-4.3-source-q012"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-SYSLOG",
+      "title": "Syslog",
+      "domainId": "services",
+      "objectiveIds": [
+        "4.5"
+      ],
+      "summary": "Standard logging to console, buffer, or remote collector. Severity 0 (emergency) to 7 (debug).",
+      "keyTerms": [
+        "logging"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "obj-4.5-source-q001",
+        "obj-4.5-source-q002",
+        "obj-4.5-source-q003",
+        "obj-4.5-source-q004",
+        "obj-4.5-source-q005",
+        "obj-4.5-source-q006",
+        "obj-4.5-source-q007",
+        "obj-4.5-source-q008",
+        "obj-4.5-source-q009",
+        "obj-4.5-source-q010",
+        "obj-4.5-source-q011",
+        "obj-4.5-source-q012"
+      ],
+      "confidence": "high",
+      "needsReview": false
+    },
+    {
+      "ckuId": "CKU-DHCP-RELAY",
+      "title": "DHCP Relay (ip helper-address)",
+      "domainId": "services",
+      "objectiveIds": [
+        "4.6"
+      ],
+      "summary": "Forwards DHCP broadcasts from a client VLAN to a remote DHCP server by converting broadcast to unicast toward the server.",
+      "keyTerms": [
+        "ip helper-address"
+      ],
+      "examTraps": [],
+      "relatedCommands": [],
+      "relatedQuestionIds": [
+        "obj-4.6-source-q001",
+        "obj-4.6-source-q002",
+        "obj-4.6-source-q003",
+        "obj-4.6-source-q004",
+        "obj-4.6-source-q005",
+        "obj-4.6-source-q006",
+        "obj-4.6-source-q007",
+        "obj-4.6-source-q008",
+        "obj-4.6-source-q009",
+        "obj-4.6-source-q010",
+        "obj-4.6-source-q011",
+        "obj-4.6-source-q012"
+      ],
+      "confidence": "high",
+      "needsReview": false
     }
   ],
   "glossary": [
+    {
+      "id": "3.1-g1",
+      "term": "Source code",
+      "definition": "A letter (C/L/S/O/D/R/B) indicating how the router learned each route.",
+      "ckuIds": [
+        "CKU-ROUTE-SOURCE-CODES"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.1-g2",
+      "term": "Connected route",
+      "definition": "A route automatically installed when an interface is up/up with an IP — AD 0.",
+      "ckuIds": [
+        "CKU-CONNECTED-LOCAL-ROUTES"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.1-g3",
+      "term": "Local route",
+      "definition": "A /32 route for the router own interface IP — lets it process traffic destined to itself.",
+      "ckuIds": [
+        "CKU-CONNECTED-LOCAL-ROUTES"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.1-g4",
+      "term": "Gateway of last resort",
+      "definition": "The default route (0.0.0.0/0) used when no more-specific route matches.",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE-ENTRY"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.2-g1",
+      "term": "Longest prefix match",
+      "definition": "The rule that a router forwards using the matching route with the most specific (longest) prefix length.",
+      "ckuIds": [
+        "CKU-LONGEST-PREFIX-MATCH"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-g2",
+      "term": "Administrative distance (AD)",
+      "definition": "A 0–255 trust rating for a routing source; lower is preferred. 255 means the route is never installed.",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-g3",
+      "term": "Metric",
+      "definition": "A routing protocol’s measure of how good a route is; only comparable within the same protocol.",
+      "ckuIds": [
+        "CKU-METRIC"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-g4",
+      "term": "Default route",
+      "definition": "The 0.0.0.0/0 route (gateway of last resort) that matches any destination but is the least specific.",
+      "ckuIds": [
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-g5",
+      "term": "Floating static route",
+      "definition": "A static route with a raised AD so it activates only when the preferred dynamic route is lost.",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-g6",
+      "term": "Gateway of last resort",
+      "definition": "The router’s chosen default route, used when no more-specific route matches.",
+      "ckuIds": [
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.3-g1",
+      "term": "Static route",
+      "definition": "A manually configured routing table entry — AD 1 by default.",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.3-g2",
+      "term": "Default route",
+      "definition": "0.0.0.0/0 (or ::/0) — matches any destination when nothing more specific exists.",
+      "ckuIds": [
+        "CKU-DEFAULT-STATIC-ROUTE"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.3-g3",
+      "term": "Floating static",
+      "definition": "A static route with raised AD that installs only when the primary dynamic route fails.",
+      "ckuIds": [
+        "CKU-FLOATING-STATIC"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.3-g4",
+      "term": "Recursive lookup",
+      "definition": "The router must resolve the next-hop IP via another route before installing the static.",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.4-g1",
+      "term": "OSPF",
+      "definition": "Open Shortest Path First — a link-state interior gateway protocol (AD 110).",
+      "ckuIds": [
+        "CKU-OSPF"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
+      "id": "3.4-g2",
+      "term": "LSA / LSDB",
+      "definition": "Link-State Advertisement; the database of LSAs all routers in an area share.",
+      "ckuIds": [
+        "CKU-OSPF"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
+      "id": "3.4-g3",
+      "term": "OSPF cost",
+      "definition": "Metric = reference bandwidth ÷ interface bandwidth; lower is preferred.",
+      "ckuIds": [
+        "CKU-OSPF-COST"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
+      "id": "3.4-g4",
+      "term": "Router ID",
+      "definition": "A 32-bit ID for an OSPF router (highest loopback, else interface IP, or manual).",
+      "ckuIds": [
+        "CKU-OSPF-NEIGHBOR"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
+      "id": "3.4-g5",
+      "term": "DR/BDR",
+      "definition": "Designated/Backup Designated Router that reduce LSA flooding on multi-access links.",
+      "ckuIds": [
+        "CKU-OSPF-NEIGHBOR"
+      ],
+      "objectiveId": "3.4"
+    },
     {
       "id": "4.1-g1",
       "term": "NAT",
@@ -132,6 +957,153 @@ export const DOMAIN_4_KB = {
   ],
   "commandBank": [
     {
+      "id": "3.1-cmd1",
+      "command": "show ip route",
+      "mode": "privileged EXEC",
+      "purpose": "Display the full IPv4 routing table with source codes, [AD/metric], next-hop, and interface.",
+      "example": "R1# show ip route",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE-ENTRY",
+        "CKU-ROUTE-SOURCE-CODES"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.1-cmd2",
+      "command": "show ip route <prefix>",
+      "mode": "privileged EXEC",
+      "purpose": "Show details for a specific destination prefix, including which route was selected.",
+      "example": "R1# show ip route 10.1.1.0",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE-ENTRY"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.1-cmd3",
+      "command": "show ip route connected",
+      "mode": "privileged EXEC",
+      "purpose": "Filter the routing table to connected (C) routes only.",
+      "example": "R1# show ip route connected",
+      "ckuIds": [
+        "CKU-CONNECTED-LOCAL-ROUTES"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.2-cmd1",
+      "command": "show ip route",
+      "mode": "privileged EXEC",
+      "purpose": "Display the IPv4 routing table, including source code, [AD/metric], next hop, and interface.",
+      "example": "R1# show ip route",
+      "ckuIds": [
+        "CKU-LONGEST-PREFIX-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-cmd2",
+      "command": "show ip route <subnet>",
+      "mode": "privileged EXEC",
+      "purpose": "Show details for a specific route, listing the administrative distance and metric plainly.",
+      "example": "R1# show ip route 10.2.2.0",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-METRIC"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-cmd3",
+      "command": "ip route <net> <mask> <next-hop> [AD]",
+      "mode": "global config",
+      "purpose": "Configure a static route; the optional trailing AD creates a floating static backup.",
+      "example": "R1(config)# ip route 10.0.0.0 255.0.0.0 10.1.1.1 130",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.3-cmd1",
+      "command": "ip route <net> <mask> <next-hop>",
+      "mode": "global config",
+      "purpose": "Configure an IPv4 static route to a destination via next-hop IP.",
+      "example": "R1(config)# ip route 172.16.0.0 255.255.0.0 10.0.0.1",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.3-cmd2",
+      "command": "ip route 0.0.0.0 0.0.0.0 <next-hop>",
+      "mode": "global config",
+      "purpose": "Configure a default static route (gateway of last resort).",
+      "example": "R1(config)# ip route 0.0.0.0 0.0.0.0 203.0.113.1",
+      "ckuIds": [
+        "CKU-DEFAULT-STATIC-ROUTE"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.3-cmd3",
+      "command": "ipv6 route <prefix>/<len> <next-hop>",
+      "mode": "global config",
+      "purpose": "Configure an IPv6 static route (requires ipv6 unicast-routing globally).",
+      "example": "R1(config)# ipv6 route 2001:db8::/32 2001:db8::1",
+      "ckuIds": [
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.3-cmd4",
+      "command": "show ip route static",
+      "mode": "privileged EXEC",
+      "purpose": "Verify installed IPv4 static routes.",
+      "example": "R1# show ip route static",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.4-cmd1",
+      "command": "router ospf <pid>",
+      "mode": "global config",
+      "purpose": "Enter OSPF configuration for a process.",
+      "example": "R1(config)# router ospf 1",
+      "ckuIds": [
+        "CKU-OSPF"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
+      "id": "3.4-cmd2",
+      "command": "network <addr> <wildcard> area <id>",
+      "mode": "router config",
+      "purpose": "Advertise matching interfaces into an OSPF area.",
+      "example": "R1(config-router)# network 10.0.0.0 0.0.0.255 area 0",
+      "ckuIds": [
+        "CKU-OSPF"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
+      "id": "3.4-cmd3",
+      "command": "show ip ospf neighbor",
+      "mode": "privileged EXEC",
+      "purpose": "Show OSPF neighbors and their adjacency state.",
+      "example": "R1# show ip ospf neighbor",
+      "ckuIds": [
+        "CKU-OSPF-NEIGHBOR"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
       "id": "4.1-cmd1",
       "command": "ip nat inside source static <local> <global>",
       "mode": "global config",
@@ -167,6 +1139,115 @@ export const DOMAIN_4_KB = {
   ],
   "examTraps": [
     {
+      "id": "3.1-trap1",
+      "trap": "The L route is NOT a host route to a PC.",
+      "correction": "L is the router own interface IP as a /32 — so the router processes packets addressed to itself.",
+      "ckuIds": [
+        "CKU-CONNECTED-LOCAL-ROUTES"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.1-trap2",
+      "trap": "In [AD/metric], AD comes FIRST.",
+      "correction": "Many students read it backwards as [metric/AD]. AD is always the first number inside the brackets.",
+      "ckuIds": [
+        "CKU-ROUTING-TABLE-ENTRY"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.2-t1",
+      "trap": "Assuming the lowest AD route always wins.",
+      "correction": "AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+      "ckuIds": [
+        "CKU-LONGEST-PREFIX-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-t2",
+      "trap": "Comparing metrics across routing protocols.",
+      "correction": "Metrics are protocol-specific. Across protocols, AD decides; metric is never compared between OSPF and EIGRP, etc.",
+      "ckuIds": [
+        "CKU-METRIC"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-t3",
+      "trap": "Treating the default route as a normal match.",
+      "correction": "0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+      "ckuIds": [
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-t4",
+      "trap": "Forgetting AD 255 behavior.",
+      "correction": "A route with AD 255 is considered unusable and is never installed in the routing table.",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.3-trap1",
+      "trap": "A floating static needs AD HIGHER than the dynamic protocol.",
+      "correction": "Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup.",
+      "ckuIds": [
+        "CKU-FLOATING-STATIC"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.3-trap2",
+      "trap": "IPv6 static routes require `ipv6 unicast-routing` globally first.",
+      "correction": "Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+      "ckuIds": [
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.4-t1",
+      "trap": "Using a subnet mask in the network statement.",
+      "correction": "OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24).",
+      "ckuIds": [
+        "CKU-OSPF"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
+      "id": "3.4-t2",
+      "trap": "Assuming 1G and 10G have different OSPF cost by default.",
+      "correction": "Default reference bandwidth (100 Mbps) caps cost at 1, making them equal — raise the reference bandwidth.",
+      "ckuIds": [
+        "CKU-OSPF-COST"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
+      "id": "3.4-t3",
+      "trap": "Expecting DR/BDR on point-to-point links.",
+      "correction": "DR/BDR are only elected on multi-access (e.g. Ethernet) segments.",
+      "ckuIds": [
+        "CKU-OSPF-NEIGHBOR"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
+      "id": "3.5-t1",
+      "trap": "Confusing HSRP Active with DR in OSPF.",
+      "correction": "HSRP Active forwards traffic for the virtual IP; unrelated to OSPF DR.",
+      "ckuIds": [
+        "CKU-HSRP"
+      ],
+      "objectiveId": "3.5"
+    },
+    {
       "id": "4.1-t1",
       "trap": "Forgetting the inside/outside interface tags.",
       "correction": "Without `ip nat inside`/`outside`, NAT translates nothing.",
@@ -196,6 +1277,98 @@ export const DOMAIN_4_KB = {
   ],
   "misconceptions": [
     {
+      "id": "3.1-x1",
+      "misconception": "The L route forwards traffic to end hosts.",
+      "reality": "L routes exist only for the router own interface IPs — not for PCs or servers.",
+      "example": "L 10.1.1.1/32 lets R1 accept SSH to 10.1.1.1, not route to a host.",
+      "ckuIds": [
+        "CKU-CONNECTED-LOCAL-ROUTES"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.1-x2",
+      "misconception": "Connected routes persist after an interface goes down.",
+      "reality": "C and L routes are removed immediately when the interface fails.",
+      "example": "Shut down Gi0/1 and its C/L entries vanish from the table.",
+      "ckuIds": [
+        "CKU-CONNECTED-LOCAL-ROUTES"
+      ],
+      "objectiveId": "3.1"
+    },
+    {
+      "id": "3.2-x1",
+      "misconception": "A lower metric can beat a more-specific route.",
+      "reality": "Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+      "example": "A /26 route is used over a /24 route for an address in both, even if the /24 has a better metric.",
+      "ckuIds": [
+        "CKU-LONGEST-PREFIX-MATCH",
+        "CKU-METRIC"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-x2",
+      "misconception": "AD and metric do the same job.",
+      "reality": "AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+      "example": "Static (AD 1) beats OSPF (AD 110) regardless of OSPF’s metric.",
+      "ckuIds": [
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-METRIC"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.2-x3",
+      "misconception": "A default route guarantees connectivity.",
+      "reality": "It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+      "example": "A `0.0.0.0/0` pointing at a dead link drops everything not otherwise routed.",
+      "ckuIds": [
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "objectiveId": "3.2"
+    },
+    {
+      "id": "3.3-x1",
+      "misconception": "Exit-interface static routes are always preferred on Ethernet.",
+      "reality": "Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
+      "example": "ip route 10.0.0.0 255.0.0.0 Gi0/0 causes ARP storms; use a next-hop IP instead.",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.3-x2",
+      "misconception": "A static route installs even if the next-hop is unreachable.",
+      "reality": "Recursive lookup must succeed — the next-hop must be reachable via another route.",
+      "example": "Static via 10.99.0.1 fails if no route to 10.99.0.0/24 exists.",
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX"
+      ],
+      "objectiveId": "3.3"
+    },
+    {
+      "id": "3.4-x1",
+      "misconception": "OSPF uses hop count like RIP.",
+      "reality": "OSPF uses cost (bandwidth-based), not hop count.",
+      "example": "A 2-hop fast path can beat a 1-hop slow path.",
+      "ckuIds": [
+        "CKU-OSPF-COST"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
+      "id": "3.4-x2",
+      "misconception": "Higher OSPF cost is better.",
+      "reality": "Lower cost is preferred — it represents a faster path.",
+      "example": "A 1G link (cost 1 by default) beats a slower link.",
+      "ckuIds": [
+        "CKU-OSPF-COST"
+      ],
+      "objectiveId": "3.4"
+    },
+    {
       "id": "4.1-x1",
       "misconception": "NAT provides security/encryption.",
       "reality": "NAT hides addresses but does not encrypt; it is not a security control by itself.",
@@ -217,6 +1390,128 @@ export const DOMAIN_4_KB = {
     }
   ],
   "objectives": [
+    {
+      "objectiveId": "3.1",
+      "title": "Interpret the components of a routing table",
+      "domainId": "connectivity",
+      "summary": "A routing table entry records the **destination prefix**, source **code** (C/L/S/O/D/R/B), **[AD/metric]** trustworthiness/cost pair, **next-hop** IP or exit interface, and age.",
+      "keyPoints": [
+        "Source codes: `C`=connected (AD 0), `L`=local /32 (AD 0), `S`=static (AD 1), `O`=OSPF (110), `D`=EIGRP (90), `R`=RIP (120).",
+        "Brackets `[AD/metric]` — e.g. `[110/20]` = AD 110, metric 20. AD comes first.",
+        "When Gi0/1 comes up with an IP, C and L routes auto-install; both removed if interface fails.",
+        "The L route is a /32 for the router own interface IP — lets the router process traffic addressed to itself.",
+        "An asterisk (*) marks the best current match for a prefix or the candidate default route."
+      ],
+      "ckuIds": [
+        "CKU-ROUTING-TABLE-ENTRY",
+        "CKU-ROUTE-SOURCE-CODES",
+        "CKU-CONNECTED-LOCAL-ROUTES"
+      ],
+      "estimatedReadMinutes": 5,
+      "tiers": {
+        "beginner": "The routing table is a list of destinations the router knows how to reach. Each row shows how the router learned the route (a letter code like C for connected, S for static, O for OSPF), the destination network, the next router to forward to (next-hop IP), and which interface to exit. When you set up an IP address on an interface it is automatically added.",
+        "intermediate": "Each routing table entry contains: a source code, the destination network/prefix in CIDR notation, the [AD/metric] pair in brackets, the next-hop IP and outgoing interface, and an age timer for dynamic routes. Connected (C) routes and local (L) /32 routes are added automatically when an interface reaches up/up state; they have AD 0 and disappear if the interface fails. The longest prefix match rule selects which route is used for a given packet.",
+        "examReady": "Entry anatomy: O 192.168.2.0/24 [110/20] via 10.1.1.1, 00:01:23, Gi0/0 means: O=OSPF source, /24 destination, AD=110 metric=20, next-hop 10.1.1.1, age 1m23s, exit Gi0/0. Source codes: C=connected AD 0, L=local /32 AD 0, S=static AD 1, O=OSPF AD 110, D=EIGRP AD 90, R=RIP AD 120, B=BGP. When an interface comes up/up with an IP, the router installs both a C route (subnet) and an L route (exact /32 for the router own interface IP). These vanish when the interface goes down. An asterisk (*) marks the best candidate. The \"gateway of last resort\" at the top shows the default route."
+      }
+    },
+    {
+      "objectiveId": "3.2",
+      "title": "Determine how a router makes a forwarding decision by default",
+      "domainId": "connectivity",
+      "summary": "By default a router forwards each packet using **longest prefix match** — the matching route with the most specific (longest) prefix. Administrative distance and metric decide which routes are installed in the table, not which matching route is used for a given packet.",
+      "keyPoints": [
+        "Order: longest prefix match → administrative distance → metric.",
+        "Longest prefix match picks the MOST specific matching route and is never overridden by AD/metric.",
+        "Administrative distance compares the SAME prefix from DIFFERENT sources — lower is more trusted.",
+        "Default AD: Connected `0`, Static `1`, EIGRP `90`, OSPF `110`, RIP `120`, External EIGRP `170`, `255` = never installed.",
+        "Metric compares routes within the SAME routing protocol only — never across protocols.",
+        "Default route `0.0.0.0/0` matches everything but is least specific (used last)."
+      ],
+      "ckuIds": [
+        "CKU-LONGEST-PREFIX-MATCH",
+        "CKU-ADMINISTRATIVE-DISTANCE",
+        "CKU-METRIC",
+        "CKU-DEFAULT-ROUTE"
+      ],
+      "estimatedReadMinutes": 6,
+      "tiers": {
+        "beginner": "When a packet arrives, the router looks at the destination IP and checks its routing table for a matching network. If more than one entry matches, it picks the most specific one — the one that pins down the most bits of the address. If two sources (say a static route and OSPF) both offer a route to the exact same network, the router trusts the one with the lower administrative distance. If it is still tied within one routing protocol, the lower metric wins.",
+        "intermediate": "A router makes its default forwarding decision in a strict order. (1) Longest prefix match: among all routes whose network/prefix the destination falls inside, the route with the longest prefix length is chosen — this happens FIRST and overrides everything else. (2) Administrative distance: AD only matters when comparing routes to the SAME prefix that were learned from DIFFERENT sources; the lower AD (more trusted source) is installed in the routing table. (3) Metric: when the same routing protocol offers multiple routes to the same prefix, the protocol’s metric breaks the tie (lower is better). A default route (0.0.0.0/0) has prefix length 0, so it is the absolute last resort.",
+        "examReady": "Default forwarding logic, in order: longest prefix match → administrative distance → metric. Longest prefix match is the packet-forwarding decision: the router always forwards using the matching route with the longest prefix length, full stop — AD and metric do NOT override a more-specific route. AD and metric instead govern which routes get INSTALLED in the routing table in the first place: when two sources advertise the identical prefix, the lower AD wins (Connected 0, Static 1, EIGRP 90, OSPF 110, RIP 120, External EIGRP 170, 255 = never installed). Metric only compares routes from the same protocol and is not comparable across protocols. The default route 0.0.0.0/0 (the gateway of last resort) matches everything but, at prefix length 0, is the least specific match and is used only when nothing more specific matches. If no route matches and no default exists, the packet is dropped."
+      }
+    },
+    {
+      "objectiveId": "3.3",
+      "title": "Configure and verify IPv4 and IPv6 static routing",
+      "domainId": "connectivity",
+      "summary": "A **static route** is a manually configured forwarding entry. Syntax: `ip route <network> <mask> {<next-hop> | <interface>}`. A **default** uses 0.0.0.0/0. A **floating** static adds a higher AD to serve as a dynamic-route backup.",
+      "keyPoints": [
+        "`ip route 0.0.0.0 0.0.0.0 <next-hop>` — default route, gateway of last resort.",
+        "Floating static: set AD > primary protocol AD so it only installs when the primary route fails.",
+        "IPv6: enable `ipv6 unicast-routing` first; then `ipv6 route <prefix>/<len> <next-hop>`.",
+        "Recursive lookup: the next-hop IP must be reachable or the static route is not installed.",
+        "Verify with `show ip route static` and ping from the correct source interface."
+      ],
+      "ckuIds": [
+        "CKU-STATIC-ROUTE-SYNTAX",
+        "CKU-DEFAULT-STATIC-ROUTE",
+        "CKU-FLOATING-STATIC",
+        "CKU-IPV6-STATIC-ROUTE"
+      ],
+      "estimatedReadMinutes": 6,
+      "tiers": {
+        "beginner": "A static route tells the router \"to reach network X, forward to Y\". They are simple to set up but must be manually updated when the network changes. Use `ip route` with a destination network, its mask, and the next-hop address. A default static route is a catch-all used when no other route matches.",
+        "intermediate": "Syntax: `ip route <destination-network> <subnet-mask> <next-hop-ip-or-interface>`. Prefer next-hop IP over exit-interface on Ethernet so the router does not ARP for every destination. Default static: `ip route 0.0.0.0 0.0.0.0 <next-hop>`. Floating static: add AD > primary protocol AD (e.g. 130 for OSPF backup) — only installs when OSPF route disappears. IPv6: `ipv6 unicast-routing` first, then `ipv6 route <prefix>/<len> <next-hop>`, default is `ipv6 route ::/0 <next-hop>`. Verify: `show ip route static`, `ping`.",
+        "examReady": "IPv4 static: `ip route 10.0.0.0 255.255.255.0 192.168.1.1` — installs S 10.0.0.0/24 [1/0] via 192.168.1.1. Default static: `ip route 0.0.0.0 0.0.0.0 203.0.113.1`. Floating static: `ip route 10.0.0.0 255.255.255.0 192.168.2.1 130` — AD 130 stays out while OSPF (AD 110) is active; installed when OSPF loses the route. Recursive lookup: next-hop IP must itself be in the routing table (via connected or other route) or the static is not installed. IPv6: `ipv6 unicast-routing` required first, then `ipv6 route 2001:db8::/32 2001:db8::1`, default `ipv6 route ::/0 <next-hop>`. Verify: `show ip route static`, `show ipv6 route static`, `ping`."
+      }
+    },
+    {
+      "objectiveId": "3.4",
+      "title": "Configure and verify single area OSPFv2",
+      "domainId": "connectivity",
+      "summary": "OSPFv2 is a **link-state IGP** (AD `110`): routers flood **LSAs** into a shared **LSDB**, then run **SPF** to pick lowest-**cost** paths. Cost = reference-bw ÷ interface-bw. Neighbors must match area, subnet, timers, and auth.",
+      "keyPoints": [
+        "Link-state; AD `110`; metric = reference-bw (100 Mbps) ÷ interface-bw (lower wins).",
+        "Config: `router ospf 1` → `network <addr> <wildcard> area 0`.",
+        "Router ID: highest loopback → highest active IP → manual `router-id`.",
+        "Adjacency needs matching area, subnet/mask, hello/dead timers, auth.",
+        "Neighbor states end at `Full`; DR/BDR elected on multi-access links.",
+        "`passive-interface` advertises a network but stops hellos."
+      ],
+      "ckuIds": [
+        "CKU-OSPF",
+        "CKU-OSPF-COST",
+        "CKU-OSPF-NEIGHBOR"
+      ],
+      "estimatedReadMinutes": 9,
+      "tiers": {
+        "beginner": "OSPF is a routing protocol that lets routers learn paths automatically. Each router tells the others about its links; together they build the same “map” of the network and each calculates the shortest path to every destination. Routers that share a link become “neighbors” and exchange this information. The “cost” of a path is based on link speed — faster links cost less, so OSPF prefers them.",
+        "intermediate": "OSPF is a link-state IGP. Routers flood Link-State Advertisements (LSAs) to build an identical link-state database (LSDB) within an area, then run the SPF (Dijkstra) algorithm to find the lowest-cost path to each prefix. Configure with `router ospf <process-id>` then `network <addr> <wildcard> area 0` (or `ip ospf <pid> area 0` on the interface). The Router ID is the highest loopback IP, else the highest active interface IP, or set with `router-id`. Cost = reference bandwidth ÷ interface bandwidth (lower wins). Neighbors must agree on area, subnet, timers, and auth to reach Full adjacency. `passive-interface` stops hellos toward LAN hosts.",
+        "examReady": "OSPFv2 = link-state IGP, AD `110`, metric = reference-bw (default 100 Mbps) ÷ interface bandwidth (lower cost wins; total = sum of egress interface costs). Config: `router ospf 1` → `network 10.0.0.0 0.0.0.255 area 0` (wildcard mask) or interface `ip ospf 1 area 0`. Router ID: highest loopback IP → highest active interface IP → manual `router-id`. Adjacency requires matching area, subnet/mask, hello/dead timers (default 10/40 on broadcast), and authentication; states Down→Init→2-Way→ExStart→Exchange→Loading→Full. On multi-access links a DR/BDR are elected (highest priority, then highest RID). `passive-interface` advertises a network but sends no hellos. Verify: `show ip ospf neighbor`, `show ip route ospf`."
+      }
+    },
+    {
+      "objectiveId": "3.5",
+      "title": "Describe first-hop redundancy protocols",
+      "domainId": "connectivity",
+      "summary": "**FHRP** provides a **virtual default gateway**; **HSRP** is Cisco's Active/Standby implementation with configurable priority and interface tracking.",
+      "keyPoints": [
+        "Virtual IP shared by redundant routers.",
+        "HSRP: higher priority = Active (with preempt).",
+        "`standby <g> track` for uplink failure detection.",
+        "Default timers hello 3s / hold 10s."
+      ],
+      "ckuIds": [
+        "CKU-FHRP",
+        "CKU-HSRP"
+      ],
+      "estimatedReadMinutes": 6,
+      "tiers": {
+        "beginner": "FHRPs let two routers share one virtual gateway IP so PCs never need to change their default gateway when a router fails.",
+        "intermediate": "HSRP elects Active (forwards) and Standby routers using priority and preempt. Configure `standby <group> ip <vip>` on LAN interfaces. Optional `standby <group> track` reduces priority when an uplink fails.",
+        "examReady": "FHRP = shared virtual gateway (HSRP/VRRP/GLBP). HSRP: `standby <g> ip <vip>`, priority (higher wins), preempt, virtual MAC 0000.0c07.ac0a (group 10). Timers default 3/10s. `show standby brief`. Track uplink: `standby <g> track <interface>`."
+      }
+    },
     {
       "objectiveId": "4.1",
       "title": "Configure and verify inside source NAT using static and pools",
@@ -244,44 +1539,46 @@ export const DOMAIN_4_KB = {
     },
     {
       "objectiveId": "4.2",
-      "title": "4.2",
+      "title": "Configure and verify NTP",
       "domainId": "services",
-      "summary": "",
-      "keyPoints": [],
-      "ckuIds": [
-        "CKU-NTP",
-        "CKU-NTP-CLIENT",
-        "CKU-NTP-SERVER",
-        "CKU-CLOCK",
-        "CKU-SNMP-VIEW",
-        "CKU-DNS",
-        "CKU-NTP-SOURCE"
+      "summary": "**NTP** synchronizes network device clocks to stratum-ranked time sources for consistent logging and authentication.",
+      "keyPoints": [
+        "`ntp server <ip>` — client toward server.",
+        "Stratum increases each hop from reference.",
+        "`clock timezone` for local display.",
+        "Accurate time required for syslog correlation."
       ],
-      "needsReview": true
+      "ckuIds": [
+        "CKU-NTP"
+      ],
+      "estimatedReadMinutes": 4,
+      "tiers": {
+        "beginner": "NTP keeps router and switch clocks accurate — critical for syslog timestamps and certificate validation.",
+        "intermediate": "Configure `ntp server <ip>` for client mode. `clock timezone` sets local offset. `show ntp associations` and `show ntp status` verify sync.",
+        "examReady": "NTP client: `ntp server <addr>`. Stratum: lower = closer to reference clock. `clock timezone <name> <offset> [<dst>]`. Manual set: `clock set hh:mm:ss day month year` (privileged). Verify: `show ntp status` (synced/unsynced)."
+      }
     },
     {
       "objectiveId": "4.3",
-      "title": "4.3",
+      "title": "Describe DHCP and DNS within the network",
       "domainId": "services",
-      "summary": "",
-      "keyPoints": [],
-      "ckuIds": [
-        "CKU-DNS",
-        "CKU-DNS-A-RECORD",
-        "CKU-DNS-REVERSE-LOOKUP",
-        "CKU-DNS-RECORD",
-        "CKU-HOSTNAME",
-        "CKU-DOMAIN-NAME",
-        "CKU-DNS-TTL",
-        "CKU-DHCP",
-        "CKU-DHCP-ACK",
-        "CKU-DHCP-DISCOVER",
-        "CKU-DHCP-OFFER",
-        "CKU-DHCP-LEASE",
-        "CKU-TRANSPORT-INPUT",
-        "CKU-NAT-POOL"
+      "summary": "**DHCP** automates host addressing (DORA); **DNS** resolves hostnames — often delivered together via DHCP options.",
+      "keyPoints": [
+        "DORA process for dynamic addressing.",
+        "Option 3 = default gateway, option 6 = DNS.",
+        "`ip helper-address` for DHCP relay.",
+        "DNS uses UDP port 53."
       ],
-      "needsReview": true
+      "ckuIds": [
+        "CKU-DHCP",
+        "CKU-DNS"
+      ],
+      "estimatedReadMinutes": 5,
+      "tiers": {
+        "beginner": "DHCP automatically gives devices an IP address, mask, default gateway, and DNS server. DNS translates names like www.example.com into IP addresses.",
+        "intermediate": "DHCP DORA: client Discover → server Offer → client Request → server Ack. Router `ip helper-address` relays broadcasts to remote DHCP server. DNS uses UDP/53; `ip name-server` on router for local resolution.",
+        "examReady": "DHCP DORA on UDP 67/68. Options: default-router (3), DNS (6). `ip dhcp pool` + `network` + `default-router` + `dns-server` on server. Relay: `ip helper-address <dhcp-ip>` on client VLAN SVI. DNS: hierarchical, UDP/53, `ip name-server`."
+      }
     },
     {
       "objectiveId": "4.4",
@@ -306,42 +1603,45 @@ export const DOMAIN_4_KB = {
     },
     {
       "objectiveId": "4.5",
-      "title": "4.5",
+      "title": "Describe syslog features",
       "domainId": "services",
-      "summary": "",
-      "keyPoints": [],
-      "ckuIds": [
-        "CKU-SYSLOG",
-        "CKU-SYSLOG-UDP-514",
-        "CKU-SYSLOG-SEVERITY",
-        "CKU-SNMP-TRAP",
-        "CKU-SYSLOG-DEBUGGING",
-        "CKU-LOGGING-TIMESTAMPS",
-        "CKU-LOGGING-CONSOLE",
-        "CKU-LOGGING-BUFFERED",
-        "CKU-SNMP-INFORM",
-        "CKU-NAT"
+      "summary": "**Syslog** forwards device messages by **severity level** to local buffer or remote collectors for operations and security monitoring.",
+      "keyPoints": [
+        "Levels 0–7; lower = more critical.",
+        "`logging trap` filters remote severity.",
+        "NTP required for meaningful timestamps.",
+        "`show logging` displays local buffer."
       ],
-      "needsReview": true
+      "ckuIds": [
+        "CKU-SYSLOG"
+      ],
+      "estimatedReadMinutes": 4,
+      "tiers": {
+        "beginner": "Syslog sends router and switch log messages to a central server so you can search and alert on events.",
+        "intermediate": "`logging host <ip>` forwards messages. `logging trap informational` limits severity sent remotely (level 6). Local buffer: `show logging`.",
+        "examReady": "Severity 0=emergency … 7=debug (lower number = more severe). `logging host <addr>`, `logging trap <level>`. `service timestamps log datetime msec` adds accurate timestamps (needs NTP). `show logging` for buffer."
+      }
     },
     {
       "objectiveId": "4.6",
-      "title": "4.6",
+      "title": "Configure and verify DHCP client and relay",
       "domainId": "services",
-      "summary": "",
-      "keyPoints": [],
-      "ckuIds": [
-        "CKU-DHCP-CLIENT",
-        "CKU-DHCP-RELAY",
-        "CKU-IP-HELPER-ADDRESS",
-        "CKU-DHCP",
-        "CKU-DHCP-LEASE",
-        "CKU-NAT",
-        "CKU-DHCP-OFFER",
-        "CKU-GIADDR",
-        "CKU-DHCPV6"
+      "summary": "**DHCP relay** (`ip helper-address`) forwards client DHCP broadcasts to a remote server across subnets.",
+      "keyPoints": [
+        "Required when DHCP server is remote.",
+        "Configured on router interface facing clients.",
+        "Converts broadcast → unicast to server.",
+        "Part of IP Services exam troubleshooting."
       ],
-      "needsReview": true
+      "ckuIds": [
+        "CKU-DHCP-RELAY"
+      ],
+      "estimatedReadMinutes": 4,
+      "tiers": {
+        "beginner": "When the DHCP server is not on the same subnet as clients, the router relays their requests using `ip helper-address`.",
+        "intermediate": "Configure on the client-facing SVI or router interface. Router converts broadcast DHCP to unicast to the server IP. Also relays other UDP services by default (TFTP, DNS, etc.) — can filter if needed.",
+        "examReady": "Relay: `ip helper-address <dhcp-server-ip>` on ingress interface of client subnet. Router acts as DHCP relay agent (giaddr). Server responds to router, router forwards Offer/Ack to client. Verify with `show ip interface` and DHCP debug or server logs."
+      }
     },
     {
       "objectiveId": "4.7",
@@ -411,6 +1711,20 @@ export const DOMAIN_4_KB = {
     }
   ],
   "chapters": [
+    {
+      "chapterId": "ch3-ip-connectivity",
+      "chapterNumber": 3,
+      "chapterTitle": "IP Connectivity (Domain 3)",
+      "domainId": "connectivity",
+      "objectiveIds": [
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ],
+      "summary": "Routing table, forwarding, static routing, OSPFv2, FHRP — core CCNA IP Connectivity objectives."
+    },
     {
       "chapterId": "ch4-ip-services",
       "chapterNumber": 4,

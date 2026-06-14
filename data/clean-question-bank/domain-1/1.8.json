@@ -1,0 +1,416 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.8",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.8-c-q1",
+      "question": "How many bits is an IPv6 address?",
+      "choices": [
+        "32",
+        "64",
+        "128",
+        "256"
+      ],
+      "correctIndex": 2,
+      "explanation": "IPv6 addresses are 128 bits (8 hextets of 16 bits).",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "address length",
+      "ckuIds": [
+        "CKU-IPV6-ADDRESSING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "IPv6 addresses are 128 bits (8 hextets of 16 bits)."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"32\" is incorrect because the scenario requires: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"64\" is incorrect because the scenario requires: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"256\" is incorrect because the scenario requires: IPv6 addresses are 128 bits (8 hextets of 16 bits).",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.8-c-q2",
+      "question": "Which is the correct shortened form of `2001:0db8:0000:0000:0000:0000:0000:0001`?",
+      "choices": [
+        "2001:db8::1",
+        "2001:db8:::1",
+        "2001:db8::0:1::",
+        "2001::db8::1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "shortening",
+      "ckuIds": [
+        "CKU-IPV6-SHORTENING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "Drop leading zeros and replace the single zero run with :: once → 2001:db8::1."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"2001:db8:::1\" is incorrect because the scenario requires: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"2001:db8::0:1::\" is incorrect because the scenario requires: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"2001::db8::1\" is incorrect because the scenario requires: Drop leading zeros and replace the single zero run with :: once → 2001:db8::1.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.8-c-q3",
+      "question": "True or False: `::` can be used twice in one IPv6 address.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 1,
+      "explanation": "False — `::` may appear only once, otherwise the number of zero groups is ambiguous.",
+      "type": "true-false",
+      "difficulty": "medium",
+      "concept": "double colon rule",
+      "ckuIds": [
+        "CKU-IPV6-SHORTENING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "False — `::` may appear only once, otherwise the number of zero groups is ambiguous."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"True\" is incorrect because the scenario requires: False — `::` may appear only once, otherwise the number of zero groups is ambiguous.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.8-c-q4",
+      "question": "What prefix length is standard for an IPv6 LAN?",
+      "choices": [
+        "/24",
+        "/48",
+        "/64",
+        "/128"
+      ],
+      "correctIndex": 2,
+      "explanation": "/64 is standard for LANs and is required for SLAAC/EUI-64.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "LAN prefix",
+      "ckuIds": [
+        "CKU-IPV6-ADDRESSING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "/64 is standard for LANs and is required for SLAAC/EUI-64."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"/24\" is incorrect because the scenario requires: /64 is standard for LANs and is required for SLAAC/EUI-64.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"/48\" is incorrect because the scenario requires: /64 is standard for LANs and is required for SLAAC/EUI-64.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"/128\" is incorrect because the scenario requires: /64 is standard for LANs and is required for SLAAC/EUI-64.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.8-c-q5",
+      "question": "In Modified EUI-64, what is inserted into the middle of the 48-bit MAC?",
+      "choices": [
+        "FFFE",
+        "FF00",
+        "FFFF",
+        "FE80"
+      ],
+      "correctIndex": 0,
+      "explanation": "FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "EUI-64",
+      "ckuIds": [
+        "CKU-MODIFIED-EUI-64"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "FFFE is inserted in the middle, and the 7th bit of the first byte is flipped."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"FF00\" is incorrect because the scenario requires: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"FFFF\" is incorrect because the scenario requires: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"FE80\" is incorrect because the scenario requires: FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.8-c-q6",
+      "question": "A host builds its own IPv6 address from a Router Advertisement prefix. What is this called?",
+      "choices": [
+        "DHCPv6",
+        "SLAAC",
+        "Static",
+        "NAT66"
+      ],
+      "correctIndex": 1,
+      "explanation": "SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "SLAAC",
+      "ckuIds": [
+        "CKU-IPV6-SLAAC"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"DHCPv6\" is incorrect because the scenario requires: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Static\" is incorrect because the scenario requires: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"NAT66\" is incorrect because the scenario requires: SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.8-c-q7",
+      "question": "Which global command enables a Cisco router to route IPv6?",
+      "choices": [
+        "ipv6 routing",
+        "ipv6 unicast-routing",
+        "ip routing v6",
+        "enable ipv6"
+      ],
+      "correctIndex": 1,
+      "explanation": "`ipv6 unicast-routing` must be enabled globally.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "enable routing",
+      "ckuIds": [
+        "CKU-IPV6-ADDRESSING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`ipv6 unicast-routing` must be enabled globally."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"ipv6 routing\" is incorrect because the scenario requires: `ipv6 unicast-routing` must be enabled globally.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"ip routing v6\" is incorrect because the scenario requires: `ipv6 unicast-routing` must be enabled globally.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"enable ipv6\" is incorrect because the scenario requires: `ipv6 unicast-routing` must be enabled globally.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.8-c-q8",
+      "question": "Which zeros may be removed when shortening a hextet like `00a0`?",
+      "choices": [
+        "Trailing zeros",
+        "Leading zeros → a0",
+        "All zeros",
+        "None"
+      ],
+      "correctIndex": 1,
+      "explanation": "Only leading zeros within a hextet may be dropped: 00a0 → a0.",
+      "type": "application",
+      "difficulty": "medium",
+      "concept": "zero compression",
+      "ckuIds": [
+        "CKU-IPV6-SHORTENING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Only leading zeros within a hextet may be dropped: 00a0 → a0."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Trailing zeros\" is incorrect because the scenario requires: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"All zeros\" is incorrect because the scenario requires: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"None\" is incorrect because the scenario requires: Only leading zeros within a hextet may be dropped: 00a0 → a0.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.8-c-q9",
+      "question": "Which command shows IPv6 addresses and interface status?",
+      "choices": [
+        "show ip interface brief",
+        "show ipv6 interface brief",
+        "show ipv6 route",
+        "show running-config"
+      ],
+      "correctIndex": 1,
+      "explanation": "`show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+      "type": "application",
+      "difficulty": "easy",
+      "concept": "verify",
+      "ckuIds": [
+        "CKU-IPV6-ADDRESSING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "`show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"show ip interface brief\" is incorrect because the scenario requires: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"show ipv6 route\" is incorrect because the scenario requires: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"show running-config\" is incorrect because the scenario requires: `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.8-c-q10",
+      "question": "With a /64 prefix, how many bits are the interface ID?",
+      "choices": [
+        "32",
+        "48",
+        "64",
+        "128"
+      ],
+      "correctIndex": 2,
+      "explanation": "128 − 64 = 64 bits for the interface ID.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "interface ID size",
+      "ckuIds": [
+        "CKU-IPV6-ADDRESSING"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "128 − 64 = 64 bits for the interface ID."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"32\" is incorrect because the scenario requires: 128 − 64 = 64 bits for the interface ID.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"48\" is incorrect because the scenario requires: 128 − 64 = 64 bits for the interface ID.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"128\" is incorrect because the scenario requires: 128 − 64 = 64 bits for the interface ID.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

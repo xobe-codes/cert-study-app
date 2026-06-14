@@ -1,5 +1,127 @@
 [
   {
+    "objectiveId": "3.1",
+    "title": "Interpret the components of a routing table",
+    "domainId": "connectivity",
+    "summary": "A routing table entry records the **destination prefix**, source **code** (C/L/S/O/D/R/B), **[AD/metric]** trustworthiness/cost pair, **next-hop** IP or exit interface, and age.",
+    "keyPoints": [
+      "Source codes: `C`=connected (AD 0), `L`=local /32 (AD 0), `S`=static (AD 1), `O`=OSPF (110), `D`=EIGRP (90), `R`=RIP (120).",
+      "Brackets `[AD/metric]` — e.g. `[110/20]` = AD 110, metric 20. AD comes first.",
+      "When Gi0/1 comes up with an IP, C and L routes auto-install; both removed if interface fails.",
+      "The L route is a /32 for the router own interface IP — lets the router process traffic addressed to itself.",
+      "An asterisk (*) marks the best current match for a prefix or the candidate default route."
+    ],
+    "ckuIds": [
+      "CKU-ROUTING-TABLE-ENTRY",
+      "CKU-ROUTE-SOURCE-CODES",
+      "CKU-CONNECTED-LOCAL-ROUTES"
+    ],
+    "estimatedReadMinutes": 5,
+    "tiers": {
+      "beginner": "The routing table is a list of destinations the router knows how to reach. Each row shows how the router learned the route (a letter code like C for connected, S for static, O for OSPF), the destination network, the next router to forward to (next-hop IP), and which interface to exit. When you set up an IP address on an interface it is automatically added.",
+      "intermediate": "Each routing table entry contains: a source code, the destination network/prefix in CIDR notation, the [AD/metric] pair in brackets, the next-hop IP and outgoing interface, and an age timer for dynamic routes. Connected (C) routes and local (L) /32 routes are added automatically when an interface reaches up/up state; they have AD 0 and disappear if the interface fails. The longest prefix match rule selects which route is used for a given packet.",
+      "examReady": "Entry anatomy: O 192.168.2.0/24 [110/20] via 10.1.1.1, 00:01:23, Gi0/0 means: O=OSPF source, /24 destination, AD=110 metric=20, next-hop 10.1.1.1, age 1m23s, exit Gi0/0. Source codes: C=connected AD 0, L=local /32 AD 0, S=static AD 1, O=OSPF AD 110, D=EIGRP AD 90, R=RIP AD 120, B=BGP. When an interface comes up/up with an IP, the router installs both a C route (subnet) and an L route (exact /32 for the router own interface IP). These vanish when the interface goes down. An asterisk (*) marks the best candidate. The \"gateway of last resort\" at the top shows the default route."
+    }
+  },
+  {
+    "objectiveId": "3.2",
+    "title": "Determine how a router makes a forwarding decision by default",
+    "domainId": "connectivity",
+    "summary": "By default a router forwards each packet using **longest prefix match** — the matching route with the most specific (longest) prefix. Administrative distance and metric decide which routes are installed in the table, not which matching route is used for a given packet.",
+    "keyPoints": [
+      "Order: longest prefix match → administrative distance → metric.",
+      "Longest prefix match picks the MOST specific matching route and is never overridden by AD/metric.",
+      "Administrative distance compares the SAME prefix from DIFFERENT sources — lower is more trusted.",
+      "Default AD: Connected `0`, Static `1`, EIGRP `90`, OSPF `110`, RIP `120`, External EIGRP `170`, `255` = never installed.",
+      "Metric compares routes within the SAME routing protocol only — never across protocols.",
+      "Default route `0.0.0.0/0` matches everything but is least specific (used last)."
+    ],
+    "ckuIds": [
+      "CKU-LONGEST-PREFIX-MATCH",
+      "CKU-ADMINISTRATIVE-DISTANCE",
+      "CKU-METRIC",
+      "CKU-DEFAULT-ROUTE"
+    ],
+    "estimatedReadMinutes": 6,
+    "tiers": {
+      "beginner": "When a packet arrives, the router looks at the destination IP and checks its routing table for a matching network. If more than one entry matches, it picks the most specific one — the one that pins down the most bits of the address. If two sources (say a static route and OSPF) both offer a route to the exact same network, the router trusts the one with the lower administrative distance. If it is still tied within one routing protocol, the lower metric wins.",
+      "intermediate": "A router makes its default forwarding decision in a strict order. (1) Longest prefix match: among all routes whose network/prefix the destination falls inside, the route with the longest prefix length is chosen — this happens FIRST and overrides everything else. (2) Administrative distance: AD only matters when comparing routes to the SAME prefix that were learned from DIFFERENT sources; the lower AD (more trusted source) is installed in the routing table. (3) Metric: when the same routing protocol offers multiple routes to the same prefix, the protocol’s metric breaks the tie (lower is better). A default route (0.0.0.0/0) has prefix length 0, so it is the absolute last resort.",
+      "examReady": "Default forwarding logic, in order: longest prefix match → administrative distance → metric. Longest prefix match is the packet-forwarding decision: the router always forwards using the matching route with the longest prefix length, full stop — AD and metric do NOT override a more-specific route. AD and metric instead govern which routes get INSTALLED in the routing table in the first place: when two sources advertise the identical prefix, the lower AD wins (Connected 0, Static 1, EIGRP 90, OSPF 110, RIP 120, External EIGRP 170, 255 = never installed). Metric only compares routes from the same protocol and is not comparable across protocols. The default route 0.0.0.0/0 (the gateway of last resort) matches everything but, at prefix length 0, is the least specific match and is used only when nothing more specific matches. If no route matches and no default exists, the packet is dropped."
+    }
+  },
+  {
+    "objectiveId": "3.3",
+    "title": "Configure and verify IPv4 and IPv6 static routing",
+    "domainId": "connectivity",
+    "summary": "A **static route** is a manually configured forwarding entry. Syntax: `ip route <network> <mask> {<next-hop> | <interface>}`. A **default** uses 0.0.0.0/0. A **floating** static adds a higher AD to serve as a dynamic-route backup.",
+    "keyPoints": [
+      "`ip route 0.0.0.0 0.0.0.0 <next-hop>` — default route, gateway of last resort.",
+      "Floating static: set AD > primary protocol AD so it only installs when the primary route fails.",
+      "IPv6: enable `ipv6 unicast-routing` first; then `ipv6 route <prefix>/<len> <next-hop>`.",
+      "Recursive lookup: the next-hop IP must be reachable or the static route is not installed.",
+      "Verify with `show ip route static` and ping from the correct source interface."
+    ],
+    "ckuIds": [
+      "CKU-STATIC-ROUTE-SYNTAX",
+      "CKU-DEFAULT-STATIC-ROUTE",
+      "CKU-FLOATING-STATIC",
+      "CKU-IPV6-STATIC-ROUTE"
+    ],
+    "estimatedReadMinutes": 6,
+    "tiers": {
+      "beginner": "A static route tells the router \"to reach network X, forward to Y\". They are simple to set up but must be manually updated when the network changes. Use `ip route` with a destination network, its mask, and the next-hop address. A default static route is a catch-all used when no other route matches.",
+      "intermediate": "Syntax: `ip route <destination-network> <subnet-mask> <next-hop-ip-or-interface>`. Prefer next-hop IP over exit-interface on Ethernet so the router does not ARP for every destination. Default static: `ip route 0.0.0.0 0.0.0.0 <next-hop>`. Floating static: add AD > primary protocol AD (e.g. 130 for OSPF backup) — only installs when OSPF route disappears. IPv6: `ipv6 unicast-routing` first, then `ipv6 route <prefix>/<len> <next-hop>`, default is `ipv6 route ::/0 <next-hop>`. Verify: `show ip route static`, `ping`.",
+      "examReady": "IPv4 static: `ip route 10.0.0.0 255.255.255.0 192.168.1.1` — installs S 10.0.0.0/24 [1/0] via 192.168.1.1. Default static: `ip route 0.0.0.0 0.0.0.0 203.0.113.1`. Floating static: `ip route 10.0.0.0 255.255.255.0 192.168.2.1 130` — AD 130 stays out while OSPF (AD 110) is active; installed when OSPF loses the route. Recursive lookup: next-hop IP must itself be in the routing table (via connected or other route) or the static is not installed. IPv6: `ipv6 unicast-routing` required first, then `ipv6 route 2001:db8::/32 2001:db8::1`, default `ipv6 route ::/0 <next-hop>`. Verify: `show ip route static`, `show ipv6 route static`, `ping`."
+    }
+  },
+  {
+    "objectiveId": "3.4",
+    "title": "Configure and verify single area OSPFv2",
+    "domainId": "connectivity",
+    "summary": "OSPFv2 is a **link-state IGP** (AD `110`): routers flood **LSAs** into a shared **LSDB**, then run **SPF** to pick lowest-**cost** paths. Cost = reference-bw ÷ interface-bw. Neighbors must match area, subnet, timers, and auth.",
+    "keyPoints": [
+      "Link-state; AD `110`; metric = reference-bw (100 Mbps) ÷ interface-bw (lower wins).",
+      "Config: `router ospf 1` → `network <addr> <wildcard> area 0`.",
+      "Router ID: highest loopback → highest active IP → manual `router-id`.",
+      "Adjacency needs matching area, subnet/mask, hello/dead timers, auth.",
+      "Neighbor states end at `Full`; DR/BDR elected on multi-access links.",
+      "`passive-interface` advertises a network but stops hellos."
+    ],
+    "ckuIds": [
+      "CKU-OSPF",
+      "CKU-OSPF-COST",
+      "CKU-OSPF-NEIGHBOR"
+    ],
+    "estimatedReadMinutes": 9,
+    "tiers": {
+      "beginner": "OSPF is a routing protocol that lets routers learn paths automatically. Each router tells the others about its links; together they build the same “map” of the network and each calculates the shortest path to every destination. Routers that share a link become “neighbors” and exchange this information. The “cost” of a path is based on link speed — faster links cost less, so OSPF prefers them.",
+      "intermediate": "OSPF is a link-state IGP. Routers flood Link-State Advertisements (LSAs) to build an identical link-state database (LSDB) within an area, then run the SPF (Dijkstra) algorithm to find the lowest-cost path to each prefix. Configure with `router ospf <process-id>` then `network <addr> <wildcard> area 0` (or `ip ospf <pid> area 0` on the interface). The Router ID is the highest loopback IP, else the highest active interface IP, or set with `router-id`. Cost = reference bandwidth ÷ interface bandwidth (lower wins). Neighbors must agree on area, subnet, timers, and auth to reach Full adjacency. `passive-interface` stops hellos toward LAN hosts.",
+      "examReady": "OSPFv2 = link-state IGP, AD `110`, metric = reference-bw (default 100 Mbps) ÷ interface bandwidth (lower cost wins; total = sum of egress interface costs). Config: `router ospf 1` → `network 10.0.0.0 0.0.0.255 area 0` (wildcard mask) or interface `ip ospf 1 area 0`. Router ID: highest loopback IP → highest active interface IP → manual `router-id`. Adjacency requires matching area, subnet/mask, hello/dead timers (default 10/40 on broadcast), and authentication; states Down→Init→2-Way→ExStart→Exchange→Loading→Full. On multi-access links a DR/BDR are elected (highest priority, then highest RID). `passive-interface` advertises a network but sends no hellos. Verify: `show ip ospf neighbor`, `show ip route ospf`."
+    }
+  },
+  {
+    "objectiveId": "3.5",
+    "title": "Describe first-hop redundancy protocols",
+    "domainId": "connectivity",
+    "summary": "**FHRP** provides a **virtual default gateway**; **HSRP** is Cisco's Active/Standby implementation with configurable priority and interface tracking.",
+    "keyPoints": [
+      "Virtual IP shared by redundant routers.",
+      "HSRP: higher priority = Active (with preempt).",
+      "`standby <g> track` for uplink failure detection.",
+      "Default timers hello 3s / hold 10s."
+    ],
+    "ckuIds": [
+      "CKU-FHRP",
+      "CKU-HSRP"
+    ],
+    "estimatedReadMinutes": 6,
+    "tiers": {
+      "beginner": "FHRPs let two routers share one virtual gateway IP so PCs never need to change their default gateway when a router fails.",
+      "intermediate": "HSRP elects Active (forwards) and Standby routers using priority and preempt. Configure `standby <group> ip <vip>` on LAN interfaces. Optional `standby <group> track` reduces priority when an uplink fails.",
+      "examReady": "FHRP = shared virtual gateway (HSRP/VRRP/GLBP). HSRP: `standby <g> ip <vip>`, priority (higher wins), preempt, virtual MAC 0000.0c07.ac0a (group 10). Timers default 3/10s. `show standby brief`. Track uplink: `standby <g> track <interface>`."
+    }
+  },
+  {
     "objectiveId": "4.1",
     "title": "Configure and verify inside source NAT using static and pools",
     "domainId": "services",
@@ -26,44 +148,46 @@
   },
   {
     "objectiveId": "4.2",
-    "title": "4.2",
+    "title": "Configure and verify NTP",
     "domainId": "services",
-    "summary": "",
-    "keyPoints": [],
-    "ckuIds": [
-      "CKU-NTP",
-      "CKU-NTP-CLIENT",
-      "CKU-NTP-SERVER",
-      "CKU-CLOCK",
-      "CKU-SNMP-VIEW",
-      "CKU-DNS",
-      "CKU-NTP-SOURCE"
+    "summary": "**NTP** synchronizes network device clocks to stratum-ranked time sources for consistent logging and authentication.",
+    "keyPoints": [
+      "`ntp server <ip>` — client toward server.",
+      "Stratum increases each hop from reference.",
+      "`clock timezone` for local display.",
+      "Accurate time required for syslog correlation."
     ],
-    "needsReview": true
+    "ckuIds": [
+      "CKU-NTP"
+    ],
+    "estimatedReadMinutes": 4,
+    "tiers": {
+      "beginner": "NTP keeps router and switch clocks accurate — critical for syslog timestamps and certificate validation.",
+      "intermediate": "Configure `ntp server <ip>` for client mode. `clock timezone` sets local offset. `show ntp associations` and `show ntp status` verify sync.",
+      "examReady": "NTP client: `ntp server <addr>`. Stratum: lower = closer to reference clock. `clock timezone <name> <offset> [<dst>]`. Manual set: `clock set hh:mm:ss day month year` (privileged). Verify: `show ntp status` (synced/unsynced)."
+    }
   },
   {
     "objectiveId": "4.3",
-    "title": "4.3",
+    "title": "Describe DHCP and DNS within the network",
     "domainId": "services",
-    "summary": "",
-    "keyPoints": [],
-    "ckuIds": [
-      "CKU-DNS",
-      "CKU-DNS-A-RECORD",
-      "CKU-DNS-REVERSE-LOOKUP",
-      "CKU-DNS-RECORD",
-      "CKU-HOSTNAME",
-      "CKU-DOMAIN-NAME",
-      "CKU-DNS-TTL",
-      "CKU-DHCP",
-      "CKU-DHCP-ACK",
-      "CKU-DHCP-DISCOVER",
-      "CKU-DHCP-OFFER",
-      "CKU-DHCP-LEASE",
-      "CKU-TRANSPORT-INPUT",
-      "CKU-NAT-POOL"
+    "summary": "**DHCP** automates host addressing (DORA); **DNS** resolves hostnames — often delivered together via DHCP options.",
+    "keyPoints": [
+      "DORA process for dynamic addressing.",
+      "Option 3 = default gateway, option 6 = DNS.",
+      "`ip helper-address` for DHCP relay.",
+      "DNS uses UDP port 53."
     ],
-    "needsReview": true
+    "ckuIds": [
+      "CKU-DHCP",
+      "CKU-DNS"
+    ],
+    "estimatedReadMinutes": 5,
+    "tiers": {
+      "beginner": "DHCP automatically gives devices an IP address, mask, default gateway, and DNS server. DNS translates names like www.example.com into IP addresses.",
+      "intermediate": "DHCP DORA: client Discover → server Offer → client Request → server Ack. Router `ip helper-address` relays broadcasts to remote DHCP server. DNS uses UDP/53; `ip name-server` on router for local resolution.",
+      "examReady": "DHCP DORA on UDP 67/68. Options: default-router (3), DNS (6). `ip dhcp pool` + `network` + `default-router` + `dns-server` on server. Relay: `ip helper-address <dhcp-ip>` on client VLAN SVI. DNS: hierarchical, UDP/53, `ip name-server`."
+    }
   },
   {
     "objectiveId": "4.4",
@@ -88,42 +212,45 @@
   },
   {
     "objectiveId": "4.5",
-    "title": "4.5",
+    "title": "Describe syslog features",
     "domainId": "services",
-    "summary": "",
-    "keyPoints": [],
-    "ckuIds": [
-      "CKU-SYSLOG",
-      "CKU-SYSLOG-UDP-514",
-      "CKU-SYSLOG-SEVERITY",
-      "CKU-SNMP-TRAP",
-      "CKU-SYSLOG-DEBUGGING",
-      "CKU-LOGGING-TIMESTAMPS",
-      "CKU-LOGGING-CONSOLE",
-      "CKU-LOGGING-BUFFERED",
-      "CKU-SNMP-INFORM",
-      "CKU-NAT"
+    "summary": "**Syslog** forwards device messages by **severity level** to local buffer or remote collectors for operations and security monitoring.",
+    "keyPoints": [
+      "Levels 0–7; lower = more critical.",
+      "`logging trap` filters remote severity.",
+      "NTP required for meaningful timestamps.",
+      "`show logging` displays local buffer."
     ],
-    "needsReview": true
+    "ckuIds": [
+      "CKU-SYSLOG"
+    ],
+    "estimatedReadMinutes": 4,
+    "tiers": {
+      "beginner": "Syslog sends router and switch log messages to a central server so you can search and alert on events.",
+      "intermediate": "`logging host <ip>` forwards messages. `logging trap informational` limits severity sent remotely (level 6). Local buffer: `show logging`.",
+      "examReady": "Severity 0=emergency … 7=debug (lower number = more severe). `logging host <addr>`, `logging trap <level>`. `service timestamps log datetime msec` adds accurate timestamps (needs NTP). `show logging` for buffer."
+    }
   },
   {
     "objectiveId": "4.6",
-    "title": "4.6",
+    "title": "Configure and verify DHCP client and relay",
     "domainId": "services",
-    "summary": "",
-    "keyPoints": [],
-    "ckuIds": [
-      "CKU-DHCP-CLIENT",
-      "CKU-DHCP-RELAY",
-      "CKU-IP-HELPER-ADDRESS",
-      "CKU-DHCP",
-      "CKU-DHCP-LEASE",
-      "CKU-NAT",
-      "CKU-DHCP-OFFER",
-      "CKU-GIADDR",
-      "CKU-DHCPV6"
+    "summary": "**DHCP relay** (`ip helper-address`) forwards client DHCP broadcasts to a remote server across subnets.",
+    "keyPoints": [
+      "Required when DHCP server is remote.",
+      "Configured on router interface facing clients.",
+      "Converts broadcast → unicast to server.",
+      "Part of IP Services exam troubleshooting."
     ],
-    "needsReview": true
+    "ckuIds": [
+      "CKU-DHCP-RELAY"
+    ],
+    "estimatedReadMinutes": 4,
+    "tiers": {
+      "beginner": "When the DHCP server is not on the same subnet as clients, the router relays their requests using `ip helper-address`.",
+      "intermediate": "Configure on the client-facing SVI or router interface. Router converts broadcast DHCP to unicast to the server IP. Also relays other UDP services by default (TFTP, DNS, etc.) — can filter if needed.",
+      "examReady": "Relay: `ip helper-address <dhcp-server-ip>` on ingress interface of client subnet. Router acts as DHCP relay agent (giaddr). Server responds to router, router forwards Offer/Ack to client. Verify with `show ip interface` and DHCP debug or server logs."
+    }
   },
   {
     "objectiveId": "4.7",

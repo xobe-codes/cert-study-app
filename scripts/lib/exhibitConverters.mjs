@@ -1,6 +1,4 @@
-/**
- * Convert exhibit-dependent questions to inline text exhibits.
- */
+import { exhibitForQuestion } from './exhibitExhibits.mjs'
 
 const NAT_TOPOLOGY = `NAT topology:
 - Host A (inside local): 192.168.1.2 on LAN
@@ -73,6 +71,8 @@ const EXHIBIT_HANDLERS = [
 
 export function tryConvertExhibit(question, objectiveId) {
   const q = { ...question, objectiveId: question.objectiveId || objectiveId }
+  const byId = exhibitForQuestion(q)
+  if (byId) return byId
   for (const h of EXHIBIT_HANDLERS) {
     if (h.match(q)) return h.convert(q)
   }

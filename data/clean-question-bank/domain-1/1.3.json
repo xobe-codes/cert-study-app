@@ -1,0 +1,333 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.3",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.3-c-q1",
+      "question": "What is the maximum recommended length for a copper UTP Ethernet segment?",
+      "choices": [
+        "10 m",
+        "100 m",
+        "500 m",
+        "1 km"
+      ],
+      "correctIndex": 1,
+      "explanation": "UTP Ethernet is limited to about 100 meters per segment.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "utp distance",
+      "ckuIds": [
+        "CKU-UTP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "UTP Ethernet is limited to about 100 meters per segment."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"10 m\" is incorrect because the scenario requires: UTP Ethernet is limited to about 100 meters per segment.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"500 m\" is incorrect because the scenario requires: UTP Ethernet is limited to about 100 meters per segment.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"1 km\" is incorrect because the scenario requires: UTP Ethernet is limited to about 100 meters per segment.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.3-c-q2",
+      "question": "Which cable type connects a PC to a switch?",
+      "choices": [
+        "Crossover",
+        "Straight-through",
+        "Console rollover",
+        "Fiber SM only"
+      ],
+      "correctIndex": 1,
+      "explanation": "PC-to-switch is unlike devices — straight-through.",
+      "type": "scenario",
+      "difficulty": "easy",
+      "concept": "straight-through",
+      "ckuIds": [
+        "CKU-CABLE-TYPES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "PC-to-switch is unlike devices — straight-through."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Crossover\" is incorrect because the scenario requires: PC-to-switch is unlike devices — straight-through.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Console rollover\" is incorrect because the scenario requires: PC-to-switch is unlike devices — straight-through.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Fiber SM only\" is incorrect because the scenario requires: PC-to-switch is unlike devices — straight-through.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.3-c-q3",
+      "question": "Which fiber type is typically used for long-distance WAN links?",
+      "choices": [
+        "Multimode orange",
+        "Single-mode yellow",
+        "Copper Cat5",
+        "Coax"
+      ],
+      "correctIndex": 1,
+      "explanation": "Single-mode fiber (often yellow) supports long laser-based runs.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "sm vs mm",
+      "ckuIds": [
+        "CKU-FIBER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Single-mode fiber (often yellow) supports long laser-based runs."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Multimode orange\" is incorrect because the scenario requires: Single-mode fiber (often yellow) supports long laser-based runs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Copper Cat5\" is incorrect because the scenario requires: Single-mode fiber (often yellow) supports long laser-based runs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Coax\" is incorrect because the scenario requires: Single-mode fiber (often yellow) supports long laser-based runs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.3-c-q4",
+      "question": "Which connector is commonly found on SFP modules?",
+      "choices": [
+        "RJ-45",
+        "LC",
+        "DB-9",
+        "USB-C"
+      ],
+      "correctIndex": 1,
+      "explanation": "LC is the dominant fiber connector on SFP/SFP+ transceivers.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "connector",
+      "ckuIds": [
+        "CKU-SFP",
+        "CKU-FIBER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "LC is the dominant fiber connector on SFP/SFP+ transceivers."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"RJ-45\" is incorrect because the scenario requires: LC is the dominant fiber connector on SFP/SFP+ transceivers.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"DB-9\" is incorrect because the scenario requires: LC is the dominant fiber connector on SFP/SFP+ transceivers.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"USB-C\" is incorrect because the scenario requires: LC is the dominant fiber connector on SFP/SFP+ transceivers.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.3-c-q5",
+      "question": "Cat6a UTP is associated with which speed at 100 m?",
+      "choices": [
+        "100 Mbps",
+        "1 Gbps",
+        "10 Gbps",
+        "40 Gbps"
+      ],
+      "correctIndex": 2,
+      "explanation": "Cat6a is rated for 10 Gbps at 100 m.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "cat6a",
+      "ckuIds": [
+        "CKU-UTP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Cat6a is rated for 10 Gbps at 100 m."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"100 Mbps\" is incorrect because the scenario requires: Cat6a is rated for 10 Gbps at 100 m.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"1 Gbps\" is incorrect because the scenario requires: Cat6a is rated for 10 Gbps at 100 m.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"40 Gbps\" is incorrect because the scenario requires: Cat6a is rated for 10 Gbps at 100 m.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.3-c-q6",
+      "question": "Two legacy switches without auto-MDIX need which cable?",
+      "choices": [
+        "Straight-through",
+        "Crossover",
+        "Console",
+        "Serial DCE"
+      ],
+      "correctIndex": 1,
+      "explanation": "Like devices historically required crossover to swap TX/RX pairs.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "crossover",
+      "ckuIds": [
+        "CKU-CABLE-TYPES"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Like devices historically required crossover to swap TX/RX pairs."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Straight-through\" is incorrect because the scenario requires: Like devices historically required crossover to swap TX/RX pairs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Console\" is incorrect because the scenario requires: Like devices historically required crossover to swap TX/RX pairs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Serial DCE\" is incorrect because the scenario requires: Like devices historically required crossover to swap TX/RX pairs.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.3-c-q7",
+      "question": "What is the primary benefit of SFP modules?",
+      "choices": [
+        "Increase CPU speed",
+        "Flexible hot-swappable media on a port",
+        "Replace STP",
+        "Encrypt traffic"
+      ],
+      "correctIndex": 1,
+      "explanation": "SFPs let you choose copper or fiber media per port without changing the switch.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "sfp purpose",
+      "ckuIds": [
+        "CKU-SFP"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "SFPs let you choose copper or fiber media per port without changing the switch."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Increase CPU speed\" is incorrect because the scenario requires: SFPs let you choose copper or fiber media per port without changing the switch.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Replace STP\" is incorrect because the scenario requires: SFPs let you choose copper or fiber media per port without changing the switch.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Encrypt traffic\" is incorrect because the scenario requires: SFPs let you choose copper or fiber media per port without changing the switch.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.3-c-q8",
+      "question": "True or False: Multimode fiber is often orange or aqua jacketed.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — MM is commonly orange (OM2) or aqua (OM3/OM4); SM is often yellow.",
+      "type": "true-false",
+      "difficulty": "easy",
+      "concept": "mm color",
+      "ckuIds": [
+        "CKU-FIBER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "True — MM is commonly orange (OM2) or aqua (OM3/OM4); SM is often yellow."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"False\" is incorrect because the scenario requires: True — MM is commonly orange (OM2) or aqua (OM3/OM4); SM is often yellow.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

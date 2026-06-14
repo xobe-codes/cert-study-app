@@ -51,6 +51,56 @@
       }
     },
     {
+      "id": "obj-6.6-source-q002",
+      "question": "Which configuration management tool uses YAML to store configuration?",
+      "choices": [
+        "Ansible",
+        "Cisco DNA Center",
+        "Chef",
+        "Puppet"
+      ],
+      "correctIndex": 0,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-YAML",
+        "CKU-CISCO-DNA-CENTER",
+        "CKU-CHEF"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer is \"Ansible\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Cisco DNA Center\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Chef\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Puppet\" is incorrect because the scenario requires: The correct answer is \"Ansible\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-6.6-source-q003",
       "question": "Which component in an Ansible setup defines the connection information so that Ansible can perform configuration management?",
       "choices": [
@@ -775,6 +825,56 @@
       }
     },
     {
+      "id": "obj-6.6-source-q018",
+      "question": "Which format must a custom Ansible module be written in?",
+      "choices": [
+        "YAML",
+        "CSV",
+        "JSON",
+        "XML"
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "configuration management",
+      "ckuIds": [
+        "CKU-CONFIGURATION-MANAGEMENT",
+        "CKU-ANSIBLE",
+        "CKU-PUPPET",
+        "CKU-YAML",
+        "CKU-JSON",
+        "CKU-XML"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"JSON\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"YAML\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"CSV\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"XML\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-6.7-source-q001",
       "question": "Which element of YAML defines a key-value pair?",
       "choices": [
@@ -1057,6 +1157,56 @@
       }
     },
     {
+      "id": "obj-6.7-source-q007",
+      "question": "what is wrong with this JSON file? { \"interface\": \"Fa0/1\", \"bandwidth\": \"100mb\", \"status\": \"up\", \"address\": { \"ipaddress\": \"192.168.1.5\", \"subnetmask\": \"255.255.255.0\", \"default gateway\": \"192.168.1.1\", }",
+      "choices": [
+        "The interface of Fa0/1 is capitalized.",
+        "The address should have a square bracket.",
+        "There is a missing curly bracket.",
+        "Nothing is wrong."
+      ],
+      "correctIndex": 2,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML",
+        "CKU-API"
+      ],
+      "objectiveId": "6.6",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer is \"There is a missing curly bracket.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The interface of Fa0/1 is capitalized.\" is incorrect because the scenario requires: The correct answer is \"There is a missing curly bracket.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The address should have a square bracket.\" is incorrect because the scenario requires: The correct answer is \"There is a missing curly bracket.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Nothing is wrong.\" is incorrect because the scenario requires: The correct answer is \"There is a missing curly bracket.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-6.7-source-q008",
       "question": "Which is an advantage in using JSON over a CSV file?",
       "choices": [
@@ -1146,6 +1296,153 @@
           {
             "choiceIndex": 3,
             "explanation": "\"YAML\" is incorrect because the scenario requires: The correct answer is \"JSON\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q010",
+      "question": "which statement best represents the JSON data? { \"ipaddress\": \"192.168.1.2\", \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\", \"routes\": [ { \"route\": \"10.0.0.0/8 via 192.168.1.10\" \"route\": \"0.0.0.0/0 via 192.168.1.1\" } ] }",
+      "choices": [
+        "The interface data is incorrect because it is missing a comma after the routes.",
+        "The interface data is incorrect because it is missing a set of square brackets around the second route.",
+        "The interface data is incorrect because it contains an illegal underscore character.",
+        "Nothing is wrong with the exhibit."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML"
+      ],
+      "objectiveId": "6.6",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second route.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The interface data is incorrect because it is missing a comma after the routes.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The interface data is incorrect because it contains an illegal underscore character.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Nothing is wrong with the exhibit.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a set of square brackets around the second …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q011",
+      "question": "which statement best represents the JSON data? { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] ], \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\" }",
+      "choices": [
+        "The interface data is incorrect because it is missing a comma after defaultgw.",
+        "The interface data is incorrect because it is missing a subnet mask for the second IP address.",
+        "The interface data is incorrect because it contains an illegal underscore character.",
+        "Nothing is wrong with the exhibit."
+      ],
+      "correctIndex": 3,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML"
+      ],
+      "objectiveId": "6.6",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer is \"Nothing is wrong with the exhibit.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The interface data is incorrect because it is missing a comma after defaultgw.\" is incorrect because the scenario requires: The correct answer is \"Nothing is wrong with the exhibit.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The interface data is incorrect because it is missing a subnet mask for the second IP address.\" is incorrect because the scenario requires: The correct answer is \"Nothing is wrong with the exhibit.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The interface data is incorrect because it contains an illegal underscore character.\" is incorrect because the scenario requires: The correct answer is \"Nothing is wrong with the exhibit.\".",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-6.7-source-q012",
+      "question": "which statement best represents the JSON data? { \"interface\": { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] \"subnet_mask\": [ \"255.255.255.0\", [ \"255.255.255.0\" ] ], \"defaultgw\": \"192.168.1.1\" }",
+      "choices": [
+        "The interface data is incorrect because it is missing a comma after defaultgw.",
+        "The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.",
+        "The interface data is incorrect because it contains an illegal underscore character.",
+        "Nothing is wrong with the exhibit."
+      ],
+      "correctIndex": 1,
+      "explanation": "",
+      "type": "scenario",
+      "difficulty": "hard",
+      "concept": "json",
+      "ckuIds": [
+        "CKU-JSON",
+        "CKU-YAML",
+        "CKU-XML"
+      ],
+      "objectiveId": "6.6",
+      "exhibitConverted": true,
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.\"."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The interface data is incorrect because it is missing a comma after defaultgw.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The interface data is incorrect because it contains an illegal underscore character.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of …",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
+            "needsExplanationReview": true
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Nothing is wrong with the exhibit.\" is incorrect because the scenario requires: The correct answer is \"The interface data is incorrect because it is missing a closing square bracket after the list of …",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested",
             "needsExplanationReview": true
           }

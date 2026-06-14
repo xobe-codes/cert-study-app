@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "ccna-clean-question-bank-v1",
+  "objectiveId": "1.1",
+  "domain": 1,
+  "builtAt": "2026-06-14T02:12:36.919Z",
+  "questions": [
+    {
+      "id": "1.1-c-q1",
+      "question": "At which OSI layer does a router primarily operate?",
+      "choices": [
+        "Layer 1",
+        "Layer 2",
+        "Layer 3",
+        "Layer 7"
+      ],
+      "correctIndex": 2,
+      "explanation": "Routers forward packets based on IP addresses — Layer 3.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "router layer",
+      "ckuIds": [
+        "CKU-ROUTER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Routers forward packets based on IP addresses — Layer 3."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Layer 1\" is incorrect because the scenario requires: Routers forward packets based on IP addresses — Layer 3.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"Layer 2\" is incorrect because the scenario requires: Routers forward packets based on IP addresses — Layer 3.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Layer 7\" is incorrect because the scenario requires: Routers forward packets based on IP addresses — Layer 3.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.1-c-q2",
+      "question": "What does a Layer 2 switch use to forward frames?",
+      "choices": [
+        "Routing table",
+        "MAC address table",
+        "DNS cache",
+        "ACL list"
+      ],
+      "correctIndex": 1,
+      "explanation": "L2 switches forward using the MAC address (CAM) table.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "switch function",
+      "ckuIds": [
+        "CKU-SWITCH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "L2 switches forward using the MAC address (CAM) table."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Routing table\" is incorrect because the scenario requires: L2 switches forward using the MAC address (CAM) table.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"DNS cache\" is incorrect because the scenario requires: L2 switches forward using the MAC address (CAM) table.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"ACL list\" is incorrect because the scenario requires: L2 switches forward using the MAC address (CAM) table.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.1-c-q3",
+      "question": "You need to route between VLAN 10 and VLAN 20 on one campus switch without an external router. Which device feature applies?",
+      "choices": [
+        "Port mirroring",
+        "SVI on a Layer 3 switch",
+        "Spanning Tree",
+        "EtherChannel"
+      ],
+      "correctIndex": 1,
+      "explanation": "An L3 switch uses SVIs to route between VLANs locally.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "l3 switch",
+      "ckuIds": [
+        "CKU-SWITCH"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "An L3 switch uses SVIs to route between VLANs locally."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Port mirroring\" is incorrect because the scenario requires: An L3 switch uses SVIs to route between VLANs locally.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Spanning Tree\" is incorrect because the scenario requires: An L3 switch uses SVIs to route between VLANs locally.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"EtherChannel\" is incorrect because the scenario requires: An L3 switch uses SVIs to route between VLANs locally.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.1-c-q4",
+      "question": "What distinguishes a next-generation firewall from a basic packet filter?",
+      "choices": [
+        "It only blocks UDP",
+        "Stateful and application-aware inspection",
+        "It replaces switches",
+        "It operates only at Layer 1"
+      ],
+      "correctIndex": 1,
+      "explanation": "NGFWs track connection state and inspect applications, not just IP/port.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "firewall",
+      "ckuIds": [
+        "CKU-FIREWALL"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "NGFWs track connection state and inspect applications, not just IP/port."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"It only blocks UDP\" is incorrect because the scenario requires: NGFWs track connection state and inspect applications, not just IP/port.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"It replaces switches\" is incorrect because the scenario requires: NGFWs track connection state and inspect applications, not just IP/port.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"It operates only at Layer 1\" is incorrect because the scenario requires: NGFWs track connection state and inspect applications, not just IP/port.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.1-c-q5",
+      "question": "A lightweight AP cannot join the network until it discovers and registers with a…",
+      "choices": [
+        "DNS server",
+        "Wireless LAN controller (WLC)",
+        "Core router only",
+        "DHCP relay"
+      ],
+      "correctIndex": 1,
+      "explanation": "Lightweight APs are managed by a WLC; they do not run full standalone config.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "lightweight ap",
+      "ckuIds": [
+        "CKU-AP-WLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Lightweight APs are managed by a WLC; they do not run full standalone config."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"DNS server\" is incorrect because the scenario requires: Lightweight APs are managed by a WLC; they do not run full standalone config.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Core router only\" is incorrect because the scenario requires: Lightweight APs are managed by a WLC; they do not run full standalone config.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"DHCP relay\" is incorrect because the scenario requires: Lightweight APs are managed by a WLC; they do not run full standalone config.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.1-c-q6",
+      "question": "Which is an example of an endpoint?",
+      "choices": [
+        "Web server",
+        "DNS server",
+        "Employee laptop",
+        "Core router"
+      ],
+      "correctIndex": 2,
+      "explanation": "Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "endpoint vs server",
+      "ckuIds": [
+        "CKU-ROUTER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Web server\" is incorrect because the scenario requires: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"DNS server\" is incorrect because the scenario requires: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Core router\" is incorrect because the scenario requires: Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.1-c-q7",
+      "question": "A PC sends traffic to a remote subnet. Which device typically receives it first?",
+      "choices": [
+        "The access switch only",
+        "The default gateway (router or L3 switch SVI)",
+        "The WLC",
+        "The DNS server"
+      ],
+      "correctIndex": 1,
+      "explanation": "Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+      "type": "scenario",
+      "difficulty": "medium",
+      "concept": "default gateway",
+      "ckuIds": [
+        "CKU-ROUTER"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The access switch only\" is incorrect because the scenario requires: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"The WLC\" is incorrect because the scenario requires: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"The DNS server\" is incorrect because the scenario requires: Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "1.1-c-q8",
+      "question": "True or False: A wireless LAN controller centralizes AP configuration and policy.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctIndex": 0,
+      "explanation": "True — WLCs manage lightweight APs from a central point.",
+      "type": "true-false",
+      "difficulty": "easy",
+      "concept": "controller role",
+      "ckuIds": [
+        "CKU-AP-WLAN"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "True — WLCs manage lightweight APs from a central point."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"False\" is incorrect because the scenario requires: True — WLCs manage lightweight APs from a central point.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    }
+  ]
+}

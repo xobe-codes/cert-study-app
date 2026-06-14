@@ -339,6 +339,50 @@
       }
     },
     {
+      "id": "obj-2.5-source-q001",
+      "question": "What is the IEEE specification for Spanning Tree Protocol (STP)?",
+      "choices": [
+        "802.1X",
+        "802.1w",
+        "802.1D",
+        "802.1s"
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.1X\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"802.1w\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.1s\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-2.5-source-q002",
       "question": "Which statement is correct about STP?",
       "choices": [
@@ -559,6 +603,138 @@
       }
     },
     {
+      "id": "obj-2.5-source-q007",
+      "question": "Which protocol is a Cisco proprietary enhancement for 802.1D that allows separate spanning-tree instances for each VLAN?",
+      "choices": [
+        "IEEE 802.1w",
+        "PVST+",
+        "CST",
+        "RSTP"
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"IEEE 802.1w\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"CST\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RSTP\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q008",
+      "question": "Which protocol is a Cisco proprietary enhancement for 802.1W that allows separate spanning-tree instances for each VLAN?",
+      "choices": [
+        "Rapid PVST+",
+        "PVST+",
+        "CST",
+        "RSTP+"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"PVST+\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"CST\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"RSTP+\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q009",
+      "question": "Which statement is correct about the Common Spanning Tree (CST)?",
+      "choices": [
+        "CST elects a root bridge for each VLAN.",
+        "CST elects a single root bridge for the entire physical network.",
+        "CST has an immediate convergence because it elects a single root bridge.",
+        "CST is best implemented for really large networks because it scales efficiently."
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"CST elects a root bridge for each VLAN.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"CST has an immediate convergence because it elects a single root bridge.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"CST is best implemented for really large networks because it scales efficiently.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-2.5-source-q010",
       "question": "Which statement is correct about RSTP?",
       "choices": [
@@ -640,6 +816,50 @@
           {
             "choiceIndex": 3,
             "explanation": "\"The switches participating in STP poll the root bridge for changes.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q012",
+      "question": "Which of the following standards is an IEEE standard that replaces Rapid PVST+?",
+      "choices": [
+        "802.1X",
+        "802.1w",
+        "802.1D",
+        "802.1s"
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"802.1X\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"802.1D\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"802.1s\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -1708,6 +1928,51 @@
       }
     },
     {
+      "id": "obj-2.5-source-q037",
+      "question": "Which feature will protect a switch immediately if it sees another switch’s advertisement?",
+      "choices": [
+        "BPDU Guard",
+        "BPDU Detection",
+        "Loop Guard",
+        "UplinkFast"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-BPDU-GUARD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 0,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 1,
+            "explanation": "\"BPDU Detection\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Loop Guard\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"UplinkFast\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
       "id": "obj-2.5-source-q038",
       "question": "What is the transition of states when PortFast is configured?",
       "choices": [
@@ -1746,6 +2011,142 @@
           {
             "choiceIndex": 3,
             "explanation": "\"Blocking, listening, learning, forwarding\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q039",
+      "question": "Which command would you use to configure BPDU Guard on an interface?",
+      "choices": [
+        "SwitchA(config-if)#switchport mode bpduguard",
+        "SwitchA(config-if)#switchport bpduguard enable",
+        "SwitchA(config-if)#spanning-tree bpduguard enable",
+        "SwitchA(config-if)#spanning-tree bpduguard"
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-BPDU-GUARD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"SwitchA(config-if)#switchport mode bpduguard\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"SwitchA(config-if)#switchport bpduguard enable\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"SwitchA(config-if)#spanning-tree bpduguard\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q040",
+      "question": "After you configure an access switch on your network, you receive a call that the users have lost connectivity. You examine the trunk interface with the command show interfaces Gi 0/1. What might be the problem?",
+      "choices": [
+        "A Spanning Tree loop has been detected.",
+        "The switch uplink cable is bad.",
+        "BPDU Guard was configured on a trunk.",
+        "Flow control is turned off."
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "application",
+      "difficulty": "hard",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-BPDU-GUARD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"A Spanning Tree loop has been detected.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The switch uplink cable is bad.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Flow control is turned off.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q041",
+      "question": "Which option is a best practice when configuring links on an access switch?",
+      "choices": [
+        "Never configure spanning-tree PortFast mode on an access link.",
+        "Always configure BPDU Guard along with PortFast.",
+        "Always configure BPDU Guard on trunks.",
+        "Always configure BPDU Guard along with UplinkFast."
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-BPDU-GUARD",
+        "CKU-PORTFAST"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Never configure spanning-tree PortFast mode on an access link.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Always configure BPDU Guard on trunks.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Always configure BPDU Guard along with UplinkFast.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
@@ -1792,6 +2193,187 @@
             "choiceIndex": 2,
             "explanation": "\"Switch#show spanning-tree\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q043",
+      "question": "Which command would you use to remove BPDU Guard from an interface?",
+      "choices": [
+        "Switch(config-if)#switchport bdpugaurd disable",
+        "Switch(config-if)#spanning-tree bpduguard disable",
+        "Switch(config-if)#no switchport bpduguard",
+        "Switch(config-if)#spanning-tree bpduguard disable"
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-BPDU-GUARD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch(config-if)#switchport bdpugaurd disable\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "This is the correct answer, not a distractor.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch(config-if)#no switchport bpduguard\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q044",
+      "question": "You have BPDU Guard configured on an interface. What happens if a BPDU is advertised on the interface?",
+      "choices": [
+        "The interface will become administratively disabled.",
+        "The interface will become disabled.",
+        "The interface will become err-disabled.",
+        "A small switching loop will happen until convergence."
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-BPDU-GUARD",
+        "CKU-ERRDISABLE"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 2,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"The interface will become administratively disabled.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"The interface will become disabled.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"A small switching loop will happen until convergence.\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q045",
+      "question": "Which command will show you if BPDU Guard is enabled by default?",
+      "choices": [
+        "Switch#show interface gi 0/1",
+        "Switch#show spanning-tree summary",
+        "Switch#show spanning-tree vlan 2",
+        "Switch#show spanning-tree"
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "medium",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-BPDU-GUARD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 1,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"Switch#show interface gi 0/1\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"Switch#show spanning-tree vlan 2\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          },
+          {
+            "choiceIndex": 3,
+            "explanation": "\"Switch#show spanning-tree\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Choosing a plausible command that does not solve this specific scenario"
+          }
+        ],
+        "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."
+      }
+    },
+    {
+      "id": "obj-2.5-source-q046",
+      "question": "You are configuring an edge switch and want to make sure that someone does not plug a switch in accidentally. Which feature will you configure?",
+      "choices": [
+        "PortFast",
+        "UplinkFast",
+        "BackboneFast",
+        "BPDU Guard"
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "type": "definition",
+      "difficulty": "easy",
+      "concept": "stp",
+      "ckuIds": [
+        "CKU-STP",
+        "CKU-RSTP",
+        "CKU-RAPID-PVST",
+        "CKU-BPDU-GUARD"
+      ],
+      "answerReview": {
+        "correct": {
+          "choiceIndex": 3,
+          "explanation": "The correct answer follows the source explanation for this objective-aligned question."
+        },
+        "incorrect": [
+          {
+            "choiceIndex": 0,
+            "explanation": "\"PortFast\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 1,
+            "explanation": "\"UplinkFast\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
+          },
+          {
+            "choiceIndex": 2,
+            "explanation": "\"BackboneFast\" is incorrect because the scenario requires: The correct answer follows the source explanation for this objective-aligned question.",
+            "misconceptionTested": "Picking a familiar term without matching the exact behavior tested"
           }
         ],
         "examTip": "Eliminate answers that describe a different protocol, port, or command than the stem asks for."

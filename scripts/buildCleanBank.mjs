@@ -17,6 +17,7 @@ import {
 } from './lib/cleanBankUtils.mjs'
 import { DOMAIN_META, filesForDomain, OSPF_34_EXCLUDE } from './lib/sourceBankConfig.mjs'
 import { tryConvertExhibit } from './lib/exhibitConverters.mjs'
+import { APPROVED_UNCERTAIN_IDS, PROMOTED_OSPF_34_IDS } from './lib/shelvedOverrides.mjs'
 import { applyAnswerReviewToQuestion } from './lib/generateAnswerReview.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -79,11 +80,11 @@ function buildFromSourceEntry(entry) {
   const active = []
 
   for (const q of data.questions || []) {
-    if (exclude.has(q.id)) {
+    if (exclude.has(q.id) && !PROMOTED_OSPF_34_IDS.has(q.id)) {
       shelved.outOfScope.push(shelvedRecord(convertSourceQuestion(q, entry.appId), entry.appId, 'out-of-scope', 'excluded cluster'))
       continue
     }
-    if (q.qualityFlags?.uncertainObjectiveMapping) {
+    if (q.qualityFlags?.uncertainObjectiveMapping && !APPROVED_UNCERTAIN_IDS.has(q.id) && !PROMOTED_OSPF_34_IDS.has(q.id)) {
       shelved.outOfScope.push(shelvedRecord(convertSourceQuestion(q, entry.appId), entry.appId, 'out-of-scope', 'uncertainObjectiveMapping'))
       continue
     }
