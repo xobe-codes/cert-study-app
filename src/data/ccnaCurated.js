@@ -25,6 +25,7 @@ import {
 } from './ccnaCuratedDomain1Rest.js'
 import { READING_SUPPLEMENTS } from './curatedReadingSupplement.js'
 import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
+import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
 
 // Short source identifiers reused across records.
 export const CURATED_SOURCES = {

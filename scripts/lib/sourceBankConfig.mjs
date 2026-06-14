@@ -19,13 +19,23 @@ export const SOURCE_BANK_FOLDERS = [
 /** @type {Record<string, { domain: number, name: string, objectives: string[] }>} */
 export const DOMAIN_META = {
   2: { domain: 2, name: 'Network Access', objectives: ['2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8'] },
-  3: { domain: 3, name: 'IP Connectivity', objectives: ['3.1', '3.2', '3.3', '3.4', '3.5'] },
-  4: { domain: 4, name: 'IP Services', objectives: ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9'] },
+  3: { domain: 3, name: 'IP Connectivity', objectives: ['3.1', '3.2', '3.3', '3.4', '3.5', '3.6'] },
+  4: { domain: 4, name: 'IP Services', objectives: ['4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9', '4.10'] },
   5: { domain: 5, name: 'Security Fundamentals', objectives: ['5.1', '5.2', '5.3', '5.5', '5.6', '5.7', '5.8', '5.9', '5.10'] },
   6: { domain: 6, name: 'Automation & Programmability', objectives: ['6.1', '6.2', '6.3', '6.4', '6.5', '6.6'] },
 }
 
 export const DOMAIN_1_OBJECTIVES = ['1.1', '1.2', '1.3', '1.4', '1.5', '1.6', '1.7', '1.8', '1.9', '1.10', '1.11', '1.12']
+
+/** Objectives with clean-bank JSON outside DOMAIN_META objective lists */
+export const EXTRA_CLEAN_OBJECTIVES = [
+  { objectiveId: '2.1', domain: 2 },
+  { objectiveId: '2.2', domain: 2 },
+  { objectiveId: '3.6', domain: 3 },
+  { objectiveId: '4.10', domain: 4 },
+  { objectiveId: '5.4', domain: 5 },
+  { objectiveId: '5.11', domain: 5 },
+]
 
 /** @type {{ qbId: string, appId: string, file: string, domain: number, exclude?: string[], curatedPrimary?: boolean }[]} */
 export const SOURCE_FILES = [

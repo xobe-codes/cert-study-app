@@ -6,7 +6,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { DOMAIN_META, DOMAIN_1_OBJECTIVES } from './lib/sourceBankConfig.mjs'
+import { DOMAIN_META, DOMAIN_1_OBJECTIVES, EXTRA_CLEAN_OBJECTIVES } from './lib/sourceBankConfig.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -38,6 +38,17 @@ function main() {
         bank[objectiveId] = questions
         objectives.push(objectiveId)
       }
+    }
+  }
+
+  for (const { objectiveId, domain } of EXTRA_CLEAN_OBJECTIVES) {
+    if (objectives.includes(objectiveId)) continue
+    const path = join(CLEAN_ROOT, `domain-${domain}`, `${objectiveId}.json`)
+    if (!existsSync(path)) continue
+    const { questions } = JSON.parse(readFileSync(path, 'utf-8'))
+    if (questions?.length) {
+      bank[objectiveId] = questions
+      objectives.push(objectiveId)
     }
   }
 
