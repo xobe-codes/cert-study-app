@@ -26,6 +26,7 @@
     "refresh:answer-reviews": "node scripts/compileCkuTrapIndex.mjs && node scripts/refreshAnswerReviews.mjs",
     "compile:cku-traps": "node scripts/compileCkuTrapIndex.mjs",
     "validate:answer-reviews": "node scripts/validateAnswerReviews.mjs",
+    "validate:reading-explanation": "node scripts/validateReadingExplanation.mjs",
     "test": "vitest run",
     "lint": "eslint src"
   },

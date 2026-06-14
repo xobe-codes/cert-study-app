@@ -117,10 +117,11 @@ export const READING_SUPPLEMENTS = {
     reading: {
       id: 'READ-4.2', ckuIds: ['CKU-NTP'], estimatedReadMinutes: 4,
       tiers: {
-        beginner: 'NTP keeps router and switch clocks accurate — critical for syslog timestamps and certificate validation.',
-        intermediate: 'Configure `ntp server <ip>` for client mode. `clock timezone` sets local offset. `show ntp associations` and `show ntp status` verify sync.',
-        examReady: 'NTP client: `ntp server <addr>`. Stratum: lower = closer to reference clock. `clock timezone <name> <offset> [<dst>]`. Manual set: `clock set hh:mm:ss day month year` (privileged). Verify: `show ntp status` (synced/unsynced).',
+        beginner: 'Accurate device clocks matter for log timestamps and certificates. NTP syncs router and switch clocks to trusted time sources on the network.',
+        intermediate: 'A device acts as an NTP client toward one or more servers. Stratum tells you how many hops from the reference clock — lower is closer. Set the local timezone for display; verify sync before trusting syslog times.',
+        examReady: 'Expect stratum basics, client vs manual clock set, and why time sync matters for syslog — not a full NTP architecture deep dive.',
       },
+      bigTakeaway: 'NTP keeps device clocks aligned so logs and security events can be trusted.',
       definition: '**NTP** synchronizes network device clocks to stratum-ranked time sources for consistent logging and authentication.',
       keyPoints: ['`ntp server <ip>` — client toward server.', 'Stratum increases each hop from reference.', '`clock timezone` for local display.', 'Accurate time required for syslog correlation.'],
       realWorld: 'Use at least two NTP servers for redundancy.',
@@ -140,10 +141,11 @@ export const READING_SUPPLEMENTS = {
     reading: {
       id: 'READ-4.3', ckuIds: ['CKU-DHCP', 'CKU-DNS'], estimatedReadMinutes: 5,
       tiers: {
-        beginner: 'DHCP automatically gives devices an IP address, mask, default gateway, and DNS server. DNS translates names like www.example.com into IP addresses.',
-        intermediate: 'DHCP DORA: client Discover → server Offer → client Request → server Ack. Router `ip helper-address` relays broadcasts to remote DHCP server. DNS uses UDP/53; `ip name-server` on router for local resolution.',
-        examReady: 'DHCP DORA on UDP 67/68. Options: default-router (3), DNS (6). `ip dhcp pool` + `network` + `default-router` + `dns-server` on server. Relay: `ip helper-address <dhcp-ip>` on client VLAN SVI. DNS: hierarchical, UDP/53, `ip name-server`.',
+        beginner: 'DHCP automatically gives devices an IP address, mask, default gateway, and DNS server. DNS translates names like www.example.com into IP addresses browsers can reach.',
+        intermediate: 'DHCP follows a simple four-step exchange so clients learn their address and options. DNS resolves hostnames hierarchically — DHCP often hands clients the DNS server to use.',
+        examReady: 'Know DORA at a high level, that DHCP can deliver gateway and DNS options, and that relays forward requests across subnets — details live in Key Points.',
       },
+      bigTakeaway: 'DHCP assigns addressing; DNS resolves names — they usually work together on the network.',
       definition: '**DHCP** automates host addressing (DORA); **DNS** resolves hostnames — often delivered together via DHCP options.',
       keyPoints: ['DORA process for dynamic addressing.', 'Option 3 = default gateway, option 6 = DNS.', '`ip helper-address` for DHCP relay.', 'DNS uses UDP port 53.'],
       realWorld: 'Place DHCP relay on each VLAN without a local server.',
@@ -162,10 +164,11 @@ export const READING_SUPPLEMENTS = {
     reading: {
       id: 'READ-4.5', ckuIds: ['CKU-SYSLOG'], estimatedReadMinutes: 4,
       tiers: {
-        beginner: 'Syslog sends router and switch log messages to a central server so you can search and alert on events.',
-        intermediate: '`logging host <ip>` forwards messages. `logging trap informational` limits severity sent remotely (level 6). Local buffer: `show logging`.',
-        examReady: 'Severity 0=emergency … 7=debug (lower number = more severe). `logging host <addr>`, `logging trap <level>`. `service timestamps log datetime msec` adds accurate timestamps (needs NTP). `show logging` for buffer.',
+        beginner: 'Syslog sends router and switch log messages to a central server so you can search events and spot problems across the network.',
+        intermediate: 'Devices can log locally and forward copies to a remote collector. Severity levels rank urgency — lower numbers mean more critical. Accurate timestamps require clocks synced with NTP.',
+        examReady: 'Recognize severity scale direction, remote logging purpose, and why NTP matters for correlation — command syntax is in Key Points.',
       },
+      bigTakeaway: 'Syslog centralizes device events by severity so operators can monitor and troubleshoot at scale.',
       definition: '**Syslog** forwards device messages by **severity level** to local buffer or remote collectors for operations and security monitoring.',
       keyPoints: ['Levels 0–7; lower = more critical.', '`logging trap` filters remote severity.', 'NTP required for meaningful timestamps.', '`show logging` displays local buffer.'],
       realWorld: 'Send level informational and above to SIEM; debug only temporarily.',
@@ -184,10 +187,11 @@ export const READING_SUPPLEMENTS = {
     reading: {
       id: 'READ-4.6', ckuIds: ['CKU-DHCP-RELAY'], estimatedReadMinutes: 4,
       tiers: {
-        beginner: 'When the DHCP server is not on the same subnet as clients, the router relays their requests using `ip helper-address`.',
-        intermediate: 'Configure on the client-facing SVI or router interface. Router converts broadcast DHCP to unicast to the server IP. Also relays other UDP services by default (TFTP, DNS, etc.) — can filter if needed.',
-        examReady: 'Relay: `ip helper-address <dhcp-server-ip>` on ingress interface of client subnet. Router acts as DHCP relay agent (giaddr). Server responds to router, router forwards Offer/Ack to client. Verify with `show ip interface` and DHCP debug or server logs.',
+        beginner: 'When the DHCP server sits on a different subnet than clients, a router relays their broadcast requests to reach it.',
+        intermediate: 'Configure relay on the interface facing the client subnet. The router converts the broadcast into a unicast toward the server, then returns the offer to the client.',
+        examReady: 'Know when relay is required (remote server), which interface gets the helper, and that this is a common CCNA troubleshooting scenario.',
       },
+      bigTakeaway: 'DHCP relay forwards client requests to a remote server when no DHCP server is on the local subnet.',
       definition: '**DHCP relay** (`ip helper-address`) forwards client DHCP broadcasts to a remote server across subnets.',
       keyPoints: ['Required when DHCP server is remote.', 'Configured on router interface facing clients.', 'Converts broadcast → unicast to server.', 'Part of IP Services exam troubleshooting.'],
       realWorld: 'One central DHCP server can serve many VLANs via relays.',

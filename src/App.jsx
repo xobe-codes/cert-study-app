@@ -17,6 +17,12 @@ import {
   studyMetaToProgress,
   READING_TIER_KEYS,
 } from './lesson/readingTier.js'
+import {
+  explanationBodyFromReading,
+  explanationBodyFromAi,
+  resolveBigTakeaway,
+  resolveAiTakeaway,
+} from './lesson/explanationFormat.js'
 import { parseRichTextSegments } from './lesson/richTextParse.js'
 import { preloadCleanBank, getCleanBankStats } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
@@ -1290,17 +1296,19 @@ function SegmentedBar({ segments, accent = 'mint' }) {
    ========================================================================= */
 const EXPLAIN_CACHE_KEY = 'ccna_explain_cache_v2' // v2: structured sections (was prose)
 const EXPLAIN_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor. Use the provided reference notes as your primary source. If the notes don't fully cover something a CCNA candidate needs, fill the gap with accurate, exam-relevant CCNA 200-301 knowledge — but never contradict the reference notes. Produce a clear, layered explanation in the requested structured fields. Keep each field tight and scannable: short sentences, plain language. The "advanced" field holds deeper detail a learner can skip on first pass.${''}
-- definition: 1-2 sentence plain-language answer to "what is this?"
-- keyPoints: 3-5 of the most testable core facts (short phrases)
+- definition: 2-4 short plain-English sentences — what it is and why it matters. No commands, formulas, exam traps, or citations here.
+- bigTakeaway: one sentence the learner must remember (max ~25 words).
+- keyPoints: 3-5 of the most testable core facts (short phrases) — formulas and commands belong here.
 - realWorld: 1-2 sentences of practical/exam/lab context
 - commonMistakes: 2-3 things students typically confuse or get wrong
 - related: 2-4 prerequisite or follow-on topics (short labels)
 - advanced: optional deeper detail (1-3 sentences), or omit if not needed`
 const EXPLAIN_SCHEMA = {
   type: 'object',
-  required: ['definition', 'keyPoints', 'commonMistakes'],
+  required: ['definition', 'bigTakeaway', 'keyPoints', 'commonMistakes'],
   properties: {
     definition: { type: 'string' },
+    bigTakeaway: { type: 'string' },
     keyPoints: { type: 'array', items: { type: 'string' } },
     realWorld: { type: 'string' },
     commonMistakes: { type: 'array', items: { type: 'string' } },
@@ -1931,10 +1939,33 @@ function RichText({ text }) {
 function Bullets({ items }) {
   return <ul style={{ margin: 0, paddingLeft: 18 }}>{(items || []).map((t, i) => <li key={i} style={{ marginBottom: 4 }}><RichText text={t} /></li>)}</ul>
 }
+
+function ExplanationSection({ body, takeaway }) {
+  if (!body) return null
+  return (
+    <ExplainBlock icon="🎯" title="EXPLANATION" accent="sky">
+      <RichText text={body} />
+      {takeaway && (
+        <div style={{
+          marginTop: 10, padding: '8px 10px', borderRadius: 6,
+          background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}`,
+        }}>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.amber, marginBottom: 4, letterSpacing: 0.3 }}>
+            🧠 BIG TAKEAWAY
+          </div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5, color: COLORS.silver }}>
+            <RichText text={takeaway} />
+          </div>
+        </div>
+      )}
+    </ExplainBlock>
+  )
+}
+
 function StructuredExplanation({ data }) {
   return (
     <div className="ccna-stagger">
-      <ExplainBlock icon="🎯" title="DEFINITION" accent="sky"><RichText text={data.definition} /></ExplainBlock>
+      <ExplanationSection body={explanationBodyFromAi(data)} takeaway={resolveAiTakeaway(data)} />
       <ExplainBlock icon="📌" title="KEY POINTS" accent="amber"><Bullets items={data.keyPoints} /></ExplainBlock>
       <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={data.commonMistakes} /></ExplainBlock>
       {data.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={false}><RichText text={data.realWorld} /></ExplainBlock>}
@@ -2187,7 +2218,10 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference }) 
           )
         })}
       </div>
-      <ExplainBlock icon="🎯" title="EXPLANATION" accent="sky"><RichText text={r.tiers[tier]} /></ExplainBlock>
+      <ExplanationSection
+        body={explanationBodyFromReading(r, tier)}
+        takeaway={resolveBigTakeaway(r)}
+      />
       <ExplainBlock icon="📌" title="KEY POINTS" accent="amber"><Bullets items={r.keyPoints} /></ExplainBlock>
       <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={r.commonMistakes} /></ExplainBlock>
       {r.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={false}><RichText text={r.realWorld} /></ExplainBlock>}

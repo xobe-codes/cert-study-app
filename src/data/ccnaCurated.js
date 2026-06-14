@@ -24,6 +24,7 @@ import { CLEAN_BANK_OBJECTIVES } from './ccnaCleanBankMeta.js'
 import {
   OBJ_11, OBJ_12, OBJ_13, OBJ_14, OBJ_17, OBJ_110, OBJ_111, OBJ_112,
 } from './ccnaCuratedDomain1Rest.js'
+import { EXPLANATION_PILOT_PATCHES } from './explanationPilotPatches.js'
 import { READING_SUPPLEMENTS } from './curatedReadingSupplement.js'
 import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
 import { VISUAL_DIAGRAMS } from './visualDiagramSupplement.js'
@@ -108,11 +109,11 @@ const OBJ_32 = {
     ckuIds: ['CKU-LONGEST-PREFIX-MATCH', 'CKU-ADMINISTRATIVE-DISTANCE', 'CKU-METRIC', 'CKU-DEFAULT-ROUTE'],
     estimatedReadMinutes: 6,
     tiers: {
-      beginner: 'When a packet arrives, the router looks at the destination IP and checks its routing table for a matching network. If more than one entry matches, it picks the most specific one — the one that pins down the most bits of the address. If two sources (say a static route and OSPF) both offer a route to the exact same network, the router trusts the one with the lower administrative distance. If it is still tied within one routing protocol, the lower metric wins.',
-      intermediate: 'A router makes its default forwarding decision in a strict order. (1) Longest prefix match: among all routes whose network/prefix the destination falls inside, the route with the longest prefix length is chosen — this happens FIRST and overrides everything else. (2) Administrative distance: AD only matters when comparing routes to the SAME prefix that were learned from DIFFERENT sources; the lower AD (more trusted source) is installed in the routing table. (3) Metric: when the same routing protocol offers multiple routes to the same prefix, the protocol’s metric breaks the tie (lower is better). A default route (0.0.0.0/0) has prefix length 0, so it is the absolute last resort.',
-      examReady: 'Default forwarding logic, in order: longest prefix match → administrative distance → metric. Longest prefix match is the packet-forwarding decision: the router always forwards using the matching route with the longest prefix length, full stop — AD and metric do NOT override a more-specific route. AD and metric instead govern which routes get INSTALLED in the routing table in the first place: when two sources advertise the identical prefix, the lower AD wins (Connected 0, Static 1, EIGRP 90, OSPF 110, RIP 120, External EIGRP 170, 255 = never installed). Metric only compares routes from the same protocol and is not comparable across protocols. The default route 0.0.0.0/0 (the gateway of last resort) matches everything but, at prefix length 0, is the least specific match and is used only when nothing more specific matches. If no route matches and no default exists, the packet is dropped.',
+      beginner: 'When a packet arrives, the router finds routes that match the destination IP. If several match, it uses the most specific (longest) prefix. Only when two routes to the same prefix compete does the router compare trust (administrative distance) and then metric.',
+      intermediate: 'Forwarding uses longest prefix match first — the most specific matching route wins, period. Administrative distance and metric decide which routes get installed when sources disagree about the same prefix, not which route forwards a packet that already has a more-specific match.',
+      examReady: 'On the exam, separate forwarding from installation: longest prefix match picks the path; AD and metric pick what enters the table. A default route is only used when nothing more specific matches.',
     },
-    // App-native structured blocks (render through the existing renderer).
+    bigTakeaway: 'Longest prefix match picks the forwarding route; AD and metric only decide what gets installed in the table.',
     definition: 'By default a router forwards each packet using **longest prefix match** — the matching route with the most specific (longest) prefix. Administrative distance and metric decide which routes are installed in the table, not which matching route is used for a given packet.',
     keyPoints: [
       'Order: longest prefix match → administrative distance → metric.',
@@ -1312,10 +1313,11 @@ const OBJ_41 = {
   reading: {
     id: 'READ-4.1', ckuIds: ['CKU-NAT', 'CKU-PAT', 'CKU-NAT-TERMS'], estimatedReadMinutes: 7,
     tiers: {
-      beginner: 'Private IP addresses (like 192.168.x.x) can’t travel on the internet, so a router swaps them for a public address on the way out — that’s NAT. At home, one public address is shared by every device using different port numbers; that flavor is called PAT (or “overload”). The router remembers each translation so replies come back to the right device.',
-      intermediate: 'NAT translates inside local (private) addresses to inside global (public) addresses. Static NAT is a fixed one-to-one mapping (for servers); dynamic NAT draws from a pool of public addresses; PAT (overload) maps many private hosts to one public IP using unique source ports — the typical SOHO setup. You mark the internal interface `ip nat inside` and the internet-facing one `ip nat outside`, then define what to translate (often an ACL). Verify with `show ip nat translations`.',
-      examReady: 'NAT maps inside local ↔ inside global. Types: Static (`ip nat inside source static <local> <global>` — permanent 1:1, for servers); Dynamic (`ip nat pool` + `ip nat inside source list <ACL> pool <name>`); PAT/overload (`ip nat inside source list <ACL> interface <if> overload` — many-to-one via ports). Mark interfaces `ip nat inside` / `ip nat outside`. Terms: inside local (private host), inside global (its public mapping), outside local/global (the destination). Verify: `show ip nat translations`, `show ip nat statistics`.',
+      beginner: 'Private IP addresses cannot travel on the public internet, so a router translates them to a public address on the way out. At home, many devices share one public IP using different port numbers — that is PAT.',
+      intermediate: 'NAT maps inside local (private) addresses to inside global (public) ones so internal hosts can reach the internet. You mark inside and outside interfaces, then define what to translate. PAT is the common many-to-one method for SOHO networks.',
+      examReady: 'Know static (one server), dynamic pool, and PAT overload for many hosts. The exam tests inside local vs inside global and correct interface roles — not full configuration paste.',
     },
+    bigTakeaway: 'NAT lets private hosts reach the internet; PAT shares one public IP across many devices using ports.',
     definition: '**NAT** maps private **inside local** IPs to public **inside global** IPs. **PAT (overload)** shares one public IP across many hosts using ports. Interfaces are marked `ip nat inside` / `ip nat outside`.',
     keyPoints: [
       'Static NAT = permanent 1:1 (servers): `ip nat inside source static <local> <global>`.',
@@ -1975,8 +1977,20 @@ export function hasCurated(objectiveId) { return curatedObjectiveIds.has(objecti
 export function getCurated(objectiveId) {
   const o = CURATED[objectiveId] || null
   if (!o) return null
+  const patch = EXPLANATION_PILOT_PATCHES[objectiveId]
+  let base = o
+  if (patch && o.reading) {
+    base = {
+      ...o,
+      reading: {
+        ...o.reading,
+        tiers: { ...o.reading.tiers, ...patch.tiers },
+        ...(patch.bigTakeaway ? { bigTakeaway: patch.bigTakeaway } : {}),
+      },
+    }
+  }
   const vis = VISUAL_DIAGRAMS[objectiveId]
-  return vis ? { ...o, diagram: vis } : o
+  return vis ? { ...base, diagram: vis } : base
 }
 
 /** True if this objective has a curated reading (source-grounded explanation, no AI). */
