@@ -42,6 +42,8 @@
     "voice:pipeline": "npm run onenote:pipeline && npm run validate:voice && npm run validate:reading-explanation && npm run regenerate:answer-voice && npm run validate:answer-voice",
     "onenote:pipeline": "npm run onenote:sync && npm run validate:topic-map && npm run onenote:import && npm run sanitize:kb-prose && npm run kb:merge-onenote && npm run kb:compile-curated && npm run validate:onenote-import && npm run validate:single-source && npm run validate:content-depth",
     "test": "vitest run",
+    "audit:coverage": "node scripts/auditContentCoverage.mjs",
+    "generate:improvement-logs": "node scripts/generateImprovementLogs.mjs",
     "lint": "eslint src"
   },
   "dependencies": {

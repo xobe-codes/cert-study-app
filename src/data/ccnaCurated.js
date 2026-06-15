@@ -28,6 +28,7 @@ import { EXPLANATION_PILOT_PATCHES } from './explanationPilotPatches.js'
 import { KB_COMPILED_PATCHES } from './kbCompiledPatches.js'
 import { READING_SUPPLEMENTS } from './curatedReadingSupplement.js'
 import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
+import { applyContentEnrichment } from './contentEnrichmentPatches.js'
 import { VISUAL_DIAGRAMS } from './visualDiagramSupplement.js'
 
 // Short source identifiers reused across records.
@@ -2006,7 +2007,8 @@ export function getCurated(objectiveId) {
     }
   }
   const vis = VISUAL_DIAGRAMS[objectiveId]
-  return vis ? { ...base, diagram: vis } : base
+  const withVis = vis ? { ...base, diagram: vis } : base
+  return applyContentEnrichment(withVis, objectiveId)
 }
 
 /** True if this objective has a curated reading (source-grounded explanation, no AI). */
@@ -2026,7 +2028,7 @@ export function getCuratedQuestions(objectiveId) {
     return clean.concat(skill)
   }
 
-  const o = CURATED[objectiveId]
+  const o = getCurated(objectiveId)
   const hand = (o?.questions || []).map(q => ({
     question: q.question, choices: q.choices, correctIndex: q.correctIndex,
     explanation: q.explanation, type: q.type, difficulty: q.difficulty, concept: q.concept,

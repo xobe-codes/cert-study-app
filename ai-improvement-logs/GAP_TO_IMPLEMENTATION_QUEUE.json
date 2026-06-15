@@ -1,0 +1,454 @@
+{
+  "generatedAt": "2026-06-15T06:33:38.379Z",
+  "gaps": [
+    {
+      "gapId": "gap_2_3",
+      "objectiveId": "2.3",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "quiz_question"
+      ],
+      "passImpact": 75,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_2_4",
+      "objectiveId": "2.4",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 75,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_2_6",
+      "objectiveId": "2.6",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_2_7",
+      "objectiveId": "2.7",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_2_8",
+      "objectiveId": "2.8",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_3_5",
+      "objectiveId": "3.5",
+      "tier": "C",
+      "missing": [
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_3_6",
+      "objectiveId": "3.6",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_4_2",
+      "objectiveId": "4.2",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_4_3",
+      "objectiveId": "4.3",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 75,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_4_4",
+      "objectiveId": "4.4",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_4_5",
+      "objectiveId": "4.5",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_4_6",
+      "objectiveId": "4.6",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_4_7",
+      "objectiveId": "4.7",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_4_8",
+      "objectiveId": "4.8",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_4_9",
+      "objectiveId": "4.9",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_4_10",
+      "objectiveId": "4.10",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_5_2",
+      "objectiveId": "5.2",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_5_3",
+      "objectiveId": "5.3",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 75,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_5_4",
+      "objectiveId": "5.4",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_5_6",
+      "objectiveId": "5.6",
+      "tier": "C",
+      "missing": [
+        "flashcard",
+        "cli_verification",
+        "quiz_question"
+      ],
+      "passImpact": 75,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_5_7",
+      "objectiveId": "5.7",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_5_8",
+      "objectiveId": "5.8",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 90,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_5_9",
+      "objectiveId": "5.9",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 90,
+      "priority": "critical",
+      "status": "partial"
+    },
+    {
+      "gapId": "gap_5_10",
+      "objectiveId": "5.10",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_5_11",
+      "objectiveId": "5.11",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "gapId": "gap_6_1",
+      "objectiveId": "6.1",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 90,
+      "priority": "critical",
+      "status": "partial"
+    },
+    {
+      "gapId": "gap_6_2",
+      "objectiveId": "6.2",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "critical",
+      "status": "partial"
+    },
+    {
+      "gapId": "gap_6_3",
+      "objectiveId": "6.3",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "critical",
+      "status": "partial"
+    },
+    {
+      "gapId": "gap_6_4",
+      "objectiveId": "6.4",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 60,
+      "priority": "critical",
+      "status": "partial"
+    },
+    {
+      "gapId": "gap_6_5",
+      "objectiveId": "6.5",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 90,
+      "priority": "critical",
+      "status": "partial"
+    },
+    {
+      "gapId": "gap_6_6",
+      "objectiveId": "6.6",
+      "tier": "C",
+      "missing": [
+        "exam_trap",
+        "flashcard",
+        "cli_verification",
+        "lab",
+        "quiz_question"
+      ],
+      "passImpact": 90,
+      "priority": "critical",
+      "status": "partial"
+    }
+  ]
+}

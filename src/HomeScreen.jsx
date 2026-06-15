@@ -22,6 +22,17 @@ import ProgressRing from './components/ProgressRing.jsx'
 import { todayStr } from './home/sessionUtils.js'
 import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './home/sessionRecap.js'
 import { groupMissedByTrap } from './missed/missedTrapGroups.js'
+import {
+  HOME_SECTION_GAP,
+  homeCard,
+  homeSectionLabel,
+  homePill,
+  homePillCount,
+  homeLinkBtn,
+  homeDismissBtn,
+  homeBodySm,
+  homeTitleSm,
+} from './home/homeUi.js'
 
 const ALL_EXAM_TRAPS = (() => {
   const traps = []
@@ -36,12 +47,12 @@ const ALL_EXAM_TRAPS = (() => {
 
 function ContentTrustCard() {
   return (
-    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.mintBorder}`, background: COLORS.mintDim }}>
-      <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.mint, letterSpacing: 0.5, marginBottom: 8 }}>BUILT-IN STUDY PACKS</div>
-      <p style={{ ...styles.small, margin: '0 0 8px', lineHeight: 1.5 }}>
+    <div style={homeCard({ border: `1px solid ${COLORS.mintBorder}`, background: COLORS.mintDim })}>
+      <div style={homeSectionLabel(COLORS.mint)}>BUILT-IN STUDY PACKS</div>
+      <p style={{ ...homeBodySm, margin: '0 0 8px' }}>
         Most objectives ship with curated reading, practice questions, diagrams, and flashcards — ready instantly, no API wait.
       </p>
-      <p style={{ ...styles.small, margin: 0, lineHeight: 1.5, color: COLORS.silverMid }}>
+      <p style={{ ...homeBodySm, margin: 0 }}>
         AI-generated lessons and custom quizzes are optional extras for topics without a full pack or when you want a fresh angle.
       </p>
     </div>
@@ -58,14 +69,10 @@ function YourProgressCard({ progress, missed, readiness, onOpenMissed, onOpenSta
   function dismiss() { dismissSessionRecap(); setDismissed(true) }
 
   return (
-    <div style={{ ...styles.card, marginBottom: 12 }}>
+    <div style={homeCard()}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>YOUR PROGRESS</div>
-        <button
-          type="button"
-          onClick={onOpenStats}
-          style={{ background: 'none', border: 'none', color: COLORS.purpleGlow, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
-        >
+        <div style={homeSectionLabel()}>YOUR PROGRESS</div>
+        <button type="button" onClick={onOpenStats} style={homeLinkBtn(COLORS.purpleGlow)}>
           Stats & trends →
         </button>
       </div>
@@ -89,20 +96,20 @@ function YourProgressCard({ progress, missed, readiness, onOpenMissed, onOpenSta
         </div>
       </div>
       {!dismissed && total > 0 && (
-        <div style={{ ...styles.small, padding: '8px 10px', borderRadius: 10, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: topTraps.length ? 10 : 0, position: 'relative' }}>
-          <button type="button" onClick={dismiss} aria-label="Dismiss session recap" style={{ position: 'absolute', top: 6, right: 8, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-lg)', cursor: 'pointer', lineHeight: 1, padding: 0, minWidth: 44, minHeight: 44 }}>×</button>
+        <div style={{ ...homeBodySm, padding: '8px 10px', borderRadius: 10, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: topTraps.length ? 10 : 0, position: 'relative' }}>
+          <button type="button" onClick={dismiss} aria-label="Dismiss session recap" style={homeDismissBtn}>×</button>
           <strong style={{ color: COLORS.sky }}>Last session:</strong> {total} question{total === 1 ? '' : 's'} · {data.correct} correct
         </div>
       )}
       {topTraps.length > 0 && (
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-            <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.rose }}>Top trap patterns</span>
-            <button type="button" onClick={onOpenMissed} style={{ background: 'none', border: 'none', color: COLORS.rose, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}>Review missed →</button>
+            <span style={{ ...homeSectionLabel(COLORS.rose), marginBottom: 0 }}>Top trap patterns</span>
+            <button type="button" onClick={onOpenMissed} style={homeLinkBtn(COLORS.rose)}>Review missed →</button>
           </div>
           {topTraps.map(g => (
             <div key={g.trap} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.45, marginBottom: 4 }}>
-              <span style={{ ...styles.pill('rose'), fontSize: 'var(--ccna-type-micro)', marginRight: 6 }}>{g.count}×</span>
+              <span style={{ ...homePillCount('rose'), marginRight: 6 }}>{g.count}×</span>
               {g.trap}
             </div>
           ))}
@@ -115,7 +122,7 @@ function YourProgressCard({ progress, missed, readiness, onOpenMissed, onOpenSta
 function HomeExtrasSection({ progress, onOpenSettings }) {
   const [open, setOpen] = useState(false)
   return (
-    <div style={{ marginBottom: 12 }}>
+    <div style={{ marginBottom: HOME_SECTION_GAP }}>
       <button
         type="button"
         onClick={() => setOpen(o => !o)}
@@ -126,11 +133,11 @@ function HomeExtrasSection({ progress, onOpenSettings }) {
           padding: '12px 14px', cursor: 'pointer', fontFamily: 'inherit', marginBottom: open ? 8 : 0,
         }}
       >
-        <span style={{ flex: 1, textAlign: 'left' }}>
-          <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>EXAM PREP EXTRAS</span>
-          <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>Exam countdown</span>
+        <span style={{ flex: 1, textAlign: 'left', minWidth: 0 }}>
+          <span style={{ display: 'block', ...homeSectionLabel(), marginBottom: 2 }}>EXAM PREP EXTRAS</span>
+          <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.4 }}>Exam countdown</span>
         </span>
-        <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, flexShrink: 0 }}>{open ? '▲' : '▼'}</span>
+        <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, flexShrink: 0, lineHeight: 1.3 }}>{open ? '▲' : '▼'}</span>
       </button>
       {open && (
         <div>
@@ -159,8 +166,8 @@ function ExamCountdown({ progress, onOpenSettings }) {
 
   if (!examDate) {
     return (
-      <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.border}` }}>
-        <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginBottom: 8 }}>📅 No exam date set</div>
+      <div style={homeCard({ border: `1px solid ${COLORS.border}` })}>
+        <div style={{ ...homeTitleSm, marginBottom: 8 }}>📅 No exam date set</div>
         <button type="button" style={{ ...styles.secondaryBtn, fontSize: 'var(--ccna-type-sm)' }} onClick={onOpenSettings}>Set exam date in Settings →</button>
       </div>
     )
@@ -170,9 +177,9 @@ function ExamCountdown({ progress, onOpenSettings }) {
   const now = new Date()
   const daysLeft = Math.ceil((target - now) / 86400000)
   if (daysLeft < 0) return (
-    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.mintBorder}` }}>
-      <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.mint, fontWeight: 600 }}>🎓 Exam date passed — good luck with results!</div>
-      <button type="button" style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginTop: 4, fontFamily: 'inherit' }} onClick={onOpenSettings}>Update in Settings</button>
+    <div style={homeCard({ border: `1px solid ${COLORS.mintBorder}` })}>
+      <div style={{ ...homeTitleSm, color: COLORS.mint }}>🎓 Exam date passed — good luck with results!</div>
+      <button type="button" style={{ ...homeLinkBtn(COLORS.silverMid), minHeight: 0, padding: '4px 0', marginTop: 4 }} onClick={onOpenSettings}>Update in Settings</button>
     </div>
   )
 
@@ -181,7 +188,7 @@ function ExamCountdown({ progress, onOpenSettings }) {
   const urgency = daysLeft <= 7 ? 'rose' : daysLeft <= 30 ? 'amber' : 'mint'
 
   return (
-    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${accentColors(urgency).border}`, background: accentColors(urgency).dim }}>
+    <div style={homeCard({ border: `1px solid ${accentColors(urgency).border}`, background: accentColors(urgency).dim })}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
           <div style={{ fontSize: 'var(--ccna-type-xl)', fontWeight: 700, color: accentColors(urgency).text }}>{daysLeft} day{daysLeft !== 1 ? 's' : ''}</div>
@@ -205,12 +212,12 @@ function ExamTrapWidget() {
   const dayIndex = Math.floor(Date.now() / 86400000)
   const trap = ALL_EXAM_TRAPS[dayIndex % ALL_EXAM_TRAPS.length]
   return (
-    <div style={{ ...styles.card, border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim, marginBottom: 12 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-        <span style={{ ...styles.pill('rose'), fontSize: 'var(--ccna-type-micro)' }}>⚠️ EXAM TRAP OF THE DAY</span>
-        <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>{trap.objectiveId}</span>
+    <div style={homeCard({ border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim })}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8, flexWrap: 'wrap' }}>
+        <span style={homePill('rose')}>⚠️ EXAM TRAP OF THE DAY</span>
+        <span style={{ ...homePillCount('silver'), color: COLORS.silverMid }}>{trap.objectiveId}</span>
       </div>
-      <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.rose, marginBottom: 6, lineHeight: 1.4 }}>{trap.trap}</div>
+      <div style={{ ...homeTitleSm, color: COLORS.rose, marginBottom: 6 }}>{trap.trap}</div>
       <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.5 }}>{trap.correction}</div>
     </div>
   )
@@ -308,7 +315,7 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
       style={{
         ...(primary ? styles.primaryBtn : styles.secondaryBtn),
         flex: '1 1 calc(50% - 4px)',
-        minWidth: 120,
+        minWidth: 0,
         fontSize: 'var(--ccna-type-sm)',
         marginBottom: 0,
       }}
@@ -376,12 +383,12 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
     return { mastered, inProgress, total: ALL_OBJECTIVES.length }
   }, [progress])
 
-  const sectionLabel = { ...styles.small, fontWeight: 700, color: COLORS.silver, marginBottom: 8, letterSpacing: 0.5 }
+  const sectionLabel = homeSectionLabel()
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
-        <h1 style={styles.h1} className="ccna-grad-text">CCNA 200-301</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
+        <h1 style={{ ...styles.h1, flex: '1 1 auto', minWidth: 0 }} className="ccna-grad-text">CCNA 200-301</h1>
         {streak.count > 0 && (() => {
           const count = streak.count
           const msg = count >= 30 ? 'Legendary! 🏆' : count >= 14 ? 'Unstoppable! 💪🏾' : count >= 7 ? 'On fire! 🔥' : count >= 3 ? 'Nice momentum!' : 'Keep it going!'
@@ -389,15 +396,15 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
           const lastLabel = streak.lastStudyDate === today ? 'Today' : streak.lastStudyDate === yesterday ? 'Yesterday' : null
           return (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 3, marginRight: 48, flexShrink: 0 }}>
-              <div style={{ ...styles.pill('mint'), whiteSpace: 'nowrap' }}>🔥 {count} day{count === 1 ? '' : 's'} streak</div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 3, flexShrink: 0 }}>
+              <div style={{ ...homePill('mint'), whiteSpace: 'nowrap' }}>🔥 {count} day{count === 1 ? '' : 's'} streak</div>
               <div style={{ fontSize: 'var(--ccna-type-xs)', color: accentColors('mint').text, fontWeight: 500, textAlign: 'right' }}>{msg}</div>
               {lastLabel && <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>Last studied: {lastLabel}</div>}
             </div>
           )
         })()}
       </div>
-      <div style={{ ...styles.small, marginBottom: 10 }}>
+      <div style={{ ...homeBodySm, marginBottom: HOME_SECTION_GAP }}>
         {totals.mastered} mastered · {totals.inProgress} in progress · {totals.total - totals.mastered - totals.inProgress} not started
         {offlineReady?.size > 0 && <> · ⤓ {offlineReady.size} offline-ready</>}
       </div>
@@ -411,12 +418,8 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       <YourProgressCard progress={progress} missed={missed} readiness={readiness} onOpenMissed={onOpenMissed} onOpenStats={onOpenStats} />
 
       {showNudge && (
-        <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 12, position: 'relative' }}>
-          <button
-            onClick={dismissNudge}
-            style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-lg)', cursor: 'pointer', lineHeight: 1, padding: 0, minWidth: 44, minHeight: 44 }}
-            aria-label="Dismiss"
-          >×</button>
+        <div style={homeCard({ background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, position: 'relative' })}>
+          <button onClick={dismissNudge} style={homeDismissBtn} aria-label="Dismiss">×</button>
           <div style={{ fontWeight: 700, fontSize: 'var(--ccna-type-md)', color: COLORS.sky, marginBottom: 6 }}>📱 New device?</div>
           <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginBottom: 10 }}>
             Open <strong>More → Settings</strong> to import progress from another device.
@@ -434,7 +437,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         return (
           <button
             className="ccna-hover"
-            style={{ ...styles.primaryBtn, marginBottom: 12 }}
+            style={{ ...styles.primaryBtn, marginBottom: HOME_SECTION_GAP }}
             onClick={onOpenReview}
           >
             📅 Today's Review — {ready} ready · ~{estMin} min
@@ -443,7 +446,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       })()}
 
       {suggestions.length > 0 && (
-        <div style={{ marginBottom: 12 }} className="ccna-stagger">
+        <div style={{ marginBottom: HOME_SECTION_GAP }} className="ccna-stagger">
           <div style={sectionLabel}>FOR YOU</div>
           {suggestions.map(s => {
             const c = accentColors(s.accent)
@@ -454,22 +457,22 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                 onClick={() => onSelectObjective({ ...s.objective, __initialTab: s.tab })}
                 style={{
                   display: 'block', width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit',
-                  background: c.dim, border: `1px solid ${c.border}`, borderRadius: 14, padding: 14, marginBottom: 10,
+                  background: c.dim, border: `1px solid ${c.border}`, borderRadius: 14, padding: '12px 14px', marginBottom: HOME_SECTION_GAP,
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                  <span style={{ ...styles.pill(s.accent), fontSize: 'var(--ccna-type-xs)' }}>{s.chip}</span>
+                  <span style={homePill(s.accent)}>{s.chip}</span>
                   <span style={{ color: c.text, fontSize: 'var(--ccna-type-lg)', lineHeight: 1 }}>›</span>
                 </div>
                 <div style={{ fontWeight: 600, fontSize: 'var(--ccna-type-md)', color: COLORS.silver, marginBottom: 4, lineHeight: 1.4 }}>{s.title}</div>
-                <div style={{ ...styles.small, lineHeight: 1.5 }}>{s.body}</div>
+                <div style={{ ...homeBodySm }}>{s.body}</div>
               </button>
             )
           })}
         </div>
       )}
 
-      <div style={{ ...styles.card, marginBottom: 12 }}>
+      <div style={homeCard()}>
         <div style={sectionLabel}>STUDY MODES</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 8 }}>
           <StudyModeBtn primary onClick={onOpenMock}>Mock Exam</StudyModeBtn>
@@ -500,19 +503,19 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         const masteredCount = objs.filter(o => progress[o.id]?.status === 'mastered').length
         const accent = accentColors(domain.accent)
         return (
-          <div key={domain.id} className="ccna-hover" style={styles.card}>
+          <div key={domain.id} className="ccna-hover" style={homeCard({ marginBottom: HOME_SECTION_GAP })}>
             <button
               onClick={() => onOpenDomain(isOpen ? null : domain.id)}
               aria-expanded={isOpen}
               aria-controls={`domain-panel-${domain.id}`}
-              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: 0, textAlign: 'left' }}
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', background: 'none', border: 'none', color: COLORS.silver, cursor: 'pointer', minHeight: 44, padding: 0, textAlign: 'left', gap: 8 }}
             >
-              <div style={{ flex: 1, minWidth: 0, marginRight: 10 }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2 }}>
-                  <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600 }}>{domain.name}</div>
-                  <span style={{ ...styles.pill(domain.accent), fontSize: 'var(--ccna-type-micro)' }}>{domain.weight}% exam weight</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2, flexWrap: 'wrap' }}>
+                  <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, lineHeight: 1.35 }}>{domain.name}</div>
+                  <span style={homePill(domain.accent)}>{domain.weight}% exam weight</span>
                 </div>
-                <div style={{ ...styles.small, marginBottom: 6 }}>{masteredCount}/{objs.length} mastered</div>
+                <div style={{ ...homeBodySm, marginBottom: 6 }}>{masteredCount}/{objs.length} mastered</div>
                 {/* Outer bar width = exam weight (so D4@25% appears wider than D1@20%); fill = mastery */}
                 <div style={{ width: '100%', height: 6, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
                   <div style={{ width: `${domain.weight}%`, height: '100%', borderRadius: 999, background: COLORS.surface, position: 'relative', display: 'inline-block' }}>
@@ -521,7 +524,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                   <div style={{ display: 'inline-block', width: `${100 - domain.weight}%`, height: '100%', background: COLORS.border, borderRadius: 999 }} />
                 </div>
               </div>
-              <span style={{ ...styles.pill(domain.accent), flexShrink: 0 }}>{isOpen ? '−' : '+'}</span>
+              <span style={{ ...homePill(domain.accent), flexShrink: 0, minWidth: 32, textAlign: 'center' }}>{isOpen ? '−' : '+'}</span>
             </button>
             {isOpen && (
               <div id={`domain-panel-${domain.id}`} className="domain-accordion-panel" role="region" aria-label={`${domain.name} objectives`} style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>

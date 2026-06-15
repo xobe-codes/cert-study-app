@@ -1,0 +1,115 @@
+{
+  "generatedAt": "2026-06-15T06:33:38.379Z",
+  "items": [
+    {
+      "id": "improve_vlan_engineer_verify",
+      "priority": "high",
+      "status": "done",
+      "area": "content",
+      "objectiveNumber": "2.1",
+      "problem": "Verify commands buried in Reference",
+      "recommendedImprovement": "Engineer View in Study tab",
+      "riskLevel": "low",
+      "confidenceScore": 92
+    },
+    {
+      "id": "fix_read_checklist",
+      "priority": "high",
+      "status": "done",
+      "area": "learning_flow",
+      "objectiveNumber": "all",
+      "problem": "studySectionsViewed never written",
+      "recommendedImprovement": "Persist on Study reading open",
+      "riskLevel": "low",
+      "confidenceScore": 95
+    },
+    {
+      "id": "unify_trap_weakness",
+      "priority": "medium",
+      "status": "done",
+      "area": "analytics",
+      "objectiveNumber": "all",
+      "problem": "Metrics vs Home trap aggregation differ",
+      "recommendedImprovement": "computeTrapWeakness delegates to groupMissedByTrap",
+      "riskLevel": "low",
+      "confidenceScore": 90
+    },
+    {
+      "id": "enrich_stp_engineer",
+      "priority": "high",
+      "status": "done",
+      "area": "content",
+      "objectiveNumber": "2.5",
+      "problem": "STP verify not in Study engineer layer",
+      "recommendedImprovement": "engineerView + show spanning-tree",
+      "riskLevel": "low",
+      "confidenceScore": 88
+    },
+    {
+      "id": "enrich_route_interpret",
+      "priority": "high",
+      "status": "done",
+      "area": "content",
+      "objectiveNumber": "3.1",
+      "problem": "show ip route interpret buried",
+      "recommendedImprovement": "engineerView interpret section",
+      "riskLevel": "low",
+      "confidenceScore": 87
+    },
+    {
+      "id": "enrich_wlan_59",
+      "priority": "critical",
+      "status": "done",
+      "area": "content",
+      "objectiveNumber": "5.9",
+      "problem": "Thin factory + low Q count",
+      "recommendedImprovement": "Traps, flashcards, supplemental questions",
+      "riskLevel": "low",
+      "confidenceScore": 85
+    },
+    {
+      "id": "enrich_automation_6x",
+      "priority": "critical",
+      "status": "done",
+      "area": "content",
+      "objectiveNumber": "6.1-6.6",
+      "problem": "Zero traps on factory automation",
+      "recommendedImprovement": "Trap + flashcard enrichment patches",
+      "riskLevel": "low",
+      "confidenceScore": 82
+    },
+    {
+      "id": "extract_app_tabs",
+      "priority": "medium",
+      "status": "done",
+      "area": "maintainability",
+      "objectiveNumber": "app",
+      "problem": "7k-line App.jsx",
+      "recommendedImprovement": "Extract ExplainTab/QuizTab",
+      "riskLevel": "medium",
+      "confidenceScore": 80
+    },
+    {
+      "id": "bulk_factory_traps",
+      "priority": "high",
+      "status": "pending",
+      "area": "content",
+      "objectiveNumber": "21 objs",
+      "problem": "Tier C zero traps",
+      "recommendedImprovement": "Pipeline bulk trap generation",
+      "riskLevel": "medium",
+      "confidenceScore": 75
+    },
+    {
+      "id": "lab_31_route_lite",
+      "priority": "high",
+      "status": "pending",
+      "area": "labs",
+      "objectiveNumber": "3.1",
+      "problem": "No routing table lab",
+      "recommendedImprovement": "Lab-lite show ip route parser",
+      "riskLevel": "medium",
+      "confidenceScore": 78
+    }
+  ]
+}
