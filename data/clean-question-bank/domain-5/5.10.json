@@ -30,24 +30,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**GRE uses IPsec security.** does not answer which in this stem. .",
+            "explanation": "GRE uses IPsec security. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"GRE uses IPsec security.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**GRE uses a protocol of 57.** does not answer which in this stem. .",
+            "explanation": "GRE uses a protocol of 57. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"GRE uses a protocol of 57.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**GRE provides per-packet authentication.** does not answer which in this stem. .",
+            "explanation": "GRE provides per-packet authentication. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"GRE provides per-packet authentication.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -78,24 +78,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**PPP** does not answer which in this stem. .",
+            "explanation": "PPP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"PPP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**IPsec** does not answer which in this stem. .",
+            "explanation": "IPsec does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IPsec\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SSL** does not answer which in this stem. .",
+            "explanation": "SSL does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSL\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -125,24 +125,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Protocol 4** does not answer which in this stem. .",
+            "explanation": "Protocol 4 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Protocol 4\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Protocol 43** does not answer which in this stem. .",
+            "explanation": "Protocol 43 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Protocol 43\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Protocol 57** does not answer which in this stem. .",
+            "explanation": "Protocol 57 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Protocol 57\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -174,24 +174,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Nothing is wrong with the configuration.** does not answer what is in this stem. .",
+            "explanation": "Nothing is wrong with the configuration. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Nothing is wrong with the configuration.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The destination on Router A of the tunnel is incorrect.** does not answer what is in this stem. .",
+            "explanation": "The destination on Router A of the tunnel is incorrect. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The serial interfaces are on different networks.** does not answer what is in this stem. .",
+            "explanation": "The serial interfaces are on different networks. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The serial interfaces are on different n…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     },
     {
@@ -223,24 +223,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0** does not answer configure in this stem. .",
+            "explanation": "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#ip route 192.168.3.0 255.…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0** does not answer configure in this stem. .",
+            "explanation": "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#ip route 192.168.2.0 255.…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1** does not answer configure in this stem. .",
+            "explanation": "Router(config)#ip route 192.168.3.0 255.255.255.0 serial 0/0/1 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#ip route 192.168.3.0 255.…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -270,24 +270,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**MTU 1492** does not answer the requirement in this stem. .",
+            "explanation": "MTU 1492 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"MTU 1492\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**MTU 1500** does not answer the requirement in this stem. .",
+            "explanation": "MTU 1500 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"MTU 1500\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**MTU 1528** does not answer the requirement in this stem. .",
+            "explanation": "MTU 1528 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"MTU 1528\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -317,24 +317,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ip tunnel 0** does not answer which in this stem. .",
+            "explanation": "Router#show ip tunnel 0 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#show ip tunnel 0\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show ip gre** does not answer which in this stem. .",
+            "explanation": "Router#show ip gre does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#show ip gre\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip route** does not answer which in this stem. .",
+            "explanation": "Router#show ip route does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#show ip route\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     },
     {
@@ -366,24 +366,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Two hops** does not answer the requirement in this stem. .",
+            "explanation": "Two hops does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Two hops\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Four hops** does not answer the requirement in this stem. .",
+            "explanation": "Four hops does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Four hops\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Zero hops** does not answer the requirement in this stem. .",
+            "explanation": "Zero hops does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Zero hops\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     },
     {
@@ -415,24 +415,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The tunnel numbers do not match.** does not answer what is in this stem. .",
+            "explanation": "The tunnel numbers do not match. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The tunnel numbers do not match.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The destination on Router A of the tunnel is incorrect.** does not answer what is in this stem. .",
+            "explanation": "The destination on Router A of the tunnel is incorrect. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The serial interfaces do not match.** does not answer what is in this stem. .",
+            "explanation": "The serial interfaces do not match. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The serial interfaces do not match.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -463,24 +463,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**HSRP** does not answer which in this stem. .",
+            "explanation": "HSRP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HSRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ARP** does not answer which in this stem. .",
+            "explanation": "ARP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ARP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**GRE** does not answer which in this stem. .",
+            "explanation": "GRE does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"GRE\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -512,24 +512,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The interface is administratively shut down.** does not answer configure in this stem. .",
+            "explanation": "The interface is administratively shut down. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The interface is administratively shut d…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**There is a wiring problem.** does not answer configure in this stem. .",
+            "explanation": "There is a wiring problem. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"There is a wiring problem.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**There is an IP address mismatch.** does not answer configure in this stem. .",
+            "explanation": "There is an IP address mismatch. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"There is an IP address mismatch.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -559,24 +559,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Point-to-point** does not answer which in this stem. .",
+            "explanation": "Point-to-point does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Point-to-point\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Full-mesh** does not answer which in this stem. .",
+            "explanation": "Full-mesh does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Full-mesh\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Dual-homed** does not answer which in this stem. .",
+            "explanation": "Dual-homed does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Dual-homed\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -606,24 +606,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Authentication** does not answer which in this stem. .",
+            "explanation": "Authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Anti-replay** does not answer which in this stem. .",
+            "explanation": "Anti-replay does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Anti-replay\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Confidentiality** does not answer which in this stem. .",
+            "explanation": "Confidentiality does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Confidentiality\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -653,24 +653,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Catalyst switches** does not answer which in this stem. .",
+            "explanation": "Catalyst switches does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Catalyst switches\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Cisco routers** does not answer which in this stem. .",
+            "explanation": "Cisco routers does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco routers\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Policy-based routing** does not answer which in this stem. .",
+            "explanation": "Policy-based routing does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Policy-based routing\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -700,24 +700,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**GRE tunnels** does not answer which in this stem. .",
+            "explanation": "GRE tunnels does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"GRE tunnels\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Wireless WAN** does not answer which in this stem. .",
+            "explanation": "Wireless WAN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Wireless WAN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Site-to-site VPN** does not answer which in this stem. .",
+            "explanation": "Site-to-site VPN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Site-to-site VPN\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     },
     {
@@ -749,24 +749,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**AH** does not answer which in this stem. .",
+            "explanation": "AH does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"AH\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**IKE** does not answer which in this stem. .",
+            "explanation": "IKE does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IKE\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ISAKMP** does not answer which in this stem. .",
+            "explanation": "ISAKMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ISAKMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -797,24 +797,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Lower bandwidth requirements** does not answer the requirement in this stem. .",
+            "explanation": "Lower bandwidth requirements does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Lower bandwidth requirements\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Lower latency** does not answer the requirement in this stem. .",
+            "explanation": "Lower latency does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Lower latency\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Support for multicast** does not answer the requirement in this stem. .",
+            "explanation": "Support for multicast does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Support for multicast\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **vpn** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for vpn before picking a familiar-sounding wrong term."
       }
     }
   ]

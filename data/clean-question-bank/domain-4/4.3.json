@@ -29,19 +29,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A reverse lookup is when the request needs to be reversed to another DNS server.** does not answer which in this stem. .",
+            "explanation": "A reverse lookup is when the request needs to be reversed to another DNS server. does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A reverse lookup is when the DNS queried can answer the request without asking another DNS server.** does not answer which in this stem. .",
+            "explanation": "A reverse lookup is when the DNS queried can answer the request without asking another DNS server. does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A reverse lookup is the resolution of an FQDN to an IP address.** does not answer which in this stem. .",
+            "explanation": "A reverse lookup is the resolution of an FQDN to an IP address. does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -77,19 +77,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The A record** does not answer which in this stem. .",
+            "explanation": "The A record does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The CName record** does not answer which in this stem. .",
+            "explanation": "The CName record does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The AAAA record** does not answer which in this stem. .",
+            "explanation": "The AAAA record does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -127,19 +127,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The DNS zone** does not answer the requirement in this stem. .",
+            "explanation": "The DNS zone does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The host header** does not answer the requirement in this stem. .",
+            "explanation": "The host header does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The hostname PTR record** does not answer the requirement in this stem. .",
+            "explanation": "The hostname PTR record does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -176,19 +176,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DNS** does not answer which in this stem. .",
+            "explanation": "DNS does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**PTR records** does not answer which in this stem. .",
+            "explanation": "PTR records does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**LLMNR** does not answer which in this stem. .",
+            "explanation": "LLMNR does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -225,19 +225,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The CName record** does not answer which in this stem. .",
+            "explanation": "The CName record does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The PTR record** does not answer which in this stem. .",
+            "explanation": "The PTR record does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The AAAA record** does not answer which in this stem. .",
+            "explanation": "The AAAA record does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -274,19 +274,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**An A record** does not answer the requirement in this stem. .",
+            "explanation": "An A record does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SOA** does not answer the requirement in this stem. .",
+            "explanation": "SOA does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Default of 5 minutes** does not answer the requirement in this stem. .",
+            "explanation": "Default of 5 minutes does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
@@ -331,18 +331,18 @@
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Offer** is not the behavior described here. .",
+            "explanation": "Offer is not the behavior described here. .",
             "misconceptionTested": "Misordering or mislabeling DHCP messages",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Request** is not the behavior described here. .",
+            "explanation": "Request is not the behavior described here. .",
             "misconceptionTested": "Misordering or mislabeling DHCP messages",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -373,24 +373,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Layer 3 multicast** does not answer the requirement in this stem. .",
+            "explanation": "Layer 3 multicast does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Layer 3 802.1Q** does not answer the requirement in this stem. .",
+            "explanation": "Layer 3 802.1Q does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Layer 3 unicast** does not answer the requirement in this stem. .",
+            "explanation": "Layer 3 unicast does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -422,24 +422,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**One-quarter of the lease** does not answer the requirement in this stem. .",
+            "explanation": "One-quarter of the lease does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Seven-eighths of the lease** does not answer the requirement in this stem. .",
+            "explanation": "Seven-eighths of the lease does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**End of the lease** does not answer the requirement in this stem. .",
+            "explanation": "End of the lease does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -471,24 +471,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The DHCP server is responsible for maintaining the life cycle of an IP address.** does not answer which in this stem. .",
+            "explanation": "The DHCP server is responsible for maintaining the life cycle of an IP address. does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**DHCP uses multicasting between the client and server.** does not answer which in this stem. .",
+            "explanation": "DHCP uses multicasting between the client and server. does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The DHCP lease is negotiated between client and server.** does not answer which in this stem. .",
+            "explanation": "The DHCP lease is negotiated between client and server. does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -520,24 +520,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**ICMP** does not answer which in this stem. .",
+            "explanation": "ICMP does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TCP** does not answer which in this stem. .",
+            "explanation": "TCP does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RARP** does not answer which in this stem. .",
+            "explanation": "RARP does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -569,24 +569,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The IP address is still served to the client.** does not answer the requirement in this stem. .",
+            "explanation": "The IP address is still served to the client. does not match the mechanism asked here.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The DHCP server will halt.** does not answer the requirement in this stem. .",
+            "explanation": "The DHCP server will halt. does not match the mechanism asked here.",
             "misconceptionTested": "Reversing forward vs reverse DNS lookup",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The DHCP will serve the IP address in the future.** does not answer the requirement in this stem. .",
+            "explanation": "The DHCP will serve the IP address in the future. does not match the mechanism asked here.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     }
   ]

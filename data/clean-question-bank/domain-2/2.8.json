@@ -29,21 +29,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SNMP** does not answer which in this stem. Telnet provides terminal emulation over a network but is not encrypted.",
+            "explanation": "SNMP misses what this question tests. Telnet provides terminal emulation over a network but is not encrypted.",
             "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**HTTP** does not answer which in this stem. Telnet provides terminal emulation over a network but is not encrypted.",
+            "explanation": "HTTP misses what this question tests. Telnet provides terminal emulation over a network but is not encrypted.",
             "misconceptionTested": "Selecting \"HTTP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**TFTP** does not answer which in this stem. Telnet provides terminal emulation over a network but is not encrypted.",
+            "explanation": "TFTP misses what this question tests. Telnet provides terminal emulation over a network but is not encrypted.",
             "misconceptionTested": "Selecting \"TFTP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -73,21 +73,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#connect 198.56.33.3** does not answer which in this stem. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "explanation": "Router#connect 198.56.33.3 misses what this question tests. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
             "misconceptionTested": "Selecting \"Router#connect 198.56.33.3\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#remote 198.56.33.3** does not answer which in this stem. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "explanation": "Router#remote 198.56.33.3 misses what this question tests. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
             "misconceptionTested": "Selecting \"Router#remote 198.56.33.3\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#vty 198.56.33.3** does not answer which in this stem. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+            "explanation": "Router#vty 198.56.33.3 misses what this question tests. Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
             "misconceptionTested": "Selecting \"Router#vty 198.56.33.3\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -119,17 +119,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/69** uses the wrong value. The tested fact calls for **49** — not 69.",
+            "explanation": "UDP/69 uses the wrong value. The tested fact calls for 49 — not 69.",
             "misconceptionTested": "Selecting \"UDP/69\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**TCP/74** uses the wrong value. The tested fact calls for **49** — not 74.",
+            "explanation": "TCP/74 uses the wrong value. The tested fact calls for 49 — not 74.",
             "misconceptionTested": "Selecting \"TCP/74\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP/47** uses the wrong value. The tested fact calls for **49** — not 47.",
+            "explanation": "UDP/47 uses the wrong value. The tested fact calls for 49 — not 47.",
             "misconceptionTested": "Selecting \"UDP/47\" without matching the scenario constraint"
           }
         ],
@@ -163,21 +163,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RADIUS** does not answer which in this stem. SSH provides encrypted management access.",
+            "explanation": "RADIUS misses what this question tests. SSH provides encrypted management access.",
             "misconceptionTested": "Selecting \"RADIUS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**HTTP** does not answer which in this stem. SSH provides encrypted management access.",
+            "explanation": "HTTP misses what this question tests. SSH provides encrypted management access.",
             "misconceptionTested": "Selecting \"HTTP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SFTP** does not answer which in this stem. SSH provides encrypted management access.",
+            "explanation": "SFTP misses what this question tests. SSH provides encrypted management access.",
             "misconceptionTested": "Selecting \"SFTP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -208,21 +208,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Symmetrical encryption** does not answer which in this stem. SSH uses public/private key asymmetric encryption.",
+            "explanation": "Symmetrical encryption misses what this question tests. SSH uses public/private key asymmetric encryption.",
             "misconceptionTested": "Selecting \"Symmetrical encryption\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Code block ciphers** does not answer which in this stem. SSH uses public/private key asymmetric encryption.",
+            "explanation": "Code block ciphers misses what this question tests. SSH uses public/private key asymmetric encryption.",
             "misconceptionTested": "Selecting \"Code block ciphers\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**At-rest encryption** does not answer which in this stem. SSH uses public/private key asymmetric encryption.",
+            "explanation": "At-rest encryption misses what this question tests. SSH uses public/private key asymmetric encryption.",
             "misconceptionTested": "Selecting \"At-rest encryption\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -253,21 +253,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**SSH** does not answer the requirement in this stem. WAP debug output appears on the console by default.",
+            "explanation": "SSH misses what this question tests. WAP debug output appears on the console by default.",
             "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Logging server** does not answer the requirement in this stem. WAP debug output appears on the console by default.",
+            "explanation": "Logging server misses what this question tests. WAP debug output appears on the console by default.",
             "misconceptionTested": "Selecting \"Logging server\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Local storage** does not answer the requirement in this stem. WAP debug output appears on the console by default.",
+            "explanation": "Local storage misses what this question tests. WAP debug output appears on the console by default.",
             "misconceptionTested": "Selecting \"Local storage\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **management access** — exam distractors swap similar terms; anchor on: WAP debug output appears on the console by default."
+        "examTip": "This stem tests management access — exam distractors swap similar terms; anchor on: WAP debug output appears on the console by default."
       }
     },
     {
@@ -298,17 +298,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**TACACS+** does not answer which in this stem. RADIUS is an open standard originally proposed by the IETF.",
+            "explanation": "TACACS+ misses what this question tests. RADIUS is an open standard originally proposed by the IETF.",
             "misconceptionTested": "Selecting \"TACACS+\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Kerberos** does not answer which in this stem. RADIUS is an open standard originally proposed by the IETF.",
+            "explanation": "Kerberos misses what this question tests. RADIUS is an open standard originally proposed by the IETF.",
             "misconceptionTested": "Selecting \"Kerberos\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**LDAP** does not answer which in this stem. RADIUS is an open standard originally proposed by the IETF.",
+            "explanation": "LDAP misses what this question tests. RADIUS is an open standard originally proposed by the IETF.",
             "misconceptionTested": "Selecting \"LDAP\" without matching the scenario constraint"
           }
         ],
@@ -343,21 +343,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**TACACS+** does not answer which in this stem. SSH can use AES for encrypted credentials and session data.",
+            "explanation": "TACACS+ misses what this question tests. SSH can use AES for encrypted credentials and session data.",
             "misconceptionTested": "Selecting \"TACACS+\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**HTTPS** does not answer which in this stem. SSH can use AES for encrypted credentials and session data.",
+            "explanation": "HTTPS misses what this question tests. SSH can use AES for encrypted credentials and session data.",
             "misconceptionTested": "Selecting \"HTTPS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RADIUS** does not answer which in this stem. SSH can use AES for encrypted credentials and session data.",
+            "explanation": "RADIUS misses what this question tests. SSH can use AES for encrypted credentials and session data.",
             "misconceptionTested": "Selecting \"RADIUS\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -389,21 +389,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**HTTPS** does not answer the requirement in this stem. A first-time autonomous AP setup commonly uses the console connection.",
+            "explanation": "HTTPS misses what this question tests. A first-time autonomous AP setup commonly uses the console connection.",
             "misconceptionTested": "Selecting \"HTTPS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SSH** does not answer the requirement in this stem. A first-time autonomous AP setup commonly uses the console connection.",
+            "explanation": "SSH misses what this question tests. A first-time autonomous AP setup commonly uses the console connection.",
             "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Telnet** does not answer the requirement in this stem. A first-time autonomous AP setup commonly uses the console connection.",
+            "explanation": "Telnet misses what this question tests. A first-time autonomous AP setup commonly uses the console connection.",
             "misconceptionTested": "Selecting \"Telnet\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **management access** — exam distractors swap similar terms; anchor on: A first-time autonomous AP setup commonly uses the console connection."
+        "examTip": "This stem tests management access — exam distractors swap similar terms; anchor on: A first-time autonomous AP setup commonly uses the console connection."
       }
     },
     {
@@ -434,21 +434,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**19.2 kb/s** uses the wrong value. The tested fact calls for **9600** — not 19.",
+            "explanation": "19.2 kb/s uses the wrong value. The tested fact calls for 9600 — not 19.",
             "misconceptionTested": "Selecting \"19.2 kb/s\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**9600 kb/s** does not answer what is in this stem. Cisco console access commonly uses 9600 baud.",
+            "explanation": "9600 kb/s misses what this question tests. Cisco console access commonly uses 9600 baud.",
             "misconceptionTested": "Selecting \"9600 kb/s\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**19200 baud** uses the wrong value. The tested fact calls for **9600** — not 19200.",
+            "explanation": "19200 baud uses the wrong value. The tested fact calls for 9600 — not 19200.",
             "misconceptionTested": "Selecting \"19200 baud\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **management access** — exam distractors swap similar terms; anchor on: Cisco console access commonly uses 9600 baud."
+        "examTip": "This stem tests management access — exam distractors swap similar terms; anchor on: Cisco console access commonly uses 9600 baud."
       }
     },
     {
@@ -478,21 +478,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**16 characters** uses the wrong value. The tested fact calls for **32** — not 16.",
+            "explanation": "16 characters uses the wrong value. The tested fact calls for 32 — not 16.",
             "misconceptionTested": "Selecting \"16 characters\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**48 characters** uses the wrong value. The tested fact calls for **32** — not 48.",
+            "explanation": "48 characters uses the wrong value. The tested fact calls for 32 — not 48.",
             "misconceptionTested": "Selecting \"48 characters\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**64 characters** uses the wrong value. The tested fact calls for **32** — not 64.",
+            "explanation": "64 characters uses the wrong value. The tested fact calls for 32 — not 64.",
             "misconceptionTested": "Selecting \"64 characters\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **wlan** — exam distractors swap similar terms; anchor on: An SSID can be up to 32 characters."
+        "examTip": "This stem tests wlan — exam distractors swap similar terms; anchor on: An SSID can be up to 32 characters."
       }
     },
     {
@@ -523,21 +523,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Access control lists for one SSID** does not answer what is in this stem. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "explanation": "Access control lists for one SSID misses what this question tests. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
             "misconceptionTested": "Selecting \"Access control lists for one SSID\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Dynamic VLANs for the SSID** does not answer what is in this stem. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "explanation": "Dynamic VLANs for the SSID misses what this question tests. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
             "misconceptionTested": "Selecting \"Dynamic VLANs for the SSID\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Access control lists for two SSIDs** does not answer what is in this stem. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
+            "explanation": "Access control lists for two SSIDs misses what this question tests. A simple guest segmentation design uses separate SSIDs mapped to production and guest VLANs.",
             "misconceptionTested": "Selecting \"Access control lists for two SSIDs\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
+        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -568,21 +568,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**WPAN** does not answer which in this stem. A town-wide wireless deployment is a WMAN.",
+            "explanation": "WPAN misses what this question tests. A town-wide wireless deployment is a WMAN.",
             "misconceptionTested": "Selecting \"WPAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**WLAN** does not answer which in this stem. A town-wide wireless deployment is a WMAN.",
+            "explanation": "WLAN misses what this question tests. A town-wide wireless deployment is a WMAN.",
             "misconceptionTested": "Selecting \"WLAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**WWAN** does not answer which in this stem. A town-wide wireless deployment is a WMAN.",
+            "explanation": "WWAN misses what this question tests. A town-wide wireless deployment is a WMAN.",
             "misconceptionTested": "Selecting \"WWAN\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -613,21 +613,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**WLAN** does not answer what is in this stem. A short-range personal wireless network is a WPAN.",
+            "explanation": "WLAN misses what this question tests. A short-range personal wireless network is a WPAN.",
             "misconceptionTested": "Selecting \"WLAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**WMAN** does not answer what is in this stem. A short-range personal wireless network is a WPAN.",
+            "explanation": "WMAN misses what this question tests. A short-range personal wireless network is a WPAN.",
             "misconceptionTested": "Selecting \"WMAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**WWAN** does not answer what is in this stem. A short-range personal wireless network is a WPAN.",
+            "explanation": "WWAN misses what this question tests. A short-range personal wireless network is a WPAN.",
             "misconceptionTested": "Selecting \"WWAN\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -658,21 +658,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A trust boundary is where the QoS markings are first configured.** does not answer what is in this stem. A QoS trust boundary is where the network begins trusting QoS markings.",
+            "explanation": "A trust boundary is where the QoS markings are first configured. misses what this question tests. A QoS trust boundary is where the network begins trusting QoS markings.",
             "misconceptionTested": "Selecting \"A trust boundary is where the QoS markin…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**A trust boundary is where the QoS markings are stripped at the router.** does not answer what is in this stem. A QoS trust boundary is where the network begins trusting QoS markings.",
+            "explanation": "A trust boundary is where the QoS markings are stripped at the router. misses what this question tests. A QoS trust boundary is where the network begins trusting QoS markings.",
             "misconceptionTested": "Selecting \"A trust boundary is where the QoS markin…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A trust boundary is the separation of QoS queues based upon their priority.** does not answer what is in this stem. A QoS trust boundary is where the network begins trusting QoS markings.",
+            "explanation": "A trust boundary is the separation of QoS queues based upon their priority. misses what this question tests. A QoS trust boundary is where the network begins trusting QoS markings.",
             "misconceptionTested": "Selecting \"A trust boundary is the separation of Qo…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **wlan** — exam distractors swap similar terms; anchor on: A QoS trust boundary is where the network begins trusting QoS markings."
+        "examTip": "This stem tests wlan — exam distractors swap similar terms; anchor on: A QoS trust boundary is where the network begins trusting QoS markings."
       }
     },
     {
@@ -703,21 +703,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**802.11r** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "explanation": "802.11r uses the wrong value. The tested fact calls for 11 — not 802.",
             "misconceptionTested": "Selecting \"802.11r\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**802.1p** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "explanation": "802.1p uses the wrong value. The tested fact calls for 11 — not 802.",
             "misconceptionTested": "Selecting \"802.1p\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.11k** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "explanation": "802.11k uses the wrong value. The tested fact calls for 11 — not 802.",
             "misconceptionTested": "Selecting \"802.11k\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -748,21 +748,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Disable SSID broadcasting** does not answer the requirement in this stem. MAC filtering can restrict WLAN access to known corporate hosts.",
+            "explanation": "Disable SSID broadcasting misses what this question tests. MAC filtering can restrict WLAN access to known corporate hosts.",
             "misconceptionTested": "Selecting \"Disable SSID broadcasting\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Set a unique PSK** does not answer the requirement in this stem. MAC filtering can restrict WLAN access to known corporate hosts.",
+            "explanation": "Set a unique PSK misses what this question tests. MAC filtering can restrict WLAN access to known corporate hosts.",
             "misconceptionTested": "Selecting \"Set a unique PSK\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Add an LDAP server** does not answer the requirement in this stem. MAC filtering can restrict WLAN access to known corporate hosts.",
+            "explanation": "Add an LDAP server misses what this question tests. MAC filtering can restrict WLAN access to known corporate hosts.",
             "misconceptionTested": "Selecting \"Add an LDAP server\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -793,21 +793,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.11r** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "explanation": "802.11r uses the wrong value. The tested fact calls for 11 — not 802.",
             "misconceptionTested": "Selecting \"802.11r\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**802.11e** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "explanation": "802.11e uses the wrong value. The tested fact calls for 11 — not 802.",
             "misconceptionTested": "Selecting \"802.11e\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.11ac** uses the wrong value. The tested fact calls for **11** — not 802.",
+            "explanation": "802.11ac uses the wrong value. The tested fact calls for 11 — not 802.",
             "misconceptionTested": "Selecting \"802.11ac\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -839,21 +839,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Bronze** does not answer which in this stem. Platinum is the WLC QoS profile appropriate for voice.",
+            "explanation": "Bronze misses what this question tests. Platinum is the WLC QoS profile appropriate for voice.",
             "misconceptionTested": "Selecting \"Bronze\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Silver** does not answer which in this stem. Platinum is the WLC QoS profile appropriate for voice.",
+            "explanation": "Silver misses what this question tests. Platinum is the WLC QoS profile appropriate for voice.",
             "misconceptionTested": "Selecting \"Silver\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Gold** does not answer which in this stem. Platinum is the WLC QoS profile appropriate for voice.",
+            "explanation": "Gold misses what this question tests. Platinum is the WLC QoS profile appropriate for voice.",
             "misconceptionTested": "Selecting \"Gold\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -886,21 +886,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Change the radio policy** does not answer the requirement in this stem. If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "explanation": "Change the radio policy misses what this question tests. If a WLAN is disabled in the GUI, enabling status restores client access.",
             "misconceptionTested": "Selecting \"Change the radio policy\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Enable Multicast VLAN Feature** does not answer the requirement in this stem. If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "explanation": "Enable Multicast VLAN Feature misses what this question tests. If a WLAN is disabled in the GUI, enabling status restores client access.",
             "misconceptionTested": "Selecting \"Enable Multicast VLAN Feature\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Enable Broadcast SSID** does not answer the requirement in this stem. If a WLAN is disabled in the GUI, enabling status restores client access.",
+            "explanation": "Enable Broadcast SSID misses what this question tests. If a WLAN is disabled in the GUI, enabling status restores client access.",
             "misconceptionTested": "Selecting \"Enable Broadcast SSID\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
+        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -913,7 +913,7 @@
         "802.1X is enabled."
       ],
       "correctIndex": 2,
-      "explanation": "The  WPA2 personal/PSK security.",
+      "explanation": "The WPA2 personal/PSK security.",
       "type": "application",
       "difficulty": "hard",
       "concept": "wlan",
@@ -928,26 +928,26 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The  WPA2 personal/PSK security."
+          "explanation": "The WPA2 personal/PSK security."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**WPA is enabled.** does not answer which in this stem. The  WPA2 personal/PSK security.",
+            "explanation": "WPA is enabled. misses what this question tests. The WPA2 personal/PSK security.",
             "misconceptionTested": "Selecting \"WPA is enabled.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**WPA2 enterprise is enabled.** does not answer which in this stem. The  WPA2 personal/PSK security.",
+            "explanation": "WPA2 enterprise is enabled. misses what this question tests. The WPA2 personal/PSK security.",
             "misconceptionTested": "Selecting \"WPA2 enterprise is enabled.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.1X is enabled.** uses the wrong value. The tested fact calls for **2** — not 802.",
+            "explanation": "802.1X is enabled. uses the wrong value. The tested fact calls for 2 — not 802.",
             "misconceptionTested": "Selecting \"802.1X is enabled.\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -978,21 +978,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Gold** does not answer which in this stem. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "explanation": "Gold misses what this question tests. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
             "misconceptionTested": "Selecting \"Gold\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Platinum** does not answer which in this stem. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "explanation": "Platinum misses what this question tests. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
             "misconceptionTested": "Selecting \"Platinum\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Silver** does not answer which in this stem. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
+            "explanation": "Silver misses what this question tests. Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context.",
             "misconceptionTested": "Selecting \"Silver\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **wlan** — exam distractors swap similar terms; anchor on: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context."
+        "examTip": "This stem tests wlan — exam distractors swap similar terms; anchor on: Bronze is the lowest QoS profile and is appropriate for low-priority bulk traffic in this source context."
       }
     },
     {
@@ -1024,21 +1024,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**MAC filtering** does not answer which in this stem. 802.",
+            "explanation": "MAC filtering misses what this question tests. 802.",
             "misconceptionTested": "Selecting \"MAC filtering\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**WPA2 PSK** uses the wrong value. The tested fact calls for **802** — not 2.",
+            "explanation": "WPA2 PSK uses the wrong value. The tested fact calls for 802 — not 2.",
             "misconceptionTested": "Selecting \"WPA2 PSK\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Fast Transitioning** does not answer which in this stem. 802.",
+            "explanation": "Fast Transitioning misses what this question tests. 802.",
             "misconceptionTested": "Selecting \"Fast Transitioning\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     }
   ]

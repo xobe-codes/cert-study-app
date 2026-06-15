@@ -27,21 +27,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Encrypts traffic** does not answer what does in this stem. NAT maps inside local (private) to inside global (public) addresses.",
+            "explanation": "Encrypts traffic misses what this question tests. NAT maps inside local (private) to inside global (public) addresses.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Routes between VLANs** does not answer what does in this stem. NAT maps inside local (private) to inside global (public) addresses.",
+            "explanation": "Routes between VLANs misses what this question tests. NAT maps inside local (private) to inside global (public) addresses.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Assigns DHCP addresses** does not answer what does in this stem. NAT maps inside local (private) to inside global (public) addresses.",
+            "explanation": "Assigns DHCP addresses misses what this question tests. NAT maps inside local (private) to inside global (public) addresses.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
-        "examTip": "NAT fails silently without **inside/outside** — label interfaces before reading address types."
+        "examTip": "NAT fails silently without inside/outside — label interfaces before reading address types."
       }
     },
     {
@@ -69,17 +69,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Static NAT** does not answer which in this stem. PAT/overload maps many inside hosts to one public IP using ports.",
+            "explanation": "Static NAT misses what this question tests. PAT/overload maps many inside hosts to one public IP using ports.",
             "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Dynamic NAT** does not answer which in this stem. PAT/overload maps many inside hosts to one public IP using ports.",
+            "explanation": "Dynamic NAT misses what this question tests. PAT/overload maps many inside hosts to one public IP using ports.",
             "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**No NAT** does not answer which in this stem. PAT/overload maps many inside hosts to one public IP using ports.",
+            "explanation": "No NAT misses what this question tests. PAT/overload maps many inside hosts to one public IP using ports.",
             "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
           }
         ],
@@ -97,7 +97,7 @@
         "ip nat outside"
       ],
       "correctIndex": 0,
-      "explanation": "Static NAT uses `ip nat inside source static <local> <global>`.",
+      "explanation": "Static NAT uses ip nat inside source static <local> <global>.",
       "type": "application",
       "difficulty": "medium",
       "concept": "static nat",
@@ -107,22 +107,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "Static NAT uses `ip nat inside source static <local> <global>`."
+          "explanation": "Static NAT uses ip nat inside source static <local> <global>."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**ip nat pool** does not answer which in this stem. Static NAT uses `ip nat inside source static <local> <global>`.",
+            "explanation": "ip nat pool misses what this question tests. Static NAT uses ip nat inside source static <local> <global>.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ip nat inside source list 1 interface g0/0 overload** does not answer which in this stem. Static NAT uses `ip nat inside source static <local> <global>`.",
+            "explanation": "ip nat inside source list 1 interface g0/0 overload misses what this question tests. Static NAT uses ip nat inside source static <local> <global>.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ip nat outside** does not answer which in this stem. Static NAT uses `ip nat inside source static <local> <global>`.",
+            "explanation": "ip nat outside misses what this question tests. Static NAT uses ip nat inside source static <local> <global>.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
@@ -139,7 +139,7 @@
         "DNS"
       ],
       "correctIndex": 1,
-      "explanation": "Interfaces must be marked `ip nat inside` and `ip nat outside`.",
+      "explanation": "Interfaces must be marked ip nat inside and ip nat outside.",
       "type": "troubleshooting",
       "difficulty": "hard",
       "concept": "interface tags",
@@ -149,26 +149,26 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Interfaces must be marked `ip nat inside` and `ip nat outside`."
+          "explanation": "Interfaces must be marked ip nat inside and ip nat outside."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A default route** is a plausible symptom fix but does not match the most likely root cause here: Interfaces must be marked `ip nat inside` and `ip nat outside`.",
+            "explanation": "A default route is a plausible symptom fix but does not match the most likely root cause here: Interfaces must be marked ip nat inside and ip nat outside.",
             "misconceptionTested": "Selecting \"A default route\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A loopback** is a plausible symptom fix but does not match the most likely root cause here: Interfaces must be marked `ip nat inside` and `ip nat outside`.",
+            "explanation": "A loopback is a plausible symptom fix but does not match the most likely root cause here: Interfaces must be marked ip nat inside and ip nat outside.",
             "misconceptionTested": "Selecting \"A loopback\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DNS** is a plausible symptom fix but does not match the most likely root cause here: Interfaces must be marked `ip nat inside` and `ip nat outside`.",
+            "explanation": "DNS is a plausible symptom fix but does not match the most likely root cause here: Interfaces must be marked ip nat inside and ip nat outside.",
             "misconceptionTested": "Selecting \"DNS\" without matching the scenario constraint"
           }
         ],
-        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without `ip nat inside`/`outside`, NAT translates nothing"
+        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without ip nat inside/outside, NAT translates nothing"
       }
     },
     {
@@ -181,7 +181,7 @@
         "ip nat outside source list 1"
       ],
       "correctIndex": 0,
-      "explanation": "PAT: `ip nat inside source list <ACL> interface <if> overload`.",
+      "explanation": "PAT: ip nat inside source list <ACL> interface <if> overload.",
       "type": "application",
       "difficulty": "hard",
       "concept": "overload command",
@@ -191,22 +191,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "PAT: `ip nat inside source list <ACL> interface <if> overload`."
+          "explanation": "PAT: ip nat inside source list <ACL> interface <if> overload."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**ip nat inside source static** reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "explanation": "ip nat inside source static reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
             "misconceptionTested": "Every inside host needs its own public IP"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ip nat pool MYPOOL** does not answer which in this stem. PAT: `ip nat inside source list <ACL> interface <if> overload`.",
+            "explanation": "ip nat pool MYPOOL misses what this question tests. PAT: ip nat inside source list <ACL> interface <if> overload.",
             "misconceptionTested": "Selecting \"ip nat pool MYPOOL\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ip nat outside source list 1** does not answer which in this stem. PAT: `ip nat inside source list <ACL> interface <if> overload`.",
+            "explanation": "ip nat outside source list 1 misses what this question tests. PAT: ip nat inside source list <ACL> interface <if> overload.",
             "misconceptionTested": "Selecting \"ip nat outside source list 1\" without matching the scenario constraint"
           }
         ],
@@ -239,21 +239,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Inside global** reflects a common trap: Mixing up inside local and inside global. Inside local = private host; inside global = its public mapping.",
+            "explanation": "Inside global reflects a common trap: Mixing up inside local and inside global. Inside local = private host; inside global = its public mapping.",
             "misconceptionTested": "Mixing up inside local and inside global"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Outside global** reflects a common trap: Forgetting the inside/outside interface tags. Without `ip nat inside`/`outside`, NAT translates nothing.",
+            "explanation": "Outside global reflects a common trap: Forgetting the inside/outside interface tags. Without ip nat inside/outside, NAT translates nothing.",
             "misconceptionTested": "Forgetting the inside/outside interface tags"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Outside local** reflects a common trap: Forgetting the inside/outside interface tags. Without `ip nat inside`/`outside`, NAT translates nothing.",
+            "explanation": "Outside local reflects a common trap: Forgetting the inside/outside interface tags. Without ip nat inside/outside, NAT translates nothing.",
             "misconceptionTested": "Forgetting the inside/outside interface tags"
           }
         ],
-        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without `ip nat inside`/`outside`, NAT translates nothing"
+        "examTip": "On the exam: Forgetting the inside/outside interface tags — Without ip nat inside/outside, NAT translates nothing"
       }
     },
     {
@@ -266,7 +266,7 @@
         "show ip nat inside"
       ],
       "correctIndex": 1,
-      "explanation": "`show ip nat translations` lists the current mappings.",
+      "explanation": "show ip nat translations lists the current mappings.",
       "type": "application",
       "difficulty": "easy",
       "concept": "verify",
@@ -276,22 +276,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`show ip nat translations` lists the current mappings."
+          "explanation": "show ip nat translations lists the current mappings."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**show ip route** does not answer which in this stem. `show ip nat translations` lists the current mappings.",
+            "explanation": "show ip route misses what this question tests. show ip nat translations lists the current mappings.",
             "misconceptionTested": "Selecting \"show ip route\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**show running-config** does not answer which in this stem. `show ip nat translations` lists the current mappings.",
+            "explanation": "show running-config misses what this question tests. show ip nat translations lists the current mappings.",
             "misconceptionTested": "Selecting \"show running-config\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**show ip nat inside** does not answer which in this stem. `show ip nat translations` lists the current mappings.",
+            "explanation": "show ip nat inside misses what this question tests. show ip nat translations lists the current mappings.",
             "misconceptionTested": "Selecting \"show ip nat inside\" without matching the scenario constraint"
           }
         ],
@@ -321,7 +321,7 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "This statement is **False**, but the tested fact is: True — PAT tracks translations by inside global IP + port.",
+            "explanation": "This statement is False, but the tested fact is: True — PAT tracks translations by inside global IP + port.",
             "misconceptionTested": "Mixing up PAT/overload with static or dynamic NAT"
           }
         ],
@@ -354,19 +354,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**CIDR** does not answer which in this stem. .",
+            "explanation": "CIDR does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Classful addressing** does not answer which in this stem. .",
+            "explanation": "Classful addressing does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VPN** does not answer which in this stem. .",
+            "explanation": "VPN does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
@@ -401,24 +401,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**192.168.1.1 Router A Gi0/0** does not answer what is in this stem. .",
+            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**179.43.44.1 Router A S0/0** does not answer what is in this stem. .",
+            "explanation": "179.43.44.1 Router A S0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**198.23.53.3 web server** does not answer what is in this stem. .",
+            "explanation": "198.23.53.3 web server does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -448,24 +448,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**192.168.1.2 Host A** does not answer what is in this stem. .",
+            "explanation": "192.168.1.2 Host A does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**192.168.1.1 Router A Gi0/0** does not answer what is in this stem. .",
+            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**198.23.53.3 web server** does not answer what is in this stem. .",
+            "explanation": "198.23.53.3 web server does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -495,24 +495,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**192.168.1.2 Host A** does not answer what is in this stem. .",
+            "explanation": "192.168.1.2 Host A does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**192.168.1.1 Router A Gi0/0** does not answer what is in this stem. .",
+            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**179.43.44.1 Router A S0/0** does not answer what is in this stem. .",
+            "explanation": "179.43.44.1 Router A S0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -540,19 +540,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show nat translations** does not answer which in this stem. .",
+            "explanation": "Router#show nat translations does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#debug ip nat translations** does not answer which in this stem. .",
+            "explanation": "Router#debug ip nat translations does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show translations nat** does not answer which in this stem. .",
+            "explanation": "Router#show translations nat does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
@@ -585,19 +585,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ip nat translations** does not answer which in this stem. .",
+            "explanation": "Router#show ip nat translations does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip nat summary** does not answer which in this stem. .",
+            "explanation": "Router#show ip nat summary does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show ip nat status** does not answer which in this stem. .",
+            "explanation": "Router#show ip nat status does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
@@ -632,24 +632,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config)#nat source static 192.168.1.3 179.43.44.1** reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "explanation": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RouterA(config)#ip nat static 192.168.1.3 179.43.44.1** reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "explanation": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1** reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "explanation": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -679,24 +679,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA(config)#ip nat pool EntPool 179.43.44.0/28** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -730,13 +730,13 @@
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The access list allows outgoing access from outside local addresses.** is not the behavior described here. .",
+            "explanation": "The access list allows outgoing access from outside local addresses. is not the behavior described here. .",
             "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The access list allows outgoing access from inside global addresses.** is not the behavior described here. .",
+            "explanation": "The access list allows outgoing access from inside global addresses. is not the behavior described here. .",
             "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
             "needsExplanationReview": true
           }
@@ -769,19 +769,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#no ip nat translation** does not answer which in this stem. .",
+            "explanation": "Router#no ip nat translation does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#clear ip nat translation** does not answer which in this stem. .",
+            "explanation": "Router#clear ip nat translation does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#clear ip nat** does not answer which in this stem. .",
+            "explanation": "Router#clear ip nat does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
@@ -814,19 +814,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ip translations** does not answer which in this stem. .",
+            "explanation": "Router#show ip translations does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#debug ip translations** does not answer which in this stem. .",
+            "explanation": "Router#debug ip translations does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip nat** does not answer which in this stem. .",
+            "explanation": "Router#show ip nat does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
@@ -862,24 +862,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool** reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
             "misconceptionTested": "Every inside host needs its own public IP",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool** reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
             "misconceptionTested": "Every inside host needs its own public IP",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -909,19 +909,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**CIDR** does not answer which in this stem. .",
+            "explanation": "CIDR does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Classful addressing** does not answer which in this stem. .",
+            "explanation": "Classful addressing does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VPN** does not answer which in this stem. .",
+            "explanation": "VPN does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
@@ -959,24 +959,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**192.168.1.1 Router A Gi0/0** does not answer what is in this stem. .",
+            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**179.43.44.1 Router A S0/0** does not answer what is in this stem. .",
+            "explanation": "179.43.44.1 Router A S0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**198.23.53.3 web server** does not answer what is in this stem. .",
+            "explanation": "198.23.53.3 web server does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -1009,24 +1009,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**192.168.1.2 Host A** does not answer what is in this stem. .",
+            "explanation": "192.168.1.2 Host A does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**192.168.1.1 Router A Gi0/0** does not answer what is in this stem. .",
+            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**198.23.53.3 web server** does not answer what is in this stem. .",
+            "explanation": "198.23.53.3 web server does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -1059,24 +1059,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**192.168.1.2 Host A** does not answer what is in this stem. .",
+            "explanation": "192.168.1.2 Host A does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**192.168.1.1 Router A Gi0/0** does not answer what is in this stem. .",
+            "explanation": "192.168.1.1 Router A Gi0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**179.43.44.1 Router A S0/0** does not answer what is in this stem. .",
+            "explanation": "179.43.44.1 Router A S0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -1108,19 +1108,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show nat translations** does not answer which in this stem. .",
+            "explanation": "Router#show nat translations does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#debug ip nat translations** does not answer which in this stem. .",
+            "explanation": "Router#debug ip nat translations does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show translations nat** does not answer which in this stem. .",
+            "explanation": "Router#show translations nat does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
@@ -1158,19 +1158,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ip nat translations** does not answer which in this stem. .",
+            "explanation": "Router#show ip nat translations does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip nat summary** does not answer which in this stem. .",
+            "explanation": "Router#show ip nat summary does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show ip nat status** does not answer which in this stem. .",
+            "explanation": "Router#show ip nat status does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
@@ -1207,24 +1207,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config)#nat source static 192.168.1.3 179.43.44.1** reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "explanation": "RouterA(config)#nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RouterA(config)#ip nat static 192.168.1.3 179.43.44.1** reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "explanation": "RouterA(config)#ip nat static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1** reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
+            "explanation": "RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1 reflects a common trap: Expecting static NAT to serve many hosts. Static NAT is 1:1; use PAT/overload for many-to-one.",
             "misconceptionTested": "Expecting static NAT to serve many hosts",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -1259,24 +1259,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA(config)#ip nat pool EntPool 179.43.44.0/28** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     },
     {
@@ -1316,13 +1316,13 @@
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The access list allows outgoing access from outside local addresses.** is not the behavior described here. .",
+            "explanation": "The access list allows outgoing access from outside local addresses. is not the behavior described here. .",
             "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The access list allows outgoing access from inside global addresses.** is not the behavior described here. .",
+            "explanation": "The access list allows outgoing access from inside global addresses. is not the behavior described here. .",
             "misconceptionTested": "Swapping inside/outside or local/global NAT roles",
             "needsExplanationReview": true
           }
@@ -1358,19 +1358,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#no ip nat translation** does not answer which in this stem. .",
+            "explanation": "Router#no ip nat translation does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#clear ip nat translation** does not answer which in this stem. .",
+            "explanation": "Router#clear ip nat translation does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#clear ip nat** does not answer which in this stem. .",
+            "explanation": "Router#clear ip nat does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
@@ -1406,19 +1406,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ip translations** does not answer which in this stem. .",
+            "explanation": "Router#show ip translations does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#debug ip translations** does not answer which in this stem. .",
+            "explanation": "Router#debug ip translations does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip nat** does not answer which in this stem. .",
+            "explanation": "Router#show ip nat does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           }
@@ -1458,24 +1458,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool** reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
             "misconceptionTested": "Every inside host needs its own public IP",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat source pool EntPool does not match the mechanism asked here.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool** reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
+            "explanation": "RouterA(config)#access-list 1 permit 192.168.1.0 0.0.0.255 RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.1 netmask 255.255.255.0 RouterA(config)#ip nat inside source list 1 pool EntPool reflects a common trap: Every inside host needs its own public IP. PAT lets thousands of hosts share one public IP via ports.",
             "misconceptionTested": "Every inside host needs its own public IP",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "NAT: **inside/outside first** — then inside local/global vs outside local/global."
+        "examTip": "NAT: inside/outside first — then inside local/global vs outside local/global."
       }
     }
   ]

@@ -31,24 +31,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**User interface layout** does not answer configure in this stem. .",
+            "explanation": "User interface layout does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"User interface layout\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Source code of the device** does not answer configure in this stem. .",
+            "explanation": "Source code of the device does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Source code of the device\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Data storage of the device** does not answer configure in this stem. .",
+            "explanation": "Data storage of the device does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Data storage of the device\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -82,24 +82,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**CLI** does not answer which in this stem. .",
+            "explanation": "CLI does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CLI\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Syslog** does not answer which in this stem. .",
+            "explanation": "Syslog does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SSH** does not answer which in this stem. .",
+            "explanation": "SSH does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -132,24 +132,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Syslog** does not answer which in this stem. .",
+            "explanation": "Syslog does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**REST** does not answer which in this stem. .",
+            "explanation": "REST does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"REST\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SSH** does not answer which in this stem. .",
+            "explanation": "SSH does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -183,24 +183,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**REST** does not answer which in this stem. .",
+            "explanation": "REST does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"REST\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP** does not answer which in this stem. .",
+            "explanation": "SNMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**YAML** does not answer which in this stem. .",
+            "explanation": "YAML does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"YAML\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -234,24 +234,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**NETCONF** does not answer which in this stem. .",
+            "explanation": "NETCONF does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"NETCONF\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP** does not answer which in this stem. .",
+            "explanation": "SNMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Syslog** does not answer which in this stem. .",
+            "explanation": "Syslog does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -284,24 +284,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SNMP** does not answer which in this stem. .",
+            "explanation": "SNMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNTP** does not answer which in this stem. .",
+            "explanation": "SNTP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SNTP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SOAP** does not answer which in this stem. .",
+            "explanation": "SOAP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SOAP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -336,24 +336,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Pass the username and password in every request.** does not answer the requirement in this stem. .",
+            "explanation": "Pass the username and password in every request. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Pass the username and password in every …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Send a GET to the API for an auth token.** does not answer the requirement in this stem. .",
+            "explanation": "Send a GET to the API for an auth token. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Send a GET to the API for an auth token.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Create a public private key pair for the Cisco DNA Center appliance.** does not answer the requirement in this stem. .",
+            "explanation": "Create a public private key pair for the Cisco DNA Center appliance. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Create a public private key pair for the…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -384,24 +384,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Memory cleanup** does not answer the requirement in this stem. .",
+            "explanation": "Memory cleanup does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Memory cleanup\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Replacement for REST-based APIs** does not answer the requirement in this stem. .",
+            "explanation": "Replacement for REST-based APIs does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Replacement for REST-based APIs\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Data encoding** does not answer the requirement in this stem. .",
+            "explanation": "Data encoding does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Data encoding\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -434,24 +434,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**AD integrated** does not answer which in this stem. .",
+            "explanation": "AD integrated does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"AD integrated\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SSL** does not answer which in this stem. .",
+            "explanation": "SSL does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSL\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Pass-through** does not answer which in this stem. .",
+            "explanation": "Pass-through does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Pass-through\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -483,24 +483,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Add it as a variable named X-Auth-Token in the script.** does not answer the requirement in this stem. .",
+            "explanation": "Add it as a variable named X-Auth-Token in the script. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Add it as a variable named X-Auth-Token …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Pass the token in the URI of subsequent requests.** does not answer the requirement in this stem. .",
+            "explanation": "Pass the token in the URI of subsequent requests. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Pass the token in the URI of subsequent …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Perform a POST for the authentication token within 10 seconds of the subsequent request.** does not answer the requirement in this stem. .",
+            "explanation": "Perform a POST for the authentication token within 10 seconds of the subsequent request. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Perform a POST for the authentication to…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -536,24 +536,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SSL** does not answer which in this stem. .",
+            "explanation": "SSL does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSL\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**AAA** does not answer which in this stem. .",
+            "explanation": "AAA does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"AAA\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Basic** does not answer which in this stem. .",
+            "explanation": "Basic does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Basic\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -587,13 +587,13 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**OpenFlow** does not answer configure in this stem. .",
+            "explanation": "OpenFlow does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"OpenFlow\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP** does not answer configure in this stem. .",
+            "explanation": "SNMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
@@ -604,7 +604,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -638,24 +638,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**application/json** does not answer which in this stem. .",
+            "explanation": "application/json does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"application/json\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**data/json** does not answer which in this stem. .",
+            "explanation": "data/json does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"data/json\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**data/yaml** does not answer which in this stem. .",
+            "explanation": "data/yaml does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"data/yaml\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -689,24 +689,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Format your response correctly.** does not answer the requirement in this stem. .",
+            "explanation": "Format your response correctly. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Format your response correctly.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Authenticate to the device first.** does not answer the requirement in this stem. .",
+            "explanation": "Authenticate to the device first. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Authenticate to the device first.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Nothing; this code means OK.** does not answer the requirement in this stem. .",
+            "explanation": "Nothing; this code means OK. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Nothing; this code means OK.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -740,24 +740,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Northbound interface** does not answer which in this stem. .",
+            "explanation": "Northbound interface does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Northbound interface\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Eastbound interface** does not answer which in this stem. .",
+            "explanation": "Eastbound interface does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Eastbound interface\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Westbound interface** does not answer which in this stem. .",
+            "explanation": "Westbound interface does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Westbound interface\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -788,24 +788,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**HTTP body** does not answer the requirement in this stem. .",
+            "explanation": "HTTP body does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HTTP body\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Script variable** does not answer the requirement in this stem. .",
+            "explanation": "Script variable does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Script variable\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Script data object** does not answer the requirement in this stem. .",
+            "explanation": "Script data object does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Script data object\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -838,24 +838,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**GET** does not answer which in this stem. .",
+            "explanation": "GET does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"GET\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**PATCH** does not answer which in this stem. .",
+            "explanation": "PATCH does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"PATCH\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DELETE** does not answer which in this stem. .",
+            "explanation": "DELETE does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"DELETE\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -886,24 +886,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Backslash** does not answer which in this stem. .",
+            "explanation": "Backslash does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Backslash\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Forward slash** does not answer which in this stem. .",
+            "explanation": "Forward slash does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Forward slash\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Ampersand** does not answer which in this stem. .",
+            "explanation": "Ampersand does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Ampersand\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -934,24 +934,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**GET** does not answer which in this stem. .",
+            "explanation": "GET does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"GET\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**UPDATE** does not answer which in this stem. .",
+            "explanation": "UPDATE does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"UPDATE\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**PUT** does not answer which in this stem. .",
+            "explanation": "PUT does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"PUT\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -983,7 +983,7 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The command is missing parameters.** does not answer the requirement in this stem. .",
+            "explanation": "The command is missing parameters. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The command is missing parameters.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
@@ -995,12 +995,12 @@
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The service is down.** does not answer the requirement in this stem. .",
+            "explanation": "The service is down. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The service is down.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     }
   ]

@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Layer 1** uses the wrong value. The tested fact calls for **3** — not 1.",
+            "explanation": "Layer 1 uses the wrong value. The tested fact calls for 3 — not 1.",
             "misconceptionTested": "Selecting \"Layer 1\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Layer 2** uses the wrong value. The tested fact calls for **3** — not 2.",
+            "explanation": "Layer 2 uses the wrong value. The tested fact calls for 3 — not 2.",
             "misconceptionTested": "Selecting \"Layer 2\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Layer 7** uses the wrong value. The tested fact calls for **3** — not 7.",
+            "explanation": "Layer 7 uses the wrong value. The tested fact calls for 3 — not 7.",
             "misconceptionTested": "Selecting \"Layer 7\" without matching the scenario constraint"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Routing table** reflects a common trap: More switches always mean better routing. Switches extend L2 domains; routing is an L3 function on routers or L3 switches.",
+            "explanation": "Routing table reflects a common trap: More switches always mean better routing. Switches extend L2 domains; routing is an L3 function on routers or L3 switches.",
             "misconceptionTested": "More switches always mean better routing"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**DNS cache** does not answer what does in this stem. L2 switches forward using the MAC address (CAM) table.",
+            "explanation": "DNS cache misses what this question tests. L2 switches forward using the MAC address (CAM) table.",
             "misconceptionTested": "Selecting \"DNS cache\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ACL list** does not answer what does in this stem. L2 switches forward using the MAC address (CAM) table.",
+            "explanation": "ACL list misses what this question tests. L2 switches forward using the MAC address (CAM) table.",
             "misconceptionTested": "Selecting \"ACL list\" without matching the scenario constraint"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**It only blocks UDP** does not answer the requirement in this stem. NGFWs track connection state and inspect applications, not just IP/port.",
+            "explanation": "It only blocks UDP misses what this question tests. NGFWs track connection state and inspect applications, not just IP/port.",
             "misconceptionTested": "Selecting \"It only blocks UDP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**It replaces switches** does not answer the requirement in this stem. NGFWs track connection state and inspect applications, not just IP/port.",
+            "explanation": "It replaces switches misses what this question tests. NGFWs track connection state and inspect applications, not just IP/port.",
             "misconceptionTested": "Selecting \"It replaces switches\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**It operates only at Layer 1** does not answer the requirement in this stem. NGFWs track connection state and inspect applications, not just IP/port.",
+            "explanation": "It operates only at Layer 1 misses what this question tests. NGFWs track connection state and inspect applications, not just IP/port.",
             "misconceptionTested": "Selecting \"It operates only at Layer 1\" without matching the scenario constraint"
           }
         ],
@@ -197,17 +197,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DNS server** does not answer the requirement in this stem. Lightweight APs are managed by a WLC; they do not run full standalone config.",
+            "explanation": "DNS server misses what this question tests. Lightweight APs are managed by a WLC; they do not run full standalone config.",
             "misconceptionTested": "Selecting \"DNS server\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Core router only** reflects a common trap: Calling an AP a router. An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing.",
+            "explanation": "Core router only reflects a common trap: Calling an AP a router. An AP bridges wireless clients to the wired LAN; it does not perform inter-network routing.",
             "misconceptionTested": "Calling an AP a router"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DHCP relay** does not answer the requirement in this stem. Lightweight APs are managed by a WLC; they do not run full standalone config.",
+            "explanation": "DHCP relay misses what this question tests. Lightweight APs are managed by a WLC; they do not run full standalone config.",
             "misconceptionTested": "Selecting \"DHCP relay\" without matching the scenario constraint"
           }
         ],
@@ -239,17 +239,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Web server** does not answer which in this stem. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "explanation": "Web server misses what this question tests. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
             "misconceptionTested": "Selecting \"Web server\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**DNS server** does not answer which in this stem. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "explanation": "DNS server misses what this question tests. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
             "misconceptionTested": "Selecting \"DNS server\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Core router** does not answer which in this stem. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
+            "explanation": "Core router misses what this question tests. Endpoints are client devices like PCs, phones, and IoT — not infrastructure providing services.",
             "misconceptionTested": "Selecting \"Core router\" without matching the scenario constraint"
           }
         ],
@@ -281,17 +281,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The access switch only** does not answer which in this stem. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "explanation": "The access switch only misses what this question tests. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
             "misconceptionTested": "Selecting \"The access switch only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The WLC** does not answer which in this stem. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "explanation": "The WLC misses what this question tests. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
             "misconceptionTested": "Selecting \"The WLC\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The DNS server** does not answer which in this stem. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
+            "explanation": "The DNS server misses what this question tests. Off-subnet traffic goes to the configured default gateway — usually a router or L3 switch.",
             "misconceptionTested": "Selecting \"The DNS server\" without matching the scenario constraint"
           }
         ],
@@ -321,7 +321,7 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "This statement is **False**, but the tested fact is: True — WLCs manage lightweight APs from a central point.",
+            "explanation": "This statement is False, but the tested fact is: True — WLCs manage lightweight APs from a central point.",
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],

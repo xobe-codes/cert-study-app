@@ -31,19 +31,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.1Q** does not answer which in this stem. .",
+            "explanation": "802.1Q does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"802.1Q\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**ACLs** reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
+            "explanation": "ACLs reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
             "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Firewall** is the wrong device role here. Firewalls filter/policy traffic — they are not the default answer for basic L2 forwarding or VLAN trunk setup unless the stem is security-focused.",
+            "explanation": "Firewall is the wrong device role here. Firewalls filter/policy traffic — they are not the default answer for basic L2 forwarding or VLAN trunk setup unless the stem is security-focused.",
             "misconceptionTested": "Defaulting to firewall when the stem tests switching or routing mechanics",
             "needsExplanationReview": true
           }
@@ -82,19 +82,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Authenticator** does not answer the requirement in this stem. .",
+            "explanation": "Authenticator does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Authenticator\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**AAA server** does not answer the requirement in this stem. .",
+            "explanation": "AAA server does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"AAA server\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RADIUS server** does not answer the requirement in this stem. .",
+            "explanation": "RADIUS server does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RADIUS server\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -133,19 +133,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Supplicant** does not answer the requirement in this stem. .",
+            "explanation": "Supplicant does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Supplicant\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**AAA server** does not answer the requirement in this stem. .",
+            "explanation": "AAA server does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"AAA server\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RADIUS server** does not answer the requirement in this stem. .",
+            "explanation": "RADIUS server does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RADIUS server\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -184,19 +184,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**UDP** does not answer the requirement in this stem. .",
+            "explanation": "UDP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"UDP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TCP** does not answer the requirement in this stem. .",
+            "explanation": "TCP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"TCP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**IP** does not answer the requirement in this stem. .",
+            "explanation": "IP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -238,19 +238,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.1X authentication headers** does not answer which in this stem. .",
+            "explanation": "802.1X authentication headers does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"802.1X authentication headers\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**IPsec** does not answer which in this stem. .",
+            "explanation": "IPsec does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IPsec\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RADIUS** does not answer which in this stem. .",
+            "explanation": "RADIUS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RADIUS\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -287,19 +287,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The server that is providing authentication** does not answer which in this stem. .",
+            "explanation": "The server that is providing authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The server that is providing authenticat…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The device that is controlling access via 802.1X** does not answer which in this stem. .",
+            "explanation": "The device that is controlling access via 802.1X does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The device that is controlling access vi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The device connecting the layer 3 network** does not answer which in this stem. .",
+            "explanation": "The device connecting the layer 3 network does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The device connecting the layer 3 networ…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -335,19 +335,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Active Directory server** does not answer which in this stem. .",
+            "explanation": "Active Directory server does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Active Directory server\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**802.1X server** does not answer which in this stem. .",
+            "explanation": "802.1X server does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"802.1X server\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Terminal server** does not answer which in this stem. .",
+            "explanation": "Terminal server does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Terminal server\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -383,19 +383,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/1845** does not answer which in this stem. .",
+            "explanation": "UDP/1845 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"UDP/1845\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TCP/1645** does not answer which in this stem. .",
+            "explanation": "TCP/1645 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"TCP/1645\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**UDP/1911** does not answer which in this stem. .",
+            "explanation": "UDP/1911 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"UDP/1911\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -434,19 +434,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.1X** does not answer which in this stem. .",
+            "explanation": "802.1X does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"802.1X\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**AD** does not answer which in this stem. .",
+            "explanation": "AD does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"AD\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**EAP** does not answer which in this stem. .",
+            "explanation": "EAP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"EAP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -482,19 +482,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#authentication login group tacacs+ local** does not answer which in this stem. .",
+            "explanation": "Router(config)#authentication login group tacacs+ local does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#authentication login grou…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#aaa-authentication login default tacacs+ local** does not answer which in this stem. .",
+            "explanation": "Router(config)#aaa-authentication login default tacacs+ local does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#aaa-authentication login …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#aaa authentication login tacacs+ local** does not answer which in this stem. .",
+            "explanation": "Router(config)#aaa authentication login tacacs+ local does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#aaa authentication login …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -531,19 +531,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The enable secret will work.** does not answer configure in this stem. .",
+            "explanation": "The enable secret will work. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The enable secret will work.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The console will still be available.** does not answer configure in this stem. .",
+            "explanation": "The console will still be available. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The console will still be available.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Nothing, since a username and password have not been set.** does not answer configure in this stem. .",
+            "explanation": "Nothing, since a username and password have not been set. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Nothing, since a username and password h…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -578,19 +578,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Active** does not answer which in this stem. .",
+            "explanation": "Active does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Active\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Proactive** does not answer which in this stem. .",
+            "explanation": "Proactive does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Proactive\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Auditing** does not answer which in this stem. .",
+            "explanation": "Auditing does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Auditing\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -626,19 +626,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DNS** does not answer which in this stem. .",
+            "explanation": "DNS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"DNS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Email** does not answer which in this stem. .",
+            "explanation": "Email does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Email\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Proxy** does not answer which in this stem. .",
+            "explanation": "Proxy does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Proxy\" without matching the scenario constraint",
             "needsExplanationReview": true
           }

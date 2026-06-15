@@ -27,17 +27,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Routing loops** reflects a common trap: STP prevents routing loops. STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
+            "explanation": "Routing loops reflects a common trap: STP prevents routing loops. STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
             "misconceptionTested": "STP prevents routing loops"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**IP address conflicts** does not answer the requirement in this stem. STP prevents Layer 2 loops by blocking redundant paths.",
+            "explanation": "IP address conflicts misses what this question tests. STP prevents Layer 2 loops by blocking redundant paths.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Slow DNS** does not answer the requirement in this stem. STP prevents Layer 2 loops by blocking redundant paths.",
+            "explanation": "Slow DNS misses what this question tests. STP prevents Layer 2 loops by blocking redundant paths.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -69,17 +69,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Highest priority** reflects a common trap: Highest priority becomes root. LOWEST Bridge ID (priority then MAC) becomes root.",
+            "explanation": "Highest priority reflects a common trap: Highest priority becomes root. LOWEST Bridge ID (priority then MAC) becomes root.",
             "misconceptionTested": "Highest priority becomes root"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Highest MAC** reflects a common trap: Highest priority becomes root. LOWEST Bridge ID (priority then MAC) becomes root.",
+            "explanation": "Highest MAC reflects a common trap: Highest priority becomes root. LOWEST Bridge ID (priority then MAC) becomes root.",
             "misconceptionTested": "Highest priority becomes root"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Fastest CPU** does not answer the requirement in this stem. The lowest Bridge ID (priority, then MAC) wins the root election.",
+            "explanation": "Fastest CPU misses what this question tests. The lowest Bridge ID (priority, then MAC) wins the root election.",
             "misconceptionTested": "Selecting \"Fastest CPU\" without matching the scenario constraint"
           }
         ],
@@ -111,17 +111,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**0** uses the wrong value. The tested fact calls for **32768** — not 0.",
+            "explanation": "0 uses the wrong value. The tested fact calls for 32768 — not 0.",
             "misconceptionTested": "Selecting \"0\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**4096** uses the wrong value. The tested fact calls for **32768** — not 4096.",
+            "explanation": "4096 uses the wrong value. The tested fact calls for 32768 — not 4096.",
             "misconceptionTested": "Selecting \"4096\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**65535** uses the wrong value. The tested fact calls for **32768** — not 65535.",
+            "explanation": "65535 uses the wrong value. The tested fact calls for 32768 — not 65535.",
             "misconceptionTested": "Selecting \"65535\" without matching the scenario constraint"
           }
         ],
@@ -153,17 +153,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Designated port** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Designated port reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Blocking port** does not answer which in this stem. Each non-root switch has one root port — its lowest-cost path to root.",
+            "explanation": "Blocking port misses what this question tests. Each non-root switch has one root port — its lowest-cost path to root.",
             "misconceptionTested": "Selecting \"Blocking port\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Trunk port** does not answer which in this stem. Each non-root switch has one root port — its lowest-cost path to root.",
+            "explanation": "Trunk port misses what this question tests. Each non-root switch has one root port — its lowest-cost path to root.",
             "misconceptionTested": "Selecting \"Trunk port\" without matching the scenario constraint"
           }
         ],
@@ -195,17 +195,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch-to-switch trunks** reflects a common trap: PortFast on switch links. PortFast belongs only on access/host ports; on switch links it risks loops.",
+            "explanation": "Switch-to-switch trunks reflects a common trap: PortFast on switch links. PortFast belongs only on access/host ports; on switch links it risks loops.",
             "misconceptionTested": "PortFast on switch links"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router uplinks** does not answer which in this stem. PortFast belongs on access ports to hosts; on switch links it risks loops.",
+            "explanation": "Router uplinks misses what this question tests. PortFast belongs on access ports to hosts; on switch links it risks loops.",
             "misconceptionTested": "Selecting \"Router uplinks\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**All ports** does not answer which in this stem. PortFast belongs on access ports to hosts; on switch links it risks loops.",
+            "explanation": "All ports misses what this question tests. PortFast belongs on access ports to hosts; on switch links it risks loops.",
             "misconceptionTested": "Selecting \"All ports\" without matching the scenario constraint"
           }
         ],
@@ -237,17 +237,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Port becomes root** does not answer the requirement in this stem. BPDU Guard err-disables the port, protecting against a rogue switch.",
+            "explanation": "Port becomes root misses what this question tests. BPDU Guard err-disables the port, protecting against a rogue switch.",
             "misconceptionTested": "Selecting \"Port becomes root\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**BPDU is forwarded** does not answer the requirement in this stem. BPDU Guard err-disables the port, protecting against a rogue switch.",
+            "explanation": "BPDU is forwarded misses what this question tests. BPDU Guard err-disables the port, protecting against a rogue switch.",
             "misconceptionTested": "Selecting \"BPDU is forwarded\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Nothing** does not answer the requirement in this stem. BPDU Guard err-disables the port, protecting against a rogue switch.",
+            "explanation": "Nothing misses what this question tests. BPDU Guard err-disables the port, protecting against a rogue switch.",
             "misconceptionTested": "Selecting \"Nothing\" without matching the scenario constraint"
           }
         ],
@@ -279,17 +279,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.1D** does not answer what is in this stem. Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
+            "explanation": "802.1D misses what this question tests. Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
             "misconceptionTested": "Selecting \"802.1D\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**MST** does not answer what is in this stem. Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
+            "explanation": "MST misses what this question tests. Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
             "misconceptionTested": "Selecting \"MST\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**PVST** does not answer what is in this stem. Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
+            "explanation": "PVST misses what this question tests. Rapid PVST+ is the Cisco default — per-VLAN rapid spanning tree.",
             "misconceptionTested": "Selecting \"PVST\" without matching the scenario constraint"
           }
         ],
@@ -306,7 +306,7 @@
         "switchport mode trunk"
       ],
       "correctIndex": 0,
-      "explanation": "`spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root.",
+      "explanation": "spanning-tree vlan 1 root primary lowers the priority so this switch becomes root.",
       "type": "application",
       "difficulty": "medium",
       "concept": "set root",
@@ -316,22 +316,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "`spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root."
+          "explanation": "spanning-tree vlan 1 root primary lowers the priority so this switch becomes root."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**spanning-tree portfast** does not answer which in this stem. `spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root.",
+            "explanation": "spanning-tree portfast misses what this question tests. spanning-tree vlan 1 root primary lowers the priority so this switch becomes root.",
             "misconceptionTested": "Selecting \"spanning-tree portfast\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**spanning-tree bpduguard enable** does not answer which in this stem. `spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root.",
+            "explanation": "spanning-tree bpduguard enable misses what this question tests. spanning-tree vlan 1 root primary lowers the priority so this switch becomes root.",
             "misconceptionTested": "Selecting \"spanning-tree bpduguard enable\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**switchport mode trunk** does not answer which in this stem. `spanning-tree vlan 1 root primary` lowers the priority so this switch becomes root.",
+            "explanation": "switchport mode trunk misses what this question tests. spanning-tree vlan 1 root primary lowers the priority so this switch becomes root.",
             "misconceptionTested": "Selecting \"switchport mode trunk\" without matching the scenario constraint"
           }
         ],
@@ -365,17 +365,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.1X** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1X misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**802.1w** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1w misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.1s** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1s misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -409,17 +409,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**STP runs on a central switch by creating a topology database.** is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "explanation": "STP runs on a central switch by creating a topology database. is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**STP uses routing protocols to check for network loops.** reflects a common trap: STP prevents routing loops. STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
+            "explanation": "STP uses routing protocols to check for network loops. reflects a common trap: STP prevents routing loops. STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
             "misconceptionTested": "STP prevents routing loops"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**STP uses the MAC address table to check for switching loops.** reflects a common trap: STP prevents routing loops. STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
+            "explanation": "STP uses the MAC address table to check for switching loops. reflects a common trap: STP prevents routing loops. STP is Layer 2 only; routing loops are handled by L3 mechanisms (TTL, split horizon).",
             "misconceptionTested": "STP prevents routing loops"
           }
         ],
@@ -453,17 +453,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**STP detects and monitors normal traffic frames being received on multiple interfaces.** is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "explanation": "STP detects and monitors normal traffic frames being received on multiple interfaces. is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**STP detects and monitors CDP frames being received on multiple interfaces.** is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "explanation": "STP detects and monitors CDP frames being received on multiple interfaces. is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**STP detects and monitors access ports in the same VLAN.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "STP detects and monitors access ports in the same VLAN. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -497,17 +497,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.1X** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1X misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**802.1D** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1D misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.1s** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1s misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -541,17 +541,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Link cost is the latency of a frame traversing across the link.** reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
+            "explanation": "Link cost is the latency of a frame traversing across the link. reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
             "misconceptionTested": "STP load-balances across redundant links"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Link cost is the calculation of all the ports in the path to the root bridge.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Link cost is the calculation of all the ports in the path to the root bridge. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Link cost is the monetary cost to traverse a link.** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Link cost is the monetary cost to traverse a link. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -585,17 +585,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Path cost is the latency of a frame traversing across the link.** reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
+            "explanation": "Path cost is the latency of a frame traversing across the link. reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
             "misconceptionTested": "STP load-balances across redundant links"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Path cost is the monetary cost to traverse a link.** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Path cost is the monetary cost to traverse a link. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Path cost is a numeric value associated with the speed of a link.** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Path cost is a numeric value associated with the speed of a link. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -629,17 +629,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IEEE 802.1w** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "IEEE 802.1w misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**CST** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "CST misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RSTP** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "RSTP misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -673,17 +673,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**PVST+** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "PVST+ misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**CST** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "CST misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RSTP+** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "RSTP+ misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -717,17 +717,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**CST elects a root bridge for each VLAN.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "CST elects a root bridge for each VLAN. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**CST has an immediate convergence because it elects a single root bridge.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "CST has an immediate convergence because it elects a single root bridge. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**CST is best implemented for really large networks because it scales efficiently.** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "CST is best implemented for really large networks because it scales efficiently. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -761,17 +761,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RSTP allows for multiple root bridges.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "RSTP allows for multiple root bridges. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RSTP has a convergence time of around 50 seconds.** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "RSTP has a convergence time of around 50 seconds. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RSTP has five port states to which the interfaces could possibly transition.** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "RSTP has five port states to which the interfaces could possibly transition. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -805,17 +805,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The root bridge is responsible for sensing the change and sending Topology Change Notification BPDUs.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "The root bridge is responsible for sensing the change and sending Topology Change Notification BPDUs. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The root bridge polls each switch participating in STP for changes.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "The root bridge polls each switch participating in STP for changes. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The switches participating in STP poll the root bridge for changes.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "The switches participating in STP poll the root bridge for changes. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -849,17 +849,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.1X** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1X misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**802.1D** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1D misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.1s** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1s misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -893,17 +893,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**0081.023a.b433** does not answer configure in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "0081.023a.b433 misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**0041.0611.1112** does not answer configure in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "0041.0611.1112 misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**0021.02fa.bdfc** does not answer configure in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "0021.02fa.bdfc misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -937,17 +937,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.1D** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1D misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**802.1w** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "802.1w misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**PVST+** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "PVST+ misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -981,17 +981,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**An alternate port receives BPDUs from another port on the same switch and therefore can replace the designated port if it fails.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "An alternate port receives BPDUs from another port on the same switch and therefore can replace the designated port if it fails. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**An alternate port receives BPDUs from another switch and therefore can replace the designated port if it fails.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "An alternate port receives BPDUs from another switch and therefore can replace the designated port if it fails. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**An alternate port is always placed in a forwarding state.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "An alternate port is always placed in a forwarding state. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1025,17 +1025,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The root bridge is the switch with the highest IP address and priority.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "The root bridge is the switch with the highest IP address and priority. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The root bridge is the switch with the lowest IP address and priority.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "The root bridge is the switch with the lowest IP address and priority. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The root bridge is the switch with the highest MAC address and priority.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "The root bridge is the switch with the highest MAC address and priority. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1069,17 +1069,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The root bridge allows all forwarding decisions of frames.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "The root bridge allows all forwarding decisions of frames. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The root bridge calculates the port cost for the rest of the network.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "The root bridge calculates the port cost for the rest of the network. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The root bridge calculates the fastest path for the rest of the network.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "The root bridge calculates the fastest path for the rest of the network. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1113,17 +1113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The bridge ID is a 6-byte number containing a 2-byte bridge priority and 4-byte IP address.** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "The bridge ID is a 6-byte number containing a 2-byte bridge priority and 4-byte IP address. is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The bridge ID is an 8-byte number containing a 4-byte bridge priority and 4-byte IP address.** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "The bridge ID is an 8-byte number containing a 4-byte bridge priority and 4-byte IP address. is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The bridge ID is a 10-byte number containing a 4-byte bridge priority and 6-byte MAC address.** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "The bridge ID is a 10-byte number containing a 4-byte bridge priority and 6-byte MAC address. is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           }
         ],
@@ -1157,17 +1157,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**A port that is determined to have the highest cost and placed in a forwarding state for a network segment** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A port that is determined to have the highest cost and placed in a forwarding state for a network segment reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A port that is determined to have the lowest path cost to the root bridge and placed in a forwarding state for a network segment** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A port that is determined to have the lowest path cost to the root bridge and placed in a forwarding state for a network segment reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1201,17 +1201,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Every switch, including the root bridge, must have at least one designated port.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Every switch, including the root bridge, must have at least one designated port. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Every switch, excluding the root bridge, must have at least one alternate port.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Every switch, excluding the root bridge, must have at least one alternate port. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Every switch, including the root bridge, must have at least one backup port.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Every switch, including the root bridge, must have at least one backup port. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1245,17 +1245,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A port that is determined to have the lowest cost to the network segment and placed in a forwarding state** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A port that is determined to have the lowest cost to the network segment and placed in a forwarding state reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**A port that is determined to have the highest cost to the network segment and placed in a forwarding state** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A port that is determined to have the highest cost to the network segment and placed in a forwarding state reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1289,17 +1289,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**A port that is determined to have the lowest path cost to the root bridge and placed in a forwarding state for a network segment** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A port that is determined to have the lowest path cost to the root bridge and placed in a forwarding state for a network segment reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A port that is determined to have the highest path cost to the root bridge and placed in a blocking state for a network segment reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A port that is determined to have the highest cost to the network segment and placed in a forwarding state** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A port that is determined to have the highest cost to the network segment and placed in a forwarding state reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1333,17 +1333,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The bridge ID is a 4-byte bridge priority, a 12-byte sys-id-ext, and a 6-byte MAC address.** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "The bridge ID is a 4-byte bridge priority, a 12-byte sys-id-ext, and a 6-byte MAC address. is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The bridge ID is a 4-byte bridge priority and sys-id-ext and a 6- byte MAC address.** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "The bridge ID is a 4-byte bridge priority and sys-id-ext and a 6- byte MAC address. is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The bridge ID is a 4-bit bridge priority, a 12-bit sys-id-ext, and an 8-byte IP address.** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "The bridge ID is a 4-bit bridge priority, a 12-bit sys-id-ext, and an 8-byte IP address. is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           }
         ],
@@ -1377,17 +1377,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Bridge priority of 8,192** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "Bridge priority of 8,192 is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Bridge priority of 16,384** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "Bridge priority of 16,384 is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Bridge priority of 65,526** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "Bridge priority of 65,526 is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           }
         ],
@@ -1421,17 +1421,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A designated port is always in a blocking state.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A designated port is always in a blocking state. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Every switch, including the root bridge, must have at least one designated port.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Every switch, including the root bridge, must have at least one designated port. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Every switch, excluding the root bridge, must have at least one non-designated port.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Every switch, excluding the root bridge, must have at least one non-designated port. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1465,17 +1465,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**A backup port receives BPDUs from another switch and therefore can replace the designated port if it fails.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A backup port receives BPDUs from another switch and therefore can replace the designated port if it fails. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A backup port is always placed in a forwarding state.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A backup port is always placed in a forwarding state. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A backup port receives BPDUs from another switch and therefore can replace the root port if it fails.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "A backup port receives BPDUs from another switch and therefore can replace the root port if it fails. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1509,17 +1509,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Convergence takes 60 seconds to complete.** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Convergence takes 60 seconds to complete. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Convergence takes 5 seconds to complete.** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Convergence takes 5 seconds to complete. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Convergence takes 30 seconds to complete.** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Convergence takes 30 seconds to complete. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -1553,17 +1553,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Listening, learning, blocking, forwarding** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Listening, learning, blocking, forwarding misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Forwarding, listening, learning, blocking** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Forwarding, listening, learning, blocking misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Blocking, learning, listening, forwarding** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Blocking, learning, listening, forwarding misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -1597,17 +1597,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**When a port is placed into a blocking state, it blocks all frames, including BPDUs.** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "When a port is placed into a blocking state, it blocks all frames, including BPDUs. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**When a port is placed into a blocking state, it blocks redundant frames, excluding BPDUs.** reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
+            "explanation": "When a port is placed into a blocking state, it blocks redundant frames, excluding BPDUs. reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
             "misconceptionTested": "STP load-balances across redundant links"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**When a port is placed into a blocking state, it blocks redundant frames, including BPDUs.** reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
+            "explanation": "When a port is placed into a blocking state, it blocks redundant frames, including BPDUs. reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
             "misconceptionTested": "STP load-balances across redundant links"
           }
         ],
@@ -1641,17 +1641,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The switch should **forward** or **flood** the frame — not drop it — when handling normal unknown/known unicast behavior in this scenario.",
+            "explanation": "The switch should forward or flood the frame — not drop it — when handling normal unknown/known unicast behavior in this scenario.",
             "misconceptionTested": "Choosing drop when the switch should forward or flood"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Discarding, listening, forwarding** is not the behavior described here. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Discarding, listening, forwarding is not the behavior described here. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Choosing drop when the switch should forward or flood"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Blocking, listening, learning, forwarding** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Blocking, listening, learning, forwarding misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -1685,17 +1685,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Learning** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Learning misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Forwarding** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Forwarding misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Backup** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Backup misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -1729,17 +1729,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Learning** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Learning misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Forwarding** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Forwarding misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Blocking** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Blocking misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -1774,17 +1774,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SwitchA(config-if)#no switchport spanning-tree** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "SwitchA(config-if)#no switchport spanning-tree misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SwitchA(config)#switchport spanning-tree portfast** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "SwitchA(config)#switchport spanning-tree portfast misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SwitchA(config)#spanning-tree portfast default** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "SwitchA(config)#spanning-tree portfast default misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -1819,17 +1819,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Trunk ports** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Trunk ports reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Voice ports** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Voice ports reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Designated ports** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Designated ports reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1864,17 +1864,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Turn on PortFast mode for all ports** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Turn on PortFast mode for all ports reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Turn off spanning tree on all ports** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Turn off spanning tree on all ports reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Turn off spanning tree on all access ports only** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Turn off spanning tree on all access ports only reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           }
         ],
@@ -1910,17 +1910,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**You will create a permanent switching loop.** does not answer configure in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "You will create a permanent switching loop. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Both ports will sense the switch and err-disable.** reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
+            "explanation": "Both ports will sense the switch and err-disable. reflects a common trap: Confusing root and designated ports. Root port = best path to root (per switch); designated = forwarding port per segment.",
             "misconceptionTested": "Confusing root and designated ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**One of the links will disable via Spanning Tree.** reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
+            "explanation": "One of the links will disable via Spanning Tree. reflects a common trap: STP load-balances across redundant links. Classic STP blocks redundant links (one active path); EtherChannel or per-VLAN roots are needed to use both.",
             "misconceptionTested": "STP load-balances across redundant links"
           }
         ],
@@ -1955,17 +1955,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**BPDU Detection** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "BPDU Detection misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Loop Guard** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Loop Guard misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**UplinkFast** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "UplinkFast misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -2000,17 +2000,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Listening, forwarding, learning, blocking** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Listening, forwarding, learning, blocking misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Listening, learning, forwarding, blocking** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Listening, learning, forwarding, blocking misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Blocking, listening, learning, forwarding** does not answer what is in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Blocking, listening, learning, forwarding misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -2045,17 +2045,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SwitchA(config-if)#switchport mode bpduguard** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "SwitchA(config-if)#switchport mode bpduguard misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SwitchA(config-if)#switchport bpduguard enable** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "SwitchA(config-if)#switchport bpduguard enable misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SwitchA(config-if)#spanning-tree bpduguard** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "SwitchA(config-if)#spanning-tree bpduguard misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -2090,17 +2090,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A Spanning Tree loop has been detected.** is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "explanation": "A Spanning Tree loop has been detected. is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The switch uplink cable is bad.** does not answer configure in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "The switch uplink cable is bad. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Flow control is turned off.** does not answer configure in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Flow control is turned off. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -2136,17 +2136,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Never configure spanning-tree PortFast mode on an access link.** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Never configure spanning-tree PortFast mode on an access link. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Always configure BPDU Guard on trunks.** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Always configure BPDU Guard on trunks. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Always configure BPDU Guard along with UplinkFast.** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Always configure BPDU Guard along with UplinkFast. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -2181,17 +2181,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show portfast** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Switch#show portfast misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show interface fa 0/1** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Switch#show interface fa 0/1 misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#show spanning-tree** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Switch#show spanning-tree misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -2226,7 +2226,7 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config-if)#switchport bdpugaurd disable** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Switch(config-if)#switchport bdpugaurd disable misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
@@ -2236,7 +2236,7 @@
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config-if)#no switchport bpduguard** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Switch(config-if)#no switchport bpduguard misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -2272,17 +2272,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The interface will become administratively disabled.** does not answer configure in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "The interface will become administratively disabled. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The interface will become disabled.** does not answer configure in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "The interface will become disabled. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A small switching loop will happen until convergence.** does not answer configure in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "A small switching loop will happen until convergence. misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -2317,17 +2317,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show interface gi 0/1** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Switch#show interface gi 0/1 misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#show spanning-tree vlan 2** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Switch#show spanning-tree vlan 2 misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show spanning-tree** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "Switch#show spanning-tree misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],
@@ -2362,17 +2362,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**PortFast** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "PortFast misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**UplinkFast** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "UplinkFast misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**BackboneFast** does not answer which in this stem. The correct answer follows the source explanation for this objective-aligned question.",
+            "explanation": "BackboneFast misses what this question tests. The correct answer follows the source explanation for this objective-aligned question.",
             "misconceptionTested": "Confusing STP port roles (root, designated, blocked)"
           }
         ],

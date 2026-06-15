@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**32** uses the wrong value. The tested fact calls for **6** — not 32.",
+            "explanation": "32 uses the wrong value. The tested fact calls for 6 — not 32.",
             "misconceptionTested": "Selecting \"32\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**64** uses the wrong value. The tested fact calls for **6** — not 64.",
+            "explanation": "64 uses the wrong value. The tested fact calls for 6 — not 64.",
             "misconceptionTested": "Selecting \"64\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**256** uses the wrong value. The tested fact calls for **6** — not 256.",
+            "explanation": "256 uses the wrong value. The tested fact calls for 6 — not 256.",
             "misconceptionTested": "Selecting \"256\" without matching the scenario constraint"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**2001:db8:::1** uses the wrong value. The tested fact calls for **8** — not 2001.",
+            "explanation": "2001:db8:::1 uses the wrong value. The tested fact calls for 8 — not 2001.",
             "misconceptionTested": "Selecting \"2001:db8:::1\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**2001:db8::0:1::** uses the wrong value. The tested fact calls for **8** — not 2001.",
+            "explanation": "2001:db8::0:1:: uses the wrong value. The tested fact calls for 8 — not 2001.",
             "misconceptionTested": "Selecting \"2001:db8::0:1::\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**2001::db8::1** uses the wrong value. The tested fact calls for **8** — not 2001.",
+            "explanation": "2001::db8::1 uses the wrong value. The tested fact calls for 8 — not 2001.",
             "misconceptionTested": "Selecting \"2001::db8::1\" without matching the scenario constraint"
           }
         ],
@@ -96,7 +96,7 @@
         "False"
       ],
       "correctIndex": 1,
-      "explanation": "False — `::` may appear only once, otherwise the number of zero groups is ambiguous.",
+      "explanation": "False — :: may appear only once, otherwise the number of zero groups is ambiguous.",
       "type": "true-false",
       "difficulty": "medium",
       "concept": "double colon rule",
@@ -106,12 +106,12 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "False — `::` may appear only once, otherwise the number of zero groups is ambiguous."
+          "explanation": "False — :: may appear only once, otherwise the number of zero groups is ambiguous."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This statement is **True**, but the tested fact is: False — `::` may appear only once, otherwise the number of zero groups is ambiguous.",
+            "explanation": "This statement is True, but the tested fact is: False — :: may appear only once, otherwise the number of zero groups is ambiguous.",
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
@@ -143,17 +143,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**/24** uses the wrong value. The tested fact calls for **64** — not 24.",
+            "explanation": "/24 uses the wrong value. The tested fact calls for 64 — not 24.",
             "misconceptionTested": "Selecting \"/24\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**/48** uses the wrong value. The tested fact calls for **64** — not 48.",
+            "explanation": "/48 uses the wrong value. The tested fact calls for 64 — not 48.",
             "misconceptionTested": "Selecting \"/48\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**/128** uses the wrong value. The tested fact calls for **64** — not 128.",
+            "explanation": "/128 uses the wrong value. The tested fact calls for 64 — not 128.",
             "misconceptionTested": "Selecting \"/128\" without matching the scenario constraint"
           }
         ],
@@ -185,21 +185,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**FF00** uses the wrong value. The tested fact calls for **7** — not 00.",
+            "explanation": "FF00 uses the wrong value. The tested fact calls for 7 — not 00.",
             "misconceptionTested": "Selecting \"FF00\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FFFF** does not answer what is in this stem. FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
+            "explanation": "FFFF misses what this question tests. FFFE is inserted in the middle, and the 7th bit of the first byte is flipped.",
             "misconceptionTested": "Selecting \"FFFF\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**FE80** uses the wrong value. The tested fact calls for **7** — not 80.",
+            "explanation": "FE80 uses the wrong value. The tested fact calls for 7 — not 80.",
             "misconceptionTested": "Selecting \"FE80\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Link-local **fe80::/10** is automatic; global unicast needs SLAAC, DHCPv6, or static config."
+        "examTip": "Link-local fe80::/10 is automatic; global unicast needs SLAAC, DHCPv6, or static config."
       }
     },
     {
@@ -227,17 +227,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DHCPv6** does not answer what is in this stem. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "explanation": "DHCPv6 misses what this question tests. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
             "misconceptionTested": "Selecting \"DHCPv6\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Static** does not answer what is in this stem. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "explanation": "Static misses what this question tests. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
             "misconceptionTested": "Selecting \"Static\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**NAT66** does not answer what is in this stem. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
+            "explanation": "NAT66 misses what this question tests. SLAAC (Stateless Address Autoconfiguration) uses the RA prefix + an interface ID.",
             "misconceptionTested": "Selecting \"NAT66\" without matching the scenario constraint"
           }
         ],
@@ -254,7 +254,7 @@
         "enable ipv6"
       ],
       "correctIndex": 1,
-      "explanation": "`ipv6 unicast-routing` must be enabled globally.",
+      "explanation": "ipv6 unicast-routing must be enabled globally.",
       "type": "application",
       "difficulty": "medium",
       "concept": "enable routing",
@@ -264,22 +264,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`ipv6 unicast-routing` must be enabled globally."
+          "explanation": "ipv6 unicast-routing must be enabled globally."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ipv6 routing** reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+            "explanation": "ipv6 routing reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
             "misconceptionTested": "IPv6 needs NAT like IPv4"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ip routing v6** does not answer which in this stem. `ipv6 unicast-routing` must be enabled globally.",
+            "explanation": "ip routing v6 misses what this question tests. ipv6 unicast-routing must be enabled globally.",
             "misconceptionTested": "Selecting \"ip routing v6\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**enable ipv6** reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+            "explanation": "enable ipv6 reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
             "misconceptionTested": "IPv6 needs NAT like IPv4"
           }
         ],
@@ -311,17 +311,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Trailing zeros** reflects a common trap: Dropping trailing zeros in a hextet. Only leading zeros may be dropped (00a0 → a0, not a).",
+            "explanation": "Trailing zeros reflects a common trap: Dropping trailing zeros in a hextet. Only leading zeros may be dropped (00a0 → a0, not a).",
             "misconceptionTested": "Dropping trailing zeros in a hextet"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**All zeros** reflects a common trap: Dropping trailing zeros in a hextet. Only leading zeros may be dropped (00a0 → a0, not a).",
+            "explanation": "All zeros reflects a common trap: Dropping trailing zeros in a hextet. Only leading zeros may be dropped (00a0 → a0, not a).",
             "misconceptionTested": "Dropping trailing zeros in a hextet"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**None** does not answer which in this stem. Only leading zeros within a hextet may be dropped: 00a0 → a0.",
+            "explanation": "None misses what this question tests. Only leading zeros within a hextet may be dropped: 00a0 → a0.",
             "misconceptionTested": "Selecting \"None\" without matching the scenario constraint"
           }
         ],
@@ -338,7 +338,7 @@
         "show running-config"
       ],
       "correctIndex": 1,
-      "explanation": "`show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+      "explanation": "show ipv6 interface brief lists IPv6 addresses (link-local + global) and status.",
       "type": "application",
       "difficulty": "easy",
       "concept": "verify",
@@ -348,22 +348,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status."
+          "explanation": "show ipv6 interface brief lists IPv6 addresses (link-local + global) and status."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**show ip interface brief** reflects a common trap: An interface has only one IPv6 address. Interfaces normally have at least a link-local (FE80::) and a global address.",
+            "explanation": "show ip interface brief reflects a common trap: An interface has only one IPv6 address. Interfaces normally have at least a link-local (FE80::) and a global address.",
             "misconceptionTested": "An interface has only one IPv6 address"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**show ipv6 route** reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
+            "explanation": "show ipv6 route reflects a common trap: IPv6 needs NAT like IPv4. IPv6’s huge space means hosts use globally unique addresses; NAT is generally unnecessary.",
             "misconceptionTested": "IPv6 needs NAT like IPv4"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**show running-config** does not answer which in this stem. `show ipv6 interface brief` lists IPv6 addresses (link-local + global) and status.",
+            "explanation": "show running-config misses what this question tests. show ipv6 interface brief lists IPv6 addresses (link-local + global) and status.",
             "misconceptionTested": "Selecting \"show running-config\" without matching the scenario constraint"
           }
         ],
@@ -395,17 +395,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**32** uses the wrong value. The tested fact calls for **128** — not 32.",
+            "explanation": "32 uses the wrong value. The tested fact calls for 128 — not 32.",
             "misconceptionTested": "Selecting \"32\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**48** uses the wrong value. The tested fact calls for **128** — not 48.",
+            "explanation": "48 uses the wrong value. The tested fact calls for 128 — not 48.",
             "misconceptionTested": "Selecting \"48\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**128** uses the wrong value. The tested fact calls for **64** — not 128.",
+            "explanation": "128 uses the wrong value. The tested fact calls for 64 — not 128.",
             "misconceptionTested": "Selecting \"128\" without matching the scenario constraint"
           }
         ],

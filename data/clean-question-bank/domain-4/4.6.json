@@ -31,24 +31,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip dhcp lease** does not answer which in this stem. .",
+            "explanation": "Router#show ip dhcp lease does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show ip lease** does not answer which in this stem. .",
+            "explanation": "Router#show ip lease does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip interface** does not answer which in this stem. .",
+            "explanation": "Router#show ip interface does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -81,19 +81,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "explanation": "Switches learn from the source MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The layer 2 destination is the MAC address of the DHCP client.** is not the behavior described here. .",
+            "explanation": "The layer 2 destination is the MAC address of the DHCP client. is not the behavior described here. .",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
@@ -129,24 +129,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ip dhcp server 10.10.1.101** does not answer which in this stem. .",
+            "explanation": "Router(config)#ip dhcp server 10.10.1.101 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-if)#ip dhcp server 10.10.1.101** does not answer which in this stem. .",
+            "explanation": "Router(config-if)#ip dhcp server 10.10.1.101 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-if)#ip relay-agent 10.10.1.101** does not answer which in this stem. .",
+            "explanation": "Router(config-if)#ip relay-agent 10.10.1.101 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -178,24 +178,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**CIADDR** does not answer which in this stem. .",
+            "explanation": "CIADDR does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SIADDR** does not answer which in this stem. .",
+            "explanation": "SIADDR does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**CHADDR** does not answer which in this stem. .",
+            "explanation": "CHADDR does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -228,24 +228,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A second DHCP server on the Host A network** does not answer what is in this stem. .",
+            "explanation": "A second DHCP server on the Host A network does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**A DHCP relay agent on Router B interface Gi0/0** does not answer what is in this stem. .",
+            "explanation": "A DHCP relay agent on Router B interface Gi0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A DHCP relay agent on Switch A** does not answer what is in this stem. .",
+            "explanation": "A DHCP relay agent on Switch A does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP relay = **ip helper-address** on the **client VLAN interface** toward the server."
+        "examTip": "DHCP relay = ip helper-address on the client VLAN interface toward the server."
       }
     },
     {
@@ -276,24 +276,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#debug dhcp** does not answer which in this stem. .",
+            "explanation": "Router#debug dhcp does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip dhcp detail** does not answer which in this stem. .",
+            "explanation": "Router#show ip dhcp detail does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#debug ip dhcp** does not answer which in this stem. .",
+            "explanation": "Router#debug ip dhcp does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -325,24 +325,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Stateful configuration of clients for IPv6 addressing** does not answer configure in this stem. .",
+            "explanation": "Stateful configuration of clients for IPv6 addressing does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Configuration of clients with the IPv6 network IDs** does not answer configure in this stem. .",
+            "explanation": "Configuration of clients with the IPv6 network IDs does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Stateless configuration of clients for IPv6 addressing** does not answer configure in this stem. .",
+            "explanation": "Stateless configuration of clients for IPv6 addressing does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -374,24 +374,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**They lose their IP address immediately.** does not answer the requirement in this stem. .",
+            "explanation": "They lose their IP address immediately. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**They lose their IP address after one-half of their lease has expired.** does not answer the requirement in this stem. .",
+            "explanation": "They lose their IP address after one-half of their lease has expired. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**They lose their IP address after seven-eighths of their lease has expired.** does not answer the requirement in this stem. .",
+            "explanation": "They lose their IP address after seven-eighths of their lease has expired. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -423,24 +423,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Stateful DHCPv6 supplies the network ID, host ID, and default router.** does not answer which in this stem. .",
+            "explanation": "Stateful DHCPv6 supplies the network ID, host ID, and default router. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Stateful DHCPv6 communicates via broadcasts.** does not answer which in this stem. .",
+            "explanation": "Stateful DHCPv6 communicates via broadcasts. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Stateful DHCPv6 works in conjunction with SLAAC.** does not answer which in this stem. .",
+            "explanation": "Stateful DHCPv6 works in conjunction with SLAAC. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -472,24 +472,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA(config)#ipv6 address dhcp gi 0/0** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ipv6 address dhcp gi 0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config-if)#ipv6 address dhcpv6** does not answer which in this stem. .",
+            "explanation": "RouterA(config-if)#ipv6 address dhcpv6 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config)#ipv6 address stateless** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ipv6 address stateless does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -522,13 +522,13 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The server will contact the client to immediately relinquish the IP address.** does not answer the requirement in this stem. .",
+            "explanation": "The server will contact the client to immediately relinquish the IP address. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The client will immediately renew its lease for the current IP address.** does not answer the requirement in this stem. .",
+            "explanation": "The client will immediately renew its lease for the current IP address. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
@@ -539,7 +539,7 @@
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -571,24 +571,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Nothing. The DHCP client will retain the lease.** does not answer the requirement in this stem. .",
+            "explanation": "Nothing. The DHCP client will retain the lease. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The DHCP client will renew its lease.** does not answer the requirement in this stem. .",
+            "explanation": "The DHCP client will renew its lease. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The DHCP client will relinquish the use of the IP address.** does not answer the requirement in this stem. .",
+            "explanation": "The DHCP client will relinquish the use of the IP address. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing DHCP server, relay agent, and client roles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     }
   ]

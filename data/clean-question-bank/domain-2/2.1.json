@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Collision domain** does not answer the requirement in this stem. A VLAN is a logical broadcast domain at Layer 2.",
+            "explanation": "Collision domain misses what this question tests. A VLAN is a logical broadcast domain at Layer 2.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Physical cable** does not answer the requirement in this stem. A VLAN is a logical broadcast domain at Layer 2.",
+            "explanation": "Physical cable misses what this question tests. A VLAN is a logical broadcast domain at Layer 2.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Routing protocol** does not answer the requirement in this stem. A VLAN is a logical broadcast domain at Layer 2.",
+            "explanation": "Routing protocol misses what this question tests. A VLAN is a logical broadcast domain at Layer 2.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Another switch** reflects a common trap: A VLAN exists on only one switch. A VLAN can span many switches over trunks.",
+            "explanation": "Another switch reflects a common trap: A VLAN exists on only one switch. A VLAN can span many switches over trunks.",
             "misconceptionTested": "A VLAN exists on only one switch"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A longer cable** does not answer what is in this stem. Traffic between VLANs must be routed by a Layer 3 device.",
+            "explanation": "A longer cable misses what this question tests. Traffic between VLANs must be routed by a Layer 3 device.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A trunk between the two hosts** does not answer what is in this stem. Traffic between VLANs must be routed by a Layer 3 device.",
+            "explanation": "A trunk between the two hosts misses what this question tests. Traffic between VLANs must be routed by a Layer 3 device.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
@@ -113,21 +113,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**switchport trunk vlan 10** does not answer which in this stem. Set the mode to access, then assign the VLAN.",
+            "explanation": "switchport trunk vlan 10 misses what this question tests. Set the mode to access, then assign the VLAN.",
             "misconceptionTested": "Selecting \"switchport trunk vlan 10\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**vlan 10 / no shutdown** does not answer which in this stem. Set the mode to access, then assign the VLAN.",
+            "explanation": "vlan 10 / no shutdown misses what this question tests. Set the mode to access, then assign the VLAN.",
             "misconceptionTested": "Selecting \"vlan 10 / no shutdown\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**switchport voice vlan 10** does not answer which in this stem. Set the mode to access, then assign the VLAN.",
+            "explanation": "switchport voice vlan 10 misses what this question tests. Set the mode to access, then assign the VLAN.",
             "misconceptionTested": "Selecting \"switchport voice vlan 10\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
+        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -140,7 +140,7 @@
         "show mac address-table"
       ],
       "correctIndex": 1,
-      "explanation": "`show vlan brief` lists VLANs and their assigned ports.",
+      "explanation": "show vlan brief lists VLANs and their assigned ports.",
       "type": "application",
       "difficulty": "easy",
       "concept": "verify",
@@ -150,22 +150,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`show vlan brief` lists VLANs and their assigned ports."
+          "explanation": "show vlan brief lists VLANs and their assigned ports."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**show interfaces trunk** does not answer which in this stem. `show vlan brief` lists VLANs and their assigned ports.",
+            "explanation": "show interfaces trunk misses what this question tests. show vlan brief lists VLANs and their assigned ports.",
             "misconceptionTested": "Selecting \"show interfaces trunk\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**show ip route** does not answer which in this stem. `show vlan brief` lists VLANs and their assigned ports.",
+            "explanation": "show ip route misses what this question tests. show vlan brief lists VLANs and their assigned ports.",
             "misconceptionTested": "Selecting \"show ip route\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**show mac address-table** does not answer which in this stem. `show vlan brief` lists VLANs and their assigned ports.",
+            "explanation": "show mac address-table misses what this question tests. show vlan brief lists VLANs and their assigned ports.",
             "misconceptionTested": "Selecting \"show mac address-table\" without matching the scenario constraint"
           }
         ],
@@ -197,17 +197,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**It is the only routable VLAN** reflects a common trap: A VLAN exists on only one switch. A VLAN can span many switches over trunks.",
+            "explanation": "It is the only routable VLAN reflects a common trap: A VLAN exists on only one switch. A VLAN can span many switches over trunks.",
             "misconceptionTested": "A VLAN exists on only one switch"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**It cannot carry traffic** does not answer what is in this stem. VLAN 1 is the default VLAN for all ports and the default native VLAN; best practice avoids it for user data.",
+            "explanation": "It cannot carry traffic misses what this question tests. VLAN 1 is the default VLAN for all ports and the default native VLAN; best practice avoids it for user data.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**It is the voice VLAN** reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "explanation": "It is the voice VLAN reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],
@@ -239,21 +239,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Two access VLANs are impossible** does not answer the requirement in this stem. The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
+            "explanation": "Two access VLANs are impossible misses what this question tests. The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A trunk to the phone** does not answer the requirement in this stem. The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
+            "explanation": "A trunk to the phone misses what this question tests. The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Port security** does not answer the requirement in this stem. The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
+            "explanation": "Port security misses what this question tests. The access (data) VLAN plus a voice VLAN separate PC and phone traffic on one port.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
+        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -279,7 +279,7 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "This statement is **False**, but the tested fact is: True — a trunk lets a VLAN span switches at Layer 2.",
+            "explanation": "This statement is False, but the tested fact is: True — a trunk lets a VLAN span switches at Layer 2.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
@@ -296,7 +296,7 @@
         "ip vlan 30"
       ],
       "correctIndex": 0,
-      "explanation": "`vlan 30` in global config creates the VLAN.",
+      "explanation": "vlan 30 in global config creates the VLAN.",
       "type": "application",
       "difficulty": "easy",
       "concept": "create vlan",
@@ -306,22 +306,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "`vlan 30` in global config creates the VLAN."
+          "explanation": "vlan 30 in global config creates the VLAN."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**switchport access vlan 30** reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "explanation": "switchport access vlan 30 reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**create vlan 30** reflects a common trap: Assigning a port to an uncreated VLAN. Create the VLAN first or the port may go inactive.",
+            "explanation": "create vlan 30 reflects a common trap: Assigning a port to an uncreated VLAN. Create the VLAN first or the port may go inactive.",
             "misconceptionTested": "Assigning a port to an uncreated VLAN"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ip vlan 30** reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
+            "explanation": "ip vlan 30 reflects a common trap: Thinking same-VLAN devices need a router. Same VLAN = same broadcast domain, no routing needed; only inter-VLAN does.",
             "misconceptionTested": "Thinking same-VLAN devices need a router"
           }
         ],

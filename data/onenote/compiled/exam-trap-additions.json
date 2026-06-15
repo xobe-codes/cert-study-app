@@ -18,14 +18,14 @@
     "source": "onenote"
   },
   {
-    "trap": "- You must memorize severity levels",
-    "correction": "- You must memorize severity levels",
+    "trap": "You must memorize severity levels",
+    "correction": "You must memorize severity levels",
     "objectiveId": "4.5",
     "source": "onenote"
   },
   {
-    "trap": "### Private Address Ranges (Must Memorize)",
-    "correction": "### Private Address Ranges (Must Memorize)",
+    "trap": "Private Address Ranges (Must Memorize)",
+    "correction": "Private Address Ranges (Must Memorize)",
     "objectiveId": "4.1",
     "source": "onenote"
   }

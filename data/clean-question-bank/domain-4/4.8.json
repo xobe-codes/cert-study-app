@@ -29,24 +29,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Setting the time and date** does not answer the requirement in this stem. .",
+            "explanation": "Setting the time and date does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Setting the time and date\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Setting the key strength** does not answer the requirement in this stem. .",
+            "explanation": "Setting the key strength does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Setting the key strength\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Setting the key repository** does not answer the requirement in this stem. .",
+            "explanation": "Setting the key repository does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Setting the key repository\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -76,24 +76,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-line)#version 2** does not answer which in this stem. .",
+            "explanation": "Router(config-line)#version 2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-line)#version 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-ssh)#version 2** does not answer which in this stem. .",
+            "explanation": "Router(config-ssh)#version 2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-ssh)#version 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ssh version 2** does not answer which in this stem. .",
+            "explanation": "Router(config)#ssh version 2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#ssh version 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -131,18 +131,18 @@
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config-line)#login ssh telnet** is not the behavior described here. .",
+            "explanation": "Switch(config-line)#login ssh telnet is not the behavior described here. .",
             "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#transport ssh telnet** is not the behavior described here. .",
+            "explanation": "Switch(config)#transport ssh telnet is not the behavior described here. .",
             "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -179,18 +179,18 @@
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SSH allows for file copy.** does not answer the requirement in this stem. .",
+            "explanation": "SSH allows for file copy. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSH allows for file copy.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SSH makes it easier to create ACLs for access.** does not answer the requirement in this stem. .",
+            "explanation": "SSH makes it easier to create ACLs for access. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSH makes it easier to create ACLs for a…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -222,24 +222,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The time and date need to be corrected.** does not answer what is in this stem. .",
+            "explanation": "The time and date need to be corrected. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The time and date need to be corrected.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The DNS server is not configured.** does not answer what is in this stem. .",
+            "explanation": "The DNS server is not configured. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The DNS server is not configured.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**There is no host record for the switch or router.** does not answer what is in this stem. .",
+            "explanation": "There is no host record for the switch or router. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"There is no host record for the switch o…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -270,24 +270,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#account user1 Router(config-acct)#password Password20!** does not answer which in this stem. .",
+            "explanation": "Router(config)#account user1 Router(config-acct)#password Password20! does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#account user1 Router(conf…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#user user1 Password20!** does not answer which in this stem. .",
+            "explanation": "Router(config)#user user1 Password20! does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#user user1 Password20!\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#user-account user1 password Password20!** does not answer which in this stem. .",
+            "explanation": "Router(config)#user-account user1 password Password20! does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#user-account user1 passwo…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -318,24 +318,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#generate crypto key rsa** does not answer which in this stem. .",
+            "explanation": "Router(config)#generate crypto key rsa does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#generate crypto key rsa\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#crypto generate key rsa** does not answer which in this stem. .",
+            "explanation": "Router(config)#crypto generate key rsa does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#crypto generate key rsa\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#crypto key generate rsa** does not answer which in this stem. .",
+            "explanation": "Router#crypto key generate rsa does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#crypto key generate rsa\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -369,19 +369,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#new aaa model** does not answer which in this stem. .",
+            "explanation": "Switch(config)#new aaa model does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#new aaa model\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#local authentication** does not answer which in this stem. .",
+            "explanation": "Switch(config)#local authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#local authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config-line)#local authentication** does not answer which in this stem. .",
+            "explanation": "Switch(config-line)#local authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config-line)#local authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -417,24 +417,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**MOTD banner** does not answer which in this stem. .",
+            "explanation": "MOTD banner does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"MOTD banner\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Exec banner** does not answer which in this stem. .",
+            "explanation": "Exec banner does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Exec banner\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Incoming banner** does not answer which in this stem. .",
+            "explanation": "Incoming banner does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Incoming banner\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     }
   ]

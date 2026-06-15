@@ -29,21 +29,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**FE80::/10** uses the wrong value. The tested fact calls for **2000** — not 80.",
+            "explanation": "FE80::/10 uses the wrong value. The tested fact calls for 2000 — not 80.",
             "misconceptionTested": "Selecting \"FE80::/10\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FC00::/7** uses the wrong value. The tested fact calls for **2000** — not 00.",
+            "explanation": "FC00::/7 uses the wrong value. The tested fact calls for 2000 — not 00.",
             "misconceptionTested": "Selecting \"FC00::/7\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**FF00::/8** uses the wrong value. The tested fact calls for **2000** — not 00.",
+            "explanation": "FF00::/8 uses the wrong value. The tested fact calls for 2000 — not 00.",
             "misconceptionTested": "Selecting \"FF00::/8\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Link-local **fe80::/10** is automatic; global unicast needs SLAAC, DHCPv6, or static config."
+        "examTip": "Link-local fe80::/10 is automatic; global unicast needs SLAAC, DHCPv6, or static config."
       }
     },
     {
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**FF02** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "explanation": "FF02 reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
             "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**2001** uses the wrong value. The tested fact calls for **80** — not 2001.",
+            "explanation": "2001 uses the wrong value. The tested fact calls for 80 — not 2001.",
             "misconceptionTested": "Selecting \"2001\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**FD00** uses the wrong value. The tested fact calls for **80** — not 00.",
+            "explanation": "FD00 uses the wrong value. The tested fact calls for 80 — not 00.",
             "misconceptionTested": "Selecting \"FD00\" without matching the scenario constraint"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**2000::/3** uses the wrong value. The tested fact calls for **00** — not 2000.",
+            "explanation": "2000::/3 uses the wrong value. The tested fact calls for 00 — not 2000.",
             "misconceptionTested": "Selecting \"2000::/3\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FE80::/10** uses the wrong value. The tested fact calls for **00** — not 80.",
+            "explanation": "FE80::/10 uses the wrong value. The tested fact calls for 00 — not 80.",
             "misconceptionTested": "Selecting \"FE80::/10\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**FF00::/8** uses the wrong value. The tested fact calls for **7** — not 00.",
+            "explanation": "FF00::/8 uses the wrong value. The tested fact calls for 7 — not 00.",
             "misconceptionTested": "Selecting \"FF00::/8\" without matching the scenario constraint"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**FF02::1** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "explanation": "FF02::1 reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
             "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FF02::5** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "explanation": "FF02::5 reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
             "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**224.0.0.2** uses the wrong value. The tested fact calls for **02** — not 224.",
+            "explanation": "224.0.0.2 uses the wrong value. The tested fact calls for 02 — not 224.",
             "misconceptionTested": "Selecting \"224.0.0.2\" without matching the scenario constraint"
           }
         ],
@@ -195,7 +195,7 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This statement is **True**, but the tested fact is: False — IPv6 has no broadcast; multicast (FF00::/8) replaces it.",
+            "explanation": "This statement is True, but the tested fact is: False — IPv6 has no broadcast; multicast (FF00::/8) replaces it.",
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
@@ -227,17 +227,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Multicast** reflects a common trap: Anycast and multicast are the same. Multicast delivers to ALL group members; anycast delivers to the NEAREST one.",
+            "explanation": "Multicast reflects a common trap: Anycast and multicast are the same. Multicast delivers to ALL group members; anycast delivers to the NEAREST one.",
             "misconceptionTested": "Anycast and multicast are the same"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Link-local** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "explanation": "Link-local reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
             "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Broadcast** reflects a common trap: Looking for an IPv6 broadcast. There is none; multicast (FF00::/8) replaces broadcast.",
+            "explanation": "Broadcast reflects a common trap: Looking for an IPv6 broadcast. There is none; multicast (FF00::/8) replaces broadcast.",
             "misconceptionTested": "Looking for an IPv6 broadcast"
           }
         ],
@@ -269,17 +269,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Across the internet** does not answer the requirement in this stem. Link-local is never routed off the local link.",
+            "explanation": "Across the internet misses what this question tests. Link-local is never routed off the local link.",
             "misconceptionTested": "Selecting \"Across the internet\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Only by routers** reflects a common trap: Global unicast is the only usable type on a router link. Routers often peer over link-local (FE80::) next hops for routing protocols.",
+            "explanation": "Only by routers reflects a common trap: Global unicast is the only usable type on a router link. Routers often peer over link-local (FE80::) next hops for routing protocols.",
             "misconceptionTested": "Global unicast is the only usable type on a router link"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Only with NAT** reflects a common trap: Global unicast is the only usable type on a router link. Routers often peer over link-local (FE80::) next hops for routing protocols.",
+            "explanation": "Only with NAT reflects a common trap: Global unicast is the only usable type on a router link. Routers often peer over link-local (FE80::) next hops for routing protocols.",
             "misconceptionTested": "Global unicast is the only usable type on a router link"
           }
         ],
@@ -311,17 +311,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**FF02::2 (all routers)** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "explanation": "FF02::2 (all routers) reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
             "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**FE80::1** reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
+            "explanation": "FE80::1 reflects a common trap: Confusing FE80 and FF02. FE80 = link-local unicast; FF02 = link-local multicast group.",
             "misconceptionTested": "Confusing FE80 and FF02"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**2000::1** uses the wrong value. The tested fact calls for **6** — not 2000.",
+            "explanation": "2000::1 uses the wrong value. The tested fact calls for 6 — not 2000.",
             "misconceptionTested": "Selecting \"2000::1\" without matching the scenario constraint"
           }
         ],

@@ -29,24 +29,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Decreased problems** does not answer which in this stem. .",
+            "explanation": "Decreased problems does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Decreased problems\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Increased throughput** does not answer which in this stem. .",
+            "explanation": "Increased throughput does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Increased throughput\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Increased complexity** does not answer which in this stem. .",
+            "explanation": "Increased complexity does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Increased complexity\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -78,24 +78,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Controller-based networking is always in the form of hardware appliances.** does not answer which in this stem. .",
+            "explanation": "Controller-based networking is always in the form of hardware appliances. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Controller-based networking is always in…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Controller-based networking has a logically centralized data plane.** does not answer which in this stem. .",
+            "explanation": "Controller-based networking has a logically centralized data plane. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Controller-based networking has a logica…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Controller-based networking uses ASICs to centrally switch frames.** does not answer which in this stem. .",
+            "explanation": "Controller-based networking uses ASICs to centrally switch frames. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Controller-based networking uses ASICs t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -127,24 +127,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SDN** does not answer which in this stem. .",
+            "explanation": "SDN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SDN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SD-LAN** does not answer which in this stem. .",
+            "explanation": "SD-LAN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SD-LAN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VPN** does not answer which in this stem. .",
+            "explanation": "VPN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"VPN\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -175,24 +175,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Scalability** does not answer which in this stem. .",
+            "explanation": "Scalability does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Scalability\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Security** does not answer which in this stem. .",
+            "explanation": "Security does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Centralized provisioning** does not answer which in this stem. .",
+            "explanation": "Centralized provisioning does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Centralized provisioning\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -222,24 +222,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**CPU utilization** does not answer which in this stem. .",
+            "explanation": "CPU utilization does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CPU utilization\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Memory utilization** does not answer which in this stem. .",
+            "explanation": "Memory utilization does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Memory utilization\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Forwarding of traffic** does not answer which in this stem. .",
+            "explanation": "Forwarding of traffic does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Forwarding of traffic\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -270,24 +270,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**All data is centrally switched at the SDN controller.** does not answer which in this stem. .",
+            "explanation": "All data is centrally switched at the SDN controller. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"All data is centrally switched at the SD…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**All SDN switches are stateful with respect to configuration.** does not answer which in this stem. .",
+            "explanation": "All SDN switches are stateful with respect to configuration. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"All SDN switches are stateful with respe…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**All data flowing through the switch is stateless.** does not answer which in this stem. .",
+            "explanation": "All data flowing through the switch is stateless. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"All data flowing through the switch is s…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -318,24 +318,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Syslog** does not answer which in this stem. .",
+            "explanation": "Syslog does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Syslog\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SDN** does not answer which in this stem. .",
+            "explanation": "SDN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SDN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**CDP** does not answer which in this stem. .",
+            "explanation": "CDP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CDP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -367,24 +367,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Trap** does not answer the requirement in this stem. .",
+            "explanation": "Trap does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Trap\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SNMP agent** does not answer the requirement in this stem. .",
+            "explanation": "SNMP agent does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SNMP agent\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Syslog server** does not answer the requirement in this stem. .",
+            "explanation": "Syslog server does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Syslog server\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -416,24 +416,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**CAPWAP** does not answer which in this stem. .",
+            "explanation": "CAPWAP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CAPWAP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**LWAPP** does not answer which in this stem. .",
+            "explanation": "LWAPP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"LWAPP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RESTCONF** does not answer which in this stem. .",
+            "explanation": "RESTCONF does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RESTCONF\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     }
   ]

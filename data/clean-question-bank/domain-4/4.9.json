@@ -30,24 +30,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#archive tftp: running-config** does not answer which in this stem. .",
+            "explanation": "Switch#archive tftp: running-config does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch#archive tftp: running-config\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#restore tftp://192.168.1.2 running-config** does not answer which in this stem. .",
+            "explanation": "Switch#restore tftp://192.168.1.2 running-config does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch#restore tftp://192.168.1.2 runnin…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#copy server: running-config** does not answer which in this stem. .",
+            "explanation": "Switch#copy server: running-config does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch#copy server: running-config\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -78,24 +78,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#copy tftp ios** does not answer which in this stem. .",
+            "explanation": "Switch#copy tftp ios does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch#copy tftp ios\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#copy tftp nvram** does not answer which in this stem. .",
+            "explanation": "Switch#copy tftp nvram does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch#copy tftp nvram\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#upgrade tftp flash** does not answer which in this stem. .",
+            "explanation": "Switch#upgrade tftp flash does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch#upgrade tftp flash\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **tftp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for tftp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -127,24 +127,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#boot tftp://192.168.1.2** does not answer which in this stem. .",
+            "explanation": "Router#boot tftp://192.168.1.2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#boot tftp://192.168.1.2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin** does not answer which in this stem. .",
+            "explanation": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#boot tftp://192.168.1.2 c…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin** does not answer which in this stem. .",
+            "explanation": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#boot system tftp://192.16…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **tftp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for tftp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -176,24 +176,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS.** does not answer the requirement in this stem. .",
+            "explanation": "The new flash memory will have a mini-IOS installed. You will need to upgrade it from the mini-IOS. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The new flash memory will have a mini-IO…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Nothing needs to be done because the IOS is not storage on the flash memory card.** does not answer the requirement in this stem. .",
+            "explanation": "Nothing needs to be done because the IOS is not storage on the flash memory card. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Nothing needs to be done because the IOS…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Format the flash card with the FAT operating system and copy the IOS image to the card.** does not answer the requirement in this stem. .",
+            "explanation": "Format the flash card with the FAT operating system and copy the IOS image to the card. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Format the flash card with the FAT opera…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -224,24 +224,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ip ftp username USER password USERPASS** does not answer which in this stem. .",
+            "explanation": "Router(config)#ip ftp username USER password USERPASS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#ip ftp username USER pass…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#ftp USER password USERPASS** does not answer which in this stem. .",
+            "explanation": "Router(config)#ftp USER password USERPASS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#ftp USER password USERPAS…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#username USER password USERPASS** does not answer which in this stem. .",
+            "explanation": "Router(config)#username USER password USERPASS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#username USER password US…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **tftp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for tftp before picking a familiar-sounding wrong term."
       }
     }
   ]

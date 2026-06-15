@@ -27,17 +27,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Availability** reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "explanation": "Availability reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Integrity** reflects a common trap: Integrity = detecting CHANGES (hashing). NOT keeping data private. That is confidentiality. Integrity uses hashing to detect unauthorized modification.",
+            "explanation": "Integrity reflects a common trap: Integrity = detecting CHANGES (hashing). NOT keeping data private. That is confidentiality. Integrity uses hashing to detect unauthorized modification.",
             "misconceptionTested": "Integrity = detecting CHANGES (hashing). NOT keeping data private"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Authentication** does not answer which in this stem. Encryption protects confidentiality.",
+            "explanation": "Authentication misses what this question tests. Encryption protects confidentiality.",
             "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
           }
         ],
@@ -69,17 +69,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Confidentiality** reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "explanation": "Confidentiality reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Availability** reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "explanation": "Availability reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Non-repudiation** does not answer which in this stem. Integrity ensures data has not been altered without detection.",
+            "explanation": "Non-repudiation misses what this question tests. Integrity ensures data has not been altered without detection.",
             "misconceptionTested": "Selecting \"Non-repudiation\" without matching the scenario constraint"
           }
         ],
@@ -111,17 +111,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Threat** does not answer the requirement in this stem. A vulnerability is a weakness (unpatched software).",
+            "explanation": "Threat misses what this question tests. A vulnerability is a weakness (unpatched software).",
             "misconceptionTested": "Selecting \"Threat\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Exploit** does not answer the requirement in this stem. A vulnerability is a weakness (unpatched software).",
+            "explanation": "Exploit misses what this question tests. A vulnerability is a weakness (unpatched software).",
             "misconceptionTested": "Selecting \"Exploit\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Risk** does not answer the requirement in this stem. A vulnerability is a weakness (unpatched software).",
+            "explanation": "Risk misses what this question tests. A vulnerability is a weakness (unpatched software).",
             "misconceptionTested": "Selecting \"Risk\" without matching the scenario constraint"
           }
         ],
@@ -153,17 +153,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Virus** does not answer which in this stem. Ransomware encrypts files and demands a ransom.",
+            "explanation": "Virus misses what this question tests. Ransomware encrypts files and demands a ransom.",
             "misconceptionTested": "Selecting \"Virus\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Worm** does not answer which in this stem. Ransomware encrypts files and demands a ransom.",
+            "explanation": "Worm misses what this question tests. Ransomware encrypts files and demands a ransom.",
             "misconceptionTested": "Selecting \"Worm\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Trojan** does not answer which in this stem. Ransomware encrypts files and demands a ransom.",
+            "explanation": "Trojan misses what this question tests. Ransomware encrypts files and demands a ransom.",
             "misconceptionTested": "Selecting \"Trojan\" without matching the scenario constraint"
           }
         ],
@@ -195,17 +195,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A worm attack** reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "explanation": "A worm attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A DoS attack** reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "explanation": "A DoS attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**IP spoofing** does not answer the requirement in this stem. Phishing is social engineering via deceptive email to trick users into revealing credentials or clicking malicious links.",
+            "explanation": "IP spoofing misses what this question tests. Phishing is social engineering via deceptive email to trick users into revealing credentials or clicking malicious links.",
             "misconceptionTested": "Selecting \"IP spoofing\" without matching the scenario constraint"
           }
         ],
@@ -238,17 +238,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Confidentiality** reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "explanation": "Confidentiality reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Integrity** reflects a common trap: Integrity = detecting CHANGES (hashing). NOT keeping data private. That is confidentiality. Integrity uses hashing to detect unauthorized modification.",
+            "explanation": "Integrity reflects a common trap: Integrity = detecting CHANGES (hashing). NOT keeping data private. That is confidentiality. Integrity uses hashing to detect unauthorized modification.",
             "misconceptionTested": "Integrity = detecting CHANGES (hashing). NOT keeping data private"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Authentication** does not answer which in this stem. A DDoS attack violates availability — legitimate users cannot access services because resources are exhausted.",
+            "explanation": "Authentication misses what this question tests. A DDoS attack violates availability — legitimate users cannot access services because resources are exhausted.",
             "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
           }
         ],
@@ -280,21 +280,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Multi-factor authentication** does not answer the requirement in this stem. Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect.",
+            "explanation": "Multi-factor authentication misses what this question tests. Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect.",
             "misconceptionTested": "Selecting \"Multi-factor authentication\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Zero-trust networking** does not answer the requirement in this stem. Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect.",
+            "explanation": "Zero-trust networking misses what this question tests. Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect.",
             "misconceptionTested": "Selecting \"Zero-trust networking\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**AAA framework** does not answer the requirement in this stem. Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect.",
+            "explanation": "AAA framework misses what this question tests. Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect.",
             "misconceptionTested": "Selecting \"AAA framework\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **defense in depth** — exam distractors swap similar terms; anchor on: Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect."
+        "examTip": "This stem tests defense in depth — exam distractors swap similar terms; anchor on: Defense in depth uses multiple overlapping controls so that if one layer fails, others still protect."
       }
     },
     {
@@ -322,17 +322,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**A DoS attack** reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "explanation": "A DoS attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**IP spoofing** does not answer the requirement in this stem. A man-in-the-middle (MITM) attack positions the attacker between two communicating parties to eavesdrop or alter traffic.",
+            "explanation": "IP spoofing misses what this question tests. A man-in-the-middle (MITM) attack positions the attacker between two communicating parties to eavesdrop or alter traffic.",
             "misconceptionTested": "Selecting \"IP spoofing\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A replay attack** reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
+            "explanation": "A replay attack reflects a common trap: A DDoS attack violates AVAILABILITY, not confidentiality or integrity. Availability is a security goal — DDoS exhausts resources so legitimate users cannot access services.",
             "misconceptionTested": "A DDoS attack violates AVAILABILITY, not confidentiality or integrity"
           }
         ],
@@ -364,17 +364,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Virus** does not answer which in this stem. A worm self-propagates without a host file — it spreads by exploiting vulnerabilities.",
+            "explanation": "Virus misses what this question tests. A worm self-propagates without a host file — it spreads by exploiting vulnerabilities.",
             "misconceptionTested": "Selecting \"Virus\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Spyware** does not answer which in this stem. A worm self-propagates without a host file — it spreads by exploiting vulnerabilities.",
+            "explanation": "Spyware misses what this question tests. A worm self-propagates without a host file — it spreads by exploiting vulnerabilities.",
             "misconceptionTested": "Selecting \"Spyware\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Adware** does not answer which in this stem. A worm self-propagates without a host file — it spreads by exploiting vulnerabilities.",
+            "explanation": "Adware misses what this question tests. A worm self-propagates without a host file — it spreads by exploiting vulnerabilities.",
             "misconceptionTested": "Selecting \"Adware\" without matching the scenario constraint"
           }
         ],
@@ -407,17 +407,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Firewalls** does not answer the requirement in this stem. Social engineering exploits human trust.",
+            "explanation": "Firewalls misses what this question tests. Social engineering exploits human trust.",
             "misconceptionTested": "Selecting \"Firewalls\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Antivirus software** does not answer the requirement in this stem. Social engineering exploits human trust.",
+            "explanation": "Antivirus software misses what this question tests. Social engineering exploits human trust.",
             "misconceptionTested": "Selecting \"Antivirus software\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Encryption** does not answer the requirement in this stem. Social engineering exploits human trust.",
+            "explanation": "Encryption misses what this question tests. Social engineering exploits human trust.",
             "misconceptionTested": "Selecting \"Encryption\" without matching the scenario constraint"
           }
         ],
@@ -453,24 +453,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DMZ** does not answer which in this stem. .",
+            "explanation": "DMZ does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"DMZ\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Internal** does not answer which in this stem. .",
+            "explanation": "Internal does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Internal\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Trusted** does not answer which in this stem. .",
+            "explanation": "Trusted does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Trusted\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     },
     {
@@ -502,24 +502,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Perimeter** does not answer which in this stem. .",
+            "explanation": "Perimeter does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Perimeter\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Internal** does not answer which in this stem. .",
+            "explanation": "Internal does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Internal\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Trusted** does not answer which in this stem. .",
+            "explanation": "Trusted does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Trusted\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -551,24 +551,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Honey pots** does not answer which in this stem. .",
+            "explanation": "Honey pots does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Honey pots\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**IDS** does not answer which in this stem. .",
+            "explanation": "IDS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IDS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**HIDS** does not answer which in this stem. .",
+            "explanation": "HIDS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HIDS\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -599,24 +599,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The Internet** does not answer the requirement in this stem. .",
+            "explanation": "The Internet does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The Internet\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The DMZ** does not answer the requirement in this stem. .",
+            "explanation": "The DMZ does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The DMZ\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A network with SSL** does not answer the requirement in this stem. .",
+            "explanation": "A network with SSL does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"A network with SSL\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -648,24 +648,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Denial of service** does not answer which in this stem. .",
+            "explanation": "Denial of service does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Denial of service\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**IP address spoofing** does not answer which in this stem. .",
+            "explanation": "IP address spoofing does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IP address spoofing\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Session hijacking** does not answer which in this stem. .",
+            "explanation": "Session hijacking does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Session hijacking\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -697,24 +697,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Honey pots** does not answer which in this stem. .",
+            "explanation": "Honey pots does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Honey pots\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**IPS** does not answer which in this stem. .",
+            "explanation": "IPS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IPS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**HIDS** does not answer which in this stem. .",
+            "explanation": "HIDS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HIDS\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -745,24 +745,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Deploying host intrusion detection systems** does not answer which in this stem. .",
+            "explanation": "Deploying host intrusion detection systems does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Deploying host intrusion detection syste…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Deploying network intrusion detection systems** does not answer which in this stem. .",
+            "explanation": "Deploying network intrusion detection systems does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Deploying network intrusion detection sy…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Blocking RFC 1918 addresses at the perimeter** does not answer which in this stem. .",
+            "explanation": "Blocking RFC 1918 addresses at the perimeter does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Blocking RFC 1918 addresses at the perim…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -795,24 +795,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Honey pots** does not answer which in this stem. .",
+            "explanation": "Honey pots does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Honey pots\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**IDS** does not answer which in this stem. .",
+            "explanation": "IDS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IDS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**HIDS** does not answer which in this stem. .",
+            "explanation": "HIDS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HIDS\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -844,24 +844,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Denial of service** does not answer which in this stem. .",
+            "explanation": "Denial of service does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Denial of service\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Distributed denial of service** does not answer which in this stem. .",
+            "explanation": "Distributed denial of service does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Distributed denial of service\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Session hijacking** does not answer which in this stem. .",
+            "explanation": "Session hijacking does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Session hijacking\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -893,19 +893,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Access control lists (ACLs)** reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
+            "explanation": "Access control lists (ACLs) reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
             "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Spoofing mitigation** does not answer which in this stem. .",
+            "explanation": "Spoofing mitigation does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Spoofing mitigation\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Encryption of the data** does not answer which in this stem. .",
+            "explanation": "Encryption of the data does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Encryption of the data\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -942,24 +942,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Smurf attack** does not answer the requirement in this stem. .",
+            "explanation": "Smurf attack does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Smurf attack\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Compromised key attack** does not answer the requirement in this stem. .",
+            "explanation": "Compromised key attack does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Compromised key attack\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Sniffer attack** does not answer the requirement in this stem. .",
+            "explanation": "Sniffer attack does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Sniffer attack\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -992,19 +992,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Intrusion detection systems** does not answer the requirement in this stem. .",
+            "explanation": "Intrusion detection systems does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Intrusion detection systems\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SSL** does not answer the requirement in this stem. .",
+            "explanation": "SSL does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSL\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Host intrusion detection systems** does not answer the requirement in this stem. .",
+            "explanation": "Host intrusion detection systems does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Host intrusion detection systems\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1040,24 +1040,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**DHCP** does not answer the requirement in this stem. .",
+            "explanation": "DHCP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"DHCP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**DNS** does not answer the requirement in this stem. .",
+            "explanation": "DNS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"DNS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Wireless** does not answer the requirement in this stem. .",
+            "explanation": "Wireless does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Wireless\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security concepts** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security concepts before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1087,24 +1087,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The native VLAN contains frames from all VLANs.** does not answer the requirement in this stem. .",
+            "explanation": "The native VLAN contains frames from all VLANs. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The native VLAN contains frames from all…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The native VLAN is configured on all switches for logging.** does not answer the requirement in this stem. .",
+            "explanation": "The native VLAN is configured on all switches for logging. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The native VLAN is configured on all swi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The native VLAN provides no encryption.** does not answer the requirement in this stem. .",
+            "explanation": "The native VLAN provides no encryption. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The native VLAN provides no encryption.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     }
   ]

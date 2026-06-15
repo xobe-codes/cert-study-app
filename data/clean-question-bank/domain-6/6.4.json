@@ -31,24 +31,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**OpenFlow** does not answer which in this stem. .",
+            "explanation": "OpenFlow does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"OpenFlow\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Cisco Prime Infrastructure** does not answer which in this stem. .",
+            "explanation": "Cisco Prime Infrastructure does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco Prime Infrastructure\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Cisco SD-WAN** does not answer which in this stem. .",
+            "explanation": "Cisco SD-WAN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco SD-WAN\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -82,24 +82,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SSH** does not answer which in this stem. .",
+            "explanation": "SSH does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**HTTPS** does not answer which in this stem. .",
+            "explanation": "HTTPS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HTTPS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**NETCONF** does not answer which in this stem. .",
+            "explanation": "NETCONF does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"NETCONF\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -130,24 +130,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Design** does not answer the requirement in this stem. .",
+            "explanation": "Design does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Design\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Policy** does not answer the requirement in this stem. .",
+            "explanation": "Policy does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Policy\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Platform** does not answer the requirement in this stem. .",
+            "explanation": "Platform does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Platform\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -178,19 +178,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IP-based access control** does not answer which in this stem. .",
+            "explanation": "IP-based access control does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IP-based access control\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Group-based access control** does not answer which in this stem. .",
+            "explanation": "Group-based access control does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Group-based access control\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Assurance** does not answer which in this stem. .",
+            "explanation": "Assurance does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Assurance\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -227,24 +227,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Assurance** does not answer which in this stem. .",
+            "explanation": "Assurance does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Assurance\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Platform** does not answer which in this stem. .",
+            "explanation": "Platform does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Platform\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Policy** does not answer which in this stem. .",
+            "explanation": "Policy does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Policy\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -276,24 +276,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IP-based access control** does not answer what is in this stem. .",
+            "explanation": "IP-based access control does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IP-based access control\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Python** does not answer what is in this stem. .",
+            "explanation": "Python does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Python\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Inventory** does not answer what is in this stem. .",
+            "explanation": "Inventory does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Inventory\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -326,24 +326,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Policy** does not answer which in this stem. .",
+            "explanation": "Policy does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Policy\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Design** does not answer which in this stem. .",
+            "explanation": "Design does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Design\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Assurance** does not answer which in this stem. .",
+            "explanation": "Assurance does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Assurance\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -377,24 +377,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Design** does not answer which in this stem. .",
+            "explanation": "Design does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Design\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Policy** does not answer which in this stem. .",
+            "explanation": "Policy does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Policy\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Provision** does not answer which in this stem. .",
+            "explanation": "Provision does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Provision\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -427,24 +427,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Easy-QOS** does not answer the requirement in this stem. .",
+            "explanation": "Easy-QOS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Easy-QOS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**System 360** does not answer the requirement in this stem. .",
+            "explanation": "System 360 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"System 360\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Cisco ISE** does not answer the requirement in this stem. .",
+            "explanation": "Cisco ISE does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco ISE\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -474,24 +474,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Client coverage heat maps** does not answer which in this stem. .",
+            "explanation": "Client coverage heat maps does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Client coverage heat maps\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Client triangulation support** does not answer which in this stem. .",
+            "explanation": "Client triangulation support does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Client triangulation support\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Application health** does not answer which in this stem. .",
+            "explanation": "Application health does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Application health\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -523,24 +523,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SSH** does not answer which in this stem. .",
+            "explanation": "SSH does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSH\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SNMP** does not answer which in this stem. .",
+            "explanation": "SNMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SNMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Logging** does not answer which in this stem. .",
+            "explanation": "Logging does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Logging\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     }
   ]

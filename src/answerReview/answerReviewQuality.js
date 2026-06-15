@@ -9,6 +9,7 @@ export const FALLBACK_EXPLANATION_RE = [
   /is a plausible guess but does not explain the symptom/i,
   /doesn't fit the scenario above/i,
   /see the correct-answer explanation for why/i,
+  /does not answer .+ in this stem/i,
 ]
 
 export const GENERIC_TRAP_RE = /^Picking a familiar term without matching the exact behavior tested$/i

@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**64** uses the wrong value. The tested fact calls for **26** — not 64.",
+            "explanation": "64 uses the wrong value. The tested fact calls for 26 — not 64.",
             "misconceptionTested": "Selecting \"64\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**30** uses the wrong value. The tested fact calls for **26** — not 30.",
+            "explanation": "30 uses the wrong value. The tested fact calls for 26 — not 30.",
             "misconceptionTested": "Selecting \"30\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**126** uses the wrong value. The tested fact calls for **26** — not 126.",
+            "explanation": "126 uses the wrong value. The tested fact calls for 26 — not 126.",
             "misconceptionTested": "Selecting \"126\" without matching the scenario constraint"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**16** uses the wrong value. The tested fact calls for **256** — not 16.",
+            "explanation": "16 uses the wrong value. The tested fact calls for 256 — not 16.",
             "misconceptionTested": "Selecting \"16\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**64** uses the wrong value. The tested fact calls for **256** — not 64.",
+            "explanation": "64 uses the wrong value. The tested fact calls for 256 — not 64.",
             "misconceptionTested": "Selecting \"64\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**8** uses the wrong value. The tested fact calls for **256** — not 8.",
+            "explanation": "8 uses the wrong value. The tested fact calls for 256 — not 8.",
             "misconceptionTested": "Selecting \"8\" without matching the scenario constraint"
           }
         ],
@@ -114,17 +114,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**192.168.10.255** uses the wrong value. The tested fact calls for **64** — not 192.",
+            "explanation": "192.168.10.255 uses the wrong value. The tested fact calls for 64 — not 192.",
             "misconceptionTested": "Selecting \"192.168.10.255\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**192.168.10.127** uses the wrong value. The tested fact calls for **64** — not 192.",
+            "explanation": "192.168.10.127 uses the wrong value. The tested fact calls for 64 — not 192.",
             "misconceptionTested": "Selecting \"192.168.10.127\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**192.168.10.64** uses the wrong value. The tested fact calls for **64** — not 192.",
+            "explanation": "192.168.10.64 uses the wrong value. The tested fact calls for 64 — not 192.",
             "misconceptionTested": "Selecting \"192.168.10.64\" without matching the scenario constraint"
           }
         ],
@@ -156,17 +156,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**172.16.0.0** uses the wrong value. The tested fact calls for **64** — not 172.",
+            "explanation": "172.16.0.0 uses the wrong value. The tested fact calls for 64 — not 172.",
             "misconceptionTested": "Selecting \"172.16.0.0\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**172.16.0.96** uses the wrong value. The tested fact calls for **64** — not 172.",
+            "explanation": "172.16.0.96 uses the wrong value. The tested fact calls for 64 — not 172.",
             "misconceptionTested": "Selecting \"172.16.0.96\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**172.16.0.128** uses the wrong value. The tested fact calls for **64** — not 172.",
+            "explanation": "172.16.0.128 uses the wrong value. The tested fact calls for 64 — not 172.",
             "misconceptionTested": "Selecting \"172.16.0.128\" without matching the scenario constraint"
           }
         ],
@@ -198,17 +198,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**/26** uses the wrong value. The tested fact calls for **27** — not 26.",
+            "explanation": "/26 uses the wrong value. The tested fact calls for 27 — not 26.",
             "misconceptionTested": "Selecting \"/26\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**/28** uses the wrong value. The tested fact calls for **27** — not 28.",
+            "explanation": "/28 uses the wrong value. The tested fact calls for 27 — not 28.",
             "misconceptionTested": "Selecting \"/28\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**/29** uses the wrong value. The tested fact calls for **27** — not 29.",
+            "explanation": "/29 uses the wrong value. The tested fact calls for 27 — not 29.",
             "misconceptionTested": "Selecting \"/29\" without matching the scenario constraint"
           }
         ],
@@ -240,17 +240,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**1** uses the wrong value. The tested fact calls for **30** — not 1.",
+            "explanation": "1 uses the wrong value. The tested fact calls for 30 — not 1.",
             "misconceptionTested": "Selecting \"1\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**4** uses the wrong value. The tested fact calls for **30** — not 4.",
+            "explanation": "4 uses the wrong value. The tested fact calls for 30 — not 4.",
             "misconceptionTested": "Selecting \"4\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**0** uses the wrong value. The tested fact calls for **30** — not 0.",
+            "explanation": "0 uses the wrong value. The tested fact calls for 30 — not 0.",
             "misconceptionTested": "Selecting \"0\" without matching the scenario constraint"
           }
         ],
@@ -282,17 +282,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**6** uses the wrong value. The tested fact calls for **2** — not 6.",
+            "explanation": "6 uses the wrong value. The tested fact calls for 2 — not 6.",
             "misconceptionTested": "Selecting \"6\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**16** uses the wrong value. The tested fact calls for **2** — not 16.",
+            "explanation": "16 uses the wrong value. The tested fact calls for 2 — not 16.",
             "misconceptionTested": "Selecting \"16\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**3** uses the wrong value. The tested fact calls for **2** — not 3.",
+            "explanation": "3 uses the wrong value. The tested fact calls for 2 — not 3.",
             "misconceptionTested": "Selecting \"3\" without matching the scenario constraint"
           }
         ],
@@ -324,17 +324,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**/26** uses the wrong value. The tested fact calls for **240** — not 26.",
+            "explanation": "/26 uses the wrong value. The tested fact calls for 240 — not 26.",
             "misconceptionTested": "Selecting \"/26\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**/27** uses the wrong value. The tested fact calls for **240** — not 27.",
+            "explanation": "/27 uses the wrong value. The tested fact calls for 240 — not 27.",
             "misconceptionTested": "Selecting \"/27\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**/29** uses the wrong value. The tested fact calls for **240** — not 29.",
+            "explanation": "/29 uses the wrong value. The tested fact calls for 240 — not 29.",
             "misconceptionTested": "Selecting \"/29\" without matching the scenario constraint"
           }
         ],
@@ -367,17 +367,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**10.0.0.1 – 10.0.0.7** uses the wrong value. The tested fact calls for **8** — not 10.",
+            "explanation": "10.0.0.1 – 10.0.0.7 uses the wrong value. The tested fact calls for 8 — not 10.",
             "misconceptionTested": "Selecting \"10.0.0.1 – 10.0.0.7\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**10.0.0.0 – 10.0.0.7** uses the wrong value. The tested fact calls for **8** — not 10.",
+            "explanation": "10.0.0.0 – 10.0.0.7 uses the wrong value. The tested fact calls for 8 — not 10.",
             "misconceptionTested": "Selecting \"10.0.0.0 – 10.0.0.7\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**10.0.0.1 – 10.0.0.14** uses the wrong value. The tested fact calls for **8** — not 10.",
+            "explanation": "10.0.0.1 – 10.0.0.14 uses the wrong value. The tested fact calls for 8 — not 10.",
             "misconceptionTested": "Selecting \"10.0.0.1 – 10.0.0.14\" without matching the scenario constraint"
           }
         ],
@@ -409,17 +409,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**26** uses the wrong value. The tested fact calls for **32** — not 26.",
+            "explanation": "26 uses the wrong value. The tested fact calls for 32 — not 26.",
             "misconceptionTested": "Selecting \"26\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**8** uses the wrong value. The tested fact calls for **32** — not 8.",
+            "explanation": "8 uses the wrong value. The tested fact calls for 32 — not 8.",
             "misconceptionTested": "Selecting \"8\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**4** uses the wrong value. The tested fact calls for **32** — not 4.",
+            "explanation": "4 uses the wrong value. The tested fact calls for 32 — not 4.",
             "misconceptionTested": "Selecting \"4\" without matching the scenario constraint"
           }
         ],
@@ -449,7 +449,7 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This statement is **True**, but the tested fact is: False — both are reserved, which is why hosts = 2^h − 2.",
+            "explanation": "This statement is True, but the tested fact is: False — both are reserved, which is why hosts = 2^h − 2.",
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
@@ -481,17 +481,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**/25** uses the wrong value. The tested fact calls for **24** — not 25.",
+            "explanation": "/25 uses the wrong value. The tested fact calls for 24 — not 25.",
             "misconceptionTested": "Selecting \"/25\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**/23** uses the wrong value. The tested fact calls for **24** — not 23.",
+            "explanation": "/23 uses the wrong value. The tested fact calls for 24 — not 23.",
             "misconceptionTested": "Selecting \"/23\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**/26** uses the wrong value. The tested fact calls for **24** — not 26.",
+            "explanation": "/26 uses the wrong value. The tested fact calls for 24 — not 26.",
             "misconceptionTested": "Selecting \"/26\" without matching the scenario constraint"
           }
         ],

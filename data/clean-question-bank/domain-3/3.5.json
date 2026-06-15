@@ -31,24 +31,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Proxy ARP** does not answer which in this stem. .",
+            "explanation": "Proxy ARP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Proxy ARP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**GLBP** does not answer which in this stem. .",
+            "explanation": "GLBP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"GLBP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**HSRP** does not answer which in this stem. .",
+            "explanation": "HSRP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HSRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -79,24 +79,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**0000.0c** does not answer what is in this stem. .",
+            "explanation": "0000.0c does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"0000.0c\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**oc07** does not answer what is in this stem. .",
+            "explanation": "oc07 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"oc07\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**0a** does not answer what is in this stem. .",
+            "explanation": "0a does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"0a\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -128,24 +128,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Proxy ARP** does not answer which in this stem. .",
+            "explanation": "Proxy ARP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Proxy ARP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**VRRP** does not answer which in this stem. .",
+            "explanation": "VRRP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"VRRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**HSRP** does not answer which in this stem. .",
+            "explanation": "HSRP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HSRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -176,24 +176,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**0000.0c** does not answer what is in this stem. .",
+            "explanation": "0000.0c does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"0000.0c\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**0c07** does not answer what is in this stem. .",
+            "explanation": "0c07 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"0c07\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**07.ac** does not answer what is in this stem. .",
+            "explanation": "07.ac does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"07.ac\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -225,19 +225,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**110** does not answer what is in this stem. .",
+            "explanation": "110 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"110\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**200** does not answer what is in this stem. .",
+            "explanation": "200 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"200\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**10** does not answer what is in this stem. .",
+            "explanation": "10 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"10\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -272,24 +272,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**8** does not answer what is in this stem. .",
+            "explanation": "8 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"8\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**16** does not answer what is in this stem. .",
+            "explanation": "16 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"16\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**255** does not answer what is in this stem. .",
+            "explanation": "255 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"255\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -319,24 +319,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/1935** does not answer which in this stem. .",
+            "explanation": "UDP/1935 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"UDP/1935\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP/1895** does not answer which in this stem. .",
+            "explanation": "UDP/1895 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"UDP/1895\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**UCP/3222** does not answer which in this stem. .",
+            "explanation": "UCP/3222 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"UCP/3222\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -367,24 +367,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**All routers in an HSRP group are active.** does not answer which in this stem. .",
+            "explanation": "All routers in an HSRP group are active. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"All routers in an HSRP group are active.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The virtual router sends hello packets to the HSRP group.** does not answer which in this stem. .",
+            "explanation": "The virtual router sends hello packets to the HSRP group. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The virtual router sends hello packets t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**HSRP allows for per-packet load balancing.** does not answer which in this stem. .",
+            "explanation": "HSRP allows for per-packet load balancing. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HSRP allows for per-packet load balancin…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -414,24 +414,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Unicast** does not answer the requirement in this stem. .",
+            "explanation": "Unicast does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Unicast\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Broadcast** does not answer the requirement in this stem. .",
+            "explanation": "Broadcast does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Broadcast\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Layer 2 flooding** does not answer the requirement in this stem. .",
+            "explanation": "Layer 2 flooding does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Layer 2 flooding\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -463,19 +463,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Active router** does not answer which in this stem. .",
+            "explanation": "Active router does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Active router\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Standby router** does not answer which in this stem. .",
+            "explanation": "Standby router does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Standby router\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Monitor router** does not answer which in this stem. .",
+            "explanation": "Monitor router does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Monitor router\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -511,24 +511,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Hello timer** does not answer which in this stem. .",
+            "explanation": "Hello timer does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Hello timer\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Standby timer** does not answer which in this stem. .",
+            "explanation": "Standby timer does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Standby timer\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Virtual timer** does not answer which in this stem. .",
+            "explanation": "Virtual timer does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Virtual timer\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -559,24 +559,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/1935** does not answer which in this stem. .",
+            "explanation": "UDP/1935 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"UDP/1935\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**UDP/1985** does not answer which in this stem. .",
+            "explanation": "UDP/1985 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"UDP/1985\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP/1895** does not answer which in this stem. .",
+            "explanation": "UDP/1895 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"UDP/1895\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -608,24 +608,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**HSRPv2 does not use hello packets.** does not answer which in this stem. .",
+            "explanation": "HSRPv2 does not use hello packets. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HSRPv2 does not use hello packets.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**HSRPv1 uses broadcasts, and HSRPv2 uses multicasts.** does not answer which in this stem. .",
+            "explanation": "HSRPv1 uses broadcasts, and HSRPv2 uses multicasts. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HSRPv1 uses broadcasts, and HSRPv2 uses …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**HSRPv1 supports IPv6.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "HSRPv1 supports IPv6. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -657,24 +657,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The active router is responsible for responding to clients with the virtual router’s MAC address.** does not answer which in this stem. .",
+            "explanation": "The active router is responsible for responding to clients with the virtual router’s MAC address. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The active router is responsible for res…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The active virtual gateway will respond with a MAC address of the active router.** does not answer which in this stem. .",
+            "explanation": "The active virtual gateway will respond with a MAC address of the active router. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The active virtual gateway will respond …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The virtual router is responsible for responding to tracking requests.** does not answer which in this stem. .",
+            "explanation": "The virtual router is responsible for responding to tracking requests. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The virtual router is responsible for re…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -707,24 +707,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The router with the lowest priority** does not answer which in this stem. .",
+            "explanation": "The router with the lowest priority does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The router with the lowest priority\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The router with the highest priority** does not answer which in this stem. .",
+            "explanation": "The router with the highest priority does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The router with the highest priority\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The router with the lowest priority and lowest IP address** does not answer which in this stem. .",
+            "explanation": "The router with the lowest priority and lowest IP address does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The router with the lowest priority and …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -755,24 +755,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**2** does not answer the requirement in this stem. .",
+            "explanation": "2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**16** does not answer the requirement in this stem. .",
+            "explanation": "16 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"16\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**1,024** does not answer the requirement in this stem. .",
+            "explanation": "1,024 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"1,024\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -803,24 +803,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-if)#standby 1 priority 70** does not answer which in this stem. .",
+            "explanation": "Router(config-if)#standby 1 priority 70 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-if)#standby 1 priority 70\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-if)#hsrp 1 priority 150** does not answer which in this stem. .",
+            "explanation": "Router(config-if)#hsrp 1 priority 150 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-if)#hsrp 1 priority 150\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-if)#hsrp 1 priority 90** does not answer which in this stem. .",
+            "explanation": "Router(config-if)#hsrp 1 priority 90 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-if)#hsrp 1 priority 90\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -850,24 +850,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**255** does not answer what is in this stem. .",
+            "explanation": "255 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"255\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**256** does not answer what is in this stem. .",
+            "explanation": "256 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"256\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**1,024** does not answer what is in this stem. .",
+            "explanation": "1,024 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"1,024\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -900,19 +900,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**HSRPv1** does not answer which in this stem. .",
+            "explanation": "HSRPv1 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"HSRPv1\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**GLBP** does not answer which in this stem. .",
+            "explanation": "GLBP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"GLBP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VRRP** does not answer which in this stem. .",
+            "explanation": "VRRP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"VRRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -949,24 +949,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**It allows the protocol to effectively load-balance per packet.** does not answer what is in this stem. .",
+            "explanation": "It allows the protocol to effectively load-balance per packet. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"It allows the protocol to effectively lo…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**It watches an upstream interface and fails over when the interface goes down.** does not answer what is in this stem. .",
+            "explanation": "It watches an upstream interface and fails over when the interface goes down. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"It watches an upstream interface and fai…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**It ignores the priorities of the routers and elects an active router by highest IP address.** does not answer what is in this stem. .",
+            "explanation": "It ignores the priorities of the routers and elects an active router by highest IP address. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"It ignores the priorities of the routers…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -997,24 +997,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Configure version 2 for all HSRP groups.** does not answer which in this stem. .",
+            "explanation": "Configure version 2 for all HSRP groups. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Configure version 2 for all HSRP groups.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Configure PPPoE on the router interfaces.** does not answer which in this stem. .",
+            "explanation": "Configure PPPoE on the router interfaces. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Configure PPPoE on the router interfaces…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Configure all routers in the HSRP as active routers.** does not answer which in this stem. .",
+            "explanation": "Configure all routers in the HSRP as active routers. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Configure all routers in the HSRP as act…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -1044,24 +1044,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA#show hsrp** does not answer which in this stem. .",
+            "explanation": "RouterA#show hsrp does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RouterA#show hsrp\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA#show ip standby** does not answer which in this stem. .",
+            "explanation": "RouterA#show ip standby does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RouterA#show ip standby\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA#show ip hsrp** does not answer which in this stem. .",
+            "explanation": "RouterA#show ip hsrp does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RouterA#show ip hsrp\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -1095,19 +1095,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The default priority is 150.** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "The default priority is 150. reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The hold timer is set too high and needs to timeout.** does not answer what is in this stem. .",
+            "explanation": "The hold timer is set too high and needs to timeout. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The hold timer is set too high and needs…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router A’s IP address is too low.** does not answer what is in this stem. .",
+            "explanation": "Router A’s IP address is too low. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router A’s IP address is too low.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1143,24 +1143,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#standby 1 preemption** does not answer which in this stem. .",
+            "explanation": "Router(config)#standby 1 preemption does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#standby 1 preemption\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-if)#standby 1 preemption** does not answer which in this stem. .",
+            "explanation": "Router(config-if)#standby 1 preemption does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-if)#standby 1 preemption\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-if)#hsrp 1 preempt** does not answer which in this stem. .",
+            "explanation": "Router(config-if)#hsrp 1 preempt does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-if)#hsrp 1 preempt\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -1191,24 +1191,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#vrrp 1 10.1.2.3 gi 0/0** does not answer which in this stem. .",
+            "explanation": "Router(config)#vrrp 1 10.1.2.3 gi 0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#vrrp 1 10.1.2.3 gi 0/0\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-if)#vrrp 1 10.1.2.3** does not answer which in this stem. .",
+            "explanation": "Router(config-if)#vrrp 1 10.1.2.3 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-if)#vrrp 1 10.1.2.3\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp** does not answer which in this stem. .",
+            "explanation": "Router(config-if)#standby 1 10.1.2.3 Router(config-if)#standby 1 vrrp does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-if)#standby 1 10.1.2.3 Rou…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -1240,24 +1240,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1** does not answer configure in this stem. .",
+            "explanation": "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RouterA(config-if)#standby 1 interface t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1** does not answer configure in this stem. .",
+            "explanation": "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RouterA(config-if)#standby 1 tracking se…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking** does not answer configure in this stem. .",
+            "explanation": "RouterA(config-if)#interface serial 0/0/1 RouterA(config-if)#standby 1 interface tracking RouterA(config-if)#interface serial 0/0/1 RouterB(config-if)#standby 1 interface tracking does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RouterA(config-if)#interface serial 0/0/…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "HSRP: hosts use **virtual IP/MAC**; know **Active vs Standby** and preempt/priority."
+        "examTip": "HSRP: hosts use virtual IP/MAC; know Active vs Standby and preempt/priority."
       }
     },
     {
@@ -1287,24 +1287,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ip hsrp** does not answer which in this stem. .",
+            "explanation": "Router#show ip hsrp does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#show ip hsrp\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#debug ip hsrp** does not answer which in this stem. .",
+            "explanation": "Router#debug ip hsrp does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#debug ip hsrp\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#debug ip standby** does not answer which in this stem. .",
+            "explanation": "Router#debug ip standby does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#debug ip standby\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -1336,24 +1336,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The active virtual gateway will respond with a MAC address of the active router.** does not answer which in this stem. .",
+            "explanation": "The active virtual gateway will respond with a MAC address of the active router. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The active virtual gateway will respond …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**GLBP allows for per-subnet load balancing.** does not answer which in this stem. .",
+            "explanation": "GLBP allows for per-subnet load balancing. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"GLBP allows for per-subnet load balancin…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The virtual router is responsible for responding to tracking requests.** does not answer which in this stem. .",
+            "explanation": "The virtual router is responsible for responding to tracking requests. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The virtual router is responsible for re…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -1384,24 +1384,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config-if)#standby 1 timers 200 msec 700 msec** does not answer which in this stem. .",
+            "explanation": "RouterA(config-if)#standby 1 timers 200 msec 700 msec does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RouterA(config-if)#standby 1 timers 200 …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RouterA(config-if)#standby 1 timers 700 msec 200 msec** does not answer which in this stem. .",
+            "explanation": "RouterA(config-if)#standby 1 timers 700 msec 200 msec does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RouterA(config-if)#standby 1 timers 700 …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config-if)#standby 1 timers msec 700 msec 200** does not answer which in this stem. .",
+            "explanation": "RouterA(config-if)#standby 1 timers msec 700 msec 200 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RouterA(config-if)#standby 1 timers msec…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "FHRP gives hosts one **virtual default gateway** — track Active/Standby (HSRP) vs master/backup (VRRP)."
+        "examTip": "FHRP gives hosts one virtual default gateway — track Active/Standby (HSRP) vs master/backup (VRRP)."
       }
     },
     {
@@ -1433,19 +1433,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router A will become the active router.** does not answer configure in this stem. .",
+            "explanation": "Router A will become the active router. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router A will become the active router.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router B will become the active router.** does not answer configure in this stem. .",
+            "explanation": "Router B will become the active router. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router B will become the active router.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router D will become the active router.** does not answer configure in this stem. .",
+            "explanation": "Router D will become the active router. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router D will become the active router.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }

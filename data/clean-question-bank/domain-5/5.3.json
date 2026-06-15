@@ -30,24 +30,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#password enable Password20!** does not answer which in this stem. .",
+            "explanation": "Router(config)#password enable Password20! does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#password enable Password2…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#enable Password20!** does not answer which in this stem. .",
+            "explanation": "Router(config)#enable Password20! does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#enable Password20!\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#secret enable Password20!** does not answer which in this stem. .",
+            "explanation": "Router(config)#secret enable Password20! does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#secret enable Password20!\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for local device access before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -80,24 +80,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#interface vlan 1** does not answer which in this stem. .",
+            "explanation": "Switch(config)#interface vlan 1 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#interface vlan 1\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#line console 1** does not answer which in this stem. .",
+            "explanation": "Switch(config)#line console 1 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#line console 1\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#line aux 1** does not answer which in this stem. .",
+            "explanation": "Switch(config)#line aux 1 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#line aux 1\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -128,24 +128,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**You originally entered the wrong password.** does not answer what is in this stem. .",
+            "explanation": "You originally entered the wrong password. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"You originally entered the wrong passwor…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The password Password20! contains a special character.** does not answer what is in this stem. .",
+            "explanation": "The password Password20! contains a special character. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The password Password20! contains a spec…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The password is too long and has been truncated.** does not answer what is in this stem. .",
+            "explanation": "The password is too long and has been truncated. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The password is too long and has been tr…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for local device access before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -176,24 +176,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config-line)#set password Password20! Router(config-line)#request login** does not answer which in this stem. .",
+            "explanation": "Router(config-line)#set password Password20! Router(config-line)#request login does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-line)#set password Passwor…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-line)#password Password20! Router(config-line)#login password** does not answer which in this stem. .",
+            "explanation": "Router(config-line)#password Password20! Router(config-line)#login password does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-line)#password Password20!…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-line)#login password Password20!** does not answer which in this stem. .",
+            "explanation": "Router(config-line)#login password Password20! does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-line)#login password Passw…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for local device access before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -225,24 +225,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The enable secret is not set.** does not answer what is in this stem. .",
+            "explanation": "The enable secret is not set. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The enable secret is not set.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The enable password is not set.** does not answer what is in this stem. .",
+            "explanation": "The enable password is not set. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The enable password is not set.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The line is administratively down.** does not answer what is in this stem. .",
+            "explanation": "The line is administratively down. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The line is administratively down.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -273,24 +273,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Setting the time and date** does not answer the requirement in this stem. .",
+            "explanation": "Setting the time and date does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Setting the time and date\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Setting the key strength** does not answer the requirement in this stem. .",
+            "explanation": "Setting the key strength does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Setting the key strength\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Setting the key repository** does not answer the requirement in this stem. .",
+            "explanation": "Setting the key repository does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Setting the key repository\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -321,24 +321,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-line)#version 2** does not answer which in this stem. .",
+            "explanation": "Router(config-line)#version 2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-line)#version 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config-ssh)#version 2** does not answer which in this stem. .",
+            "explanation": "Router(config-ssh)#version 2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config-ssh)#version 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ssh version 2** does not answer which in this stem. .",
+            "explanation": "Router(config)#ssh version 2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#ssh version 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -376,18 +376,18 @@
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config-line)#login ssh telnet** is not the behavior described here. .",
+            "explanation": "Switch(config-line)#login ssh telnet is not the behavior described here. .",
             "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#transport ssh telnet** is not the behavior described here. .",
+            "explanation": "Switch(config)#transport ssh telnet is not the behavior described here. .",
             "misconceptionTested": "Picking Telnet when secure management is required",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -426,13 +426,13 @@
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SSH allows for file copy.** does not answer the requirement in this stem. .",
+            "explanation": "SSH allows for file copy. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SSH allows for file copy.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SSH makes it easier to create ACLs for access.** reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
+            "explanation": "SSH makes it easier to create ACLs for access. reflects a common trap: ACLs encrypt or deeply inspect traffic. ACLs filter by header fields (IP/protocol/port); they are not encryption or stateful firewalls.",
             "misconceptionTested": "ACLs encrypt or deeply inspect traffic",
             "needsExplanationReview": true
           }
@@ -469,19 +469,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in** does not answer which in this stem. .",
+            "explanation": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#interface vlan 1 Switch(config-if)#ip access-group 1 in does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#access-list 1 permit host…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in** does not answer which in this stem. .",
+            "explanation": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#line vty 0 5 Switch(config-line)#ip access-group 1 in does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#access-list 1 permit host…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in** does not answer which in this stem. .",
+            "explanation": "Switch(config)#access-list 1 permit host 192.168.1.5 Switch(config)#ip access-group 1 in does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#access-list 1 permit host…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -517,24 +517,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The time and date need to be corrected.** does not answer what is in this stem. .",
+            "explanation": "The time and date need to be corrected. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The time and date need to be corrected.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The DNS server is not configured.** does not answer what is in this stem. .",
+            "explanation": "The DNS server is not configured. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The DNS server is not configured.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**There is no host record for the switch or router.** does not answer what is in this stem. .",
+            "explanation": "There is no host record for the switch or router. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"There is no host record for the switch o…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -566,24 +566,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#account user1 Router(config-acct)#password Password20!** does not answer which in this stem. .",
+            "explanation": "Router(config)#account user1 Router(config-acct)#password Password20! does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#account user1 Router(conf…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#user user1 Password20!** does not answer which in this stem. .",
+            "explanation": "Router(config)#user user1 Password20! does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#user user1 Password20!\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#user-account user1 password Password20!** does not answer which in this stem. .",
+            "explanation": "Router(config)#user-account user1 password Password20! does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#user-account user1 passwo…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -615,24 +615,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#generate crypto key rsa** does not answer which in this stem. .",
+            "explanation": "Router(config)#generate crypto key rsa does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#generate crypto key rsa\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#crypto generate key rsa** does not answer which in this stem. .",
+            "explanation": "Router(config)#crypto generate key rsa does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#crypto generate key rsa\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#crypto key generate rsa** does not answer which in this stem. .",
+            "explanation": "Router#crypto key generate rsa does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#crypto key generate rsa\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -662,24 +662,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#exec-timeout 0** does not answer which in this stem. .",
+            "explanation": "Switch(config)#exec-timeout 0 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#exec-timeout 0\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config-line)#timeout 0 0** does not answer which in this stem. .",
+            "explanation": "Switch(config-line)#timeout 0 0 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config-line)#timeout 0 0\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config-line)#no exec-timeout** does not answer which in this stem. .",
+            "explanation": "Switch(config-line)#no exec-timeout does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config-line)#no exec-timeout\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for local device access before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -711,24 +711,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Console 0** does not answer which in this stem. .",
+            "explanation": "Console 0 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Console 0\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**VTY 1** does not answer which in this stem. .",
+            "explanation": "VTY 1 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"VTY 1\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VTY 2** does not answer which in this stem. .",
+            "explanation": "VTY 2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"VTY 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "AAA order: **Authentication → Authorization → Accounting** — match the stem verb."
+        "examTip": "AAA order: Authentication → Authorization → Accounting — match the stem verb."
       }
     },
     {
@@ -763,24 +763,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#new aaa model** does not answer which in this stem. .",
+            "explanation": "Switch(config)#new aaa model does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#new aaa model\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#local authentication** does not answer which in this stem. .",
+            "explanation": "Switch(config)#local authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#local authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config-line)#local authentication** does not answer which in this stem. .",
+            "explanation": "Switch(config-line)#local authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config-line)#local authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     },
     {
@@ -810,24 +810,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#exec-timeout 30 0** does not answer which in this stem. .",
+            "explanation": "Switch(config)#exec-timeout 30 0 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#exec-timeout 30 0\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config-line)#exec-timeout 0 30** does not answer which in this stem. .",
+            "explanation": "Switch(config-line)#exec-timeout 0 30 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config-line)#exec-timeout 0 30\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config-line)#timeout 30 0** does not answer which in this stem. .",
+            "explanation": "Switch(config-line)#timeout 30 0 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config-line)#timeout 30 0\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for local device access before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -858,24 +858,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#no enable secret** does not answer which in this stem. .",
+            "explanation": "Switch(config)#no enable secret does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#no enable secret\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#no line vty 2** does not answer which in this stem. .",
+            "explanation": "Switch#no line vty 2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch#no line vty 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#disconnect line vty 2** does not answer which in this stem. .",
+            "explanation": "Switch#disconnect line vty 2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch#disconnect line vty 2\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for local device access before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -905,24 +905,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**MOTD banner** does not answer which in this stem. .",
+            "explanation": "MOTD banner does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"MOTD banner\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Login banner** does not answer which in this stem. .",
+            "explanation": "Login banner does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Login banner\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Incoming banner** does not answer which in this stem. .",
+            "explanation": "Incoming banner does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Incoming banner\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **local device access** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for local device access before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -955,24 +955,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Certificate** does not answer which in this stem. .",
+            "explanation": "Certificate does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Certificate\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Smart card** does not answer which in this stem. .",
+            "explanation": "Smart card does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Smart card\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**License** does not answer which in this stem. .",
+            "explanation": "License does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"License\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     },
     {
@@ -1004,24 +1004,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#password encryption** does not answer configure in this stem. .",
+            "explanation": "Router(config)#password encryption does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#password encryption\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#service encryption** does not answer configure in this stem. .",
+            "explanation": "Router(config)#service encryption does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#service encryption\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#password-encryption service** does not answer configure in this stem. .",
+            "explanation": "Router(config)#password-encryption service does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router(config)#password-encryption servi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cleartext **Telnet** fails security stems — SSH is the management answer."
+        "examTip": "Cleartext Telnet fails security stems — SSH is the management answer."
       }
     },
     {
@@ -1054,24 +1054,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#enable secret 9** does not answer which in this stem. .",
+            "explanation": "Switch(config)#enable secret 9 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#enable secret 9\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#service password-encryption scrypt** does not answer which in this stem. .",
+            "explanation": "Switch(config)#service password-encryption scrypt does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#service password-encrypti…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#enable secret algorithm-type scrypt** does not answer which in this stem. .",
+            "explanation": "Switch(config)#enable secret algorithm-type scrypt does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch(config)#enable secret algorithm-t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for password policy before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1102,24 +1102,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**MD5** does not answer configure in this stem. .",
+            "explanation": "MD5 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"MD5\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SHA-128** does not answer configure in this stem. .",
+            "explanation": "SHA-128 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SHA-128\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SHA-256** does not answer configure in this stem. .",
+            "explanation": "SHA-256 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SHA-256\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for password policy before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1151,24 +1151,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Single-factor authentication** does not answer which in this stem. .",
+            "explanation": "Single-factor authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Single-factor authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RADIUS authentication** does not answer which in this stem. .",
+            "explanation": "RADIUS authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RADIUS authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Active Directory authentication** does not answer which in this stem. .",
+            "explanation": "Active Directory authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Active Directory authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for password policy before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -1200,24 +1200,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Password expiration** does not answer the requirement in this stem. .",
+            "explanation": "Password expiration does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Password expiration\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Phishing protection** does not answer the requirement in this stem. .",
+            "explanation": "Phishing protection does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Phishing protection\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Time restrictions** does not answer the requirement in this stem. .",
+            "explanation": "Time restrictions does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Time restrictions\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **password policy** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for password policy before picking a familiar-sounding wrong term."
       }
     }
   ]

@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**10 m** uses the wrong value. The tested fact calls for **100** — not 10.",
+            "explanation": "10 m uses the wrong value. The tested fact calls for 100 — not 10.",
             "misconceptionTested": "Selecting \"10 m\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**500 m** uses the wrong value. The tested fact calls for **100** — not 500.",
+            "explanation": "500 m uses the wrong value. The tested fact calls for 100 — not 500.",
             "misconceptionTested": "Selecting \"500 m\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**1 km** uses the wrong value. The tested fact calls for **100** — not 1.",
+            "explanation": "1 km uses the wrong value. The tested fact calls for 100 — not 1.",
             "misconceptionTested": "Selecting \"1 km\" without matching the scenario constraint"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Crossover** reflects a common trap: Always choosing crossover switch-to-switch. Modern auto-MDIX usually allows straight-through between switches.",
+            "explanation": "Crossover reflects a common trap: Always choosing crossover switch-to-switch. Modern auto-MDIX usually allows straight-through between switches.",
             "misconceptionTested": "Always choosing crossover switch-to-switch"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Console rollover** does not answer which in this stem. PC-to-switch is unlike devices — straight-through.",
+            "explanation": "Console rollover misses what this question tests. PC-to-switch is unlike devices — straight-through.",
             "misconceptionTested": "Selecting \"Console rollover\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Fiber SM only** does not answer which in this stem. PC-to-switch is unlike devices — straight-through.",
+            "explanation": "Fiber SM only misses what this question tests. PC-to-switch is unlike devices — straight-through.",
             "misconceptionTested": "Selecting \"Fiber SM only\" without matching the scenario constraint"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Multimode orange** does not answer which in this stem. Single-mode fiber (often yellow) supports long laser-based runs.",
+            "explanation": "Multimode orange misses what this question tests. Single-mode fiber (often yellow) supports long laser-based runs.",
             "misconceptionTested": "Selecting \"Multimode orange\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Copper Cat5** does not answer which in this stem. Single-mode fiber (often yellow) supports long laser-based runs.",
+            "explanation": "Copper Cat5 misses what this question tests. Single-mode fiber (often yellow) supports long laser-based runs.",
             "misconceptionTested": "Selecting \"Copper Cat5\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Coax** does not answer which in this stem. Single-mode fiber (often yellow) supports long laser-based runs.",
+            "explanation": "Coax misses what this question tests. Single-mode fiber (often yellow) supports long laser-based runs.",
             "misconceptionTested": "Selecting \"Coax\" without matching the scenario constraint"
           }
         ],
@@ -156,17 +156,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RJ-45** does not answer which in this stem. LC is the dominant fiber connector on SFP/SFP+ transceivers.",
+            "explanation": "RJ-45 misses what this question tests. LC is the dominant fiber connector on SFP/SFP+ transceivers.",
             "misconceptionTested": "Selecting \"RJ-45\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**DB-9** does not answer which in this stem. LC is the dominant fiber connector on SFP/SFP+ transceivers.",
+            "explanation": "DB-9 misses what this question tests. LC is the dominant fiber connector on SFP/SFP+ transceivers.",
             "misconceptionTested": "Selecting \"DB-9\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**USB-C** does not answer which in this stem. LC is the dominant fiber connector on SFP/SFP+ transceivers.",
+            "explanation": "USB-C misses what this question tests. LC is the dominant fiber connector on SFP/SFP+ transceivers.",
             "misconceptionTested": "Selecting \"USB-C\" without matching the scenario constraint"
           }
         ],
@@ -198,17 +198,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**100 Mbps** uses the wrong value. The tested fact calls for **6** — not 100.",
+            "explanation": "100 Mbps uses the wrong value. The tested fact calls for 6 — not 100.",
             "misconceptionTested": "Selecting \"100 Mbps\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**1 Gbps** uses the wrong value. The tested fact calls for **6** — not 1.",
+            "explanation": "1 Gbps uses the wrong value. The tested fact calls for 6 — not 1.",
             "misconceptionTested": "Selecting \"1 Gbps\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**40 Gbps** uses the wrong value. The tested fact calls for **6** — not 40.",
+            "explanation": "40 Gbps uses the wrong value. The tested fact calls for 6 — not 40.",
             "misconceptionTested": "Selecting \"40 Gbps\" without matching the scenario constraint"
           }
         ],
@@ -240,17 +240,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Straight-through** reflects a common trap: Always choosing crossover switch-to-switch. Modern auto-MDIX usually allows straight-through between switches.",
+            "explanation": "Straight-through reflects a common trap: Always choosing crossover switch-to-switch. Modern auto-MDIX usually allows straight-through between switches.",
             "misconceptionTested": "Always choosing crossover switch-to-switch"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Console** does not answer which in this stem. Like devices historically required crossover to swap TX/RX pairs.",
+            "explanation": "Console misses what this question tests. Like devices historically required crossover to swap TX/RX pairs.",
             "misconceptionTested": "Selecting \"Console\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Serial DCE** does not answer which in this stem. Like devices historically required crossover to swap TX/RX pairs.",
+            "explanation": "Serial DCE misses what this question tests. Like devices historically required crossover to swap TX/RX pairs.",
             "misconceptionTested": "Selecting \"Serial DCE\" without matching the scenario constraint"
           }
         ],
@@ -282,21 +282,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Increase CPU speed** does not answer what is in this stem. SFPs let you choose copper or fiber media per port without changing the switch.",
+            "explanation": "Increase CPU speed misses what this question tests. SFPs let you choose copper or fiber media per port without changing the switch.",
             "misconceptionTested": "Selecting \"Increase CPU speed\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Replace STP** is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "explanation": "Replace STP is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Encrypt traffic** does not answer what is in this stem. SFPs let you choose copper or fiber media per port without changing the switch.",
+            "explanation": "Encrypt traffic misses what this question tests. SFPs let you choose copper or fiber media per port without changing the switch.",
             "misconceptionTested": "Selecting \"Encrypt traffic\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **sfp purpose** — exam distractors swap similar terms; anchor on: SFPs let you choose copper or fiber media per port without changing the switch."
+        "examTip": "This stem tests sfp purpose — exam distractors swap similar terms; anchor on: SFPs let you choose copper or fiber media per port without changing the switch."
       }
     },
     {
@@ -322,7 +322,7 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "This statement is **False**, but the tested fact is: True — MM is commonly orange (OM2) or aqua (OM3/OM4); SM is often yellow.",
+            "explanation": "This statement is False, but the tested fact is: True — MM is commonly orange (OM2) or aqua (OM3/OM4); SM is often yellow.",
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],

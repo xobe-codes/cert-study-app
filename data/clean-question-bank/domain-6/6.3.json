@@ -30,19 +30,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Three tier** does not answer which in this stem. .",
+            "explanation": "Three tier does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Three tier\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Collapsed core** does not answer which in this stem. .",
+            "explanation": "Collapsed core does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Collapsed core\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SAN fabric** does not answer which in this stem. .",
+            "explanation": "SAN fabric does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SAN fabric\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -77,19 +77,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The Leaf switches connect to other Leaf switches.** reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "The Leaf switches connect to other Leaf switches. reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**There is only one Spine switch per network.** reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "There is only one Spine switch per network. reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Spine switches provide access to hosts.** reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "Spine switches provide access to hosts. reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           }
@@ -124,19 +124,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Leaf to Leaf to Spine** reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "Leaf to Leaf to Spine reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Spine to Leaf to Spine** reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "Spine to Leaf to Spine reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Leaf to Leaf** reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "Leaf to Leaf reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           }
@@ -174,19 +174,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Cisco APIC-EM** does not answer which in this stem. .",
+            "explanation": "Cisco APIC-EM does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco APIC-EM\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**OpenDaylight** does not answer which in this stem. .",
+            "explanation": "OpenDaylight does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"OpenDaylight\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Cisco SD-WAN** does not answer which in this stem. .",
+            "explanation": "Cisco SD-WAN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco SD-WAN\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -224,19 +224,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Cisco APIC-EM** does not answer which in this stem. .",
+            "explanation": "Cisco APIC-EM does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco APIC-EM\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Cisco Prime Infrastructure** does not answer which in this stem. .",
+            "explanation": "Cisco Prime Infrastructure does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco Prime Infrastructure\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**OpenDaylight** does not answer which in this stem. .",
+            "explanation": "OpenDaylight does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"OpenDaylight\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -272,19 +272,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Spine/Leaf** reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "Spine/Leaf reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**CLOS** does not answer the requirement in this stem. .",
+            "explanation": "CLOS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CLOS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SDN** does not answer the requirement in this stem. .",
+            "explanation": "SDN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SDN\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -323,19 +323,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The SDN controller configures the management plane of network devices.** does not answer which in this stem. .",
+            "explanation": "The SDN controller configures the management plane of network devices. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The SDN controller configures the manage…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The SDN controller monitors data plane traffic.** does not answer which in this stem. .",
+            "explanation": "The SDN controller monitors data plane traffic. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The SDN controller monitors data plane t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The SDN controller complements the control plane of the SDN device.** does not answer which in this stem. .",
+            "explanation": "The SDN controller complements the control plane of the SDN device. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The SDN controller complements the contr…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -374,19 +374,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**OpenSDN** does not answer which in this stem. .",
+            "explanation": "OpenSDN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"OpenSDN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**OpenStack** does not answer which in this stem. .",
+            "explanation": "OpenStack does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"OpenStack\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**OpenDaylight** does not answer which in this stem. .",
+            "explanation": "OpenDaylight does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"OpenDaylight\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -423,19 +423,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Data plane** does not answer which in this stem. .",
+            "explanation": "Data plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Data plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Management plane** does not answer which in this stem. .",
+            "explanation": "Management plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Management plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch plane** does not answer which in this stem. .",
+            "explanation": "Switch plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -472,19 +472,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Data plane** does not answer which in this stem. .",
+            "explanation": "Data plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Data plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Control plane** does not answer which in this stem. .",
+            "explanation": "Control plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Control plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch plane** does not answer which in this stem. .",
+            "explanation": "Switch plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -521,19 +521,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Control plane** does not answer which in this stem. .",
+            "explanation": "Control plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Control plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Management plane** does not answer which in this stem. .",
+            "explanation": "Management plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Management plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch plane** does not answer which in this stem. .",
+            "explanation": "Switch plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Switch plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -570,19 +570,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Data plane** does not answer which in this stem. .",
+            "explanation": "Data plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Data plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Management plane** does not answer which in this stem. .",
+            "explanation": "Management plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Management plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Routing plane** does not answer which in this stem. .",
+            "explanation": "Routing plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Routing plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -620,19 +620,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Data plane** does not answer which in this stem. .",
+            "explanation": "Data plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Data plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Control plane** does not answer which in this stem. .",
+            "explanation": "Control plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Control plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Network plane** does not answer which in this stem. .",
+            "explanation": "Network plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Network plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -671,19 +671,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The northbound interface (NBI)** does not answer which in this stem. .",
+            "explanation": "The northbound interface (NBI) does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The northbound interface (NBI)\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The core of the controller** does not answer which in this stem. .",
+            "explanation": "The core of the controller does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The core of the controller\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Applications hosted on the controller** does not answer which in this stem. .",
+            "explanation": "Applications hosted on the controller does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Applications hosted on the controller\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -719,19 +719,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**An API is a program that allows for data transfer.** does not answer the requirement in this stem. .",
+            "explanation": "An API is a program that allows for data transfer. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"An API is a program that allows for data…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**An API is a programming language for network programmability.** does not answer the requirement in this stem. .",
+            "explanation": "An API is a programming language for network programmability. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"An API is a programming language for net…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**An API allows for programs to be virtualized.** does not answer the requirement in this stem. .",
+            "explanation": "An API allows for programs to be virtualized. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"An API allows for programs to be virtual…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -771,19 +771,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The southbound interface (SBI)** does not answer which in this stem. .",
+            "explanation": "The southbound interface (SBI) does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The southbound interface (SBI)\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The core of the controller** does not answer which in this stem. .",
+            "explanation": "The core of the controller does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The core of the controller\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Simple Network Management Protocol (SNMP)** does not answer which in this stem. .",
+            "explanation": "Simple Network Management Protocol (SNMP) does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Simple Network Management Protocol (SNMP…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -821,19 +821,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Control plane** does not answer which in this stem. .",
+            "explanation": "Control plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Control plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Management plane** does not answer which in this stem. .",
+            "explanation": "Management plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Management plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Routing plane** does not answer which in this stem. .",
+            "explanation": "Routing plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Routing plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -868,19 +868,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**1 hop** does not answer the requirement in this stem. .",
+            "explanation": "1 hop does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"1 hop\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**4 hops** does not answer the requirement in this stem. .",
+            "explanation": "4 hops does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"4 hops\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**5 hops** does not answer the requirement in this stem. .",
+            "explanation": "5 hops does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"5 hops\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -918,19 +918,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Overlay** does not answer which in this stem. .",
+            "explanation": "Overlay does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Overlay\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Tunnel** does not answer which in this stem. .",
+            "explanation": "Tunnel does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Tunnel\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Leaf** reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
+            "explanation": "Leaf reflects a common trap: Calling spine-leaf a WAN topology. Spine-leaf is a data-center switching fabric, not a branch WAN pattern.",
             "misconceptionTested": "Calling spine-leaf a WAN topology",
             "needsExplanationReview": true
           }
@@ -968,19 +968,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Management plane** does not answer which in this stem. .",
+            "explanation": "Management plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Management plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Configuration plane** does not answer which in this stem. .",
+            "explanation": "Configuration plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Configuration plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Data plane** does not answer which in this stem. .",
+            "explanation": "Data plane does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Data plane\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1019,19 +1019,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**VXLAN** does not answer which in this stem. .",
+            "explanation": "VXLAN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"VXLAN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**VLAN** does not answer which in this stem. .",
+            "explanation": "VLAN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"VLAN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ECMP** does not answer which in this stem. .",
+            "explanation": "ECMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ECMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1069,19 +1069,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ECMP** does not answer which in this stem. .",
+            "explanation": "ECMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ECMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**DMVPN** does not answer which in this stem. .",
+            "explanation": "DMVPN does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"DMVPN\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**EIGRP** does not answer which in this stem. .",
+            "explanation": "EIGRP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"EIGRP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1118,19 +1118,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**CDP** does not answer which in this stem. .",
+            "explanation": "CDP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CDP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ICMP** does not answer which in this stem. .",
+            "explanation": "ICMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ICMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**VTP** does not answer which in this stem. .",
+            "explanation": "VTP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"VTP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1167,19 +1167,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**OSPF** does not answer which in this stem. .",
+            "explanation": "OSPF does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"OSPF\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**MPLS** does not answer which in this stem. .",
+            "explanation": "MPLS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"MPLS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**CLOS** does not answer which in this stem. .",
+            "explanation": "CLOS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CLOS\" without matching the scenario constraint",
             "needsExplanationReview": true
           }

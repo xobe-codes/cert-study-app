@@ -33,17 +33,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Access, Audit, Administration** does not answer the requirement in this stem. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
+            "explanation": "Access, Audit, Administration misses what this question tests. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
             "misconceptionTested": "Selecting \"Access, Audit, Administration\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Authentication, Auditing, Availability** does not answer the requirement in this stem. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
+            "explanation": "Authentication, Auditing, Availability misses what this question tests. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
             "misconceptionTested": "Selecting \"Authentication, Auditing, Availability\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Authorization, Access, Accounting** does not answer the requirement in this stem. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
+            "explanation": "Authorization, Access, Accounting misses what this question tests. AAA stands for Authentication (who are you), Authorization (what are you allowed to do), and Accounting (what did you do / logging).",
             "misconceptionTested": "Selecting \"Authorization, Access, Accounting\" without matching the scenario constraint"
           }
         ],
@@ -76,17 +76,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP port 1812** uses the wrong value. The tested fact calls for **49** — not 1812.",
+            "explanation": "UDP port 1812 uses the wrong value. The tested fact calls for 49 — not 1812.",
             "misconceptionTested": "Selecting \"UDP port 1812\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP port 49** does not answer which in this stem. TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server.",
+            "explanation": "UDP port 49 misses what this question tests. TACACS+ uses TCP port 49, providing reliable, connection-oriented communication between the network device and the AAA server.",
             "misconceptionTested": "Selecting \"UDP port 49\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**TCP port 1812** uses the wrong value. The tested fact calls for **49** — not 1812.",
+            "explanation": "TCP port 1812 uses the wrong value. The tested fact calls for 49 — not 1812.",
             "misconceptionTested": "Selecting \"TCP port 1812\" without matching the scenario constraint"
           }
         ],
@@ -119,17 +119,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**TCP 49 and TCP 50** uses the wrong value. The tested fact calls for **1812** — not 49.",
+            "explanation": "TCP 49 and TCP 50 uses the wrong value. The tested fact calls for 1812 — not 49.",
             "misconceptionTested": "Selecting \"TCP 49 and TCP 50\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TCP 1812 and TCP 1813** uses the wrong value. The tested fact calls for **1813** — not 1812.",
+            "explanation": "TCP 1812 and TCP 1813 uses the wrong value. The tested fact calls for 1813 — not 1812.",
             "misconceptionTested": "Selecting \"TCP 1812 and TCP 1813\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**UDP 161 and UDP 162** uses the wrong value. The tested fact calls for **1812** — not 161.",
+            "explanation": "UDP 161 and UDP 162 uses the wrong value. The tested fact calls for 1812 — not 161.",
             "misconceptionTested": "Selecting \"UDP 161 and UDP 162\" without matching the scenario constraint"
           }
         ],
@@ -163,17 +163,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**TACACS+ encrypts only the password; RADIUS encrypts the entire packet body** does not answer what is in this stem. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
+            "explanation": "TACACS+ encrypts only the password; RADIUS encrypts the entire packet body misses what this question tests. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
             "misconceptionTested": "Selecting \"TACACS+ encrypts only the password; RADI…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Neither protocol supports encryption** does not answer what is in this stem. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
+            "explanation": "Neither protocol supports encryption misses what this question tests. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
             "misconceptionTested": "Selecting \"Neither protocol supports encryption\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Both encrypt the entire packet body identically** does not answer what is in this stem. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
+            "explanation": "Both encrypt the entire packet body identically misses what this question tests. TACACS+ encrypts the entire body of the packet between client and server, while RADIUS encrypts only the password field, leaving other attributes (like username) in clear text.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
@@ -206,17 +206,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**ip aaa enable** does not answer which in this stem. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
+            "explanation": "ip aaa enable misses what this question tests. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
             "misconceptionTested": "Selecting \"ip aaa enable\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**service aaa** does not answer which in this stem. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
+            "explanation": "service aaa misses what this question tests. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
             "misconceptionTested": "Selecting \"service aaa\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**aaa start** does not answer which in this stem. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
+            "explanation": "aaa start misses what this question tests. aaa new-model is the global configuration command that enables the AAA access-control model on the device, which is a prerequisite for all other aaa authentication/authorization/accounting commands.",
             "misconceptionTested": "Selecting \"aaa start\" without matching the scenario constraint"
           }
         ],
@@ -249,17 +249,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Only TACACS+ can be used; if it fails, login is denied** does not answer configure in this stem. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
+            "explanation": "Only TACACS+ can be used; if it fails, login is denied misses what this question tests. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
             "misconceptionTested": "Selecting \"Only TACACS+ can be used; if it fails, l…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The switch authenticates against the local database first, then TACACS+** does not answer configure in this stem. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
+            "explanation": "The switch authenticates against the local database first, then TACACS+ misses what this question tests. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
             "misconceptionTested": "Selecting \"The switch authenticates against the loc…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**This command has no effect without a RADIUS server configured** does not answer configure in this stem. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
+            "explanation": "This command has no effect without a RADIUS server configured misses what this question tests. The 'group tacacs+ local' method list tries TACACS+ servers first (in order); if none respond, the device falls back to the local user database — a common design for resilience if the AAA server is unreachable.",
             "misconceptionTested": "Selecting \"This command has no effect without a RAD…\" without matching the scenario constraint"
           }
         ],
@@ -292,17 +292,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**TACACS+ does not support shared secret keys** is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
+            "explanation": "TACACS+ does not support shared secret keys is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
             "misconceptionTested": "Selecting \"TACACS+ does not support shared secret k…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The device needs to use RADIUS instead** is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
+            "explanation": "The device needs to use RADIUS instead is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
             "misconceptionTested": "Selecting \"The device needs to use RADIUS instead\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**TACACS+ requires the keys to be different on each side** is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
+            "explanation": "TACACS+ requires the keys to be different on each side is a plausible symptom fix but does not match the most likely root cause here: The shared secret key used to encrypt TACACS+/RADIUS traffic must match exactly (case-sensitive) on both the network device and the AAA server.",
             "misconceptionTested": "Selecting \"TACACS+ requires the keys to be differen…\" without matching the scenario constraint"
           }
         ],
@@ -335,17 +335,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Authentication** does not answer which in this stem. Authorization determines what an authenticated user is permitted to do — e.",
+            "explanation": "Authentication misses what this question tests. Authorization determines what an authenticated user is permitted to do — e.",
             "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Accounting** does not answer which in this stem. Authorization determines what an authenticated user is permitted to do — e.",
+            "explanation": "Accounting misses what this question tests. Authorization determines what an authenticated user is permitted to do — e.",
             "misconceptionTested": "Selecting \"Accounting\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Auditing** does not answer which in this stem. Authorization determines what an authenticated user is permitted to do — e.",
+            "explanation": "Auditing misses what this question tests. Authorization determines what an authenticated user is permitted to do — e.",
             "misconceptionTested": "Selecting \"Auditing\" without matching the scenario constraint"
           }
         ],
@@ -378,17 +378,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Authentication** does not answer which in this stem. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
+            "explanation": "Authentication misses what this question tests. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
             "misconceptionTested": "Selecting \"Authentication\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Authorization** does not answer which in this stem. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
+            "explanation": "Authorization misses what this question tests. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
             "misconceptionTested": "Selecting \"Authorization\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Encryption** does not answer which in this stem. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
+            "explanation": "Encryption misses what this question tests. Accounting tracks and logs what an authenticated and authorized user actually does — including command-level logging — which is exactly what command auditing requires.",
             "misconceptionTested": "Selecting \"Encryption\" without matching the scenario constraint"
           }
         ],
@@ -422,17 +422,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RADIUS cannot authenticate users at all** does not answer which in this stem. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
+            "explanation": "RADIUS cannot authenticate users at all misses what this question tests. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
             "misconceptionTested": "Selecting \"RADIUS cannot authenticate users at all\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TACACS+ is required for wireless client authentication, which RADIUS cannot do** does not answer which in this stem. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
+            "explanation": "TACACS+ is required for wireless client authentication, which RADIUS cannot do misses what this question tests. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
             "misconceptionTested": "Selecting \"TACACS+ is required for wireless client …\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**TACACS+ uses less bandwidth than RADIUS in all cases** does not answer which in this stem. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
+            "explanation": "TACACS+ uses less bandwidth than RADIUS in all cases misses what this question tests. TACACS+'s separation of AAA functions and support for per-command authorization makes it especially well-suited for controlling exactly which CLI commands an administrator can run — a common reason it's preferred for device administration (RADIUS is more common for network access / 802.",
             "misconceptionTested": "Selecting \"TACACS+ uses less bandwidth than RADIUS …\" without matching the scenario constraint"
           }
         ],

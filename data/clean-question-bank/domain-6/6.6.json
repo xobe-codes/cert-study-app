@@ -30,24 +30,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Network management station** does not answer which in this stem. .",
+            "explanation": "Network management station does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Network management station\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Software-defined networking** does not answer which in this stem. .",
+            "explanation": "Software-defined networking does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Software-defined networking\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Centralized logging** does not answer which in this stem. .",
+            "explanation": "Centralized logging does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Centralized logging\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -80,24 +80,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Cisco DNA Center** does not answer which in this stem. .",
+            "explanation": "Cisco DNA Center does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco DNA Center\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Chef** does not answer which in this stem. .",
+            "explanation": "Chef does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Puppet** does not answer which in this stem. .",
+            "explanation": "Puppet does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -129,24 +129,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Playbook** does not answer which in this stem. .",
+            "explanation": "Playbook does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Playbook\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Settings** does not answer which in this stem. .",
+            "explanation": "Settings does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Settings\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Modules** does not answer which in this stem. .",
+            "explanation": "Modules does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Modules\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -178,24 +178,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Puppet** does not answer which in this stem. .",
+            "explanation": "Puppet does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Chef** does not answer which in this stem. .",
+            "explanation": "Chef does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Cisco DNA Center** does not answer which in this stem. .",
+            "explanation": "Cisco DNA Center does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco DNA Center\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -226,24 +226,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Agent** does not answer which in this stem. .",
+            "explanation": "Agent does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Agent\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Class** does not answer which in this stem. .",
+            "explanation": "Class does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Class\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Module** does not answer which in this stem. .",
+            "explanation": "Module does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Module\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -276,24 +276,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Cookbook** does not answer which in this stem. .",
+            "explanation": "Cookbook does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cookbook\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Crock Pot** does not answer which in this stem. .",
+            "explanation": "Crock Pot does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Crock Pot\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Chef Node** does not answer which in this stem. .",
+            "explanation": "Chef Node does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef Node\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -324,24 +324,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Chef-Client** does not answer which in this stem. .",
+            "explanation": "Chef-Client does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef-Client\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Chef Workstation** does not answer which in this stem. .",
+            "explanation": "Chef Workstation does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef Workstation\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Knife** does not answer which in this stem. .",
+            "explanation": "Knife does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Knife\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -371,24 +371,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ANSIBLE_SETTINGS** does not answer which in this stem. .",
+            "explanation": "ANSIBLE_SETTINGS does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ANSIBLE_SETTINGS\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ansible_connection** does not answer which in this stem. .",
+            "explanation": "ansible_connection does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ansible_connection\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**/etc/ansible/hosts** does not answer which in this stem. .",
+            "explanation": "/etc/ansible/hosts does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"/etc/ansible/hosts\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -418,24 +418,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**man** does not answer which in this stem. .",
+            "explanation": "man does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"man\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**cat** does not answer which in this stem. .",
+            "explanation": "cat does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"cat\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ad-hoc** does not answer which in this stem. .",
+            "explanation": "ad-hoc does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ad-hoc\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -466,24 +466,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Knife interface** does not answer which in this stem. .",
+            "explanation": "Knife interface does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Knife interface\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**ansible_playbook command** does not answer which in this stem. .",
+            "explanation": "ansible_playbook command does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ansible_playbook command\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Ansible Tower** does not answer which in this stem. .",
+            "explanation": "Ansible Tower does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Ansible Tower\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -513,24 +513,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Resource** does not answer the requirement in this stem. .",
+            "explanation": "Resource does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Resource\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Class** does not answer the requirement in this stem. .",
+            "explanation": "Class does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Class\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Module** does not answer the requirement in this stem. .",
+            "explanation": "Module does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Module\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -562,24 +562,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Chef Workstation** does not answer the requirement in this stem. .",
+            "explanation": "Chef Workstation does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef Workstation\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Chef Node** does not answer the requirement in this stem. .",
+            "explanation": "Chef Node does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef Node\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Chef-Client** does not answer the requirement in this stem. .",
+            "explanation": "Chef-Client does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef-Client\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -610,24 +610,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Chef** does not answer which in this stem. .",
+            "explanation": "Chef does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Puppet** does not answer which in this stem. .",
+            "explanation": "Puppet does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Ansible** does not answer which in this stem. .",
+            "explanation": "Ansible does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Ansible\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -659,24 +659,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Puppet** does not answer which in this stem. .",
+            "explanation": "Puppet does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Chef** does not answer which in this stem. .",
+            "explanation": "Chef does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Python** does not answer which in this stem. .",
+            "explanation": "Python does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Python\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -707,24 +707,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Storage of the Bookshelf** does not answer the requirement in this stem. .",
+            "explanation": "Storage of the Bookshelf does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Storage of the Bookshelf\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Storage of the configuration of Chef** does not answer the requirement in this stem. .",
+            "explanation": "Storage of the configuration of Chef does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Storage of the configuration of Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Client-side agent** does not answer the requirement in this stem. .",
+            "explanation": "Client-side agent does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Client-side agent\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -755,24 +755,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IaaS helps maintain configuration over the life cycle of the host.** does not answer which in this stem. .",
+            "explanation": "IaaS helps maintain configuration over the life cycle of the host. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IaaS helps maintain configuration over t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Configuration management prevents drift with NTP.** does not answer which in this stem. .",
+            "explanation": "Configuration management prevents drift with NTP. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Configuration management prevents drift …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Configuration management software requires per-host licensing.** does not answer which in this stem. .",
+            "explanation": "Configuration management software requires per-host licensing. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Configuration management software requir…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -804,24 +804,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Chef** does not answer which in this stem. .",
+            "explanation": "Chef does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Chef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Puppet** does not answer which in this stem. .",
+            "explanation": "Puppet does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Puppet\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Cisco DNA Center** does not answer which in this stem. .",
+            "explanation": "Cisco DNA Center does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Cisco DNA Center\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **configuration management** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for configuration management before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -854,24 +854,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**YAML** does not answer which in this stem. .",
+            "explanation": "YAML does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"YAML\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**CSV** does not answer which in this stem. .",
+            "explanation": "CSV does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**XML** does not answer which in this stem. .",
+            "explanation": "XML does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"XML\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -901,24 +901,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Definition** does not answer which in this stem. .",
+            "explanation": "Definition does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Definition\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Lists** does not answer which in this stem. .",
+            "explanation": "Lists does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Lists\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Keys** does not answer which in this stem. .",
+            "explanation": "Keys does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Keys\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -948,24 +948,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The file begins with a hashbang preprocessor.** does not answer the requirement in this stem. .",
+            "explanation": "The file begins with a hashbang preprocessor. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The file begins with a hashbang preproce…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The contents are contained between curly brackets.** does not answer the requirement in this stem. .",
+            "explanation": "The contents are contained between curly brackets. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The contents are contained between curly…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The contents are contained between square brackets.** does not answer the requirement in this stem. .",
+            "explanation": "The contents are contained between square brackets. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The contents are contained between squar…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -995,24 +995,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**YAML** does not answer which in this stem. .",
+            "explanation": "YAML does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"YAML\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**JSON** does not answer which in this stem. .",
+            "explanation": "JSON does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"JSON\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**CSV** does not answer which in this stem. .",
+            "explanation": "CSV does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -1042,24 +1042,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**JSON** does not answer which in this stem. .",
+            "explanation": "JSON does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"JSON\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**XML** does not answer which in this stem. .",
+            "explanation": "XML does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"XML\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**CSV** does not answer which in this stem. .",
+            "explanation": "CSV does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -1089,24 +1089,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Three dashes** does not answer the requirement in this stem. .",
+            "explanation": "Three dashes does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Three dashes\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**A square bracket** does not answer the requirement in this stem. .",
+            "explanation": "A square bracket does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"A square bracket\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A double quote** does not answer the requirement in this stem. .",
+            "explanation": "A double quote does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"A double quote\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -1136,24 +1136,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The value that follows the square bracket is the value you are looking for.** does not answer the requirement in this stem. .",
+            "explanation": "The value that follows the square bracket is the value you are looking for. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The value that follows the square bracke…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The value is after the matching square bracket.** does not answer the requirement in this stem. .",
+            "explanation": "The value is after the matching square bracket. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The value is after the matching square b…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The value is unknown.** does not answer the requirement in this stem. .",
+            "explanation": "The value is unknown. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The value is unknown.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -1186,24 +1186,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The interface of Fa0/1 is capitalized.** does not answer what is in this stem. .",
+            "explanation": "The interface of Fa0/1 is capitalized. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The interface of Fa0/1 is capitalized.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The address should have a square bracket.** does not answer what is in this stem. .",
+            "explanation": "The address should have a square bracket. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The address should have a square bracket…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Nothing is wrong.** does not answer what is in this stem. .",
+            "explanation": "Nothing is wrong. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Nothing is wrong.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Local L2 works but remote fails? Check the host **default gateway** before blaming routing protocols."
+        "examTip": "Local L2 works but remote fails? Check the host default gateway before blaming routing protocols."
       }
     },
     {
@@ -1233,24 +1233,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Values can be used that contain spaces.** does not answer which in this stem. .",
+            "explanation": "Values can be used that contain spaces. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Values can be used that contain spaces.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**There are multiple values for a particular key.** does not answer which in this stem. .",
+            "explanation": "There are multiple values for a particular key. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"There are multiple values for a particul…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The files can be read line by line for every value.** does not answer which in this stem. .",
+            "explanation": "The files can be read line by line for every value. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The files can be read line by line for e…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -1289,18 +1289,18 @@
           },
           {
             "choiceIndex": 2,
-            "explanation": "**CSV** does not answer the requirement in this stem. .",
+            "explanation": "CSV does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CSV\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**YAML** is not the behavior described here. .",
+            "explanation": "YAML is not the behavior described here. .",
             "misconceptionTested": "Swapping automation tools or API styles",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Cloud management = **central dashboard** across sites; on-prem DNA Center keeps control **inside your network**."
+        "examTip": "Cloud management = central dashboard across sites; on-prem DNA Center keeps control inside your network."
       }
     },
     {
@@ -1332,24 +1332,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The interface data is incorrect because it is missing a comma after the routes.** does not answer which in this stem. .",
+            "explanation": "The interface data is incorrect because it is missing a comma after the routes. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** does not answer which in this stem. .",
+            "explanation": "The interface data is incorrect because it contains an illegal underscore character. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Nothing is wrong with the exhibit.** does not answer which in this stem. .",
+            "explanation": "Nothing is wrong with the exhibit. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Nothing is wrong with the exhibit.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
+        "examTip": "Find the interesting octet (not 0 or 255) and apply the block size there — not always the 4th octet."
       }
     },
     {
@@ -1381,24 +1381,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The interface data is incorrect because it is missing a comma after defaultgw.** does not answer which in this stem. .",
+            "explanation": "The interface data is incorrect because it is missing a comma after defaultgw. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The interface data is incorrect because it is missing a subnet mask for the second IP address.** does not answer which in this stem. .",
+            "explanation": "The interface data is incorrect because it is missing a subnet mask for the second IP address. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** does not answer which in this stem. .",
+            "explanation": "The interface data is incorrect because it contains an illegal underscore character. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
+        "examTip": "Find the interesting octet (not 0 or 255) and apply the block size there — not always the 4th octet."
       }
     },
     {
@@ -1430,24 +1430,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The interface data is incorrect because it is missing a comma after defaultgw.** does not answer which in this stem. .",
+            "explanation": "The interface data is incorrect because it is missing a comma after defaultgw. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The interface data is incorrect because it contains an illegal underscore character.** does not answer which in this stem. .",
+            "explanation": "The interface data is incorrect because it contains an illegal underscore character. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The interface data is incorrect because …\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Nothing is wrong with the exhibit.** does not answer which in this stem. .",
+            "explanation": "Nothing is wrong with the exhibit. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Nothing is wrong with the exhibit.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Find the **interesting octet** (not 0 or 255) and apply the **block size** there — not always the 4th octet."
+        "examTip": "Find the interesting octet (not 0 or 255) and apply the block size there — not always the 4th octet."
       }
     }
   ]

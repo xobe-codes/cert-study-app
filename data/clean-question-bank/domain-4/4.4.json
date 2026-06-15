@@ -30,24 +30,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SNMP version 1** does not answer which in this stem. .",
+            "explanation": "SNMP version 1 does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**SNMP version 2e** does not answer which in this stem. .",
+            "explanation": "SNMP version 2e does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP version 2c** does not answer which in this stem. .",
+            "explanation": "SNMP version 2c does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -80,24 +80,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Object identifiers (OIDs)** does not answer the requirement in this stem. .",
+            "explanation": "Object identifiers (OIDs) does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP agent** does not answer the requirement in this stem. .",
+            "explanation": "SNMP agent does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SNMP community string** does not answer the requirement in this stem. .",
+            "explanation": "SNMP community string does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -129,24 +129,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Syslog** does not answer the requirement in this stem. .",
+            "explanation": "Syslog does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Object identifier** does not answer the requirement in this stem. .",
+            "explanation": "Object identifier does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Management information base** does not answer the requirement in this stem. .",
+            "explanation": "Management information base does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -177,24 +177,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Get-request message** does not answer the requirement in this stem. .",
+            "explanation": "Get-request message does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Get-response message** does not answer the requirement in this stem. .",
+            "explanation": "Get-response message does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Set-request message** does not answer the requirement in this stem. .",
+            "explanation": "Set-request message does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -227,24 +227,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The SNMP community string** does not answer which in this stem. .",
+            "explanation": "The SNMP community string does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The SNMP agent** does not answer which in this stem. .",
+            "explanation": "The SNMP agent does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SNMP messages** does not answer which in this stem. .",
+            "explanation": "SNMP messages does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -277,24 +277,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Trap messages are always encrypted.** does not answer the requirement in this stem. .",
+            "explanation": "Trap messages are always encrypted. does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Inform messages do not use acknowledgments.** does not answer the requirement in this stem. .",
+            "explanation": "Inform messages do not use acknowledgments. does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Trap messages always use acknowledgments.** does not answer the requirement in this stem. .",
+            "explanation": "Trap messages always use acknowledgments. does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -325,24 +325,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Encryption** does not answer which in this stem. .",
+            "explanation": "Encryption does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**User authentication** does not answer which in this stem. .",
+            "explanation": "User authentication does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Message integrity** does not answer which in this stem. .",
+            "explanation": "Message integrity does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -372,24 +372,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Encrypted communities** does not answer which in this stem. .",
+            "explanation": "Encrypted communities does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SNMP callback security** does not answer which in this stem. .",
+            "explanation": "SNMP callback security does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SHA-256** does not answer which in this stem. .",
+            "explanation": "SHA-256 does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -420,24 +420,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps** does not answer which in this stem. .",
+            "explanation": "Switch(config)#snmp-server 192.168.1.5 version 2c C0mmun1ty Switch(config)#snmp-server enable traps does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps** does not answer which in this stem. .",
+            "explanation": "Switch(config)#snmp-server host 192.168.1.5 version 2c Switch(config)#snmp-server enable traps does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#snmp contact trap 192.168.1.5 version 2c** does not answer which in this stem. .",
+            "explanation": "Switch(config)#snmp contact trap 192.168.1.5 version 2c does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -469,24 +469,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/161** does not answer which in this stem. .",
+            "explanation": "UDP/161 does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**TCP/162** does not answer which in this stem. .",
+            "explanation": "TCP/162 does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**UDP/514** does not answer which in this stem. .",
+            "explanation": "UDP/514 does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -518,24 +518,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show snmp** does not answer which in this stem. .",
+            "explanation": "Switch#show snmp does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show snmp community** does not answer which in this stem. .",
+            "explanation": "Switch#show snmp community does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show snmp notifications** does not answer which in this stem. .",
+            "explanation": "Switch#show snmp notifications does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **snmp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for snmp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -568,24 +568,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Configuring a group** does not answer configure in this stem. .",
+            "explanation": "Configuring a group does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Configuring a user** does not answer configure in this stem. .",
+            "explanation": "Configuring a user does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Configuring a community** does not answer configure in this stem. .",
+            "explanation": "Configuring a community does not match the mechanism asked here.",
             "misconceptionTested": "Mixing SNMP versions or trap vs inform behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     }
   ]

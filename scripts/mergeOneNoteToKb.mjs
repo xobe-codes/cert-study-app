@@ -8,8 +8,8 @@ import {
   ONENOTE_NORMALIZED,
   ONENOTE_COMPILED,
   loadJson,
-  buildReadingTiers,
 } from './lib/onenoteUtils.mjs'
+import { buildVoiceTiers, stripMarkdown } from './lib/voiceProse.mjs'
 
 const KB_DIR = join(ROOT, 'data', 'knowledge-base')
 const CKUS_PATH = join(KB_DIR, 'ckus.json')
@@ -50,10 +50,12 @@ function mergeByObjective(records) {
       warnings,
     }
     const examBoundary = learningOutcomes.find(l => /exam|ccna|must/i.test(l)) || ''
-    const { tiers, bigTakeaway } = buildReadingTiers(
-      { operatorSummary, keyPoints },
-      compressBoundary(examBoundary),
-    )
+    const { tiers, bigTakeaway } = buildVoiceTiers({
+      operatorSummary,
+      keyPoints,
+      learningOutcomes,
+      examBoundary: stripMarkdown(examBoundary),
+    })
 
     readings[objectiveId] = {
       objectiveId,
@@ -73,8 +75,7 @@ function mergeByObjective(records) {
 }
 
 function compressBoundary(text) {
-  if (!text) return ''
-  return String(text).replace(/\*\*/g, '').slice(0, 220)
+  return stripMarkdown(text).slice(0, 220)
 }
 
 function enrichCkus(records, ckus) {

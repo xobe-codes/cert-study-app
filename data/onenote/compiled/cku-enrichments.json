@@ -18,8 +18,13 @@
       "1.1-c-q6",
       "1.1-c-q7"
     ],
-    "confidence": "high",
-    "needsReview": false
+    "confidence": "draft",
+    "needsReview": false,
+    "operatorSummary": "Client — A device that requests or accesses a service Server — A device that provides a service to another device",
+    "source": "onenote",
+    "sourceFiles": [
+      "01 - Day 1 – Network Devices.md"
+    ]
   },
   {
     "ckuId": "CKU-SWITCH",
@@ -40,8 +45,13 @@
       "1.1-c-q2",
       "1.1-c-q3"
     ],
-    "confidence": "high",
-    "needsReview": false
+    "confidence": "draft",
+    "needsReview": false,
+    "operatorSummary": "Client — A device that requests or accesses a service Server — A device that provides a service to another device",
+    "source": "onenote",
+    "sourceFiles": [
+      "01 - Day 1 – Network Devices.md"
+    ]
   },
   {
     "ckuId": "CKU-FIREWALL",
@@ -749,9 +759,10 @@
     ],
     "confidence": "high",
     "needsReview": false,
-    "operatorSummary": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes:\n\n- Class A → /8\n\n- Class B → /16\n\n- Class C → /24\nThis rigidity caused massive IP address waste :\n\n- Small networks receiving tens of thousands of unused addresses\n\n- Point‑to‑point links wasting entire /24 networks\nSubnetting solves this by allowing networks to be sized according to need . Subnetting works by borrowing host bits and turning them into network bits. To calculate",
+    "operatorSummary": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes: Class A → /8 Class B → /16 Class C → /24 This rigidity caused massive IP address waste : Small networks receiving tens of thousands of unused addresses Point‑to‑point links wasting entire /24 networks Subnetting solves this by allowing networks to be sized according to need .",
     "source": "onenote",
     "sourceFiles": [
+      "07 - Day 7 - IPv4 Addressing pt 1.md",
       "13 - Day 13 - Subnetting pt 1.md"
     ]
   },
@@ -1029,7 +1040,12 @@
       "2.1-c-q8"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "What a LAN really is What a broadcast domain is",
+    "source": "onenote",
+    "sourceFiles": [
+      "16 - Day 16 - VLANs pt 1.md"
+    ]
   },
   {
     "ckuId": "CKU-ACCESS-PORT",
@@ -1233,7 +1249,7 @@
     ],
     "confidence": "high",
     "needsReview": false,
-    "operatorSummary": "EtherChannel bundles multiple physical interfaces into:\n\n- One logical interface\n\n- Called a Port‑Channel\n\n- Also known as a Link Aggregation Group (LAG)\nKey behavior:\n\n- STP treats the bundle as one interface\n\n- All member links forward traffic\n\n- No Layer 2 loops are created\nEtherChannel provides:\n\n- Increased bandwidth\n\n- Redundancy\n\n- Efficient use of links",
+    "operatorSummary": "EtherChannel bundles multiple physical interfaces into: One logical interface Called a Port‑Channel Also known as a Link Aggregation Group (LAG) Key behavior: STP treats the bundle as one interface All member links forward traffic No Layer 2 loops are created EtherChannel provides: Increased bandwidth Redundancy Efficient use of links",
     "source": "onenote",
     "sourceFiles": [
       "27 - Day 23 - EtherChannel.md"
@@ -1339,7 +1355,12 @@
       "obj-2.5-source-q046"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Why redundancy is required in modern networks The dangers of Layer 2 loops",
+    "source": "onenote",
+    "sourceFiles": [
+      "20 - Day 20 - Spanning Tree Protocol pt 1.md"
+    ]
   },
   {
     "ckuId": "CKU-ROOT-BRIDGE",
@@ -1381,8 +1402,13 @@
       "2.5-c-q5",
       "2.5-c-q6"
     ],
-    "confidence": "high",
-    "needsReview": false
+    "confidence": "draft",
+    "needsReview": false,
+    "operatorSummary": "The problem PortFast is designed to solve",
+    "source": "onenote",
+    "sourceFiles": [
+      "22 - Port Fast.md"
+    ]
   },
   {
     "ckuId": "CKU-WLAN-ARCH",
@@ -1519,7 +1545,12 @@
       "3.2-c-q8"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Source — PC1 on 192.168.1.0/24 Destination — PC4 on 192.168.4.0/24",
+    "source": "onenote",
+    "sourceFiles": [
+      "12 - Day 12 - The Life of a Packet.md"
+    ]
   },
   {
     "ckuId": "CKU-ADMINISTRATIVE-DISTANCE",
@@ -1788,7 +1819,7 @@
     ],
     "confidence": "high",
     "needsReview": false,
-    "operatorSummary": "OSPF is a:\n\n\n- Link‑state\n\n- Interior Gateway Protocol (IGP)\n\n- Defined by IEEE standard OSPFv2 for IPv4\nOSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate\nthe best paths through the network. Key contrast:\n\n- Distance vector protocols use “routing by rumor”\n\n- OSPF builds a complete topology map OSPF routers:\n\n- Form neighbor adjacencies\n\n- Exchange Link State Advertisements (LSAs)\n\n- Build an identical Link State Database (LSDB)",
+    "operatorSummary": "OSPF is a: Link‑state Interior Gateway Protocol (IGP) Defined by IETF OSPFv2 (RFC 2328) for IPv4 OSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate the best paths through the network.",
     "source": "onenote",
     "sourceFiles": [
       "30 - Day 26 - OSPF pt 1.md"
@@ -1820,7 +1851,12 @@
       "obj-3.4-source-q052"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "OSPF network types and their behavior DR, BDR, and DROther roles",
+    "source": "onenote",
+    "sourceFiles": [
+      "32 - Day 28 - OSPF pt 3.md"
+    ]
   },
   {
     "ckuId": "CKU-OSPF-NEIGHBOR",
@@ -1845,7 +1881,12 @@
       "3.4-c-q9"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Why default OSPF cost values are often misleading OSPF neighbor states and message types",
+    "source": "onenote",
+    "sourceFiles": [
+      "31 - Day 27 - OSPF pt 2.md"
+    ]
   },
   {
     "ckuId": "CKU-FHRP",
@@ -1895,7 +1936,7 @@
     ],
     "confidence": "high",
     "needsReview": false,
-    "operatorSummary": "FHRPs work using these concepts:\n\n- Routers share a virtual IP\n\n- A virtual MAC is mapped to that IP\n\n- Routers exchange hello messages\n\n- One router is active (or master)",
+    "operatorSummary": "FHRPs work using these concepts: Routers share a virtual IP A virtual MAC is mapped to that IP Routers exchange hello messages One router is active (or master)",
     "source": "onenote",
     "sourceFiles": [
       "33 - Day 29 - First Hop Redundancy.md"
@@ -2008,7 +2049,7 @@
     ],
     "confidence": "high",
     "needsReview": false,
-    "operatorSummary": "IPv4 does not provide enough globally unique addresses for all devices. Short‑term solutions that extended IPv4’s lifespan:\n\n- CIDR (Classless Inter‑Domain Routing)\n\n- Private IPv4 addresses\n\n- NAT\nLong‑term solution:\n\n- IPv6",
+    "operatorSummary": "IPv4 does not provide enough globally unique addresses for all devices.",
     "source": "onenote",
     "sourceFiles": [
       "48 - Day 44 - Network Address Translation (NAT) pt 1.md"
@@ -2058,7 +2099,7 @@
     ],
     "confidence": "high",
     "needsReview": false,
-    "operatorSummary": "IPv4 does not provide enough globally unique addresses for all devices. Short‑term solutions that extended IPv4’s lifespan:\n\n- CIDR (Classless Inter‑Domain Routing)\n\n- Private IPv4 addresses\n\n- NAT\nLong‑term solution:\n\n- IPv6",
+    "operatorSummary": "IPv4 does not provide enough globally unique addresses for all devices.",
     "source": "onenote",
     "sourceFiles": [
       "48 - Day 44 - Network Address Translation (NAT) pt 1.md"
@@ -2107,7 +2148,12 @@
       "obj-4.2-source-q012"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Exam Topic 4.2 — Configure and verify NTP operating in client and server mode The difference between the software clock and hardware calendar",
+    "source": "onenote",
+    "sourceFiles": [
+      "41 - Day 37 - Network Time Protocol (NTP).md"
+    ]
   },
   {
     "ckuId": "CKU-DHCP",
@@ -2131,7 +2177,12 @@
       "obj-4.3-source-q012"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network Exam Topic 4.6 — Configure and verify DHCP client and relay",
+    "source": "onenote",
+    "sourceFiles": [
+      "43 - Day 39 - Dynamic Host Configuration Protocol (DHCP).md"
+    ]
   },
   {
     "ckuId": "CKU-DNS",
@@ -2162,7 +2213,7 @@
     ],
     "confidence": "high",
     "needsReview": false,
-    "operatorSummary": "Client needs to access a resource using a name\n2. Client sends a DNS query to a DNS server\n3. DNS server replies with the IP address\n4.",
+    "operatorSummary": "Client needs to access a resource using a name 2.",
     "source": "onenote",
     "sourceFiles": [
       "42 - Day 38 - Domain Name System (DNS).md"
@@ -2194,7 +2245,12 @@
       "obj-4.4-source-q012"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Exam Topic 4.4 — Explain the function of SNMP in network operations You do not need to configure a full SNMP system",
+    "source": "onenote",
+    "sourceFiles": [
+      "44 - Day 40 - Simple Network Management Protocol.md"
+    ]
   },
   {
     "ckuId": "CKU-SYSLOG",
@@ -2224,7 +2280,12 @@
       "obj-4.5-source-q012"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Exam Topic 4.5 — Describe the use of syslog features including facilities and levels You must understand what Syslog is used for",
+    "source": "onenote",
+    "sourceFiles": [
+      "45 - Day 41 - Syslog.md"
+    ]
   },
   {
     "ckuId": "CKU-DHCP-RELAY",
@@ -2294,7 +2355,12 @@
       "obj-4.8-source-q009"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Exam Topic 4.8 — Configure network devices for remote access using SSH Console port security basics",
+    "source": "onenote",
+    "sourceFiles": [
+      "46 - Day 42 - Secure Shell (SSH).md"
+    ]
   },
   {
     "ckuId": "CKU-TFTP-FTP",
@@ -2309,7 +2375,12 @@
     "relatedCommands": [],
     "relatedQuestionIds": [],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network You do not need deep protocol internals",
+    "source": "onenote",
+    "sourceFiles": [
+      "47 - Day 43 - File  Transfer Protocol (FTP) & Trivial File Transfer Protocol (TFTP).md"
+    ]
   },
   {
     "ckuId": "CKU-CIA-TRIAD",
@@ -2332,7 +2403,7 @@
     ],
     "confidence": "high",
     "needsReview": false,
-    "operatorSummary": "All security goals map back to the CIA triad :\nConfidentiality (C)\n\n- Only authorized users can access data\n\n- Prevents data disclosure\nExamples:\n\n- Password‑protected files\n\n- Encrypted traffic\n\n- Access control lists\n\nIntegrity (I)\n\n- Data must not be altered by unauthorized users\n\n- Ensures accuracy and trustworthiness\nExamples:\n\n- File checksums\n\n- Digital signatures\n\n- Change control logging\n\nAvailability (A)\n\n- Systems and data must be accessible when needed\n\n- Protects",
+    "operatorSummary": "All security goals map back to the CIA triad : Confidentiality (C) Only authorized users can access data Prevents data disclosure Examples: Password‑protected files Encrypted traffic Access control lists Integrity (I) Data must not be altered by unauthorized users Ensures accuracy and trustworthiness Examples: File checksums Digital signatures Change control logging Availability (A) Systems and data must be accessible when needed Protects",
     "source": "onenote",
     "sourceFiles": [
       "52 - Day 48 - Security Fundamentals.md"
@@ -2615,7 +2686,12 @@
       "5.5-c-q6"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "What ACLs are and why they exist Inbound vs outbound ACL processing",
+    "source": "onenote",
+    "sourceFiles": [
+      "38 - Day 34 - Standard ACLs.md"
+    ]
   },
   {
     "ckuId": "CKU-ACL-EXTENDED",
@@ -2635,7 +2711,12 @@
       "5.5-c-q7"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "ACLs are processed top‑down First match wins",
+    "source": "onenote",
+    "sourceFiles": [
+      "39 - Day 35 - Extended ACLs.md"
+    ]
   },
   {
     "ckuId": "CKU-WILDCARD-MASK",
@@ -2704,7 +2785,12 @@
       "obj-5.7-source-q029"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Which source MAC addresses are allowed on a switchport How many MAC addresses are allowed on a switchport",
+    "source": "onenote",
+    "sourceFiles": [
+      "53 - Day 49 - Port Security.md"
+    ]
   },
   {
     "ckuId": "CKU-DHCP-SNOOPING",
@@ -2752,7 +2838,7 @@
     ],
     "confidence": "draft",
     "needsReview": false,
-    "operatorSummary": "Client sends DHCP DISCOVER (untrusted port)\n2. Switch inspects message\n3. If valid → forwards it\n4.",
+    "operatorSummary": "Client sends DHCP DISCOVER (untrusted port) 2.",
     "source": "onenote",
     "sourceFiles": [
       "54 - Day 50 - DHCP Snooping.md"
@@ -2828,7 +2914,12 @@
       "obj-6.1-source-q006"
     ],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Understand why automation is used Understand traditional vs controller‑based networking",
+    "source": "onenote",
+    "sourceFiles": [
+      "65 - Day 59 - Intro to Network Automation.md"
+    ]
   },
   {
     "ckuId": "CKU-SDN-TRAD",
@@ -2888,7 +2979,12 @@
     "relatedCommands": [],
     "relatedQuestionIds": [],
     "confidence": "high",
-    "needsReview": false
+    "needsReview": false,
+    "operatorSummary": "Understand what an API is Understand CRUD operations",
+    "source": "onenote",
+    "sourceFiles": [
+      "67 - Day 61 - REST APIs.md"
+    ]
   },
   {
     "ckuId": "CKU-JSON-ANSIBLE",

@@ -29,24 +29,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#ntp server 129.6.15.28** does not answer which in this stem. .",
+            "explanation": "Router#ntp server 129.6.15.28 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ntp client 129.6.15.28** does not answer which in this stem. .",
+            "explanation": "Router(config)#ntp client 129.6.15.28 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#ntp client 129.6.15.28** does not answer which in this stem. .",
+            "explanation": "Router#ntp client 129.6.15.28 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -77,24 +77,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ntp server** does not answer which in this stem. .",
+            "explanation": "Router(config)#ntp server does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ntp clock source** does not answer which in this stem. .",
+            "explanation": "Router(config)#ntp clock source does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ntp trusted** does not answer which in this stem. .",
+            "explanation": "Router(config)#ntp trusted does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -125,24 +125,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ntp** does not answer which in this stem. .",
+            "explanation": "Router#show ntp does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show time** does not answer which in this stem. .",
+            "explanation": "Router#show time does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show time source** does not answer which in this stem. .",
+            "explanation": "Router#show time source does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -174,24 +174,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show clock detail** does not answer which in this stem. .",
+            "explanation": "Router#show clock detail does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ntp detail** does not answer which in this stem. .",
+            "explanation": "Router#show ntp detail does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ntp skew** does not answer which in this stem. .",
+            "explanation": "Router#show ntp skew does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -221,24 +221,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**TCP/161** does not answer which in this stem. .",
+            "explanation": "TCP/161 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**TCP/123** does not answer which in this stem. .",
+            "explanation": "TCP/123 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP/69** does not answer which in this stem. .",
+            "explanation": "UDP/69 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -268,24 +268,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ntp** does not answer which in this stem. .",
+            "explanation": "Router#show ntp does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip ntp** does not answer which in this stem. .",
+            "explanation": "Router#show ip ntp does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#debug ntp messages** does not answer which in this stem. .",
+            "explanation": "Router#debug ntp messages does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -316,24 +316,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Configure all devices to a public NTP server.** does not answer which in this stem. .",
+            "explanation": "Configure all devices to a public NTP server. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Configure all devices to different NTP servers for redundancy.** does not answer which in this stem. .",
+            "explanation": "Configure all devices to different NTP servers for redundancy. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Configure all devices as master servers.** does not answer which in this stem. .",
+            "explanation": "Configure all devices as master servers. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -364,24 +364,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ntp** does not answer which in this stem. .",
+            "explanation": "Router#show ntp does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip ntp status** does not answer which in this stem. .",
+            "explanation": "Router#show ip ntp status does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#debug ntp drift** does not answer which in this stem. .",
+            "explanation": "Router#debug ntp drift does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -413,24 +413,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#clock timezone pacific** does not answer which in this stem. .",
+            "explanation": "Router(config)#clock timezone pacific does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#timezone pacific** does not answer which in this stem. .",
+            "explanation": "Router(config)#timezone pacific does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#timezone pst -8** does not answer which in this stem. .",
+            "explanation": "Router(config)#timezone pst -8 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -461,24 +461,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Tunnel interface** does not answer configure in this stem. .",
+            "explanation": "Tunnel interface does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**NTP interface** does not answer configure in this stem. .",
+            "explanation": "NTP interface does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switched Virtual Interface (SVI)** does not answer configure in this stem. .",
+            "explanation": "Switched Virtual Interface (SVI) does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -510,24 +510,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#ntp loopback 0** does not answer which in this stem. .",
+            "explanation": "Switch(config)#ntp loopback 0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#ntp master loopback 0** does not answer which in this stem. .",
+            "explanation": "Switch(config)#ntp master loopback 0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#ntp clock loopback 0** does not answer which in this stem. .",
+            "explanation": "Switch(config)#ntp clock loopback 0 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -558,24 +558,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#clock set 2:24:00 1 august 2019** does not answer which in this stem. .",
+            "explanation": "Router(config)#clock set 2:24:00 1 august 2019 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#clock set 2:24:00 august 1 2019** does not answer which in this stem. .",
+            "explanation": "Router(config)#clock set 2:24:00 august 1 2019 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#clock 2:24:00 1 august 2019** does not answer which in this stem. .",
+            "explanation": "Router#clock 2:24:00 1 august 2019 does not match the mechanism asked here.",
             "misconceptionTested": "Confusing NTP stratum direction or client/server role",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **ntp** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for ntp before picking a familiar-sounding wrong term."
       }
     }
   ]

@@ -30,24 +30,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Anti-malware software** does not answer the requirement in this stem. .",
+            "explanation": "Anti-malware software does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Anti-malware software\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Antivirus software** does not answer the requirement in this stem. .",
+            "explanation": "Antivirus software does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Antivirus software\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Certificates** does not answer the requirement in this stem. .",
+            "explanation": "Certificates does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Certificates\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security program before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -79,24 +79,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Spam** does not answer what is in this stem. .",
+            "explanation": "Spam does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Spam\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Password cracking** does not answer what is in this stem. .",
+            "explanation": "Password cracking does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Password cracking\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Worm** does not answer what is in this stem. .",
+            "explanation": "Worm does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Worm\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security program before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -126,24 +126,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Security** does not answer the requirement in this stem. .",
+            "explanation": "Security does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Degaussing** does not answer the requirement in this stem. .",
+            "explanation": "Degaussing does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Degaussing\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Tempered** does not answer the requirement in this stem. .",
+            "explanation": "Tempered does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Tempered\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security program before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -176,24 +176,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Phishing** does not answer which in this stem. .",
+            "explanation": "Phishing does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Phishing\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Tailgating** does not answer which in this stem. .",
+            "explanation": "Tailgating does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Tailgating\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Whaling** does not answer which in this stem. .",
+            "explanation": "Whaling does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Whaling\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security program before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -226,24 +226,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Biometric authentication** does not answer which in this stem. .",
+            "explanation": "Biometric authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Biometric authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Hardware tokens** does not answer which in this stem. .",
+            "explanation": "Hardware tokens does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Hardware tokens\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Active Directory** does not answer which in this stem. .",
+            "explanation": "Active Directory does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Active Directory\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security program before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -274,24 +274,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Multifactor authentication** does not answer the requirement in this stem. .",
+            "explanation": "Multifactor authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Multifactor authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Software firewalls** does not answer the requirement in this stem. .",
+            "explanation": "Software firewalls does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Software firewalls\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Antivirus software** does not answer the requirement in this stem. .",
+            "explanation": "Antivirus software does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Antivirus software\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security program before picking a familiar-sounding wrong term."
       }
     },
     {
@@ -326,24 +326,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**User authentication** does not answer the requirement in this stem. .",
+            "explanation": "User authentication does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"User authentication\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Strong passwords** does not answer the requirement in this stem. .",
+            "explanation": "Strong passwords does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Strong passwords\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Change SSIDs** does not answer the requirement in this stem. .",
+            "explanation": "Change SSIDs does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Change SSIDs\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Re-read the stem constraint for **security program** before picking a familiar-sounding wrong term."
+        "examTip": "Re-read the stem constraint for security program before picking a familiar-sounding wrong term."
       }
     }
   ]

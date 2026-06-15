@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**VMware Workstation on Windows** does not answer which in this stem. ESXi runs directly on hardware without a host OS underneath.",
+            "explanation": "VMware Workstation on Windows misses what this question tests. ESXi runs directly on hardware without a host OS underneath.",
             "misconceptionTested": "Selecting \"VMware Workstation on Windows\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Docker Desktop only** does not answer which in this stem. ESXi runs directly on hardware without a host OS underneath.",
+            "explanation": "Docker Desktop only misses what this question tests. ESXi runs directly on hardware without a host OS underneath.",
             "misconceptionTested": "Selecting \"Docker Desktop only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**A physical router** reflects a common trap: Virtualization eliminates physical networks. VMs/containers still need virtual and physical switching/routing underneath.",
+            "explanation": "A physical router reflects a common trap: Virtualization eliminates physical networks. VMs/containers still need virtual and physical switching/routing underneath.",
             "misconceptionTested": "Virtualization eliminates physical networks"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Directly on bare metal only** does not answer the requirement in this stem. Type 2 is hosted — e.",
+            "explanation": "Directly on bare metal only misses what this question tests. Type 2 is hosted — e.",
             "misconceptionTested": "Selecting \"Directly on bare metal only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Inside a container only** does not answer the requirement in this stem. Type 2 is hosted — e.",
+            "explanation": "Inside a container only misses what this question tests. Type 2 is hosted — e.",
             "misconceptionTested": "Selecting \"Inside a container only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Without any VMs** does not answer the requirement in this stem. Type 2 is hosted — e.",
+            "explanation": "Without any VMs misses what this question tests. Type 2 is hosted — e.",
             "misconceptionTested": "Selecting \"Without any VMs\" without matching the scenario constraint"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Include a full guest OS each** reflects a common trap: Saying containers include a full guest OS. Containers share the host kernel — only apps/libs are packaged.",
+            "explanation": "Include a full guest OS each reflects a common trap: Saying containers include a full guest OS. Containers share the host kernel — only apps/libs are packaged.",
             "misconceptionTested": "Saying containers include a full guest OS"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Cannot run on Linux** does not answer the requirement in this stem. Containers isolate processes but share one kernel — lighter than full VMs.",
+            "explanation": "Cannot run on Linux misses what this question tests. Containers isolate processes but share one kernel — lighter than full VMs.",
             "misconceptionTested": "Selecting \"Cannot run on Linux\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Replace physical switches** does not answer the requirement in this stem. Containers isolate processes but share one kernel — lighter than full VMs.",
+            "explanation": "Replace physical switches misses what this question tests. Containers isolate processes but share one kernel — lighter than full VMs.",
             "misconceptionTested": "Selecting \"Replace physical switches\" without matching the scenario constraint"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Wireless encryption** does not answer the requirement in this stem. VRF creates separate routing/forwarding instances on one device.",
+            "explanation": "Wireless encryption misses what this question tests. VRF creates separate routing/forwarding instances on one device.",
             "misconceptionTested": "Selecting \"Wireless encryption\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Fiber transceiver support** does not answer the requirement in this stem. VRF creates separate routing/forwarding instances on one device.",
+            "explanation": "Fiber transceiver support misses what this question tests. VRF creates separate routing/forwarding instances on one device.",
             "misconceptionTested": "Selecting \"Fiber transceiver support\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DHCP server redundancy** does not answer the requirement in this stem. VRF creates separate routing/forwarding instances on one device.",
+            "explanation": "DHCP server redundancy misses what this question tests. VRF creates separate routing/forwarding instances on one device.",
             "misconceptionTested": "Selecting \"DHCP server redundancy\" without matching the scenario constraint"
           }
         ],
@@ -197,17 +197,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Replacing DNS with VLANs** does not answer the requirement in this stem. NFV virtualizes functions like firewall and router as software.",
+            "explanation": "Replacing DNS with VLANs misses what this question tests. NFV virtualizes functions like firewall and router as software.",
             "misconceptionTested": "Selecting \"Replacing DNS with VLANs\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Eliminating all routers** does not answer the requirement in this stem. NFV virtualizes functions like firewall and router as software.",
+            "explanation": "Eliminating all routers misses what this question tests. NFV virtualizes functions like firewall and router as software.",
             "misconceptionTested": "Selecting \"Eliminating all routers\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Using only WEP** does not answer the requirement in this stem. NFV virtualizes functions like firewall and router as software.",
+            "explanation": "Using only WEP misses what this question tests. NFV virtualizes functions like firewall and router as software.",
             "misconceptionTested": "Selecting \"Using only WEP\" without matching the scenario constraint"
           }
         ],
@@ -239,17 +239,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Only a container image** does not answer the requirement in this stem. VMs are full guests with virtual hardware including vNICs.",
+            "explanation": "Only a container image misses what this question tests. VMs are full guests with virtual hardware including vNICs.",
             "misconceptionTested": "Selecting \"Only a container image\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Shared kernel with all other VMs** does not answer the requirement in this stem. VMs are full guests with virtual hardware including vNICs.",
+            "explanation": "Shared kernel with all other VMs misses what this question tests. VMs are full guests with virtual hardware including vNICs.",
             "misconceptionTested": "Selecting \"Shared kernel with all other VMs\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**No network interface** does not answer the requirement in this stem. VMs are full guests with virtual hardware including vNICs.",
+            "explanation": "No network interface misses what this question tests. VMs are full guests with virtual hardware including vNICs.",
             "misconceptionTested": "Selecting \"No network interface\" without matching the scenario constraint"
           }
         ],
@@ -279,7 +279,7 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This statement is **True**, but the tested fact is: False — VLAN = L2 broadcast domain; VRF = L3 routing table isolation.",
+            "explanation": "This statement is True, but the tested fact is: False — VLAN = L2 broadcast domain; VRF = L3 routing table isolation.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           }
         ],
@@ -311,17 +311,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Type 1 hypervisors** does not answer the requirement in this stem. Docker packages apps into containers sharing the host kernel.",
+            "explanation": "Type 1 hypervisors misses what this question tests. Docker packages apps into containers sharing the host kernel.",
             "misconceptionTested": "Selecting \"Type 1 hypervisors\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**WPA3** does not answer the requirement in this stem. Docker packages apps into containers sharing the host kernel.",
+            "explanation": "WPA3 misses what this question tests. Docker packages apps into containers sharing the host kernel.",
             "misconceptionTested": "Selecting \"WPA3\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Spanning Tree** is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
+            "explanation": "Spanning Tree is the wrong device role here. STP prevents Layer 2 loops — it does not provide inter-VLAN routing, MAC learning rules, or replace trunk configuration.",
             "misconceptionTested": "Choosing STP when the question asks for forwarding, routing, or VLAN data plane behavior"
           }
         ],

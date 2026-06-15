@@ -29,24 +29,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**UDP/161** does not answer which in this stem. .",
+            "explanation": "UDP/161 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**TCP/162** does not answer which in this stem. .",
+            "explanation": "TCP/162 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**UDP/162** does not answer which in this stem. .",
+            "explanation": "UDP/162 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     },
     {
@@ -78,24 +78,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#syslog debugging** does not answer which in this stem. .",
+            "explanation": "Router(config)#syslog debugging does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#logging debugging** does not answer which in this stem. .",
+            "explanation": "Router(config)#logging debugging does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#log-level debugging** does not answer which in this stem. .",
+            "explanation": "Router(config)#log-level debugging does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     },
     {
@@ -126,24 +126,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#logging server 4** does not answer which in this stem. .",
+            "explanation": "Switch(config)#logging server 4 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#logging trap 5** does not answer which in this stem. .",
+            "explanation": "Switch(config)#logging trap 5 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#logging server 5** does not answer which in this stem. .",
+            "explanation": "Switch(config)#logging server 5 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     },
     {
@@ -174,24 +174,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#logging timestamps log datetime** does not answer which in this stem. .",
+            "explanation": "Switch(config)#logging timestamps log datetime does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#logging timestamps datetime** does not answer which in this stem. .",
+            "explanation": "Switch(config)#logging timestamps datetime does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#service datetime timestamps** does not answer which in this stem. .",
+            "explanation": "Switch(config)#service datetime timestamps does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     },
     {
@@ -222,24 +222,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config-line)#logging level 0** does not answer which in this stem. .",
+            "explanation": "Router(config-line)#logging level 0 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#logging console 7** does not answer which in this stem. .",
+            "explanation": "Router(config)#logging console 7 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config-line)#logging level 7** does not answer which in this stem. .",
+            "explanation": "Router(config-line)#logging level 7 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     },
     {
@@ -270,24 +270,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config)#logging 1** does not answer which in this stem. .",
+            "explanation": "Switch(config)#logging 1 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#logging buffered 2** does not answer which in this stem. .",
+            "explanation": "Switch(config)#logging buffered 2 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config)#logging 2** does not answer which in this stem. .",
+            "explanation": "Switch(config)#logging 2 does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     },
     {
@@ -317,24 +317,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show commands** does not answer which in this stem. .",
+            "explanation": "Switch#show commands does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show log** does not answer which in this stem. .",
+            "explanation": "Switch#show log does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show buffer** does not answer which in this stem. .",
+            "explanation": "Switch#show buffer does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     },
     {
@@ -368,24 +368,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Informational (6)** does not answer the requirement in this stem. .",
+            "explanation": "Informational (6) does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Warnings (4)** does not answer the requirement in this stem. .",
+            "explanation": "Warnings (4) does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Debugging (7)** does not answer the requirement in this stem. .",
+            "explanation": "Debugging (7) does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     },
     {
@@ -415,24 +415,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show cpu** does not answer which in this stem. .",
+            "explanation": "Router#show cpu does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show cpu-stats** does not answer which in this stem. .",
+            "explanation": "Router#show cpu-stats does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show environment cpu** does not answer which in this stem. .",
+            "explanation": "Router#show environment cpu does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     },
     {
@@ -464,24 +464,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#logging internal** does not answer which in this stem. .",
+            "explanation": "Router(config)#logging internal does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#logging ram** does not answer which in this stem. .",
+            "explanation": "Router(config)#logging ram does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#logging console** does not answer which in this stem. .",
+            "explanation": "Router(config)#logging console does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     },
     {
@@ -513,19 +513,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Broadcasts to a syslog server** does not answer which in this stem. .",
+            "explanation": "Broadcasts to a syslog server does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TTY** does not answer which in this stem. .",
+            "explanation": "TTY does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**NVRAM** does not answer which in this stem. .",
+            "explanation": "NVRAM does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
@@ -562,24 +562,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Notification (5)** does not answer the requirement in this stem. .",
+            "explanation": "Notification (5) does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Informational (6)** does not answer the requirement in this stem. .",
+            "explanation": "Informational (6) does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Warning (4)** does not answer the requirement in this stem. .",
+            "explanation": "Warning (4) does not match the mechanism asked here.",
             "misconceptionTested": "Misreading syslog severity (lower number = more severe)",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Lower syslog number = **more severe** (0 emergency … 7 debug)."
+        "examTip": "Lower syslog number = more severe (0 emergency … 7 debug)."
       }
     }
   ]

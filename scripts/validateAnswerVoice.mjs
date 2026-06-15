@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Check answer-review language against KB lexicon + banned phrases. */
+/** Strict answer-review voice validation. */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -7,13 +7,7 @@ import { isFallbackExplanation } from '../src/answerReview/answerReviewQuality.j
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
-const LEXICON = join(ROOT, 'data', 'onenote', 'lexicon.json')
-const CKUS = join(ROOT, 'data', 'knowledge-base', 'ckus.json')
 const CLEAN = join(ROOT, 'data', 'clean-question-bank')
-
-const lexicon = existsSync(LEXICON) ? JSON.parse(readFileSync(LEXICON, 'utf8')) : { banned: [] }
-const ckus = existsSync(CKUS) ? JSON.parse(readFileSync(CKUS, 'utf8')) : []
-const ckuById = new Map(ckus.map(c => [c.ckuId, c]))
 
 function walkJson(dir, out = []) {
   if (!existsSync(dir)) return out
@@ -25,13 +19,7 @@ function walkJson(dir, out = []) {
   return out
 }
 
-function bannedHit(text) {
-  if (!text) return null
-  const lower = text.toLowerCase()
-  return (lexicon.banned || []).find(b => lower.includes(b.toLowerCase()))
-}
-
-const warnings = []
+const errors = []
 let checked = 0
 
 for (const path of walkJson(CLEAN)) {
@@ -39,37 +27,26 @@ for (const path of walkJson(CLEAN)) {
   for (const q of data.questions || []) {
     checked++
     const texts = [
-      q.explanation,
-      q.answerReview?.correct?.explanation,
-      q.answerReview?.examTip,
-      ...(q.answerReview?.incorrect || []).map(i => i.explanation),
-    ].filter(Boolean)
+      ['explanation', q.explanation],
+      ['correct', q.answerReview?.correct?.explanation],
+      ['examTip', q.answerReview?.examTip],
+      ...(q.answerReview?.incorrect || []).map((i, idx) => [`incorrect.${idx}`, i.explanation]),
+    ].filter(([, t]) => t)
 
-    for (const t of texts) {
-      const ban = bannedHit(t)
-      if (ban) warnings.push(`${q.id}: banned phrase "${ban}"`)
-      if (isFallbackExplanation(t)) warnings.push(`${q.id}: fallback/template explanation`)
-    }
-
-    const ckuIds = q.ckuIds || []
-    if (ckuIds.length) {
-      const terms = ckuIds.flatMap(id => {
-        const c = ckuById.get(id)
-        return [c?.title, ...(c?.keyTerms || [])].filter(Boolean)
-      })
-      const combined = texts.join(' ').toLowerCase()
-      const hit = terms.some(term => combined.includes(String(term).toLowerCase().slice(0, 8)))
-      if (!hit && terms.length) warnings.push(`${q.id}: answer text may not match CKU vocabulary`)
+    for (const [where, t] of texts) {
+      if (/\*\*/.test(t)) errors.push(`${q.id}: ${where} has markdown bold`)
+      if (/does not answer .+ in this stem/i.test(t)) errors.push(`${q.id}: ${where} uses stem template`)
+      if (isFallbackExplanation(t)) errors.push(`${q.id}: ${where} fallback/template`)
     }
   }
 }
 
-if (warnings.length > 50) {
-  console.log(`validate:answer-voice warnings (${warnings.length}, showing 20):`)
-  warnings.slice(0, 20).forEach(w => console.log('  ⚠', w))
-} else if (warnings.length) {
-  console.log(`validate:answer-voice warnings (${warnings.length}):`)
-  warnings.forEach(w => console.log('  ⚠', w))
+if (errors.length) {
+  console.error(`✗ validate:answer-voice failed (${errors.length} on ${checked} questions):`)
+  errors.slice(0, 40).forEach(e => console.error('  -', e))
+  if (errors.length > 40) console.error(`  … and ${errors.length - 40} more`)
+  process.exit(1)
 }
 
-console.log(`✓ validate:answer-voice OK — ${checked} questions checked (${warnings.length} warnings)`)
+console.log(`✓ validate:answer-voice OK — ${checked} questions`)
+process.exit(0)

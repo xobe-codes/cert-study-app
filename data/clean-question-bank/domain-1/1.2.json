@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Core** does not answer which in this stem. Access switches connect PCs, phones, and APs.",
+            "explanation": "Core misses what this question tests. Access switches connect PCs, phones, and APs.",
             "misconceptionTested": "Selecting \"Core\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Distribution** does not answer which in this stem. Access switches connect PCs, phones, and APs.",
+            "explanation": "Distribution misses what this question tests. Access switches connect PCs, phones, and APs.",
             "misconceptionTested": "Selecting \"Distribution\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Spine** does not answer which in this stem. Access switches connect PCs, phones, and APs.",
+            "explanation": "Spine misses what this question tests. Access switches connect PCs, phones, and APs.",
             "misconceptionTested": "Selecting \"Spine\" without matching the scenario constraint"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SOHO Wi‑Fi** does not answer the requirement in this stem. Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
+            "explanation": "SOHO Wi‑Fi misses what this question tests. Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
             "misconceptionTested": "Selecting \"SOHO Wi‑Fi\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Dial-up WAN** does not answer the requirement in this stem. Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
+            "explanation": "Dial-up WAN misses what this question tests. Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
             "misconceptionTested": "Selecting \"Dial-up WAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Home gaming** does not answer the requirement in this stem. Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
+            "explanation": "Home gaming misses what this question tests. Spine-leaf fabrics optimize predictable, scalable traffic between servers in data centers.",
             "misconceptionTested": "Selecting \"Home gaming\" without matching the scenario constraint"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Full mesh** does not answer which in this stem. All spokes via one hub = hub-and-spoke.",
+            "explanation": "Full mesh misses what this question tests. All spokes via one hub = hub-and-spoke.",
             "misconceptionTested": "Selecting \"Full mesh\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Spine-leaf** does not answer which in this stem. All spokes via one hub = hub-and-spoke.",
+            "explanation": "Spine-leaf misses what this question tests. All spokes via one hub = hub-and-spoke.",
             "misconceptionTested": "Selecting \"Spine-leaf\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Point-to-point only** does not answer which in this stem. All spokes via one hub = hub-and-spoke.",
+            "explanation": "Point-to-point only misses what this question tests. All spokes via one hub = hub-and-spoke.",
             "misconceptionTested": "Selecting \"Point-to-point only\" without matching the scenario constraint"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**No redundancy** reflects a common trap: Assuming hub-and-spoke has automatic redundancy. The hub is a single point of failure unless spokes are dual-homed or meshed.",
+            "explanation": "No redundancy reflects a common trap: Assuming hub-and-spoke has automatic redundancy. The hub is a single point of failure unless spokes are dual-homed or meshed.",
             "misconceptionTested": "Assuming hub-and-spoke has automatic redundancy"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Only works with fiber** does not answer what is in this stem. Full mesh connects every site to every other — resilient but expensive.",
+            "explanation": "Only works with fiber misses what this question tests. Full mesh connects every site to every other — resilient but expensive.",
             "misconceptionTested": "Selecting \"Only works with fiber\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Eliminates routing** does not answer what is in this stem. Full mesh connects every site to every other — resilient but expensive.",
+            "explanation": "Eliminates routing misses what this question tests. Full mesh connects every site to every other — resilient but expensive.",
             "misconceptionTested": "Selecting \"Eliminates routing\" without matching the scenario constraint"
           }
         ],
@@ -197,17 +197,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**One** does not answer the requirement in this stem. Two-tier merges distribution and core — access + collapsed distribution/core.",
+            "explanation": "One misses what this question tests. Two-tier merges distribution and core — access + collapsed distribution/core.",
             "misconceptionTested": "Selecting \"One\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Four** does not answer the requirement in this stem. Two-tier merges distribution and core — access + collapsed distribution/core.",
+            "explanation": "Four misses what this question tests. Two-tier merges distribution and core — access + collapsed distribution/core.",
             "misconceptionTested": "Selecting \"Four\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Five** does not answer the requirement in this stem. Two-tier merges distribution and core — access + collapsed distribution/core.",
+            "explanation": "Five misses what this question tests. Two-tier merges distribution and core — access + collapsed distribution/core.",
             "misconceptionTested": "Selecting \"Five\" without matching the scenario constraint"
           }
         ],
@@ -239,17 +239,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Core datacenter** does not answer the requirement in this stem. Small office/home office networks are simple, often one integrated gateway.",
+            "explanation": "Core datacenter misses what this question tests. Small office/home office networks are simple, often one integrated gateway.",
             "misconceptionTested": "Selecting \"Core datacenter\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Full mesh WAN** does not answer the requirement in this stem. Small office/home office networks are simple, often one integrated gateway.",
+            "explanation": "Full mesh WAN misses what this question tests. Small office/home office networks are simple, often one integrated gateway.",
             "misconceptionTested": "Selecting \"Full mesh WAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Spine fabric** does not answer the requirement in this stem. Small office/home office networks are simple, often one integrated gateway.",
+            "explanation": "Spine fabric misses what this question tests. Small office/home office networks are simple, often one integrated gateway.",
             "misconceptionTested": "Selecting \"Spine fabric\" without matching the scenario constraint"
           }
         ],
@@ -281,17 +281,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SaaS** does not answer which in this stem. IaaS provides VMs/infrastructure; the customer manages OS and above.",
+            "explanation": "SaaS misses what this question tests. IaaS provides VMs/infrastructure; the customer manages OS and above.",
             "misconceptionTested": "Selecting \"SaaS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**PaaS** does not answer which in this stem. IaaS provides VMs/infrastructure; the customer manages OS and above.",
+            "explanation": "PaaS misses what this question tests. IaaS provides VMs/infrastructure; the customer manages OS and above.",
             "misconceptionTested": "Selecting \"PaaS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**On-prem only** does not answer which in this stem. IaaS provides VMs/infrastructure; the customer manages OS and above.",
+            "explanation": "On-prem only misses what this question tests. IaaS provides VMs/infrastructure; the customer manages OS and above.",
             "misconceptionTested": "Selecting \"On-prem only\" without matching the scenario constraint"
           }
         ],
@@ -321,7 +321,7 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "This statement is **False**, but the tested fact is: True — full mesh between leaves and spines is the defining property.",
+            "explanation": "This statement is False, but the tested fact is: True — full mesh between leaves and spines is the defining property.",
             "misconceptionTested": "Selecting \"False\" without matching the scenario constraint"
           }
         ],

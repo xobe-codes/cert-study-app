@@ -29,21 +29,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "explanation": "Switches learn from the source MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)"
           },
           {
             "choiceIndex": 2,
-            "explanation": "The CAM table stores **source** MAC-to-port mappings. Destination MACs are not learned as table entries on arrival.",
+            "explanation": "The CAM table stores source MAC-to-port mappings. Destination MACs are not learned as table entries on arrival.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
           }
         ],
-        "examTip": "Learning records the **source MAC on the ingress port**; forwarding looks up the **destination MAC** — don't swap them."
+        "examTip": "Learning records the source MAC on the ingress port; forwarding looks up the destination MAC — don't swap them."
       }
     },
     {
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Flooding happens for **unknown** unicast destinations. When the destination MAC is already mapped in the table, the switch forwards out that port only.",
+            "explanation": "Flooding happens for unknown unicast destinations. When the destination MAC is already mapped in the table, the switch forwards out that port only.",
             "misconceptionTested": "Choosing flood behavior when the destination is already in the MAC table"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switches do not drop unknown unicast by default — they **flood** within the VLAN so the destination can be learned.",
+            "explanation": "Switches do not drop unknown unicast by default — they flood within the VLAN so the destination can be learned.",
             "misconceptionTested": "Assuming unknown destination means drop/filter"
           },
           {
             "choiceIndex": 3,
-            "explanation": "Broadcast frames are flooded by destination, but this stem is about a **known unicast** MAC — the switch forwards out the single mapped port, not a VLAN-wide flood.",
+            "explanation": "Broadcast frames are flooded by destination, but this stem is about a known unicast MAC — the switch forwards out the single mapped port, not a VLAN-wide flood.",
             "misconceptionTested": "Choosing flood behavior when the destination is already in the MAC table"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**30 seconds** uses the wrong value. The tested fact calls for **300** — not 30.",
+            "explanation": "30 seconds uses the wrong value. The tested fact calls for 300 — not 30.",
             "misconceptionTested": "Selecting \"30 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**60 seconds** uses the wrong value. The tested fact calls for **300** — not 60.",
+            "explanation": "60 seconds uses the wrong value. The tested fact calls for 300 — not 60.",
             "misconceptionTested": "Selecting \"60 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**3600 seconds** uses the wrong value. The tested fact calls for **300** — not 3600.",
+            "explanation": "3600 seconds uses the wrong value. The tested fact calls for 300 — not 3600.",
             "misconceptionTested": "Selecting \"3600 seconds\" without matching the scenario constraint"
           }
         ],
@@ -197,17 +197,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Forwards it out a different port** reflects a common trap: Forgetting same-port source/destination frames are filtered, not forwarded. If both MACs map to the same ingress port, the switch does not forward the frame at all.",
+            "explanation": "Forwards it out a different port reflects a common trap: Forgetting same-port source/destination frames are filtered, not forwarded. If both MACs map to the same ingress port, the switch does not forward the frame at all.",
             "misconceptionTested": "Forgetting same-port source/destination frames are filtered, not forwarded"
           },
           {
             "choiceIndex": 1,
-            "explanation": "Flooding happens for **unknown** unicast destinations. When the destination MAC is already mapped in the table, the switch forwards out that port only.",
+            "explanation": "Flooding happens for unknown unicast destinations. When the destination MAC is already mapped in the table, the switch forwards out that port only.",
             "misconceptionTested": "Choosing flood behavior when the destination is already in the MAC table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "The switch should **forward** or **flood** the frame — not drop it — when handling normal unknown/known unicast behavior in this scenario.",
+            "explanation": "The switch should forward or flood the frame — not drop it — when handling normal unknown/known unicast behavior in this scenario.",
             "misconceptionTested": "Choosing drop when the switch should forward or flood"
           }
         ],
@@ -239,17 +239,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**0000.0000.0000** does not answer the requirement in this stem. FFFF.",
+            "explanation": "0000.0000.0000 misses what this question tests. FFFF.",
             "misconceptionTested": "Selecting \"0000.0000.0000\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**0000.0000.FFFF** does not answer the requirement in this stem. FFFF.",
+            "explanation": "0000.0000.FFFF misses what this question tests. FFFF.",
             "misconceptionTested": "Selecting \"0000.0000.FFFF\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**AAAA.AAAA.AAAA** does not answer the requirement in this stem. FFFF.",
+            "explanation": "AAAA.AAAA.AAAA misses what this question tests. FFFF.",
             "misconceptionTested": "Selecting \"AAAA.AAAA.AAAA\" without matching the scenario constraint"
           }
         ],
@@ -279,7 +279,7 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This statement is **True**, but the tested fact is: False — flooding is scoped per-VLAN; a frame is never flooded into a different VLAN.",
+            "explanation": "This statement is True, but the tested fact is: False — flooding is scoped per-VLAN; a frame is never flooded into a different VLAN.",
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
@@ -296,7 +296,7 @@
         "show cdp neighbors"
       ],
       "correctIndex": 1,
-      "explanation": "`show mac address-table` lists learned (and static) MAC-to-port mappings.",
+      "explanation": "show mac address-table lists learned (and static) MAC-to-port mappings.",
       "type": "application",
       "difficulty": "easy",
       "concept": "verify table",
@@ -306,22 +306,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`show mac address-table` lists learned (and static) MAC-to-port mappings."
+          "explanation": "show mac address-table lists learned (and static) MAC-to-port mappings."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**show ip interface brief** does not answer which in this stem. `show mac address-table` lists learned (and static) MAC-to-port mappings.",
+            "explanation": "show ip interface brief misses what this question tests. show mac address-table lists learned (and static) MAC-to-port mappings.",
             "misconceptionTested": "Selecting \"show ip interface brief\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**show vlan brief** does not answer which in this stem. `show mac address-table` lists learned (and static) MAC-to-port mappings.",
+            "explanation": "show vlan brief misses what this question tests. show mac address-table lists learned (and static) MAC-to-port mappings.",
             "misconceptionTested": "Selecting \"show vlan brief\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**show cdp neighbors** does not answer which in this stem. `show mac address-table` lists learned (and static) MAC-to-port mappings.",
+            "explanation": "show cdp neighbors misses what this question tests. show mac address-table lists learned (and static) MAC-to-port mappings.",
             "misconceptionTested": "Selecting \"show cdp neighbors\" without matching the scenario constraint"
           }
         ],
@@ -338,7 +338,7 @@
         "arp <mac> static"
       ],
       "correctIndex": 1,
-      "explanation": "`mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out.",
+      "explanation": "mac address-table static manually binds a MAC to a VLAN and interface; it does not age out.",
       "type": "application",
       "difficulty": "medium",
       "concept": "static entries",
@@ -348,22 +348,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out."
+          "explanation": "mac address-table static manually binds a MAC to a VLAN and interface; it does not age out."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**mac address-table aging-time 0** reflects a common trap: The MAC address table is the same as an ARP table. The MAC address table (Layer 2, on switches) maps MAC→port; the ARP table (Layer 3, on routers/hosts) maps IP→MAC. They are different tables on different devices.",
+            "explanation": "mac address-table aging-time 0 reflects a common trap: The MAC address table is the same as an ARP table. The MAC address table (Layer 2, on switches) maps MAC→port; the ARP table (Layer 3, on routers/hosts) maps IP→MAC. They are different tables on different devices.",
             "misconceptionTested": "The MAC address table is the same as an ARP table"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**switchport mode static** does not answer the requirement in this stem. `mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out.",
+            "explanation": "switchport mode static misses what this question tests. mac address-table static manually binds a MAC to a VLAN and interface; it does not age out.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**arp <mac> static** does not answer the requirement in this stem. `mac address-table static` manually binds a MAC to a VLAN and interface; it does not age out.",
+            "explanation": "arp <mac> static misses what this question tests. mac address-table static manually binds a MAC to a VLAN and interface; it does not age out.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -396,12 +396,12 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**It cannot — the server is unknown** does not answer how does in this stem. Until the switch learns the server's source MAC, frames addressed to it are unknown unicast and get flooded.",
+            "explanation": "It cannot — the server is unknown misses what this question tests. Until the switch learns the server's source MAC, frames addressed to it are unknown unicast and get flooded.",
             "misconceptionTested": "Selecting \"It cannot — the server is unknown\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**It drops the frame and logs an error** reflects a common trap: Thinking switches broadcast every frame. Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port.",
+            "explanation": "It drops the frame and logs an error reflects a common trap: Thinking switches broadcast every frame. Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port.",
             "misconceptionTested": "Thinking switches broadcast every frame"
           },
           {
@@ -439,17 +439,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Nothing — the entry stays on port 1 forever** uses the wrong value. The tested fact calls for **5** — not 1.",
+            "explanation": "Nothing — the entry stays on port 1 forever uses the wrong value. The tested fact calls for 5 — not 1.",
             "misconceptionTested": "Selecting \"Nothing — the entry stays on port 1 fore…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The switch immediately deletes all entries** does not answer the requirement in this stem. Learning is continuous — the new frame from port 5 updates/relearns the mapping; the stale port-1 entry ages out.",
+            "explanation": "The switch immediately deletes all entries misses what this question tests. Learning is continuous — the new frame from port 5 updates/relearns the mapping; the stale port-1 entry ages out.",
             "misconceptionTested": "Selecting \"The switch immediately deletes all entri…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The switch shuts down port 5** uses the wrong value. The tested fact calls for **1** — not 5.",
+            "explanation": "The switch shuts down port 5 uses the wrong value. The tested fact calls for 1 — not 5.",
             "misconceptionTested": "Selecting \"The switch shuts down port 5\" without matching the scenario constraint"
           }
         ],
@@ -482,17 +482,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**They behave identically** does not answer how does in this stem. A hub is a simple repeater (everything out every port); a switch learns and forwards intelligently, only flooding when necessary.",
+            "explanation": "They behave identically misses what this question tests. A hub is a simple repeater (everything out every port); a switch learns and forwards intelligently, only flooding when necessary.",
             "misconceptionTested": "Selecting \"They behave identically\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A hub uses a MAC address table; a switch does not** reflects a common trap: Forgetting same-port source/destination frames are filtered, not forwarded. If both MACs map to the same ingress port, the switch does not forward the frame at all.",
+            "explanation": "A hub uses a MAC address table; a switch does not reflects a common trap: Forgetting same-port source/destination frames are filtered, not forwarded. If both MACs map to the same ingress port, the switch does not forward the frame at all.",
             "misconceptionTested": "Forgetting same-port source/destination frames are filtered, not forwarded"
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
             "misconceptionTested": "Selecting \"A switch only works at Layer 3\" without matching the scenario constraint"
           }
         ],

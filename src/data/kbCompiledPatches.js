@@ -5,22 +5,22 @@
 export const KB_COMPILED_PATCHES = {
   "1.1": {
     "tiers": {
-      "beginner": "**Client** : A device that **requests or accesses a service**",
-      "intermediate": "**Client** : A device that **requests or accesses a service** **Server** : A device that **provides a service** to another device",
-      "examReady": ""
+      "beginner": "Client — A device that requests or accesses a service Server — A device that provides a service to another device Standards are agreed‑upon specifications for how protocols work. Client — A device that requests or accesses a service",
+      "intermediate": "Client — A device that requests or accesses a service Server — A device that provides a service to another device Standards are agreed‑upon specifications for how protocols work. Client — A device that requests or accesses a service Server — A device that provides a service to another device A device requesting data is functioning as a client",
+      "examReady": "Know the core behavior: Client — A device that requests or accesses a service Server — A device that provides a service."
     },
-    "bigTakeaway": "Client : A device that requests or accesses a service",
+    "bigTakeaway": "Client — A device that requests or accesses a service Server — A device that provides a service to another device Standards are agreed‑upon specifications for how protocols.",
     "keyPoints": [
-      "**Client** : A device that **requests or accesses a service**",
-      "**Server** : A device that **provides a service** to another device",
-      "A device **requesting data** is functioning as a **client**",
-      "A device **sending or providing data** is functioning as a **server**",
-      "**Primary Role** : Connect many end hosts **within the same LAN**",
-      "**Key Characteristics** :",
-      "Typically have **24 or more interfaces**",
-      "Forward traffic **only inside the local network**",
-      "**Standards** are agreed‑upon specifications for how protocols work.",
-      "Standards enable **interoperability**, not vendor lock‑in."
+      "Client — A device that requests or accesses a service",
+      "Server — A device that provides a service to another device",
+      "A device requesting data is functioning as a client",
+      "A device sending or providing data is functioning as a server",
+      "Primary Role — Connect many end hosts within the same LAN",
+      "Key Characteristics — ",
+      "Typically have 24 or more interfaces",
+      "Forward traffic only inside the local network",
+      "Standards are agreed‑upon specifications for how protocols work.",
+      "Standards enable interoperability, not vendor lock‑in."
     ],
     "source": "onenote-kb",
     "confidence": "draft",
@@ -28,22 +28,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "1.3": {
     "tiers": {
-      "beginner": "**Physical standards** : connector shape, port type, cable wiring (so things fit and work).",
-      "intermediate": "**Physical standards** : connector shape, port type, cable wiring (so things fit and work). **Logical standards** : rules like **IP** that define how data is addressed and moved.",
-      "examReady": ""
+      "beginner": "Physical standards — connector shape, port type, cable wiring (so things fit and work). Physical standards — connector shape, port type, cable wiring (so things fit and work).",
+      "intermediate": "Physical standards — connector shape, port type, cable wiring (so things fit and work). Logical standards — rules like IP that define how data is addressed and moved. 1 bit = a 0 or 1",
+      "examReady": "Know the core behavior: Physical standards — connector shape, port type, cable wiring (so things fit and work)."
     },
-    "bigTakeaway": "Physical standards : connector shape, port type, cable wiring (so things fit and work).",
+    "bigTakeaway": "Physical standards — connector shape, port type, cable wiring (so things fit and work).",
     "keyPoints": [
-      "**Physical standards** : connector shape, port type, cable wiring (so things fit and work).",
-      "**Logical standards** : rules like **IP** that define how data is addressed and moved.",
-      "**1 bit** = a **0 or 1**",
-      "**1 byte** = **8 bits**",
-      "**Important rule:** **1 Gigabyte (GB) = 8 Gigabits (Gb)**",
-      "**1 kilobit (Kb) = 1,000 bits**",
-      "**1 megabit (Mb) = 1,000,000 bits**",
-      "**1 gigabit (Gb) = 1,000,000,000 bits**",
-      "Interface **speed** and **duplex**",
-      "**Autonegotiation**"
+      "Physical standards — connector shape, port type, cable wiring (so things fit and work).",
+      "Logical standards — rules like IP that define how data is addressed and moved.",
+      "1 bit = a 0 or 1",
+      "1 byte = 8 bits",
+      "Important rule — 1 Gigabyte (GB) = 8 Gigabits (Gb)",
+      "1 kilobit (Kb) = 1,000 bits",
+      "1 megabit (Mb) = 1,000,000 bits",
+      "1 gigabit (Gb) = 1,000,000,000 bits",
+      "Interface speed and duplex",
+      "Autonegotiation"
     ],
     "source": "onenote-kb",
     "confidence": "draft",
@@ -51,22 +51,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "1.4": {
     "tiers": {
-      "beginner": "**Physical standards** : connector shape, port type, cable wiring (so things fit and work).",
-      "intermediate": "**Physical standards** : connector shape, port type, cable wiring (so things fit and work). **Logical standards** : rules like **IP** that define how data is addressed and moved.",
-      "examReady": ""
+      "beginner": "Physical standards — connector shape, port type, cable wiring (so things fit and work). Physical standards — connector shape, port type, cable wiring (so things fit and work).",
+      "intermediate": "Physical standards — connector shape, port type, cable wiring (so things fit and work). Logical standards — rules like IP that define how data is addressed and moved. 1 bit = a 0 or 1",
+      "examReady": "Know the core behavior: Physical standards — connector shape, port type, cable wiring (so things fit and work)."
     },
-    "bigTakeaway": "Physical standards : connector shape, port type, cable wiring (so things fit and work).",
+    "bigTakeaway": "Physical standards — connector shape, port type, cable wiring (so things fit and work).",
     "keyPoints": [
-      "**Physical standards** : connector shape, port type, cable wiring (so things fit and work).",
-      "**Logical standards** : rules like **IP** that define how data is addressed and moved.",
-      "**1 bit** = a **0 or 1**",
-      "**1 byte** = **8 bits**",
-      "**Important rule:** **1 Gigabyte (GB) = 8 Gigabits (Gb)**",
-      "**1 kilobit (Kb) = 1,000 bits**",
-      "**1 megabit (Mb) = 1,000,000 bits**",
-      "**1 gigabit (Gb) = 1,000,000,000 bits**",
-      "Interface **speed** and **duplex**",
-      "**Autonegotiation**"
+      "Physical standards — connector shape, port type, cable wiring (so things fit and work).",
+      "Logical standards — rules like IP that define how data is addressed and moved.",
+      "1 bit = a 0 or 1",
+      "1 byte = 8 bits",
+      "Important rule — 1 Gigabyte (GB) = 8 Gigabits (Gb)",
+      "1 kilobit (Kb) = 1,000 bits",
+      "1 megabit (Mb) = 1,000,000 bits",
+      "1 gigabit (Gb) = 1,000,000,000 bits",
+      "Interface speed and duplex",
+      "Autonegotiation"
     ],
     "source": "onenote-kb",
     "confidence": "draft",
@@ -74,20 +74,20 @@ export const KB_COMPILED_PATCHES = {
   },
   "5.3": {
     "tiers": {
-      "beginner": "Cisco IOS and the CLI\n\n\nCisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers,\nswitches, and firewalls . It is comparable to Windows or macOS on a computer and is not related to Apple’s\niOS .",
-      "intermediate": "Cisco IOS and the CLI\n\n\nCisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers,\nswitches, and firewalls . It is comparable to Windows or macOS on a computer and is not related to Apple’s\niOS . Cisco devices are primarily configured using the CLI (Command‑Line Interface), which allows precise, efficient\ncontrol. **RJ‑45 console port** **USB mini‑B console port**",
-      "examReady": "Cisco IOS and the CLI\n\n\nCisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers,\nswitches, and firewalls ."
+      "beginner": "Cisco IOS and the CLI Cisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers, switches, and firewalls . RJ‑45 console port",
+      "intermediate": "Cisco IOS and the CLI Cisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers, switches, and firewalls . RJ‑45 console port USB mini‑B console port Pin 1 ↔ Pin 8",
+      "examReady": "Know the core behavior: Cisco IOS and the CLI Cisco IOS (Internetwork Operating System) is the operating system used on Cisco devices."
     },
     "bigTakeaway": "Cisco IOS and the CLI Cisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers, switches, and firewalls .",
     "keyPoints": [
-      "**RJ‑45 console port**",
-      "**USB mini‑B console port**",
+      "RJ‑45 console port",
+      "USB mini‑B console port",
       "Pin 1 ↔ Pin 8",
       "Pin 2 ↔ Pin 7",
       "Pin 3 ↔ Pin 6",
       "Pin 4 ↔ Pin 5",
-      "**Speed (baud rate): 9600 bps**",
-      "**Data bits: 8**"
+      "Speed (baud rate): 9600 bps",
+      "Data bits — 8"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -95,22 +95,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "1.5": {
     "tiers": {
-      "beginner": "Lesson Focus\n\n\nThis lesson explains how data moves inside a Local Area Network (LAN) using Ethernet\nswitching . The focus is strictly on Layer 2 (Data Link layer) behavior—how switches receive, learn,\nflood, and forward Ethernet frames between end hosts.",
-      "intermediate": "Lesson Focus\n\n\nThis lesson explains how data moves inside a Local Area Network (LAN) using Ethernet\nswitching . The focus is strictly on Layer 2 (Data Link layer) behavior—how switches receive, learn,\nflood, and forward Ethernet frames between end hosts. Communication between LANs (routing) is\nintentionally left for later. What Layer 4 does What services TCP provides",
-      "examReady": "Lesson Focus\n\n\nThis lesson explains how data moves inside a Local Area Network (LAN) using Ethernet\nswitching ."
+      "beginner": "When TCP vs UDP is used Lesson Focus This lesson explains how data moves inside a Local Area Network (LAN) using Ethernet switching . When TCP vs UDP is used",
+      "intermediate": "When TCP vs UDP is used Lesson Focus This lesson explains how data moves inside a Local Area Network (LAN) using Ethernet switching . When TCP vs UDP is used Encapsulates application data Uses lower layers to deliver data transparently",
+      "examReady": "Know the core behavior: When TCP vs UDP is used Lesson Focus This lesson explains how data moves inside a Local Area."
     },
-    "bigTakeaway": "Lesson Focus This lesson explains how data moves inside a Local Area Network (LAN) using Ethernet switching .",
+    "bigTakeaway": "When TCP vs UDP is used Lesson Focus This lesson explains how data moves inside a Local Area Network (LAN) using Ethernet switching .",
     "keyPoints": [
-      "What Layer 4 does",
-      "What services TCP provides",
-      "What UDP does _not_ provide",
       "When TCP vs UDP is used",
-      "How port numbers work",
       "Encapsulates application data",
       "Uses lower layers to deliver data transparently",
-      "Provides **process‑to‑process communication**",
+      "Provides process‑to‑process communication",
       "End hosts (PCs, servers)",
-      "**One router interface** connected to that LAN"
+      "One router interface connected to that LAN",
+      "Adding more switches expands a LAN",
+      "Connecting devices to different router interfaces creates separate LANs",
+      "Layer 1 (Physical): cables, voltages, connectors",
+      "Layer 2 (Data Link): framing, MAC addressing, switching"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -118,22 +118,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "1.6": {
     "tiers": {
-      "beginner": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes:\n\n- Class A → /8\n\n- Class B → /16\n\n- Class C → /24\nThis rigidity caused massive IP address waste :\n\n- Small networks receiving tens of thousands of unused addresses\n\n- Point‑to‑point links wasting entire /24 networks\nSubnetting solves this by allowing networks to be sized according to need . Subnetting works by borrowing host bits and turning them into network bits.",
-      "intermediate": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes:\n\n- Class A → /8\n\n- Class B → /16\n\n- Class C → /24\nThis rigidity caused massive IP address waste :\n\n- Small networks receiving tens of thousands of unused addresses\n\n- Point‑to‑point links wasting entire /24 networks\nSubnetting solves this by allowing networks to be sized according to need . Subnetting works by borrowing host bits and turning them into network bits. To calculate **Layer 7–5** → Application data **Laye",
-      "examReady": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes:\n\n- Class A → /8\n\n- Class B → /16\n\n- Class C → /24\nThis rigidity caused massive IP address waste :\n\n- Small networks receiving tens of thousands of unused addresses\n\n- Point‑to‑poin"
+      "beginner": "Layer 7–5 → Application data Layer 4 → TCP or UDP header added → Segment Provides logical addressing using IP addresses Enables path selection across multiple networks Early IPv4 networks used classful addressing (Class A, B, and C), which forced.",
+      "intermediate": "Layer 7–5 → Application data Layer 4 → TCP or UDP header added → Segment Provides logical addressing using IP addresses Enables path selection across multiple networks Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes: Class A → /8 Class B → /16 Class C → /24 This rigidity caused massive IP address waste : Small networks receiving tens of thousands of unused addresses Point‑to‑point links wasting entire /24 networks Subnetting solves this by allowing networks to be s",
+      "examReady": "Know the core behavior: Layer 7–5 → Application data Layer 4 → TCP or UDP header added → Segment Provides logical addressing."
     },
-    "bigTakeaway": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes: - Class A → /8 - Class B → /16 - Class.",
+    "bigTakeaway": "Layer 7–5 → Application data Layer 4 → TCP or UDP header added → Segment Provides logical addressing using IP addresses Enables path selection across multiple networks Early.",
     "keyPoints": [
-      "**Layer 7–5** → Application data",
-      "**Layer 4** → TCP or UDP header added → **Segment**",
-      "**Layer 3** → IPv4 header added → **Packet**",
-      "**Layer 2** → Ethernet header + trailer added → **Frame**",
-      "Layer 2 → **MAC addresses**",
-      "Layer 3 → **IP addresses**",
+      "Layer 7–5 → Application data",
+      "Layer 4 → TCP or UDP header added → Segment",
+      "Layer 3 → IPv4 header added → Packet",
+      "Layer 2 → Ethernet header + trailer added → Frame",
+      "Layer 2 → MAC addresses",
+      "Layer 3 → IP addresses",
       "Identifies the IP version",
-      "**IPv4 = binary 0100**",
-      "Provides **logical addressing** using **IP addresses**",
-      "Enables **path selection** across multiple networks"
+      "IPv4 = binary 0100",
+      "Provides logical addressing using IP addresses",
+      "Enables path selection across multiple networks"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -141,20 +141,20 @@ export const KB_COMPILED_PATCHES = {
   },
   "1.7": {
     "tiers": {
-      "beginner": "Clarifying IPv4 address classes and reserved ranges",
-      "intermediate": "Clarifying IPv4 address classes and reserved ranges Explaining how to calculate:",
-      "examReady": ""
+      "beginner": "Clarifying IPv4 address classes and reserved ranges Explaining how to calculate — Clarifying IPv4 address classes and reserved ranges",
+      "intermediate": "Clarifying IPv4 address classes and reserved ranges Explaining how to calculate — Clarifying IPv4 address classes and reserved ranges Explaining how to calculate — Maximum usable hosts",
+      "examReady": "Know the core behavior: Clarifying IPv4 address classes and reserved ranges Explaining how to calculate —"
     },
-    "bigTakeaway": "Clarifying IPv4 address classes and reserved ranges",
+    "bigTakeaway": "Clarifying IPv4 address classes and reserved ranges Explaining how to calculate —",
     "keyPoints": [
       "Clarifying IPv4 address classes and reserved ranges",
-      "Explaining how to calculate:",
+      "Explaining how to calculate — ",
       "Maximum usable hosts",
       "Network address",
       "Broadcast address",
       "First and last usable addresses",
-      "Demonstrating **how to configure IPv4 addresses on Cisco router interfaces**",
-      "Introducing essential **verification (“show”) commands**"
+      "Demonstrating how to configure IPv4 addresses on Cisco router interfaces",
+      "Introducing essential verification (“show”) commands"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -162,20 +162,20 @@ export const KB_COMPILED_PATCHES = {
   },
   "3.1": {
     "tiers": {
-      "beginner": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). This directly supports CCNA skills like interpreting routing tables, understanding longest\nprefix match, and configuring static/default routes .",
-      "intermediate": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). This directly supports CCNA skills like interpreting routing tables, understanding longest\nprefix match, and configuring static/default routes . Routing is the process routers use to determine the path that IP packets should take to reach Switches forward based on **destination ",
-      "examReady": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). Switches forward based on **destination"
+      "beginner": "Lesson Focus (What you’re learning here) These two lectures form one complete foundation for Layer 3 routing : how routers decide where to send packets and how you manually teach them routes using static routes (including default routes ). Switches.",
+      "intermediate": "Lesson Focus (What you’re learning here) These two lectures form one complete foundation for Layer 3 routing : how routers decide where to send packets and how you manually teach them routes using static routes (including default routes ). Switches forward based on destination MAC (Layer 2) and may flood unknown unicasts Routers forward based on destination IP (Layer 3) and do not flood —they require a show ip route",
+      "examReady": "Know how VRF compares to VLANs"
     },
     "bigTakeaway": "Lesson Focus (What you’re learning here) These two lectures form one complete foundation for Layer 3 routing : how routers decide where to send packets and how you.",
     "keyPoints": [
-      "Switches forward based on **destination MAC** (Layer 2) and may **flood unknown unicasts**",
-      "Routers forward based on **destination IP** (Layer 3) and **do not flood** —they require a",
+      "Switches forward based on destination MAC (Layer 2) and may flood unknown unicasts",
+      "Routers forward based on destination IP (Layer 3) and do not flood —they require a",
       "show ip route",
       "Route sources (codes like C, L, S)",
       "Destination networks/prefixes",
       "Next hop and/or exit interface",
       "Default route info (“gateway of last resort”)",
-      "Interface IP: 192.168.1.1/24",
+      "Interface IP — 192.168.1.1/24",
       "The difference between static and dynamic routing",
       "Why dynamic routing is preferred in larger networks"
     ],
@@ -185,22 +185,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "3.3": {
     "tiers": {
-      "beginner": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). This directly supports CCNA skills like interpreting routing tables, understanding longest\nprefix match, and configuring static/default routes .",
-      "intermediate": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). This directly supports CCNA skills like interpreting routing tables, understanding longest\nprefix match, and configuring static/default routes . Routing is the process routers use to determine the path that IP packets should take to reach Switches forward based on **destination ",
+      "beginner": "Lesson Focus (What you’re learning here) These two lectures form one complete foundation for Layer 3 routing : how routers decide where to send packets and how you manually teach them routes using static routes (including default routes ). Switches.",
+      "intermediate": "Lesson Focus (What you’re learning here) These two lectures form one complete foundation for Layer 3 routing : how routers decide where to send packets and how you manually teach them routes using static routes (including default routes ). Switches forward based on destination MAC (Layer 2) and may flood unknown unicasts Routers forward based on destination IP (Layer 3) and do not flood —they require a show ip route",
       "examReady": "Exam Topic 3.3 — Configure and verify IPv6 static routing"
     },
     "bigTakeaway": "Lesson Focus (What you’re learning here) These two lectures form one complete foundation for Layer 3 routing : how routers decide where to send packets and how you.",
     "keyPoints": [
-      "Switches forward based on **destination MAC** (Layer 2) and may **flood unknown unicasts**",
-      "Routers forward based on **destination IP** (Layer 3) and **do not flood** —they require a",
+      "Switches forward based on destination MAC (Layer 2) and may flood unknown unicasts",
+      "Routers forward based on destination IP (Layer 3) and do not flood —they require a",
       "show ip route",
       "Route sources (codes like C, L, S)",
       "Destination networks/prefixes",
       "Next hop and/or exit interface",
       "Default route info (“gateway of last resort”)",
-      "Interface IP: 192.168.1.1/24",
-      "**Exam Topic 3.3** — Configure and verify IPv6 static routing",
-      "Supporting knowledge from **1.8** and **1.9**"
+      "Interface IP — 192.168.1.1/24",
+      "Exam Topic 3.3 — Configure and verify IPv6 static routing",
+      "Supporting knowledge from 1.8 and 1.9"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -208,20 +208,20 @@ export const KB_COMPILED_PATCHES = {
   },
   "3.2": {
     "tiers": {
-      "beginner": "**Source:** PC1 on 192.168.1.0/24",
-      "intermediate": "**Source:** PC1 on 192.168.1.0/24 **Destination:** PC4 on 192.168.4.0/24",
-      "examReady": ""
+      "beginner": "Source — PC1 on 192.168.1.0/24 Destination — PC4 on 192.168.4.0/24 The difference between static and dynamic routing Why dynamic routing is preferred in larger networks What RIP and EIGRP are and how they operate Basic RIP and EIGRP configuration concepts.",
+      "intermediate": "Source — PC1 on 192.168.1.0/24 Destination — PC4 on 192.168.4.0/24 The difference between static and dynamic routing Why dynamic routing is preferred in larger networks What RIP and EIGRP are and how they operate Basic RIP and EIGRP configuration concepts Source — PC1 on 192.168.1.0/24 Destination — PC4 on 192.168.4.0/24 Path — PC1 → R1 → R2 → R4 → PC4",
+      "examReady": "Know the core behavior: Source — PC1 on 192.168.1.0/24 Destination — PC4 on 192.168.4.0/24 The difference between static and dynamic routing Why."
     },
-    "bigTakeaway": "Source: PC1 on 192.168.1.0/24",
+    "bigTakeaway": "Source — PC1 on 192.168.1.0/24 Destination — PC4 on 192.168.4.0/24 The difference between static and dynamic routing Why dynamic routing is preferred in larger networks What RIP and.",
     "keyPoints": [
-      "**Source:** PC1 on 192.168.1.0/24",
-      "**Destination:** PC4 on 192.168.4.0/24",
-      "**Path:** PC1 → R1 → R2 → R4 → PC4",
-      "**Assumption:** Static routes are already configured so the path exists",
-      "**IP addresses stay the same end‑to‑end**",
-      "**MAC addresses change at every hop**",
-      "Its own IP/subnet: 192.168.1.0/24",
-      "Destination IP: 192.168.4.x",
+      "Source — PC1 on 192.168.1.0/24",
+      "Destination — PC4 on 192.168.4.0/24",
+      "Path — PC1 → R1 → R2 → R4 → PC4",
+      "Assumption — Static routes are already configured so the path exists",
+      "IP addresses stay the same end‑to‑end",
+      "MAC addresses change at every hop",
+      "Its own IP/subnet — 192.168.1.0/24",
+      "Destination IP — 192.168.4.x",
       "The difference between static and dynamic routing",
       "Why dynamic routing is preferred in larger networks"
     ],
@@ -231,22 +231,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "2.1": {
     "tiers": {
-      "beginner": "What a LAN really is",
-      "intermediate": "What a LAN really is What a broadcast domain is",
+      "beginner": "What a LAN really is What a broadcast domain is What trunk ports are and why they are needed What the native VLAN is and why it matters The final and most scalable inter‑VLAN routing method: Layer 3 (multilayer) switching.",
+      "intermediate": "What a LAN really is What a broadcast domain is What trunk ports are and why they are needed What the native VLAN is and why it matters The final and most scalable inter‑VLAN routing method: Layer 3 (multilayer) switching What a LAN really is What a broadcast domain is Why VLANs are necessary",
       "examReady": "Forward (flood) broadcast and unknown unicast frames"
     },
-    "bigTakeaway": "What a LAN really is",
+    "bigTakeaway": "What a LAN really is What a broadcast domain is What trunk ports are and why they are needed What the native VLAN is and why it matters.",
     "keyPoints": [
       "What a LAN really is",
       "What a broadcast domain is",
       "Why VLANs are necessary",
-      "How VLANs improve performance and security",
       "How basic VLANs are configured on Cisco switches",
-      "The group of devices that will receive a **broadcast frame**",
-      "A broadcast frame is identified by a destination MAC address of **FFFF.FFFF.FFFF**",
+      "The group of devices that will receive a broadcast frame",
+      "A broadcast frame is identified by a destination MAC address of FFFF.FFFF.FFFF",
       "Forward (flood) broadcast and unknown unicast frames",
       "What trunk ports are and why they are needed",
-      "How VLAN tagging works with 802.1Q"
+      "What the native VLAN is and why it matters",
+      "Access port → carries traffic for one VLAN"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -254,22 +254,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "2.2": {
     "tiers": {
-      "beginner": "What DTP does and how trunk negotiation works",
-      "intermediate": "What DTP does and how trunk negotiation works Why DTP is considered a security risk",
-      "examReady": ""
+      "beginner": "Why DTP is considered a security risk What VTP is designed to do What trunk ports are and why they are needed What the native VLAN is and why it matters The final and most scalable inter‑VLAN routing method: Layer.",
+      "intermediate": "Why DTP is considered a security risk What VTP is designed to do What trunk ports are and why they are needed What the native VLAN is and why it matters The final and most scalable inter‑VLAN routing method: Layer 3 (multilayer) switching Why DTP is considered a security risk What VTP is designed to do Why VTP is rarely used in modern networks",
+      "examReady": "Know the core behavior: Why DTP is considered a security risk What VTP is designed to do What trunk ports are and."
     },
-    "bigTakeaway": "What DTP does and how trunk negotiation works",
+    "bigTakeaway": "Why DTP is considered a security risk What VTP is designed to do What trunk ports are and why they are needed What the native VLAN is and.",
     "keyPoints": [
-      "What DTP does and how trunk negotiation works",
       "Why DTP is considered a security risk",
       "What VTP is designed to do",
-      "How VTP server, client, and transparent modes differ",
       "Why VTP is rarely used in modern networks",
       "Enabled by default on Cisco switches",
       "Only works between Cisco devices",
       "Uses DTP frames to negotiate trunk formation",
       "What trunk ports are and why they are needed",
-      "How VLAN tagging works with 802.1Q"
+      "What the native VLAN is and why it matters",
+      "Access port → carries traffic for one VLAN",
+      "Trunk port → carries traffic for multiple VLANs"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -277,22 +277,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "2.5": {
     "tiers": {
-      "beginner": "The problem PortFast is designed to solve",
-      "intermediate": "The problem PortFast is designed to solve Why STP causes a delay for newly connected hosts",
-      "examReady": "Why PortFast must not be enabled on switch‑to‑switch links"
+      "beginner": "The problem PortFast is designed to solve Unauthorized switches Accidental topology changes What problem Loop Guard is designed to solve What a unidirectional link is and why it’s dangerous Why redundancy is required in modern networks The dangers of Layer.",
+      "intermediate": "The problem PortFast is designed to solve Unauthorized switches Accidental topology changes What problem Loop Guard is designed to solve What a unidirectional link is and why it’s dangerous Why redundancy is required in modern networks The dangers of Layer 2 loops All STP port states and what traffic is allowed in each The purpose of STP timers and why convergence can be slow The different STP versions and how they relate RSTP port states, port roles, and link types The problem PortFast is designed to solve The por",
+      "examReady": "The port must transition through —"
     },
-    "bigTakeaway": "The problem PortFast is designed to solve",
+    "bigTakeaway": "The problem PortFast is designed to solve Unauthorized switches Accidental topology changes What problem Loop Guard is designed to solve What a unidirectional link is and why it’s.",
     "keyPoints": [
       "The problem PortFast is designed to solve",
-      "Why STP causes a delay for newly connected hosts",
-      "How PortFast works and when it should be used",
-      "How to configure PortFast on access ports and trunk ports",
-      "Why PortFast must not be enabled on switch‑to‑switch links",
-      "The port becomes **up/up** at Layer 1 and Layer 2",
+      "The port becomes up/up at Layer 1 and Layer 2",
       "However, STP prevents it from forwarding traffic immediately",
-      "The port must transition through:",
+      "The port must transition through — ",
       "Unauthorized switches",
-      "Accidental topology changes"
+      "Accidental topology changes",
+      "Layer 2 loops caused by user behavior",
+      "Why BPDU Guard is critical for edge ports",
+      "How BPDU Filter works and why it is dangerous if misused",
+      "The difference between per‑port and global BPDU Filter behavior"
     ],
     "source": "onenote-kb",
     "confidence": "draft",
@@ -300,20 +300,15 @@ export const KB_COMPILED_PATCHES = {
   },
   "2.4": {
     "tiers": {
-      "beginner": "EtherChannel bundles multiple physical interfaces into:\n\n- One logical interface\n\n- Called a Port‑Channel\n\n- Also known as a Link Aggregation Group (LAG)\nKey behavior:\n\n- STP treats the bundle as one interface\n\n- All member links forward traffic\n\n- No Layer 2 loops are created\nEtherChannel provides:\n\n- Increased bandwidth\n\n- Redundancy\n\n- Efficient use of links",
-      "intermediate": "EtherChannel bundles multiple physical interfaces into:\n\n- One logical interface\n\n- Called a Port‑Channel\n\n- Also known as a Link Aggregation Group (LAG)\nKey behavior:\n\n- STP treats the bundle as one interface\n\n- All member links forward traffic\n\n- No Layer 2 loops are created\nEtherChannel provides:\n\n- Increased bandwidth\n\n- Redundancy\n\n- Efficient use of links Configure and verify **Layer 2 EtherChannel** Configure and verify **Layer 3 EtherChannel**",
-      "examReady": "EtherChannel bundles multiple physical interfaces into:\n\n- One logical interface\n\n- Called a Port‑Channel\n\n- Also known as a Link Aggregation Group (LAG)\nKey behavior:\n\n- STP treats the bundle as one interface\n\n- All member links forward traffic\n\n- No Layer 2 loops are created\nEt"
+      "beginner": "EtherChannel bundles multiple physical interfaces into: One logical interface Called a Port‑Channel Also known as a Link Aggregation Group (LAG) Key behavior: STP treats the bundle as one interface All member links forward traffic No Layer 2 loops are created.",
+      "intermediate": "EtherChannel bundles multiple physical interfaces into: One logical interface Called a Port‑Channel Also known as a Link Aggregation Group (LAG) Key behavior: STP treats the bundle as one interface All member links forward traffic No Layer 2 loops are created EtherChannel provides: Increased bandwidth Redundancy Efficient use of links Configure and verify Layer 2 EtherChannel Configure and verify Layer 3 EtherChannel Use LACP (Link Aggregation Control Protocol)",
+      "examReady": "Know the core behavior: EtherChannel bundles multiple physical interfaces into: One logical interface Called a Port‑Channel Also known as a Link Aggregation."
     },
-    "bigTakeaway": "EtherChannel bundles multiple physical interfaces into: - One logical interface - Called a Port‑Channel - Also known as a Link Aggregation Group (LAG) Key behavior: - STP treats.",
+    "bigTakeaway": "EtherChannel bundles multiple physical interfaces into: One logical interface Called a Port‑Channel Also known as a Link Aggregation Group (LAG) Key behavior: STP treats the bundle as one.",
     "keyPoints": [
-      "Configure and verify **Layer 2 EtherChannel**",
-      "Configure and verify **Layer 3 EtherChannel**",
-      "Use **LACP (Link Aggregation Control Protocol)**",
-      "Why STP blocks redundant links",
-      "How EtherChannel increases bandwidth and redundancy",
-      "How EtherChannel load‑balances traffic",
-      "How to configure EtherChannel using PAgP, LACP, or static mode",
-      "How to verify EtherChannel operation"
+      "Configure and verify Layer 2 EtherChannel",
+      "Configure and verify Layer 3 EtherChannel",
+      "Use LACP (Link Aggregation Control Protocol)"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -321,13 +316,12 @@ export const KB_COMPILED_PATCHES = {
   },
   "3.4": {
     "tiers": {
-      "beginner": "OSPF is a:\n\n\n- Link‑state\n\n- Interior Gateway Protocol (IGP)\n\n- Defined by IEEE standard OSPFv2 for IPv4\nOSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate\nthe best paths through the network. Key contrast:\n\n- Distance vector protocols use “routing by rumor”\n\n- OSPF builds a complete topology map OSPF routers:\n\n- Form neighbor adjacencies\n\n- Exchange Link State Advertisements (LSAs)\n\n- Build an identical Link State Database (LSDB)",
-      "intermediate": "OSPF is a:\n\n\n- Link‑state\n\n- Interior Gateway Protocol (IGP)\n\n- Defined by IEEE standard OSPFv2 for IPv4\nOSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate\nthe best paths through the network. Key contrast:\n\n- Distance vector protocols use “routing by rumor”\n\n- OSPF builds a complete topology map OSPF routers:\n\n- Form neighbor adjacencies\n\n- Exchange Link State Advertisements (LSAs)\n\n- Build an identical Link State Database (LSDB) How OSPF works at a high level What LSA",
-      "examReady": "OSPF is a:\n\n\n- Link‑state\n\n- Interior Gateway Protocol (IGP)\n\n- Defined by IEEE standard OSPFv2 for IPv4\nOSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate\nthe best paths through the network."
+      "beginner": "OSPF is a: Link‑state Interior Gateway Protocol (IGP) Defined by IETF OSPFv2 (RFC 2328) for IPv4 OSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate the best paths through the network. What LSAs and the.",
+      "intermediate": "OSPF is a: Link‑state Interior Gateway Protocol (IGP) Defined by IETF OSPFv2 (RFC 2328) for IPv4 OSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate the best paths through the network. What LSAs and the LSDB are The basic OSPF process flow What OSPF areas are and why they exist",
+      "examReady": "Know the core behavior: OSPF is a: Link‑state Interior Gateway Protocol (IGP) Defined by IETF OSPFv2 (RFC 2328) for IPv4 OSPF uses."
     },
-    "bigTakeaway": "OSPF is a: - Link‑state - Interior Gateway Protocol (IGP) - Defined by IEEE standard OSPFv2 for IPv4 OSPF uses the Shortest Path First (SPF) algorithm, also called.",
+    "bigTakeaway": "OSPF is a: Link‑state Interior Gateway Protocol (IGP) Defined by IETF OSPFv2 (RFC 2328) for IPv4 OSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm.",
     "keyPoints": [
-      "How OSPF works at a high level",
       "What LSAs and the LSDB are",
       "The basic OSPF process flow",
       "What OSPF areas are and why they exist",
@@ -335,8 +329,9 @@ export const KB_COMPILED_PATCHES = {
       "Basic single‑area OSPF configuration",
       "OSPF router ID behavior",
       "Interior Gateway Protocol (IGP)",
-      "How OSPF calculates its metric (cost)",
-      "Why default OSPF cost values are often misleading"
+      "Why default OSPF cost values are often misleading",
+      "OSPF neighbor states and message types",
+      "Key OSPF timers and multicast addresses"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -344,18 +339,15 @@ export const KB_COMPILED_PATCHES = {
   },
   "3.5": {
     "tiers": {
-      "beginner": "FHRPs work using these concepts:\n\n- Routers share a virtual IP\n\n- A virtual MAC is mapped to that IP\n\n- Routers exchange hello messages\n\n- One router is active (or master)",
-      "intermediate": "FHRPs work using these concepts:\n\n- Routers share a virtual IP\n\n- A virtual MAC is mapped to that IP\n\n- Routers exchange hello messages\n\n- One router is active (or master) Why default gateway redundancy is required How FHRPs function at a high level",
-      "examReady": "FHRPs work using these concepts:\n\n- Routers share a virtual IP\n\n- A virtual MAC is mapped to that IP\n\n- Routers exchange hello messages\n\n- One router is active (or master)"
+      "beginner": "FHRPs work using these concepts: Routers share a virtual IP A virtual MAC is mapped to that IP Routers exchange hello messages One router is active (or master) Why default gateway redundancy is required",
+      "intermediate": "FHRPs work using these concepts: Routers share a virtual IP A virtual MAC is mapped to that IP Routers exchange hello messages One router is active (or master) Why default gateway redundancy is required What virtual IP and virtual MAC addresses are Differences between HSRP, VRRP, and GLBP",
+      "examReady": "Know the core behavior: FHRPs work using these concepts: Routers share a virtual IP A virtual MAC is mapped to that IP."
     },
-    "bigTakeaway": "FHRPs work using these concepts: - Routers share a virtual IP - A virtual MAC is mapped to that IP - Routers exchange hello messages - One router.",
+    "bigTakeaway": "FHRPs work using these concepts: Routers share a virtual IP A virtual MAC is mapped to that IP Routers exchange hello messages One router is active (or master)",
     "keyPoints": [
       "Why default gateway redundancy is required",
-      "How FHRPs function at a high level",
       "What virtual IP and virtual MAC addresses are",
-      "How failover occurs without host changes",
-      "Differences between **HSRP**, **VRRP**, and **GLBP**",
-      "When each FHRP would be used",
+      "Differences between HSRP, VRRP, and GLBP",
       "A subnet has only one default gateway",
       "That router fails"
     ],
@@ -365,22 +357,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "1.8": {
     "tiers": {
-      "beginner": "IPv4 addresses are 32 bits long, allowing approximately 4.3 billion addresses . This once seemed\nenormous, but today it is insufficient due to:\n\n- Global internet growth\n\n- Mobile devices\n\n- IoT (Internet of Things)\n\n- Cloud services\n\nShort‑term IPv4 solutions:\n\n\n- VLSM\n\n- Private IPv4 addresses\n\n- NAT\nThese extend IPv4, but do not solve exhaustion .",
-      "intermediate": "IPv4 addresses are 32 bits long, allowing approximately 4.3 billion addresses . This once seemed\nenormous, but today it is insufficient due to:\n\n- Global internet growth\n\n- Mobile devices\n\n- IoT (Internet of Things)\n\n- Cloud services\n\nShort‑term IPv4 solutions:\n\n\n- VLSM\n\n- Private IPv4 addresses\n\n- NAT\nThese extend IPv4, but do not solve exhaustion . IPv6 is the long‑term solution . **Exam Topic 1.8** — Configure and verify IPv6 addressing and prefixes **Exam Topic 1.9** — Compare IPv6 address types",
+      "beginner": "IPv4 addresses are 32 bits long, allowing approximately 4.3 billion addresses . Exam Topic 1.8 — Configure and verify IPv6 addressing and prefixes",
+      "intermediate": "IPv4 addresses are 32 bits long, allowing approximately 4.3 billion addresses . Exam Topic 1.8 — Configure and verify IPv6 addressing and prefixes Exam Topic 1.9 — Compare IPv6 address types Why IPv6 is required",
       "examReady": "Exam Topic 1.8 — Configure and verify IPv6 addressing and prefixes"
     },
     "bigTakeaway": "IPv4 addresses are 32 bits long, allowing approximately 4.3 billion addresses .",
     "keyPoints": [
-      "**Exam Topic 1.8** — Configure and verify IPv6 addressing and prefixes",
-      "**Exam Topic 1.9** — Compare IPv6 address types",
+      "Exam Topic 1.8 — Configure and verify IPv6 addressing and prefixes",
+      "Exam Topic 1.9 — Compare IPv6 address types",
       "Why IPv6 is required",
-      "How hexadecimal works (and why it matters)",
       "The structure of IPv6 addresses",
       "How IPv6 addresses are shortened and expanded",
-      "How IPv6 prefixes work",
-      "How to configure IPv6 on Cisco routers",
-      "How **EUI‑64** works and why it exists",
-      "How IPv6 interfaces automatically generate addresses"
+      "All major IPv6 address types",
+      "When and why each IPv6 address type is used",
+      "IPv6 multicast scopes and important multicast groups",
+      "IPv6 commonly uses a /64 prefix",
+      "The remaining 64 bits can be generated automatically from the interface MAC address"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -388,22 +380,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "1.9": {
     "tiers": {
-      "beginner": "How **EUI‑64** works and why it exists",
-      "intermediate": "How **EUI‑64** works and why it exists How IPv6 interfaces automatically generate addresses",
+      "beginner": "All major IPv6 address types When and why each IPv6 address type is used Exam Topic 3.3 — Configure and verify IPv6 static routing Supporting knowledge from 1.8 and 1.9 All major IPv6 address types",
+      "intermediate": "All major IPv6 address types When and why each IPv6 address type is used Exam Topic 3.3 — Configure and verify IPv6 static routing Supporting knowledge from 1.8 and 1.9 All major IPv6 address types When and why each IPv6 address type is used IPv6 multicast scopes and important multicast groups",
       "examReady": "Exam Topic 3.3 — Configure and verify IPv6 static routing"
     },
-    "bigTakeaway": "How EUI‑64 works and why it exists",
+    "bigTakeaway": "All major IPv6 address types When and why each IPv6 address type is used Exam Topic 3.3 — Configure and verify IPv6 static routing Supporting knowledge from 1.8.",
     "keyPoints": [
-      "How **EUI‑64** works and why it exists",
-      "How IPv6 interfaces automatically generate addresses",
       "All major IPv6 address types",
       "When and why each IPv6 address type is used",
       "IPv6 multicast scopes and important multicast groups",
-      "What makes IPv6 different from IPv4 at Layer 3",
-      "IPv6 commonly uses a **/64 prefix**",
-      "The remaining **64 bits** can be generated automatically from the interface MAC address",
-      "**Exam Topic 3.3** — Configure and verify IPv6 static routing",
-      "Supporting knowledge from **1.8** and **1.9**"
+      "IPv6 commonly uses a /64 prefix",
+      "The remaining 64 bits can be generated automatically from the interface MAC address",
+      "Exam Topic 3.3 — Configure and verify IPv6 static routing",
+      "Supporting knowledge from 1.8 and 1.9",
+      "Proper IPv6 address representation rules",
+      "The simplified IPv6 header",
+      "Neighbor Discovery Protocol (NDP) and how it replaces ARP"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -411,22 +403,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "5.5": {
     "tiers": {
-      "beginner": "What ACLs are and why they exist",
-      "intermediate": "What ACLs are and why they exist How ACL logic works inside a router",
-      "examReady": ""
+      "beginner": "What ACLs are and why they exist Inbound vs outbound ACL processing ACLs are processed top‑down First match wins What ACLs are and why they exist",
+      "intermediate": "What ACLs are and why they exist Inbound vs outbound ACL processing ACLs are processed top‑down First match wins What ACLs are and why they exist Inbound vs outbound ACL processing The concept of implicit deny",
+      "examReady": "ACLs must be applied to an interface ( in or out )"
     },
-    "bigTakeaway": "What ACLs are and why they exist",
+    "bigTakeaway": "What ACLs are and why they exist Inbound vs outbound ACL processing ACLs are processed top‑down First match wins",
     "keyPoints": [
       "What ACLs are and why they exist",
-      "How ACL logic works inside a router",
       "Inbound vs outbound ACL processing",
       "The concept of implicit deny",
       "Standard vs extended ACLs (high‑level)",
       "Standard numbered ACLs",
       "Standard named ACLs",
       "Proper placement of standard ACLs",
-      "ACLs are processed **top‑down**",
-      "**First match wins**"
+      "ACLs are processed top‑down",
+      "First match wins",
+      "ACLs must be applied to an interface ( in or out )"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -434,16 +426,14 @@ export const KB_COMPILED_PATCHES = {
   },
   "2.3": {
     "tiers": {
-      "beginner": "**Exam Topic 2.3** — Configure and verify Layer 2 discovery protocols CDP and LLDP",
-      "intermediate": "**Exam Topic 2.3** — Configure and verify Layer 2 discovery protocols CDP and LLDP What Layer 2 discovery protocols are",
+      "beginner": "Exam Topic 2.3 — Configure and verify Layer 2 discovery protocols CDP and LLDP What Layer 2 discovery protocols are Exam Topic 2.3 — Configure and verify Layer 2 discovery protocols CDP and LLDP",
+      "intermediate": "Exam Topic 2.3 — Configure and verify Layer 2 discovery protocols CDP and LLDP What Layer 2 discovery protocols are Exam Topic 2.3 — Configure and verify Layer 2 discovery protocols CDP and LLDP What Layer 2 discovery protocols are Key differences between CDP and LLDP",
       "examReady": "Exam Topic 2.3 — Configure and verify Layer 2 discovery protocols CDP and LLDP"
     },
-    "bigTakeaway": "Exam Topic 2.3 — Configure and verify Layer 2 discovery protocols CDP and LLDP",
+    "bigTakeaway": "Exam Topic 2.3 — Configure and verify Layer 2 discovery protocols CDP and LLDP What Layer 2 discovery protocols are",
     "keyPoints": [
-      "**Exam Topic 2.3** — Configure and verify Layer 2 discovery protocols CDP and LLDP",
+      "Exam Topic 2.3 — Configure and verify Layer 2 discovery protocols CDP and LLDP",
       "What Layer 2 discovery protocols are",
-      "How CDP works and how to verify/configure it",
-      "How LLDP works and how to verify/configure it",
       "Key differences between CDP and LLDP",
       "When and why these protocols are enabled or disabled",
       "Device type (router, switch, etc.)",
@@ -455,15 +445,13 @@ export const KB_COMPILED_PATCHES = {
   },
   "4.2": {
     "tiers": {
-      "beginner": "**Exam Topic 4.2** — Configure and verify NTP operating in client and server mode",
-      "intermediate": "**Exam Topic 4.2** — Configure and verify NTP operating in client and server mode Why accurate time matters on network devices",
+      "beginner": "Exam Topic 4.2 — Configure and verify NTP operating in client and server mode The difference between the software clock and hardware calendar Exam Topic 4.2 — Configure and verify NTP operating in client and server mode",
+      "intermediate": "Exam Topic 4.2 — Configure and verify NTP operating in client and server mode The difference between the software clock and hardware calendar Exam Topic 4.2 — Configure and verify NTP operating in client and server mode The difference between the software clock and hardware calendar Time zones and daylight saving time configuration",
       "examReady": "Exam Topic 4.2 — Configure and verify NTP operating in client and server mode"
     },
-    "bigTakeaway": "Exam Topic 4.2 — Configure and verify NTP operating in client and server mode",
+    "bigTakeaway": "Exam Topic 4.2 — Configure and verify NTP operating in client and server mode The difference between the software clock and hardware calendar",
     "keyPoints": [
-      "**Exam Topic 4.2** — Configure and verify NTP operating in client and server mode",
-      "Why accurate time matters on network devices",
-      "How to manually configure time and date",
+      "Exam Topic 4.2 — Configure and verify NTP operating in client and server mode",
       "The difference between the software clock and hardware calendar",
       "Time zones and daylight saving time configuration",
       "NTP fundamentals and hierarchy",
@@ -476,22 +464,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "4.3": {
     "tiers": {
-      "beginner": "Client needs to access a resource using a name\n2. Client sends a DNS query to a DNS server\n3.",
-      "intermediate": "Client needs to access a resource using a name\n2. Client sends a DNS query to a DNS server\n3. DNS server replies with the IP address\n4. **Exam Topic 4.3** — Explain the role of DHCP and DNS within the network You do **not** need deep DNS internals",
+      "beginner": "Client needs to access a resource using a name 2. Exam Topic 4.3 — Explain the role of DHCP and DNS within the network",
+      "intermediate": "Client needs to access a resource using a name 2. Exam Topic 4.3 — Explain the role of DHCP and DNS within the network You do not need deep DNS internals You do need to understand purpose, basic operation, common record types, and basic Cisco",
       "examReady": "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network"
     },
     "bigTakeaway": "Client needs to access a resource using a name 2.",
     "keyPoints": [
-      "**Exam Topic 4.3** — Explain the role of DHCP and DNS within the network",
-      "You do **not** need deep DNS internals",
-      "You **do** need to understand purpose, basic operation, common record types, and basic Cisco",
-      "Why DNS exists",
-      "How DNS works at a high level",
+      "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network",
+      "You do not need deep DNS internals",
+      "You do need to understand purpose, basic operation, common record types, and basic Cisco",
       "Common DNS record types (A, AAAA, CNAME)",
       "DNS caching and hosts files",
       "DNS behavior on end hosts",
-      "**Exam Topic 4.6** — Configure and verify DHCP client and relay",
-      "Why DHCP exists and what problem it solves"
+      "Exam Topic 4.6 — Configure and verify DHCP client and relay",
+      "The DHCP DORA process",
+      "DHCP message types and ports",
+      "DHCP lease behavior"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -499,16 +487,14 @@ export const KB_COMPILED_PATCHES = {
   },
   "4.6": {
     "tiers": {
-      "beginner": "**Exam Topic 4.3** — Explain the role of DHCP and DNS within the network",
-      "intermediate": "**Exam Topic 4.3** — Explain the role of DHCP and DNS within the network **Exam Topic 4.6** — Configure and verify DHCP client and relay",
+      "beginner": "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network Exam Topic 4.6 — Configure and verify DHCP client and relay Exam Topic 4.3 — Explain the role of DHCP and DNS within the network",
+      "intermediate": "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network Exam Topic 4.6 — Configure and verify DHCP client and relay Exam Topic 4.3 — Explain the role of DHCP and DNS within the network Exam Topic 4.6 — Configure and verify DHCP client and relay The DHCP DORA process",
       "examReady": "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network"
     },
-    "bigTakeaway": "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network",
+    "bigTakeaway": "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network Exam Topic 4.6 — Configure and verify DHCP client and relay",
     "keyPoints": [
-      "**Exam Topic 4.3** — Explain the role of DHCP and DNS within the network",
-      "**Exam Topic 4.6** — Configure and verify DHCP client and relay",
-      "Why DHCP exists and what problem it solves",
-      "What information DHCP provides to clients",
+      "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network",
+      "Exam Topic 4.6 — Configure and verify DHCP client and relay",
       "The DHCP DORA process",
       "DHCP message types and ports",
       "DHCP lease behavior",
@@ -520,18 +506,16 @@ export const KB_COMPILED_PATCHES = {
   },
   "4.4": {
     "tiers": {
-      "beginner": "**Exam Topic 4.4** — Explain the function of SNMP in network operations",
-      "intermediate": "**Exam Topic 4.4** — Explain the function of SNMP in network operations You do **not** need to configure a full SNMP system",
+      "beginner": "Exam Topic 4.4 — Explain the function of SNMP in network operations You do not need to configure a full SNMP system Exam Topic 4.4 — Explain the function of SNMP in network operations",
+      "intermediate": "Exam Topic 4.4 — Explain the function of SNMP in network operations You do not need to configure a full SNMP system Exam Topic 4.4 — Explain the function of SNMP in network operations You do not need to configure a full SNMP system You do not need to deeply understand every message type",
       "examReady": "Exam Topic 4.4 — Explain the function of SNMP in network operations"
     },
-    "bigTakeaway": "Exam Topic 4.4 — Explain the function of SNMP in network operations",
+    "bigTakeaway": "Exam Topic 4.4 — Explain the function of SNMP in network operations You do not need to configure a full SNMP system",
     "keyPoints": [
-      "**Exam Topic 4.4** — Explain the function of SNMP in network operations",
-      "You do **not** need to configure a full SNMP system",
-      "You do **not** need to deeply understand every message type",
-      "You **do** need to understand **purpose, roles, versions, and basic message behavior**",
-      "Why SNMP exists",
-      "How SNMP fits into network operations",
+      "Exam Topic 4.4 — Explain the function of SNMP in network operations",
+      "You do not need to configure a full SNMP system",
+      "You do not need to deeply understand every message type",
+      "You do need to understand purpose, roles, versions, and basic message behavior",
       "The roles of SNMP manager and agent",
       "What an NMS is"
     ],
@@ -541,20 +525,19 @@ export const KB_COMPILED_PATCHES = {
   },
   "4.5": {
     "tiers": {
-      "beginner": "**Exam Topic 4.5** — Describe the use of syslog features including **facilities** and **levels**",
-      "intermediate": "**Exam Topic 4.5** — Describe the use of syslog features including **facilities** and **levels** You must understand **what Syslog is used for**",
+      "beginner": "Exam Topic 4.5 — Describe the use of syslog features including facilities and levels You must understand what Syslog is used for Exam Topic 4.5 — Describe the use of syslog features including facilities and levels",
+      "intermediate": "Exam Topic 4.5 — Describe the use of syslog features including facilities and levels You must understand what Syslog is used for Exam Topic 4.5 — Describe the use of syslog features including facilities and levels You must understand what Syslog is used for You must understand Syslog message structure",
       "examReady": "Exam Topic 4.5 — Describe the use of syslog features including facilities and levels"
     },
-    "bigTakeaway": "Exam Topic 4.5 — Describe the use of syslog features including facilities and levels",
+    "bigTakeaway": "Exam Topic 4.5 — Describe the use of syslog features including facilities and levels You must understand what Syslog is used for",
     "keyPoints": [
-      "**Exam Topic 4.5** — Describe the use of syslog features including **facilities** and **levels**",
-      "You must understand **what Syslog is used for**",
-      "You must understand **Syslog message structure**",
-      "You must memorize **severity levels**",
-      "You must understand **facilities vs severity**",
-      "You do **not** need deep server‑side configuration knowledge",
-      "Why Syslog is important",
-      "How Syslog works at a high level"
+      "Exam Topic 4.5 — Describe the use of syslog features including facilities and levels",
+      "You must understand what Syslog is used for",
+      "You must understand Syslog message structure",
+      "You must memorize severity levels",
+      "You must understand facilities vs severity",
+      "You do not need deep server‑side configuration knowledge",
+      "Why Syslog is important"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -562,16 +545,15 @@ export const KB_COMPILED_PATCHES = {
   },
   "4.8": {
     "tiers": {
-      "beginner": "**Exam Topic 4.8** — Configure network devices for remote access using SSH",
-      "intermediate": "**Exam Topic 4.8** — Configure network devices for remote access using SSH Console port security basics",
+      "beginner": "Exam Topic 4.8 — Configure network devices for remote access using SSH Console port security basics Exam Topic 4.8 — Configure network devices for remote access using SSH",
+      "intermediate": "Exam Topic 4.8 — Configure network devices for remote access using SSH Console port security basics Exam Topic 4.8 — Configure network devices for remote access using SSH Console port security basics What the console line and VTY lines are",
       "examReady": "Exam Topic 4.8 — Configure network devices for remote access using SSH"
     },
-    "bigTakeaway": "Exam Topic 4.8 — Configure network devices for remote access using SSH",
+    "bigTakeaway": "Exam Topic 4.8 — Configure network devices for remote access using SSH Console port security basics",
     "keyPoints": [
-      "**Exam Topic 4.8** — Configure network devices for remote access using SSH",
+      "Exam Topic 4.8 — Configure network devices for remote access using SSH",
       "Console port security basics",
       "What the console line and VTY lines are",
-      "How Layer 2 switches can be managed remotely",
       "What Telnet is and why it is insecure",
       "What SSH is and why it is preferred",
       "SSH versions and encryption",
@@ -583,20 +565,19 @@ export const KB_COMPILED_PATCHES = {
   },
   "4.9": {
     "tiers": {
-      "beginner": "**Exam Topic 4.9** — Describe the capabilities and function of TFTP and FTP in the network",
-      "intermediate": "**Exam Topic 4.9** — Describe the capabilities and function of TFTP and FTP in the network You do **not** need deep protocol internals",
+      "beginner": "Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network You do not need deep protocol internals Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network",
+      "intermediate": "Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network You do not need deep protocol internals Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network You do not need deep protocol internals You do need to understand —",
       "examReady": "Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network"
     },
-    "bigTakeaway": "Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network",
+    "bigTakeaway": "Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network You do not need deep protocol internals",
     "keyPoints": [
-      "**Exam Topic 4.9** — Describe the capabilities and function of TFTP and FTP in the network",
-      "You do **not** need deep protocol internals",
-      "You **do** need to understand:",
+      "Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network",
+      "You do not need deep protocol internals",
+      "You do need to understand — ",
       "Security differences",
       "Common use cases",
       "Basic IOS file operations",
-      "What FTP and TFTP are used for",
-      "How FTP and TFTP differ"
+      "What FTP and TFTP are used for"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -604,22 +585,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "4.1": {
     "tiers": {
-      "beginner": "IPv4 does not provide enough globally unique addresses for all devices. Short‑term solutions that extended IPv4’s lifespan:\n\n- CIDR (Classless Inter‑Domain Routing)\n\n- Private IPv4 addresses\n\n- NAT\nLong‑term solution:\n\n- IPv6",
-      "intermediate": "IPv4 does not provide enough globally unique addresses for all devices. Short‑term solutions that extended IPv4’s lifespan:\n\n- CIDR (Classless Inter‑Domain Routing)\n\n- Private IPv4 addresses\n\n- NAT\nLong‑term solution:\n\n- IPv6 **Exam Topic 4.1** — Configure and verify **inside source NAT** using **static** and **pools** Private IPv4 addresses",
+      "beginner": "IPv4 does not provide enough globally unique addresses for all devices. Exam Topic 4.1 — Configure and verify inside source NAT using static and pools",
+      "intermediate": "IPv4 does not provide enough globally unique addresses for all devices. Exam Topic 4.1 — Configure and verify inside source NAT using static and pools Private IPv4 addresses Static source NAT",
       "examReady": "Exam Topic 4.1 — Configure and verify inside source NAT using static and pools"
     },
     "bigTakeaway": "IPv4 does not provide enough globally unique addresses for all devices.",
     "keyPoints": [
-      "**Exam Topic 4.1** — Configure and verify **inside source NAT** using **static** and **pools**",
+      "Exam Topic 4.1 — Configure and verify inside source NAT using static and pools",
       "Private IPv4 addresses",
-      "Why NAT exists",
-      "How NAT works at a high level",
-      "**Static source NAT**",
+      "Static source NAT",
       "NAT terminology (inside local, inside global, etc.)",
       "Basic static NAT configuration and verification",
-      "**CIDR** (Classless Inter‑Domain Routing)",
-      "**Dynamic NAT** (inside local ↔ inside global mappings created automatically from a pool)",
-      "**PAT / NAT Overload** (many inside locals share one inside global using Layer 4 ports)"
+      "CIDR (Classless Inter‑Domain Routing)",
+      "Dynamic NAT (inside local ↔ inside global mappings created automatically from a pool)",
+      "PAT / NAT Overload (many inside locals share one inside global using Layer 4 ports)",
+      "Explain the difference between static NAT, dynamic NAT, and PAT",
+      "Configure dynamic NAT using a pool"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -627,20 +608,18 @@ export const KB_COMPILED_PATCHES = {
   },
   "4.7": {
     "tiers": {
-      "beginner": "**Exam Topic 4.7** — Explain the forwarding per‑hop behavior (PHB) for QoS",
-      "intermediate": "**Exam Topic 4.7** — Explain the forwarding per‑hop behavior (PHB) for QoS **IP phones**",
+      "beginner": "Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS IP phones Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS IP phones Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS",
+      "intermediate": "Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS IP phones Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS IP phones Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS IP phones Voice VLANs",
       "examReady": "Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS"
     },
-    "bigTakeaway": "Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS",
+    "bigTakeaway": "Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS IP phones Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS IP phones",
     "keyPoints": [
-      "**Exam Topic 4.7** — Explain the forwarding per‑hop behavior (PHB) for QoS",
-      "**IP phones**",
-      "**Voice VLANs**",
-      "**Power over Ethernet (PoE)**",
-      "How IP phones connect to switches",
+      "Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS",
+      "IP phones",
+      "Voice VLANs",
+      "Power over Ethernet (PoE)",
       "What a voice VLAN is and why it’s used",
-      "What PoE is and why it’s important",
-      "Why QoS exists"
+      "What PoE is and why it’s important"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -648,16 +627,16 @@ export const KB_COMPILED_PATCHES = {
   },
   "5.1": {
     "tiers": {
-      "beginner": "All security goals map back to the CIA triad :\nConfidentiality (C)\n\n- Only authorized users can access data\n\n- Prevents data disclosure\nExamples:\n\n- Password‑protected files\n\n- Encrypted traffic\n\n- Access control lists\n\nIntegrity (I)\n\n- Data must not be altered by unauthorized users\n\n- Ensures accuracy and trustworthiness\nExamples:\n\n- File checksums\n\n- Digital signatures\n\n- Change control logging\n\nAvailability (A)\n\n- Systems and data must be accessible when needed\n\n- Protects",
-      "intermediate": "All security goals map back to the CIA triad :\nConfidentiality (C)\n\n- Only authorized users can access data\n\n- Prevents data disclosure\nExamples:\n\n- Password‑protected files\n\n- Encrypted traffic\n\n- Access control lists\n\nIntegrity (I)\n\n- Data must not be altered by unauthorized users\n\n- Ensures accuracy and trustworthiness\nExamples:\n\n- File checksums\n\n- Digital signatures\n\n- Change control logging\n\nAvailability (A)\n\n- Systems and data must be accessible when needed\n\n- Protects Recognize common threats Understand why",
-      "examReady": "All security goals map back to the CIA triad :\nConfidentiality (C)\n\n- Only authorized users can access data\n\n- Prevents data disclosure\nExamples:\n\n- Password‑protected files\n\n- Encrypted traffic\n\n- Access control lists\n\nIntegrity (I)\n\n- Data must not be altered by unauthorized us"
+      "beginner": "All security goals map back to the CIA triad : Confidentiality (C) Only authorized users can access data Prevents data disclosure Examples: Password‑protected files Encrypted traffic Access control lists Integrity (I) Data must not be altered by unauthorized users Ensures.",
+      "intermediate": "All security goals map back to the CIA triad : Confidentiality (C) Only authorized users can access data Prevents data disclosure Examples: Password‑protected files Encrypted traffic Access control lists Integrity (I) Data must not be altered by unauthorized users Ensures accuracy and trustworthiness Examples: File checksums Digital signatures Change control logging Availability (A) Systems and data must be accessible when needed Protects Recognize common threats Understand why security controls exist Apply basic s",
+      "examReady": "Know the core behavior: All security goals map back to the CIA triad : Confidentiality (C) Only authorized users can access data."
     },
-    "bigTakeaway": "All security goals map back to the CIA triad : Confidentiality (C) - Only authorized users can access data - Prevents data disclosure Examples: - Password‑protected files -.",
+    "bigTakeaway": "All security goals map back to the CIA triad : Confidentiality (C) Only authorized users can access data Prevents data disclosure Examples: Password‑protected files Encrypted traffic Access control.",
     "keyPoints": [
       "Recognize common threats",
       "Understand why security controls exist",
       "Apply basic security principles in networking environments",
-      "The **CIA triad**",
+      "The CIA triad",
       "Vulnerabilities, exploits, threats, and mitigations",
       "Common attack types",
       "Password security and multi‑factor authentication",
@@ -669,22 +648,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "5.6": {
     "tiers": {
-      "beginner": "Client sends DHCP DISCOVER (untrusted port)\n2. Switch inspects message\n3.",
-      "intermediate": "Client sends DHCP DISCOVER (untrusted port)\n2. Switch inspects message\n3. If valid → forwards it\n4. **Which source MAC addresses** are allowed on a switchport **How many MAC addresses** are allowed on a switchport",
+      "beginner": "Which source MAC addresses are allowed on a switchport How many MAC addresses are allowed on a switchport Client sends DHCP DISCOVER (untrusted port) 2. Which source MAC addresses are allowed on a switchport",
+      "intermediate": "Which source MAC addresses are allowed on a switchport How many MAC addresses are allowed on a switchport Client sends DHCP DISCOVER (untrusted port) 2. Which source MAC addresses are allowed on a switchport How many MAC addresses are allowed on a switchport Exam Topic 5.7 — Configure and verify Layer 2 security features",
       "examReady": "Exam Topic 5.7 — Configure and verify Layer 2 security features"
     },
-    "bigTakeaway": "Client sends DHCP DISCOVER (untrusted port) 2.",
+    "bigTakeaway": "Which source MAC addresses are allowed on a switchport How many MAC addresses are allowed on a switchport Client sends DHCP DISCOVER (untrusted port) 2.",
     "keyPoints": [
-      "**Which source MAC addresses** are allowed on a switchport",
-      "**How many MAC addresses** are allowed on a switchport",
-      "**What action** the switch takes when an unauthorized MAC address appears",
-      "**Exam Topic 5.7** — Configure and verify Layer 2 security features",
-      "What port security does and why it’s used",
+      "Which source MAC addresses are allowed on a switchport",
+      "How many MAC addresses are allowed on a switchport",
+      "Exam Topic 5.7 — Configure and verify Layer 2 security features",
       "Secure MAC address concepts",
       "Port‑security defaults",
       "Violation modes (shutdown, restrict, protect)",
       "What DHCP snooping is and why it exists",
-      "Trusted vs untrusted ports"
+      "Trusted vs untrusted ports",
+      "Which DHCP messages are filtered",
+      "DHCP starvation and DHCP poisoning attacks"
     ],
     "source": "onenote-kb",
     "confidence": "draft",
@@ -692,22 +671,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "1.2": {
     "tiers": {
-      "beginner": "Simplicity of management",
-      "intermediate": "Simplicity of management Recognize common architectures",
-      "examReady": "Know **where functions live** (QoS, security, routing, switching)"
+      "beginner": "Scalability Redundancy You are expected to recognize technologies Understand what problem each solves Simplicity of management",
+      "intermediate": "Scalability Redundancy You are expected to recognize technologies Understand what problem each solves Simplicity of management Recognize common architectures Understand why each exists",
+      "examReady": "Know where functions live (QoS, security, routing, switching)"
     },
-    "bigTakeaway": "Simplicity of management",
+    "bigTakeaway": "Scalability Redundancy You are expected to recognize technologies Understand what problem each solves",
     "keyPoints": [
       "Simplicity of management",
       "Recognize common architectures",
-      "Understand **why** each exists",
-      "Know **where functions live** (QoS, security, routing, switching)",
-      "Many devices connect to **one central device**",
-      "Common at the **access layer**",
+      "Understand why each exists",
+      "Know where functions live (QoS, security, routing, switching)",
+      "Many devices connect to one central device",
+      "Common at the access layer",
       "PCs → access switch",
-      "Every device connects to **every other device**",
-      "You are expected to **recognize technologies**",
-      "Understand **what problem each solves**"
+      "Every device connects to every other device",
+      "You are expected to recognize technologies",
+      "Understand what problem each solves"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -715,22 +694,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "1.12": {
     "tiers": {
-      "beginner": "Understand **what virtualization is**",
-      "intermediate": "Understand **what virtualization is** Know **Type 1 vs Type 2 hypervisors**",
-      "examReady": "Know **Type 1 vs Type 2 hypervisors**"
+      "beginner": "Understand what virtualization is Know Type 1 vs Type 2 hypervisors Understand what containers are Understand how containers differ from VMs Understand what virtualization is",
+      "intermediate": "Understand what virtualization is Know Type 1 vs Type 2 hypervisors Understand what containers are Understand how containers differ from VMs Understand what virtualization is Know Type 1 vs Type 2 hypervisors Understand basic virtual networking",
+      "examReady": "Know Type 1 vs Type 2 hypervisors"
     },
-    "bigTakeaway": "Understand what virtualization is",
+    "bigTakeaway": "Understand what virtualization is Know Type 1 vs Type 2 hypervisors Understand what containers are Understand how containers differ from VMs",
     "keyPoints": [
-      "Understand **what virtualization is**",
-      "Know **Type 1 vs Type 2 hypervisors**",
-      "Understand **basic virtual networking**",
-      "Know **what cloud computing is**",
-      "**5 essential cloud characteristics**",
-      "**3 cloud service models**",
-      "**4 cloud deployment models**",
-      "Understand **on‑prem vs cloud vs hybrid**",
-      "Understand **what containers are**",
-      "Understand **how containers differ from VMs**"
+      "Understand what virtualization is",
+      "Know Type 1 vs Type 2 hypervisors",
+      "Understand basic virtual networking",
+      "Know what cloud computing is",
+      "5 essential cloud characteristics",
+      "3 cloud service models",
+      "4 cloud deployment models",
+      "Understand on‑prem vs cloud vs hybrid",
+      "Understand what containers are",
+      "Understand how containers differ from VMs"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -738,17 +717,17 @@ export const KB_COMPILED_PATCHES = {
   },
   "1.11": {
     "tiers": {
-      "beginner": "Understand **basic wireless operation**",
-      "intermediate": "Understand **basic wireless operation** Understand **radio frequency concepts**",
-      "examReady": "Know **2.4 GHz vs 5 GHz**"
+      "beginner": "Understand basic wireless operation Understand radio frequency concepts Understand basic wireless operation",
+      "intermediate": "Understand basic wireless operation Understand radio frequency concepts Understand basic wireless operation Understand radio frequency concepts Know 2.4 GHz vs 5 GHz",
+      "examReady": "Know 2.4 GHz vs 5 GHz"
     },
-    "bigTakeaway": "Understand basic wireless operation",
+    "bigTakeaway": "Understand basic wireless operation Understand radio frequency concepts",
     "keyPoints": [
-      "Understand **basic wireless operation**",
-      "Understand **radio frequency concepts**",
-      "Know **2.4 GHz vs 5 GHz**",
-      "Know **nonoverlapping channels**",
-      "Understand **APs, SSIDs, and service sets**",
+      "Understand basic wireless operation",
+      "Understand radio frequency concepts",
+      "Know 2.4 GHz vs 5 GHz",
+      "Know nonoverlapping channels",
+      "Understand APs, SSIDs, and service sets",
       "Design enterprise WLANs",
       "Configure WLCs",
       "Perform site surveys"
@@ -759,20 +738,19 @@ export const KB_COMPILED_PATCHES = {
   },
   "2.6": {
     "tiers": {
-      "beginner": "How APs are deployed",
-      "intermediate": "How APs are deployed How traffic flows",
-      "examReady": ""
+      "beginner": "How APs are deployed How wireless networks are centrally managed How APs are deployed",
+      "intermediate": "How APs are deployed How wireless networks are centrally managed How APs are deployed How wireless networks are centrally managed Understand autonomous vs lightweight vs cloud-based APs",
+      "examReady": "Know the core behavior: How APs are deployed How wireless networks are centrally managed"
     },
-    "bigTakeaway": "How APs are deployed",
+    "bigTakeaway": "How APs are deployed How wireless networks are centrally managed",
     "keyPoints": [
       "How APs are deployed",
-      "How traffic flows",
       "How wireless networks are centrally managed",
-      "Understand **autonomous vs lightweight vs cloud-based APs**",
-      "Understand **WLC purpose and CAPWAP**",
-      "Recognize **AP modes**",
-      "Recognize **WLC deployment models**",
-      "Understand **traffic flow differences**"
+      "Understand autonomous vs lightweight vs cloud-based APs",
+      "Understand WLC purpose and CAPWAP",
+      "Recognize AP modes",
+      "Recognize WLC deployment models",
+      "Understand traffic flow differences"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -780,19 +758,19 @@ export const KB_COMPILED_PATCHES = {
   },
   "5.8": {
     "tiers": {
-      "beginner": "Authentication",
-      "intermediate": "Authentication WPA security standards",
-      "examReady": "Know **authentication methods and their relative strength**"
+      "beginner": "Authentication Encryption Authentication",
+      "intermediate": "Authentication Encryption Authentication WPA security standards Understand why wireless security is critical",
+      "examReady": "Know authentication methods and their relative strength"
     },
-    "bigTakeaway": "Authentication",
+    "bigTakeaway": "Authentication Encryption",
     "keyPoints": [
       "Authentication",
       "WPA security standards",
-      "Understand **why wireless security is critical**",
-      "Know **authentication methods and their relative strength**",
-      "Know **encryption & integrity protocols**",
-      "Compare **WPA vs WPA2 vs WPA3**",
-      "Recognize **enterprise vs personal modes**",
+      "Understand why wireless security is critical",
+      "Know authentication methods and their relative strength",
+      "Know encryption & integrity protocols",
+      "Compare WPA vs WPA2 vs WPA3",
+      "Recognize enterprise vs personal modes",
       "Configure 802.1X"
     ],
     "source": "onenote-kb",
@@ -801,17 +779,17 @@ export const KB_COMPILED_PATCHES = {
   },
   "2.8": {
     "tiers": {
-      "beginner": "Understand **WLC + AP topology**",
-      "intermediate": "Understand **WLC + AP topology** Understand **VLAN‑to‑SSID mapping**",
-      "examReady": "Know **WLC ports vs interfaces**"
+      "beginner": "Understand WLC + AP topology Understand VLAN‑to‑SSID mapping Understand WLC + AP topology",
+      "intermediate": "Understand WLC + AP topology Understand VLAN‑to‑SSID mapping Understand WLC + AP topology Understand VLAN‑to‑SSID mapping Know WLC ports vs interfaces",
+      "examReady": "Know WLC ports vs interfaces"
     },
-    "bigTakeaway": "Understand WLC + AP topology",
+    "bigTakeaway": "Understand WLC + AP topology Understand VLAN‑to‑SSID mapping",
     "keyPoints": [
-      "Understand **WLC + AP topology**",
-      "Understand **VLAN‑to‑SSID mapping**",
-      "Know **WLC ports vs interfaces**",
-      "Be able to **configure WLANs using the GUI**",
-      "Configure **WPA2‑PSK (Personal mode)**",
+      "Understand WLC + AP topology",
+      "Understand VLAN‑to‑SSID mapping",
+      "Know WLC ports vs interfaces",
+      "Be able to configure WLANs using the GUI",
+      "Configure WPA2‑PSK (Personal mode)",
       "Memorize WLC CLI commands",
       "Configure RADIUS / 802.1X",
       "Build advanced security policies"
@@ -822,18 +800,18 @@ export const KB_COMPILED_PATCHES = {
   },
   "6.1": {
     "tiers": {
-      "beginner": "Understand **why automation is used**",
-      "intermediate": "Understand **why automation is used** Understand **traditional vs controller‑based networking**",
-      "examReady": "Know the **data, control, and management planes**"
+      "beginner": "Understand why automation is used Understand traditional vs controller‑based networking Understand why automation is used",
+      "intermediate": "Understand why automation is used Understand traditional vs controller‑based networking Understand why automation is used Understand traditional vs controller‑based networking Know the data, control, and management planes",
+      "examReady": "Know the data, control, and management planes"
     },
-    "bigTakeaway": "Understand why automation is used",
+    "bigTakeaway": "Understand why automation is used Understand traditional vs controller‑based networking",
     "keyPoints": [
-      "Understand **why automation is used**",
-      "Understand **traditional vs controller‑based networking**",
-      "Know the **data, control, and management planes**",
-      "Understand **SDN architecture**",
-      "Recognize **northbound & southbound interfaces**",
-      "Recognize **APIs and structured data formats**",
+      "Understand why automation is used",
+      "Understand traditional vs controller‑based networking",
+      "Know the data, control, and management planes",
+      "Understand SDN architecture",
+      "Recognize northbound & southbound interfaces",
+      "Recognize APIs and structured data formats",
       "Write Python scripts",
       "Use Ansible or Puppet"
     ],
@@ -843,16 +821,16 @@ export const KB_COMPILED_PATCHES = {
   },
   "6.3": {
     "tiers": {
-      "beginner": "Understand **why data serialization is needed**",
-      "intermediate": "Understand **why data serialization is needed** Interpret **JSON‑encoded data**",
-      "examReady": ""
+      "beginner": "Understand why data serialization is needed Interpret JSON‑encoded data Understand why data serialization is needed",
+      "intermediate": "Understand why data serialization is needed Interpret JSON‑encoded data Understand why data serialization is needed Interpret JSON‑encoded data Recognize JSON data types",
+      "examReady": "Know the core behavior: Understand why data serialization is needed Interpret JSON‑encoded data"
     },
-    "bigTakeaway": "Understand why data serialization is needed",
+    "bigTakeaway": "Understand why data serialization is needed Interpret JSON‑encoded data",
     "keyPoints": [
-      "Understand **why data serialization is needed**",
-      "Interpret **JSON‑encoded data**",
-      "Recognize **JSON data types**",
-      "Identify **valid vs invalid JSON**",
+      "Understand why data serialization is needed",
+      "Interpret JSON‑encoded data",
+      "Recognize JSON data types",
+      "Identify valid vs invalid JSON",
       "Compare JSON with XML and YAML at a high level",
       "Generate JSON programmatically",
       "Validate schemas",
@@ -864,22 +842,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "6.4": {
     "tiers": {
-      "beginner": "Understand **what an API is**",
-      "intermediate": "Understand **what an API is** Understand **CRUD operations**",
-      "examReady": ""
+      "beginner": "Understand what an API is Understand CRUD operations Understand why REST API authentication is required Recognize four common REST authentication methods Understand what an API is",
+      "intermediate": "Understand what an API is Understand CRUD operations Understand why REST API authentication is required Recognize four common REST authentication methods Understand what an API is Understand CRUD operations Map CRUD ↔ HTTP verbs",
+      "examReady": "Know the core behavior: Understand what an API is Understand CRUD operations Understand why REST API authentication is required Recognize four common."
     },
-    "bigTakeaway": "Understand what an API is",
+    "bigTakeaway": "Understand what an API is Understand CRUD operations Understand why REST API authentication is required Recognize four common REST authentication methods",
     "keyPoints": [
-      "Understand **what an API is**",
-      "Understand **CRUD operations**",
-      "Map **CRUD** ↔ **HTTP verbs**",
-      "Understand **HTTP request & response basics**",
-      "Recognize **REST API characteristics**",
-      "Interpret **basic REST interactions**",
+      "Understand what an API is",
+      "Understand CRUD operations",
+      "Map CRUD ↔ HTTP verbs",
+      "Understand HTTP request & response basics",
+      "Recognize REST API characteristics",
+      "Interpret basic REST interactions",
       "Write automation scripts",
       "Design REST services",
-      "Understand **why REST API authentication is required**",
-      "Recognize **four common REST authentication methods**"
+      "Understand why REST API authentication is required",
+      "Recognize four common REST authentication methods"
     ],
     "source": "onenote-kb",
     "confidence": "gold",
@@ -887,17 +865,17 @@ export const KB_COMPILED_PATCHES = {
   },
   "6.2": {
     "tiers": {
-      "beginner": "Understand **SDN architecture layers**",
-      "intermediate": "Understand **SDN architecture layers** Understand **underlay, overlay, and fabric**",
-      "examReady": ""
+      "beginner": "Understand SDN architecture layers Understand underlay, overlay, and fabric Understand SDN architecture layers",
+      "intermediate": "Understand SDN architecture layers Understand underlay, overlay, and fabric Understand SDN architecture layers Understand underlay, overlay, and fabric Recognize Cisco SD‑Access components",
+      "examReady": "Know the core behavior: Understand SDN architecture layers Understand underlay, overlay, and fabric"
     },
-    "bigTakeaway": "Understand SDN architecture layers",
+    "bigTakeaway": "Understand SDN architecture layers Understand underlay, overlay, and fabric",
     "keyPoints": [
-      "Understand **SDN architecture layers**",
-      "Understand **underlay, overlay, and fabric**",
-      "Recognize **Cisco SD‑Access components**",
-      "Understand **Cisco DNA Center’s role**",
-      "Compare **traditional vs DNA Center–based management**",
+      "Understand SDN architecture layers",
+      "Understand underlay, overlay, and fabric",
+      "Recognize Cisco SD‑Access components",
+      "Understand Cisco DNA Center’s role",
+      "Compare traditional vs DNA Center–based management",
       "Configure SD‑Access",
       "Configure VXLAN or LISP",
       "Deploy DNA Center"
@@ -908,22 +886,22 @@ export const KB_COMPILED_PATCHES = {
   },
   "6.5": {
     "tiers": {
-      "beginner": "Understand **what configuration management tools do**",
-      "intermediate": "Understand **what configuration management tools do** Understand **configuration drift**",
-      "examReady": ""
+      "beginner": "Understand what configuration management tools do Understand configuration drift Understand Infrastructure as Code (IaC) Distinguish provisioning vs configuration management Understand what configuration management tools do",
+      "intermediate": "Understand what configuration management tools do Understand configuration drift Understand Infrastructure as Code (IaC) Distinguish provisioning vs configuration management Understand what configuration management tools do Understand configuration drift Recognize common capabilities",
+      "examReady": "Know the core behavior: Understand what configuration management tools do Understand configuration drift Understand Infrastructure as Code (IaC) Distinguish provisioning vs configuration."
     },
-    "bigTakeaway": "Understand what configuration management tools do",
+    "bigTakeaway": "Understand what configuration management tools do Understand configuration drift Understand Infrastructure as Code (IaC) Distinguish provisioning vs configuration management",
     "keyPoints": [
-      "Understand **what configuration management tools do**",
-      "Understand **configuration drift**",
-      "Recognize **common capabilities**",
-      "Compare **Ansible vs Puppet vs Chef**",
-      "Recognize **push vs pull models**",
-      "Recognize **agentless vs agent‑based**",
+      "Understand what configuration management tools do",
+      "Understand configuration drift",
+      "Recognize common capabilities",
+      "Compare Ansible vs Puppet vs Chef",
+      "Recognize push vs pull models",
+      "Recognize agentless vs agent‑based",
       "Write playbooks, manifests, or cookbooks",
       "Install agents",
-      "Understand **Infrastructure as Code (IaC)**",
-      "Distinguish **provisioning vs configuration management**"
+      "Understand Infrastructure as Code (IaC)",
+      "Distinguish provisioning vs configuration management"
     ],
     "source": "onenote-kb",
     "confidence": "gold",

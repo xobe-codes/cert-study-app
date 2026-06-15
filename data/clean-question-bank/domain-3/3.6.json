@@ -32,21 +32,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The OSPF route, because it is dynamically learned** does not answer which in this stem. When multiple sources offer a route to the same destination, the router prefers the route with the lowest administrative distance.",
+            "explanation": "The OSPF route, because it is dynamically learned misses what this question tests. When multiple sources offer a route to the same destination, the router prefers the route with the lowest administrative distance.",
             "misconceptionTested": "Selecting \"The OSPF route, because it is dynamicall…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "The CAM table stores **source** MAC-to-port mappings. Destination MACs are not learned as table entries on arrival.",
+            "explanation": "The CAM table stores source MAC-to-port mappings. Destination MACs are not learned as table entries on arrival.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
             "misconceptionTested": "Selecting \"Neither route — the router flags a confl…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
+        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
       }
     },
     {
@@ -80,16 +80,16 @@
           },
           {
             "choiceIndex": 2,
-            "explanation": "**A DNS lookup to resolve the next-hop IP** does not answer configure in this stem. A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP, adding extra processing versus a directly-attached exit-interface route.",
+            "explanation": "A DNS lookup to resolve the next-hop IP misses what this question tests. A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP, adding extra processing versus a directly-attached exit-interface route.",
             "misconceptionTested": "Selecting \"A DNS lookup to resolve the next-hop IP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Nothing — next-hop routes forward immediately** does not answer configure in this stem. A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP, adding extra processing versus a directly-attached exit-interface route.",
+            "explanation": "Nothing — next-hop routes forward immediately misses what this question tests. A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP, adding extra processing versus a directly-attached exit-interface route.",
             "misconceptionTested": "Selecting \"Nothing — next-hop routes forward immedi…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **recursive route lookup** — exam distractors swap similar terms; anchor on: A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP, adding extra processing versus a directly-attached exit-interface route."
+        "examTip": "This stem tests recursive route lookup — exam distractors swap similar terms; anchor on: A next-hop (recursive) static route requires the router to look up the routing table again to determine which interface reaches the next-hop IP, adding extra processing versus a directly-attached exit-interface route."
       }
     },
     {
@@ -118,21 +118,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**It remains in the table but is marked inactive** is a plausible symptom fix but does not match the most likely root cause here: A static route depends on its exit interface (or a reachable next hop) being up.",
+            "explanation": "It remains in the table but is marked inactive is a plausible symptom fix but does not match the most likely root cause here: A static route depends on its exit interface (or a reachable next hop) being up.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**It is automatically replaced by a default route** is a plausible symptom fix but does not match the most likely root cause here: A static route depends on its exit interface (or a reachable next hop) being up.",
+            "explanation": "It is automatically replaced by a default route is a plausible symptom fix but does not match the most likely root cause here: A static route depends on its exit interface (or a reachable next hop) being up.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**It stays active but stops forwarding traffic silently** is a plausible symptom fix but does not match the most likely root cause here: A static route depends on its exit interface (or a reachable next hop) being up.",
+            "explanation": "It stays active but stops forwarding traffic silently is a plausible symptom fix but does not match the most likely root cause here: A static route depends on its exit interface (or a reachable next hop) being up.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Automation stems test **which tool/API** fits — don't swap controller, playbook, and southbound API roles."
+        "examTip": "Automation stems test which tool/API fits — don't swap controller, playbook, and southbound API roles."
       }
     },
     {
@@ -161,21 +161,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The host's DNS server is unreachable** is a plausible symptom fix but does not match the most likely root cause here: Local-subnet connectivity working but remote connectivity failing is the classic symptom of a missing or incorrect default gateway — the host has no way to route off-subnet traffic.",
+            "explanation": "The host's DNS server is unreachable is a plausible symptom fix but does not match the most likely root cause here: Local-subnet connectivity working but remote connectivity failing is the classic symptom of a missing or incorrect default gateway — the host has no way to route off-subnet traffic.",
             "misconceptionTested": "Selecting \"The host's DNS server is unreachable\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The switch port is in the wrong VLAN** is a plausible symptom fix but does not match the most likely root cause here: Local-subnet connectivity working but remote connectivity failing is the classic symptom of a missing or incorrect default gateway — the host has no way to route off-subnet traffic.",
+            "explanation": "The switch port is in the wrong VLAN is a plausible symptom fix but does not match the most likely root cause here: Local-subnet connectivity working but remote connectivity failing is the classic symptom of a missing or incorrect default gateway — the host has no way to route off-subnet traffic.",
             "misconceptionTested": "Selecting \"The switch port is in the wrong VLAN\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The host has a duplicate IP address** is a plausible symptom fix but does not match the most likely root cause here: Local-subnet connectivity working but remote connectivity failing is the classic symptom of a missing or incorrect default gateway — the host has no way to route off-subnet traffic.",
+            "explanation": "The host has a duplicate IP address is a plausible symptom fix but does not match the most likely root cause here: Local-subnet connectivity working but remote connectivity failing is the classic symptom of a missing or incorrect default gateway — the host has no way to route off-subnet traffic.",
             "misconceptionTested": "Selecting \"The host has a duplicate IP address\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Local L2 works but remote fails? Check the host **default gateway** before blaming routing protocols."
+        "examTip": "Local L2 works but remote fails? Check the host default gateway before blaming routing protocols."
       }
     },
     {
@@ -204,21 +204,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**show ip interface brief** does not answer which in this stem. show ip route lists all routes in the routing table along with a code (S, C, O, D, etc.",
+            "explanation": "show ip interface brief misses what this question tests. show ip route lists all routes in the routing table along with a code (S, C, O, D, etc.",
             "misconceptionTested": "Selecting \"show ip interface brief\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**show running-config** does not answer which in this stem. show ip route lists all routes in the routing table along with a code (S, C, O, D, etc.",
+            "explanation": "show running-config misses what this question tests. show ip route lists all routes in the routing table along with a code (S, C, O, D, etc.",
             "misconceptionTested": "Selecting \"show running-config\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**show ip protocols** does not answer which in this stem. show ip route lists all routes in the routing table along with a code (S, C, O, D, etc.",
+            "explanation": "show ip protocols misses what this question tests. show ip route lists all routes in the routing table along with a code (S, C, O, D, etc.",
             "misconceptionTested": "Selecting \"show ip protocols\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **routing table verification** — exam distractors swap similar terms; anchor on: show ip route lists all routes in the routing table along with a code (S, C, O, D, etc."
+        "examTip": "This stem tests routing table verification — exam distractors swap similar terms; anchor on: show ip route lists all routes in the routing table along with a code (S, C, O, D, etc."
       }
     },
     {
@@ -247,17 +247,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Whenever the floating static route has a lower metric** reflects a common trap: A floating static needs AD HIGHER than the dynamic protocol. Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup.",
+            "explanation": "Whenever the floating static route has a lower metric reflects a common trap: A floating static needs AD HIGHER than the dynamic protocol. Setting AD 90 to back up OSPF (AD 110) would always be preferred — it becomes primary, not backup.",
             "misconceptionTested": "A floating static needs AD HIGHER than the dynamic protocol"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Immediately, alongside the OSPF route, for load balancing** does not answer configure in this stem. A floating static route is configured with a higher AD than the primary route so it stays out of the table (a backup) until the primary route disappears, at which point it becomes the best (and only) route.",
+            "explanation": "Immediately, alongside the OSPF route, for load balancing misses what this question tests. A floating static route is configured with a higher AD than the primary route so it stays out of the table (a backup) until the primary route disappears, at which point it becomes the best (and only) route.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Only after the router reboots** does not answer configure in this stem. A floating static route is configured with a higher AD than the primary route so it stays out of the table (a backup) until the primary route disappears, at which point it becomes the best (and only) route.",
+            "explanation": "Only after the router reboots misses what this question tests. A floating static route is configured with a higher AD than the primary route so it stays out of the table (a backup) until the primary route disappears, at which point it becomes the best (and only) route.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -290,21 +290,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The OSPF process ID** is a plausible symptom fix but does not match the most likely root cause here: A correct routing table entry doesn't guarantee Layer 1/2 health.",
+            "explanation": "The OSPF process ID is a plausible symptom fix but does not match the most likely root cause here: A correct routing table entry doesn't guarantee Layer 1/2 health.",
             "misconceptionTested": "Selecting \"The OSPF process ID\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The router's hostname configuration** is a plausible symptom fix but does not match the most likely root cause here: A correct routing table entry doesn't guarantee Layer 1/2 health.",
+            "explanation": "The router's hostname configuration is a plausible symptom fix but does not match the most likely root cause here: A correct routing table entry doesn't guarantee Layer 1/2 health.",
             "misconceptionTested": "Selecting \"The router's hostname configuration\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The NTP server configuration** is a plausible symptom fix but does not match the most likely root cause here: A correct routing table entry doesn't guarantee Layer 1/2 health.",
+            "explanation": "The NTP server configuration is a plausible symptom fix but does not match the most likely root cause here: A correct routing table entry doesn't guarantee Layer 1/2 health.",
             "misconceptionTested": "Selecting \"The NTP server configuration\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Troubleshooting stem: work **bottom-up** (L1 → L2 → L3). Here the fix hinges on: A correct routing table entry doesn't guarantee Layer 1/2 health."
+        "examTip": "Troubleshooting stem: work bottom-up (L1 → L2 → L3). Here the fix hinges on: A correct routing table entry doesn't guarantee Layer 1/2 health."
       }
     },
     {
@@ -333,21 +333,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Only the first-configured route is installed** does not answer configure in this stem. When two routes to the same destination have equal administrative distance (and, for static routes, equal implicit cost), the router installs both for equal-cost load balancing (per-destination or per-packet depending on platform).",
+            "explanation": "Only the first-configured route is installed misses what this question tests. When two routes to the same destination have equal administrative distance (and, for static routes, equal implicit cost), the router installs both for equal-cost load balancing (per-destination or per-packet depending on platform).",
             "misconceptionTested": "Selecting \"Only the first-configured route is insta…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The router rejects both routes as a conflict** does not answer configure in this stem. When two routes to the same destination have equal administrative distance (and, for static routes, equal implicit cost), the router installs both for equal-cost load balancing (per-destination or per-packet depending on platform).",
+            "explanation": "The router rejects both routes as a conflict misses what this question tests. When two routes to the same destination have equal administrative distance (and, for static routes, equal implicit cost), the router installs both for equal-cost load balancing (per-destination or per-packet depending on platform).",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The route with the higher next-hop IP is preferred** does not answer configure in this stem. When two routes to the same destination have equal administrative distance (and, for static routes, equal implicit cost), the router installs both for equal-cost load balancing (per-destination or per-packet depending on platform).",
+            "explanation": "The route with the higher next-hop IP is preferred misses what this question tests. When two routes to the same destination have equal administrative distance (and, for static routes, equal implicit cost), the router installs both for equal-cost load balancing (per-destination or per-packet depending on platform).",
             "misconceptionTested": "Selecting \"The route with the higher next-hop IP is…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
+        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
       }
     },
     {
@@ -377,17 +377,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The default route mask must be 255.255.255.255, not 0.0.0.0** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "The default route mask must be 255.255.255.255, not 0.0.0.0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Default routes are not supported on edge routers** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Default routes are not supported on edge routers reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The route needs to be redistributed into OSPF before it can be used** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "The route needs to be redistributed into OSPF before it can be used reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match"
           }
         ],
@@ -421,21 +421,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**show ip route ospf** is a plausible symptom fix but does not match the most likely root cause here: show ip ospf neighbor shows the state of OSPF adjacencies (e.",
+            "explanation": "show ip route ospf is a plausible symptom fix but does not match the most likely root cause here: show ip ospf neighbor shows the state of OSPF adjacencies (e.",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**show ip interface brief** is a plausible symptom fix but does not match the most likely root cause here: show ip ospf neighbor shows the state of OSPF adjacencies (e.",
+            "explanation": "show ip interface brief is a plausible symptom fix but does not match the most likely root cause here: show ip ospf neighbor shows the state of OSPF adjacencies (e.",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**show vlan brief** is a plausible symptom fix but does not match the most likely root cause here: show ip ospf neighbor shows the state of OSPF adjacencies (e.",
+            "explanation": "show vlan brief is a plausible symptom fix but does not match the most likely root cause here: show ip ospf neighbor shows the state of OSPF adjacencies (e.",
             "misconceptionTested": "OSPF neighbor requirements or DR/BDR election rules"
           }
         ],
-        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF `network` uses a WILDCARD mask (0.0.0.255 for /24)"
+        "examTip": "On the exam: Using a subnet mask in the network statement — OSPF network uses a WILDCARD mask (0.0.0.255 for /24)"
       }
     }
   ]

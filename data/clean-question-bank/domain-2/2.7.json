@@ -31,21 +31,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Nothing. Routers cannot aggregate bandwidth from multiple connections.** does not answer the requirement in this stem. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
+            "explanation": "Nothing. Routers cannot aggregate bandwidth from multiple connections. misses what this question tests. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
             "misconceptionTested": "Selecting \"Nothing. Routers cannot aggregate bandwi…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Use RIP to balance the bandwidth.** does not answer the requirement in this stem. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
+            "explanation": "Use RIP to balance the bandwidth. misses what this question tests. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
             "misconceptionTested": "Selecting \"Use RIP to balance the bandwidth.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Use the wireless controller to perform inter-VLAN routing.** does not answer the requirement in this stem. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
+            "explanation": "Use the wireless controller to perform inter-VLAN routing. misses what this question tests. A WLC connection can use EtherChannel/LAG to increase bandwidth.",
             "misconceptionTested": "Selecting \"Use the wireless controller to perform i…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -76,21 +76,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Access port** does not answer which in this stem. A WLC link should be a trunk when several VLANs must be carried.",
+            "explanation": "Access port misses what this question tests. A WLC link should be a trunk when several VLANs must be carried.",
             "misconceptionTested": "Selecting \"Access port\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Voice port** does not answer which in this stem. A WLC link should be a trunk when several VLANs must be carried.",
+            "explanation": "Voice port misses what this question tests. A WLC link should be a trunk when several VLANs must be carried.",
             "misconceptionTested": "Selecting \"Voice port\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Routed switch port** does not answer which in this stem. A WLC link should be a trunk when several VLANs must be carried.",
+            "explanation": "Routed switch port misses what this question tests. A WLC link should be a trunk when several VLANs must be carried.",
             "misconceptionTested": "Selecting \"Routed switch port\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     },
     {
@@ -121,21 +121,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**LACP** does not answer which in this stem. WLCs use LAG, not LACP/PAgP, for bundling links.",
+            "explanation": "LACP misses what this question tests. WLCs use LAG, not LACP/PAgP, for bundling links.",
             "misconceptionTested": "Selecting \"LACP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**PAgP** does not answer which in this stem. WLCs use LAG, not LACP/PAgP, for bundling links.",
+            "explanation": "PAgP misses what this question tests. WLCs use LAG, not LACP/PAgP, for bundling links.",
             "misconceptionTested": "Selecting \"PAgP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**PortChannel** does not answer which in this stem. WLCs use LAG, not LACP/PAgP, for bundling links.",
+            "explanation": "PortChannel misses what this question tests. WLCs use LAG, not LACP/PAgP, for bundling links.",
             "misconceptionTested": "Selecting \"PortChannel\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -166,21 +166,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Round robin** does not answer the requirement in this stem. WLC LAG load balancing is hash-based.",
+            "explanation": "Round robin misses what this question tests. WLC LAG load balancing is hash-based.",
             "misconceptionTested": "Selecting \"Round robin\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**First in, first out (FIFO)** does not answer the requirement in this stem. WLC LAG load balancing is hash-based.",
+            "explanation": "First in, first out (FIFO) misses what this question tests. WLC LAG load balancing is hash-based.",
             "misconceptionTested": "Selecting \"First in, first out (FIFO)\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Spill and fill** does not answer the requirement in this stem. WLC LAG load balancing is hash-based.",
+            "explanation": "Spill and fill misses what this question tests. WLC LAG load balancing is hash-based.",
             "misconceptionTested": "Selecting \"Spill and fill\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **wlc connections** — exam distractors swap similar terms; anchor on: WLC LAG load balancing is hash-based."
+        "examTip": "This stem tests wlc connections — exam distractors swap similar terms; anchor on: WLC LAG load balancing is hash-based."
       }
     },
     {
@@ -211,21 +211,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**16** does not answer what is in this stem. A WLC LAG supports up to eight bundled ports.",
+            "explanation": "16 misses what this question tests. A WLC LAG supports up to eight bundled ports.",
             "misconceptionTested": "Selecting \"16\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**4** does not answer what is in this stem. A WLC LAG supports up to eight bundled ports.",
+            "explanation": "4 misses what this question tests. A WLC LAG supports up to eight bundled ports.",
             "misconceptionTested": "Selecting \"4\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**2** does not answer what is in this stem. A WLC LAG supports up to eight bundled ports.",
+            "explanation": "2 misses what this question tests. A WLC LAG supports up to eight bundled ports.",
             "misconceptionTested": "Selecting \"2\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **wlc connections** — exam distractors swap similar terms; anchor on: A WLC LAG supports up to eight bundled ports."
+        "examTip": "This stem tests wlc connections — exam distractors swap similar terms; anchor on: A WLC LAG supports up to eight bundled ports."
       }
     },
     {
@@ -256,21 +256,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Upgrade the WLC to accommodate more ports.** does not answer what is in this stem. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
+            "explanation": "Upgrade the WLC to accommodate more ports. misses what this question tests. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
             "misconceptionTested": "Selecting \"Upgrade the WLC to accommodate more port…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Convert the current access ports to LAGs.** does not answer what is in this stem. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
+            "explanation": "Convert the current access ports to LAGs. misses what this question tests. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
             "misconceptionTested": "Selecting \"Convert the current access ports to LAGs…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Add a second WLC to accommodate the new departments.** does not answer what is in this stem. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
+            "explanation": "Add a second WLC to accommodate the new departments. misses what this question tests. Converting a WLC access port to a trunk allows multiple VLANs over one physical port.",
             "misconceptionTested": "Selecting \"Add a second WLC to accommodate the new …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
+        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
       }
     },
     {
@@ -301,21 +301,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Access port** does not answer configure in this stem. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
+            "explanation": "Access port misses what this question tests. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
             "misconceptionTested": "Selecting \"Access port\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Wireless port** does not answer configure in this stem. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
+            "explanation": "Wireless port misses what this question tests. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
             "misconceptionTested": "Selecting \"Wireless port\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**LAG port** does not answer configure in this stem. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
+            "explanation": "LAG port misses what this question tests. Controller-based AP switch ports are commonly configured as trunks to carry management and data VLANs.",
             "misconceptionTested": "Selecting \"LAG port\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Access = one VLAN; trunk tags frames. **Native VLAN** must match on both ends or you get silent mis-forwarding."
+        "examTip": "Access = one VLAN; trunk tags frames. Native VLAN must match on both ends or you get silent mis-forwarding."
       }
     }
   ]

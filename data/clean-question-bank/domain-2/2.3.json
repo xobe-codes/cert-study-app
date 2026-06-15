@@ -30,21 +30,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**CDP** does not answer which in this stem. LLDP is IEEE 802.",
+            "explanation": "CDP misses what this question tests. LLDP is IEEE 802.",
             "misconceptionTested": "Selecting \"CDP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**802.1b** uses the wrong value. The tested fact calls for **1** — not 802.",
+            "explanation": "802.1b uses the wrong value. The tested fact calls for 1 — not 802.",
             "misconceptionTested": "Selecting \"802.1b\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.1a** uses the wrong value. The tested fact calls for **1** — not 802.",
+            "explanation": "802.1a uses the wrong value. The tested fact calls for 1 — not 802.",
             "misconceptionTested": "Selecting \"802.1a\" without matching the scenario constraint"
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -75,21 +75,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#cdp disable** does not answer which in this stem. no cdp run disables CDP globally.",
+            "explanation": "Switch(config)#cdp disable misses what this question tests. no cdp run disables CDP globally.",
             "misconceptionTested": "Selecting \"Switch(config)#cdp disable\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config-if)#no cdp enable** does not answer which in this stem. no cdp run disables CDP globally.",
+            "explanation": "Switch(config-if)#no cdp enable misses what this question tests. no cdp run disables CDP globally.",
             "misconceptionTested": "Selecting \"Switch(config-if)#no cdp enable\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#no cdp** does not answer which in this stem. no cdp run disables CDP globally.",
+            "explanation": "Switch(config)#no cdp misses what this question tests. no cdp run disables CDP globally.",
             "misconceptionTested": "Selecting \"Switch(config)#no cdp\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no cdp run disables CDP globally."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no cdp run disables CDP globally."
       }
     },
     {
@@ -120,21 +120,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Every 30 seconds** uses the wrong value. The tested fact calls for **60** — not 30.",
+            "explanation": "Every 30 seconds uses the wrong value. The tested fact calls for 60 — not 30.",
             "misconceptionTested": "Selecting \"Every 30 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Every 90 seconds** uses the wrong value. The tested fact calls for **60** — not 90.",
+            "explanation": "Every 90 seconds uses the wrong value. The tested fact calls for 60 — not 90.",
             "misconceptionTested": "Selecting \"Every 90 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Every 180 seconds** uses the wrong value. The tested fact calls for **60** — not 180.",
+            "explanation": "Every 180 seconds uses the wrong value. The tested fact calls for 60 — not 180.",
             "misconceptionTested": "Selecting \"Every 180 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: CDP advertises every 60 seconds by default."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: CDP advertises every 60 seconds by default."
       }
     },
     {
@@ -164,21 +164,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.1ab** does not answer which in this stem. CDP is Cisco proprietary neighbor discovery.",
+            "explanation": "802.1ab misses what this question tests. CDP is Cisco proprietary neighbor discovery.",
             "misconceptionTested": "Selecting \"802.1ab\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**LLDP** does not answer which in this stem. CDP is Cisco proprietary neighbor discovery.",
+            "explanation": "LLDP misses what this question tests. CDP is Cisco proprietary neighbor discovery.",
             "misconceptionTested": "Selecting \"LLDP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.1a** does not answer which in this stem. CDP is Cisco proprietary neighbor discovery.",
+            "explanation": "802.1a misses what this question tests. CDP is Cisco proprietary neighbor discovery.",
             "misconceptionTested": "Selecting \"802.1a\" without matching the scenario constraint"
           }
         ],
-        "examTip": "DHCP is **DORA** — match the message name to the step the stem describes."
+        "examTip": "DHCP is DORA — match the message name to the step the stem describes."
       }
     },
     {
@@ -209,21 +209,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**30 seconds** uses the wrong value. The tested fact calls for **180** — not 30.",
+            "explanation": "30 seconds uses the wrong value. The tested fact calls for 180 — not 30.",
             "misconceptionTested": "Selecting \"30 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**60 seconds** uses the wrong value. The tested fact calls for **180** — not 60.",
+            "explanation": "60 seconds uses the wrong value. The tested fact calls for 180 — not 60.",
             "misconceptionTested": "Selecting \"60 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**90 seconds** uses the wrong value. The tested fact calls for **180** — not 90.",
+            "explanation": "90 seconds uses the wrong value. The tested fact calls for 180 — not 90.",
             "misconceptionTested": "Selecting \"90 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: CDP holdtime defaults to 180 seconds."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: CDP holdtime defaults to 180 seconds."
       }
     },
     {
@@ -254,21 +254,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#cdp disable** does not answer which in this stem. no cdp enable disables CDP on one interface.",
+            "explanation": "Switch(config)#cdp disable misses what this question tests. no cdp enable disables CDP on one interface.",
             "misconceptionTested": "Selecting \"Switch(config)#cdp disable\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#no cdp** does not answer which in this stem. no cdp enable disables CDP on one interface.",
+            "explanation": "Switch(config)#no cdp misses what this question tests. no cdp enable disables CDP on one interface.",
             "misconceptionTested": "Selecting \"Switch(config)#no cdp\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config-if)#no cdp run** does not answer which in this stem. no cdp enable disables CDP on one interface.",
+            "explanation": "Switch(config-if)#no cdp run misses what this question tests. no cdp enable disables CDP on one interface.",
             "misconceptionTested": "Selecting \"Switch(config-if)#no cdp run\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no cdp enable disables CDP on one interface."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no cdp enable disables CDP on one interface."
       }
     },
     {
@@ -299,21 +299,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#sh cdp neighbors all** does not answer which in this stem. show cdp entry * gives detailed CDP neighbor information.",
+            "explanation": "Switch#sh cdp neighbors all misses what this question tests. show cdp entry * gives detailed CDP neighbor information.",
             "misconceptionTested": "Selecting \"Switch#sh cdp neighbors all\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#sh cdp neighbors *** does not answer which in this stem. show cdp entry * gives detailed CDP neighbor information.",
+            "explanation": "Switch#sh cdp neighbors * misses what this question tests. show cdp entry * gives detailed CDP neighbor information.",
             "misconceptionTested": "Selecting \"Switch#sh cdp neighbors *\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#sh cdp entries all** does not answer which in this stem. show cdp entry * gives detailed CDP neighbor information.",
+            "explanation": "Switch#sh cdp entries all misses what this question tests. show cdp entry * gives detailed CDP neighbor information.",
             "misconceptionTested": "Selecting \"Switch#sh cdp entries all\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: show cdp entry * gives detailed CDP neighbor information."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: show cdp entry * gives detailed CDP neighbor information."
       }
     },
     {
@@ -344,21 +344,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#lldp run** does not answer which in this stem. lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "explanation": "Switch#lldp run misses what this question tests. lldp run enables LLDP globally, including LLDP-MED capabilities.",
             "misconceptionTested": "Selecting \"Switch#lldp run\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config)#lldp enable** does not answer which in this stem. lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "explanation": "Switch(config)#lldp enable misses what this question tests. lldp run enables LLDP globally, including LLDP-MED capabilities.",
             "misconceptionTested": "Selecting \"Switch(config)#lldp enable\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#lldp enable** does not answer which in this stem. lldp run enables LLDP globally, including LLDP-MED capabilities.",
+            "explanation": "Switch#lldp enable misses what this question tests. lldp run enables LLDP globally, including LLDP-MED capabilities.",
             "misconceptionTested": "Selecting \"Switch#lldp enable\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: lldp run enables LLDP globally, including LLDP-MED capabilities."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: lldp run enables LLDP globally, including LLDP-MED capabilities."
       }
     },
     {
@@ -389,21 +389,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show lldp** does not answer which in this stem. show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "explanation": "Switch#show lldp misses what this question tests. show lldp neighbor detail shows detailed LLDP neighbor information.",
             "misconceptionTested": "Selecting \"Switch#show lldp\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show lldp devices** does not answer which in this stem. show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "explanation": "Switch#show lldp devices misses what this question tests. show lldp neighbor detail shows detailed LLDP neighbor information.",
             "misconceptionTested": "Selecting \"Switch#show lldp devices\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show cdp neighbor detail** does not answer which in this stem. show lldp neighbor detail shows detailed LLDP neighbor information.",
+            "explanation": "Switch#show cdp neighbor detail misses what this question tests. show lldp neighbor detail shows detailed LLDP neighbor information.",
             "misconceptionTested": "Selecting \"Switch#show cdp neighbor detail\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: show lldp neighbor detail shows detailed LLDP neighbor information."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: show lldp neighbor detail shows detailed LLDP neighbor information."
       }
     },
     {
@@ -434,21 +434,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**60 seconds** uses the wrong value. The tested fact calls for **30** — not 60.",
+            "explanation": "60 seconds uses the wrong value. The tested fact calls for 30 — not 60.",
             "misconceptionTested": "Selecting \"60 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**90 seconds** uses the wrong value. The tested fact calls for **30** — not 90.",
+            "explanation": "90 seconds uses the wrong value. The tested fact calls for 30 — not 90.",
             "misconceptionTested": "Selecting \"90 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**120 seconds** uses the wrong value. The tested fact calls for **30** — not 120.",
+            "explanation": "120 seconds uses the wrong value. The tested fact calls for 30 — not 120.",
             "misconceptionTested": "Selecting \"120 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: LLDP advertises every 30 seconds by default."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: LLDP advertises every 30 seconds by default."
       }
     },
     {
@@ -479,21 +479,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config-if)#no lldp** does not answer which in this stem. no lldp transmit suppresses outgoing LLDP on an interface.",
+            "explanation": "Switch(config-if)#no lldp misses what this question tests. no lldp transmit suppresses outgoing LLDP on an interface.",
             "misconceptionTested": "Selecting \"Switch(config-if)#no lldp\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config-if)#no lldp receive** does not answer which in this stem. no lldp transmit suppresses outgoing LLDP on an interface.",
+            "explanation": "Switch(config-if)#no lldp receive misses what this question tests. no lldp transmit suppresses outgoing LLDP on an interface.",
             "misconceptionTested": "Selecting \"Switch(config-if)#no lldp receive\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch(config-if)#no lldp enable** does not answer which in this stem. no lldp transmit suppresses outgoing LLDP on an interface.",
+            "explanation": "Switch(config-if)#no lldp enable misses what this question tests. no lldp transmit suppresses outgoing LLDP on an interface.",
             "misconceptionTested": "Selecting \"Switch(config-if)#no lldp enable\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no lldp transmit suppresses outgoing LLDP on an interface."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no lldp transmit suppresses outgoing LLDP on an interface."
       }
     },
     {
@@ -524,21 +524,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**30 seconds** uses the wrong value. The tested fact calls for **120** — not 30.",
+            "explanation": "30 seconds uses the wrong value. The tested fact calls for 120 — not 30.",
             "misconceptionTested": "Selecting \"30 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**60 seconds** uses the wrong value. The tested fact calls for **120** — not 60.",
+            "explanation": "60 seconds uses the wrong value. The tested fact calls for 120 — not 60.",
             "misconceptionTested": "Selecting \"60 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**90 seconds** uses the wrong value. The tested fact calls for **120** — not 90.",
+            "explanation": "90 seconds uses the wrong value. The tested fact calls for 120 — not 90.",
             "misconceptionTested": "Selecting \"90 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: LLDP holdtime defaults to 120 seconds."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: LLDP holdtime defaults to 120 seconds."
       }
     },
     {
@@ -571,21 +571,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The advertisement was seen 162 seconds ago.** does not answer which in this stem. CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+            "explanation": "The advertisement was seen 162 seconds ago. misses what this question tests. CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
             "misconceptionTested": "Selecting \"The advertisement was seen 162 seconds a…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch B interface Gi0/1 connects to Switch A.** does not answer which in this stem. CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+            "explanation": "Switch B interface Gi0/1 connects to Switch A. misses what this question tests. CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
             "misconceptionTested": "Selecting \"Switch B interface Gi0/1 connects to Swi…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The IP address of Switch B is 192.168.1.1.** does not answer which in this stem. CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
+            "explanation": "The IP address of Switch B is 192.168.1.1. misses what this question tests. CDP detail output identifies the local and remote interfaces, holdtime, and management address.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: CDP detail output identifies the local and remote interfaces, holdtime, and management address."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: CDP detail output identifies the local and remote interfaces, holdtime, and management address."
       }
     },
     {
@@ -616,21 +616,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch(config)#cdp disable** does not answer which in this stem. no cdp enable disables CDP advertisements on one interface.",
+            "explanation": "Switch(config)#cdp disable misses what this question tests. no cdp enable disables CDP advertisements on one interface.",
             "misconceptionTested": "Selecting \"Switch(config)#cdp disable\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Switch(config-if)#no cdp** does not answer which in this stem. no cdp enable disables CDP advertisements on one interface.",
+            "explanation": "Switch(config-if)#no cdp misses what this question tests. no cdp enable disables CDP advertisements on one interface.",
             "misconceptionTested": "Selecting \"Switch(config-if)#no cdp\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch(config-if)#no cdp disable** does not answer which in this stem. no cdp enable disables CDP advertisements on one interface.",
+            "explanation": "Switch(config-if)#no cdp disable misses what this question tests. no cdp enable disables CDP advertisements on one interface.",
             "misconceptionTested": "Selecting \"Switch(config-if)#no cdp disable\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: no cdp enable disables CDP advertisements on one interface."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: no cdp enable disables CDP advertisements on one interface."
       }
     },
     {
@@ -661,21 +661,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Switch#show cdp** does not answer which in this stem. show cdp interface shows interfaces advertising CDP.",
+            "explanation": "Switch#show cdp misses what this question tests. show cdp interface shows interfaces advertising CDP.",
             "misconceptionTested": "Selecting \"Switch#show cdp\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#show interface** does not answer which in this stem. show cdp interface shows interfaces advertising CDP.",
+            "explanation": "Switch#show interface misses what this question tests. show cdp interface shows interfaces advertising CDP.",
             "misconceptionTested": "Selecting \"Switch#show interface\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show interface cdp** does not answer which in this stem. show cdp interface shows interfaces advertising CDP.",
+            "explanation": "Switch#show interface cdp misses what this question tests. show cdp interface shows interfaces advertising CDP.",
             "misconceptionTested": "Selecting \"Switch#show interface cdp\" without matching the scenario constraint"
           }
         ],
-        "examTip": "This stem tests **cdp** — exam distractors swap similar terms; anchor on: show cdp interface shows interfaces advertising CDP."
+        "examTip": "This stem tests cdp — exam distractors swap similar terms; anchor on: show cdp interface shows interfaces advertising CDP."
       }
     }
   ]

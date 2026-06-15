@@ -27,21 +27,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The /24 via R2** uses the wrong value. The tested fact calls for **10** — not 24.",
+            "explanation": "The /24 via R2 uses the wrong value. The tested fact calls for 10 — not 24.",
             "misconceptionTested": "Selecting \"The /24 via R2\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Whichever has the lower metric** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Whichever has the lower metric reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
             "misconceptionTested": "A lower metric can beat a more-specific route"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Both, load-balanced** does not answer which in this stem. 10.",
+            "explanation": "Both, load-balanced misses what this question tests. 10.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "Forwarding order: **longest prefix match** first, then **lowest AD**, then **best metric**."
+        "examTip": "Forwarding order: longest prefix match first, then lowest AD, then best metric."
       }
     },
     {
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Metric → AD → longest prefix** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Metric → AD → longest prefix reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
             "misconceptionTested": "A lower metric can beat a more-specific route"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**AD → metric → longest prefix** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "AD → metric → longest prefix reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
             "misconceptionTested": "A lower metric can beat a more-specific route"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Longest prefix → metric → AD** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Longest prefix → metric → AD reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
             "misconceptionTested": "A lower metric can beat a more-specific route"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**OSPF, lower metric** reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+            "explanation": "OSPF, lower metric reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
             "misconceptionTested": "AD and metric do the same job"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Both** does not answer which in this stem. For the same prefix from different sources, the lower administrative distance wins.",
+            "explanation": "Both misses what this question tests. For the same prefix from different sources, the lower administrative distance wins.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Neither until the tie is broken by metric** reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+            "explanation": "Neither until the tie is broken by metric reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
             "misconceptionTested": "AD and metric do the same job"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**1** uses the wrong value. The tested fact calls for **0** — not 1.",
+            "explanation": "1 uses the wrong value. The tested fact calls for 0 — not 1.",
             "misconceptionTested": "Selecting \"1\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**110** uses the wrong value. The tested fact calls for **0** — not 110.",
+            "explanation": "110 uses the wrong value. The tested fact calls for 0 — not 110.",
             "misconceptionTested": "Selecting \"110\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**120** uses the wrong value. The tested fact calls for **0** — not 120.",
+            "explanation": "120 uses the wrong value. The tested fact calls for 0 — not 120.",
             "misconceptionTested": "Selecting \"120\" without matching the scenario constraint"
           }
         ],
@@ -197,17 +197,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**It becomes the preferred route** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "It becomes the preferred route reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**It is installed only if no metric exists** reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+            "explanation": "It is installed only if no metric exists reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
             "misconceptionTested": "AD and metric do the same job"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**It is installed but never used** reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
+            "explanation": "It is installed but never used reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
             "misconceptionTested": "Forgetting AD 255 behavior"
           }
         ],
@@ -238,7 +238,7 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "This statement is **True**, but the tested fact is: False.",
+            "explanation": "This statement is True, but the tested fact is: False.",
             "misconceptionTested": "Selecting \"True\" without matching the scenario constraint"
           }
         ],
@@ -270,17 +270,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Cost 20** uses the wrong value. The tested fact calls for **10** — not 20.",
+            "explanation": "Cost 20 uses the wrong value. The tested fact calls for 10 — not 20.",
             "misconceptionTested": "Selecting \"Cost 20\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "The CAM table stores **source** MAC-to-port mappings. Destination MACs are not learned as table entries on arrival.",
+            "explanation": "The CAM table stores source MAC-to-port mappings. Destination MACs are not learned as table entries on arrival.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
             "misconceptionTested": "Selecting \"Neither — AD must differ\" without matching the scenario constraint"
           }
         ],
@@ -313,17 +313,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The default route via R1** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "The default route via R1 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Whichever has lower AD** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "Whichever has lower AD reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
             "misconceptionTested": "A lower metric can beat a more-specific route"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**It is dropped** does not answer which in this stem. The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
+            "explanation": "It is dropped misses what this question tests. The /16 matches and is far more specific than the /0 default route, so longest prefix match uses the /16.",
             "misconceptionTested": "Selecting \"It is dropped\" without matching the scenario constraint"
           }
         ],
@@ -355,17 +355,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Floods it out all interfaces** does not answer what does in this stem. With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
+            "explanation": "Floods it out all interfaces misses what this question tests. With no matching route and no default route, the router drops the packet (and may send an ICMP unreachable).",
             "misconceptionTested": "Selecting \"Floods it out all interfaces\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Sends it to the lowest-AD route** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Sends it to the lowest-AD route reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Queues it until a route appears** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Queues it until a route appears reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match"
           }
         ],
@@ -382,7 +382,7 @@
         "Cost and hop count"
       ],
       "correctIndex": 1,
-      "explanation": "The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
+      "explanation": "The bracketed pair is [administrative distance / metric] — here AD 110 (OSPF) and metric 30.",
       "type": "application",
       "difficulty": "medium",
       "concept": "show ip route brackets",
@@ -393,22 +393,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30."
+          "explanation": "The bracketed pair is [administrative distance / metric] — here AD 110 (OSPF) and metric 30."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Metric and AD** reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+            "explanation": "Metric and AD reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
             "misconceptionTested": "AD and metric do the same job"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Prefix and metric** reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+            "explanation": "Prefix and metric reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
             "misconceptionTested": "AD and metric do the same job"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Cost and hop count** does not answer the requirement in this stem. The bracketed pair is `[administrative distance / metric]` — here AD 110 (OSPF) and metric 30.",
+            "explanation": "Cost and hop count misses what this question tests. The bracketed pair is [administrative distance / metric] — here AD 110 (OSPF) and metric 30.",
             "misconceptionTested": "Selecting \"Cost and hop count\" without matching the scenario constraint"
           }
         ],
@@ -425,7 +425,7 @@
         "Default routes override static"
       ],
       "correctIndex": 0,
-      "explanation": "A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. `... 10.1.1.1 130`) to make it a floating static backup.",
+      "explanation": "A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. ... 10.1.1.1 130) to make it a floating static backup.",
       "type": "troubleshooting",
       "difficulty": "hard",
       "concept": "floating static",
@@ -435,22 +435,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. `... 10.1.1.1 130`) to make it a floating static backup."
+          "explanation": "A plain static route has AD 1, beating OSPF’s 110, so it is always installed. Add a higher AD (e.g. ... 10.1.1.1 130) to make it a floating static backup."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**OSPF metric is too high** reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+            "explanation": "OSPF metric is too high reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
             "misconceptionTested": "AD and metric do the same job"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The mask is wrong** is a plausible symptom fix but does not match the most likely root cause here: A plain static route has AD 1, beating OSPF’s 110, so it is always installed.",
+            "explanation": "The mask is wrong is a plausible symptom fix but does not match the most likely root cause here: A plain static route has AD 1, beating OSPF’s 110, so it is always installed.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Default routes override static** is a plausible symptom fix but does not match the most likely root cause here: A plain static route has AD 1, beating OSPF’s 110, so it is always installed.",
+            "explanation": "Default routes override static is a plausible symptom fix but does not match the most likely root cause here: A plain static route has AD 1, beating OSPF’s 110, so it is always installed.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -482,17 +482,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**OSPF, static, connected** does not answer the requirement in this stem. By AD: connected 0 (most trusted), static 1, OSPF 110.",
+            "explanation": "OSPF, static, connected misses what this question tests. By AD: connected 0 (most trusted), static 1, OSPF 110.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Static, connected, OSPF** does not answer the requirement in this stem. By AD: connected 0 (most trusted), static 1, OSPF 110.",
+            "explanation": "Static, connected, OSPF misses what this question tests. By AD: connected 0 (most trusted), static 1, OSPF 110.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Connected, OSPF, static** does not answer the requirement in this stem. By AD: connected 0 (most trusted), static 1, OSPF 110.",
+            "explanation": "Connected, OSPF, static misses what this question tests. By AD: connected 0 (most trusted), static 1, OSPF 110.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -527,19 +527,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ICMP populates the routing table.** reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
+            "explanation": "ICMP populates the routing table. reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
             "misconceptionTested": "Forgetting AD 255 behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ICMP maintains the routing table.** reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
+            "explanation": "ICMP maintains the routing table. reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
             "misconceptionTested": "Forgetting AD 255 behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ICMP performs continuous diagnosis of the network paths.** does not answer the requirement in this stem. .",
+            "explanation": "ICMP performs continuous diagnosis of the network paths. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ICMP performs continuous diagnosis of th…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -577,19 +577,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The route with the lowest cost is selected.** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "The route with the lowest cost is selected. reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The route with the highest AD is selected.** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "The route with the highest AD is selected. reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The route with the lowest AD is selected.** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "The route with the lowest AD is selected. reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           }
@@ -629,19 +629,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The route with the highest AD** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "The route with the highest AD reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The route with the lowest metric** reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
+            "explanation": "The route with the lowest metric reflects a common trap: A lower metric can beat a more-specific route. Longest prefix match happens first and is absolute; AD and metric never override a more-specific matching route.",
             "misconceptionTested": "A lower metric can beat a more-specific route",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The route being populated from RIP** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "The route being populated from RIP reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           }
@@ -678,19 +678,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The host route is the route a packet will take if no other route matches in the routing table.** reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
+            "explanation": "The host route is the route a packet will take if no other route matches in the routing table. reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
             "misconceptionTested": "Forgetting AD 255 behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The routing table creates host routers for the destination hosts it discovers.** reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
+            "explanation": "The routing table creates host routers for the destination hosts it discovers. reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
             "misconceptionTested": "Forgetting AD 255 behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The host route is populated from HSRP.** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "The host route is populated from HSRP. reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           }
@@ -729,19 +729,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Prefix and network mask** does not answer which in this stem. .",
+            "explanation": "Prefix and network mask does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Prefix and network mask\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Metric** reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
+            "explanation": "Metric reflects a common trap: AD and metric do the same job. AD chooses between routing SOURCES for the same prefix; metric ranks routes WITHIN one protocol.",
             "misconceptionTested": "AD and metric do the same job",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Next hop** does not answer which in this stem. .",
+            "explanation": "Next hop does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Next hop\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -777,19 +777,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Source IP** does not answer which in this stem. .",
+            "explanation": "Source IP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Source IP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**TTL** does not answer which in this stem. .",
+            "explanation": "TTL does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"TTL\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Destination MAC address** does not answer which in this stem. .",
+            "explanation": "Destination MAC address does not match the mechanism asked here.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           }
@@ -825,19 +825,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Link-state routing** does not answer which in this stem. .",
+            "explanation": "Link-state routing does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Link-state routing\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Distance-vector routing** does not answer which in this stem. .",
+            "explanation": "Distance-vector routing does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Distance-vector routing\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Dynamic routing** does not answer which in this stem. .",
+            "explanation": "Dynamic routing does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Dynamic routing\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -873,19 +873,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The subnet mask is used in routing to determine the destination network.** does not answer which in this stem. .",
+            "explanation": "The subnet mask is used in routing to determine the destination network. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The router uses its subnet mask when routing a packet.** does not answer which in this stem. .",
+            "explanation": "The router uses its subnet mask when routing a packet. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The router uses its subnet mask when rou…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer.** does not answer which in this stem. .",
+            "explanation": "The destination computer checks the subnet mask on the packet to verify that it’s intended for that computer. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           }
@@ -924,19 +924,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IGMP** does not answer the requirement in this stem. .",
+            "explanation": "IGMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IGMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RARP** does not answer the requirement in this stem. .",
+            "explanation": "RARP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RARP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ICMP** does not answer the requirement in this stem. .",
+            "explanation": "ICMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ICMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -972,19 +972,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "explanation": "Switches learn from the source MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The destination MAC address is changed to the destination host’s MAC address.** is not the behavior described here. .",
+            "explanation": "The destination MAC address is changed to the destination host’s MAC address. is not the behavior described here. .",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           }
@@ -1020,19 +1020,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The destination IP address is changed to the original destination.** does not answer which in this stem. .",
+            "explanation": "The destination IP address is changed to the original destination. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The source MAC address is changed to the original source MAC address.** does not answer which in this stem. .",
+            "explanation": "The source MAC address is changed to the original source MAC address. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The source MAC address is changed to the…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**All of the above.** does not answer which in this stem. .",
+            "explanation": "All of the above. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"All of the above.\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1069,19 +1069,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "explanation": "Switches learn from the source MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The destination MAC address is changed to the router’s MAC address.** is not the behavior described here. .",
+            "explanation": "The destination MAC address is changed to the router’s MAC address. is not the behavior described here. .",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           }
@@ -1120,19 +1120,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The host compares the IP address to its internal routing table.** reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
+            "explanation": "The host compares the IP address to its internal routing table. reflects a common trap: Forgetting AD 255 behavior. A route with AD 255 is considered unusable and is never installed in the routing table.",
             "misconceptionTested": "Forgetting AD 255 behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The host performs ANDing on the destination subnet mask and the destination IP address, comparing the result to its own network address.** does not answer how does in this stem. .",
+            "explanation": "The host performs ANDing on the destination subnet mask and the destination IP address, comparing the result to its own network address. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The IP address is verified to be local to its network via ICMP.** does not answer how does in this stem. .",
+            "explanation": "The IP address is verified to be local to its network via ICMP. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The IP address is verified to be local t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1167,19 +1167,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Process switching** does not answer what is in this stem. .",
+            "explanation": "Process switching does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Process switching\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Fast switching** does not answer what is in this stem. .",
+            "explanation": "Fast switching does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Fast switching\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Intelligent packet forwarding** does not answer what is in this stem. .",
+            "explanation": "Intelligent packet forwarding does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Intelligent packet forwarding\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1215,19 +1215,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IP routing** does not answer what is in this stem. .",
+            "explanation": "IP routing does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IP routing\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Packet hopping** does not answer what is in this stem. .",
+            "explanation": "Packet hopping does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Packet hopping\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Packet switching** does not answer what is in this stem. .",
+            "explanation": "Packet switching does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Packet switching\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1264,19 +1264,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The router’s MAC address** does not answer what is in this stem. .",
+            "explanation": "The router’s MAC address does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The router’s MAC address\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The host’s MAC address** does not answer what is in this stem. .",
+            "explanation": "The host’s MAC address does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The host’s MAC address\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The MAC address, in the form of a multicast** does not answer what is in this stem. .",
+            "explanation": "The MAC address, in the form of a multicast does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The MAC address, in the form of a multic…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1312,19 +1312,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**IP multicasting** does not answer what does in this stem. .",
+            "explanation": "IP multicasting does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IP multicasting\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Frame casting** does not answer what does in this stem. .",
+            "explanation": "Frame casting does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Frame casting\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**IP cache** does not answer what does in this stem. .",
+            "explanation": "IP cache does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IP cache\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1360,19 +1360,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The router accepts all incoming frames regardless of their destination MAC address.** does not answer which in this stem. .",
+            "explanation": "The router accepts all incoming frames regardless of their destination MAC address. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Routers do not need to decapsulate packets to inspect the destination IP address.** does not answer which in this stem. .",
+            "explanation": "Routers do not need to decapsulate packets to inspect the destination IP address. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Routers make routing decisions first by examining the source MAC address.** does not answer which in this stem. .",
+            "explanation": "Routers make routing decisions first by examining the source MAC address. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Routers make routing decisions first by …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1408,19 +1408,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show arp** does not answer which in this stem. .",
+            "explanation": "Router#show arp does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#show arp\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show arp table** does not answer which in this stem. .",
+            "explanation": "Router#show arp table does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#show arp table\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show arp cache** does not answer which in this stem. .",
+            "explanation": "Router#show arp cache does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#show arp cache\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1457,19 +1457,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**180 seconds** does not answer what is in this stem. .",
+            "explanation": "180 seconds does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"180 seconds\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**300 seconds** does not answer what is in this stem. .",
+            "explanation": "300 seconds does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"300 seconds\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**600 seconds** does not answer what is in this stem. .",
+            "explanation": "600 seconds does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"600 seconds\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1506,19 +1506,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**As a packet travels through the routers, the TTL of the packet will increase by one.** does not answer which in this stem. .",
+            "explanation": "As a packet travels through the routers, the TTL of the packet will increase by one. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"As a packet travels through the routers,…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "explanation": "Switches learn from the source MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**When a route to the destination network is found, the router will attach the destination IP address for the next hop to the packet.** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "When a route to the destination network is found, the router will attach the destination IP address for the next hop to the packet. reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           }
@@ -1555,19 +1555,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IGMP** does not answer which in this stem. .",
+            "explanation": "IGMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IGMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RARP** does not answer which in this stem. .",
+            "explanation": "RARP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RARP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ARP** does not answer which in this stem. .",
+            "explanation": "ARP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ARP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1603,19 +1603,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The router will discard the packet without notification.** does not answer which in this stem. .",
+            "explanation": "The router will discard the packet without notification. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The router will discard the packet witho…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The router will change the TTL of the packet to 0.** does not answer which in this stem. .",
+            "explanation": "The router will change the TTL of the packet to 0. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The router will change the TTL of the pa…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The router will send the packet back to the originating host.** does not answer which in this stem. .",
+            "explanation": "The router will send the packet back to the originating host. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The router will send the packet back to …\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1650,19 +1650,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Packets are routed out one interface but come back on a different interface.** does not answer which in this stem. .",
+            "explanation": "Packets are routed out one interface but come back on a different interface. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Packets are routed out one interface but…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Packets reach the expiry TTL before reaching the destination network.** does not answer which in this stem. .",
+            "explanation": "Packets reach the expiry TTL before reaching the destination network. does not match the mechanism asked here.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Packets are routed via an inefficient path.** does not answer which in this stem. .",
+            "explanation": "Packets are routed via an inefficient path. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Packets are routed via an inefficient pa…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1697,19 +1697,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Flash** does not answer the requirement in this stem. .",
+            "explanation": "Flash does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Flash\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Startup configuration** does not answer the requirement in this stem. .",
+            "explanation": "Startup configuration does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Startup configuration\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Running configuration** does not answer the requirement in this stem. .",
+            "explanation": "Running configuration does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Running configuration\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1746,19 +1746,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show cef** does not answer which in this stem. .",
+            "explanation": "Router#show cef does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#show cef\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show cef nop** does not answer which in this stem. .",
+            "explanation": "Router#show cef nop does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#show cef nop\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show cef route** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "Router#show cef route reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           }
@@ -1794,19 +1794,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Switches learn from the **source** MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
+            "explanation": "Switches learn from the source MAC on the ingress port. The destination MAC is used later to look up where to forward the frame — it is not what gets recorded during learning.",
             "misconceptionTested": "Confusing source MAC (learning) with destination MAC (forwarding lookup)",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "MAC learning is a **Layer 2** process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
+            "explanation": "MAC learning is a Layer 2 process. Switches read Ethernet frame addresses, not IP headers, when populating the MAC address table.",
             "misconceptionTested": "Applying Layer 3 (IP) behavior to a Layer 2 switch process",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Internal routes** does not answer which in this stem. .",
+            "explanation": "Internal routes does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Internal routes\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1842,19 +1842,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Flood the packet to all active interfaces** does not answer the requirement in this stem. .",
+            "explanation": "Flood the packet to all active interfaces does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Flood the packet to all active interface…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Multicast the packet to other routers** does not answer the requirement in this stem. .",
+            "explanation": "Multicast the packet to other routers does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Multicast the packet to other routers\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Send the original packet back to the source** does not answer the requirement in this stem. .",
+            "explanation": "Send the original packet back to the source does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Send the original packet back to the sou…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1891,19 +1891,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Default routing** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Default routing reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Dynamic routes** does not answer which in this stem. .",
+            "explanation": "Dynamic routes does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Dynamic routes\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Static routes** does not answer which in this stem. .",
+            "explanation": "Static routes does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Static routes\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -1940,19 +1940,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ip route 0.0.0.0/0 s0/0** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Router(config)#ip route 0.0.0.0/0 s0/0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#ipv6 route 0.0.0.0/0 s0/0** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Router(config)#ipv6 route 0.0.0.0/0 s0/0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ipv6 unicast-route ::0/0 s0/0** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router(config)#ipv6 unicast-route ::0/0 s0/0 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -1991,19 +1991,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RIPng** does not answer which in this stem. .",
+            "explanation": "RIPng does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RIPng\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**OSPFv3** does not answer which in this stem. .",
+            "explanation": "OSPFv3 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"OSPFv3\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**EIGRPv6** does not answer which in this stem. .",
+            "explanation": "EIGRPv6 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"EIGRPv6\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -2040,19 +2040,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show route** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "Router#show route reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip route** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "Router#show ip route reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show route ipv6** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router#show route ipv6 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
@@ -2090,19 +2090,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The destination IP address is replaced with the default gateway when the destination is remote.** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "The destination IP address is replaced with the default gateway when the destination is remote. reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The host sends the default gateway packets that are deemed remote via a broadcast.** reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "explanation": "The host sends the default gateway packets that are deemed remote via a broadcast. reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
             "misconceptionTested": "A default route guarantees connectivity",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The host creates a dedicated connection with the default gateway for remote traffic.** reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "explanation": "The host creates a dedicated connection with the default gateway for remote traffic. reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
             "misconceptionTested": "A default route guarantees connectivity",
             "needsExplanationReview": true
           }
@@ -2138,19 +2138,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show route** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "Router#show route reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show route table** reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
+            "explanation": "Router#show route table reflects a common trap: Assuming the lowest AD route always wins. AD only decides among routes to the SAME prefix. A more-specific (longer) prefix always wins first, even with a higher AD.",
             "misconceptionTested": "Assuming the lowest AD route always wins",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show routes** does not answer which in this stem. .",
+            "explanation": "Router#show routes does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Router#show routes\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -2187,19 +2187,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IGMP** does not answer which in this stem. .",
+            "explanation": "IGMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"IGMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RARP** does not answer which in this stem. .",
+            "explanation": "RARP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RARP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ICMP** does not answer which in this stem. .",
+            "explanation": "ICMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ICMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -2237,19 +2237,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SNMP traps** does not answer the requirement in this stem. .",
+            "explanation": "SNMP traps does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SNMP traps\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Notifications** does not answer the requirement in this stem. .",
+            "explanation": "Notifications does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Notifications\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ARP** does not answer the requirement in this stem. .",
+            "explanation": "ARP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"ARP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -2285,19 +2285,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The distant router is not responding.** does not answer the requirement in this stem. .",
+            "explanation": "The distant router is not responding. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The distant router is not responding.\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The distant router has a high response time.** does not answer the requirement in this stem. .",
+            "explanation": "The distant router has a high response time. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The distant router has a high response t…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The distant router has a low response time.** does not answer the requirement in this stem. .",
+            "explanation": "The distant router has a low response time. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The distant router has a low response ti…\" without matching the scenario constraint",
             "needsExplanationReview": true
           }

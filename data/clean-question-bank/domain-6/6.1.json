@@ -29,24 +29,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**To increase the possibility for misconfiguration** does not answer which in this stem. .",
+            "explanation": "To increase the possibility for misconfiguration does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"To increase the possibility for misconfi…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**To decrease problems from the new configuration** does not answer which in this stem. .",
+            "explanation": "To decrease problems from the new configuration does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"To decrease problems from the new config…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**To allow you to do less work** does not answer which in this stem. .",
+            "explanation": "To allow you to do less work does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"To allow you to do less work\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
+        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
       }
     },
     {
@@ -77,24 +77,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Copy and paste scripts built in Notepad++ into each router.** does not answer configure in this stem. .",
+            "explanation": "Copy and paste scripts built in Notepad++ into each router. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Copy and paste scripts built in Notepad+…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Copy and paste scripts built in Excel into each router.** does not answer configure in this stem. .",
+            "explanation": "Copy and paste scripts built in Excel into each router. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Copy and paste scripts built in Excel in…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Work with a partner so that both of you can double-check each other’s work and cut the time in half.** does not answer configure in this stem. .",
+            "explanation": "Work with a partner so that both of you can double-check each other’s work and cut the time in half. does not match the mechanism asked here.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
+        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
       }
     },
     {
@@ -124,24 +124,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Reduce the number of changes to be made** does not answer which in this stem. .",
+            "explanation": "Reduce the number of changes to be made does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Reduce the number of changes to be made\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Reduce the complications that arise from changes** does not answer which in this stem. .",
+            "explanation": "Reduce the complications that arise from changes does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Reduce the complications that arise from…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Reduce the planning time for the changes** does not answer which in this stem. .",
+            "explanation": "Reduce the planning time for the changes does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Reduce the planning time for the changes\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
+        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
       }
     },
     {
@@ -173,24 +173,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**NetOps** does not answer the requirement in this stem. .",
+            "explanation": "NetOps does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"NetOps\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**SysOps** does not answer the requirement in this stem. .",
+            "explanation": "SysOps does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SysOps\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SecOps** does not answer the requirement in this stem. .",
+            "explanation": "SecOps does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SecOps\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
+        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
       }
     },
     {
@@ -221,24 +221,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Waterfall** does not answer which in this stem. .",
+            "explanation": "Waterfall does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Waterfall\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Kanban** does not answer which in this stem. .",
+            "explanation": "Kanban does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Kanban\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Scrum** does not answer which in this stem. .",
+            "explanation": "Scrum does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Scrum\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
+        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
       }
     },
     {
@@ -268,24 +268,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Testing** does not answer which in this stem. .",
+            "explanation": "Testing does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Testing\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Building** does not answer which in this stem. .",
+            "explanation": "Building does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Building\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Planning** does not answer which in this stem. .",
+            "explanation": "Planning does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Planning\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Separate **management plane** (API/controller) from **data plane** (forwarding)."
+        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
       }
     }
   ]

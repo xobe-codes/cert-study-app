@@ -30,21 +30,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**2 interfaces** does not answer what is in this stem. PAgP EtherChannel can bundle up to eight active interfaces.",
+            "explanation": "2 interfaces misses what this question tests. PAgP EtherChannel can bundle up to eight active interfaces.",
             "misconceptionTested": "Selecting \"2 interfaces\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**16 interfaces** does not answer what is in this stem. PAgP EtherChannel can bundle up to eight active interfaces.",
+            "explanation": "16 interfaces misses what this question tests. PAgP EtherChannel can bundle up to eight active interfaces.",
             "misconceptionTested": "Selecting \"16 interfaces\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**4 interfaces** does not answer what is in this stem. PAgP EtherChannel can bundle up to eight active interfaces.",
+            "explanation": "4 interfaces misses what this question tests. PAgP EtherChannel can bundle up to eight active interfaces.",
             "misconceptionTested": "Selecting \"4 interfaces\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -74,21 +74,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**EtherChannel works with 802.1Q to block the redundant links.** is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
+            "explanation": "EtherChannel works with 802.1Q to block the redundant links. is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
             "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**EtherChannel can aggregate multiple links with varying speed.** is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
+            "explanation": "EtherChannel can aggregate multiple links with varying speed. is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
             "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**EtherChannel can aggregate interfaces across multiple stand- alone switches.** is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
+            "explanation": "EtherChannel can aggregate interfaces across multiple stand- alone switches. is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
             "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -119,21 +119,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**2.2 Gb/s** does not answer what is in this stem. Links in an EtherChannel must use the same speed and duplex.",
+            "explanation": "2.2 Gb/s misses what this question tests. Links in an EtherChannel must use the same speed and duplex.",
             "misconceptionTested": "Selecting \"2.2 Gb/s\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**400 Mb/s** does not answer what is in this stem. Links in an EtherChannel must use the same speed and duplex.",
+            "explanation": "400 Mb/s misses what this question tests. Links in an EtherChannel must use the same speed and duplex.",
             "misconceptionTested": "Selecting \"400 Mb/s\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**2.6 Gb/s** does not answer what is in this stem. Links in an EtherChannel must use the same speed and duplex.",
+            "explanation": "2.6 Gb/s misses what this question tests. Links in an EtherChannel must use the same speed and duplex.",
             "misconceptionTested": "Selecting \"2.6 Gb/s\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -163,21 +163,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**802.1Q** uses the wrong value. The tested fact calls for **3** — not 802.",
+            "explanation": "802.1Q uses the wrong value. The tested fact calls for 3 — not 802.",
             "misconceptionTested": "Selecting \"802.1Q\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**PAgP** does not answer which in this stem. LACP is the IEEE 802.",
+            "explanation": "PAgP misses what this question tests. LACP is the IEEE 802.",
             "misconceptionTested": "Selecting \"PAgP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.1X** uses the wrong value. The tested fact calls for **3** — not 802.",
+            "explanation": "802.1X uses the wrong value. The tested fact calls for 3 — not 802.",
             "misconceptionTested": "Selecting \"802.1X\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -208,21 +208,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**EtherChannel** is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
+            "explanation": "EtherChannel is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
             "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Channel Group** does not answer which in this stem. Use LACP for non-Cisco link aggregation compatibility.",
+            "explanation": "Channel Group misses what this question tests. Use LACP for non-Cisco link aggregation compatibility.",
             "misconceptionTested": "Selecting \"Channel Group\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**PAgP** does not answer which in this stem. Use LACP for non-Cisco link aggregation compatibility.",
+            "explanation": "PAgP misses what this question tests. Use LACP for non-Cisco link aggregation compatibility.",
             "misconceptionTested": "Selecting \"PAgP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     },
     {
@@ -253,21 +253,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**2 interfaces** uses the wrong value. The tested fact calls for **16** — not 2.",
+            "explanation": "2 interfaces uses the wrong value. The tested fact calls for 16 — not 2.",
             "misconceptionTested": "Selecting \"2 interfaces\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**8 interfaces** uses the wrong value. The tested fact calls for **16** — not 8.",
+            "explanation": "8 interfaces uses the wrong value. The tested fact calls for 16 — not 8.",
             "misconceptionTested": "Selecting \"8 interfaces\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**4 interfaces** uses the wrong value. The tested fact calls for **16** — not 4.",
+            "explanation": "4 interfaces uses the wrong value. The tested fact calls for 16 — not 4.",
             "misconceptionTested": "Selecting \"4 interfaces\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -298,21 +298,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**LACP off mode** does not answer which in this stem. on mode forms an unconditional port channel without LACP or PAgP.",
+            "explanation": "LACP off mode misses what this question tests. on mode forms an unconditional port channel without LACP or PAgP.",
             "misconceptionTested": "Selecting \"LACP off mode\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**PAgP off mode** does not answer which in this stem. on mode forms an unconditional port channel without LACP or PAgP.",
+            "explanation": "PAgP off mode misses what this question tests. on mode forms an unconditional port channel without LACP or PAgP.",
             "misconceptionTested": "Selecting \"PAgP off mode\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.3ad mode** does not answer which in this stem. on mode forms an unconditional port channel without LACP or PAgP.",
+            "explanation": "802.3ad mode misses what this question tests. on mode forms an unconditional port channel without LACP or PAgP.",
             "misconceptionTested": "Selecting \"802.3ad mode\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -342,21 +342,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**PAgP can be used with non-Cisco products.** does not answer which in this stem. EtherChannel is a Cisco-centric term for port channeling.",
+            "explanation": "PAgP can be used with non-Cisco products. misses what this question tests. EtherChannel is a Cisco-centric term for port channeling.",
             "misconceptionTested": "Selecting \"PAgP can be used with non-Cisco products…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**LACP can only be used with other Cisco switches.** does not answer which in this stem. EtherChannel is a Cisco-centric term for port channeling.",
+            "explanation": "LACP can only be used with other Cisco switches. misses what this question tests. EtherChannel is a Cisco-centric term for port channeling.",
             "misconceptionTested": "Selecting \"LACP can only be used with other Cisco s…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**PAgP can bundle several different links with varying speeds and duplexes together.** does not answer which in this stem. EtherChannel is a Cisco-centric term for port channeling.",
+            "explanation": "PAgP can bundle several different links with varying speeds and duplexes together. misses what this question tests. EtherChannel is a Cisco-centric term for port channeling.",
             "misconceptionTested": "Selecting \"PAgP can bundle several different links …\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -386,21 +386,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**LACP** does not answer which in this stem. PAgP is Cisco proprietary.",
+            "explanation": "LACP misses what this question tests. PAgP is Cisco proprietary.",
             "misconceptionTested": "Selecting \"LACP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**802.1Q** does not answer which in this stem. PAgP is Cisco proprietary.",
+            "explanation": "802.1Q misses what this question tests. PAgP is Cisco proprietary.",
             "misconceptionTested": "Selecting \"802.1Q\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.1ab** does not answer which in this stem. PAgP is Cisco proprietary.",
+            "explanation": "802.1ab misses what this question tests. PAgP is Cisco proprietary.",
             "misconceptionTested": "Selecting \"802.1ab\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -431,21 +431,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Every 60 seconds** uses the wrong value. The tested fact calls for **30** — not 60.",
+            "explanation": "Every 60 seconds uses the wrong value. The tested fact calls for 30 — not 60.",
             "misconceptionTested": "Selecting \"Every 60 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Every 90 seconds** uses the wrong value. The tested fact calls for **30** — not 90.",
+            "explanation": "Every 90 seconds uses the wrong value. The tested fact calls for 30 — not 90.",
             "misconceptionTested": "Selecting \"Every 90 seconds\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Every 120 seconds** uses the wrong value. The tested fact calls for **30** — not 120.",
+            "explanation": "Every 120 seconds uses the wrong value. The tested fact calls for 30 — not 120.",
             "misconceptionTested": "Selecting \"Every 120 seconds\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -476,21 +476,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Passive mode on both sides** does not answer configure in this stem. LACP active mode actively starts negotiation.",
+            "explanation": "Passive mode on both sides misses what this question tests. LACP active mode actively starts negotiation.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Auto mode on both sides** does not answer configure in this stem. LACP active mode actively starts negotiation.",
+            "explanation": "Auto mode on both sides misses what this question tests. LACP active mode actively starts negotiation.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Desirable mode on both sides** does not answer configure in this stem. LACP active mode actively starts negotiation.",
+            "explanation": "Desirable mode on both sides misses what this question tests. LACP active mode actively starts negotiation.",
             "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -521,21 +521,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The channel group will use PAgP.** does not answer what is in this stem. Passive plus active forms an LACP channel.",
+            "explanation": "The channel group will use PAgP. misses what this question tests. Passive plus active forms an LACP channel.",
             "misconceptionTested": "Selecting \"The channel group will use PAgP.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The channel group will not be formed.** does not answer what is in this stem. Passive plus active forms an LACP channel.",
+            "explanation": "The channel group will not be formed. misses what this question tests. Passive plus active forms an LACP channel.",
             "misconceptionTested": "Selecting \"The channel group will not be formed.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The channel group will use EtherChannel.** is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
+            "explanation": "The channel group will use EtherChannel. is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
             "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -566,21 +566,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Switch#show port-channel** is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
+            "explanation": "Switch#show port-channel is the wrong device role here. EtherChannel bundles links for bandwidth/redundancy — it is not inter-VLAN routing, MAC learning, or unknown-unicast flooding.",
             "misconceptionTested": "Dragging link-aggregation into an unrelated L2/L3 behavior question"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Switch#show interface** does not answer which in this stem. show etherchannel verifies EtherChannel information and negotiated protocol.",
+            "explanation": "Switch#show interface misses what this question tests. show etherchannel verifies EtherChannel information and negotiated protocol.",
             "misconceptionTested": "Selecting \"Switch#show interface\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Switch#show run** does not answer which in this stem. show etherchannel verifies EtherChannel information and negotiated protocol.",
+            "explanation": "Switch#show run misses what this question tests. show etherchannel verifies EtherChannel information and negotiated protocol.",
             "misconceptionTested": "Selecting \"Switch#show run\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -611,21 +611,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The channel group will use PAgP.** does not answer what is in this stem. Passive plus passive does not form LACP because neither side initiates.",
+            "explanation": "The channel group will use PAgP. misses what this question tests. Passive plus passive does not form LACP because neither side initiates.",
             "misconceptionTested": "Selecting \"The channel group will use PAgP.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The channel group will use LACP.** does not answer what is in this stem. Passive plus passive does not form LACP because neither side initiates.",
+            "explanation": "The channel group will use LACP. misses what this question tests. Passive plus passive does not form LACP because neither side initiates.",
             "misconceptionTested": "Selecting \"The channel group will use LACP.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**An unconditional port channel will be formed.** does not answer what is in this stem. Passive plus passive does not form LACP because neither side initiates.",
+            "explanation": "An unconditional port channel will be formed. misses what this question tests. Passive plus passive does not form LACP because neither side initiates.",
             "misconceptionTested": "Selecting \"An unconditional port channel will be fo…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     },
     {
@@ -656,21 +656,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The channel group will use PAgP.** does not answer what is in this stem. On plus on forms an unconditional port channel.",
+            "explanation": "The channel group will use PAgP. misses what this question tests. On plus on forms an unconditional port channel.",
             "misconceptionTested": "Selecting \"The channel group will use PAgP.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The channel group will not be formed.** does not answer what is in this stem. On plus on forms an unconditional port channel.",
+            "explanation": "The channel group will not be formed. misses what this question tests. On plus on forms an unconditional port channel.",
             "misconceptionTested": "Selecting \"The channel group will not be formed.\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The channel group will use LACP.** does not answer what is in this stem. On plus on forms an unconditional port channel.",
+            "explanation": "The channel group will use LACP. misses what this question tests. On plus on forms an unconditional port channel.",
             "misconceptionTested": "Selecting \"The channel group will use LACP.\" without matching the scenario constraint"
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — **LACP (802.3ad)** is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
       }
     }
   ]

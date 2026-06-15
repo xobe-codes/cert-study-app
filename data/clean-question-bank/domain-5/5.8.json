@@ -31,19 +31,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Enable WPA2** does not answer the requirement in this stem. .",
+            "explanation": "Enable WPA2 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Enable WPA2\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Enable port security** does not answer the requirement in this stem. .",
+            "explanation": "Enable port security does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Enable port security\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Disable SSID broadcasts** does not answer the requirement in this stem. .",
+            "explanation": "Disable SSID broadcasts does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Disable SSID broadcasts\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -79,19 +79,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Creation of a PSK** does not answer which in this stem. .",
+            "explanation": "Creation of a PSK does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Creation of a PSK\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**192-bit key strength** does not answer which in this stem. .",
+            "explanation": "192-bit key strength does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"192-bit key strength\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**802.11ac** does not answer which in this stem. .",
+            "explanation": "802.11ac does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"802.11ac\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -128,19 +128,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**TKIP** does not answer which in this stem. .",
+            "explanation": "TKIP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"TKIP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**AES** does not answer which in this stem. .",
+            "explanation": "AES does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"AES\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**CRC** does not answer which in this stem. .",
+            "explanation": "CRC does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CRC\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -176,19 +176,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**64-bit** does not answer which in this stem. .",
+            "explanation": "64-bit does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"64-bit\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**128-bit** does not answer which in this stem. .",
+            "explanation": "128-bit does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"128-bit\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**256-bit** does not answer which in this stem. .",
+            "explanation": "256-bit does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"256-bit\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -229,13 +229,13 @@
           },
           {
             "choiceIndex": 1,
-            "explanation": "**WPA was released as a fix for poor coverage.** does not answer which in this stem. .",
+            "explanation": "WPA was released as a fix for poor coverage. does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"WPA was released as a fix for poor cover…\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The Wi-Fi Alliance wanted to rebrand WEP with WPA.** is not the behavior described here. .",
+            "explanation": "The Wi-Fi Alliance wanted to rebrand WEP with WPA. is not the behavior described here. .",
             "misconceptionTested": "Choosing WEP for compatibility",
             "needsExplanationReview": true
           }
@@ -270,19 +270,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The use of certificates** does not answer which in this stem. .",
+            "explanation": "The use of certificates does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"The use of certificates\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Pre-shared keys** does not answer which in this stem. .",
+            "explanation": "Pre-shared keys does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Pre-shared keys\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**CRC checking** does not answer which in this stem. .",
+            "explanation": "CRC checking does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CRC checking\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -318,19 +318,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RC4** does not answer which in this stem. .",
+            "explanation": "RC4 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"RC4\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**MD5** does not answer which in this stem. .",
+            "explanation": "MD5 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"MD5\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**SHA1** does not answer which in this stem. .",
+            "explanation": "SHA1 does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"SHA1\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -367,19 +367,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Certificate support** does not answer which in this stem. .",
+            "explanation": "Certificate support does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Certificate support\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Per-frame encryption** does not answer which in this stem. .",
+            "explanation": "Per-frame encryption does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Per-frame encryption\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**TKIP** does not answer which in this stem. .",
+            "explanation": "TKIP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"TKIP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -417,19 +417,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**NTP server** does not answer configure in this stem. .",
+            "explanation": "NTP server does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"NTP server\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**PSK** does not answer configure in this stem. .",
+            "explanation": "PSK does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"PSK\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Captive portal** does not answer configure in this stem. .",
+            "explanation": "Captive portal does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Captive portal\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -467,19 +467,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**802.1X** does not answer the requirement in this stem. .",
+            "explanation": "802.1X does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"802.1X\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**AES** does not answer the requirement in this stem. .",
+            "explanation": "AES does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"AES\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**MAC filtering** does not answer the requirement in this stem. .",
+            "explanation": "MAC filtering does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"MAC filtering\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -517,19 +517,19 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**AES** does not answer the requirement in this stem. .",
+            "explanation": "AES does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"AES\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Certificates** does not answer the requirement in this stem. .",
+            "explanation": "Certificates does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"Certificates\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**TKIP** does not answer the requirement in this stem. .",
+            "explanation": "TKIP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"TKIP\" without matching the scenario constraint",
             "needsExplanationReview": true
           }
@@ -567,19 +567,19 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**AES** does not answer which in this stem. .",
+            "explanation": "AES does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"AES\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**CCMP** does not answer which in this stem. .",
+            "explanation": "CCMP does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"CCMP\" without matching the scenario constraint",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**PSK** does not answer which in this stem. .",
+            "explanation": "PSK does not match the mechanism asked here.",
             "misconceptionTested": "Selecting \"PSK\" without matching the scenario constraint",
             "needsExplanationReview": true
           }

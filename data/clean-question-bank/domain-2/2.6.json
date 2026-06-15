@@ -30,21 +30,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Autonomous WAPs with a WLC** does not answer which in this stem. A high-density design is best served by lightweight APs controlled by a WLC.",
+            "explanation": "Autonomous WAPs with a WLC misses what this question tests. A high-density design is best served by lightweight APs controlled by a WLC.",
             "misconceptionTested": "Selecting \"Autonomous WAPs with a WLC\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Autonomous WAPs without a WLC** does not answer which in this stem. A high-density design is best served by lightweight APs controlled by a WLC.",
+            "explanation": "Autonomous WAPs without a WLC misses what this question tests. A high-density design is best served by lightweight APs controlled by a WLC.",
             "misconceptionTested": "Selecting \"Autonomous WAPs without a WLC\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Lightweight WAPs without a WLC** does not answer which in this stem. A high-density design is best served by lightweight APs controlled by a WLC.",
+            "explanation": "Lightweight WAPs without a WLC misses what this question tests. A high-density design is best served by lightweight APs controlled by a WLC.",
             "misconceptionTested": "Selecting \"Lightweight WAPs without a WLC\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -75,21 +75,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**BT mode** does not answer which in this stem. Monitor mode can detect sources of wireless interference such as Bluetooth.",
+            "explanation": "BT mode misses what this question tests. Monitor mode can detect sources of wireless interference such as Bluetooth.",
             "misconceptionTested": "Selecting \"BT mode\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Sniffing mode** does not answer which in this stem. Monitor mode can detect sources of wireless interference such as Bluetooth.",
+            "explanation": "Sniffing mode misses what this question tests. Monitor mode can detect sources of wireless interference such as Bluetooth.",
             "misconceptionTested": "Selecting \"Sniffing mode\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Analysis mode** does not answer which in this stem. Monitor mode can detect sources of wireless interference such as Bluetooth.",
+            "explanation": "Analysis mode misses what this question tests. Monitor mode can detect sources of wireless interference such as Bluetooth.",
             "misconceptionTested": "Selecting \"Analysis mode\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -120,21 +120,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**BSS** does not answer which in this stem. IBSS is ad hoc wireless without infrastructure.",
+            "explanation": "BSS misses what this question tests. IBSS is ad hoc wireless without infrastructure.",
             "misconceptionTested": "Selecting \"BSS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**ESS** does not answer which in this stem. IBSS is ad hoc wireless without infrastructure.",
+            "explanation": "ESS misses what this question tests. IBSS is ad hoc wireless without infrastructure.",
             "misconceptionTested": "Selecting \"ESS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**DS** does not answer which in this stem. IBSS is ad hoc wireless without infrastructure.",
+            "explanation": "DS misses what this question tests. IBSS is ad hoc wireless without infrastructure.",
             "misconceptionTested": "Selecting \"DS\" without matching the scenario constraint"
           }
         ],
-        "examTip": "AD picks the **route source** for the same prefix; **longest match** still wins first."
+        "examTip": "AD picks the route source for the same prefix; longest match still wins first."
       }
     },
     {
@@ -165,21 +165,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Non-root devices can connect to other non-root devices.** does not answer which in this stem. Non-root wireless devices connect to root devices.",
+            "explanation": "Non-root devices can connect to other non-root devices. misses what this question tests. Non-root wireless devices connect to root devices.",
             "misconceptionTested": "Selecting \"Non-root devices can connect to other no…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Root devices can connect to other root devices.** does not answer which in this stem. Non-root wireless devices connect to root devices.",
+            "explanation": "Root devices can connect to other root devices. misses what this question tests. Non-root wireless devices connect to root devices.",
             "misconceptionTested": "Selecting \"Root devices can connect to other root d…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Repeaters are considered root devices.** does not answer which in this stem. Non-root wireless devices connect to root devices.",
+            "explanation": "Repeaters are considered root devices. misses what this question tests. Non-root wireless devices connect to root devices.",
             "misconceptionTested": "Selecting \"Repeaters are considered root devices.\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -209,21 +209,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Lightweight WAP** does not answer which in this stem. Autonomous APs can operate independently.",
+            "explanation": "Lightweight WAP misses what this question tests. Autonomous APs can operate independently.",
             "misconceptionTested": "Selecting \"Lightweight WAP\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**WLC** does not answer which in this stem. Autonomous APs can operate independently.",
+            "explanation": "WLC misses what this question tests. Autonomous APs can operate independently.",
             "misconceptionTested": "Selecting \"WLC\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Mesh** does not answer which in this stem. Autonomous APs can operate independently.",
+            "explanation": "Mesh misses what this question tests. Autonomous APs can operate independently.",
             "misconceptionTested": "Selecting \"Mesh\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -254,21 +254,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Point-to-point wireless bridge** is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
+            "explanation": "Point-to-point wireless bridge is the wrong device role here. A legacy bridge operates at Layer 2 but modern CCNA scenarios expect a switch for MAC learning and VLANs.",
             "misconceptionTested": "Picking legacy bridge terminology instead of switch behavior"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Mesh wireless network** does not answer which in this stem. Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
+            "explanation": "Mesh wireless network misses what this question tests. Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
             "misconceptionTested": "Selecting \"Mesh wireless network\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Autonomous wireless network** does not answer which in this stem. Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
+            "explanation": "Autonomous wireless network misses what this question tests. Point-to-multipoint wireless bridges connect multiple nearby buildings to a central point.",
             "misconceptionTested": "Selecting \"Autonomous wireless network\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -299,21 +299,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Wireless bridging** does not answer the requirement in this stem. A repeater can extend coverage for a small area at low cost.",
+            "explanation": "Wireless bridging misses what this question tests. A repeater can extend coverage for a small area at low cost.",
             "misconceptionTested": "Selecting \"Wireless bridging\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Mesh wireless system** does not answer the requirement in this stem. A repeater can extend coverage for a small area at low cost.",
+            "explanation": "Mesh wireless system misses what this question tests. A repeater can extend coverage for a small area at low cost.",
             "misconceptionTested": "Selecting \"Mesh wireless system\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Addition of a wireless LAN controller** does not answer the requirement in this stem. A repeater can extend coverage for a small area at low cost.",
+            "explanation": "Addition of a wireless LAN controller misses what this question tests. A repeater can extend coverage for a small area at low cost.",
             "misconceptionTested": "Selecting \"Addition of a wireless LAN controller\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -344,21 +344,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**BSS** does not answer which in this stem. Lightweight APs require a wireless LAN controller.",
+            "explanation": "BSS misses what this question tests. Lightweight APs require a wireless LAN controller.",
             "misconceptionTested": "Selecting \"BSS\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Bridges** does not answer which in this stem. Lightweight APs require a wireless LAN controller.",
+            "explanation": "Bridges misses what this question tests. Lightweight APs require a wireless LAN controller.",
             "misconceptionTested": "Selecting \"Bridges\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Autonomous WAP** does not answer which in this stem. Lightweight APs require a wireless LAN controller.",
+            "explanation": "Autonomous WAP misses what this question tests. Lightweight APs require a wireless LAN controller.",
             "misconceptionTested": "Selecting \"Autonomous WAP\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -389,21 +389,21 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Autonomous wireless network** does not answer the requirement in this stem. Mesh wireless networks can cover large public areas where cabling is not practical.",
+            "explanation": "Autonomous wireless network misses what this question tests. Mesh wireless networks can cover large public areas where cabling is not practical.",
             "misconceptionTested": "Selecting \"Autonomous wireless network\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Point-to-multipoint wireless bridges** does not answer the requirement in this stem. Mesh wireless networks can cover large public areas where cabling is not practical.",
+            "explanation": "Point-to-multipoint wireless bridges misses what this question tests. Mesh wireless networks can cover large public areas where cabling is not practical.",
             "misconceptionTested": "Selecting \"Point-to-multipoint wireless bridges\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Wireless repeaters** does not answer the requirement in this stem. Mesh wireless networks can cover large public areas where cabling is not practical.",
+            "explanation": "Wireless repeaters misses what this question tests. Mesh wireless networks can cover large public areas where cabling is not practical.",
             "misconceptionTested": "Selecting \"Wireless repeaters\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     },
     {
@@ -435,21 +435,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data.** does not answer which in this stem. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
+            "explanation": "Flex Connect mode creates a CAPWAP tunnel to the WLC to transport data. misses what this question tests. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
             "misconceptionTested": "Selecting \"Flex Connect mode creates a CAPWAP tunne…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Local mode allows for switching of VLANs at the WAP.** does not answer which in this stem. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
+            "explanation": "Local mode allows for switching of VLANs at the WAP. misses what this question tests. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
             "misconceptionTested": "Selecting \"Local mode allows for switching of VLANs…\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Flex Connect mode allows for switching of VLANs at the WLC.** does not answer which in this stem. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
+            "explanation": "Flex Connect mode allows for switching of VLANs at the WLC. misses what this question tests. Local mode sends data through CAPWAP to the WLC, while FlexConnect can switch traffic locally.",
             "misconceptionTested": "Selecting \"Flex Connect mode allows for switching o…\" without matching the scenario constraint"
           }
         ],
-        "examTip": "Match **band, range, and standard** to the scenario — WEP is never the right modern answer."
+        "examTip": "Match band, range, and standard to the scenario — WEP is never the right modern answer."
       }
     }
   ]

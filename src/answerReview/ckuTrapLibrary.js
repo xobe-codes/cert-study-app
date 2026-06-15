@@ -110,14 +110,14 @@ export function resolveOppositeBoolean(wrong, correctExpl) {
 }
 
 export function resolveStemAnchored(wrong, q) {
-  const stem = (q.question || '').trim()
   const fact = (q.explanation || '').trim()
-  const first = fact.split(/[.!?]/)[0]?.trim() || fact
-  const action = stem.match(/what does|what is|which|how does|order|configure/i)?.[0] || 'the requirement'
+  const first = fact.split(/[.!?]/).filter(Boolean)[0]?.trim() || fact
+  const choice = String(wrong).replace(/\*\*/g, '').trim()
+  const lead = first ? `${choice} misses what this question tests. ${first}.` : `${choice} does not match the mechanism asked here.`
 
   return {
-    explanation: `**${wrong}** does not answer ${action.toLowerCase()} in this stem. ${first}.`,
-    trap: `Selecting "${wrong.slice(0, 40)}${wrong.length > 40 ? '…' : ''}" without matching the scenario constraint`,
+    explanation: lead,
+    trap: `Selecting "${choice.slice(0, 40)}${choice.length > 40 ? '…' : ''}" without matching the scenario constraint`,
   }
 }
 

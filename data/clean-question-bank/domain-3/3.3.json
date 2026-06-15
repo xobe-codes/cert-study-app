@@ -27,17 +27,17 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**ip route 172.16.0.0 0.0.255.255 10.0.0.1** reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "ip route 172.16.0.0 0.0.255.255 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**static route 172.16.0.0/16 10.0.0.1** reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "static route 172.16.0.0/16 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ip static-route 172.16.0.0 255.255.0.0 10.0.0.1** reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "ip static-route 172.16.0.0 255.255.0.0 10.0.0.1 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           }
         ],
@@ -69,21 +69,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ip route 0.0.0.0 255.255.255.255 203.0.113.1** does not answer which in this stem. Default static route: destination 0.",
+            "explanation": "ip route 0.0.0.0 255.255.255.255 203.0.113.1 misses what this question tests. Default static route: destination 0.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ip route default 203.0.113.1** uses the wrong value. The tested fact calls for **0** — not 203.",
+            "explanation": "ip route default 203.0.113.1 uses the wrong value. The tested fact calls for 0 — not 203.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ip default-route 203.0.113.1** uses the wrong value. The tested fact calls for **0** — not 203.",
+            "explanation": "ip default-route 203.0.113.1 uses the wrong value. The tested fact calls for 0 — not 203.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
-        "examTip": "Mark **inside/outside** first. PAT = many inside hosts sharing one **outside global** with unique ports."
+        "examTip": "Mark inside/outside first. PAT = many inside hosts sharing one outside global with unique ports."
       }
     },
     {
@@ -111,17 +111,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ip route 10.0.0.0 255.0.0.0 192.168.2.1 90** uses the wrong value. The tested fact calls for **130** — not 10.",
+            "explanation": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 90 uses the wrong value. The tested fact calls for 130 — not 10.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ip route 10.0.0.0 255.0.0.0 192.168.2.1** uses the wrong value. The tested fact calls for **130** — not 10.",
+            "explanation": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 uses the wrong value. The tested fact calls for 130 — not 10.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ip route 10.0.0.0 255.0.0.0 192.168.2.1 1** uses the wrong value. The tested fact calls for **130** — not 10.",
+            "explanation": "ip route 10.0.0.0 255.0.0.0 192.168.2.1 1 uses the wrong value. The tested fact calls for 130 — not 10.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -153,17 +153,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Static routes require OSPF to advertise them** reflects a common trap: Exit-interface static routes are always preferred on Ethernet. Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
+            "explanation": "Static routes require OSPF to advertise them reflects a common trap: Exit-interface static routes are always preferred on Ethernet. Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
             "misconceptionTested": "Exit-interface static routes are always preferred on Ethernet"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Static routes must use exit interface only** reflects a common trap: Exit-interface static routes are always preferred on Ethernet. Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
+            "explanation": "Static routes must use exit interface only reflects a common trap: Exit-interface static routes are always preferred on Ethernet. Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
             "misconceptionTested": "Exit-interface static routes are always preferred on Ethernet"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The mask is incompatible** does not answer configure in this stem. A static route requires its next-hop to be reachable via another routing table entry.",
+            "explanation": "The mask is incompatible misses what this question tests. A static route requires its next-hop to be reachable via another routing table entry.",
             "misconceptionTested": "Selecting \"The mask is incompatible\" without matching the scenario constraint"
           }
         ],
@@ -180,7 +180,7 @@
         "ipv6 route 2001:db8:1:: /48 2001:db8::1"
       ],
       "correctIndex": 1,
-      "explanation": "IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`. Requires `ipv6 unicast-routing` globally.",
+      "explanation": "IPv6 static: ipv6 route <prefix>/<len> <next-hop>. Requires ipv6 unicast-routing globally.",
       "type": "application",
       "difficulty": "medium",
       "concept": "IPv6 static route",
@@ -190,26 +190,26 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "IPv6 static: `ipv6 route <prefix>/<len> <next-hop>`. Requires `ipv6 unicast-routing` globally."
+          "explanation": "IPv6 static: ipv6 route <prefix>/<len> <next-hop>. Requires ipv6 unicast-routing globally."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ip route 2001:db8:1::/48 2001:db8::1** uses the wrong value. The tested fact calls for **6** — not 2001.",
+            "explanation": "ip route 2001:db8:1::/48 2001:db8::1 uses the wrong value. The tested fact calls for 6 — not 2001.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "ipv6 static-route 2001:db8:1::/48 nexthop 2001:db8::1 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ipv6 route 2001:db8:1:: /48 2001:db8::1** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "ipv6 route 2001:db8:1:: /48 2001:db8::1 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -238,21 +238,21 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**ipv6 route ff00::/8 <next-hop>** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "ipv6 route ff00::/8 <next-hop> reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**ipv6 route 0::0/0 <next-hop>** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "ipv6 route 0::0/0 <next-hop> reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ipv6 default-gateway <next-hop>** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "ipv6 default-gateway <next-hop> reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first"
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -265,7 +265,7 @@
         "show ip protocols"
       ],
       "correctIndex": 1,
-      "explanation": "`show ip route static` filters to entries with source code S.",
+      "explanation": "show ip route static filters to entries with source code S.",
       "type": "application",
       "difficulty": "easy",
       "concept": "verify static routes",
@@ -275,22 +275,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`show ip route static` filters to entries with source code S."
+          "explanation": "show ip route static filters to entries with source code S."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**show ip route** reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "show ip route reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**show running-config | section route** reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "show running-config | section route reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**show ip protocols** does not answer which in this stem. `show ip route static` filters to entries with source code S.",
+            "explanation": "show ip protocols misses what this question tests. show ip route static filters to entries with source code S.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior"
           }
         ],
@@ -322,17 +322,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The route disappears from the table** reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "The route disappears from the table reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The route has AD 255** reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "The route has AD 255 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
             "misconceptionTested": "A static route installs even if the next-hop is unreachable"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The router uses OSPF to resolve the path** does not answer what is in this stem. On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one — inefficient on multi-access segments.",
+            "explanation": "The router uses OSPF to resolve the path misses what this question tests. On Ethernet without a next-hop IP, the router treats every destination as directly connected and ARP-resolves each one — inefficient on multi-access segments.",
             "misconceptionTested": "Selecting \"The router uses OSPF to resolve the path\" without matching the scenario constraint"
           }
         ],
@@ -367,24 +367,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ip route 205.34.54.85/24 205.34.55.2** does not answer which in this stem. .",
+            "explanation": "Router(config)#ip route 205.34.54.85/24 205.34.55.2 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2** does not answer which in this stem. .",
+            "explanation": "Router(config)#ip route 205.34.54.85 255.255.255.240 205.34.55.2 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85** does not answer which in this stem. .",
+            "explanation": "Router(config)#ip route 205.34.55.2 255.255.255.248 205.34.54.85 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -414,24 +414,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Link-state routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Link-state routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Distance-vector routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Distance-vector routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Dynamic routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Dynamic routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -462,24 +462,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Directly connected routes** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Directly connected routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Default routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Default routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Static routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Static routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -512,24 +512,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RIP routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "RIP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**OSPF routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "OSPF routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Default routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Default routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -562,24 +562,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RIP routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "RIP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**OSPF routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "OSPF routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Static routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Static routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -612,24 +612,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**BGP** does not answer which in this stem. .",
+            "explanation": "BGP does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**OSPF** does not answer which in this stem. .",
+            "explanation": "OSPF does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**EIGRP** does not answer which in this stem. .",
+            "explanation": "EIGRP does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -660,24 +660,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Lower router RAM usage** does not answer which in this stem. .",
+            "explanation": "Lower router RAM usage does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Lower router CPU usage** does not answer which in this stem. .",
+            "explanation": "Lower router CPU usage does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Less bandwidth usage** does not answer which in this stem. .",
+            "explanation": "Less bandwidth usage does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -708,24 +708,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Default routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Default routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Dynamic routes** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Dynamic routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Static routes** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Static routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -756,24 +756,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ip route 0.0.0.0/0 s0/0** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Router(config)#ip route 0.0.0.0/0 s0/0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#ipv6 route 0.0.0.0/0 s0/0** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router(config)#ipv6 route 0.0.0.0/0 s0/0 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ipv6 unicast-route ::0/0 s0/0** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router(config)#ipv6 unicast-route ::0/0 s0/0 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -806,24 +806,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RIPng** does not answer which in this stem. .",
+            "explanation": "RIPng does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**OSPFv3** does not answer which in this stem. .",
+            "explanation": "OSPFv3 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**EIGRPv6** does not answer which in this stem. .",
+            "explanation": "EIGRPv6 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -854,24 +854,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show route** does not answer which in this stem. .",
+            "explanation": "Router#show route does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip route** does not answer which in this stem. .",
+            "explanation": "Router#show ip route does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show route ipv6** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router#show route ipv6 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -904,24 +904,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The destination IP address is replaced with the default gateway when the destination is remote.** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "The destination IP address is replaced with the default gateway when the destination is remote. reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The host sends the default gateway packets that are deemed remote via a broadcast.** reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "explanation": "The host sends the default gateway packets that are deemed remote via a broadcast. reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
             "misconceptionTested": "A default route guarantees connectivity",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The host creates a dedicated connection with the default gateway for remote traffic.** reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
+            "explanation": "The host creates a dedicated connection with the default gateway for remote traffic. reflects a common trap: A default route guarantees connectivity. It only forwards traffic that matches nothing more specific; if the next hop is wrong or down, traffic still fails.",
             "misconceptionTested": "A default route guarantees connectivity",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -952,24 +952,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show route** does not answer which in this stem. .",
+            "explanation": "Router#show route does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show route table** does not answer which in this stem. .",
+            "explanation": "Router#show route table does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show routes** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router#show routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1001,24 +1001,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**IGMP** does not answer which in this stem. .",
+            "explanation": "IGMP does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RARP** does not answer which in this stem. .",
+            "explanation": "RARP does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ICMP** does not answer which in this stem. .",
+            "explanation": "ICMP does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1051,24 +1051,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**SNMP traps** does not answer the requirement in this stem. .",
+            "explanation": "SNMP traps does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Notifications** does not answer the requirement in this stem. .",
+            "explanation": "Notifications does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**ARP** does not answer the requirement in this stem. .",
+            "explanation": "ARP does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1099,24 +1099,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The distant router is not responding.** does not answer the requirement in this stem. .",
+            "explanation": "The distant router is not responding. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The distant router has a high response time.** does not answer the requirement in this stem. .",
+            "explanation": "The distant router has a high response time. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The distant router has a low response time.** does not answer the requirement in this stem. .",
+            "explanation": "The distant router has a low response time. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1146,24 +1146,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ip route 192.168.4.0/24 serial 0/1** does not answer which in this stem. .",
+            "explanation": "Router(config)#ip route 192.168.4.0/24 serial 0/1 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ip route 192.168.4.0/24 interface serial 0/1** does not answer which in this stem. .",
+            "explanation": "Router(config)#ip route 192.168.4.0/24 interface serial 0/1 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1** does not answer which in this stem. .",
+            "explanation": "Router(config)#ip route Router(config- rtr)#192.168.4.0/24 serial 0/1 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1194,24 +1194,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2.** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "The ip default-network needs to be used in conjunction with ip default-gateway 192.168.11.2. reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The command is used for dynamic routing only.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "The command is used for dynamic routing only. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The specified gateway is wrong.** does not answer the requirement in this stem. .",
+            "explanation": "The specified gateway is wrong. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1244,24 +1244,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1** does not answer which in this stem. .",
+            "explanation": "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.3.1 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
+        "examTip": "Static route: next-hop needs recursive lookup; exit-interface common on point-to-point."
       }
     },
     {
@@ -1292,24 +1292,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The router creates a /32 route for the IP address.** does not answer configure in this stem. .",
+            "explanation": "The router creates a /32 route for the IP address. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The router creates a summary address for the network.** does not answer configure in this stem. .",
+            "explanation": "The router creates a summary address for the network. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The router creates a routing update if dynamic routing is configured.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "The router creates a routing update if dynamic routing is configured. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1341,24 +1341,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show ip** does not answer configure in this stem. .",
+            "explanation": "Router#show ip does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router#show interfaces** does not answer configure in this stem. .",
+            "explanation": "Router#show interfaces does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip brief** does not answer configure in this stem. .",
+            "explanation": "Router#show ip brief does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1390,24 +1390,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**The interface speed is incorrect.** does not answer configure in this stem. .",
+            "explanation": "The interface speed is incorrect. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The interface bandwidth is not set.** does not answer configure in this stem. .",
+            "explanation": "The interface bandwidth is not set. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The route will not show up until you save the config.** does not answer configure in this stem. .",
+            "explanation": "The route will not show up until you save the config. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1438,24 +1438,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Adding networks is an easy task for network administrators.** does not answer what is in this stem. .",
+            "explanation": "Adding networks is an easy task for network administrators. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**It is suited for large networks because changes will not disturb routing.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "It is suited for large networks because changes will not disturb routing. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**It allows for configuration by any network admin in the network.** does not answer what is in this stem. .",
+            "explanation": "It allows for configuration by any network admin in the network. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1485,24 +1485,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RAM** does not answer the requirement in this stem. .",
+            "explanation": "RAM does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Flash** does not answer the requirement in this stem. .",
+            "explanation": "Flash does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Routing database** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Routing database reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1534,24 +1534,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2** does not answer the requirement in this stem. .",
+            "explanation": "Router(config)#ip route 192.168.0.0 255.255.0.0 198.43.23.2 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2** does not answer the requirement in this stem. .",
+            "explanation": "Router(config)#ip route 192.168.0.0 255.255.255.0 198.43.23.2 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2** does not answer the requirement in this stem. .",
+            "explanation": "Router(config)#ip route 192.168.0.0 255.255.0.240 198.43.23.2 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1582,24 +1582,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**If the first one fails to route to the destination, the second route will succeed.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "If the first one fails to route to the destination, the second route will succeed. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**If there is a high amount of traffic on the first interface, the second route will become active.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "If there is a high amount of traffic on the first interface, the second route will become active. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**If there is a routing loop on the first interface, the second will overcome the loop.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "If there is a routing loop on the first interface, the second will overcome the loop. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1631,24 +1631,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**S 208.43.34.24/29 is directly connected, Serial 0/0/0** does not answer which in this stem. .",
+            "explanation": "S 208.43.34.24/29 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**S 208.43.34.8/29 is directly connected, Serial 0/0/0** does not answer which in this stem. .",
+            "explanation": "S 208.43.34.8/29 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**S 208.43.34.17/29 is directly connected, Serial 0/0/0** does not answer which in this stem. .",
+            "explanation": "S 208.43.34.17/29 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1680,24 +1680,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The 172.30.0/16 network** does not answer which in this stem. .",
+            "explanation": "The 172.30.0/16 network does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The 192.168.128.0/24 network** does not answer which in this stem. .",
+            "explanation": "The 192.168.128.0/24 network does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**The 192.168.0.0/16 network** does not answer which in this stem. .",
+            "explanation": "The 192.168.0.0/16 network does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
+        "examTip": "Static route: next-hop needs recursive lookup; exit-interface common on point-to-point."
       }
     },
     {
@@ -1729,24 +1729,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterB(config)#ip route 198.44.4.0/24 198.55.4.9** does not answer configure in this stem. .",
+            "explanation": "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10** does not answer configure in this stem. .",
+            "explanation": "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0** does not answer configure in this stem. .",
+            "explanation": "RouterB(config)#ip route 198.44.4.0 255.255.255.0 Serial 0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
+        "examTip": "Static route: next-hop needs recursive lookup; exit-interface common on point-to-point."
       }
     },
     {
@@ -1778,24 +1778,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**S 194.22.34.64/28 is directly connected, Serial 0/0/0** does not answer which in this stem. .",
+            "explanation": "S 194.22.34.64/28 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**S 194.22.34.54/28 is directly connected, Serial 0/0/0** does not answer which in this stem. .",
+            "explanation": "S 194.22.34.54/28 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**S 194.22.34.32/28 is directly connected, Serial 0/0/0** does not answer which in this stem. .",
+            "explanation": "S 194.22.34.32/28 is directly connected, Serial 0/0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1826,24 +1826,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Router(config)# ip route 0.0.0.0 0.0.0.0 serial 0/0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router(config)# ipv6 route 0.0.0.0 0.0.0.0 serial 0/0 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)# ip route ::/0 serial 0/0** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "Router(config)# ip route ::/0 serial 0/0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1873,24 +1873,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router(config)#ip route fc00:0:0:1 serial 0/0/0** does not answer which in this stem. .",
+            "explanation": "Router(config)#ip route fc00:0:0:1 serial 0/0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Router(config)#ip route fc00:0:0:1/64 serial 0/0** does not answer which in this stem. .",
+            "explanation": "Router(config)#ip route fc00:0:0:1/64 serial 0/0 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router(config)#ipv6 route fc00:0:0:1 serial 0/0/0 reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -1923,24 +1923,24 @@
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "**IP address of 192.168.4.5** does not answer which in this stem. .",
+            "explanation": "IP address of 192.168.4.5 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Interface Serial 0/0/1** does not answer which in this stem. .",
+            "explanation": "Interface Serial 0/0/1 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Interface Serial 0/2/0** does not answer which in this stem. .",
+            "explanation": "Interface Serial 0/2/0 does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
+        "examTip": "Static route: next-hop needs recursive lookup; exit-interface common on point-to-point."
       }
     },
     {
@@ -1974,24 +1974,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**OSPF routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "OSPF routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**EIGRP routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "EIGRP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RIP routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "RIP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2021,24 +2021,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**There is less administrative overhead.** does not answer which in this stem. .",
+            "explanation": "There is less administrative overhead. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**It can create resiliency in a network.** does not answer which in this stem. .",
+            "explanation": "It can create resiliency in a network. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**It is extremely scalable without issues.** does not answer which in this stem. .",
+            "explanation": "It is extremely scalable without issues. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2072,24 +2072,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RIP routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "RIP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**OSPF routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "OSPF routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**EIGRP routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "EIGRP routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2120,24 +2120,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Dynamic routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Dynamic routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Directly connected routes** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Directly connected routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Default routing** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Default routing reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2168,24 +2168,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Router#show static routes** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router#show static routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Router#show ip static routes** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router#show ip static routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Router#show ip routes** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Router#show ip routes reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2216,24 +2216,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**The router will calculate a network ID of 2000:0db8::.** does not answer which in this stem. .",
+            "explanation": "The router will calculate a network ID of 2000:0db8::. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "The IPv6 address of 2000:0db8:4400:2300:1234:0000:0000:0000/128 will be assigned to Serial 0/0. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0.** does not answer which in this stem. .",
+            "explanation": "The router will calculate a network ID of 2000:db8:4400:2300:0000/64 for Serial 0/0. does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2266,24 +2266,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Multicast addresses do not get added to the routing tables.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Multicast addresses do not get added to the routing tables. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Only one route statement can be in the routing table at a time for an interface.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Only one route statement can be in the routing table at a time for an interface. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Broadcast addresses do not get added to the routing tables.** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "Broadcast addresses do not get added to the routing tables. reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2317,24 +2317,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterB(config-if )#ipv6 address default** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "RouterB(config-if )#ipv6 address default reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterB(config)#ip route ::/0 serial 0/3/0** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "RouterB(config)#ip route ::/0 serial 0/3/0 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterB(config-if)#ipv6 address slaac** reflects a common trap: IPv6 static routes require `ipv6 unicast-routing` globally first. Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha.",
+            "explanation": "RouterB(config-if)#ipv6 address slaac reflects a common trap: IPv6 static routes require ipv6 unicast-routing globally first. Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha.",
             "misconceptionTested": "IPv6 static routes require `ipv6 unicast-routing` globally first",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "Static route: **next-hop** needs recursive lookup; **exit-interface** common on point-to-point."
+        "examTip": "Static route: next-hop needs recursive lookup; exit-interface common on point-to-point."
       }
     },
     {
@@ -2365,24 +2365,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA(config)#ip default-network 192.168.2.6** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "RouterA(config)#ip default-network 192.168.2.6 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA(config)#ip route default-gateway 192.168.2.6** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "RouterA(config)#ip route default-gateway 192.168.2.6 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 3,
-            "explanation": "**RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6** reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
+            "explanation": "RouterA(config)#ip route 0.0.0.0 255.255.255.255 192.168.2.6 reflects a common trap: Treating the default route as a normal match. 0.0.0.0/0 is the least specific route (prefix length 0) and is used only when nothing more specific matches.",
             "misconceptionTested": "Treating the default route as a normal match",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     },
     {
@@ -2414,24 +2414,24 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**RouterA#show ip rip** does not answer which in this stem. .",
+            "explanation": "RouterA#show ip rip does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 1,
-            "explanation": "**RouterA#show ip route** does not answer which in this stem. .",
+            "explanation": "RouterA#show ip route does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           },
           {
             "choiceIndex": 2,
-            "explanation": "**RouterA#show ip rip route** does not answer which in this stem. .",
+            "explanation": "RouterA#show ip rip route does not match the mechanism asked here.",
             "misconceptionTested": "Static route next-hop vs exit-interface behavior",
             "needsExplanationReview": true
           }
         ],
-        "examTip": "On the exam: IPv6 static routes require `ipv6 unicast-routing` globally first — Without `ipv6 unicast-routing`, IPv6 static routes are not installed — a common exam gotcha"
+        "examTip": "On the exam: IPv6 static routes require ipv6 unicast-routing globally first — Without ipv6 unicast-routing, IPv6 static routes are not installed — a common exam gotcha"
       }
     }
   ]

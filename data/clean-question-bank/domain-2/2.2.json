@@ -29,17 +29,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Carries one VLAN only** does not answer what does in this stem. A trunk carries traffic for multiple VLANs between switches using 802.",
+            "explanation": "Carries one VLAN only misses what this question tests. A trunk carries traffic for multiple VLANs between switches using 802.",
             "misconceptionTested": "Selecting \"Carries one VLAN only\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**Connects a PC to a switch** does not answer what does in this stem. A trunk carries traffic for multiple VLANs between switches using 802.",
+            "explanation": "Connects a PC to a switch misses what this question tests. A trunk carries traffic for multiple VLANs between switches using 802.",
             "misconceptionTested": "Selecting \"Connects a PC to a switch\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Routes between VLANs** does not answer what does in this stem. A trunk carries traffic for multiple VLANs between switches using 802.",
+            "explanation": "Routes between VLANs misses what this question tests. A trunk carries traffic for multiple VLANs between switches using 802.",
             "misconceptionTested": "Selecting \"Routes between VLANs\" without matching the scenario constraint"
           }
         ],
@@ -71,17 +71,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**2 bytes** uses the wrong value. The tested fact calls for **802** — not 2.",
+            "explanation": "2 bytes uses the wrong value. The tested fact calls for 802 — not 2.",
             "misconceptionTested": "Selecting \"2 bytes\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**8 bytes** uses the wrong value. The tested fact calls for **802** — not 8.",
+            "explanation": "8 bytes uses the wrong value. The tested fact calls for 802 — not 8.",
             "misconceptionTested": "Selecting \"8 bytes\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**12 bytes** uses the wrong value. The tested fact calls for **802** — not 12.",
+            "explanation": "12 bytes uses the wrong value. The tested fact calls for 802 — not 12.",
             "misconceptionTested": "Selecting \"12 bytes\" without matching the scenario constraint"
           }
         ],
@@ -113,17 +113,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Double-tagged** reflects a common trap: Thinking all VLANs are tagged. The native VLAN is untagged; all others are tagged.",
+            "explanation": "Double-tagged reflects a common trap: Thinking all VLANs are tagged. The native VLAN is untagged; all others are tagged.",
             "misconceptionTested": "Thinking all VLANs are tagged"
           },
           {
             "choiceIndex": 1,
-            "explanation": "**Tagged** reflects a common trap: Thinking all VLANs are tagged. The native VLAN is untagged; all others are tagged.",
+            "explanation": "Tagged reflects a common trap: Thinking all VLANs are tagged. The native VLAN is untagged; all others are tagged.",
             "misconceptionTested": "Thinking all VLANs are tagged"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Dropped** does not answer the requirement in this stem. Native VLAN frames cross the trunk untagged.",
+            "explanation": "Dropped misses what this question tests. Native VLAN frames cross the trunk untagged.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
@@ -155,17 +155,17 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**Trunk speed drops** is a plausible symptom fix but does not match the most likely root cause here: A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
+            "explanation": "Trunk speed drops is a plausible symptom fix but does not match the most likely root cause here: A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**All VLANs stop** reflects a common trap: Mismatched native VLANs. Native VLAN must match on both ends or traffic can leak (CDP warns).",
+            "explanation": "All VLANs stop reflects a common trap: Mismatched native VLANs. Native VLAN must match on both ends or traffic can leak (CDP warns).",
             "misconceptionTested": "Mismatched native VLANs"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**Nothing — it is cosmetic** is a plausible symptom fix but does not match the most likely root cause here: A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
+            "explanation": "Nothing — it is cosmetic is a plausible symptom fix but does not match the most likely root cause here: A native VLAN mismatch can merge the two native VLANs’ traffic and triggers a CDP warning.",
             "misconceptionTested": "Confusing inside local, inside global, and outside addresses"
           }
         ],
@@ -182,7 +182,7 @@
         "switchport nonegotiate"
       ],
       "correctIndex": 1,
-      "explanation": "`switchport mode trunk` sets the port to trunking.",
+      "explanation": "switchport mode trunk sets the port to trunking.",
       "type": "application",
       "difficulty": "easy",
       "concept": "config trunk",
@@ -192,22 +192,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`switchport mode trunk` sets the port to trunking."
+          "explanation": "switchport mode trunk sets the port to trunking."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**switchport mode access** reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
+            "explanation": "switchport mode access reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
             "misconceptionTested": "A trunk is faster than an access port"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**switchport trunk allowed vlan** reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
+            "explanation": "switchport trunk allowed vlan reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
             "misconceptionTested": "A trunk is faster than an access port"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**switchport nonegotiate** does not answer which in this stem. `switchport mode trunk` sets the port to trunking.",
+            "explanation": "switchport nonegotiate misses what this question tests. switchport mode trunk sets the port to trunking.",
             "misconceptionTested": "Selecting \"switchport nonegotiate\" without matching the scenario constraint"
           }
         ],
@@ -224,7 +224,7 @@
         "no switchport trunk"
       ],
       "correctIndex": 1,
-      "explanation": "`switchport nonegotiate` stops DTP, a hardening best practice.",
+      "explanation": "switchport nonegotiate stops DTP, a hardening best practice.",
       "type": "application",
       "difficulty": "medium",
       "concept": "DTP security",
@@ -234,22 +234,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`switchport nonegotiate` stops DTP, a hardening best practice."
+          "explanation": "switchport nonegotiate stops DTP, a hardening best practice."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**no dtp** does not answer which in this stem. `switchport nonegotiate` stops DTP, a hardening best practice.",
+            "explanation": "no dtp misses what this question tests. switchport nonegotiate stops DTP, a hardening best practice.",
             "misconceptionTested": "Selecting \"no dtp\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**switchport mode dynamic** does not answer which in this stem. `switchport nonegotiate` stops DTP, a hardening best practice.",
+            "explanation": "switchport mode dynamic misses what this question tests. switchport nonegotiate stops DTP, a hardening best practice.",
             "misconceptionTested": "Selecting \"switchport mode dynamic\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**no switchport trunk** does not answer which in this stem. `switchport nonegotiate` stops DTP, a hardening best practice.",
+            "explanation": "no switchport trunk misses what this question tests. switchport nonegotiate stops DTP, a hardening best practice.",
             "misconceptionTested": "Selecting \"no switchport trunk\" without matching the scenario constraint"
           }
         ],
@@ -266,7 +266,7 @@
         "show cdp neighbors"
       ],
       "correctIndex": 1,
-      "explanation": "`show interfaces trunk` lists trunking details.",
+      "explanation": "show interfaces trunk lists trunking details.",
       "type": "application",
       "difficulty": "easy",
       "concept": "verify trunk",
@@ -276,22 +276,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`show interfaces trunk` lists trunking details."
+          "explanation": "show interfaces trunk lists trunking details."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**show vlan brief** does not answer which in this stem. `show interfaces trunk` lists trunking details.",
+            "explanation": "show vlan brief misses what this question tests. show interfaces trunk lists trunking details.",
             "misconceptionTested": "Selecting \"show vlan brief\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**show ip interface brief** does not answer which in this stem. `show interfaces trunk` lists trunking details.",
+            "explanation": "show ip interface brief misses what this question tests. show interfaces trunk lists trunking details.",
             "misconceptionTested": "Selecting \"show ip interface brief\" without matching the scenario constraint"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**show cdp neighbors** does not answer which in this stem. `show interfaces trunk` lists trunking details.",
+            "explanation": "show cdp neighbors misses what this question tests. show interfaces trunk lists trunking details.",
             "misconceptionTested": "Selecting \"show cdp neighbors\" without matching the scenario constraint"
           }
         ],
@@ -308,7 +308,7 @@
         "switchport trunk native vlan 10"
       ],
       "correctIndex": 1,
-      "explanation": "`switchport trunk allowed vlan 10,20` prunes the trunk.",
+      "explanation": "switchport trunk allowed vlan 10,20 prunes the trunk.",
       "type": "application",
       "difficulty": "medium",
       "concept": "allowed vlans",
@@ -318,22 +318,22 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "`switchport trunk allowed vlan 10,20` prunes the trunk."
+          "explanation": "switchport trunk allowed vlan 10,20 prunes the trunk."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "**switchport access vlan 10,20** reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
+            "explanation": "switchport access vlan 10,20 reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
             "misconceptionTested": "A trunk is faster than an access port"
           },
           {
             "choiceIndex": 2,
-            "explanation": "**vlan 10,20** uses the wrong value. The tested fact calls for **20** — not 10.",
+            "explanation": "vlan 10,20 uses the wrong value. The tested fact calls for 20 — not 10.",
             "misconceptionTested": "Confusing VLAN tagging, trunking, and access ports"
           },
           {
             "choiceIndex": 3,
-            "explanation": "**switchport trunk native vlan 10** reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
+            "explanation": "switchport trunk native vlan 10 reflects a common trap: A trunk is faster than an access port. A trunk simply carries multiple VLANs; speed depends on the physical link.",
             "misconceptionTested": "A trunk is faster than an access port"
           }
         ],

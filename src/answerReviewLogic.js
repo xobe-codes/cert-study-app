@@ -13,6 +13,7 @@ import {
 } from './answerReview/ckuTrapLibrary.js'
 import { goldAnswerReviewFor } from './answerReview/goldAnswerReviews.js'
 import { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
+import { sanitizeAnswerText } from './lib/voiceProse.js'
 
 export { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 
@@ -254,7 +255,18 @@ export function resolveIncorrectItem(q, item) {
 export function applyAnswerReviewToQuestion(q) {
   const answerReview = generateAnswerReview(q)
   if (!answerReview) return q
-  const next = { ...q, answerReview }
+  const polished = {
+    ...answerReview,
+    correct: answerReview.correct
+      ? { ...answerReview.correct, explanation: sanitizeAnswerText(answerReview.correct.explanation) }
+      : answerReview.correct,
+    examTip: sanitizeAnswerText(answerReview.examTip),
+    incorrect: (answerReview.incorrect || []).map(item => ({
+      ...item,
+      explanation: sanitizeAnswerText(item.explanation),
+    })),
+  }
+  const next = { ...q, answerReview: polished, explanation: sanitizeAnswerText(q.explanation) }
   delete next.needsExplanationReview
   return next
 }
