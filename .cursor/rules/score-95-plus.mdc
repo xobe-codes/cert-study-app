@@ -1,0 +1,41 @@
+---
+description: North-star 95+ quality — every implementation must include path-to-95 suggestions
+alwaysApply: true
+---
+
+# 95+ North Star
+
+The product goal is **95+ overall** (exam-ready study app: content depth, learning flow, labs/CLI, mobile, maintainability). Current baseline ~**79** after recent lab/responsive/premium work.
+
+## When this applies
+
+- **Any implementation** (features, fixes, refactors, content): finish with a **Path to 95+** section.
+- **Questions/reviews only** (no code changes): skip unless the user asks for scoring.
+
+## Path to 95+ (required after implementations)
+
+Use a short table or bullets — **3–6 items max**, ranked by impact on the 95+ score:
+
+| Dimension | 95+ bar | Typical gap-closers |
+|-----------|---------|---------------------|
+| Content depth | Every objective: traps, labs or CLI, verify steps | Queue from `IMPLEMENTATION_QUEUE.json` |
+| Labs / CLI | Teach-first, IOS-faithful, viewport-fluid terminal | `LabView`, `CiscoTerminal`, `cliEngine` tests |
+| Learning flow | Study→Practice, no duplicate UI, premium vs curated clear | `studyQuizTabs`, `ObjectiveScreen` |
+| Mobile / responsive | iPhone/iPad/MacBook, landscape, safe areas, `dvh` | `appShell.js`, touch scroll classes |
+| Exam traps & review | Trap per weak CKU, debrief quality | `factoryTrapPatches`, answer review |
+| Maintainability | No new 100+ line blocks in `App.jsx`; extract modules | Route/tab splits, shared components |
+| Quality gate | `npm test && npm run build` pass; meaningful tests for new logic | Vitest for engines/utils |
+
+For each completed task, state: **what this change moved toward 95+**, **what’s still blocking 95+**, and **top 1–3 next moves** (specific files or queue items when possible).
+
+## Implementation habits (95+ defaults)
+
+- Prefer **curated/static** over AI generation for free-tier paths.
+- Match **existing patterns** (`appShell.js`, `appTheme.js`, `CiscoTerminal`, `CuratedDiagram`).
+- **Mobile-first**: test mentally at 390×844 portrait, 844×390 landscape, iPad, MacBook.
+- **Minimize scope** but don’t ship without noting the highest-impact follow-up for 95+.
+- After audits or large changes: refresh `ai-improvement-logs/` only if the user runs audit or asks.
+
+## Changes table
+
+Keep the user’s **Changes table** at the end of completed implementation tasks (file | change).
