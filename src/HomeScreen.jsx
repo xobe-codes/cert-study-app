@@ -16,6 +16,7 @@ import {
   loadRetentionHealth,
 } from './home/learnerHome.js'
 import StudyNextStrip from './home/StudyNextStrip.jsx'
+import ThemeToggleButton from './components/ThemeToggleButton.jsx'
 import StatusDot from './components/StatusDot.jsx'
 import StatusLabel from './components/StatusLabel.jsx'
 import ProgressRing from './components/ProgressRing.jsx'
@@ -31,7 +32,9 @@ import {
   homeLinkBtn,
   homeDismissBtn,
   homeBodySm,
+  homeBodyOnAccent,
   homeTitleSm,
+  homeAccentStrip,
 } from './home/homeUi.js'
 
 const ALL_EXAM_TRAPS = (() => {
@@ -96,7 +99,7 @@ function YourProgressCard({ progress, missed, readiness, onOpenMissed, onOpenSta
         </div>
       </div>
       {!dismissed && total > 0 && (
-        <div style={{ ...homeBodySm, padding: '8px 10px', borderRadius: 10, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: topTraps.length ? 10 : 0, position: 'relative' }}>
+        <div style={{ ...homeBodySm, padding: '8px 10px', borderRadius: 14, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: topTraps.length ? 10 : 0, position: 'relative' }}>
           <button type="button" onClick={dismiss} aria-label="Dismiss session recap" style={homeDismissBtn}>×</button>
           <strong style={{ color: COLORS.sky }}>Last session:</strong> {total} question{total === 1 ? '' : 's'} · {data.correct} correct
         </div>
@@ -325,7 +328,7 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {} }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, onOpenDomain, onSelectObjective, onOpenMock, onOpenMissed, onOpenTutor, onPremiumBlocked, premiumUnlocked = false, onOpenMetrics, onOpenStats, onOpenSettings, onOpenReview, onOpenLabs, onOpenFocus, onOpenExamTraps, onOpenSubnet, onOpenRouting, onOpenExtraStudy, commandDrills = {}, theme, onToggleTheme }) {
   const [suggestions, setSuggestions] = useState([])
   const [learnerSummary, setLearnerSummary] = useState(null)
   const [retention, setRetention] = useState([])
@@ -387,9 +390,11 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
-        <h1 style={{ ...styles.h1, flex: '1 1 auto', minWidth: 0 }} className="ccna-grad-text">CCNA 200-301</h1>
-        {streak.count > 0 && (() => {
+      <div className="home-page-header">
+        <h1 style={{ ...styles.h1, flex: '1 1 auto', minWidth: 0, margin: 0 }} className="ccna-grad-text">CCNA 200-301</h1>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, flexShrink: 0 }}>
+          <ThemeToggleButton theme={theme} onToggle={onToggleTheme} />
+          {streak.count > 0 && (() => {
           const count = streak.count
           const msg = count >= 30 ? 'Legendary! 🏆' : count >= 14 ? 'Unstoppable! 💪🏾' : count >= 7 ? 'On fire! 🔥' : count >= 3 ? 'Nice momentum!' : 'Keep it going!'
           const today = todayStr()
@@ -403,6 +408,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
             </div>
           )
         })()}
+        </div>
       </div>
       <div style={{ ...homeBodySm, marginBottom: HOME_SECTION_GAP }}>
         {totals.mastered} mastered · {totals.inProgress} in progress · {totals.total - totals.mastered - totals.inProgress} not started
@@ -453,19 +459,17 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
             return (
               <button
                 key={s.key}
+                type="button"
                 className="ccna-hover"
                 onClick={() => onSelectObjective({ ...s.objective, __initialTab: s.tab })}
-                style={{
-                  display: 'block', width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit',
-                  background: c.dim, border: `1px solid ${c.border}`, borderRadius: 14, padding: '12px 14px', marginBottom: HOME_SECTION_GAP,
-                }}
+                style={homeAccentStrip(s.accent)}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
                   <span style={homePill(s.accent)}>{s.chip}</span>
                   <span style={{ color: c.text, fontSize: 'var(--ccna-type-lg)', lineHeight: 1 }}>›</span>
                 </div>
                 <div style={{ fontWeight: 600, fontSize: 'var(--ccna-type-md)', color: COLORS.silver, marginBottom: 4, lineHeight: 1.4 }}>{s.title}</div>
-                <div style={{ ...homeBodySm }}>{s.body}</div>
+                <div style={{ ...homeBodyOnAccent }}>{s.body}</div>
               </button>
             )
           })}
@@ -474,7 +478,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
       <div style={homeCard()}>
         <div style={sectionLabel}>STUDY MODES</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 8 }}>
+        <div className="home-study-grid">
           <StudyModeBtn primary onClick={onOpenMock}>Mock Exam</StudyModeBtn>
           <StudyModeBtn onClick={onOpenFocus}>Weak Areas</StudyModeBtn>
           <StudyModeBtn onClick={onOpenMissed}>Missed ({missedCount})</StudyModeBtn>

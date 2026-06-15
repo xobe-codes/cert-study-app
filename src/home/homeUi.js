@@ -81,6 +81,13 @@ export const homeBodySm = {
   lineHeight: 1.5,
 }
 
+/** Body copy on accent-tinted strips/cards — use silver (not silverMid) for contrast on dim backgrounds. */
+export const homeBodyOnAccent = {
+  fontSize: 'var(--ccna-type-sm)',
+  color: COLORS.silver,
+  lineHeight: 1.5,
+}
+
 /** Primary in-card title line. */
 export const homeTitleSm = {
   fontSize: 'var(--ccna-type-sm)',

@@ -233,8 +233,7 @@ export function buildAppShellCss(colors) {
       line-height: 1;
     }
     .app-shell--with-bottom-nav .route-scroll .route-inner.ccna-container,
-    .app-shell--with-bottom-nav .route-shell--fill .route-inner.ccna-container,
-    .app-shell--with-bottom-nav .route-inner.ccna-container.page-fill {
+    .app-shell--with-bottom-nav .route-shell--fill .route-inner.ccna-container:not(.page-fill) {
       padding-bottom: calc(
         var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 16px
       );
@@ -271,8 +270,10 @@ export function buildAppShellCss(colors) {
       font-family: inherit;
     }
     .app-chrome-theme {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
       border-radius: 999px;
       border: 1px solid ${colors.border};
       background: ${colors.surface};
@@ -955,6 +956,234 @@ export function buildAppShellCss(colors) {
       100% {
         transform: translate3d(var(--confetti-drift, 0px), 72vh, 0) rotate(var(--confetti-spin, 360deg)) scale(0.85);
         opacity: 0;
+      }
+    }
+    .study-visual-section,
+    .curated-diagram-card {
+      max-width: 100%;
+      min-width: 0;
+    }
+    .curated-diagram-canvas {
+      touch-action: manipulation;
+    }
+    @media (max-width: 640px) {
+      .study-visual-section {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .curated-diagram-modal-panel {
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+        border-bottom: none !important;
+      }
+      .curated-diagram-expand-btn {
+        font-size: var(--ccna-type-sm);
+      }
+    }
+
+    /* ---- Responsive layout: phone, tablet, desktop ---- */
+    .home-page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .home-study-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    @media (min-width: 540px) {
+      .home-study-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+    }
+    @media (min-width: 768px) {
+      .home-study-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .route-inner.ccna-container {
+        padding-top: 12px;
+        padding-bottom: 20px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .site-column {
+        padding-left: max(28px, env(safe-area-inset-left));
+        padding-right: max(28px, env(safe-area-inset-right));
+      }
+    }
+
+    .objective-tab-bar {
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      flex-wrap: nowrap !important;
+      padding-bottom: 2px;
+    }
+    .objective-tab-bar::-webkit-scrollbar {
+      display: none;
+    }
+    @media (min-width: 480px) {
+      .objective-tab-bar {
+        flex-wrap: wrap !important;
+        overflow-x: visible;
+      }
+    }
+
+    .ccna-h-scroll {
+      touch-action: pan-x;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+    .key-term-card {
+      width: clamp(148px, 42vw, 192px) !important;
+    }
+    @media (min-width: 768px) {
+      .key-term-card {
+        width: 168px !important;
+      }
+    }
+
+    .cisco-terminal {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      background: #05060a;
+    }
+    .cisco-terminal-scroll {
+      padding: 10px 12px;
+      overflow-y: auto;
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: var(--ccna-type-sm);
+      line-height: 1.55;
+      height: clamp(140px, 32dvh, 280px);
+      min-height: 120px;
+    }
+    .cisco-terminal-input-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 8px 12px 12px;
+      border-top: 1px solid ${colors.border};
+    }
+    .cisco-terminal-prompt {
+      font-family: ui-monospace, monospace;
+      font-size: var(--ccna-type-sm);
+      color: #8a8fa8;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .cisco-terminal-input-row input {
+      flex: 1 1 120px;
+      min-width: 0;
+    }
+
+    .lab-practice-layout {
+      display: flex;
+      flex-direction: column;
+    }
+    .lab-practice-tasks {
+      min-width: 0;
+    }
+    @media (orientation: landscape) and (min-width: 640px) and (min-height: 420px) {
+      .lab-practice-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 42%);
+        align-items: stretch;
+        min-height: min(68dvh, 520px);
+      }
+      .lab-practice-tasks {
+        border-right: 1px solid ${colors.border};
+      }
+      .lab-practice-terminal.cisco-terminal {
+        border-top: none;
+        height: 100%;
+      }
+      .lab-practice-terminal .cisco-terminal-scroll {
+        height: auto;
+        flex: 1;
+        min-height: 0;
+        max-height: none;
+      }
+      .lab-practice-layout .lab-practice-tasks [style*="minHeight: 120"] {
+        min-height: 96px !important;
+      }
+    }
+
+    .global-search-panel {
+      width: 100%;
+      max-width: min(540px, 100%);
+    }
+    .global-search-results {
+      max-height: min(60dvh, 520px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    @media (orientation: landscape) and (max-height: 500px) {
+      .global-search-overlay {
+        padding-top: max(12px, env(safe-area-inset-top)) !important;
+      }
+      .global-search-results {
+        max-height: min(50dvh, 280px);
+      }
+    }
+
+    .ccna-sheet {
+      width: 100%;
+      max-width: min(640px, 100%);
+      max-height: min(90dvh, 720px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    @media (max-width: 640px) {
+      .ccna-sheet {
+        max-width: 100%;
+        max-height: 92dvh;
+        border-radius: 16px 16px 0 0 !important;
+      }
+    }
+    @media (min-width: 768px) {
+      .ccna-sheet--centered {
+        border-radius: 16px !important;
+        margin: auto;
+      }
+    }
+
+    @media (orientation: landscape) and (max-height: 500px) {
+      .objective-title--header {
+        font-size: var(--ccna-type-md);
+        margin-bottom: 4px;
+      }
+      .objective-body-intro {
+        margin-bottom: 8px;
+        padding-bottom: 2px;
+      }
+      .objective-body-intro .study-block-switch-prompt {
+        display: none;
+      }
+      .objective-sticky-chrome .objective-tab-bar {
+        margin-bottom: 4px !important;
+      }
+      .cisco-terminal-scroll {
+        height: clamp(100px, 28dvh, 180px);
+        min-height: 96px;
+      }
+      .home-study-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+      }
+    }
+
+    @media (orientation: landscape) and (min-width: 768px) and (min-height: 500px) {
+      .home-study-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
       }
     }
   `

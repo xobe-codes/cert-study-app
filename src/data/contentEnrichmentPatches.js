@@ -1,5 +1,7 @@
 /** Additive content merges — traps, flashcards, engineerView, supplemental questions. */
 
+import { FACTORY_TRAP_PATCHES } from './factoryTrapPatches.js'
+
 const ENGINEER_21 = {
   title: 'Engineer view — VLAN verify',
   summary: 'When hosts “can’t talk,” verify VLAN membership before chasing routing.',
@@ -144,14 +146,25 @@ export const CONTENT_ENRICHMENT_PATCHES = {
 
 /** Merge enrichment patch into a curated objective object. */
 export function applyContentEnrichment(base, objectiveId) {
+  if (!base) return base
+  const factory = FACTORY_TRAP_PATCHES[objectiveId]
   const patch = CONTENT_ENRICHMENT_PATCHES[objectiveId]
-  if (!patch || !base) return base
+  if (!factory && !patch) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
+  let examTraps = base.examTraps
+  let flashcards = base.flashcards
+  let questions = base.questions
+  if (factory?.examTraps) examTraps = mergeList(examTraps, factory.examTraps)
+  if (patch?.examTraps) examTraps = mergeList(examTraps, patch.examTraps)
+  if (factory?.flashcards) flashcards = mergeList(flashcards, factory.flashcards)
+  if (patch?.flashcards) flashcards = mergeList(flashcards, patch.flashcards)
+  if (factory?.questions) questions = mergeList(questions, factory.questions)
+  if (patch?.questions) questions = mergeList(questions, patch.questions)
   return {
     ...base,
-    ...(patch.engineerView ? { engineerView: patch.engineerView } : {}),
-    examTraps: mergeList(base.examTraps, patch.examTraps),
-    flashcards: mergeList(base.flashcards, patch.flashcards),
-    questions: mergeList(base.questions, patch.questions),
+    ...(patch?.engineerView ? { engineerView: patch.engineerView } : {}),
+    examTraps,
+    flashcards,
+    questions,
   }
 }

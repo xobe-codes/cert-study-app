@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef, useId } from 'react'
 import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from './data/ccnaCurated.js'
-import { getLab, labsForObjective, labsByDomain, normalizeCliLine, labProgress, troubleshootingLabs } from './data/ccnaLabs.js'
+import { getLab, labsForObjective } from './data/ccnaLabs.js'
 import {
   TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
   shuffleArrayCopy, randomizeQuestionOrder, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
@@ -74,6 +74,14 @@ import {
 } from './premium/premiumFeatures.js'
 import AppTour from './components/AppTour.jsx'
 import BottomNav from './components/BottomNav.jsx'
+import CiscoTerminal from './components/CiscoTerminal.jsx'
+import LabView from './lab/LabView.jsx'
+import LabsHub from './lab/LabsHub.jsx'
+import {
+  normalizeCmd,
+  processCliLine,
+  cliHostnameForObjective,
+} from './lab/cliEngine.js'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 import {
   loadExamDate,
@@ -100,6 +108,8 @@ const PREMIUM_TOAST_MESSAGES = {
   [PREMIUM_FEATURES.tutor]: 'AI Tutor will unlock with supporter access.',
   [PREMIUM_FEATURES.offline_pack]: 'Offline AI packaging is a premium feature.',
   [PREMIUM_FEATURES.ai_visual]: 'Custom AI visuals require supporter access.',
+  [PREMIUM_FEATURES.ai_terms]: 'AI key-term flashcards require supporter access.',
+  [PREMIUM_FEATURES.ai_explain]: 'AI-generated explanations require supporter access.',
   [PREMIUM_FEATURES.quiz_generate]: 'Generating new quiz questions is a premium feature.',
   [PREMIUM_FEATURES.donate_preview]: 'Donations are not enabled yet — thank you for your interest.',
 }
@@ -1315,7 +1325,7 @@ Respond with ONLY valid JSON (no markdown fences, no commentary), in this exact 
 "term": a short label, max ~4 words (a word, acronym, command, or short phrase).
 "detail": 1-2 short sentences with the key fact, definition, or syntax.`
 
-function KeyTermsCarousel({ objective }) {
+function KeyTermsCarousel({ objective, premiumUnlocked = false, onPremiumBlocked }) {
   const [cards, setCards] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -1343,6 +1353,12 @@ function KeyTermsCarousel({ objective }) {
           return
         }
       }
+      if (!premiumUnlocked) {
+        onPremiumBlocked?.(PREMIUM_FEATURES.ai_terms, 'key_terms', { objectiveId: objective.id })
+        setCards(null)
+        setLoading(false)
+        return
+      }
       const refNotes = BOOK_REF[objective.id] || ''
       const data = await askClaudeJSON({
         system: TERMS_PROMPT_SYSTEM,
@@ -1367,7 +1383,7 @@ function KeyTermsCarousel({ objective }) {
     } finally {
       setLoading(false)
     }
-  }, [objective.id, objective.title, curatedFlashcards])
+  }, [objective.id, objective.title, curatedFlashcards, premiumUnlocked, onPremiumBlocked])
 
   useEffect(() => {
     setCards(null)
@@ -1406,12 +1422,15 @@ function KeyTermsCarousel({ objective }) {
           </div>
           {fromCurated && <CuratedStaticBadge objectiveId={objective.id} fontSize={9} />}
         </div>
-        <button
-          style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
-          onClick={() => fetchTerms(true)}
-        >
-          {fromCurated ? 'Generate with AI' : 'Refresh'}
-        </button>
+        {premiumUnlocked && (
+          <button
+            type="button"
+            style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
+            onClick={() => fetchTerms(true)}
+          >
+            {fromCurated ? 'Generate with AI' : 'Refresh'}
+          </button>
+        )}
       </div>
       <div style={{
         display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6, width: '100%', maxWidth: '100%',
@@ -1710,108 +1729,8 @@ async function seedTestedOutReview(objectiveId, questions) {
 }
 
 /* =========================================================================
-   CLI DRILL TAB
+   CLI DRILL TAB — uses shared engine in src/lab/cliEngine.js
    ========================================================================= */
-function normalizeCmd(s) {
-  return s.trim().toLowerCase().replace(/\s+/g, ' ')
-}
-
-/* =========================================================================
-   CISCO IOS SIMULATOR ENGINE  (Phase 5)
-   Deterministic, local, mode-aware command validation — NO AI in the path.
-   Reuses COMMAND_DRILLS as lab objectives. Tracks modes, gives wrong-mode and
-   syntax feedback, renders show-command output from static knowledge, and
-   records CLI skill metrics for the metrics dashboard.
-   ========================================================================= */
-
-// Prompt suffix per CLI mode.
-const CLI_MODE_PROMPT = {
-  user: '>',
-  priv: '#',
-  config: '(config)#',
-  'config-if': '(config-if)#',
-  'config-vlan': '(config-vlan)#',
-  'config-line': '(config-line)#',
-  'config-router': '(config-router)#',
-  'config-dhcp': '(dhcp-config)#',
-  'config-acl': '(config-ext-nacl)#',
-}
-// Human label for guidance when the learner is in the wrong mode.
-const CLI_MODE_HINT = {
-  priv: "privileged EXEC mode — type 'enable'",
-  config: "global config — type 'configure terminal'",
-  'config-if': "interface config — e.g. 'interface gi0/1'",
-  'config-vlan': "VLAN config — e.g. 'vlan 20'",
-  'config-line': "line config — e.g. 'line vty 0 4'",
-  'config-router': "router config — e.g. 'router ospf 1'",
-  'config-dhcp': "DHCP pool config — e.g. 'ip dhcp pool LAN'",
-  'config-acl': "named ACL config — e.g. 'ip access-list extended NAME'",
-}
-
-// Static show-command output, rendered deterministically (no API).
-const CLI_SHOW_OUTPUT = {
-  'show etherchannel summary': `Flags:  D - down        P - bundled in port-channel
-        I - stand-alone s - suspended
-Number of channel-groups in use: 1
-Number of aggregators:           1
-
-Group  Port-channel  Protocol    Ports
-------+-------------+-----------+-----------------------------
-1      Po1(SU)         LACP      Gi0/1(P)   Gi0/2(P)`,
-  'show ip ospf neighbor': `Neighbor ID     Pri   State           Dead Time   Address         Interface
-2.2.2.2           1   FULL/DR         00:00:38    10.0.0.2        GigabitEthernet0/0`,
-  'show vlan brief': `VLAN Name                             Status    Ports
----- -------------------------------- --------- -------------------------------
-1    default                          active    Gi0/2, Gi0/3
-20   SALES                            active    Fa0/5`,
-  'show ip interface brief': `Interface              IP-Address      OK? Method Status                Protocol
-GigabitEthernet0/1     192.168.10.1    YES manual up                    up`,
-}
-
-// Recognized mode-navigation commands. Returns the new mode (or null if this
-// input is not a navigation command), plus the modes it is allowed from.
-function cliNavTarget(norm) {
-  if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
-  if (/^disable$/.test(norm)) return { to: 'user', from: ['priv'] }
-  if (/^(configure terminal|conf t|config t|configure t|conf terminal)$/.test(norm)) return { to: 'config', from: ['priv'] }
-  if (/^(interface|int) /.test(norm)) return { to: 'config-if', from: ['config', 'config-if'] }
-  if (/^vlan \d+$/.test(norm)) return { to: 'config-vlan', from: ['config', 'config-vlan'] }
-  if (/^line /.test(norm)) return { to: 'config-line', from: ['config', 'config-line'] }
-  if (/^router \w+/.test(norm)) return { to: 'config-router', from: ['config', 'config-router'] }
-  if (/^ip dhcp pool /.test(norm)) return { to: 'config-dhcp', from: ['config', 'config-dhcp'] }
-  if (/^ip access-list /.test(norm)) return { to: 'config-acl', from: ['config', 'config-acl'] }
-  return null
-}
-// exit pops one level; end/Ctrl-Z jumps to priv from any config mode.
-function cliExitTarget(norm, mode) {
-  if (/^(end)$/.test(norm)) return mode.startsWith('config') ? 'priv' : mode
-  if (/^(exit)$/.test(norm)) {
-    if (mode === 'config') return 'priv'
-    if (mode === 'priv') return 'user'
-    if (mode.startsWith('config-')) return 'config'
-    return mode
-  }
-  return null
-}
-
-// Infers which mode a given objective command must be issued from. Used to give
-// wrong-mode feedback. Mode-changing objectives (interface/vlan/router/...) are
-// issued from global config.
-function cliRequiredMode(norm) {
-  if (/^show /.test(norm)) return 'priv'
-  if (cliNavTarget(norm)) {
-    if (/^(enable|en|disable)$/.test(norm)) return 'user'
-    if (/^(configure terminal|conf t|config t|configure t|conf terminal)$/.test(norm)) return 'priv'
-    return 'config' // interface/vlan/line/router/dhcp/acl are entered from global config
-  }
-  if (/^name /.test(norm)) return 'config-vlan'
-  if (/ area /.test(norm) || /^router-id /.test(norm)) return 'config-router'
-  if (/^default-router /.test(norm) || (/^network /.test(norm) && !/ area /.test(norm))) return 'config-dhcp'
-  if (/^(transport input |login local$|login$)/.test(norm)) return 'config-line'
-  if (/^(deny |permit )/.test(norm)) return 'config-acl'
-  if (/^(ip address |no shut|ipv6 address |ipv6 enable|switchport|channel-group |standby |no cdp enable|ip helper-address |ip access-group )/.test(norm)) return 'config-if'
-  return 'config' // global-config commands (ip route, cdp run, enable secret, etc.)
-}
 
 /* ---- CLI skill metrics (local, feeds the future dashboard) ---- */
 async function loadCliStats() {
@@ -1837,28 +1756,17 @@ async function recordCliLabResult(objectiveId, patch) {
   await window.storage.setItem(STORAGE_KEYS.cliStats, all)
 }
 
-// Picks a realistic device hostname for the lab.
-function cliHostname(objectiveId) {
-  const switchObjs = ['2.1', '2.2', '2.3', '2.4', '5.6']
-  return switchObjs.includes(objectiveId) ? 'Switch' : 'Router'
-}
-
-// Interactive, mode-aware Cisco IOS simulator. The objectives come from
-// COMMAND_DRILLS; the learner types real commands into a persistent terminal
-// and the engine validates them deterministically (no AI). Free-form: any
-// remaining objective whose command + mode match is completed.
 function CLIDrillTab({ objective }) {
   const drills = COMMAND_DRILLS[objective.id] || []
-  const host = cliHostname(objective.id)
+  const host = cliHostnameForObjective(objective.id)
 
   const [mode, setMode] = useState('user')
   const [input, setInput] = useState('')
-  const [history, setHistory] = useState([]) // { text, kind }
+  const [history, setHistory] = useState([])
   const [statuses, setStatuses] = useState(() => drills.map(() => false))
   const [hintIdx, setHintIdx] = useState(null)
   const [done, setDone] = useState(false)
   const counters = useRef({ commandsEntered: 0, syntaxErrors: 0, wrongModeErrors: 0, hintsUsed: 0 })
-  const scrollRef = useRef(null)
 
   const reset = useCallback(() => {
     setMode('user'); setInput(''); setHistory([]); setStatuses(drills.map(() => false))
@@ -1867,119 +1775,67 @@ function CLIDrillTab({ objective }) {
   }, [drills])
 
   useEffect(() => { reset() }, [objective.id, reset])
-  useEffect(() => {
-    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight })
-  }, [history])
 
   if (drills.length === 0) {
     return <p style={styles.small}>No CLI lab is defined for this objective.</p>
   }
 
-  const push = (lines, kind) => {
-    const arr = Array.isArray(lines) ? lines : [lines]
-    setHistory(h => [...h, ...arr.map(text => ({ text, kind }))])
-  }
-
-  function findObjective(norm) {
-    for (let i = 0; i < drills.length; i++) {
-      if (statuses[i]) continue
-      if (drills[i].answer.map(normalizeCmd).includes(norm)) return i
-    }
-    return -1
-  }
-
-  function completeObjective(i, nextStatuses) {
-    nextStatuses[i] = true
-    push(`% Objective complete: ${drills[i].prompt}`, 'ok')
-    logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: true })
-    const allDone = nextStatuses.every(Boolean)
-    if (allDone) {
-      const completedCount = nextStatuses.filter(Boolean).length
-      const score = Math.round((completedCount / drills.length) * 100)
-      push(`% Lab complete — ${completedCount}/${drills.length} objectives. Score: ${score}%`, 'ok')
-      setDone(true)
-      recordCliLabResult(objective.id, {
-        completed: true, score,
-        completedObjectives: completedCount, totalObjectives: drills.length,
-        ...counters.current,
-      })
-      logEvent('user_completed_cli_lab', { objectiveId: objective.id, score })
-    }
-  }
-
   function submit() {
     const raw = input.trim()
     if (!raw) return
-    const norm = normalizeCmd(raw)
-    push(`${host}${CLI_MODE_PROMPT[mode]} ${raw}`, 'cmd')
+
+    const objectives = drills.map(d => ({ answer: d.answer, label: d.prompt, hint: d.hint }))
+    const result = processCliLine({ raw, mode, host, objectives, completed: statuses })
+
     setInput('')
     counters.current.commandsEntered += 1
+    counters.current.syntaxErrors += result.counters.syntaxErrors
+    counters.current.wrongModeErrors += result.counters.wrongModeErrors
 
-    // 0. local help
-    if (norm === 'hint') {
+    if (normalizeCmd(raw) === 'hint') {
       const nextIdx = statuses.findIndex(s => !s)
-      if (nextIdx >= 0) { setHintIdx(nextIdx); counters.current.hintsUsed += 1; push(`Hint: ${drills[nextIdx].hint}`, 'out') }
-      return
+      if (nextIdx >= 0) { setHintIdx(nextIdx); counters.current.hintsUsed += 1 }
     }
-    if (norm === '?') { push('Type IOS commands. Navigate modes with enable, configure terminal, interface, exit, end.', 'out'); return }
 
-    // 1. exit / end navigation (never an objective)
-    const exitTo = cliExitTarget(norm, mode)
-    if (exitTo !== null && (norm === 'exit' || norm === 'end')) { setMode(exitTo); return }
+    let lines = [...result.lines]
+    let nextStatuses = statuses
 
-    // 2. does this command satisfy a remaining objective?
-    const matchIdx = findObjective(norm)
-    const nav = cliNavTarget(norm)
-    if (matchIdx >= 0) {
-      const req = cliRequiredMode(norm)
-      const modeOk = nav ? nav.from.includes(mode) : mode === req
-      if (modeOk) {
-        const next = [...statuses]
-        if (nav) setMode(nav.to) // mode-changing objective (interface/vlan/router/…)
-        completeObjective(matchIdx, next)
-        setStatuses(next)
-      } else {
-        counters.current.wrongModeErrors += 1
-        push(`% Wrong mode. That command belongs in ${CLI_MODE_HINT[req] || req}.`, 'warn')
-        logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'mode' })
+    if (result.newlyCompleted.length) {
+      nextStatuses = [...statuses]
+      result.newlyCompleted.forEach(i => {
+        nextStatuses[i] = true
+        lines = lines.map(l => (
+          l.kind === 'ok' && l.text.startsWith('% OK —')
+            ? { text: `% Objective complete: ${drills[i].prompt}`, kind: 'ok' }
+            : l
+        ))
+        logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: true })
+      })
+      setStatuses(nextStatuses)
+
+      if (nextStatuses.every(Boolean)) {
+        const completedCount = nextStatuses.filter(Boolean).length
+        const score = Math.round((completedCount / drills.length) * 100)
+        lines.push({ text: `% Lab complete — ${completedCount}/${drills.length} objectives. Score: ${score}%`, kind: 'ok' })
+        setDone(true)
+        recordCliLabResult(objective.id, {
+          completed: true, score,
+          completedObjectives: completedCount, totalObjectives: drills.length,
+          ...counters.current,
+        })
+        logEvent('user_completed_cli_lab', { objectiveId: objective.id, score })
       }
-      return
+    } else if (result.counters.syntaxErrors) {
+      logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'syntax' })
+    } else if (result.counters.wrongModeErrors) {
+      logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'mode' })
     }
 
-    // 3. navigation command that isn't itself an objective (enable, conf t, interface fa0/5, exit…)
-    if (nav) {
-      if (nav.from.includes(mode)) setMode(nav.to)
-      else { counters.current.wrongModeErrors += 1; push(`% "${raw}" is not available from ${CLI_MODE_PROMPT[mode]}. ${CLI_MODE_HINT[nav.from[0]] || ''}`, 'warn') }
-      return
-    }
-
-    // 4. exploratory show command
-    if (/^show /.test(norm)) {
-      if (mode !== 'priv' && mode !== 'config' && !mode.startsWith('config')) {
-        counters.current.wrongModeErrors += 1
-        push("% show commands run from privileged EXEC — type 'enable' first.", 'warn')
-      } else if (CLI_SHOW_OUTPUT[norm]) {
-        push(CLI_SHOW_OUTPUT[norm].split('\n'), 'out')
-      } else {
-        push('% Output not simulated for this show command in this lab.', 'info')
-      }
-      return
-    }
-
-    // 5. unrecognized / incomplete
-    counters.current.syntaxErrors += 1
-    const firstWord = norm.split(' ')[0]
-    const near = drills.find((d, i) => !statuses[i] && normalizeCmd(d.answer[0]).split(' ')[0] === firstWord)
-    if (near) push(`% Incomplete or incorrect syntax. Expected pattern: ${near.answer[0]}`, 'warn')
-    else push('% Invalid input detected. Type "hint" for the next objective, or "?" for help.', 'warn')
-    logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'syntax' })
+    setHistory(h => [...h, ...lines])
+    setMode(result.newMode)
   }
 
   const completed = statuses.filter(Boolean).length
-  // The terminal pane is intentionally always-dark (emulates a real console),
-  // so its text uses fixed light colors rather than theme tokens (which would
-  // go dark — and invisible — in light mode).
-  const lineColor = { cmd: '#d9d9d9', ok: '#d4f7d4', warn: '#e0a0a0', out: '#baf0fa', info: '#8a8fa8' }
 
   return (
     <div>
@@ -1987,8 +1843,7 @@ function CLIDrillTab({ objective }) {
         Interactive IOS lab. Type real commands — navigate with <code style={{ fontFamily: 'ui-monospace, monospace' }}>enable</code>, <code style={{ fontFamily: 'ui-monospace, monospace' }}>configure terminal</code>, <code style={{ fontFamily: 'ui-monospace, monospace' }}>interface …</code>, <code style={{ fontFamily: 'ui-monospace, monospace' }}>exit</code>. Type <code style={{ fontFamily: 'ui-monospace, monospace' }}>hint</code> anytime.
       </p>
 
-      {/* Objective checklist */}
-      <div style={{ ...styles.card, padding: 12 }}>
+      <div style={{ ...styles.card, padding: 12, marginBottom: 10 }}>
         <div style={{ ...styles.small, fontWeight: 700, marginBottom: 8 }}>Lab objectives · {completed}/{drills.length}</div>
         {drills.map((d, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '4px 0', borderBottom: i < drills.length - 1 ? `1px solid ${COLORS.border}` : 'none' }}>
@@ -2001,6 +1856,7 @@ function CLIDrillTab({ objective }) {
             </div>
             {!statuses[i] && (
               <button
+                type="button"
                 onClick={() => { setHintIdx(i); counters.current.hintsUsed += 1 }}
                 style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '2px 4px', minHeight: 28 }}
               >Hint</button>
@@ -2009,39 +1865,21 @@ function CLIDrillTab({ objective }) {
         ))}
       </div>
 
-      {/* Terminal */}
-      <div
-        ref={scrollRef}
-        style={{
-          background: '#05060a', border: `1px solid ${COLORS.border}`, borderRadius: 10,
-          padding: 12, height: 240, overflowY: 'auto', marginBottom: 8,
-          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55,
-        }}
-      >
-        {history.length === 0 && (
-          <div style={{ color: '#6b7088' }}>{host} terminal ready. Type a command and press Enter.</div>
-        )}
-        {history.map((l, i) => (
-          <div key={i} style={{ color: lineColor[l.kind] || '#d9d9d9', whiteSpace: 'pre-wrap' }}>{l.text}</div>
-        ))}
+      <div style={{ ...styles.card, padding: 0, overflow: 'hidden', border: `1px solid ${COLORS.border}`, marginBottom: 8 }}>
+        <CiscoTerminal
+          host={host}
+          mode={mode}
+          history={history}
+          input={input}
+          onInputChange={setInput}
+          onSubmit={submit}
+          disabled={done}
+          emptyMessage={`${host} terminal ready. Type enable to begin.`}
+        />
       </div>
 
-      {!done ? (
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <span style={{ fontFamily: 'ui-monospace, monospace', fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, whiteSpace: 'nowrap' }}>{host}{CLI_MODE_PROMPT[mode]}</span>
-          <input
-            style={{ ...styles.input, flex: 1, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={e => { if (e.key === 'Enter') submit() }}
-            placeholder="command…"
-            autoCapitalize="none"
-            autoCorrect="off"
-            spellCheck={false}
-          />
-        </div>
-      ) : (
-        <button style={styles.primaryBtn} onClick={reset}>Restart lab</button>
+      {done && (
+        <button type="button" style={styles.primaryBtn} onClick={reset}>Restart lab</button>
       )}
     </div>
   )
@@ -2225,309 +2063,6 @@ function VLSMTab() {
   )
 }
 
-
-/* =========================================================================
-   LAB ENGINE v2 — multi-device guided labs (static, deterministic, no AI).
-   Lab data lives in src/data/ccnaLabs.js; checking is local string matching,
-   the same philosophy as the CLI Drill simulator.
-   ========================================================================= */
-async function loadLabDone() { return (await window.storage.getItem(STORAGE_KEYS.labDone)) || [] }
-async function markLabDone(labId) {
-  const done = await loadLabDone()
-  if (!done.includes(labId)) { done.push(labId); await window.storage.setItem(STORAGE_KEYS.labDone, done) }
-}
-const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'amber' }
-
-// Full lab runner: scenario, topology, interactive task checker, verification,
-// success/failure criteria. `bundle` = { lab, topology, validator, diagram, packetFlows }.
-function LabView({ bundle, onBack, onDone }) {
-  const { lab, topology, validator } = bundle
-  const showNavHint = useNavHint()
-  const [entered, setEntered] = useState([])      // normalized command lines typed
-  const [history, setHistory] = useState([])      // {text, kind}
-  const [input, setInput] = useState('')
-  const [revealVerify, setRevealVerify] = useState(false)
-  const [activeTaskIdx, setActiveTaskIdx] = useState(0)
-  const [showCommands, setShowCommands] = useState(false)
-  const scrollRef = useRef(null)
-  const taskScrollRef = useRef(null)
-  const taskCompleteRef = useRef({})
-
-  useEffect(() => { scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight }) }, [history])
-
-  const prog = labProgress(lab.id, entered)
-  const justCompleted = useRef(false)
-  useEffect(() => {
-    if (prog.complete && !justCompleted.current) {
-      justCompleted.current = true
-      markLabDone(lab.id); onDone?.(); celebrate(); haptic([12, 40, 12])
-      showNavHint(NAV_HINT_KEYS.LAB_DONE)
-    }
-  }, [prog.complete, lab.id, onDone, showNavHint])
-
-  const cmdDone = (cmd) => entered.some(e => e.includes(normalizeCliLine(cmd)))
-  const taskComplete = (t) => (t.expectedCommands || []).every(cmdDone)
-
-  const scrollToTask = useCallback((idx) => {
-    const el = taskScrollRef.current
-    if (!el) return
-    const w = el.offsetWidth
-    el.scrollTo({ left: w * idx, behavior: 'smooth' })
-  }, [])
-
-  useEffect(() => {
-    const first = lab.tasks.findIndex(t => !taskComplete(t))
-    const idx = first >= 0 ? first : 0
-    setActiveTaskIdx(idx)
-    requestAnimationFrame(() => scrollToTask(idx))
-  }, [lab.id]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    lab.tasks.forEach((t, i) => {
-      const done = taskComplete(t)
-      if (done && !taskCompleteRef.current[t.id]) {
-        const next = lab.tasks.findIndex((tt, j) => j > i && !taskComplete(tt))
-        if (next >= 0) {
-          setActiveTaskIdx(next)
-          scrollToTask(next)
-        }
-      }
-      taskCompleteRef.current[t.id] = done
-    })
-  }, [entered, lab.tasks, scrollToTask])
-
-  function onTaskScroll() {
-    const el = taskScrollRef.current
-    if (!el || !el.offsetWidth) return
-    const idx = Math.round(el.scrollLeft / el.offsetWidth)
-    if (idx !== activeTaskIdx && idx >= 0 && idx < lab.tasks.length) {
-      setActiveTaskIdx(idx)
-      setShowCommands(false)
-    }
-  }
-
-  function submit() {
-    const raw = input.trim()
-    if (!raw) return
-    const norm = normalizeCliLine(raw)
-    setHistory(h => [...h, { text: raw, kind: 'cmd' }])
-    setEntered(e => [...e, norm])
-    setInput('')
-  }
-
-  const activeTask = lab.tasks[activeTaskIdx]
-  const activeDevice = activeTask?.device || 'R1'
-  const lineColor = { cmd: '#d9d9d9', ok: '#d4f7d4', warn: '#e0a0a0', out: '#baf0fa', info: '#8a8fa8' }
-
-  return (
-    <div>
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>{lab.title}</h1>
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
-        <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 'var(--ccna-type-micro)' }}>{lab.difficulty.toUpperCase()}</span>
-        {lab.labType === 'troubleshooting' && <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>TROUBLESHOOT</span>}
-        <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>~{lab.estimatedTimeMinutes} MIN</span>
-        <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{lab.objectiveId}</span>
-        {prog.complete && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>✓ COMPLETE</span>}
-      </div>
-
-      <details style={{ ...styles.card, marginBottom: 10 }}>
-        <summary style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, cursor: 'pointer' }}>🎯 Scenario & topology</summary>
-        <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55, marginTop: 8 }}>{lab.scenario}</div>
-        <div style={{ marginTop: 10 }}><CuratedDiagram diagram={topology} compact /></div>
-      </details>
-
-      <div style={{ ...styles.card, padding: 0, overflow: 'hidden', border: `1px solid ${COLORS.border}` }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px 6px' }}>
-          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.4 }}>
-            TASK {activeTaskIdx + 1} OF {lab.tasks.length}
-          </div>
-          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
-            {prog.done.length}/{prog.total} commands
-          </div>
-        </div>
-
-        <div
-          ref={taskScrollRef}
-          onScroll={onTaskScroll}
-          style={{
-            display: 'flex', overflowX: 'auto', scrollSnapType: 'x mandatory',
-            WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none',
-            width: '100%', maxWidth: '100%', overscrollBehaviorX: 'contain', touchAction: 'pan-x pan-y',
-          }}
-        >
-          {lab.tasks.map((t) => {
-            const allIn = taskComplete(t)
-            return (
-              <div
-                key={t.id}
-                style={{
-                  flex: '0 0 100%', scrollSnapAlign: 'start', boxSizing: 'border-box',
-                  padding: '4px 12px 10px', minHeight: 108,
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                  <span style={{ color: allIn ? COLORS.mint : COLORS.silverMid, fontSize: 'var(--ccna-type-md)' }}>{allIn ? '✓' : t.order}</span>
-                  <span style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, flex: 1, lineHeight: 1.3 }}>{t.title}</span>
-                  <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)' }}>{t.device}</span>
-                </div>
-                <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, lineHeight: 1.5 }}>{t.instruction}</div>
-              </div>
-            )
-          })}
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '0 12px 8px' }}>
-          {lab.tasks.map((t, i) => (
-            <button
-              key={t.id}
-              onClick={() => { setActiveTaskIdx(i); setShowCommands(false); scrollToTask(i) }}
-              aria-label={`Task ${i + 1}: ${t.title}`}
-              style={{
-                width: i === activeTaskIdx ? 18 : 7, height: 7, borderRadius: 4, border: 'none', padding: 0,
-                background: taskComplete(t) ? COLORS.mint : i === activeTaskIdx ? COLORS.sky : COLORS.border,
-                cursor: 'pointer', transition: 'width 0.2s, background 0.2s',
-              }}
-            />
-          ))}
-        </div>
-
-        {activeTask && (
-          <div style={{ padding: '0 12px 8px' }}>
-            <button
-              onClick={() => setShowCommands(v => !v)}
-              style={{ background: 'none', border: 'none', color: COLORS.sky, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: 0, minHeight: 28 }}
-            >
-              {showCommands ? 'Hide expected commands' : 'Show expected commands'}
-            </button>
-            {showCommands && (
-              <div style={{ marginTop: 6 }}>
-                {(activeTask.expectedCommands || []).map((c, i) => (
-                  <div key={i} style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: cmdDone(c) ? COLORS.mint : COLORS.silver, padding: '2px 0' }}>
-                    {cmdDone(c) ? '✓' : '›'} {c}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-        <div style={{ borderTop: `1px solid ${COLORS.border}`, background: '#05060a' }}>
-          <div
-            ref={scrollRef}
-            style={{
-              padding: '10px 12px', height: 160, overflowY: 'auto',
-              fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', lineHeight: 1.55,
-            }}
-          >
-            {history.length === 0 && (
-              <div style={{ color: '#6b7088' }}>
-                {activeDevice}# ready — swipe tasks above, then type commands below.
-              </div>
-            )}
-            {history.map((l, i) => (
-              <div key={i} style={{ color: lineColor[l.kind] || '#d9d9d9', whiteSpace: 'pre-wrap' }}>{l.text}</div>
-            ))}
-          </div>
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '8px 12px 12px', borderTop: `1px solid ${COLORS.border}` }}>
-            <span style={{ fontFamily: 'ui-monospace, monospace', fontSize: 'var(--ccna-type-sm)', color: '#8a8fa8', whiteSpace: 'nowrap' }}>{activeDevice}#</span>
-            <input
-              style={{ ...styles.input, flex: 1, fontFamily: 'ui-monospace, Menlo, monospace', background: '#0a0c12', border: `1px solid ${COLORS.border}`, color: '#d9d9d9' }}
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              onKeyDown={e => { if (e.key === 'Enter') submit() }}
-              placeholder="command…"
-              autoCapitalize="none"
-              autoCorrect="off"
-              spellCheck={false}
-            />
-            <button style={{ ...styles.primaryBtn, width: 'auto', padding: '10px 16px', marginTop: 0 }} onClick={submit}>Run</button>
-          </div>
-        </div>
-      </div>
-
-      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, textAlign: 'center', margin: '6px 0 12px' }}>Swipe ← → between tasks</div>
-
-      {prog.complete && (
-        <div style={{ ...styles.card, background: COLORS.mintDim, border: `1px solid ${COLORS.mintBorder}` }}>
-          <div style={{ fontWeight: 700, color: COLORS.mint, fontSize: 'var(--ccna-type-md)' }}>✓ Lab complete</div>
-          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginTop: 4 }}>All key commands entered. Run the verification commands below on real gear to confirm.</div>
-        </div>
-      )}
-
-      {/* Verification */}
-      <div style={{ ...styles.card }}>
-        <button onClick={() => setRevealVerify(v => !v)} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
-          <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid }}>🔍 VERIFY</span><span style={{ color: COLORS.silverMid }}>{revealVerify ? '−' : '+'}</span>
-        </button>
-        {revealVerify && (
-          <div style={{ marginTop: 8 }}>
-            {validator.verificationChecks.map(v => (
-              <div key={v.id} style={{ marginBottom: 8 }}>
-                <div style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: COLORS.sky }}>{v.device}# {v.command}</div>
-                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.5 }}>→ {v.expectedResult}</div>
-              </div>
-            ))}
-            {validator.failureChecks.map(f => (
-              <div key={f.id} style={{ marginBottom: 8 }}>
-                <div style={{ fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: COLORS.rose }}>{f.device}# {f.command}</div>
-                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.5 }}>→ {f.expectedFailure} <span style={{ color: COLORS.silverDim }}>({f.reason})</span></div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      <ExplainBlock icon="✅" title="SUCCESS CRITERIA" accent="mint"><Bullets items={lab.successCriteria} /></ExplainBlock>
-      <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={lab.commonMistakes} /></ExplainBlock>
-      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, marginTop: 8 }}>Source: {lab.source.name}{lab.source.chapter ? ` — ${lab.source.chapter}` : ''}. Commands are factual Cisco IOS; lab paraphrased, not copied.</div>
-    </div>
-  )
-}
-
-// Labs hub — every lab grouped by domain, with metadata + completion status.
-function LabsHub({ onBack, onOpenLab }) {
-  const [done, setDone] = useState([])
-  useEffect(() => { loadLabDone().then(setDone) }, [])
-  const byDomain = labsByDomain()
-  const tsLabs = troubleshootingLabs()
-  const domainName = (id) => DOMAINS.find(d => d.id === id)?.name || id
-  const labCard = (lab) => (
-    <button key={lab.id} className="ccna-hover" onClick={() => onOpenLab(lab.id)} style={{ ...styles.card, display: 'block', width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-        <span style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, color: COLORS.silver, flex: 1 }}>{lab.title}</span>
-        {done.includes(lab.id) && <span style={{ ...styles.pill('mint'), fontSize: 'var(--ccna-type-micro)' }}>✓ DONE</span>}
-      </div>
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-        <span style={{ ...styles.pill(LAB_DIFF_ACCENT[lab.difficulty] || 'sky'), fontSize: 'var(--ccna-type-micro)' }}>{lab.difficulty.toUpperCase()}</span>
-        {lab.labType === 'troubleshooting' && <span style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)' }}>TROUBLESHOOT</span>}
-        <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>~{lab.estimatedTimeMinutes} MIN</span>
-        <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{lab.objectiveId}</span>
-        <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, alignSelf: 'center' }}>{lab.tools.slice(0, 2).join(' · ')}</span>
-      </div>
-    </button>
-  )
-  return (
-    <div>
-      <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>🧪 Hands-on Labs</h1>
-      <p style={{ ...styles.small, marginBottom: 14 }}>Guided config labs and troubleshooting scenarios — {STATIC_COPY.lab}.</p>
-      {tsLabs.length > 0 && (
-        <div style={{ marginBottom: 18 }}>
-          <div style={{ ...styles.small, fontWeight: 700, color: COLORS.amber, marginBottom: 8, letterSpacing: 0.4 }}>🔧 TROUBLESHOOTING SCENARIOS</div>
-          {tsLabs.map(labCard)}
-        </div>
-      )}
-      {Object.keys(byDomain).length === 0 && <p style={styles.small}>No labs available yet.</p>}
-      {Object.entries(byDomain).map(([domainId, labs]) => (
-        <div key={domainId} style={{ marginBottom: 16 }}>
-          <div style={{ ...styles.small, fontWeight: 700, color: COLORS.silver, marginBottom: 8, letterSpacing: 0.4 }}>{domainName(domainId).toUpperCase()}</div>
-          {labs.filter(l => l.labType !== 'troubleshooting').map(labCard)}
-        </div>
-      ))}
-    </div>
-  )
-}
 
 /* =========================================================================
    IPv6 ADDRESSING CALCULATOR — prefix notation, expanded/compressed forms,
@@ -3670,7 +3205,7 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
       }}
       onClick={e => { if (e.target === e.currentTarget) onClose() }}
     >
-      <div style={{ width: '100%', maxWidth: 540, background: COLORS.card, borderRadius: 16, border: `1px solid ${COLORS.borderGlow}`, overflow: 'hidden' }}>
+      <div className="global-search-panel" style={{ background: COLORS.card, borderRadius: 16, border: `1px solid ${COLORS.borderGlow}`, overflow: 'hidden' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', borderBottom: `1px solid ${COLORS.border}` }}>
           <span style={{ fontSize: 'var(--ccna-type-lg)', color: COLORS.silverMid }} aria-hidden>🔍</span>
           <input
@@ -3685,7 +3220,7 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
           />
           <button type="button" onClick={onClose} aria-label="Close search" style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)', cursor: 'pointer', minWidth: 44, minHeight: 44, padding: '4px 8px' }}>✕</button>
         </div>
-        <div style={{ maxHeight: 360, overflowY: 'auto' }}>
+        <div className="global-search-results">
           {results.map(o => {
             const status = progress[o.id]?.status || 'unseen'
             const domain = DOMAINS.find(d => d.objectives.some(x => x.id === o.id))
@@ -4433,7 +3968,7 @@ function ExportModal({ progress, missed, streak, onImport, onClose }) {
 
   return (
     <div ref={dialogRef} className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="export-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
-      <div className="ccna-sheet" style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
+      <div className="ccna-sheet" style={{ ...styles.card, marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
         <h2 id="export-modal-title" style={styles.h2}>Export Reports</h2>
         <p style={{ ...styles.small, marginBottom: 12 }}>All reports are {STATIC_COPY.reports}.</p>
 
@@ -4500,7 +4035,7 @@ function SyncModal({ syncCode, lastSynced, busy, msg, online, onGenerate, onLink
 
   return (
     <div ref={dialogRef} className="ccna-overlay" role="dialog" aria-modal="true" aria-labelledby="sync-modal-title" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: MODAL_Z, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={onClose}>
-      <div className="ccna-sheet" style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
+      <div className="ccna-sheet" style={{ ...styles.card, marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }} onClick={e => e.stopPropagation()}>
         <h2 id="sync-modal-title" style={styles.h2}>Cross-Device Sync</h2>
         <p style={{ ...styles.small, marginBottom: 12 }}>
           Sync progress, quiz banks, and CLI stats across your devices with one shared code. Your data merges — nothing is overwritten or lost.
@@ -5246,6 +4781,7 @@ export default function App() {
         *::-webkit-scrollbar-thumb { background: ${COLORS.silverDim}; border-radius: 8px; }
         *::-webkit-scrollbar-track { background: transparent; }
         .ccna-grad-text {
+          color: ${COLORS.silver};
           background: linear-gradient(90deg, ${COLORS.brandGlow}, ${COLORS.sky});
           -webkit-background-clip: text; background-clip: text; color: transparent;
         }
@@ -5340,6 +4876,8 @@ export default function App() {
             openDomain={openDomain}
             onOpenDomain={setOpenDomain}
             commandDrills={COMMAND_DRILLS}
+            theme={theme}
+            onToggleTheme={toggleTheme}
           />
         )}
         {view === 'objective' && selectedObjective && (
@@ -5403,7 +4941,14 @@ export default function App() {
         )}
         {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} dueCount={dueCount} onBack={() => setView('home')} onSelectObjective={selectObjective} onOpenReview={() => setView('review')} onOpenStats={() => setView('stats')} />}
         {view === 'labs' && <LabsHub onBack={() => setView('home')} onOpenLab={(id) => openLab(id, 'labs')} />}
-        {view === 'lab' && selectedLab && <LabView bundle={getLab(selectedLab)} onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')} />}
+        {view === 'lab' && selectedLab && (
+          <LabView
+            bundle={getLab(selectedLab)}
+            onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')}
+            celebrate={celebrate}
+            haptic={haptic}
+          />
+        )}
         {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
         {view === 'focus' && <FocusModeSession progress={progress} onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} />}
         {view === 'examtraps' && <ExamTrapStudyMode styles={styles} onBack={() => setView('home')} />}

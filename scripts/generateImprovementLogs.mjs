@@ -20,6 +20,30 @@ function ensureCoverage() {
   return JSON.parse(readFileSync(COVERAGE_PATH, 'utf8'))
 }
 
+/** Preserve agent-completed queue statuses when regenerating logs. */
+function loadExistingQueueStatuses() {
+  const path = join(OUT, 'IMPLEMENTATION_QUEUE.json')
+  if (!existsSync(path)) return {}
+  try {
+    const { items } = JSON.parse(readFileSync(path, 'utf8'))
+    return Object.fromEntries(items.map(i => [i.id, i]))
+  } catch {
+    return {}
+  }
+}
+
+function mergeQueueItems(templateItems, existingById) {
+  return templateItems.map(item => {
+    const prev = existingById[item.id]
+    if (!prev) return item
+    return {
+      ...item,
+      status: prev.status,
+      ...(prev.completedAt ? { completedAt: prev.completedAt } : {}),
+    }
+  })
+}
+
 function write(name, body) {
   writeFileSync(join(OUT, name), body.trimStart() + '\n')
 }
@@ -113,28 +137,18 @@ Per audit constraints — agents must not modify:
 - \`.env*\`
 `)
 
-  write('AGENT_NEXT_STEPS.md', `# Agent Next Steps
+  if (!existsSync(join(OUT, 'AGENT_NEXT_STEPS.md'))) {
+    write('AGENT_NEXT_STEPS.md', `# Agent Next Steps
 
 1. Read \`APP_AUDIT_SUMMARY.md\` → \`DO_NOT_TOUCH.md\` → \`IMPLEMENTATION_QUEUE.json\`
-2. Pick **one** pending queue item
+2. Pick **one** pending queue item (\`npm run audit:show-next-task\`)
 3. Smallest safe diff; no theme/route changes; no live AI on load
-4. Run \`npm test && npm run build\`
+4. Run \`npm run audit:test-and-build\`
 5. Update \`COMPLETED_CHANGES.md\` and mark queue item \`done\`
 
-## Completed in this audit implementation
-- Phase 2: \`ai-improvement-logs/\` created
-- Phase 3: Reading checklist + weak-area trap unification
-- Phase 4: Engineer View pilot on 2.1
-- Phase 5: Enrichment patches (2.5, 3.1, 5.9, 6.x)
-- Phase 6: \`audit:coverage\` scanner
-- Phase 8: ExplainTab/QuizTab extracted to \`src/tabs/\`
-
-## Next high-value queue items
-- Bulk factory trap enrichment (21 objectives)
-- 3.1 routing-table lab-lite
-- 5.9 additional clean-bank questions
-- PWA offline curated shell cache
+See \`AUDIT_SHORTCUTS.md\` for per-phase npm commands.
 `)
+  }
 
   write('CURRENT_APP_AND_DATABASE_INVENTORY.md', `# Current App and Database Inventory
 
@@ -365,7 +379,7 @@ Tier breakdown: A=${summary.tierCounts.A}, B=${summary.tierCounts.B}, C=${summar
 | 10 | RAG/tutor | Deferred |
 `)
 
-  const queue = [
+  const queue = mergeQueueItems([
     { id: 'improve_vlan_engineer_verify', priority: 'high', status: 'done', area: 'content', objectiveNumber: '2.1', problem: 'Verify commands buried in Reference', recommendedImprovement: 'Engineer View in Study tab', riskLevel: 'low', confidenceScore: 92 },
     { id: 'fix_read_checklist', priority: 'high', status: 'done', area: 'learning_flow', objectiveNumber: 'all', problem: 'studySectionsViewed never written', recommendedImprovement: 'Persist on Study reading open', riskLevel: 'low', confidenceScore: 95 },
     { id: 'unify_trap_weakness', priority: 'medium', status: 'done', area: 'analytics', objectiveNumber: 'all', problem: 'Metrics vs Home trap aggregation differ', recommendedImprovement: 'computeTrapWeakness delegates to groupMissedByTrap', riskLevel: 'low', confidenceScore: 90 },
@@ -374,9 +388,10 @@ Tier breakdown: A=${summary.tierCounts.A}, B=${summary.tierCounts.B}, C=${summar
     { id: 'enrich_wlan_59', priority: 'critical', status: 'done', area: 'content', objectiveNumber: '5.9', problem: 'Thin factory + low Q count', recommendedImprovement: 'Traps, flashcards, supplemental questions', riskLevel: 'low', confidenceScore: 85 },
     { id: 'enrich_automation_6x', priority: 'critical', status: 'done', area: 'content', objectiveNumber: '6.1-6.6', problem: 'Zero traps on factory automation', recommendedImprovement: 'Trap + flashcard enrichment patches', riskLevel: 'low', confidenceScore: 82 },
     { id: 'extract_app_tabs', priority: 'medium', status: 'done', area: 'maintainability', objectiveNumber: 'app', problem: '7k-line App.jsx', recommendedImprovement: 'Extract ExplainTab/QuizTab', riskLevel: 'medium', confidenceScore: 80 },
-    { id: 'bulk_factory_traps', priority: 'high', status: 'pending', area: 'content', objectiveNumber: '21 objs', problem: 'Tier C zero traps', recommendedImprovement: 'Pipeline bulk trap generation', riskLevel: 'medium', confidenceScore: 75 },
+    { id: 'bulk_factory_traps', priority: 'high', status: 'done', area: 'content', objectiveNumber: '22 objs', problem: 'Tier C zero traps', recommendedImprovement: 'Pipeline bulk trap generation', riskLevel: 'medium', confidenceScore: 75 },
     { id: 'lab_31_route_lite', priority: 'high', status: 'pending', area: 'labs', objectiveNumber: '3.1', problem: 'No routing table lab', recommendedImprovement: 'Lab-lite show ip route parser', riskLevel: 'medium', confidenceScore: 78 },
-  ]
+    { id: 'bulk_factory_flashcards', priority: 'high', status: 'pending', area: 'content', objectiveNumber: '24 objs', problem: 'Zero flashcards on factory shells', recommendedImprovement: 'Bulk flashcard enrichment patches', riskLevel: 'medium', confidenceScore: 74 },
+  ], loadExistingQueueStatuses())
 
   write('IMPLEMENTATION_QUEUE.json', JSON.stringify({ generatedAt: summary.generatedAt, items: queue }, null, 2))
 
@@ -398,7 +413,9 @@ Tier breakdown: A=${summary.tierCounts.A}, B=${summary.tierCounts.B}, C=${summar
 
   write('GAP_TO_IMPLEMENTATION_QUEUE.json', JSON.stringify({ generatedAt: summary.generatedAt, gaps: gapQueue }, null, 2))
 
-  write('COMPLETED_CHANGES.md', `# Completed Changes
+  const completedPath = join(OUT, 'COMPLETED_CHANGES.md')
+  if (!existsSync(completedPath)) {
+    write('COMPLETED_CHANGES.md', `# Completed Changes
 
 **Audit implementation** — ${new Date().toISOString().slice(0, 10)}
 
@@ -409,6 +426,7 @@ Tier breakdown: A=${summary.tierCounts.A}, B=${summary.tierCounts.B}, C=${summar
 - Added \`EngineerViewSection\` + enrichment patches (2.1, 2.5, 3.1, 5.9, 6.x)
 - Extracted \`ExplainTab\` / \`QuizTab\` to \`src/tabs/\`
 `)
+  }
 
   console.log(`✓ generate:improvement-logs — ${queue.length} queue items, ${gapQueue.length} gaps`)
 }

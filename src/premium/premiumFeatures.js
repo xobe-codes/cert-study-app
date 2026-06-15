@@ -5,6 +5,8 @@ export const PREMIUM_FEATURES = {
   tutor: 'tutor',
   offline_pack: 'offline_pack',
   ai_visual: 'ai_visual',
+  ai_terms: 'ai_terms',
+  ai_explain: 'ai_explain',
   quiz_generate: 'quiz_generate',
   donate_preview: 'donate_preview',
 }

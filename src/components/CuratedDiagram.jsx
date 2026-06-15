@@ -8,6 +8,23 @@ const DIAGRAM_NODE_COLOR = { router: 'mint', switch: 'purple', subnet: 'sky', pr
 const DIAGRAM_NODE_ICON = { router: 'R', switch: 'S', pc: 'PC', server: 'SV', cloud: '☁', firewall: 'FW', attacker: '!', process: '●', subnet: 'NET', default: '·' }
 const TYPE_SHORT = { router: 'Router', switch: 'Switch', pc: 'PC', server: 'Server', subnet: 'Net', firewall: 'FW', cloud: 'Cloud', process: 'Step', attacker: 'Threat' }
 
+function useCompactViewport(maxWidth = 900) {
+  const [compact, setCompact] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia(`(max-width: ${maxWidth}px)`).matches,
+  )
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return
+    const mq = window.matchMedia(`(max-width: ${maxWidth}px)`)
+    const onChange = () => setCompact(mq.matches)
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [maxWidth])
+
+  return compact
+}
+
 function useFocusTrap(containerRef) {
   useEffect(() => {
     const root = containerRef.current
@@ -126,7 +143,7 @@ function DiagramAnnotations({ annotations, visuallyHidden = false }) {
   return list
 }
 
-function DiagramSvg({ diagram, detail, compact, expanded = false }) {
+function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = false }) {
   const uid = useId().replace(/:/g, '')
   const isPreview = detail === 'preview'
   const layout = useMemo(() => {
@@ -140,26 +157,32 @@ function DiagramSvg({ diagram, detail, compact, expanded = false }) {
     const maxY = Math.min(100, Math.max(...ys) + pad)
     const spanX = Math.max(28, maxX - minX)
     const spanY = Math.max(22, maxY - minY)
-    const W = expanded ? 520 : 360
+    const W = expanded ? (isMobile ? 390 : 520) : (isMobile ? 340 : 360)
     const H = Math.round(W * (spanY / spanX) * 0.72)
     let clampH
-    if (expanded) clampH = Math.min(Math.max(H, 200), 420)
-    else if (compact || isPreview) clampH = Math.min(H, 150)
-    else clampH = Math.min(Math.max(H, 130), 240)
+    if (expanded) clampH = Math.min(Math.max(H, isMobile ? 260 : 200), isMobile ? 520 : 420)
+    else if (compact || isPreview) clampH = Math.min(H, isMobile ? 240 : 150)
+    else clampH = Math.min(Math.max(H, isMobile ? 160 : 130), isMobile ? 300 : 240)
     const density = nodes.length
-    const nodeW = Math.min(expanded ? 132 : 118, Math.max(76, (expanded ? 116 : 108) - density * 4))
-    const nodeH = expanded ? 34 : 30
-    const fontSize = expanded ? 9 : (compact || isPreview) ? 7.5 : density > 5 ? 7.5 : 8.25
+    const nodeW = Math.min(expanded ? (isMobile ? 120 : 132) : (isMobile ? 108 : 118), Math.max(76, (expanded ? 116 : 108) - density * 4))
+    const nodeH = expanded ? (isMobile ? 36 : 34) : (isMobile ? 32 : 30)
+    const fontSize = expanded
+      ? (isMobile ? 10 : 9)
+      : (compact || isPreview)
+        ? (isMobile ? 8.5 : 7.5)
+        : density > 5 ? (isMobile ? 8.25 : 7.5) : (isMobile ? 9 : 8.25)
     const toX = v => ((v - minX) / spanX) * W
     const toY = v => ((v - minY) / spanY) * clampH
-    const labelMax = isPreview ? 12 : compact ? 14 : expanded ? 22 : 18
+    const labelMax = isPreview
+      ? (isMobile ? 16 : 12)
+      : compact ? (isMobile ? 16 : 14) : expanded ? (isMobile ? 24 : 22) : (isMobile ? 20 : 18)
     const nodeMap = Object.fromEntries(nodes.map(n => {
       const text = isPreview ? diagramShortLabel(n) : n.label
       const lines = splitDiagramLabel(text, labelMax)
       return [n.id, { ...n, cx: toX(n.x), cy: toY(n.y), lines, hw: nodeW / 2, hh: nodeH / 2 }]
     }))
     return { W, H: clampH, nodeW, nodeH, fontSize, nodeMap, nodes }
-  }, [diagram, compact, expanded, isPreview])
+  }, [diagram, compact, expanded, isPreview, isMobile])
 
   if (!layout) return null
   const { W, H, nodeW, nodeH, fontSize, nodeMap, nodes } = layout
@@ -171,7 +194,7 @@ function DiagramSvg({ diagram, detail, compact, expanded = false }) {
     <svg
       viewBox={`0 0 ${W} ${H}`}
       preserveAspectRatio="xMidYMid meet"
-      style={{ width: '100%', height: '100%', display: 'block' }}
+      style={{ width: '100%', height: '100%', display: 'block', minHeight: H }}
       role="img"
       aria-label={diagram.title}
     >
@@ -251,20 +274,30 @@ function DiagramSvg({ diagram, detail, compact, expanded = false }) {
   )
 }
 
-function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle = true, ariaExpanded = false }) {
+function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle = true, ariaExpanded = false, isMobile = false }) {
   const linkStatuses = new Set((diagram.links || []).map(l => l.status).filter(Boolean))
   const isPreview = detail === 'preview'
-  const maxHeight = isPreview ? (compact ? 148 : 200) : compact ? 168 : 260
+  const maxHeight = isMobile
+    ? (isPreview ? (compact ? 260 : 280) : compact ? 240 : 320)
+    : (isPreview ? (compact ? 148 : 200) : compact ? 168 : 260)
 
   const canvas = (
-    <div style={{
-      width: '100%', maxHeight, aspectRatio: '5 / 3',
-      borderRadius: 10, overflow: 'hidden', background: COLORS.surface,
-      border: `1px solid ${expandable ? COLORS.skyBorder : COLORS.border}`,
-      position: 'relative',
-    }}>
-      <DiagramSvg diagram={diagram} detail={detail} compact={compact} />
-      {expandable && (
+    <div
+      className="curated-diagram-canvas"
+      style={{
+        width: '100%',
+        maxWidth: '100%',
+        maxHeight,
+        ...(isMobile ? { minHeight: isPreview ? 220 : 180, height: maxHeight } : { aspectRatio: '5 / 3' }),
+        borderRadius: 10,
+        overflow: 'hidden',
+        background: COLORS.surface,
+        border: `1px solid ${expandable ? COLORS.skyBorder : COLORS.border}`,
+        position: 'relative',
+      }}
+    >
+      <DiagramSvg diagram={diagram} detail={detail} compact={compact} isMobile={isMobile} />
+      {expandable && !isMobile && (
         <div
           aria-hidden="true"
           style={{
@@ -280,6 +313,8 @@ function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle
     </div>
   )
 
+  const showPreviewAnnotations = isPreview && isMobile && (diagram.annotations?.length > 0)
+
   const body = (
     <>
       {showTitle && !compact && (
@@ -287,7 +322,7 @@ function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle
           🗺️ {diagram.title.toUpperCase()}
         </div>
       )}
-      {expandable ? (
+      {expandable && !isMobile ? (
         <button
           type="button"
           onClick={onExpand}
@@ -300,21 +335,54 @@ function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle
         >
           {canvas}
         </button>
-      ) : canvas}
+      ) : (
+        <div
+          role={expandable ? 'button' : undefined}
+          tabIndex={expandable ? 0 : undefined}
+          onClick={expandable ? onExpand : undefined}
+          onKeyDown={expandable ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onExpand?.() } } : undefined}
+          aria-label={expandable ? `View full diagram: ${diagram.title}` : undefined}
+          style={expandable ? { cursor: 'pointer' } : undefined}
+        >
+          {canvas}
+        </div>
+      )}
+      {expandable && isMobile && (
+        <button
+          type="button"
+          className="curated-diagram-expand-btn"
+          onClick={onExpand}
+          aria-expanded={ariaExpanded}
+          aria-label={`View full diagram: ${diagram.title}`}
+          style={{
+            ...styles.secondaryBtn,
+            width: '100%',
+            minHeight: 44,
+            marginTop: 10,
+            borderColor: COLORS.skyBorder,
+            background: COLORS.skyDim,
+            color: COLORS.sky,
+            fontWeight: 600,
+          }}
+        >
+          View full diagram ↗
+        </button>
+      )}
       {detail === 'full' && <DiagramLegend linkStatuses={linkStatuses} />}
       {detail === 'full' && <DiagramAnnotations annotations={diagram.annotations} />}
-      {isPreview && <DiagramAnnotations annotations={diagram.annotations} visuallyHidden />}
+      {showPreviewAnnotations && <DiagramAnnotations annotations={diagram.annotations} />}
+      {isPreview && !showPreviewAnnotations && <DiagramAnnotations annotations={diagram.annotations} visuallyHidden />}
     </>
   )
 
   return (
-    <div style={{ ...styles.card, padding: compact ? 10 : 12, overflow: 'hidden', position: 'relative' }}>
+    <div className="curated-diagram-card" style={{ ...styles.card, padding: compact ? 10 : 12, overflow: 'hidden', position: 'relative', maxWidth: '100%' }}>
       {body}
     </div>
   )
 }
 
-function DiagramExpandModal({ diagram, onClose }) {
+function DiagramExpandModal({ diagram, onClose, isMobile = false }) {
   const dialogRef = useRef(null)
   const closeRef = useRef(null)
   useFocusTrap(dialogRef)
@@ -327,32 +395,58 @@ function DiagramExpandModal({ diagram, onClose }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
+  useEffect(() => {
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prev }
+  }, [])
+
   const linkStatuses = new Set((diagram.links || []).map(l => l.status).filter(Boolean))
 
   return (
     <div
       ref={dialogRef}
-      className="ccna-overlay"
+      className="ccna-overlay curated-diagram-modal"
       role="dialog"
       aria-modal="true"
       aria-labelledby="diagram-modal-title"
       style={{
         position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.72)', zIndex: MODAL_Z,
-        display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px',
-        paddingTop: 'max(16px, env(safe-area-inset-top))',
-        paddingBottom: 'max(16px, env(safe-area-inset-bottom))',
+        display: 'flex',
+        alignItems: isMobile ? 'stretch' : 'center',
+        justifyContent: 'center',
+        padding: isMobile ? 0 : '16px',
+        paddingTop: isMobile ? 0 : 'max(16px, env(safe-area-inset-top))',
+        paddingBottom: isMobile ? 0 : 'max(16px, env(safe-area-inset-bottom))',
       }}
       onClick={onClose}
     >
       <div
+        className="curated-diagram-modal-panel"
         style={{
-          ...styles.card, width: '100%', maxWidth: 680, maxHeight: 'min(88vh, 720px)',
-          overflowY: 'auto', padding: 16, margin: 0,
+          ...styles.card,
+          width: '100%',
+          maxWidth: isMobile ? '100%' : 680,
+          maxHeight: isMobile ? '100%' : 'min(88vh, 720px)',
+          height: isMobile ? '100%' : 'auto',
+          overflowY: isMobile ? 'hidden' : 'auto',
+          padding: isMobile ? 0 : 16,
+          margin: 0,
+          borderRadius: isMobile ? 0 : undefined,
+          display: 'flex',
+          flexDirection: 'column',
         }}
         onClick={e => e.stopPropagation()}
       >
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, marginBottom: 10 }}>
-          <h2 id="diagram-modal-title" style={{ ...styles.h2, margin: 0, fontSize: 'var(--ccna-type-md)' }}>
+        <div
+          className="curated-diagram-modal-header"
+          style={{
+            display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12,
+            padding: isMobile ? 'max(12px, env(safe-area-inset-top)) 16px 10px' : '0 0 10px',
+            flexShrink: 0,
+          }}
+        >
+          <h2 id="diagram-modal-title" style={{ ...styles.h2, margin: 0, fontSize: 'var(--ccna-type-md)', lineHeight: 1.35, paddingRight: 8 }}>
             🗺️ {diagram.title}
           </h2>
           <button
@@ -360,16 +454,29 @@ function DiagramExpandModal({ diagram, onClose }) {
             type="button"
             onClick={onClose}
             aria-label="Close diagram"
-            style={{ ...styles.secondaryBtn, padding: '6px 10px', flexShrink: 0 }}
+            style={{ ...styles.secondaryBtn, padding: '10px 14px', minHeight: 44, minWidth: 44, flexShrink: 0 }}
           >
             ✕
           </button>
         </div>
-        <div style={{ width: '100%', minHeight: 220, maxHeight: 'min(70vh, 480px)' }}>
-          <DiagramSvg diagram={diagram} detail="full" expanded />
+        <div
+          className="curated-diagram-modal-body"
+          style={{
+            flex: 1,
+            minHeight: 0,
+            overflowY: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            padding: isMobile ? '0 12px' : 0,
+          }}
+        >
+          <div style={{ width: '100%', minHeight: isMobile ? 280 : 220, maxHeight: isMobile ? 'none' : 'min(70vh, 480px)' }}>
+            <DiagramSvg diagram={diagram} detail="full" expanded isMobile={isMobile} />
+          </div>
+          <div style={{ padding: isMobile ? '12px 4px max(16px, env(safe-area-inset-bottom))' : '12px 0 0' }}>
+            <DiagramLegend linkStatuses={linkStatuses} />
+            <DiagramAnnotations annotations={diagram.annotations} />
+          </div>
         </div>
-        <DiagramLegend linkStatuses={linkStatuses} />
-        <DiagramAnnotations annotations={diagram.annotations} />
       </div>
     </div>
   )
@@ -377,12 +484,13 @@ function DiagramExpandModal({ diagram, onClose }) {
 
 export default function CuratedDiagram({ diagram, compact = false }) {
   const [open, setOpen] = useState(false)
+  const isMobile = useCompactViewport()
   const needsExpand = useMemo(() => diagramNeedsExpand(diagram), [diagram])
 
   if (!diagram?.nodes?.length) return null
 
   if (!needsExpand) {
-    return <DiagramCard diagram={diagram} detail="full" compact={compact} />
+    return <DiagramCard diagram={diagram} detail="full" compact={compact} isMobile={isMobile} />
   }
 
   return (
@@ -394,8 +502,9 @@ export default function CuratedDiagram({ diagram, compact = false }) {
         expandable
         ariaExpanded={open}
         onExpand={() => setOpen(true)}
+        isMobile={isMobile}
       />
-      {open && <DiagramExpandModal diagram={diagram} onClose={() => setOpen(false)} />}
+      {open && <DiagramExpandModal diagram={diagram} onClose={() => setOpen(false)} isMobile={isMobile} />}
     </>
   )
 }

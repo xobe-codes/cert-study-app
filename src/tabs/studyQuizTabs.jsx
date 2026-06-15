@@ -35,6 +35,10 @@ import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
 import { DEFAULT_QUIZ_SESSION_SIZE, clampQuizSessionSize } from '../quizSessionConfig.js'
 import { BOOK_REF } from '../data/bookRefFull.js'
 import {
+  PREMIUM_FEATURES,
+  PREMIUM_COMING_SOON_LABEL,
+} from '../premium/premiumFeatures.js'
+import {
   askClaudeJSON, MODEL, MODELS, AiBudgetWarning,
   EXPLAIN_CACHE_KEY, EXPLAIN_PROMPT_SYSTEM, EXPLAIN_SCHEMA,
   PREASSESS_CACHE_KEY, PREASSESS_PROMPT_SYSTEM, PREASSESS_SCHEMA,
@@ -91,7 +95,7 @@ const TERMS_SCHEMA = {
   } } },
 }
 
-function KeyTermsCarousel({ objective }) {
+function KeyTermsCarousel({ objective, premiumUnlocked = false, onPremiumBlocked }) {
   const [cards, setCards] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -119,6 +123,12 @@ function KeyTermsCarousel({ objective }) {
           return
         }
       }
+      if (!premiumUnlocked) {
+        onPremiumBlocked?.(PREMIUM_FEATURES.ai_terms, 'key_terms', { objectiveId: objective.id })
+        setCards(null)
+        setLoading(false)
+        return
+      }
       const refNotes = BOOK_REF[objective.id] || ''
       const data = await askClaudeJSON({
         system: TERMS_PROMPT_SYSTEM,
@@ -143,7 +153,7 @@ function KeyTermsCarousel({ objective }) {
     } finally {
       setLoading(false)
     }
-  }, [objective.id, objective.title, curatedFlashcards])
+  }, [objective.id, objective.title, curatedFlashcards, premiumUnlocked, onPremiumBlocked])
 
   useEffect(() => {
     setCards(null)
@@ -169,7 +179,7 @@ function KeyTermsCarousel({ objective }) {
   }
 
   if (loading) return <Spinner label="Pulling key terms..." />
-  if (error) return <ErrorBox message={error} onRetry={() => fetchTerms(true)} />
+  if (error) return <ErrorBox message={error} onRetry={premiumUnlocked ? () => fetchTerms(true) : undefined} />
   if (!cards) return null
 
   return (
@@ -182,18 +192,23 @@ function KeyTermsCarousel({ objective }) {
           </div>
           {fromCurated && <CuratedStaticBadge objectiveId={objective.id} fontSize={9} />}
         </div>
-        <button
-          style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
-          onClick={() => fetchTerms(true)}
-        >
-          {fromCurated ? 'Generate with AI' : 'Refresh'}
-        </button>
+        {premiumUnlocked && (
+          <button
+            type="button"
+            style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
+            onClick={() => fetchTerms(true)}
+          >
+            {fromCurated ? 'Generate with AI' : 'Refresh'}
+          </button>
+        )}
       </div>
       <div style={{
         display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6, width: '100%', maxWidth: '100%',
-        scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch',
-        overscrollBehaviorX: 'contain', touchAction: 'pan-x pan-y',
-      }}>
+        scrollSnapType: 'x mandatory',
+        overscrollBehaviorX: 'contain',
+      }}
+      className="ccna-h-scroll"
+      >
         {cards.map((c, idx) => {
           const isFlipped = flipped.has(idx)
           return (
@@ -229,7 +244,7 @@ function KeyTermsCarousel({ objective }) {
   )
 }
 
-function PreAssessment({ objective, onTestedOut, onStudy }) {
+function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked = false, onPremiumBlocked }) {
   const [phase, setPhase] = useState('intro') // intro | loading | active | result | error
   const [error, setError] = useState(null)
   const [questions, setQuestions] = useState([])
@@ -281,6 +296,11 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
         const staticQs = getCuratedQuestions(objective.id)
         if (staticQs.length >= 6) {
           qs = randomizeQuestionOrder(staticQs).slice(0, 6)
+        } else if (!premiumUnlocked) {
+          onPremiumBlocked?.(PREMIUM_FEATURES.quiz_generate, 'preassess', { objectiveId: objective.id })
+          setPhase('intro')
+          setLoading(false)
+          return
         } else {
           const refNotes = BOOK_REF[objective.id] || ''
           const data = await askClaudeJSON({
@@ -300,7 +320,7 @@ function PreAssessment({ objective, onTestedOut, onStudy }) {
     } catch (err) {
       setError(err.message); setPhase('error')
     }
-  }, [objective.id, objective.title])
+  }, [objective.id, objective.title, premiumUnlocked, onPremiumBlocked])
 
   function answer(i) {
     if (revealed || !isMcQuestion(questions[idx])) return
@@ -476,7 +496,7 @@ function StructuredExplanation({ data }) {
 
 // Renders a curated objective's reading: source-grounded, no AI call. Reuses
 // the same ExplainBlock visual language as the AI path so it feels native.
-function CuratedReading({ data, progressEntry, onTierChange, onOpenReference }) {
+function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, showDiagram = true }) {
   const resolvedTier = useMemo(() => getReadingTier(progressEntry), [progressEntry])
   const [tier, setTier] = useState(resolvedTier)
   const hint = useMemo(() => readingTierHint(progressEntry, tier), [progressEntry, tier])
@@ -552,7 +572,7 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference }) 
       {r.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={false}><RichText text={r.realWorld} /></ExplainBlock>}
       {r.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}><RichText text={r.advanced} /></ExplainBlock>}
       {r.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={r.related} /></ExplainBlock>}
-      {data.diagram && <CuratedDiagram diagram={data.diagram} />}
+      {showDiagram && data.diagram && <CuratedDiagram diagram={data.diagram} />}
       <CuratedSources data={data} />
     </div>
   )
@@ -855,6 +875,11 @@ export function ExplainTab({
         const cache = (await window.storage.getItem(EXPLAIN_CACHE_KEY)) || {}
         if (cache[cacheKey]) { setContent(cache[cacheKey]); setLoading(false); return }
       }
+      if (!premiumUnlocked) {
+        onPremiumBlocked?.(PREMIUM_FEATURES.ai_explain, 'explain_tab', { objectiveId: objective.id })
+        setLoading(false)
+        return
+      }
       const refNotes = BOOK_REF[objective.id] || ''
       const adjustNote = adjust ? `\n\nThe learner found a previous explanation "${adjust}". Rewrite accordingly.` : ''
       const data = await askClaudeJSON({
@@ -871,16 +896,20 @@ export function ExplainTab({
     } finally {
       setLoading(false)
     }
-  }, [objective.id, objective.title])
+  }, [objective.id, objective.title, premiumUnlocked, onPremiumBlocked])
 
   // Fetch the lesson once the learner enters the lesson stage — AI path only.
   // Curated objectives render static content (no fetch).
   useEffect(() => {
     if (stage !== 'lesson' || curated) return
     setContent(null); setError(null)
+    if (!premiumUnlocked) {
+      setLoading(false)
+      return
+    }
     fetchExplanation(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stage, objective.id])
+  }, [stage, objective.id, curated, premiumUnlocked])
 
   async function handleTestedOut(questions, pct) {
     onUpdateProgress?.(objective.id, {
@@ -911,7 +940,7 @@ export function ExplainTab({
   if (!isStudy && stage === 'assess' && !testedOut) {
     return (
       <div>
-        <PreAssessment objective={objective} onTestedOut={handleTestedOut} onStudy={enterLesson} />
+        <PreAssessment objective={objective} onTestedOut={handleTestedOut} onStudy={enterLesson} premiumUnlocked={premiumUnlocked} onPremiumBlocked={onPremiumBlocked} />
       </div>
     )
   }
@@ -979,12 +1008,23 @@ export function ExplainTab({
               progressEntry={progress[objective.id]}
               onTierChange={(key) => onUpdateProgress?.(objective.id, { readingTier: key, studySectionsViewed: true, lastSeen: Date.now() })}
               onOpenReference={showReference ? () => setLessonView('reference') : undefined}
+              showDiagram={!isStudy}
             />
           )}
           {isStudy && (curated || recalled) && getEngineerView(objective.id) && (
             <EngineerViewSection data={getEngineerView(objective.id)} />
           )}
-          {showReading && !curated && <AiBudgetWarning />}
+          {showReading && !curated && premiumUnlocked && <AiBudgetWarning />}
+          {showReading && !curated && !premiumUnlocked && recalled && !content && !loading && (
+            <div style={{ ...styles.card, border: `1px solid ${COLORS.border}`, marginBottom: 10 }}>
+              <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, color: COLORS.silver, marginBottom: 6 }}>
+                {PREMIUM_COMING_SOON_LABEL}
+              </div>
+              <p style={{ ...styles.small, margin: 0, lineHeight: 1.45 }}>
+                AI-generated explanations unlock with supporter access. Bundled Study lessons stay free and work offline.
+              </p>
+            </div>
+          )}
           {showReading && !curated && content && !loading && (
             <>
               <div className="objective-reading-prose lesson-prose">
@@ -994,7 +1034,7 @@ export function ExplainTab({
             </>
           )}
           {isStudy && hasCuratedVisual && (curated || recalled) && (
-            <div className="study-visual-section" style={{ marginTop: 12, marginBottom: 12 }}>
+            <div className="study-visual-section" style={{ marginTop: 12, marginBottom: 12, maxWidth: '100%', minWidth: 0 }}>
               {curatedData.diagram && <CuratedDiagram diagram={curatedData.diagram} />}
               <CuratedPacketFlow data={curatedData} />
             </div>
@@ -1005,7 +1045,7 @@ export function ExplainTab({
             </div>
           )}
           {isStudy && (curated || recalled) && (
-            <KeyTermsCarousel objective={objective} />
+            <KeyTermsCarousel objective={objective} premiumUnlocked={premiumUnlocked} onPremiumBlocked={onPremiumBlocked} />
           )}
           {isStudy && onStartPractice && (curated || recalled) && (
             <button type="button" style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={onStartPractice}>
@@ -1223,6 +1263,7 @@ function QuizCompleteCard({
   onSelectObjective,
   onSwitchTab,
   footnote,
+  premiumUnlocked = false,
 }) {
   const pct = stats.total ? Math.round((stats.correct / stats.total) * 100) : 0
   const mastery = computeMastery(progress?.[objectiveId] || {})
@@ -1271,7 +1312,9 @@ function QuizCompleteCard({
       {primaryAction !== onReviewAgain && (
         <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onReviewAgain}>Review again from bank</button>
       )}
-      <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onGenerateNew}>Generate new questions</button>
+      {premiumUnlocked && (
+        <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onGenerateNew}>Generate new questions</button>
+      )}
     </div>
   )
 }
@@ -1410,7 +1453,14 @@ export function QuizTab({
         }
       }
 
-      if (forceNew || (!curatedQs.length && banked.length < QUIZ_BANK_MIN)) {
+      const needsAiGeneration = forceNew || (!curatedQs.length && banked.length < QUIZ_BANK_MIN)
+      if (needsAiGeneration && !premiumUnlocked) {
+        setPhase('idle')
+        setError('No practice questions available yet. Premium unlocks AI-generated sets for this topic.')
+        return
+      }
+
+      if (needsAiGeneration) {
         setPhase('loading')
         const refNotes = BOOK_REF[objective.id] || ''
         // Personalize: tell the generator which sub-concepts this learner has
@@ -1460,7 +1510,7 @@ export function QuizTab({
       setError(err.message.includes('JSON') ? 'Claude returned an unexpected format. Please try again.' : err.message)
       setPhase('error')
     }
-  }, [objective.id, objective.title, progress, missed, sessionSize])
+  }, [objective.id, objective.title, progress, missed, sessionSize, premiumUnlocked, onPremiumBlocked])
 
   useEffect(() => {
     setPhase('idle')
@@ -1584,6 +1634,8 @@ export function QuizTab({
           objective={objective}
           onTestedOut={handlePreAssessTestedOut}
           onStudy={() => setPreAssessDone(true)}
+          premiumUnlocked={premiumUnlocked}
+          onPremiumBlocked={onPremiumBlocked}
         />
       </div>
     )
@@ -1610,7 +1662,7 @@ export function QuizTab({
               <strong style={{ color: COLORS.silver }}>{curatedPoolSize}</strong> curated question{curatedPoolSize === 1 ? '' : 's'} for this topic — {STATIC_COPY.curatedQuizPool}.
             </>
           ) : (
-            <>No questions yet — read the Study tab first, or generate a custom set.</>
+            <>No questions yet — read the Study tab first{premiumUnlocked ? ', or generate a custom set' : ''}.</>
           )}
         </p>
         {emptyPool && onSwitchTab && (
@@ -1619,7 +1671,14 @@ export function QuizTab({
           </button>
         )}
         {hasBank && <BankMixDisplay questions={bankQuestions} />}
-        {!hasBank && curatedPoolSize === 0 && <AiBudgetWarning />}
+        {!hasBank && curatedPoolSize === 0 && premiumUnlocked && <AiBudgetWarning />}
+        {!hasBank && curatedPoolSize === 0 && !premiumUnlocked && (
+          <div style={{ ...styles.card, border: `1px solid ${COLORS.border}`, marginBottom: 8, padding: '10px 12px' }}>
+            <p style={{ ...styles.small, margin: 0, lineHeight: 1.45 }}>
+              {PREMIUM_COMING_SOON_LABEL} — AI practice sets unlock with supporter access. Curated topics include free questions automatically.
+            </p>
+          </div>
+        )}
         <div style={{ marginBottom: 4 }}>
           <label htmlFor={`quiz-session-size-${objective.id}`} style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 6 }}>This session</label>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
@@ -1646,10 +1705,16 @@ export function QuizTab({
             </span>
           </div>
         </div>
-        <button style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={() => startQuiz(false)}>
-          {hasBank ? `Practice ${reviewCount} question${reviewCount === 1 ? '' : 's'}` : emptyPool ? 'Generate practice set' : 'Start practice'}
-        </button>
-        {hasBank && (
+        {emptyPool && !premiumUnlocked ? (
+          <button type="button" style={{ ...styles.secondaryBtn, marginTop: 12 }} onClick={() => onSwitchTab?.('Study')}>
+            ← Study this topic first
+          </button>
+        ) : (
+          <button style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={() => startQuiz(false)}>
+            {hasBank ? `Practice ${reviewCount} question${reviewCount === 1 ? '' : 's'}` : emptyPool ? 'Generate practice set' : 'Start practice'}
+          </button>
+        )}
+        {hasBank && premiumUnlocked && (
           <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => startQuiz(true)}>Generate new questions</button>
         )}
       </div>
@@ -1673,6 +1738,7 @@ export function QuizTab({
           onSelectObjective={onSelectObjective}
           onSwitchTab={onSwitchTab}
           footnote={examMode ? 'Exam mode — tips saved for debrief below.' : null}
+          premiumUnlocked={premiumUnlocked}
         />
         {examMode && <DeferredExamTips tips={deferredTips.current} />}
       </>
