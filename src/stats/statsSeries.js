@@ -11,7 +11,11 @@ export const STATS_RANGES = {
 }
 
 function dayKey(ts) {
-  return new Date(ts).toISOString().slice(0, 10)
+  const d = new Date(ts)
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
 }
 
 function endOfDay(ts) {

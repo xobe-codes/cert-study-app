@@ -1,0 +1,36 @@
+{
+  "preferred": [
+    "default gateway",
+    "routing table",
+    "MAC address table",
+    "broadcast domain",
+    "adjacency",
+    "inside local",
+    "inside global",
+    "wildcard mask",
+    "line vty",
+    "enable mode",
+    "SVI",
+    "native VLAN",
+    "root bridge",
+    "designated port",
+    "LSDB",
+    "LSA",
+    "router ID",
+    "implicit deny",
+    "first match",
+    "per-hop behavior",
+    "PHB"
+  ],
+  "banned": [
+    "utilize",
+    "leverage",
+    "in order to",
+    "it is important to note",
+    "as we can see",
+    "the device talks to",
+    "source pdf",
+    "validation package",
+    "source maps"
+  ]
+}

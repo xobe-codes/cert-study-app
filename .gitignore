@@ -6,3 +6,7 @@ dist
 # Private source-mapped question bank (local only — never commit)
 data/source-question-bank/*
 !data/source-question-bank/README.md
+
+# OneNote export copies (source lives in ~/Documents/markdown)
+data/onenote/raw/
+data/onenote/normalized/

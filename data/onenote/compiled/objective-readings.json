@@ -1,0 +1,1686 @@
+{
+  "1.1": {
+    "objectiveId": "1.1",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Client** : A device that **requests or accesses a service**",
+      "**Server** : A device that **provides a service** to another device",
+      "A device **requesting data** is functioning as a **client**",
+      "A device **sending or providing data** is functioning as a **server**",
+      "**Primary Role** : Connect many end hosts **within the same LAN**",
+      "**Key Characteristics** :",
+      "Typically have **24 or more interfaces**",
+      "Forward traffic **only inside the local network**",
+      "**Standards** are agreed‑upon specifications for how protocols work.",
+      "Standards enable **interoperability**, not vendor lock‑in."
+    ],
+    "examTraps": [
+      {
+        "trap": "Core Distinction (Exam‑Critical):",
+        "correction": "Core Distinction (Exam‑Critical):"
+      }
+    ],
+    "learningOutcomes": [],
+    "tiers": {
+      "beginner": "**Client** : A device that **requests or accesses a service**",
+      "intermediate": "**Client** : A device that **requests or accesses a service** **Server** : A device that **provides a service** to another device",
+      "examReady": ""
+    },
+    "bigTakeaway": "Client : A device that requests or accesses a service",
+    "sourceFiles": [
+      "01 - Day 1 – Network Devices.md",
+      "03 - Day 3 - The TCP_IP Model.md"
+    ],
+    "confidence": "draft",
+    "needsReview": true,
+    "ckuIds": [
+      "CKU-ROUTER",
+      "CKU-SWITCH"
+    ]
+  },
+  "1.3": {
+    "objectiveId": "1.3",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Physical standards** : connector shape, port type, cable wiring (so things fit and work).",
+      "**Logical standards** : rules like **IP** that define how data is addressed and moved.",
+      "**1 bit** = a **0 or 1**",
+      "**1 byte** = **8 bits**",
+      "**Important rule:** **1 Gigabyte (GB) = 8 Gigabits (Gb)**",
+      "**1 kilobit (Kb) = 1,000 bits**",
+      "**1 megabit (Mb) = 1,000,000 bits**",
+      "**1 gigabit (Gb) = 1,000,000,000 bits**",
+      "Interface **speed** and **duplex**",
+      "**Autonegotiation**"
+    ],
+    "examTraps": [
+      {
+        "trap": "Key rule: Twisted‑pair copper Ethernet is typically limited to 100 meters max for these standards.",
+        "correction": "Key rule: Twisted‑pair copper Ethernet is typically limited to 100 meters max for these standards."
+      }
+    ],
+    "learningOutcomes": [],
+    "tiers": {
+      "beginner": "**Physical standards** : connector shape, port type, cable wiring (so things fit and work).",
+      "intermediate": "**Physical standards** : connector shape, port type, cable wiring (so things fit and work). **Logical standards** : rules like **IP** that define how data is addressed and moved.",
+      "examReady": ""
+    },
+    "bigTakeaway": "Physical standards : connector shape, port type, cable wiring (so things fit and work).",
+    "sourceFiles": [
+      "02 - Day 2 - Interfaces & Cables.md",
+      "09 - Day 9 - Switch Interfaces.md"
+    ],
+    "confidence": "draft",
+    "needsReview": true,
+    "ckuIds": []
+  },
+  "1.4": {
+    "objectiveId": "1.4",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Physical standards** : connector shape, port type, cable wiring (so things fit and work).",
+      "**Logical standards** : rules like **IP** that define how data is addressed and moved.",
+      "**1 bit** = a **0 or 1**",
+      "**1 byte** = **8 bits**",
+      "**Important rule:** **1 Gigabyte (GB) = 8 Gigabits (Gb)**",
+      "**1 kilobit (Kb) = 1,000 bits**",
+      "**1 megabit (Mb) = 1,000,000 bits**",
+      "**1 gigabit (Gb) = 1,000,000,000 bits**",
+      "Interface **speed** and **duplex**",
+      "**Autonegotiation**"
+    ],
+    "examTraps": [
+      {
+        "trap": "Key rule: Twisted‑pair copper Ethernet is typically limited to 100 meters max for these standards.",
+        "correction": "Key rule: Twisted‑pair copper Ethernet is typically limited to 100 meters max for these standards."
+      }
+    ],
+    "learningOutcomes": [],
+    "tiers": {
+      "beginner": "**Physical standards** : connector shape, port type, cable wiring (so things fit and work).",
+      "intermediate": "**Physical standards** : connector shape, port type, cable wiring (so things fit and work). **Logical standards** : rules like **IP** that define how data is addressed and moved.",
+      "examReady": ""
+    },
+    "bigTakeaway": "Physical standards : connector shape, port type, cable wiring (so things fit and work).",
+    "sourceFiles": [
+      "02 - Day 2 - Interfaces & Cables.md",
+      "09 - Day 9 - Switch Interfaces.md"
+    ],
+    "confidence": "draft",
+    "needsReview": true,
+    "ckuIds": []
+  },
+  "5.3": {
+    "objectiveId": "5.3",
+    "operatorSummary": "Cisco IOS and the CLI\n\n\nCisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers,\nswitches, and firewalls . It is comparable to Windows or macOS on a computer and is not related to Apple’s\niOS . Cisco devices are primarily configured using the CLI (Command‑Line Interface), which allows precise, efficient\ncontrol.",
+    "keyPoints": [
+      "**RJ‑45 console port**",
+      "**USB mini‑B console port**",
+      "Pin 1 ↔ Pin 8",
+      "Pin 2 ↔ Pin 7",
+      "Pin 3 ↔ Pin 6",
+      "Pin 4 ↔ Pin 5",
+      "**Speed (baud rate): 9600 bps**",
+      "**Data bits: 8**"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [],
+    "tiers": {
+      "beginner": "Cisco IOS and the CLI\n\n\nCisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers,\nswitches, and firewalls . It is comparable to Windows or macOS on a computer and is not related to Apple’s\niOS .",
+      "intermediate": "Cisco IOS and the CLI\n\n\nCisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers,\nswitches, and firewalls . It is comparable to Windows or macOS on a computer and is not related to Apple’s\niOS . Cisco devices are primarily configured using the CLI (Command‑Line Interface), which allows precise, efficient\ncontrol. **RJ‑45 console port** **USB mini‑B console port**",
+      "examReady": "Cisco IOS and the CLI\n\n\nCisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers,\nswitches, and firewalls ."
+    },
+    "bigTakeaway": "Cisco IOS and the CLI Cisco IOS (Internetwork Operating System) is the operating system used on Cisco devices such as routers, switches, and firewalls .",
+    "sourceFiles": [
+      "04 - Day 4 - Intro to the CLI.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": []
+  },
+  "1.5": {
+    "objectiveId": "1.5",
+    "operatorSummary": "Lesson Focus\n\n\nThis lesson explains how data moves inside a Local Area Network (LAN) using Ethernet\nswitching . The focus is strictly on Layer 2 (Data Link layer) behavior—how switches receive, learn,\nflood, and forward Ethernet frames between end hosts. Communication between LANs (routing) is\nintentionally left for later.",
+    "keyPoints": [
+      "What Layer 4 does",
+      "What services TCP provides",
+      "What UDP does _not_ provide",
+      "When TCP vs UDP is used",
+      "How port numbers work",
+      "Encapsulates application data",
+      "Uses lower layers to deliver data transparently",
+      "Provides **process‑to‑process communication**",
+      "End hosts (PCs, servers)",
+      "**One router interface** connected to that LAN"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "What Layer 4 does",
+      "What services TCP provides",
+      "What UDP does _not_ provide",
+      "When TCP vs UDP is used",
+      "How port numbers work"
+    ],
+    "tiers": {
+      "beginner": "Lesson Focus\n\n\nThis lesson explains how data moves inside a Local Area Network (LAN) using Ethernet\nswitching . The focus is strictly on Layer 2 (Data Link layer) behavior—how switches receive, learn,\nflood, and forward Ethernet frames between end hosts.",
+      "intermediate": "Lesson Focus\n\n\nThis lesson explains how data moves inside a Local Area Network (LAN) using Ethernet\nswitching . The focus is strictly on Layer 2 (Data Link layer) behavior—how switches receive, learn,\nflood, and forward Ethernet frames between end hosts. Communication between LANs (routing) is\nintentionally left for later. What Layer 4 does What services TCP provides",
+      "examReady": "Lesson Focus\n\n\nThis lesson explains how data moves inside a Local Area Network (LAN) using Ethernet\nswitching ."
+    },
+    "bigTakeaway": "Lesson Focus This lesson explains how data moves inside a Local Area Network (LAN) using Ethernet switching .",
+    "sourceFiles": [
+      "34 - Day 30 - TCP & UDP.md",
+      "05 - Day 5 - Ethernet LAN Switching pt 1.md",
+      "06 - Day 6 - Ethernet LAN Switching pt 2.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": []
+  },
+  "1.6": {
+    "objectiveId": "1.6",
+    "operatorSummary": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes:\n\n- Class A → /8\n\n- Class B → /16\n\n- Class C → /24\nThis rigidity caused massive IP address waste :\n\n- Small networks receiving tens of thousands of unused addresses\n\n- Point‑to‑point links wasting entire /24 networks\nSubnetting solves this by allowing networks to be sized according to need . Subnetting works by borrowing host bits and turning them into network bits. To calculate",
+    "keyPoints": [
+      "**Layer 7–5** → Application data",
+      "**Layer 4** → TCP or UDP header added → **Segment**",
+      "**Layer 3** → IPv4 header added → **Packet**",
+      "**Layer 2** → Ethernet header + trailer added → **Frame**",
+      "Layer 2 → **MAC addresses**",
+      "Layer 3 → **IP addresses**",
+      "Identifies the IP version",
+      "**IPv4 = binary 0100**",
+      "Provides **logical addressing** using **IP addresses**",
+      "Enables **path selection** across multiple networks"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Identify subnet sizes",
+      "Find network and broadcast addresses",
+      "Determine which subnet a host belongs to",
+      "Calculate the number of subnets or hosts required",
+      "Apply the same process to **Class C and Class B networks**",
+      "Subnetting Class A networks",
+      "Identifying network, broadcast, and usable addresses",
+      "Solving mixed subnetting requirements"
+    ],
+    "tiers": {
+      "beginner": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes:\n\n- Class A → /8\n\n- Class B → /16\n\n- Class C → /24\nThis rigidity caused massive IP address waste :\n\n- Small networks receiving tens of thousands of unused addresses\n\n- Point‑to‑point links wasting entire /24 networks\nSubnetting solves this by allowing networks to be sized according to need . Subnetting works by borrowing host bits and turning them into network bits.",
+      "intermediate": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes:\n\n- Class A → /8\n\n- Class B → /16\n\n- Class C → /24\nThis rigidity caused massive IP address waste :\n\n- Small networks receiving tens of thousands of unused addresses\n\n- Point‑to‑point links wasting entire /24 networks\nSubnetting solves this by allowing networks to be sized according to need . Subnetting works by borrowing host bits and turning them into network bits. To calculate **Layer 7–5** → Application data **Laye",
+      "examReady": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes:\n\n- Class A → /8\n\n- Class B → /16\n\n- Class C → /24\nThis rigidity caused massive IP address waste :\n\n- Small networks receiving tens of thousands of unused addresses\n\n- Point‑to‑poin"
+    },
+    "bigTakeaway": "Early IPv4 networks used classful addressing (Class A, B, and C), which forced fixed network sizes: - Class A → /8 - Class B → /16 - Class.",
+    "sourceFiles": [
+      "10 - Day 10 - IPv4 Header.md",
+      "07 - Day 7 - IPv4 Addressing pt 1.md",
+      "13 - Day 13 - Subnetting pt 1.md",
+      "08 - Day 8 - IPv4 Addressing pt 2.md",
+      "14 - Day 14 - Subnetting pt 2.md",
+      "15 - Day 15 - Subnetting pt 3 - VLSM.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-SUBNETTING"
+    ]
+  },
+  "1.7": {
+    "objectiveId": "1.7",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Clarifying IPv4 address classes and reserved ranges",
+      "Explaining how to calculate:",
+      "Maximum usable hosts",
+      "Network address",
+      "Broadcast address",
+      "First and last usable addresses",
+      "Demonstrating **how to configure IPv4 addresses on Cisco router interfaces**",
+      "Introducing essential **verification (“show”) commands**"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [],
+    "tiers": {
+      "beginner": "Clarifying IPv4 address classes and reserved ranges",
+      "intermediate": "Clarifying IPv4 address classes and reserved ranges Explaining how to calculate:",
+      "examReady": ""
+    },
+    "bigTakeaway": "Clarifying IPv4 address classes and reserved ranges",
+    "sourceFiles": [
+      "08 - Day 8 - IPv4 Addressing pt 2.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": []
+  },
+  "3.1": {
+    "objectiveId": "3.1",
+    "operatorSummary": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). This directly supports CCNA skills like interpreting routing tables, understanding longest\nprefix match, and configuring static/default routes . Routing is the process routers use to determine the path that IP packets should take to reach ",
+    "keyPoints": [
+      "Switches forward based on **destination MAC** (Layer 2) and may **flood unknown unicasts**",
+      "Routers forward based on **destination IP** (Layer 3) and **do not flood** —they require a",
+      "show ip route",
+      "Route sources (codes like C, L, S)",
+      "Destination networks/prefixes",
+      "Next hop and/or exit interface",
+      "Default route info (“gateway of last resort”)",
+      "Interface IP: 192.168.1.1/24",
+      "The difference between static and dynamic routing",
+      "Why dynamic routing is preferred in larger networks"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "The difference between static and dynamic routing",
+      "Why dynamic routing is preferred in larger networks",
+      "The categories and algorithm types of routing protocols",
+      "What routing metrics are and how they’re used",
+      "What administrative distance (AD) is and why it matters",
+      "How ECMP and floating static routes work",
+      "Understand **what VRF is**",
+      "Understand **why VRF is used**"
+    ],
+    "tiers": {
+      "beginner": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). This directly supports CCNA skills like interpreting routing tables, understanding longest\nprefix match, and configuring static/default routes .",
+      "intermediate": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). This directly supports CCNA skills like interpreting routing tables, understanding longest\nprefix match, and configuring static/default routes . Routing is the process routers use to determine the path that IP packets should take to reach Switches forward based on **destination ",
+      "examReady": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). Switches forward based on **destination"
+    },
+    "bigTakeaway": "Lesson Focus (What you’re learning here) These two lectures form one complete foundation for Layer 3 routing : how routers decide where to send packets and how you.",
+    "sourceFiles": [
+      "11 - Day 11 - Routing Fundamentals & Static Routing.md",
+      "28 - Day 24 - Dynamic Routing.md",
+      "60 - Virtual Router & Forwarding (VRF).md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-ROUTING-TABLE"
+    ]
+  },
+  "3.3": {
+    "objectiveId": "3.3",
+    "operatorSummary": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). This directly supports CCNA skills like interpreting routing tables, understanding longest\nprefix match, and configuring static/default routes . Routing is the process routers use to determine the path that IP packets should take to reach ",
+    "keyPoints": [
+      "Switches forward based on **destination MAC** (Layer 2) and may **flood unknown unicasts**",
+      "Routers forward based on **destination IP** (Layer 3) and **do not flood** —they require a",
+      "show ip route",
+      "Route sources (codes like C, L, S)",
+      "Destination networks/prefixes",
+      "Next hop and/or exit interface",
+      "Default route info (“gateway of last resort”)",
+      "Interface IP: 192.168.1.1/24",
+      "**Exam Topic 3.3** — Configure and verify IPv6 static routing",
+      "Supporting knowledge from **1.8** and **1.9**"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Exam Topic 3.3** — Configure and verify IPv6 static routing",
+      "Supporting knowledge from **1.8** and **1.9**",
+      "Proper IPv6 address representation rules",
+      "The simplified IPv6 header",
+      "Neighbor Discovery Protocol (NDP) and how it replaces ARP",
+      "Solicited‑node multicast addresses",
+      "SLAAC (Stateless Address Autoconfiguration)",
+      "Duplicate Address Detection (DAD)"
+    ],
+    "tiers": {
+      "beginner": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). This directly supports CCNA skills like interpreting routing tables, understanding longest\nprefix match, and configuring static/default routes .",
+      "intermediate": "Lesson Focus (What you’re learning here)\n\nThese two lectures form one complete foundation for Layer 3 routing : how routers decide where to\nsend packets and how you manually teach them routes using static routes (including default\nroutes ). This directly supports CCNA skills like interpreting routing tables, understanding longest\nprefix match, and configuring static/default routes . Routing is the process routers use to determine the path that IP packets should take to reach Switches forward based on **destination ",
+      "examReady": "Exam Topic 3.3 — Configure and verify IPv6 static routing"
+    },
+    "bigTakeaway": "Lesson Focus (What you’re learning here) These two lectures form one complete foundation for Layer 3 routing : how routers decide where to send packets and how you.",
+    "sourceFiles": [
+      "11 - Day 11 - Routing Fundamentals & Static Routing.md",
+      "37 - Day 33 - IPv6 pt 3.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-ROUTING-TABLE"
+    ]
+  },
+  "3.2": {
+    "objectiveId": "3.2",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Source:** PC1 on 192.168.1.0/24",
+      "**Destination:** PC4 on 192.168.4.0/24",
+      "**Path:** PC1 → R1 → R2 → R4 → PC4",
+      "**Assumption:** Static routes are already configured so the path exists",
+      "**IP addresses stay the same end‑to‑end**",
+      "**MAC addresses change at every hop**",
+      "Its own IP/subnet: 192.168.1.0/24",
+      "Destination IP: 192.168.4.x",
+      "The difference between static and dynamic routing",
+      "Why dynamic routing is preferred in larger networks"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "The difference between static and dynamic routing",
+      "Why dynamic routing is preferred in larger networks",
+      "The categories and algorithm types of routing protocols",
+      "What routing metrics are and how they’re used",
+      "What administrative distance (AD) is and why it matters",
+      "How ECMP and floating static routes work",
+      "What RIP and EIGRP are and how they operate",
+      "How they differ from each other and from OSPF"
+    ],
+    "tiers": {
+      "beginner": "**Source:** PC1 on 192.168.1.0/24",
+      "intermediate": "**Source:** PC1 on 192.168.1.0/24 **Destination:** PC4 on 192.168.4.0/24",
+      "examReady": ""
+    },
+    "bigTakeaway": "Source: PC1 on 192.168.1.0/24",
+    "sourceFiles": [
+      "12 - Day 12 - The Life of a Packet.md",
+      "28 - Day 24 - Dynamic Routing.md",
+      "29 - Day 25 -  RIP & EIGRP.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-LONGEST-PREFIX-MATCH"
+    ]
+  },
+  "2.1": {
+    "objectiveId": "2.1",
+    "operatorSummary": "",
+    "keyPoints": [
+      "What a LAN really is",
+      "What a broadcast domain is",
+      "Why VLANs are necessary",
+      "How VLANs improve performance and security",
+      "How basic VLANs are configured on Cisco switches",
+      "The group of devices that will receive a **broadcast frame**",
+      "A broadcast frame is identified by a destination MAC address of **FFFF.FFFF.FFFF**",
+      "Forward (flood) broadcast and unknown unicast frames",
+      "What trunk ports are and why they are needed",
+      "How VLAN tagging works with 802.1Q"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "What a LAN really is",
+      "What a broadcast domain is",
+      "Why VLANs are necessary",
+      "How VLANs improve performance and security",
+      "How basic VLANs are configured on Cisco switches",
+      "What trunk ports are and why they are needed",
+      "How VLAN tagging works with 802.1Q",
+      "What the native VLAN is and why it matters"
+    ],
+    "tiers": {
+      "beginner": "What a LAN really is",
+      "intermediate": "What a LAN really is What a broadcast domain is",
+      "examReady": "Forward (flood) broadcast and unknown unicast frames"
+    },
+    "bigTakeaway": "What a LAN really is",
+    "sourceFiles": [
+      "16 - Day 16 - VLANs pt 1.md",
+      "17 - Day 17 - VLANs pt 2.md",
+      "18 - Day 18 - VLANs pt 3.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-VLAN"
+    ]
+  },
+  "2.2": {
+    "objectiveId": "2.2",
+    "operatorSummary": "",
+    "keyPoints": [
+      "What DTP does and how trunk negotiation works",
+      "Why DTP is considered a security risk",
+      "What VTP is designed to do",
+      "How VTP server, client, and transparent modes differ",
+      "Why VTP is rarely used in modern networks",
+      "Enabled by default on Cisco switches",
+      "Only works between Cisco devices",
+      "Uses DTP frames to negotiate trunk formation",
+      "What trunk ports are and why they are needed",
+      "How VLAN tagging works with 802.1Q"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "What DTP does and how trunk negotiation works",
+      "Why DTP is considered a security risk",
+      "What VTP is designed to do",
+      "How VTP server, client, and transparent modes differ",
+      "Why VTP is rarely used in modern networks",
+      "What trunk ports are and why they are needed",
+      "How VLAN tagging works with 802.1Q",
+      "What the native VLAN is and why it matters"
+    ],
+    "tiers": {
+      "beginner": "What DTP does and how trunk negotiation works",
+      "intermediate": "What DTP does and how trunk negotiation works Why DTP is considered a security risk",
+      "examReady": ""
+    },
+    "bigTakeaway": "What DTP does and how trunk negotiation works",
+    "sourceFiles": [
+      "19 - Day 19 - DTP & VTP.md",
+      "17 - Day 17 - VLANs pt 2.md",
+      "18 - Day 18 - VLANs pt 3.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": []
+  },
+  "2.5": {
+    "objectiveId": "2.5",
+    "operatorSummary": "",
+    "keyPoints": [
+      "The problem PortFast is designed to solve",
+      "Why STP causes a delay for newly connected hosts",
+      "How PortFast works and when it should be used",
+      "How to configure PortFast on access ports and trunk ports",
+      "Why PortFast must not be enabled on switch‑to‑switch links",
+      "The port becomes **up/up** at Layer 1 and Layer 2",
+      "However, STP prevents it from forwarding traffic immediately",
+      "The port must transition through:",
+      "Unauthorized switches",
+      "Accidental topology changes"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "The problem PortFast is designed to solve",
+      "Why STP causes a delay for newly connected hosts",
+      "How PortFast works and when it should be used",
+      "How to configure PortFast on access ports and trunk ports",
+      "Why PortFast must not be enabled on switch‑to‑switch links",
+      "Unauthorized switches",
+      "Accidental topology changes",
+      "Layer 2 loops caused by user behavior"
+    ],
+    "tiers": {
+      "beginner": "The problem PortFast is designed to solve",
+      "intermediate": "The problem PortFast is designed to solve Why STP causes a delay for newly connected hosts",
+      "examReady": "Why PortFast must not be enabled on switch‑to‑switch links"
+    },
+    "bigTakeaway": "The problem PortFast is designed to solve",
+    "sourceFiles": [
+      "22 - Port Fast.md",
+      "23 - BPDU Guard & BPDU Filter.md",
+      "24 - Root Guard.md",
+      "25 - Loop Guard.md",
+      "20 - Day 20 - Spanning Tree Protocol pt 1.md",
+      "21 - Day 21 - Spanning Tree Protocol pt 2.md",
+      "26 - Day 22 - Rapid Spanning Tree Protocol (RSTP).md"
+    ],
+    "confidence": "draft",
+    "needsReview": true,
+    "ckuIds": [
+      "CKU-STP-PORTFAST",
+      "CKU-STP-BPDU",
+      "CKU-STP",
+      "CKU-RSTP"
+    ]
+  },
+  "2.4": {
+    "objectiveId": "2.4",
+    "operatorSummary": "EtherChannel bundles multiple physical interfaces into:\n\n- One logical interface\n\n- Called a Port‑Channel\n\n- Also known as a Link Aggregation Group (LAG)\nKey behavior:\n\n- STP treats the bundle as one interface\n\n- All member links forward traffic\n\n- No Layer 2 loops are created\nEtherChannel provides:\n\n- Increased bandwidth\n\n- Redundancy\n\n- Efficient use of links",
+    "keyPoints": [
+      "Configure and verify **Layer 2 EtherChannel**",
+      "Configure and verify **Layer 3 EtherChannel**",
+      "Use **LACP (Link Aggregation Control Protocol)**",
+      "Why STP blocks redundant links",
+      "How EtherChannel increases bandwidth and redundancy",
+      "How EtherChannel load‑balances traffic",
+      "How to configure EtherChannel using PAgP, LACP, or static mode",
+      "How to verify EtherChannel operation"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Configure and verify **Layer 2 EtherChannel**",
+      "Configure and verify **Layer 3 EtherChannel**",
+      "Use **LACP (Link Aggregation Control Protocol)**",
+      "Why STP blocks redundant links",
+      "How EtherChannel increases bandwidth and redundancy",
+      "How EtherChannel load‑balances traffic",
+      "How to configure EtherChannel using PAgP, LACP, or static mode",
+      "How to verify EtherChannel operation"
+    ],
+    "tiers": {
+      "beginner": "EtherChannel bundles multiple physical interfaces into:\n\n- One logical interface\n\n- Called a Port‑Channel\n\n- Also known as a Link Aggregation Group (LAG)\nKey behavior:\n\n- STP treats the bundle as one interface\n\n- All member links forward traffic\n\n- No Layer 2 loops are created\nEtherChannel provides:\n\n- Increased bandwidth\n\n- Redundancy\n\n- Efficient use of links",
+      "intermediate": "EtherChannel bundles multiple physical interfaces into:\n\n- One logical interface\n\n- Called a Port‑Channel\n\n- Also known as a Link Aggregation Group (LAG)\nKey behavior:\n\n- STP treats the bundle as one interface\n\n- All member links forward traffic\n\n- No Layer 2 loops are created\nEtherChannel provides:\n\n- Increased bandwidth\n\n- Redundancy\n\n- Efficient use of links Configure and verify **Layer 2 EtherChannel** Configure and verify **Layer 3 EtherChannel**",
+      "examReady": "EtherChannel bundles multiple physical interfaces into:\n\n- One logical interface\n\n- Called a Port‑Channel\n\n- Also known as a Link Aggregation Group (LAG)\nKey behavior:\n\n- STP treats the bundle as one interface\n\n- All member links forward traffic\n\n- No Layer 2 loops are created\nEt"
+    },
+    "bigTakeaway": "EtherChannel bundles multiple physical interfaces into: - One logical interface - Called a Port‑Channel - Also known as a Link Aggregation Group (LAG) Key behavior: - STP treats.",
+    "sourceFiles": [
+      "27 - Day 23 - EtherChannel.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-ETHERCHANNEL"
+    ]
+  },
+  "3.4": {
+    "objectiveId": "3.4",
+    "operatorSummary": "OSPF is a:\n\n\n- Link‑state\n\n- Interior Gateway Protocol (IGP)\n\n- Defined by IEEE standard OSPFv2 for IPv4\nOSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate\nthe best paths through the network. Key contrast:\n\n- Distance vector protocols use “routing by rumor”\n\n- OSPF builds a complete topology map OSPF routers:\n\n- Form neighbor adjacencies\n\n- Exchange Link State Advertisements (LSAs)\n\n- Build an identical Link State Database (LSDB)",
+    "keyPoints": [
+      "How OSPF works at a high level",
+      "What LSAs and the LSDB are",
+      "The basic OSPF process flow",
+      "What OSPF areas are and why they exist",
+      "Core OSPF terminology (ABR, ASBR, backbone)",
+      "Basic single‑area OSPF configuration",
+      "OSPF router ID behavior",
+      "Interior Gateway Protocol (IGP)",
+      "How OSPF calculates its metric (cost)",
+      "Why default OSPF cost values are often misleading"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "How OSPF works at a high level",
+      "What LSAs and the LSDB are",
+      "The basic OSPF process flow",
+      "What OSPF areas are and why they exist",
+      "Core OSPF terminology (ABR, ASBR, backbone)",
+      "Basic single‑area OSPF configuration",
+      "OSPF router ID behavior",
+      "How OSPF calculates its metric (cost)"
+    ],
+    "tiers": {
+      "beginner": "OSPF is a:\n\n\n- Link‑state\n\n- Interior Gateway Protocol (IGP)\n\n- Defined by IEEE standard OSPFv2 for IPv4\nOSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate\nthe best paths through the network. Key contrast:\n\n- Distance vector protocols use “routing by rumor”\n\n- OSPF builds a complete topology map OSPF routers:\n\n- Form neighbor adjacencies\n\n- Exchange Link State Advertisements (LSAs)\n\n- Build an identical Link State Database (LSDB)",
+      "intermediate": "OSPF is a:\n\n\n- Link‑state\n\n- Interior Gateway Protocol (IGP)\n\n- Defined by IEEE standard OSPFv2 for IPv4\nOSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate\nthe best paths through the network. Key contrast:\n\n- Distance vector protocols use “routing by rumor”\n\n- OSPF builds a complete topology map OSPF routers:\n\n- Form neighbor adjacencies\n\n- Exchange Link State Advertisements (LSAs)\n\n- Build an identical Link State Database (LSDB) How OSPF works at a high level What LSA",
+      "examReady": "OSPF is a:\n\n\n- Link‑state\n\n- Interior Gateway Protocol (IGP)\n\n- Defined by IEEE standard OSPFv2 for IPv4\nOSPF uses the Shortest Path First (SPF) algorithm, also called Dijkstra’s algorithm, to calculate\nthe best paths through the network."
+    },
+    "bigTakeaway": "OSPF is a: - Link‑state - Interior Gateway Protocol (IGP) - Defined by IEEE standard OSPFv2 for IPv4 OSPF uses the Shortest Path First (SPF) algorithm, also called.",
+    "sourceFiles": [
+      "30 - Day 26 - OSPF pt 1.md",
+      "31 - Day 27 - OSPF pt 2.md",
+      "32 - Day 28 - OSPF pt 3.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-OSPF",
+      "CKU-OSPF-NEIGHBOR",
+      "CKU-OSPF-COST"
+    ]
+  },
+  "3.5": {
+    "objectiveId": "3.5",
+    "operatorSummary": "FHRPs work using these concepts:\n\n- Routers share a virtual IP\n\n- A virtual MAC is mapped to that IP\n\n- Routers exchange hello messages\n\n- One router is active (or master)",
+    "keyPoints": [
+      "Why default gateway redundancy is required",
+      "How FHRPs function at a high level",
+      "What virtual IP and virtual MAC addresses are",
+      "How failover occurs without host changes",
+      "Differences between **HSRP**, **VRRP**, and **GLBP**",
+      "When each FHRP would be used",
+      "A subnet has only one default gateway",
+      "That router fails"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Why default gateway redundancy is required",
+      "How FHRPs function at a high level",
+      "What virtual IP and virtual MAC addresses are",
+      "How failover occurs without host changes",
+      "Differences between **HSRP**, **VRRP**, and **GLBP**",
+      "When each FHRP would be used"
+    ],
+    "tiers": {
+      "beginner": "FHRPs work using these concepts:\n\n- Routers share a virtual IP\n\n- A virtual MAC is mapped to that IP\n\n- Routers exchange hello messages\n\n- One router is active (or master)",
+      "intermediate": "FHRPs work using these concepts:\n\n- Routers share a virtual IP\n\n- A virtual MAC is mapped to that IP\n\n- Routers exchange hello messages\n\n- One router is active (or master) Why default gateway redundancy is required How FHRPs function at a high level",
+      "examReady": "FHRPs work using these concepts:\n\n- Routers share a virtual IP\n\n- A virtual MAC is mapped to that IP\n\n- Routers exchange hello messages\n\n- One router is active (or master)"
+    },
+    "bigTakeaway": "FHRPs work using these concepts: - Routers share a virtual IP - A virtual MAC is mapped to that IP - Routers exchange hello messages - One router.",
+    "sourceFiles": [
+      "33 - Day 29 - First Hop Redundancy.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-FHRP"
+    ]
+  },
+  "1.8": {
+    "objectiveId": "1.8",
+    "operatorSummary": "IPv4 addresses are 32 bits long, allowing approximately 4.3 billion addresses . This once seemed\nenormous, but today it is insufficient due to:\n\n- Global internet growth\n\n- Mobile devices\n\n- IoT (Internet of Things)\n\n- Cloud services\n\nShort‑term IPv4 solutions:\n\n\n- VLSM\n\n- Private IPv4 addresses\n\n- NAT\nThese extend IPv4, but do not solve exhaustion . IPv6 is the long‑term solution .",
+    "keyPoints": [
+      "**Exam Topic 1.8** — Configure and verify IPv6 addressing and prefixes",
+      "**Exam Topic 1.9** — Compare IPv6 address types",
+      "Why IPv6 is required",
+      "How hexadecimal works (and why it matters)",
+      "The structure of IPv6 addresses",
+      "How IPv6 addresses are shortened and expanded",
+      "How IPv6 prefixes work",
+      "How to configure IPv6 on Cisco routers",
+      "How **EUI‑64** works and why it exists",
+      "How IPv6 interfaces automatically generate addresses"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Exam Topic 1.8** — Configure and verify IPv6 addressing and prefixes",
+      "**Exam Topic 1.9** — Compare IPv6 address types",
+      "Why IPv6 is required",
+      "How hexadecimal works (and why it matters)",
+      "The structure of IPv6 addresses",
+      "How IPv6 addresses are shortened and expanded",
+      "How IPv6 prefixes work",
+      "How to configure IPv6 on Cisco routers"
+    ],
+    "tiers": {
+      "beginner": "IPv4 addresses are 32 bits long, allowing approximately 4.3 billion addresses . This once seemed\nenormous, but today it is insufficient due to:\n\n- Global internet growth\n\n- Mobile devices\n\n- IoT (Internet of Things)\n\n- Cloud services\n\nShort‑term IPv4 solutions:\n\n\n- VLSM\n\n- Private IPv4 addresses\n\n- NAT\nThese extend IPv4, but do not solve exhaustion .",
+      "intermediate": "IPv4 addresses are 32 bits long, allowing approximately 4.3 billion addresses . This once seemed\nenormous, but today it is insufficient due to:\n\n- Global internet growth\n\n- Mobile devices\n\n- IoT (Internet of Things)\n\n- Cloud services\n\nShort‑term IPv4 solutions:\n\n\n- VLSM\n\n- Private IPv4 addresses\n\n- NAT\nThese extend IPv4, but do not solve exhaustion . IPv6 is the long‑term solution . **Exam Topic 1.8** — Configure and verify IPv6 addressing and prefixes **Exam Topic 1.9** — Compare IPv6 address types",
+      "examReady": "Exam Topic 1.8 — Configure and verify IPv6 addressing and prefixes"
+    },
+    "bigTakeaway": "IPv4 addresses are 32 bits long, allowing approximately 4.3 billion addresses .",
+    "sourceFiles": [
+      "35 - Day 31 - IPv6 pt 1.md",
+      "36 - Day 32 - IPv6 pt 2.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-IPV6"
+    ]
+  },
+  "1.9": {
+    "objectiveId": "1.9",
+    "operatorSummary": "",
+    "keyPoints": [
+      "How **EUI‑64** works and why it exists",
+      "How IPv6 interfaces automatically generate addresses",
+      "All major IPv6 address types",
+      "When and why each IPv6 address type is used",
+      "IPv6 multicast scopes and important multicast groups",
+      "What makes IPv6 different from IPv4 at Layer 3",
+      "IPv6 commonly uses a **/64 prefix**",
+      "The remaining **64 bits** can be generated automatically from the interface MAC address",
+      "**Exam Topic 3.3** — Configure and verify IPv6 static routing",
+      "Supporting knowledge from **1.8** and **1.9**"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "How **EUI‑64** works and why it exists",
+      "How IPv6 interfaces automatically generate addresses",
+      "All major IPv6 address types",
+      "When and why each IPv6 address type is used",
+      "IPv6 multicast scopes and important multicast groups",
+      "What makes IPv6 different from IPv4 at Layer 3",
+      "**Exam Topic 3.3** — Configure and verify IPv6 static routing",
+      "Supporting knowledge from **1.8** and **1.9**"
+    ],
+    "tiers": {
+      "beginner": "How **EUI‑64** works and why it exists",
+      "intermediate": "How **EUI‑64** works and why it exists How IPv6 interfaces automatically generate addresses",
+      "examReady": "Exam Topic 3.3 — Configure and verify IPv6 static routing"
+    },
+    "bigTakeaway": "How EUI‑64 works and why it exists",
+    "sourceFiles": [
+      "36 - Day 32 - IPv6 pt 2.md",
+      "37 - Day 33 - IPv6 pt 3.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": []
+  },
+  "5.5": {
+    "objectiveId": "5.5",
+    "operatorSummary": "",
+    "keyPoints": [
+      "What ACLs are and why they exist",
+      "How ACL logic works inside a router",
+      "Inbound vs outbound ACL processing",
+      "The concept of implicit deny",
+      "Standard vs extended ACLs (high‑level)",
+      "Standard numbered ACLs",
+      "Standard named ACLs",
+      "Proper placement of standard ACLs",
+      "ACLs are processed **top‑down**",
+      "**First match wins**"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "What ACLs are and why they exist",
+      "How ACL logic works inside a router",
+      "Inbound vs outbound ACL processing",
+      "The concept of implicit deny",
+      "Standard vs extended ACLs (high‑level)",
+      "Standard numbered ACLs",
+      "Standard named ACLs",
+      "Proper placement of standard ACLs"
+    ],
+    "tiers": {
+      "beginner": "What ACLs are and why they exist",
+      "intermediate": "What ACLs are and why they exist How ACL logic works inside a router",
+      "examReady": ""
+    },
+    "bigTakeaway": "What ACLs are and why they exist",
+    "sourceFiles": [
+      "38 - Day 34 - Standard ACLs.md",
+      "39 - Day 35 - Extended ACLs.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-ACL-STANDARD",
+      "CKU-ACL-EXTENDED"
+    ]
+  },
+  "2.3": {
+    "objectiveId": "2.3",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Exam Topic 2.3** — Configure and verify Layer 2 discovery protocols CDP and LLDP",
+      "What Layer 2 discovery protocols are",
+      "How CDP works and how to verify/configure it",
+      "How LLDP works and how to verify/configure it",
+      "Key differences between CDP and LLDP",
+      "When and why these protocols are enabled or disabled",
+      "Device type (router, switch, etc.)",
+      "Interface identifiers"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Exam Topic 2.3** — Configure and verify Layer 2 discovery protocols CDP and LLDP",
+      "What Layer 2 discovery protocols are",
+      "How CDP works and how to verify/configure it",
+      "How LLDP works and how to verify/configure it",
+      "Key differences between CDP and LLDP",
+      "When and why these protocols are enabled or disabled"
+    ],
+    "tiers": {
+      "beginner": "**Exam Topic 2.3** — Configure and verify Layer 2 discovery protocols CDP and LLDP",
+      "intermediate": "**Exam Topic 2.3** — Configure and verify Layer 2 discovery protocols CDP and LLDP What Layer 2 discovery protocols are",
+      "examReady": "Exam Topic 2.3 — Configure and verify Layer 2 discovery protocols CDP and LLDP"
+    },
+    "bigTakeaway": "Exam Topic 2.3 — Configure and verify Layer 2 discovery protocols CDP and LLDP",
+    "sourceFiles": [
+      "40 - Day 36 - CDP & LLDP.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-CDP-LLDP"
+    ]
+  },
+  "4.2": {
+    "objectiveId": "4.2",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Exam Topic 4.2** — Configure and verify NTP operating in client and server mode",
+      "Why accurate time matters on network devices",
+      "How to manually configure time and date",
+      "The difference between the software clock and hardware calendar",
+      "Time zones and daylight saving time configuration",
+      "NTP fundamentals and hierarchy",
+      "NTP stratum levels",
+      "NTP client, server, and peer modes"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Exam Topic 4.2** — Configure and verify NTP operating in client and server mode",
+      "Why accurate time matters on network devices",
+      "How to manually configure time and date",
+      "The difference between the software clock and hardware calendar",
+      "Time zones and daylight saving time configuration",
+      "NTP fundamentals and hierarchy",
+      "NTP stratum levels",
+      "NTP client, server, and peer modes"
+    ],
+    "tiers": {
+      "beginner": "**Exam Topic 4.2** — Configure and verify NTP operating in client and server mode",
+      "intermediate": "**Exam Topic 4.2** — Configure and verify NTP operating in client and server mode Why accurate time matters on network devices",
+      "examReady": "Exam Topic 4.2 — Configure and verify NTP operating in client and server mode"
+    },
+    "bigTakeaway": "Exam Topic 4.2 — Configure and verify NTP operating in client and server mode",
+    "sourceFiles": [
+      "41 - Day 37 - Network Time Protocol (NTP).md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-NTP"
+    ]
+  },
+  "4.3": {
+    "objectiveId": "4.3",
+    "operatorSummary": "Client needs to access a resource using a name\n2. Client sends a DNS query to a DNS server\n3. DNS server replies with the IP address\n4.",
+    "keyPoints": [
+      "**Exam Topic 4.3** — Explain the role of DHCP and DNS within the network",
+      "You do **not** need deep DNS internals",
+      "You **do** need to understand purpose, basic operation, common record types, and basic Cisco",
+      "Why DNS exists",
+      "How DNS works at a high level",
+      "Common DNS record types (A, AAAA, CNAME)",
+      "DNS caching and hosts files",
+      "DNS behavior on end hosts",
+      "**Exam Topic 4.6** — Configure and verify DHCP client and relay",
+      "Why DHCP exists and what problem it solves"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Exam Topic 4.3** — Explain the role of DHCP and DNS within the network",
+      "You do **not** need deep DNS internals",
+      "You **do** need to understand purpose, basic operation, common record types, and basic Cisco",
+      "Why DNS exists",
+      "How DNS works at a high level",
+      "Common DNS record types (A, AAAA, CNAME)",
+      "DNS caching and hosts files",
+      "DNS behavior on end hosts"
+    ],
+    "tiers": {
+      "beginner": "Client needs to access a resource using a name\n2. Client sends a DNS query to a DNS server\n3.",
+      "intermediate": "Client needs to access a resource using a name\n2. Client sends a DNS query to a DNS server\n3. DNS server replies with the IP address\n4. **Exam Topic 4.3** — Explain the role of DHCP and DNS within the network You do **not** need deep DNS internals",
+      "examReady": "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network"
+    },
+    "bigTakeaway": "Client needs to access a resource using a name 2.",
+    "sourceFiles": [
+      "42 - Day 38 - Domain Name System (DNS).md",
+      "43 - Day 39 - Dynamic Host Configuration Protocol (DHCP).md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-DNS",
+      "CKU-DHCP"
+    ]
+  },
+  "4.6": {
+    "objectiveId": "4.6",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Exam Topic 4.3** — Explain the role of DHCP and DNS within the network",
+      "**Exam Topic 4.6** — Configure and verify DHCP client and relay",
+      "Why DHCP exists and what problem it solves",
+      "What information DHCP provides to clients",
+      "The DHCP DORA process",
+      "DHCP message types and ports",
+      "DHCP lease behavior",
+      "DHCP relay agents and why they are needed"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Exam Topic 4.3** — Explain the role of DHCP and DNS within the network",
+      "**Exam Topic 4.6** — Configure and verify DHCP client and relay",
+      "Why DHCP exists and what problem it solves",
+      "What information DHCP provides to clients",
+      "The DHCP DORA process",
+      "DHCP message types and ports",
+      "DHCP lease behavior",
+      "DHCP relay agents and why they are needed"
+    ],
+    "tiers": {
+      "beginner": "**Exam Topic 4.3** — Explain the role of DHCP and DNS within the network",
+      "intermediate": "**Exam Topic 4.3** — Explain the role of DHCP and DNS within the network **Exam Topic 4.6** — Configure and verify DHCP client and relay",
+      "examReady": "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network"
+    },
+    "bigTakeaway": "Exam Topic 4.3 — Explain the role of DHCP and DNS within the network",
+    "sourceFiles": [
+      "43 - Day 39 - Dynamic Host Configuration Protocol (DHCP).md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-DHCP"
+    ]
+  },
+  "4.4": {
+    "objectiveId": "4.4",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Exam Topic 4.4** — Explain the function of SNMP in network operations",
+      "You do **not** need to configure a full SNMP system",
+      "You do **not** need to deeply understand every message type",
+      "You **do** need to understand **purpose, roles, versions, and basic message behavior**",
+      "Why SNMP exists",
+      "How SNMP fits into network operations",
+      "The roles of SNMP manager and agent",
+      "What an NMS is"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Exam Topic 4.4** — Explain the function of SNMP in network operations",
+      "You do **not** need to configure a full SNMP system",
+      "You do **not** need to deeply understand every message type",
+      "You **do** need to understand **purpose, roles, versions, and basic message behavior**",
+      "Why SNMP exists",
+      "How SNMP fits into network operations",
+      "The roles of SNMP manager and agent",
+      "What an NMS is"
+    ],
+    "tiers": {
+      "beginner": "**Exam Topic 4.4** — Explain the function of SNMP in network operations",
+      "intermediate": "**Exam Topic 4.4** — Explain the function of SNMP in network operations You do **not** need to configure a full SNMP system",
+      "examReady": "Exam Topic 4.4 — Explain the function of SNMP in network operations"
+    },
+    "bigTakeaway": "Exam Topic 4.4 — Explain the function of SNMP in network operations",
+    "sourceFiles": [
+      "44 - Day 40 - Simple Network Management Protocol.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-SNMP"
+    ]
+  },
+  "4.5": {
+    "objectiveId": "4.5",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Exam Topic 4.5** — Describe the use of syslog features including **facilities** and **levels**",
+      "You must understand **what Syslog is used for**",
+      "You must understand **Syslog message structure**",
+      "You must memorize **severity levels**",
+      "You must understand **facilities vs severity**",
+      "You do **not** need deep server‑side configuration knowledge",
+      "Why Syslog is important",
+      "How Syslog works at a high level"
+    ],
+    "examTraps": [
+      {
+        "trap": "- You must memorize severity levels",
+        "correction": "- You must memorize severity levels"
+      }
+    ],
+    "learningOutcomes": [
+      "**Exam Topic 4.5** — Describe the use of syslog features including **facilities** and **levels**",
+      "You must understand **what Syslog is used for**",
+      "You must understand **Syslog message structure**",
+      "You must memorize **severity levels**",
+      "You must understand **facilities vs severity**",
+      "You do **not** need deep server‑side configuration knowledge",
+      "Why Syslog is important",
+      "How Syslog works at a high level"
+    ],
+    "tiers": {
+      "beginner": "**Exam Topic 4.5** — Describe the use of syslog features including **facilities** and **levels**",
+      "intermediate": "**Exam Topic 4.5** — Describe the use of syslog features including **facilities** and **levels** You must understand **what Syslog is used for**",
+      "examReady": "Exam Topic 4.5 — Describe the use of syslog features including facilities and levels"
+    },
+    "bigTakeaway": "Exam Topic 4.5 — Describe the use of syslog features including facilities and levels",
+    "sourceFiles": [
+      "45 - Day 41 - Syslog.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-SYSLOG"
+    ]
+  },
+  "4.8": {
+    "objectiveId": "4.8",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Exam Topic 4.8** — Configure network devices for remote access using SSH",
+      "Console port security basics",
+      "What the console line and VTY lines are",
+      "How Layer 2 switches can be managed remotely",
+      "What Telnet is and why it is insecure",
+      "What SSH is and why it is preferred",
+      "SSH versions and encryption",
+      "SSH port number"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Exam Topic 4.8** — Configure network devices for remote access using SSH",
+      "Console port security basics",
+      "What the console line and VTY lines are",
+      "How Layer 2 switches can be managed remotely",
+      "What Telnet is and why it is insecure",
+      "What SSH is and why it is preferred",
+      "SSH versions and encryption",
+      "SSH port number"
+    ],
+    "tiers": {
+      "beginner": "**Exam Topic 4.8** — Configure network devices for remote access using SSH",
+      "intermediate": "**Exam Topic 4.8** — Configure network devices for remote access using SSH Console port security basics",
+      "examReady": "Exam Topic 4.8 — Configure network devices for remote access using SSH"
+    },
+    "bigTakeaway": "Exam Topic 4.8 — Configure network devices for remote access using SSH",
+    "sourceFiles": [
+      "46 - Day 42 - Secure Shell (SSH).md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-SSH"
+    ]
+  },
+  "4.9": {
+    "objectiveId": "4.9",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Exam Topic 4.9** — Describe the capabilities and function of TFTP and FTP in the network",
+      "You do **not** need deep protocol internals",
+      "You **do** need to understand:",
+      "Security differences",
+      "Common use cases",
+      "Basic IOS file operations",
+      "What FTP and TFTP are used for",
+      "How FTP and TFTP differ"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Exam Topic 4.9** — Describe the capabilities and function of TFTP and FTP in the network",
+      "You do **not** need deep protocol internals",
+      "You **do** need to understand:",
+      "Purpose",
+      "Capabilities",
+      "Port numbers",
+      "Security differences",
+      "Common use cases"
+    ],
+    "tiers": {
+      "beginner": "**Exam Topic 4.9** — Describe the capabilities and function of TFTP and FTP in the network",
+      "intermediate": "**Exam Topic 4.9** — Describe the capabilities and function of TFTP and FTP in the network You do **not** need deep protocol internals",
+      "examReady": "Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network"
+    },
+    "bigTakeaway": "Exam Topic 4.9 — Describe the capabilities and function of TFTP and FTP in the network",
+    "sourceFiles": [
+      "47 - Day 43 - File  Transfer Protocol (FTP) & Trivial File Transfer Protocol (TFTP).md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-TFTP-FTP"
+    ]
+  },
+  "4.1": {
+    "objectiveId": "4.1",
+    "operatorSummary": "IPv4 does not provide enough globally unique addresses for all devices. Short‑term solutions that extended IPv4’s lifespan:\n\n- CIDR (Classless Inter‑Domain Routing)\n\n- Private IPv4 addresses\n\n- NAT\nLong‑term solution:\n\n- IPv6",
+    "keyPoints": [
+      "**Exam Topic 4.1** — Configure and verify **inside source NAT** using **static** and **pools**",
+      "Private IPv4 addresses",
+      "Why NAT exists",
+      "How NAT works at a high level",
+      "**Static source NAT**",
+      "NAT terminology (inside local, inside global, etc.)",
+      "Basic static NAT configuration and verification",
+      "**CIDR** (Classless Inter‑Domain Routing)",
+      "**Dynamic NAT** (inside local ↔ inside global mappings created automatically from a pool)",
+      "**PAT / NAT Overload** (many inside locals share one inside global using Layer 4 ports)"
+    ],
+    "examTraps": [
+      {
+        "trap": "### Private Address Ranges (Must Memorize)",
+        "correction": "### Private Address Ranges (Must Memorize)"
+      }
+    ],
+    "learningOutcomes": [
+      "**Exam Topic 4.1** — Configure and verify **inside source NAT** using **static** and **pools**",
+      "Private IPv4 addresses",
+      "Why NAT exists",
+      "How NAT works at a high level",
+      "**Static source NAT**",
+      "NAT terminology (inside local, inside global, etc.)",
+      "Basic static NAT configuration and verification",
+      "**Dynamic NAT** (inside local ↔ inside global mappings created automatically from a pool)"
+    ],
+    "tiers": {
+      "beginner": "IPv4 does not provide enough globally unique addresses for all devices. Short‑term solutions that extended IPv4’s lifespan:\n\n- CIDR (Classless Inter‑Domain Routing)\n\n- Private IPv4 addresses\n\n- NAT\nLong‑term solution:\n\n- IPv6",
+      "intermediate": "IPv4 does not provide enough globally unique addresses for all devices. Short‑term solutions that extended IPv4’s lifespan:\n\n- CIDR (Classless Inter‑Domain Routing)\n\n- Private IPv4 addresses\n\n- NAT\nLong‑term solution:\n\n- IPv6 **Exam Topic 4.1** — Configure and verify **inside source NAT** using **static** and **pools** Private IPv4 addresses",
+      "examReady": "Exam Topic 4.1 — Configure and verify inside source NAT using static and pools"
+    },
+    "bigTakeaway": "IPv4 does not provide enough globally unique addresses for all devices.",
+    "sourceFiles": [
+      "48 - Day 44 - Network Address Translation (NAT) pt 1.md",
+      "49 - Day 45 - Network Address Translation (NAT) pt 2.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-NAT",
+      "CKU-NAT-TERMS",
+      "CKU-NAT-PAT"
+    ]
+  },
+  "4.7": {
+    "objectiveId": "4.7",
+    "operatorSummary": "",
+    "keyPoints": [
+      "**Exam Topic 4.7** — Explain the forwarding per‑hop behavior (PHB) for QoS",
+      "**IP phones**",
+      "**Voice VLANs**",
+      "**Power over Ethernet (PoE)**",
+      "How IP phones connect to switches",
+      "What a voice VLAN is and why it’s used",
+      "What PoE is and why it’s important",
+      "Why QoS exists"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Exam Topic 4.7** — Explain the forwarding per‑hop behavior (PHB) for QoS",
+      "**IP phones**",
+      "**Voice VLANs**",
+      "**Power over Ethernet (PoE)**",
+      "How IP phones connect to switches",
+      "What a voice VLAN is and why it’s used",
+      "What PoE is and why it’s important",
+      "Why QoS exists"
+    ],
+    "tiers": {
+      "beginner": "**Exam Topic 4.7** — Explain the forwarding per‑hop behavior (PHB) for QoS",
+      "intermediate": "**Exam Topic 4.7** — Explain the forwarding per‑hop behavior (PHB) for QoS **IP phones**",
+      "examReady": "Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS"
+    },
+    "bigTakeaway": "Exam Topic 4.7 — Explain the forwarding per‑hop behavior (PHB) for QoS",
+    "sourceFiles": [
+      "50 - Day 46 - Quality of Service (QoS) pt 1.md",
+      "51 - Day 47 - Quality of Service (QoS) pt 2.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-QOS"
+    ]
+  },
+  "5.1": {
+    "objectiveId": "5.1",
+    "operatorSummary": "All security goals map back to the CIA triad :\nConfidentiality (C)\n\n- Only authorized users can access data\n\n- Prevents data disclosure\nExamples:\n\n- Password‑protected files\n\n- Encrypted traffic\n\n- Access control lists\n\nIntegrity (I)\n\n- Data must not be altered by unauthorized users\n\n- Ensures accuracy and trustworthiness\nExamples:\n\n- File checksums\n\n- Digital signatures\n\n- Change control logging\n\nAvailability (A)\n\n- Systems and data must be accessible when needed\n\n- Protects",
+    "keyPoints": [
+      "Recognize common threats",
+      "Understand why security controls exist",
+      "Apply basic security principles in networking environments",
+      "The **CIA triad**",
+      "Vulnerabilities, exploits, threats, and mitigations",
+      "Common attack types",
+      "Password security and multi‑factor authentication",
+      "AAA (Authentication, Authorization, Accounting)"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Recognize common threats",
+      "Understand why security controls exist",
+      "Apply basic security principles in networking environments",
+      "The **CIA triad**",
+      "Vulnerabilities, exploits, threats, and mitigations",
+      "Common attack types",
+      "Password security and multi‑factor authentication",
+      "AAA (Authentication, Authorization, Accounting)"
+    ],
+    "tiers": {
+      "beginner": "All security goals map back to the CIA triad :\nConfidentiality (C)\n\n- Only authorized users can access data\n\n- Prevents data disclosure\nExamples:\n\n- Password‑protected files\n\n- Encrypted traffic\n\n- Access control lists\n\nIntegrity (I)\n\n- Data must not be altered by unauthorized users\n\n- Ensures accuracy and trustworthiness\nExamples:\n\n- File checksums\n\n- Digital signatures\n\n- Change control logging\n\nAvailability (A)\n\n- Systems and data must be accessible when needed\n\n- Protects",
+      "intermediate": "All security goals map back to the CIA triad :\nConfidentiality (C)\n\n- Only authorized users can access data\n\n- Prevents data disclosure\nExamples:\n\n- Password‑protected files\n\n- Encrypted traffic\n\n- Access control lists\n\nIntegrity (I)\n\n- Data must not be altered by unauthorized users\n\n- Ensures accuracy and trustworthiness\nExamples:\n\n- File checksums\n\n- Digital signatures\n\n- Change control logging\n\nAvailability (A)\n\n- Systems and data must be accessible when needed\n\n- Protects Recognize common threats Understand why",
+      "examReady": "All security goals map back to the CIA triad :\nConfidentiality (C)\n\n- Only authorized users can access data\n\n- Prevents data disclosure\nExamples:\n\n- Password‑protected files\n\n- Encrypted traffic\n\n- Access control lists\n\nIntegrity (I)\n\n- Data must not be altered by unauthorized us"
+    },
+    "bigTakeaway": "All security goals map back to the CIA triad : Confidentiality (C) - Only authorized users can access data - Prevents data disclosure Examples: - Password‑protected files -.",
+    "sourceFiles": [
+      "52 - Day 48 - Security Fundamentals.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-CIA-TRIAD"
+    ]
+  },
+  "5.6": {
+    "objectiveId": "5.6",
+    "operatorSummary": "Client sends DHCP DISCOVER (untrusted port)\n2. Switch inspects message\n3. If valid → forwards it\n4. ARP has no built‑in authentication :",
+    "keyPoints": [
+      "**Which source MAC addresses** are allowed on a switchport",
+      "**How many MAC addresses** are allowed on a switchport",
+      "**What action** the switch takes when an unauthorized MAC address appears",
+      "**Exam Topic 5.7** — Configure and verify Layer 2 security features",
+      "What port security does and why it’s used",
+      "Secure MAC address concepts",
+      "Port‑security defaults",
+      "Violation modes (shutdown, restrict, protect)",
+      "What DHCP snooping is and why it exists",
+      "Trusted vs untrusted ports"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "**Which source MAC addresses** are allowed on a switchport",
+      "**How many MAC addresses** are allowed on a switchport",
+      "**What action** the switch takes when an unauthorized MAC address appears",
+      "**Exam Topic 5.7** — Configure and verify Layer 2 security features",
+      "What port security does and why it’s used",
+      "Secure MAC address concepts",
+      "Port‑security defaults",
+      "Violation modes (shutdown, restrict, protect)"
+    ],
+    "tiers": {
+      "beginner": "Client sends DHCP DISCOVER (untrusted port)\n2. Switch inspects message\n3.",
+      "intermediate": "Client sends DHCP DISCOVER (untrusted port)\n2. Switch inspects message\n3. If valid → forwards it\n4. **Which source MAC addresses** are allowed on a switchport **How many MAC addresses** are allowed on a switchport",
+      "examReady": "Exam Topic 5.7 — Configure and verify Layer 2 security features"
+    },
+    "bigTakeaway": "Client sends DHCP DISCOVER (untrusted port) 2.",
+    "sourceFiles": [
+      "53 - Day 49 - Port Security.md",
+      "54 - Day 50 - DHCP Snooping.md",
+      "55 - Day 51 - Dynamic ARP Inspection (DAI).md"
+    ],
+    "confidence": "draft",
+    "needsReview": true,
+    "ckuIds": [
+      "CKU-PORT-SECURITY",
+      "CKU-DHCP-SNOOPING",
+      "CKU-DAI"
+    ]
+  },
+  "1.2": {
+    "objectiveId": "1.2",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Simplicity of management",
+      "Recognize common architectures",
+      "Understand **why** each exists",
+      "Know **where functions live** (QoS, security, routing, switching)",
+      "Many devices connect to **one central device**",
+      "Common at the **access layer**",
+      "PCs → access switch",
+      "Every device connects to **every other device**",
+      "You are expected to **recognize technologies**",
+      "Understand **what problem each solves**"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Scalability",
+      "Redundancy",
+      "Performance",
+      "Simplicity of management",
+      "Recognize common architectures",
+      "Understand **why** each exists",
+      "Know **where functions live** (QoS, security, routing, switching)",
+      "You are expected to **recognize technologies**"
+    ],
+    "tiers": {
+      "beginner": "Simplicity of management",
+      "intermediate": "Simplicity of management Recognize common architectures",
+      "examReady": "Know **where functions live** (QoS, security, routing, switching)"
+    },
+    "bigTakeaway": "Simplicity of management",
+    "sourceFiles": [
+      "56 - Day 52 - LAN Architectures.md",
+      "57 - Day 53 - WAN Architectures.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": []
+  },
+  "1.12": {
+    "objectiveId": "1.12",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Understand **what virtualization is**",
+      "Know **Type 1 vs Type 2 hypervisors**",
+      "Understand **basic virtual networking**",
+      "Know **what cloud computing is**",
+      "**5 essential cloud characteristics**",
+      "**3 cloud service models**",
+      "**4 cloud deployment models**",
+      "Understand **on‑prem vs cloud vs hybrid**",
+      "Understand **what containers are**",
+      "Understand **how containers differ from VMs**"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Understand **what virtualization is**",
+      "Know **Type 1 vs Type 2 hypervisors**",
+      "Understand **basic virtual networking**",
+      "Know **what cloud computing is**",
+      "Memorize:",
+      "**5 essential cloud characteristics**",
+      "**3 cloud service models**",
+      "**4 cloud deployment models**"
+    ],
+    "tiers": {
+      "beginner": "Understand **what virtualization is**",
+      "intermediate": "Understand **what virtualization is** Know **Type 1 vs Type 2 hypervisors**",
+      "examReady": "Know **Type 1 vs Type 2 hypervisors**"
+    },
+    "bigTakeaway": "Understand what virtualization is",
+    "sourceFiles": [
+      "58 - Day 54 - Virtualization & Cloud.md",
+      "59 - Containers.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-VIRTUALIZATION"
+    ]
+  },
+  "1.11": {
+    "objectiveId": "1.11",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Understand **basic wireless operation**",
+      "Understand **radio frequency concepts**",
+      "Know **2.4 GHz vs 5 GHz**",
+      "Know **nonoverlapping channels**",
+      "Understand **APs, SSIDs, and service sets**",
+      "Design enterprise WLANs",
+      "Configure WLCs",
+      "Perform site surveys"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Understand **basic wireless operation**",
+      "Understand **radio frequency concepts**",
+      "Know **2.4 GHz vs 5 GHz**",
+      "Know **nonoverlapping channels**",
+      "Understand **APs, SSIDs, and service sets**",
+      "Design enterprise WLANs",
+      "Configure WLCs",
+      "Perform site surveys"
+    ],
+    "tiers": {
+      "beginner": "Understand **basic wireless operation**",
+      "intermediate": "Understand **basic wireless operation** Understand **radio frequency concepts**",
+      "examReady": "Know **2.4 GHz vs 5 GHz**"
+    },
+    "bigTakeaway": "Understand basic wireless operation",
+    "sourceFiles": [
+      "61 - Day 55 - Wireless Fundamentals.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-WIRELESS"
+    ]
+  },
+  "2.6": {
+    "objectiveId": "2.6",
+    "operatorSummary": "",
+    "keyPoints": [
+      "How APs are deployed",
+      "How traffic flows",
+      "How wireless networks are centrally managed",
+      "Understand **autonomous vs lightweight vs cloud-based APs**",
+      "Understand **WLC purpose and CAPWAP**",
+      "Recognize **AP modes**",
+      "Recognize **WLC deployment models**",
+      "Understand **traffic flow differences**"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "How APs are deployed",
+      "How traffic flows",
+      "How wireless networks are centrally managed",
+      "Understand **autonomous vs lightweight vs cloud-based APs**",
+      "Understand **WLC purpose and CAPWAP**",
+      "Recognize **AP modes**",
+      "Recognize **WLC deployment models**",
+      "Understand **traffic flow differences**"
+    ],
+    "tiers": {
+      "beginner": "How APs are deployed",
+      "intermediate": "How APs are deployed How traffic flows",
+      "examReady": ""
+    },
+    "bigTakeaway": "How APs are deployed",
+    "sourceFiles": [
+      "62 - Day 56 - Wireless Architectures.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": []
+  },
+  "5.8": {
+    "objectiveId": "5.8",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Authentication",
+      "WPA security standards",
+      "Understand **why wireless security is critical**",
+      "Know **authentication methods and their relative strength**",
+      "Know **encryption & integrity protocols**",
+      "Compare **WPA vs WPA2 vs WPA3**",
+      "Recognize **enterprise vs personal modes**",
+      "Configure 802.1X"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Authentication",
+      "Encryption",
+      "Integrity",
+      "WPA security standards",
+      "Understand **why wireless security is critical**",
+      "Know **authentication methods and their relative strength**",
+      "Know **encryption & integrity protocols**",
+      "Compare **WPA vs WPA2 vs WPA3**"
+    ],
+    "tiers": {
+      "beginner": "Authentication",
+      "intermediate": "Authentication WPA security standards",
+      "examReady": "Know **authentication methods and their relative strength**"
+    },
+    "bigTakeaway": "Authentication",
+    "sourceFiles": [
+      "63 - Day 57 - Wireless Security.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": []
+  },
+  "2.8": {
+    "objectiveId": "2.8",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Understand **WLC + AP topology**",
+      "Understand **VLAN‑to‑SSID mapping**",
+      "Know **WLC ports vs interfaces**",
+      "Be able to **configure WLANs using the GUI**",
+      "Configure **WPA2‑PSK (Personal mode)**",
+      "Memorize WLC CLI commands",
+      "Configure RADIUS / 802.1X",
+      "Build advanced security policies"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Understand **WLC + AP topology**",
+      "Understand **VLAN‑to‑SSID mapping**",
+      "Know **WLC ports vs interfaces**",
+      "Be able to **configure WLANs using the GUI**",
+      "Configure **WPA2‑PSK (Personal mode)**",
+      "Memorize WLC CLI commands",
+      "Configure RADIUS / 802.1X",
+      "Build advanced security policies"
+    ],
+    "tiers": {
+      "beginner": "Understand **WLC + AP topology**",
+      "intermediate": "Understand **WLC + AP topology** Understand **VLAN‑to‑SSID mapping**",
+      "examReady": "Know **WLC ports vs interfaces**"
+    },
+    "bigTakeaway": "Understand WLC + AP topology",
+    "sourceFiles": [
+      "64 - Day 58 - Wireless Configuration.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": []
+  },
+  "6.1": {
+    "objectiveId": "6.1",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Understand **why automation is used**",
+      "Understand **traditional vs controller‑based networking**",
+      "Know the **data, control, and management planes**",
+      "Understand **SDN architecture**",
+      "Recognize **northbound & southbound interfaces**",
+      "Recognize **APIs and structured data formats**",
+      "Write Python scripts",
+      "Use Ansible or Puppet"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Understand **why automation is used**",
+      "Understand **traditional vs controller‑based networking**",
+      "Know the **data, control, and management planes**",
+      "Understand **SDN architecture**",
+      "Recognize **northbound & southbound interfaces**",
+      "Recognize **APIs and structured data formats**",
+      "Write Python scripts",
+      "Use Ansible or Puppet"
+    ],
+    "tiers": {
+      "beginner": "Understand **why automation is used**",
+      "intermediate": "Understand **why automation is used** Understand **traditional vs controller‑based networking**",
+      "examReady": "Know the **data, control, and management planes**"
+    },
+    "bigTakeaway": "Understand why automation is used",
+    "sourceFiles": [
+      "65 - Day 59 - Intro to Network Automation.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-AUTOMATION"
+    ]
+  },
+  "6.3": {
+    "objectiveId": "6.3",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Understand **why data serialization is needed**",
+      "Interpret **JSON‑encoded data**",
+      "Recognize **JSON data types**",
+      "Identify **valid vs invalid JSON**",
+      "Compare JSON with XML and YAML at a high level",
+      "Generate JSON programmatically",
+      "Validate schemas",
+      "Stored (files)"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Understand **why data serialization is needed**",
+      "Interpret **JSON‑encoded data**",
+      "Recognize **JSON data types**",
+      "Identify **valid vs invalid JSON**",
+      "Compare JSON with XML and YAML at a high level",
+      "Write APIs",
+      "Generate JSON programmatically",
+      "Validate schemas"
+    ],
+    "tiers": {
+      "beginner": "Understand **why data serialization is needed**",
+      "intermediate": "Understand **why data serialization is needed** Interpret **JSON‑encoded data**",
+      "examReady": ""
+    },
+    "bigTakeaway": "Understand why data serialization is needed",
+    "sourceFiles": [
+      "66 - Day 60 - JSON, XML & YAML.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-JSON-YAML"
+    ]
+  },
+  "6.4": {
+    "objectiveId": "6.4",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Understand **what an API is**",
+      "Understand **CRUD operations**",
+      "Map **CRUD** ↔ **HTTP verbs**",
+      "Understand **HTTP request & response basics**",
+      "Recognize **REST API characteristics**",
+      "Interpret **basic REST interactions**",
+      "Write automation scripts",
+      "Design REST services",
+      "Understand **why REST API authentication is required**",
+      "Recognize **four common REST authentication methods**"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Understand **what an API is**",
+      "Understand **CRUD operations**",
+      "Map **CRUD** ↔ **HTTP verbs**",
+      "Understand **HTTP request & response basics**",
+      "Recognize **REST API characteristics**",
+      "Interpret **basic REST interactions**",
+      "Build APIs",
+      "Write automation scripts"
+    ],
+    "tiers": {
+      "beginner": "Understand **what an API is**",
+      "intermediate": "Understand **what an API is** Understand **CRUD operations**",
+      "examReady": ""
+    },
+    "bigTakeaway": "Understand what an API is",
+    "sourceFiles": [
+      "67 - Day 61 - REST APIs.md",
+      "68 - REST API Authentication.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-REST"
+    ]
+  },
+  "6.2": {
+    "objectiveId": "6.2",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Understand **SDN architecture layers**",
+      "Understand **underlay, overlay, and fabric**",
+      "Recognize **Cisco SD‑Access components**",
+      "Understand **Cisco DNA Center’s role**",
+      "Compare **traditional vs DNA Center–based management**",
+      "Configure SD‑Access",
+      "Configure VXLAN or LISP",
+      "Deploy DNA Center"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Understand **SDN architecture layers**",
+      "Understand **underlay, overlay, and fabric**",
+      "Recognize **Cisco SD‑Access components**",
+      "Understand **Cisco DNA Center’s role**",
+      "Compare **traditional vs DNA Center–based management**",
+      "Configure SD‑Access",
+      "Configure VXLAN or LISP",
+      "Deploy DNA Center"
+    ],
+    "tiers": {
+      "beginner": "Understand **SDN architecture layers**",
+      "intermediate": "Understand **SDN architecture layers** Understand **underlay, overlay, and fabric**",
+      "examReady": ""
+    },
+    "bigTakeaway": "Understand SDN architecture layers",
+    "sourceFiles": [
+      "69 - Day 62 - Software-Defined Networking (SDN).md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-SDN"
+    ]
+  },
+  "6.5": {
+    "objectiveId": "6.5",
+    "operatorSummary": "",
+    "keyPoints": [
+      "Understand **what configuration management tools do**",
+      "Understand **configuration drift**",
+      "Recognize **common capabilities**",
+      "Compare **Ansible vs Puppet vs Chef**",
+      "Recognize **push vs pull models**",
+      "Recognize **agentless vs agent‑based**",
+      "Write playbooks, manifests, or cookbooks",
+      "Install agents",
+      "Understand **Infrastructure as Code (IaC)**",
+      "Distinguish **provisioning vs configuration management**"
+    ],
+    "examTraps": [],
+    "learningOutcomes": [
+      "Understand **what configuration management tools do**",
+      "Understand **configuration drift**",
+      "Recognize **common capabilities**",
+      "Compare **Ansible vs Puppet vs Chef**",
+      "Recognize **push vs pull models**",
+      "Recognize **agentless vs agent‑based**",
+      "Write playbooks, manifests, or cookbooks",
+      "Install agents"
+    ],
+    "tiers": {
+      "beginner": "Understand **what configuration management tools do**",
+      "intermediate": "Understand **what configuration management tools do** Understand **configuration drift**",
+      "examReady": ""
+    },
+    "bigTakeaway": "Understand what configuration management tools do",
+    "sourceFiles": [
+      "70 - Day 63 - Ansible, Puppet, & Chef.md",
+      "71 - Terraform.md"
+    ],
+    "confidence": "gold",
+    "needsReview": false,
+    "ckuIds": [
+      "CKU-ANSIBLE"
+    ]
+  }
+}

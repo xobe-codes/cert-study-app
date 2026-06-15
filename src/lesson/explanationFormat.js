@@ -1,7 +1,14 @@
 /** Pilot objectives with authored short Explanation + Big Takeaway content. */
-export const EXPLANATION_PILOT_IDS = new Set([
+import { KB_COMPILED_OBJECTIVE_IDS } from '../data/kbCompiledPatches.js'
+
+const LEGACY_PILOT_IDS = [
   '3.2',
   '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9', '4.10',
+]
+
+export const EXPLANATION_PILOT_IDS = new Set([
+  ...LEGACY_PILOT_IDS,
+  ...KB_COMPILED_OBJECTIVE_IDS,
 ])
 
 const COMMAND_IN_BODY = /`(?:show|ip|ntp|clock|logging|access-list|standby|channel-group)\b/i

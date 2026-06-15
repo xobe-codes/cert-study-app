@@ -25,6 +25,7 @@ import {
   OBJ_11, OBJ_12, OBJ_13, OBJ_14, OBJ_17, OBJ_110, OBJ_111, OBJ_112,
 } from './ccnaCuratedDomain1Rest.js'
 import { EXPLANATION_PILOT_PATCHES } from './explanationPilotPatches.js'
+import { KB_COMPILED_PATCHES } from './kbCompiledPatches.js'
 import { READING_SUPPLEMENTS } from './curatedReadingSupplement.js'
 import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
 import { VISUAL_DIAGRAMS } from './visualDiagramSupplement.js'
@@ -1978,6 +1979,7 @@ export function getCurated(objectiveId) {
   const o = CURATED[objectiveId] || null
   if (!o) return null
   const patch = EXPLANATION_PILOT_PATCHES[objectiveId]
+  const kbPatch = KB_COMPILED_PATCHES[objectiveId]
   let base = o
   if (patch && o.reading) {
     base = {
@@ -1986,6 +1988,20 @@ export function getCurated(objectiveId) {
         ...o.reading,
         tiers: { ...o.reading.tiers, ...patch.tiers },
         ...(patch.bigTakeaway ? { bigTakeaway: patch.bigTakeaway } : {}),
+      },
+    }
+  }
+  if (kbPatch && base.reading) {
+    const mergedKeyPoints = kbPatch.keyPoints?.length
+      ? [...new Set([...(base.reading.keyPoints || []), ...kbPatch.keyPoints])].slice(0, 12)
+      : base.reading.keyPoints
+    base = {
+      ...base,
+      reading: {
+        ...base.reading,
+        tiers: { ...base.reading.tiers, ...kbPatch.tiers },
+        ...(kbPatch.bigTakeaway ? { bigTakeaway: kbPatch.bigTakeaway } : {}),
+        ...(mergedKeyPoints?.length ? { keyPoints: mergedKeyPoints } : {}),
       },
     }
   }

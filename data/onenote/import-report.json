@@ -1,0 +1,645 @@
+{
+  "imported": [
+    {
+      "filename": "01 - Day 1 – Network Devices.md",
+      "slug": "01-day-1-network-devices",
+      "objectiveIds": [
+        "1.1"
+      ],
+      "warnings": 1
+    },
+    {
+      "filename": "02 - Day 2 - Interfaces & Cables.md",
+      "slug": "02-day-2-interfaces-cables",
+      "objectiveIds": [
+        "1.3",
+        "1.4"
+      ],
+      "warnings": 1
+    },
+    {
+      "filename": "03 - Day 3 - The TCP_IP Model.md",
+      "slug": "03-day-3-the-tcp-ip-model",
+      "objectiveIds": [
+        "1.1"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "04 - Day 4 - Intro to the CLI.md",
+      "slug": "04-day-4-intro-to-the-cli",
+      "objectiveIds": [
+        "5.3"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "05 - Day 5 - Ethernet LAN Switching pt 1.md",
+      "slug": "05-day-5-ethernet-lan-switching-pt-1",
+      "objectiveIds": [
+        "1.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "06 - Day 6 - Ethernet LAN Switching pt 2.md",
+      "slug": "06-day-6-ethernet-lan-switching-pt-2",
+      "objectiveIds": [
+        "1.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "07 - Day 7 - IPv4 Addressing pt 1.md",
+      "slug": "07-day-7-ipv4-addressing-pt-1",
+      "objectiveIds": [
+        "1.6"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "08 - Day 8 - IPv4 Addressing pt 2.md",
+      "slug": "08-day-8-ipv4-addressing-pt-2",
+      "objectiveIds": [
+        "1.6",
+        "1.7"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "09 - Day 9 - Switch Interfaces.md",
+      "slug": "09-day-9-switch-interfaces",
+      "objectiveIds": [
+        "1.3",
+        "1.4"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "10 - Day 10 - IPv4 Header.md",
+      "slug": "10-day-10-ipv4-header",
+      "objectiveIds": [
+        "1.6"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "11 - Day 11 - Routing Fundamentals & Static Routing.md",
+      "slug": "11-day-11-routing-fundamentals-static-routing",
+      "objectiveIds": [
+        "3.1",
+        "3.3"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "12 - Day 12 - The Life of a Packet.md",
+      "slug": "12-day-12-the-life-of-a-packet",
+      "objectiveIds": [
+        "3.2"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "13 - Day 13 - Subnetting pt 1.md",
+      "slug": "13-day-13-subnetting-pt-1",
+      "objectiveIds": [
+        "1.6"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "14 - Day 14 - Subnetting pt 2.md",
+      "slug": "14-day-14-subnetting-pt-2",
+      "objectiveIds": [
+        "1.6"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "15 - Day 15 - Subnetting pt 3 - VLSM.md",
+      "slug": "15-day-15-subnetting-pt-3-vlsm",
+      "objectiveIds": [
+        "1.6"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "16 - Day 16 - VLANs pt 1.md",
+      "slug": "16-day-16-vlans-pt-1",
+      "objectiveIds": [
+        "2.1"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "17 - Day 17 - VLANs pt 2.md",
+      "slug": "17-day-17-vlans-pt-2",
+      "objectiveIds": [
+        "2.1",
+        "2.2"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "18 - Day 18 - VLANs pt 3.md",
+      "slug": "18-day-18-vlans-pt-3",
+      "objectiveIds": [
+        "2.1",
+        "2.2"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "19 - Day 19 - DTP & VTP.md",
+      "slug": "19-day-19-dtp-vtp",
+      "objectiveIds": [
+        "2.2"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "20 - Day 20 - Spanning Tree Protocol pt 1.md",
+      "slug": "20-day-20-spanning-tree-protocol-pt-1",
+      "objectiveIds": [
+        "2.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "21 - Day 21 - Spanning Tree Protocol pt 2.md",
+      "slug": "21-day-21-spanning-tree-protocol-pt-2",
+      "objectiveIds": [
+        "2.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "22 - Port Fast.md",
+      "slug": "22-port-fast",
+      "objectiveIds": [
+        "2.5"
+      ],
+      "warnings": 1
+    },
+    {
+      "filename": "23 - BPDU Guard & BPDU Filter.md",
+      "slug": "23-bpdu-guard-bpdu-filter",
+      "objectiveIds": [
+        "2.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "24 - Root Guard.md",
+      "slug": "24-root-guard",
+      "objectiveIds": [
+        "2.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "25 - Loop Guard.md",
+      "slug": "25-loop-guard",
+      "objectiveIds": [
+        "2.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "26 - Day 22 - Rapid Spanning Tree Protocol (RSTP).md",
+      "slug": "26-day-22-rapid-spanning-tree-protocol-rstp",
+      "objectiveIds": [
+        "2.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "27 - Day 23 - EtherChannel.md",
+      "slug": "27-day-23-etherchannel",
+      "objectiveIds": [
+        "2.4"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "28 - Day 24 - Dynamic Routing.md",
+      "slug": "28-day-24-dynamic-routing",
+      "objectiveIds": [
+        "3.1",
+        "3.2"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "29 - Day 25 -  RIP & EIGRP.md",
+      "slug": "29-day-25-rip-eigrp",
+      "objectiveIds": [
+        "3.2"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "30 - Day 26 - OSPF pt 1.md",
+      "slug": "30-day-26-ospf-pt-1",
+      "objectiveIds": [
+        "3.4"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "31 - Day 27 - OSPF pt 2.md",
+      "slug": "31-day-27-ospf-pt-2",
+      "objectiveIds": [
+        "3.4"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "32 - Day 28 - OSPF pt 3.md",
+      "slug": "32-day-28-ospf-pt-3",
+      "objectiveIds": [
+        "3.4"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "33 - Day 29 - First Hop Redundancy.md",
+      "slug": "33-day-29-first-hop-redundancy",
+      "objectiveIds": [
+        "3.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "34 - Day 30 - TCP & UDP.md",
+      "slug": "34-day-30-tcp-udp",
+      "objectiveIds": [
+        "1.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "35 - Day 31 - IPv6 pt 1.md",
+      "slug": "35-day-31-ipv6-pt-1",
+      "objectiveIds": [
+        "1.8"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "36 - Day 32 - IPv6 pt 2.md",
+      "slug": "36-day-32-ipv6-pt-2",
+      "objectiveIds": [
+        "1.8",
+        "1.9"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "37 - Day 33 - IPv6 pt 3.md",
+      "slug": "37-day-33-ipv6-pt-3",
+      "objectiveIds": [
+        "1.9",
+        "3.3"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "38 - Day 34 - Standard ACLs.md",
+      "slug": "38-day-34-standard-acls",
+      "objectiveIds": [
+        "5.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "39 - Day 35 - Extended ACLs.md",
+      "slug": "39-day-35-extended-acls",
+      "objectiveIds": [
+        "5.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "40 - Day 36 - CDP & LLDP.md",
+      "slug": "40-day-36-cdp-lldp",
+      "objectiveIds": [
+        "2.3"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "41 - Day 37 - Network Time Protocol (NTP).md",
+      "slug": "41-day-37-network-time-protocol-ntp",
+      "objectiveIds": [
+        "4.2"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "42 - Day 38 - Domain Name System (DNS).md",
+      "slug": "42-day-38-domain-name-system-dns",
+      "objectiveIds": [
+        "4.3"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "43 - Day 39 - Dynamic Host Configuration Protocol (DHCP).md",
+      "slug": "43-day-39-dynamic-host-configuration-protocol-dhcp",
+      "objectiveIds": [
+        "4.3",
+        "4.6"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "44 - Day 40 - Simple Network Management Protocol.md",
+      "slug": "44-day-40-simple-network-management-protocol",
+      "objectiveIds": [
+        "4.4"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "45 - Day 41 - Syslog.md",
+      "slug": "45-day-41-syslog",
+      "objectiveIds": [
+        "4.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "46 - Day 42 - Secure Shell (SSH).md",
+      "slug": "46-day-42-secure-shell-ssh",
+      "objectiveIds": [
+        "4.8"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "47 - Day 43 - File  Transfer Protocol (FTP) & Trivial File Transfer Protocol (TFTP).md",
+      "slug": "47-day-43-file-transfer-protocol-ftp-trivial-file-transfer-protocol-tftp",
+      "objectiveIds": [
+        "4.9"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "48 - Day 44 - Network Address Translation (NAT) pt 1.md",
+      "slug": "48-day-44-network-address-translation-nat-pt-1",
+      "objectiveIds": [
+        "4.1"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "49 - Day 45 - Network Address Translation (NAT) pt 2.md",
+      "slug": "49-day-45-network-address-translation-nat-pt-2",
+      "objectiveIds": [
+        "4.1"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "50 - Day 46 - Quality of Service (QoS) pt 1.md",
+      "slug": "50-day-46-quality-of-service-qos-pt-1",
+      "objectiveIds": [
+        "4.7"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "51 - Day 47 - Quality of Service (QoS) pt 2.md",
+      "slug": "51-day-47-quality-of-service-qos-pt-2",
+      "objectiveIds": [
+        "4.7"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "52 - Day 48 - Security Fundamentals.md",
+      "slug": "52-day-48-security-fundamentals",
+      "objectiveIds": [
+        "5.1"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "53 - Day 49 - Port Security.md",
+      "slug": "53-day-49-port-security",
+      "objectiveIds": [
+        "5.6"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "54 - Day 50 - DHCP Snooping.md",
+      "slug": "54-day-50-dhcp-snooping",
+      "objectiveIds": [
+        "5.6"
+      ],
+      "warnings": 1
+    },
+    {
+      "filename": "55 - Day 51 - Dynamic ARP Inspection (DAI).md",
+      "slug": "55-day-51-dynamic-arp-inspection-dai",
+      "objectiveIds": [
+        "5.6"
+      ],
+      "warnings": 1
+    },
+    {
+      "filename": "56 - Day 52 - LAN Architectures.md",
+      "slug": "56-day-52-lan-architectures",
+      "objectiveIds": [
+        "1.2"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "57 - Day 53 - WAN Architectures.md",
+      "slug": "57-day-53-wan-architectures",
+      "objectiveIds": [
+        "1.2"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "58 - Day 54 - Virtualization & Cloud.md",
+      "slug": "58-day-54-virtualization-cloud",
+      "objectiveIds": [
+        "1.12"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "59 - Containers.md",
+      "slug": "59-containers",
+      "objectiveIds": [
+        "1.12"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "60 - Virtual Router & Forwarding (VRF).md",
+      "slug": "60-virtual-router-forwarding-vrf",
+      "objectiveIds": [
+        "3.1"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "61 - Day 55 - Wireless Fundamentals.md",
+      "slug": "61-day-55-wireless-fundamentals",
+      "objectiveIds": [
+        "1.11"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "62 - Day 56 - Wireless Architectures.md",
+      "slug": "62-day-56-wireless-architectures",
+      "objectiveIds": [
+        "2.6"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "63 - Day 57 - Wireless Security.md",
+      "slug": "63-day-57-wireless-security",
+      "objectiveIds": [
+        "5.8"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "64 - Day 58 - Wireless Configuration.md",
+      "slug": "64-day-58-wireless-configuration",
+      "objectiveIds": [
+        "2.8"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "65 - Day 59 - Intro to Network Automation.md",
+      "slug": "65-day-59-intro-to-network-automation",
+      "objectiveIds": [
+        "6.1"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "66 - Day 60 - JSON, XML & YAML.md",
+      "slug": "66-day-60-json-xml-yaml",
+      "objectiveIds": [
+        "6.3"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "67 - Day 61 - REST APIs.md",
+      "slug": "67-day-61-rest-apis",
+      "objectiveIds": [
+        "6.4"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "68 - REST API Authentication.md",
+      "slug": "68-rest-api-authentication",
+      "objectiveIds": [
+        "6.4"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "69 - Day 62 - Software-Defined Networking (SDN).md",
+      "slug": "69-day-62-software-defined-networking-sdn",
+      "objectiveIds": [
+        "6.2"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "70 - Day 63 - Ansible, Puppet, & Chef.md",
+      "slug": "70-day-63-ansible-puppet-chef",
+      "objectiveIds": [
+        "6.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "71 - Terraform.md",
+      "slug": "71-terraform",
+      "objectiveIds": [
+        "6.5"
+      ],
+      "warnings": 0
+    },
+    {
+      "filename": "72 - Domain Summaries.md",
+      "slug": "72-domain-summaries",
+      "objectiveIds": [
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5",
+        "1.6",
+        "1.7",
+        "1.8",
+        "1.9",
+        "1.10",
+        "1.11",
+        "1.12",
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5",
+        "2.6",
+        "2.7",
+        "2.8",
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5",
+        "3.6",
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5",
+        "4.6",
+        "4.7",
+        "4.8",
+        "4.9",
+        "4.10",
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5",
+        "5.6",
+        "5.7",
+        "5.8",
+        "5.9",
+        "5.10",
+        "5.11",
+        "6.1",
+        "6.2",
+        "6.3",
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "warnings": 1
+    }
+  ],
+  "errors": [],
+  "warningCount": 6,
+  "sourceDir": "/Users/zycooks/Documents/Apps/CCNA App/data/onenote/raw"
+}
