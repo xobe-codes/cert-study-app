@@ -51,6 +51,7 @@
     "audit:scan-and-refresh": "node scripts/runAudit.mjs --phase scan-content,refresh-logs",
     "audit:full": "node scripts/runAudit.mjs --all",
     "audit:help": "node scripts/runAudit.mjs --list",
+    "audit:mark-done": "node scripts/markQueueDone.mjs",
     "audit:coverage": "node scripts/auditContentCoverage.mjs",
     "generate:improvement-logs": "node scripts/generateImprovementLogs.mjs",
     "lint": "eslint src"

@@ -32,12 +32,42 @@ function loadExistingQueueStatuses() {
   }
 }
 
+/** Extended fields for pending items — preserved across log regeneration. */
+const QUEUE_META = {
+  lab_31_route_lite: {
+    effort: 'M',
+    scoreImpact: { labs: 8, coverage_depth: 5 },
+    files: ['src/data/ccnaLabs.js', 'src/lab/LabView.jsx', 'src/lab/cliEngine.js'],
+    acceptance: [
+      'Lab 3.1 teach-first flow with show ip route verify step',
+      'Validator accepts correct route-table interpretation',
+      'npm test && npm run build pass',
+    ],
+  },
+  bulk_factory_flashcards: {
+    effort: 'L',
+    scoreImpact: { flashcards: 12, tier_c: 6 },
+    files: ['src/data/contentEnrichmentPatches.js', 'src/data/factoryTrapPatches.js'],
+    acceptance: [
+      'Flashcard patches for Tier C factory objectives with zero flashcards',
+      'validate:pipeline passes',
+    ],
+  },
+}
+
+const QUEUE_EXTRA_KEYS = ['acceptance', 'effort', 'scoreImpact', 'files']
+
 function mergeQueueItems(templateItems, existingById) {
   return templateItems.map(item => {
     const prev = existingById[item.id]
-    if (!prev) return item
+    const meta = QUEUE_META[item.id] || {}
+    const extra = Object.fromEntries(
+      QUEUE_EXTRA_KEYS.map(k => [k, prev?.[k] ?? meta[k]]).filter(([, v]) => v != null),
+    )
+    if (!prev) return { ...item, ...extra }
     return {
       ...item,
+      ...extra,
       status: prev.status,
       ...(prev.completedAt ? { completedAt: prev.completedAt } : {}),
     }

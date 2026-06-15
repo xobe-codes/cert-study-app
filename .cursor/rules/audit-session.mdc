@@ -1,0 +1,18 @@
+---
+description: Audit pass playbook — scan, one queue item, test, handoff
+alwaysApply: false
+---
+
+# Audit session
+
+When the user says **audit**, **audit pass**, **implement next**, **full pass**, or **run audit then implement**:
+
+1. Read `AGENTS.md` and `npm run audit:show-next-task` output
+2. Implement **one** pending `IMPLEMENTATION_QUEUE.json` item only — meet its `acceptance` criteria
+3. Run `npm run audit:test-and-build` — fix failures before reporting done
+4. Run `npm run audit:mark-done -- <id> "<summary>"` if the item is complete
+5. End with **Changes table** + **Path to 95+**
+
+Do not refresh all logs unless user asked for a full audit (`npm run audit:full`).
+
+If queue is empty, say so and suggest the highest-impact item from `SCORE_95_TARGET.md` quick wins.

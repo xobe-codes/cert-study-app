@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-15T06:33:38.379Z",
+  "generatedAt": "2026-06-15T16:14:17.159Z",
   "items": [
     {
       "id": "improve_vlan_engineer_verify",
@@ -92,9 +92,9 @@
     {
       "id": "bulk_factory_traps",
       "priority": "high",
-      "status": "pending",
+      "status": "done",
       "area": "content",
-      "objectiveNumber": "21 objs",
+      "objectiveNumber": "22 objs",
       "problem": "Tier C zero traps",
       "recommendedImprovement": "Pipeline bulk trap generation",
       "riskLevel": "medium",
@@ -109,7 +109,15 @@
       "problem": "No routing table lab",
       "recommendedImprovement": "Lab-lite show ip route parser",
       "riskLevel": "medium",
-      "confidenceScore": 78
+      "confidenceScore": 78,
+      "effort": "M",
+      "scoreImpact": { "labs": 8, "coverage_depth": 5 },
+      "files": ["src/data/ccnaLabs.js", "src/lab/LabView.jsx", "src/lab/cliEngine.js"],
+      "acceptance": [
+        "Lab 3.1 teach-first flow with show ip route verify step",
+        "Validator accepts correct route-table interpretation",
+        "npm test && npm run build pass"
+      ]
     }
   ]
 }

@@ -130,6 +130,7 @@ CCNA audit — descriptive npm shortcuts
   npm run audit:print-summary      Print tier/gap/queue summary
   npm run audit:scan-and-refresh   Scan + refresh logs (common pair)
   npm run audit:full               All automated steps (skips show-next-task)
+  npm run audit:mark-done          Mark queue item done + append COMPLETED_CHANGES
   npm run audit:help               This list
 
 Combine phases:
@@ -162,7 +163,14 @@ function printQueueItem() {
   console.log(`  objective:${next.objectiveNumber}`)
   console.log(`  problem:  ${next.problem}`)
   console.log(`  fix:      ${next.recommendedImprovement}`)
-  console.log('\nAfter implementing: mark status "done", append COMPLETED_CHANGES.md, run npm run audit:test-and-build\n')
+  if (next.effort) console.log(`  effort:   ${next.effort}`)
+  if (next.scoreImpact) console.log(`  impact:   ${JSON.stringify(next.scoreImpact)}`)
+  if (next.files?.length) console.log(`  files:    ${next.files.join(', ')}`)
+  if (next.acceptance?.length) {
+    console.log('  acceptance:')
+    next.acceptance.forEach(a => console.log(`    - ${a}`))
+  }
+  console.log('\nAfter implementing: npm run audit:test-and-build && npm run audit:mark-done -- <id> "summary"\n')
   return 0
 }
 

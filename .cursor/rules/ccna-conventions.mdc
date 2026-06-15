@@ -1,0 +1,31 @@
+---
+description: CCNA app conventions — curated-first, safe edits, mobile defaults
+alwaysApply: true
+---
+
+# CCNA conventions
+
+## Content & AI
+
+- **Curated-first** on Study/Practice — no live AI fetch on page load for free users
+- AI generation is **premium-only** (`premiumFeatures.js`); bundled flashcards/diagrams/quizzes stay free
+- Prefer patches in `contentEnrichmentPatches.js` / `factoryTrapPatches.js` over editing giant curated files inline
+
+## Code placement
+
+- New UI: `src/components/` or `src/lab/` or `src/tabs/` — not new 100+ line blocks in `App.jsx`
+- CLI/labs: `src/lab/cliEngine.js` + `CiscoTerminal.jsx`
+- Responsive CSS: `src/ui/appShell.js` classes over one-off inline widths
+
+## Mobile
+
+Mental-check: iPhone 390×844, landscape 844×390, iPad, MacBook. Use `dvh`, safe areas, `ccna-h-scroll` for horizontal carousels.
+
+## Forbidden without explicit user ask
+
+- `src/ui/appTheme.js` token changes
+- Hash routing / view state machine in `App.jsx`
+- `.env*` or secrets
+- Commits or deploy (unless c&d / ship it)
+
+See `ai-improvement-logs/DO_NOT_TOUCH.md`.
