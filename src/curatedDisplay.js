@@ -58,15 +58,14 @@ export function formatCuratedAttribution(sourceRefs, objectiveId) {
   return `${topic} · from ${joined}`
 }
 
-/** What's included for this objective — lesson/quiz/flashcards + offline hint. */
-export function getCuratedBundleLabel(objectiveId) {
-  const data = getCurated(objectiveId)
-  const parts = []
-  if (hasCuratedReading(objectiveId)) parts.push('lesson')
-  if (getCuratedQuestions(objectiveId).length > 0) parts.push('quiz')
-  if (data?.flashcards?.length) parts.push('flashcards')
-  if (!parts.length) return null
-  return `${parts.join(' · ')} · offline`
+/** True when objective ships bundled reading and/or questions (no AI required). */
+export function isCuratedPack(objectiveId) {
+  return hasCuratedReading(objectiveId) || getCuratedQuestions(objectiveId).length > 0
+}
+
+/** @deprecated Use isCuratedPack + STATIC_COPY.badge; returns null (difficulty-only badges). */
+export function getCuratedBundleLabel() {
+  return null
 }
 
 /** Exam-relevant one-liner for lesson header. */

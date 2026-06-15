@@ -1,14 +1,38 @@
 import React from 'react'
 
-export default function BottomNav({ active, onHome, onSearch, onMore }) {
+function NavIcon({ name }) {
+  if (name === 'home') {
+    return (
+      <svg className="app-bottom-nav-svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 10.5 12 3l9 7.5" />
+        <path d="M5 9.5V20h14V9.5" />
+      </svg>
+    )
+  }
+  if (name === 'search') {
+    return (
+      <svg className="app-bottom-nav-svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m20 20-3.5-3.5" />
+      </svg>
+    )
+  }
+  return (
+    <svg className="app-bottom-nav-svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </svg>
+  )
+}
+
+export default function BottomNav({ active, onHome, onSearch, onMore, compact = false }) {
   const items = [
-    { id: 'home', label: 'Home', icon: '🏠', onClick: onHome },
-    { id: 'search', label: 'Search', icon: '🔍', onClick: onSearch },
-    { id: 'more', label: 'More', icon: '☰', onClick: onMore },
+    { id: 'home', label: 'Home', icon: 'home', onClick: onHome },
+    { id: 'search', label: 'Search', icon: 'search', onClick: onSearch },
+    { id: 'more', label: 'More', icon: 'more', onClick: onMore },
   ]
 
   return (
-    <nav className="app-bottom-nav site-column" aria-label="Main navigation">
+    <nav className={`app-bottom-nav${compact ? ' app-bottom-nav--compact' : ''}`} aria-label="Main navigation">
       {items.map(item => {
         const isActive = active === item.id
         return (
@@ -19,7 +43,7 @@ export default function BottomNav({ active, onHome, onSearch, onMore }) {
             onClick={item.onClick}
             aria-current={isActive ? 'page' : undefined}
           >
-            <span className="app-bottom-nav-icon" aria-hidden>{item.icon}</span>
+            <span className="app-bottom-nav-icon" aria-hidden><NavIcon name={item.icon} /></span>
             <span className="app-bottom-nav-label">{item.label}</span>
           </button>
         )

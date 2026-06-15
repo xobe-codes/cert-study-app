@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import {
   difficultyAccent,
   formatCuratedAttribution,
-  getCuratedBundleLabel,
+  isCuratedPack,
   getObjectiveDifficulty,
   getCkuDifficulty,
   getCuratedPreview,
@@ -46,9 +46,8 @@ describe('curatedDisplay', () => {
     expect(line).toBe("CCNA 200-301 topic 1.1 · from Jeremy's IT Lab & Odom Vol 1")
   })
 
-  it('describes bundled content types per objective', () => {
-    const label = getCuratedBundleLabel('3.2')
-    expect(label).toMatch(/lesson/)
-    expect(label).toMatch(/offline/)
+  it('detects curated packs by reading or questions', () => {
+    expect(isCuratedPack('3.2')).toBe(true)
+    expect(isCuratedPack('99.99')).toBe(false)
   })
 })

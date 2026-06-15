@@ -3,7 +3,7 @@
  * Prefer what's included (lesson, quiz, offline) over delivery jargon.
  */
 export const STATIC_COPY = {
-  badge: 'curated · offline-ready',
+  badge: 'curated pack',
   sources: 'Chapter-level citations are in SOURCES above.',
   quickRefPill: 'CURATED · OFFLINE',
   bankReview: 'from your saved bank — instant review',

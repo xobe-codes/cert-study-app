@@ -1,26 +1,29 @@
 import React from 'react'
-import { hasCuratedQuestions, hasCuratedReading } from '../data/ccnaCurated.js'
-import { getCuratedBundleLabel, getObjectiveDifficulty } from '../curatedDisplay.js'
+import { isCuratedPack } from '../curatedDisplay.js'
+import { getObjectiveDifficulty } from '../curatedDisplay.js'
 import { COLORS } from '../ui/appTheme.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
 import DifficultyPill from './DifficultyPill.jsx'
 
-/** Difficulty pill + what's-included label for curated content. */
+/** Difficulty pill + optional curated pack chip. */
 export default function CuratedStaticBadge({
   objectiveId,
   fontSize = 10,
   staticLabel,
   /** @deprecated use staticLabel */
   noApiLabel,
-  showStatic = true,
-  /** @deprecated use showStatic */
+  showBundle = false,
+  /** @deprecated use showBundle */
+  showStatic,
+  /** @deprecated use showBundle */
   showNoApi,
+  showIncluded = false,
 }) {
   const difficulty = getObjectiveDifficulty(objectiveId)
-  const isStatic = hasCuratedReading(objectiveId) || hasCuratedQuestions(objectiveId)
-  const label = noApiLabel || staticLabel || getCuratedBundleLabel(objectiveId) || STATIC_COPY.badge
-  const visible = showNoApi !== undefined ? showNoApi : showStatic
-  if (!isStatic) return null
+  if (!isCuratedPack(objectiveId)) return null
+
+  const label = noApiLabel || staticLabel || STATIC_COPY.badge
+  const visible = showNoApi !== undefined ? showNoApi : (showStatic !== undefined ? showStatic : showBundle)
 
   return (
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
@@ -34,6 +37,16 @@ export default function CuratedStaticBadge({
         }}
         >
           {label}
+        </span>
+      )}
+      {showIncluded && (
+        <span style={{
+          fontSize: fontSize <= 9 ? 'var(--ccna-type-micro)' : 'var(--ccna-type-xs)',
+          color: COLORS.mint,
+          fontWeight: 600,
+        }}
+        >
+          included
         </span>
       )}
     </span>

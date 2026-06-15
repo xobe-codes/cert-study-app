@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="CCNA Study">
+  <rect width="192" height="192" rx="36" fill="#2a1229"/>
+  <circle cx="96" cy="96" r="52" fill="none" stroke="#c77dff" stroke-width="10"/>
+  <path d="M96 52v44l28 16" fill="none" stroke="#7dd3fc" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="96" y="168" text-anchor="middle" fill="#e2d4f0" font-family="system-ui,sans-serif" font-size="22" font-weight="700">CCNA</text>
+</svg>

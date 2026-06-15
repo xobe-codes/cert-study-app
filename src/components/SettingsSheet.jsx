@@ -48,6 +48,14 @@ function ToggleRow({ label, hint, checked, onChange }) {
   )
 }
 
+const SECTION_LINKS = [
+  { id: 'settings-appearance', label: 'Appearance' },
+  { id: 'settings-study', label: 'Study' },
+  { id: 'settings-ai', label: 'AI' },
+  { id: 'settings-data', label: 'Data' },
+  { id: 'settings-about', label: 'About' },
+]
+
 export default function SettingsSheet({
   onClose,
   theme,
@@ -78,6 +86,9 @@ export default function SettingsSheet({
   onDonatePreview,
 }) {
   const dialogRef = useRef(null)
+  const sheetRef = useRef(null)
+  const touchStartY = useRef(null)
+  const [dragY, setDragY] = useState(0)
   const [examInput, setExamInput] = useState(examDate || '')
   const [quizSizeInput, setQuizSizeInput] = useState(String(quizSessionSize))
   const [resetStep, setResetStep] = useState(0)
@@ -111,6 +122,27 @@ export default function SettingsSheet({
     })
   }
 
+  function jumpTo(id) {
+    sheetRef.current?.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  function onTouchStart(e) {
+    touchStartY.current = e.touches[0].clientY
+    setDragY(0)
+  }
+
+  function onTouchMove(e) {
+    if (touchStartY.current == null) return
+    const dy = e.touches[0].clientY - touchStartY.current
+    if (dy > 0) setDragY(dy)
+  }
+
+  function onTouchEnd() {
+    if (dragY > 90) onClose()
+    touchStartY.current = null
+    setDragY(0)
+  }
+
   return (
     <div
       ref={dialogRef}
@@ -122,13 +154,42 @@ export default function SettingsSheet({
       onClick={onClose}
     >
       <div
+        ref={sheetRef}
         className="ccna-sheet"
-        style={{ ...styles.card, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px 16px 0 0', marginBottom: 0, paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }}
+        style={{
+          ...styles.card,
+          width: '100%',
+          maxWidth: 640,
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          borderRadius: '16px 16px 0 0',
+          marginBottom: 0,
+          paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)',
+          transform: dragY ? `translateY(${dragY}px)` : undefined,
+          transition: dragY ? 'none' : 'transform .25s ease',
+        }}
         onClick={e => e.stopPropagation()}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
       >
+        <div style={{ width: 40, height: 4, borderRadius: 999, background: COLORS.border, margin: '0 auto 12px' }} aria-hidden />
         <h2 id="settings-modal-title" style={styles.h2}>Settings</h2>
-        <p style={{ ...styles.small, marginBottom: 16 }}>Preferences, data, and study options.</p>
+        <p style={{ ...styles.small, marginBottom: 10 }}>Preferences, data, and study options.</p>
+        <div className="settings-section-nav" style={{ position: 'sticky', top: 0, zIndex: 2, display: 'flex', gap: 6, flexWrap: 'wrap', padding: '8px 0 12px', marginBottom: 4, background: COLORS.card, borderBottom: `1px solid ${COLORS.border}` }}>
+          {SECTION_LINKS.map(s => (
+            <button
+              key={s.id}
+              type="button"
+              onClick={() => jumpTo(s.id)}
+              style={{ ...styles.secondaryBtn, flex: '0 0 auto', width: 'auto', minHeight: 36, padding: '4px 10px', fontSize: 'var(--ccna-type-xs)', marginBottom: 0 }}
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
 
+        <div id="settings-appearance">
         <SectionLabel>APPEARANCE</SectionLabel>
         <ToggleRow
           label="Use dark theme"
@@ -149,6 +210,9 @@ export default function SettingsSheet({
           onChange={onExamModeChange}
         />
 
+        </div>
+
+        <div id="settings-study">
         <SectionLabel>STUDY</SectionLabel>
         <div style={{ ...styles.small, marginBottom: 6 }}>Target exam date</div>
         <div style={{ display: 'flex', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
@@ -184,13 +248,18 @@ export default function SettingsSheet({
         </button>
 
         <PremiumSettingsCard onDonatePreview={onDonatePreview} />
+        </div>
 
+        <div id="settings-ai">
         <SectionLabel>AI</SectionLabel>
         <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
           <button type="button" style={{ ...styles.secondaryBtn, flex: 1 }} disabled={!!busy} onClick={() => runAction('Clear tutor chat', onClearTutorChat)}>Clear tutor chat</button>
           <button type="button" style={{ ...styles.secondaryBtn, flex: 1 }} disabled={!!busy} onClick={() => runAction('Clear AI caches', onClearAiCaches)}>Clear AI caches</button>
         </div>
 
+        </div>
+
+        <div id="settings-data">
         <SectionLabel>DATA</SectionLabel>
         <div style={{ display: 'flex', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
           <button type="button" style={{ ...styles.secondaryBtn, flex: 1 }} onClick={() => { onClose(); onOpenSync() }}>☁ Sync</button>
@@ -198,7 +267,7 @@ export default function SettingsSheet({
           <button type="button" style={{ ...styles.secondaryBtn, flex: 1 }} onClick={onImportPick}>Import</button>
         </div>
         <p style={{ ...styles.small, marginBottom: 8 }}>
-          {offlineReadyCount} objective{offlineReadyCount === 1 ? '' : 's'} fully offline-ready (cached AI assets).
+          {offlineReadyCount} AI-generated pack{offlineReadyCount === 1 ? '' : 's'} cached for offline use.
         </p>
         <button
           type="button"
@@ -208,6 +277,7 @@ export default function SettingsSheet({
         >
           {resetStep ? 'Tap again to confirm — erase all progress' : 'Reset all study progress…'}
         </button>
+        </div>
 
         <SectionLabel>KEYBOARD</SectionLabel>
         <ul style={{ margin: '0 0 16px', paddingLeft: 18, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.6 }}>
@@ -216,7 +286,11 @@ export default function SettingsSheet({
           ))}
         </ul>
 
+        <div id="settings-about">
         <SectionLabel>ABOUT</SectionLabel>
+        <p style={{ ...styles.small, marginBottom: 8, lineHeight: 1.5, color: COLORS.sky }}>
+          📱 iPhone/iPad: tap Share → Add to Home Screen for a full-screen app icon.
+        </p>
         <p style={{ ...styles.small, marginBottom: 16, lineHeight: 1.5 }}>
           CCNA 200-301 Study Tool v{appVersion}<br />
           {objectiveCount} exam objectives · {cleanBankObjectives} with curated banks · {cleanBankQuestions > 0 ? `${cleanBankQuestions} bundled questions` : 'bundled questions load on first quiz'}
@@ -226,6 +300,7 @@ export default function SettingsSheet({
           <br />
           Most lessons work offline — curated content ships in the app.
         </p>
+        </div>
 
         {msg && <div style={{ ...styles.small, color: COLORS.mint, marginBottom: 8 }}>{msg}</div>}
         <button type="button" style={{ ...styles.secondaryBtn, background: 'none', border: 'none', color: COLORS.silverMid }} onClick={onClose}>Close</button>

@@ -4,6 +4,8 @@ export const SITE_COLUMN_MAX = 720
 
 const FLUID_TYPE_CSS = `
     :root {
+      --ccna-bottom-nav-height: 64px;
+      --vv-bottom-inset: 0px;
       --ccna-type-caption: clamp(12px, 0.65vmin + 10px, 14px);
       --ccna-type-micro: clamp(12px, 0.55vmin + 10px, 13px);
       --ccna-type-xs: clamp(13px, 0.7vmin + 11px, 15px);
@@ -102,6 +104,13 @@ export function buildAppShellCss(colors) {
     @supports (height: 100dvh) {
       .app-shell { height: 100dvh; }
     }
+    @supports (height: 100svh) {
+      .app-shell--with-bottom-nav {
+        height: 100svh;
+        min-height: 100svh;
+        max-height: 100svh;
+      }
+    }
     .site-column {
       width: 100%;
       max-width: min(${SITE_COLUMN_MAX}px, 100%);
@@ -144,6 +153,25 @@ export function buildAppShellCss(colors) {
       z-index: 120;
       background: linear-gradient(to top, ${colors.bg} 70%, transparent);
     }
+    .app-chrome-bottom--dock {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: var(--vv-bottom-inset, 0px);
+      z-index: 200;
+      padding-top: 0;
+      padding-bottom: 0;
+      background: linear-gradient(
+        to top,
+        color-mix(in srgb, ${colors.bg} 96%, transparent) 55%,
+        color-mix(in srgb, ${colors.bg} 72%, transparent) 80%,
+        transparent
+      );
+      pointer-events: none;
+    }
+    .app-chrome-bottom--dock .app-bottom-nav {
+      pointer-events: auto;
+    }
     .app-bottom-nav {
       flex-shrink: 0;
       display: flex;
@@ -155,6 +183,7 @@ export function buildAppShellCss(colors) {
       -webkit-backdrop-filter: blur(12px);
       padding-bottom: env(safe-area-inset-bottom);
       z-index: 125;
+      box-shadow: 0 -4px 24px color-mix(in srgb, ${colors.bg} 55%, transparent);
     }
     .app-bottom-nav-btn {
       flex: 1;
@@ -175,13 +204,40 @@ export function buildAppShellCss(colors) {
     }
     .app-bottom-nav-btn--active {
       color: ${colors.brandGlow};
+      position: relative;
+    }
+    .app-bottom-nav-btn--active::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 25%;
+      right: 25%;
+      height: 3px;
+      border-radius: 999px;
+      background: ${colors.brandGlow};
+      transition: left .22s ease, right .22s ease, opacity .22s ease;
+    }
+    .app-bottom-nav--compact .app-bottom-nav-btn {
+      min-height: 52px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+    .app-bottom-nav--compact .app-bottom-nav-label {
+      font-size: 10px;
+    }
+    .app-bottom-nav-svg {
+      display: block;
     }
     .app-bottom-nav-icon {
       font-size: 18px;
       line-height: 1;
     }
+    .app-shell--with-bottom-nav .route-scroll .route-inner.ccna-container,
+    .app-shell--with-bottom-nav .route-shell--fill .route-inner.ccna-container,
     .app-shell--with-bottom-nav .route-inner.ccna-container.page-fill {
-      padding-bottom: calc(64px + env(safe-area-inset-bottom));
+      padding-bottom: calc(
+        var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 16px
+      );
     }
     html[data-reduce-motion="true"] .ccna-view,
     html[data-reduce-motion="true"] .ccna-overlay,
@@ -435,7 +491,8 @@ export function buildAppShellCss(colors) {
     }
     .objective-sibling-btn {
       flex: 1;
-      min-height: 36px;
+      min-height: 44px;
+      min-width: 44px;
       border-radius: 8px;
       border: 1px solid ${colors.border};
       background: ${colors.surface};
@@ -466,7 +523,8 @@ export function buildAppShellCss(colors) {
       font-size: var(--ccna-type-xs);
       font-weight: 600;
       padding: 4px 12px;
-      min-height: 32px;
+      min-height: 44px;
+      min-width: 44px;
       cursor: pointer;
       font-family: inherit;
     }
@@ -554,13 +612,14 @@ export function buildAppShellCss(colors) {
       width: 100%;
       transform-origin: left center;
       background: ${colors.brand};
+      transition: transform .35s ease, width .35s ease;
     }
     .study-block-chip--break .study-block-chip__progress {
       background: ${colors.amber};
     }
     .study-block-mode-btn,
     .study-block-stop-btn {
-      min-height: 32px;
+      min-height: 44px;
       padding: 0 10px;
       border-radius: 999px;
       border: 1px solid ${colors.border};
@@ -733,11 +792,61 @@ export function buildAppShellCss(colors) {
       width: 100%;
       max-width: 100%;
     }
+    .tutor-shell {
       flex: 1;
       min-height: 0;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+    }
+    .domain-accordion-panel {
+      overflow: hidden;
+      transition: opacity .25s ease, max-height .3s ease;
+    }
+    .objective-wayfind-row--compact {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .objective-overflow-btn {
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: 10px;
+      border: 1px solid ${colors.border};
+      background: ${colors.surface};
+      color: ${colors.silver};
+      font-size: var(--ccna-type-lg);
+      line-height: 1;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0 10px;
+    }
+    .objective-overflow-item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: ${colors.silver};
+      font-size: var(--ccna-type-sm);
+      padding: 10px 12px;
+      min-height: 44px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .objective-overflow-item:hover {
+      background: ${colors.surface};
+    }
+    .app-shell--with-bottom-nav .objective-body {
+      padding-bottom: calc(var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 8px);
+    }
+    html[data-reduce-motion="true"] .domain-accordion-panel,
+    html[data-reduce-motion="true"] .objective-tab-panel,
+    html[data-reduce-motion="true"] .app-bottom-nav-btn--active::after,
+    html[data-reduce-motion="true"] .study-block-chip__progress {
+      transition: none !important;
+      animation: none !important;
     }
     .tutor-messages {
       flex: 1;

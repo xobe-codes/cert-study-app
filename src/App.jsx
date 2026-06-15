@@ -30,6 +30,7 @@ import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { PALETTES, COLORS, THEME_CSS, accentColors, styles } from './ui/appTheme.js'
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { buildAppShellCss } from './ui/appShell.js'
+import { useVisualViewportBottomInset } from './ui/visualViewportInset.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import OverflowMarquee from './components/OverflowMarquee.jsx'
 import DeferredExamTips from './components/DeferredExamTips.jsx'
@@ -1485,6 +1486,7 @@ function KeyTermsCarousel({ objective }) {
             <button
               key={idx}
               onClick={() => toggleFlip(idx)}
+              className={`key-term-card${isFlipped ? ' key-term-card--flipped' : ''}`}
               style={{
                 flex: '0 0 auto', width: 168, minHeight: 110, scrollSnapAlign: 'start',
                 background: isFlipped ? COLORS.skyDim : COLORS.purpleDim,
@@ -1630,28 +1632,33 @@ function VisualAidRender({ spec }) {
   return null
 }
 
+function CuratedPacketFlow({ data }) {
+  const pf = data?.packetFlow
+  if (!pf?.steps?.length) return null
+  return (
+    <div style={{ ...styles.card, border: `1px solid ${COLORS.mintBorder}`, background: COLORS.mintDim, marginTop: 8, marginBottom: 12 }}>
+      <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.mint, marginBottom: 10 }}>{pf.title}</div>
+      {pf.steps.map((s, i) => (
+        <div key={s.id} style={{ display: 'flex', gap: 8, marginBottom: i < pf.steps.length - 1 ? 8 : 0, alignItems: 'flex-start' }}>
+          <VisualBadge accent={COLORS.mint}>{s.order}</VisualBadge>
+          <div>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, color: COLORS.silver }}>{s.title}</div>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>{s.action}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function CuratedVisualAid({ data }) {
-  const pf = data.packetFlow
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
         <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
       </div>
       {data.diagram && <CuratedDiagram diagram={data.diagram} />}
-      {pf?.steps?.length > 0 && (
-        <div style={{ ...styles.card, border: `1px solid ${COLORS.mintBorder}`, background: COLORS.mintDim, marginTop: 8 }}>
-          <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.mint, marginBottom: 10 }}>{pf.title}</div>
-          {pf.steps.map((s, i) => (
-            <div key={s.id} style={{ display: 'flex', gap: 8, marginBottom: i < pf.steps.length - 1 ? 8 : 0, alignItems: 'flex-start' }}>
-              <VisualBadge accent={COLORS.mint}>{s.order}</VisualBadge>
-              <div>
-                <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 600, color: COLORS.silver }}>{s.title}</div>
-                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>{s.action}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      <CuratedPacketFlow data={data} />
     </div>
   )
 }
@@ -2336,24 +2343,38 @@ function SubnetPracticeHome({ onBack }) {
 }
 
 
-function ExplainTab({ objective, progress, onUpdateProgress }) {
+function ExplainTab({
+  objective, progress, onUpdateProgress,
+  layout = 'legacy',
+  onStartPractice,
+  VisualAidTab: VisualAidTabProp,
+  premiumUnlocked,
+  onPremiumBlocked,
+}) {
   const [content, setContent] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  const [recalled, setRecalled] = useState(false) // retrieval-practice gate (AI lessons only)
-  const [lessonView, setLessonView] = useState('read') // read | reference
-  const [stage, setStage] = useState('assess') // assess | lesson — pre-assessment gates the lesson
+  const [recalled, setRecalled] = useState(false)
+  const [lessonView, setLessonView] = useState('read')
+  const [stage, setStage] = useState(layout === 'study' ? 'lesson' : 'assess')
   const testedOut = !!progress?.[objective.id]?.testedOut
   const curated = hasCuratedReading(objective.id) ? getCurated(objective.id) : null
+  const curatedData = useMemo(() => getCurated(objective.id), [objective.id])
+  const hasCuratedVisual = !!curatedData?.diagram || !!curatedData?.packetFlow?.steps?.length
   const showReference = hasLessonReference(objective.id)
   const bankedForCoverage = useMemo(() => getCuratedQuestions(objective.id), [objective.id])
+  const isStudy = layout === 'study'
 
   useEffect(() => {
     setRecalled(false)
     setLessonView('read')
-    setStage(progress?.[objective.id]?.testedOut ? 'lesson' : 'assess')
+    if (isStudy) {
+      setStage('lesson')
+    } else {
+      setStage(progress?.[objective.id]?.testedOut ? 'lesson' : 'assess')
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [objective.id])
+  }, [objective.id, isStudy])
 
   const fetchExplanation = useCallback(async (force, adjust) => {
     setLoading(true)
@@ -2415,11 +2436,10 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
     setStage('lesson')
   }
 
-  // Pre-assessment stage
-  if (stage === 'assess' && !testedOut) {
+  // Pre-assessment stage (legacy layout only — Study tab skips assess)
+  if (!isStudy && stage === 'assess' && !testedOut) {
     return (
       <div>
-        <KeyTermsCarousel objective={objective} />
         <PreAssessment objective={objective} onTestedOut={handleTestedOut} onStudy={enterLesson} />
       </div>
     )
@@ -2439,7 +2459,6 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
           )}
         </div>
       )}
-      <KeyTermsCarousel objective={objective} />
       <CkuCoverageChip objectiveId={objective.id} banked={bankedForCoverage} />
       <LessonViewTabs view={lessonView} onChange={setLessonView} showReference={showReference} />
 
@@ -2449,13 +2468,22 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
         <>
           {!curated && <BookRefPanel objective={objective} />}
 
-          {!curated && !recalled && !error && (
+          {!curated && !recalled && !error && !isStudy && (
             <div style={{ ...styles.card, border: `1px solid ${COLORS.purpleGlow}`, background: COLORS.purpleDim }}>
               <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 6 }}>🧠 RECALL FIRST</div>
               <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.5, marginBottom: 12 }}>
                 Before you read it: what do you already know about <strong>{objective.title}</strong>? Try to explain it to yourself — a rough attempt strengthens memory far more than re-reading.
               </div>
               <button style={styles.primaryBtn} onClick={() => setRecalled(true)}>Reveal explanation</button>
+            </div>
+          )}
+          {!curated && isStudy && !recalled && !error && (
+            <div style={{ ...styles.card, border: `1px solid ${COLORS.purpleGlow}`, background: COLORS.purpleDim, marginBottom: 10 }}>
+              <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.purpleGlow, marginBottom: 6 }}>🧠 RECALL FIRST</div>
+              <div style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.5, marginBottom: 12 }}>
+                Before you read: what do you already know about <strong>{objective.title}</strong>?
+              </div>
+              <button style={styles.primaryBtn} onClick={() => setRecalled(true)}>Start reading</button>
             </div>
           )}
 
@@ -2482,6 +2510,25 @@ function ExplainTab({ objective, progress, onUpdateProgress }) {
               </div>
               <SourcesPanel objective={objective} />
             </>
+          )}
+          {isStudy && hasCuratedVisual && (curated || recalled) && (
+            <div className="study-visual-section" style={{ marginTop: 12, marginBottom: 12 }}>
+              {curatedData.diagram && <CuratedDiagram diagram={curatedData.diagram} />}
+              <CuratedPacketFlow data={curatedData} />
+            </div>
+          )}
+          {isStudy && !hasCuratedVisual && VisualAidTabProp && recalled && (
+            <div className="study-visual-section" style={{ marginTop: 12, marginBottom: 12 }}>
+              <VisualAidTabProp objective={objective} premiumUnlocked={premiumUnlocked} onPremiumBlocked={onPremiumBlocked} />
+            </div>
+          )}
+          {isStudy && (curated || recalled) && (
+            <KeyTermsCarousel objective={objective} />
+          )}
+          {isStudy && onStartPractice && (curated || recalled) && (
+            <button type="button" style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={onStartPractice}>
+              Start practice →
+            </button>
           )}
         </>
       )}
@@ -2529,6 +2576,16 @@ function moveOrderItem(items, from, to) {
 
 function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
   const [dragIdx, setDragIdx] = useState(null)
+  const [coarsePointer, setCoarsePointer] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return
+    const mq = window.matchMedia('(pointer: coarse)')
+    setCoarsePointer(mq.matches)
+    const onChangeMq = () => setCoarsePointer(mq.matches)
+    mq.addEventListener?.('change', onChangeMq)
+    return () => mq.removeEventListener?.('change', onChangeMq)
+  }, [])
 
   function reorder(from, to) {
     if (revealed || from === to || from < 0 || to < 0 || from >= items.length || to >= items.length) return
@@ -2536,8 +2593,13 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
   }
 
   return (
-    <div>
-      <div style={{ ...styles.small, marginBottom: 8 }}>Drag items into order, or use ↑ ↓ on mobile.</div>
+    <div className="ordering-touch-first">
+      {!coarsePointer && (
+        <div style={{ ...styles.small, marginBottom: 8 }}>Drag items into order, or use ↑ ↓ on mobile.</div>
+      )}
+      {coarsePointer && (
+        <div className="ordering-touch-hint" style={{ ...styles.small, marginBottom: 8, fontWeight: 600, color: COLORS.sky }}>Use ↑ ↓ to reorder</div>
+      )}
       {items.map((item, idx) => {
         let bg = COLORS.surface
         let border = COLORS.border
@@ -2551,7 +2613,7 @@ function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
         return (
           <div
             key={`${idx}-${item.slice(0, 24)}`}
-            draggable={!revealed}
+            draggable={!revealed && !coarsePointer}
             onDragStart={() => setDragIdx(idx)}
             onDragOver={e => { e.preventDefault() }}
             onDrop={() => { reorder(dragIdx, idx); setDragIdx(null) }}
@@ -2692,7 +2754,7 @@ function QuizCompleteCard({
     primaryAction = onOpenMissed
   } else if (nextObjective) {
     primaryLabel = `Next objective: ${nextObjective.id}`
-    primaryAction = () => onSelectObjective?.({ ...nextObjective, __initialTab: 'Quiz' })
+    primaryAction = () => onSelectObjective?.({ ...nextObjective, __initialTab: 'Practice' })
   } else {
     primaryLabel = 'Review again from bank'
     primaryAction = onReviewAgain
@@ -2716,12 +2778,12 @@ function QuizCompleteCard({
       {sessionMissed > 0 && nextObjective && (
         <button
           style={{ ...styles.secondaryBtn, marginTop: 8 }}
-          onClick={() => onSelectObjective?.({ ...nextObjective, __initialTab: 'Quiz' })}
+          onClick={() => onSelectObjective?.({ ...nextObjective, __initialTab: 'Practice' })}
         >
           Continue to {nextObjective.id} instead
         </button>
       )}
-      <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => onSwitchTab?.('Explain')}>
+      <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => onSwitchTab?.('Study')}>
         Read explanation
       </button>
       {primaryAction !== onReviewAgain && (
@@ -2732,12 +2794,17 @@ function QuizCompleteCard({
   )
 }
 
-function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onSwitchTab, examMode = false, premiumUnlocked = false, onPremiumBlocked }) {
+function QuizTab({
+  objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onSwitchTab,
+  examMode = false, premiumUnlocked = false, onPremiumBlocked,
+  showPreAssessFirst = false, onUpdateProgress,
+}) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
   const justMasteredRef = useRef(false)
   const deferredTips = useRef([])
   const [overconfidentCallout, setOverconfidentCallout] = useState(false)
+  const [preAssessDone, setPreAssessDone] = useState(false)
   const [phase, setPhase] = useState('idle') // idle | loading | active | done | error
   const [error, setError] = useState(null)
   const [queue, setQueue] = useState([]) // remaining questions
@@ -2915,6 +2982,7 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
 
   useEffect(() => {
     setPhase('idle')
+    setPreAssessDone(false)
     setQueue([])
     setCurrent(null)
     setSelected(null)
@@ -3012,15 +3080,43 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
     setOverconfidentCallout(false)
   }
 
+  async function handlePreAssessTestedOut(questions, pct) {
+    onUpdateProgress?.(objective.id, {
+      testedOut: true,
+      preAssessPct: pct,
+      readingTier: READING_TIER_KEYS.examReady,
+      lastSeen: Date.now(),
+    })
+    await seedTestedOutReview(objective.id, questions)
+    logEvent('user_tested_out', { objectiveId: objective.id, score: pct })
+    setPreAssessDone(true)
+  }
+
+  if (showPreAssessFirst && !preAssessDone && !progress?.[objective.id]?.testedOut) {
+    return (
+      <div>
+        <p style={{ ...styles.small, marginBottom: 10, color: COLORS.silverMid }}>
+          Quick check before practice — test out if you already know this topic.
+        </p>
+        <PreAssessment
+          objective={objective}
+          onTestedOut={handlePreAssessTestedOut}
+          onStudy={() => setPreAssessDone(true)}
+        />
+      </div>
+    )
+  }
+
   if (phase === 'idle') {
     const hasBank = bankSize >= QUIZ_BANK_MIN
     const poolMax = hasBank ? bankSize : (curatedPoolSize > 0 ? curatedPoolSize : MAX_QUIZ_SESSION_SIZE)
     const sessionMax = hasBank ? bankSize : MAX_QUIZ_SESSION_SIZE
     const reviewCount = hasBank ? Math.min(sessionSize, bankSize) : sessionSize
+    const emptyPool = !hasBank && curatedPoolSize === 0
     return (
       <div className="ccna-quiz-idle">
         <p style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, color: COLORS.silver, margin: '0 0 4px', lineHeight: 1.35 }}>
-          How many questions do you want?
+          {emptyPool ? 'Ready to practice?' : 'How many questions do you want?'}
         </p>
         <p style={{ ...styles.small, marginBottom: 10, color: COLORS.silverMid }}>
           {hasBank ? (
@@ -3032,9 +3128,14 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
               <strong style={{ color: COLORS.silver }}>{curatedPoolSize}</strong> curated question{curatedPoolSize === 1 ? '' : 's'} for this topic — {STATIC_COPY.curatedQuizPool}.
             </>
           ) : (
-            <>Build a local bank for this topic (one-time API generation if the static pool is thin).</>
+            <>No questions yet — read the Study tab first, or generate a custom set.</>
           )}
         </p>
+        {emptyPool && onSwitchTab && (
+          <button type="button" style={{ ...styles.secondaryBtn, marginBottom: 8 }} onClick={() => onSwitchTab('Study')}>
+            ← Back to Study
+          </button>
+        )}
         {hasBank && <BankMixDisplay questions={bankQuestions} />}
         {!hasBank && curatedPoolSize === 0 && <AiBudgetWarning />}
         <div style={{ marginBottom: 4 }}>
@@ -3063,7 +3164,9 @@ function QuizTab({ objective, progress, missed, onMissed, onScoreSaved, nextObje
             </span>
           </div>
         </div>
-        <button style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={() => startQuiz(false)}>{hasBank ? `Review ${reviewCount} question${reviewCount === 1 ? '' : 's'}` : 'Start quiz'}</button>
+        <button style={{ ...styles.primaryBtn, marginTop: 12 }} onClick={() => startQuiz(false)}>
+          {hasBank ? `Practice ${reviewCount} question${reviewCount === 1 ? '' : 's'}` : emptyPool ? 'Generate practice set' : 'Start practice'}
+        </button>
         {hasBank && (
           <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => startQuiz(true)}>Generate new questions</button>
         )}
@@ -5111,24 +5214,34 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
   return (
     <div
       ref={dialogRef}
-      className="ccna-overlay"
+      className="ccna-overlay global-search-overlay"
       role="dialog"
       aria-modal="true"
       aria-label="Search objectives"
-      style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: MODAL_Z, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 60, padding: '60px 16px 16px' }}
+      style={{
+        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: MODAL_Z,
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        paddingTop: 'max(60px, env(safe-area-inset-top))',
+        paddingLeft: 'max(16px, env(safe-area-inset-left))',
+        paddingRight: 'max(16px, env(safe-area-inset-right))',
+        paddingBottom: 'max(16px, env(safe-area-inset-bottom))',
+      }}
       onClick={e => { if (e.target === e.currentTarget) onClose() }}
     >
       <div style={{ width: '100%', maxWidth: 540, background: COLORS.card, borderRadius: 16, border: `1px solid ${COLORS.borderGlow}`, overflow: 'hidden' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', borderBottom: `1px solid ${COLORS.border}` }}>
-          <span style={{ fontSize: 'var(--ccna-type-lg)', color: COLORS.silverMid }}>🔍</span>
+          <span style={{ fontSize: 'var(--ccna-type-lg)', color: COLORS.silverMid }} aria-hidden>🔍</span>
           <input
             ref={inputRef}
+            type="search"
+            inputMode="search"
+            enterKeyHint="search"
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="Search objectives — e.g. 'OSPF' or '3.4'"
             style={{ flex: 1, background: 'none', border: 'none', outline: 'none', fontSize: 'var(--ccna-type-md)', color: COLORS.silver, fontFamily: 'inherit' }}
           />
-          <button onClick={onClose} style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)', cursor: 'pointer', padding: '4px 8px' }}>ESC</button>
+          <button type="button" onClick={onClose} aria-label="Close search" style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)', cursor: 'pointer', minWidth: 44, minHeight: 44, padding: '4px 8px' }}>✕</button>
         </div>
         <div style={{ maxHeight: 360, overflowY: 'auto' }}>
           {results.map(o => {
@@ -6257,6 +6370,8 @@ export default function App() {
     setTheme(prev => {
       const next = prev === 'dark' ? 'light' : 'dark'
       document.documentElement.setAttribute('data-theme', next)
+      const meta = document.querySelector('meta[name="theme-color"]')
+      if (meta) meta.setAttribute('content', next === 'dark' ? '#2a1229' : '#f5f0f8')
       window.storage.setItem(STORAGE_KEYS.theme, next)
       return next
     })
@@ -6330,8 +6445,13 @@ export default function App() {
     } else {
       logEvent('user_replayed_onboarding', { objectivesCovered: Object.keys(results || {}).length })
     }
+    const wasReplay = onboardingReplayRef.current
     onboardingReplayRef.current = false
     await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
+    if (!wasReplay) {
+      tourQueuedRef.current = true
+      setShowTour(true)
+    }
     setView('home')
   }, [])
 
@@ -6644,6 +6764,10 @@ export default function App() {
     setStreak(next)
   }, [])
 
+  const chromeOverlayOpen = showExport || showSync || showSearch || showSettings || showTour
+  const showBottomNav = loaded && !chromeOverlayOpen && !['onboarding', 'tutor', 'lab'].includes(view)
+  useVisualViewportBottomInset(showBottomNav || view === 'objective' || view === 'tutor')
+
   if (!loaded) {
     return (
       <NavHintProvider>
@@ -6659,9 +6783,8 @@ export default function App() {
 
   const routeScrolls = view !== 'objective' && view !== 'tutor'
   const compactTopChrome = view === 'objective' || view === 'tutor'
-  const chromeOverlayOpen = showExport || showSync || showSearch || showSettings || showTour
-  const showBottomNav = !chromeOverlayOpen && !['onboarding', 'objective', 'tutor', 'lab'].includes(view)
-  const bottomNavActive = showSettings ? 'more' : showSearch ? 'search' : view === 'home' ? 'home' : null
+  const bottomNavActive = showSettings ? 'more' : showSearch ? 'search' : view === 'home' ? 'home' : view === 'objective' ? 'home' : null
+  const bottomNavCompact = view === 'objective'
 
   return (
     <NavHintProvider>
@@ -6704,9 +6827,20 @@ export default function App() {
         .ccna-pulse { animation: ccna-pulse .45s ease-out; }
         @keyframes ccna-quiz-reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
         .ccna-quiz-reveal { animation: ccna-quiz-reveal .2s ease both; }
-        @keyframes ccna-view-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-        .ccna-view { animation: ccna-view-in .28s ease both; }
-        .ccna-stagger > * { animation: ccna-view-in .42s ease both; }
+        @keyframes ccna-route-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        .ccna-route-in { animation: ccna-route-in .32s ease both; }
+        .objective-tab-panel { animation: ccna-route-in .22s ease both; }
+        @keyframes key-term-flip { from { transform: rotateY(90deg); opacity: 0.4; } to { transform: rotateY(0); opacity: 1; } }
+        .key-term-card { transition: background .2s ease, border-color .2s ease; perspective: 600px; }
+        .key-term-card--flipped { animation: key-term-flip .28s ease both; }
+        @media (pointer: coarse) {
+          .ordering-touch-first [draggable="true"] { cursor: default; }
+          .ordering-touch-first .ordering-touch-hint { display: block; }
+        }
+        html[data-reduce-motion="true"] .objective-tab-panel,
+        html[data-reduce-motion="true"] .ccna-route-in,
+        html[data-reduce-motion="true"] .key-term-card--flipped { animation: none !important; }
+        .ccna-stagger > * { animation: ccna-route-in .42s ease both; }
         ${[1,2,3,4,5,6,7,8].map(i => `.ccna-stagger > *:nth-child(${i}){animation-delay:${i*0.04}s}`).join('')}
         @keyframes ccna-overlay-in { from { opacity: 0; } to { opacity: 1; } }
         @keyframes ccna-sheet-in { from { transform: translateY(100%); } to { transform: none; } }
@@ -6716,7 +6850,7 @@ export default function App() {
           .ccna-compact-p { font-size: var(--ccna-type-xs) !important; line-height: 1.4 !important; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .ccna-view, .ccna-overlay, .ccna-sheet, .ccna-stagger > *, .ccna-quiz-reveal, .ccna-shimmer::after, .ccna-skeleton, .ccna-pulse { animation: none; }
+          .ccna-view, .ccna-route-in, .ccna-overlay, .ccna-sheet, .ccna-stagger > *, .ccna-quiz-reveal, .ccna-shimmer::after, .ccna-skeleton, .ccna-pulse { animation: none; }
           button:active:not(:disabled) { transform: none; }
         }
         .ccna-quiz-idle {
@@ -6734,7 +6868,7 @@ export default function App() {
           <OfflineBanner />
         </div>
       )}
-      <RouteShell scroll={routeScrolls} ref={mainRef}>
+      <RouteShell scroll={routeScrolls} ref={mainRef} innerClassName="ccna-route-in" key={view}>
         {view === 'onboarding' && <Onboarding onComplete={finishOnboarding} onSkip={skipOnboarding} />}
         {view === 'home' && (
           <HomeScreen
@@ -6806,6 +6940,8 @@ export default function App() {
             examMode={settingsExamMode}
             premiumUnlocked={premiumUnlocked}
             onPremiumBlocked={handlePremiumBlocked}
+            onToggleTheme={toggleTheme}
+            theme={theme}
           />
         )}
         {view === 'mock' && <MockExam onExit={() => setView('home')} examMode={settingsExamMode} />}
@@ -6844,12 +6980,15 @@ export default function App() {
         )}
       </RouteShell>
       {showBottomNav && (
-        <BottomNav
-          active={bottomNavActive}
-          onHome={() => setView('home')}
-          onSearch={() => setShowSearch(true)}
-          onMore={() => setShowSettings(true)}
-        />
+        <div className="app-chrome-bottom app-chrome-bottom--dock site-column">
+          <BottomNav
+            active={bottomNavActive}
+            compact={bottomNavCompact}
+            onHome={() => setView('home')}
+            onSearch={() => setShowSearch(true)}
+            onMore={() => setShowSettings(true)}
+          />
+        </div>
       )}
       {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}
       {showSearch && <GlobalSearchModal progress={progress} onSelectObjective={selectObjective} onClose={() => setShowSearch(false)} />}

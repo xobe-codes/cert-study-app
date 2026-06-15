@@ -3,6 +3,7 @@ import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from './ui/appTheme.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import { getCurated, hasCuratedReading, hasCuratedQuestions } from './data/ccnaCurated.js'
+import { isCuratedPack } from './curatedDisplay.js'
 import CuratedStaticBadge from './components/CuratedStaticBadge.jsx'
 import OverflowMarquee from './components/OverflowMarquee.jsx'
 import { getShelvedStats } from './data/shelvedStudy.js'
@@ -33,6 +34,84 @@ const ALL_EXAM_TRAPS = (() => {
   return traps
 })()
 
+function ContentTrustCard() {
+  return (
+    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.mintBorder}`, background: COLORS.mintDim }}>
+      <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.mint, letterSpacing: 0.5, marginBottom: 8 }}>BUILT-IN STUDY PACKS</div>
+      <p style={{ ...styles.small, margin: '0 0 8px', lineHeight: 1.5 }}>
+        Most objectives ship with curated reading, practice questions, diagrams, and flashcards — ready instantly, no API wait.
+      </p>
+      <p style={{ ...styles.small, margin: 0, lineHeight: 1.5, color: COLORS.silverMid }}>
+        AI-generated lessons and custom quizzes are optional extras for topics without a full pack or when you want a fresh angle.
+      </p>
+    </div>
+  )
+}
+
+function YourProgressCard({ progress, missed, readiness, onOpenMissed, onOpenStats }) {
+  const [dismissed, setDismissed] = useState(isRecapDismissed())
+  const data = useMemo(() => getSessionStudy(), [])
+  const trapGroups = useMemo(() => groupMissedByTrap(missed || []), [missed])
+  const topTraps = trapGroups.slice(0, 2)
+  const total = data.correct + data.incorrect
+
+  function dismiss() { dismissSessionRecap(); setDismissed(true) }
+
+  return (
+    <div style={{ ...styles.card, marginBottom: 12 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>YOUR PROGRESS</div>
+        <button
+          type="button"
+          onClick={onOpenStats}
+          style={{ background: 'none', border: 'none', color: COLORS.purpleGlow, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
+        >
+          Stats & trends →
+        </button>
+      </div>
+      <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', marginBottom: topTraps.length || (!dismissed && total > 0) ? 12 : 0 }}>
+        <ProgressRing value={readiness.score} size={68} accent="purple" caption="Exam readiness" />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          {readiness.domainStats.slice(0, 3).map(d => {
+            const c = accentColors(d.accent)
+            return (
+              <div key={d.id} style={{ marginBottom: 6 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>
+                  <span>{d.name}</span>
+                  <span>{Math.round(d.avg * 100)}%</span>
+                </div>
+                <div style={{ height: 5, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
+                  <div style={{ height: '100%', width: `${Math.round(d.avg * 100)}%`, borderRadius: 999, background: c.text }} />
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+      {!dismissed && total > 0 && (
+        <div style={{ ...styles.small, padding: '8px 10px', borderRadius: 10, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: topTraps.length ? 10 : 0, position: 'relative' }}>
+          <button type="button" onClick={dismiss} aria-label="Dismiss session recap" style={{ position: 'absolute', top: 6, right: 8, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-lg)', cursor: 'pointer', lineHeight: 1, padding: 0, minWidth: 44, minHeight: 44 }}>×</button>
+          <strong style={{ color: COLORS.sky }}>Last session:</strong> {total} question{total === 1 ? '' : 's'} · {data.correct} correct
+        </div>
+      )}
+      {topTraps.length > 0 && (
+        <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+            <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.rose }}>Top trap patterns</span>
+            <button type="button" onClick={onOpenMissed} style={{ background: 'none', border: 'none', color: COLORS.rose, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}>Review missed →</button>
+          </div>
+          {topTraps.map(g => (
+            <div key={g.trap} style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.45, marginBottom: 4 }}>
+              <span style={{ ...styles.pill('rose'), fontSize: 'var(--ccna-type-micro)', marginRight: 6 }}>{g.count}×</span>
+              {g.trap}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 function HomeExtrasSection({ progress, onOpenSettings }) {
   const [open, setOpen] = useState(false)
   return (
@@ -49,14 +128,13 @@ function HomeExtrasSection({ progress, onOpenSettings }) {
       >
         <span style={{ flex: 1, textAlign: 'left' }}>
           <span style={{ display: 'block', fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, letterSpacing: 0.5 }}>EXAM PREP EXTRAS</span>
-          <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>Exam countdown · daily trap</span>
+          <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>Exam countdown</span>
         </span>
         <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, flexShrink: 0 }}>{open ? '▲' : '▼'}</span>
       </button>
       {open && (
         <div>
           <ExamCountdown progress={progress} onOpenSettings={onOpenSettings} />
-          <ExamTrapWidget />
         </div>
       )}
     </div>
@@ -326,6 +404,12 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
 
       <StudyNextStrip next={studyNext} onSelectObjective={onSelectObjective} onOpenReview={onOpenReview} />
 
+      <ExamTrapWidget />
+
+      <ContentTrustCard />
+
+      <YourProgressCard progress={progress} missed={missed} readiness={readiness} onOpenMissed={onOpenMissed} onOpenStats={onOpenStats} />
+
       {showNudge && (
         <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 12, position: 'relative' }}>
           <button
@@ -385,54 +469,17 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         </div>
       )}
 
-      <SessionRecapCard />
-
-      <TopTrapPatterns missed={missed} onOpenMissed={onOpenMissed} />
-
-      <div style={styles.card}>
-        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-          <ProgressRing value={readiness.score} size={72} accent="purple" caption="Exam Readiness" />
-          <div style={{ flex: 1, minWidth: 0 }}>
-            {readiness.domainStats.map(d => {
-              const c = accentColors(d.accent)
-              return (
-                <div key={d.id} style={{ marginBottom: 6 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>
-                    <span>{d.name}</span>
-                    <span>{Math.round(d.avg * 100)}%</span>
-                  </div>
-                  <div style={{ height: 5, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
-                    <div style={{ height: '100%', width: `${Math.round(d.avg * 100)}%`, borderRadius: 999, background: c.text }} />
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-        <div style={{ display: 'flex', gap: 16, marginTop: 10, flexWrap: 'wrap' }}>
-          <button
-            onClick={onOpenStats}
-            style={{ background: 'none', border: 'none', color: COLORS.purpleGlow, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
-          >
-            View stats & trends →
-          </button>
-          <button
-            onClick={onOpenMetrics}
-            style={{ background: 'none', border: 'none', color: COLORS.sky, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
-          >
-            Detailed metrics →
-          </button>
-        </div>
-      </div>
-
-      <div style={{ marginBottom: 12 }}>
+      <div style={{ ...styles.card, marginBottom: 12 }}>
         <div style={sectionLabel}>STUDY MODES</div>
-        <StudyModeCard title="Exam & review" subtitle="Mock exams, weak spots, and review">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 8 }}>
           <StudyModeBtn primary onClick={onOpenMock}>Mock Exam</StudyModeBtn>
-          <div style={{ ...styles.small, marginTop: -4, marginBottom: 4, paddingLeft: 2 }}>Full exam · Study by domain</div>
-          <StudyModeBtn onClick={onOpenFocus}>🎯 Weak Areas</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenFocus}>Weak Areas</StudyModeBtn>
           <StudyModeBtn onClick={onOpenMissed}>Missed ({missedCount})</StudyModeBtn>
-          <StudyModeBtn onClick={onOpenExamTraps}>⚠️ Exam Traps</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenExamTraps}>Exam Traps</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenLabs}>Labs</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenSubnet}>Subnetting</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenRouting}>Routing</StudyModeBtn>
+          <StudyModeBtn onClick={onOpenExtraStudy}>Extra ({getShelvedStats().total})</StudyModeBtn>
           <StudyModeBtn
             onClick={() => {
               if (premiumUnlocked) onOpenTutor?.()
@@ -441,13 +488,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
           >
             AI Tutor
           </StudyModeBtn>
-        </StudyModeCard>
-        <StudyModeCard title="Labs & drills" subtitle="Hands-on practice and extra content">
-          <StudyModeBtn onClick={onOpenLabs}>🧪 Labs</StudyModeBtn>
-          <StudyModeBtn onClick={onOpenSubnet}>🔢 Subnetting</StudyModeBtn>
-          <StudyModeBtn onClick={onOpenRouting}>🛣 Routing</StudyModeBtn>
-          <StudyModeBtn onClick={onOpenExtraStudy}>📚 Extra Study ({getShelvedStats().total})</StudyModeBtn>
-        </StudyModeCard>
+        </div>
       </div>
 
       <HomeExtrasSection progress={progress} onOpenSettings={onOpenSettings} />
@@ -483,7 +524,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
               <span style={{ ...styles.pill(domain.accent), flexShrink: 0 }}>{isOpen ? '−' : '+'}</span>
             </button>
             {isOpen && (
-              <div id={`domain-panel-${domain.id}`} role="region" aria-label={`${domain.name} objectives`} style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>
+              <div id={`domain-panel-${domain.id}`} className="domain-accordion-panel" role="region" aria-label={`${domain.name} objectives`} style={{ marginTop: 10, borderTop: `1px solid ${COLORS.border}`, paddingTop: 8 }}>
                 {objs.map(o => {
                   const status = progress[o.id]?.status || 'unseen'
                   return (
@@ -503,7 +544,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
                         }
                         return null
                       })()}
-                      {offlineReady?.has(o.id) && <span style={{ color: COLORS.mint, fontSize: 'var(--ccna-type-sm)', marginLeft: 8, flexShrink: 0 }}>⤓</span>}
+                      {offlineReady?.has(o.id) && !isCuratedPack(o.id) && <span style={{ color: COLORS.mint, fontSize: 'var(--ccna-type-sm)', marginLeft: 8, flexShrink: 0 }}>⤓</span>}
                     </button>
                   )
                 })}

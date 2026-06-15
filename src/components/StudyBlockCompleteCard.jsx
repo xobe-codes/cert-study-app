@@ -23,7 +23,7 @@ export default function StudyBlockCompleteCard({ objectiveId, masteryPct, onQuiz
       </p>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
         <button type="button" style={styles.primaryBtn} onClick={() => { dismissComplete(); onQuiz?.() }}>
-          Quiz now
+          Continue to practice
         </button>
         {isBreak && (
           <button type="button" style={styles.secondaryBtn} onClick={() => { dismissComplete(); skipBreakPhase() }}>
