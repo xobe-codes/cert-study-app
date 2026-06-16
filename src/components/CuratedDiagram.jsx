@@ -446,7 +446,7 @@ function DiagramExpandModal({ diagram, onClose, isMobile = false }) {
             flexShrink: 0,
           }}
         >
-          <h2 id="diagram-modal-title" style={{ ...styles.h2, margin: 0, fontSize: 'var(--ccna-type-md)', lineHeight: 1.35, paddingRight: 8 }}>
+          <h2 id="diagram-modal-title" style={{ ...styles.h2, margin: 0, fontSize: 'var(--ccna-type-md)', lineHeight: 1.35, paddingRight: 8, flex: 1, minWidth: 0 }}>
             🗺️ {diagram.title}
           </h2>
           <button

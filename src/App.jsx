@@ -2599,7 +2599,7 @@ function MetricsDashboard({ progress, missed, dueCount = 0, onBack, onSelectObje
     <div>
       <button style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10, marginBottom: 6 }}>
-        <h1 style={{ ...styles.h1, margin: 0 }}>Learner Metrics</h1>
+        <h1 style={{ ...styles.h1, margin: 0, flex: 1, minWidth: 0 }}>Learner Metrics</h1>
         {onOpenStats && (
           <button
             type="button"

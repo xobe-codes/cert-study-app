@@ -365,11 +365,13 @@ export function buildAppShellCss(colors) {
       overflow-wrap: anywhere;
       word-break: break-word;
     }
-    .app-shell p,
-    .app-shell li,
     .app-shell h1,
     .app-shell h2,
-    .app-shell h3,
+    .app-shell h3 {
+      overflow-wrap: anywhere;
+    }
+    .app-shell p,
+    .app-shell li,
     .app-shell button,
     .app-shell [role="tabpanel"],
     .app-shell .ccna-view,
