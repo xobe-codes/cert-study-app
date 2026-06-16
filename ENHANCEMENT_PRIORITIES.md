@@ -10,7 +10,7 @@ Cross-tool workflow: read `PROJECT_LOG.md` first each session; update Timeline +
 
 ## MASTER LIST (prioritized — single source of truth)
 
-Start at **#39** (exam-day mock interview) unless you need production updated first (**#46**).
+All items complete. Only **#46** (deploy to production) remains.
 
 | # | Work item | Type | Status | Suggested action |
 |---|---|---|---|---|
@@ -54,7 +54,7 @@ Start at **#39** (exam-day mock interview) unless you need production updated fi
 | 36 | Adaptive question pacing within session | UX | ~~Queued~~ — **done** (Timeline 19) |
 | 37 | Auto cross-device sync / setup nudge | UX | ~~Queued~~ — **done** (Timeline 21) | — |
 | 38 | Voice / TTS mode for tutor | Better AI | ~~Queued~~ — **done** (Timeline 24) | — |
-| 39 | AI "exam day" mock interview | Better AI | Queued | Late-stage exam prep |
+| 39 | AI "exam day" mock interview | Better AI | ~~Queued~~ — **done** (Timeline 25) | — |
 | 40 | API cost / reliability hardening | Infra | ~~Queued~~ — **done** (Timeline 21) | — |
 | 41 | Finish "MVP 12" curated objectives | Less AI | ~~In progress~~ — **done** (Timeline 20) | — |
 | 42 | Static reading stubs for Q-only objectives | Less AI | ~~Queued~~ — **done** (Timeline 20) | — |

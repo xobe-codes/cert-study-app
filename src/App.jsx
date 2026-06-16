@@ -48,6 +48,7 @@ import HomeScreen from './HomeScreen.jsx'
 import StatsPage from './StatsPage.jsx'
 import ObjectiveScreen from './ObjectiveScreen.jsx'
 import MockExam from './MockExam.jsx'
+import ExamDayInterview from './ExamDayInterview.jsx'
 import StudyNextStrip from './home/StudyNextStrip.jsx'
 import { bumpSessionStudy } from './home/sessionRecap.js'
 import {
@@ -4938,6 +4939,7 @@ export default function App() {
             onOpenSubnet={() => setView('subnet')}
             onOpenRouting={() => setView('routing')}
             onOpenExtraStudy={() => setView('extrastudy')}
+            onOpenExamInterview={() => setView('examinterview')}
             dueCount={dueCount}
             openDomain={openDomain}
             onOpenDomain={setOpenDomain}
@@ -5017,6 +5019,7 @@ export default function App() {
         )}
         {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
         {view === 'focus' && <FocusModeSession progress={progress} onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} />}
+        {view === 'examinterview' && <ExamDayInterview onExit={() => setView('home')} />}
         {view === 'examtraps' && <ExamTrapStudyMode styles={styles} onBack={() => setView('home')} />}
         {view === 'subnet' && <SubnetPracticeHome onBack={() => setView('home')} />}
         {view === 'routing' && <RoutingDecoderMode styles={styles} COLORS={COLORS} onBack={() => setView('home')} />}

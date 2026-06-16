@@ -430,9 +430,9 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ## Next Steps (per ENHANCEMENT_PRIORITIES.md MASTER LIST)
 
-**Next:** #39 — AI "exam day" mock interview. **Or:** #46 — Deploy to production.
+**All feature work complete.** Only remaining item: **#46 — Deploy to production.**
 
-**Queued (Better AI):** #39 Exam mock interview.
+Run locally: `npm run build && npx wrangler pages deploy dist --project-name ccna-study-tool`
 
 See `ENHANCEMENT_PRIORITIES.md` for the full prioritized table (items 1–46).
 
