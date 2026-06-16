@@ -420,6 +420,76 @@ function PreAssessment({ objective, onTestedOut, onStudy, premiumUnlocked = fals
   )
 }
 
+/* ---- Text-to-Speech utilities ---- */
+function _stripMarkup(text) {
+  return String(text || '').replace(/`([^`]*)`/g, '$1').replace(/\*\*/g, '')
+}
+function _curatedReadingText(r, tier) {
+  const body = explanationBodyFromReading(r, tier)
+  const takeaway = resolveBigTakeaway(r)
+  const parts = []
+  if (body) parts.push(_stripMarkup(body))
+  if (takeaway) parts.push('Key takeaway: ' + _stripMarkup(takeaway))
+  if (r.keyPoints?.length) parts.push('Key points: ' + r.keyPoints.map(_stripMarkup).join('. '))
+  if (r.commonMistakes?.length) parts.push('Common mistakes: ' + r.commonMistakes.map(_stripMarkup).join('. '))
+  return parts.join('\n\n')
+}
+function _aiExplanationText(data) {
+  const takeaway = resolveAiTakeaway(data)
+  const parts = []
+  if (data.definition) parts.push(_stripMarkup(data.definition))
+  if (takeaway && takeaway !== data.definition) parts.push('Key takeaway: ' + _stripMarkup(takeaway))
+  if (data.keyPoints?.length) parts.push('Key points: ' + data.keyPoints.map(_stripMarkup).join('. '))
+  if (data.commonMistakes?.length) parts.push('Common mistakes: ' + data.commonMistakes.map(_stripMarkup).join('. '))
+  return parts.join('\n\n')
+}
+function useTTS() {
+  const [speaking, setSpeaking] = useState(false)
+  const supported = typeof window !== 'undefined' && !!window.speechSynthesis
+  const speak = useCallback((text) => {
+    if (!supported) return
+    window.speechSynthesis.cancel()
+    const utt = new SpeechSynthesisUtterance(text)
+    utt.onstart = () => setSpeaking(true)
+    utt.onend = () => setSpeaking(false)
+    utt.onerror = () => setSpeaking(false)
+    window.speechSynthesis.speak(utt)
+  }, [supported])
+  const stop = useCallback(() => {
+    if (supported) window.speechSynthesis.cancel()
+    setSpeaking(false)
+  }, [supported])
+  useEffect(() => () => { if (supported) window.speechSynthesis.cancel() }, [supported])
+  return { speak, stop, speaking, supported }
+}
+function SpeakButton({ getText }) {
+  const { speak, stop, speaking, supported } = useTTS()
+  if (!supported) return null
+  return (
+    <button
+      type="button"
+      onClick={() => speaking ? stop() : speak(getText())}
+      title={speaking ? 'Stop reading' : 'Read aloud'}
+      style={{
+        background: speaking ? COLORS.roseDim : COLORS.surface,
+        border: `1px solid ${speaking ? COLORS.rose : COLORS.border}`,
+        borderRadius: 6,
+        color: speaking ? COLORS.rose : COLORS.silverMid,
+        cursor: 'pointer',
+        fontSize: 'var(--ccna-type-xs)',
+        fontWeight: 600,
+        padding: '4px 8px',
+        fontFamily: 'inherit',
+        flexShrink: 0,
+        minHeight: 28,
+        lineHeight: 1,
+      }}
+    >
+      {speaking ? '⏹ Stop' : '🔊'}
+    </button>
+  )
+}
+
 /* ---- Structured explanation renderer (progressive disclosure) ---- */
 function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen = true }) {
   const [open, setOpen] = useState(defaultOpen)
@@ -482,6 +552,9 @@ function ExplanationSection({ body, takeaway }) {
 function StructuredExplanation({ data }) {
   return (
     <div className="ccna-stagger">
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 4 }}>
+        <SpeakButton getText={() => _aiExplanationText(data)} />
+      </div>
       <ExplanationSection body={explanationBodyFromAi(data)} takeaway={resolveAiTakeaway(data)} />
       <ExplainBlock icon="📌" title="KEY POINTS" accent="amber"><Bullets items={data.keyPoints} /></ExplainBlock>
       <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={data.commonMistakes} /></ExplainBlock>
@@ -520,6 +593,7 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, sh
           text={attribution}
           style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}
         />
+        <SpeakButton getText={() => _curatedReadingText(r, tier)} />
       </div>
       {hint && (
         <div style={{

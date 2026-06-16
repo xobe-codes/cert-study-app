@@ -402,6 +402,24 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ---
 
+### 24. MASTER LIST #38 — Voice / TTS mode for tutor
+
+**Goal**: Let learners hear explanations read aloud using the browser's native `speechSynthesis` API, with zero API cost and no new dependencies.
+
+**What was done**:
+- Added `useTTS` hook in `src/tabs/studyQuizTabs.jsx`: wraps `window.speechSynthesis`, tracks `speaking` state, exposes `speak(text)` / `stop()` / `supported`. Cancels any in-progress utterance on unmount.
+- Added `SpeakButton` component: renders a 🔊 button (turns ⏹ Stop while speaking) only when `speechSynthesis` is available; no-ops silently on browsers/envs without TTS support.
+- Added `_stripMarkup(text)` helper: strips `` `backtick code` `` and `**bold**` markers so TTS reads clean prose instead of punctuation.
+- Added `_curatedReadingText(r, tier)` and `_aiExplanationText(data)` helpers to compose a readable text blob (body + takeaway + key points + common mistakes) from each content type.
+- Wired `SpeakButton` into `CuratedReading`: appears inline with the attribution/source badge row — one tap reads the currently selected tier's explanation, takeaway, key points, and common mistakes.
+- Wired `SpeakButton` into `StructuredExplanation` (AI-path): appears flush-right above the explanation block.
+- No localStorage state needed — the button is stateless (speak/stop per interaction); browser remembers voice/speed preferences natively.
+- **Build**: `npm run build` passed (1,318 kB, unchanged chunk count).
+
+**Outcome**: Any explanation panel now has a 🔊 button. Learners can listen while commuting or reviewing hands-free. Works in Chrome, Edge, Safari, Firefox. Falls back silently on environments without TTS support.
+
+---
+
 ## Open Decisions / Unresolved Questions
 
 1. ~~Domain 5 crosswalk above — confirm before importing Domain 5 questions (QB 5.8 → app 5.4 vs 5.7 is ambiguous).~~ **Resolved**, see Timeline item 13: QB 5.8 → app 5.7.
@@ -412,9 +430,9 @@ App objectives `5.4` (AAA TACACS+/RADIUS — partially covered by QB 5.8) and `5
 
 ## Next Steps (per ENHANCEMENT_PRIORITIES.md MASTER LIST)
 
-**Next:** #46 — Deploy to production. **Or:** #38 — Voice/TTS mode.
+**Next:** #39 — AI "exam day" mock interview. **Or:** #46 — Deploy to production.
 
-**Queued (Better AI):** #38 Voice/TTS · #39 Exam mock interview.
+**Queued (Better AI):** #39 Exam mock interview.
 
 See `ENHANCEMENT_PRIORITIES.md` for the full prioritized table (items 1–46).
 
