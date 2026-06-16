@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 import { resolveIncorrectItem } from '../answerReviewLogic.js'
+import { getCurated } from '../data/ccnaCurated.js'
 import { COLORS, accentColors } from '../ui/appTheme.js'
+
+function _objectiveIdFromQuestion(q) {
+  if (q.objectiveId) return q.objectiveId
+  const m = String(q.id || '').match(/^(?:obj-|supp-)?(\d+\.\d+)/)
+  return m?.[1] || null
+}
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
 
@@ -36,6 +43,46 @@ function ReviewBlock({ icon, title, accent, children, collapsible, defaultOpen =
       </button>
       {open && <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-md)', lineHeight: 1.55, color: COLORS.silver }}>{children}</div>}
     </div>
+  )
+}
+
+function CuratedInsights({ q }) {
+  const objectiveId = _objectiveIdFromQuestion(q)
+  if (!objectiveId) return null
+  const curated = getCurated(objectiveId)
+  if (!curated) return null
+  const ckuIds = new Set(q.ckuIds || [])
+  if (ckuIds.size === 0) return null
+
+  const traps = (curated.examTraps || []).filter(t => t.ckuIds?.some(id => ckuIds.has(id)))
+  const misconceptions = (curated.misconceptions || []).filter(m => m.ckuIds?.some(id => ckuIds.has(id)))
+  const cku = (curated.ckus || []).find(k => ckuIds.has(k.id))
+
+  if (traps.length === 0 && misconceptions.length === 0 && !cku) return null
+  return (
+    <>
+      {traps.map(t => (
+        <ReviewBlock key={t.id} icon="⚠️" title="EXAM TRAP" accent="amber">
+          <div style={{ marginBottom: 4 }}><RichText text={t.trap} /></div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)' }}>
+            <strong style={{ color: COLORS.amber }}>Correction: </strong><RichText text={t.correction} />
+          </div>
+        </ReviewBlock>
+      ))}
+      {misconceptions.map(m => (
+        <ReviewBlock key={m.id} icon="💡" title="COMMON MIX-UP" accent="purple" collapsible defaultOpen={false}>
+          <div style={{ marginBottom: 4 }}><RichText text={m.misconception} /></div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)' }}>
+            <strong style={{ color: accentColors('purple').text }}>Reality: </strong><RichText text={m.reality} />
+          </div>
+        </ReviewBlock>
+      ))}
+      {cku && (
+        <ReviewBlock icon="📖" title={`CONCEPT: ${cku.title.toUpperCase()}`} accent="sky" collapsible defaultOpen={false}>
+          <RichText text={cku.summary} />
+        </ReviewBlock>
+      )}
+    </>
   )
 }
 
@@ -117,6 +164,7 @@ export default function AnswerReview({ q, selected, hideExamTip = false }) {
           <RichText text={ar.memoryHook} />
         </ReviewBlock>
       )}
+      {selectedWrongIdx != null && <CuratedInsights q={q} />}
     </div>
   )
 }
