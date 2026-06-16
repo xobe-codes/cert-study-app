@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef, useId } from 'react'
 import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from './data/ccnaCurated.js'
-import { getLab, labsForObjective } from './data/ccnaLabs.js'
+import { getLab, labsForObjective, allLabs } from './data/ccnaLabs.js'
 import {
   TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, gradeQuestion, correctAnswerLabel,
   shuffleArrayCopy, randomizeQuestionOrder, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
@@ -3145,10 +3145,49 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
 }
 
 /* =========================================================================
+   SEARCH INDEX — built once at module load so every keystroke is O(n) text
+   scan against pre-concatenated strings rather than deep object traversal.
+   ========================================================================= */
+function _buildCuratedText(objectiveId) {
+  const c = getCurated(objectiveId)
+  if (!c) return ''
+  const parts = []
+  c.ckus?.forEach(k => { parts.push(k.title, k.summary, ...(k.aliases || []), ...(k.tags || [])) })
+  const r = c.reading
+  if (r) {
+    parts.push(r.bigTakeaway, r.definition)
+    Object.values(r.tiers || {}).forEach(t => parts.push(t))
+    r.keyPoints?.forEach(k => parts.push(k))
+    r.commonMistakes?.forEach(m => parts.push(m))
+  }
+  c.glossary?.forEach(g => parts.push(g.term, g.definition))
+  c.examTraps?.forEach(t => parts.push(t.trap, t.correction))
+  c.flashcards?.forEach(f => parts.push(f.front, f.back))
+  c.mnemonics?.forEach(m => parts.push(m.mnemonic, m.explanation))
+  c.misconceptions?.forEach(m => parts.push(m.misconception, m.reality))
+  return parts.filter(Boolean).join(' ')
+}
+
+const OBJECTIVE_SEARCH_INDEX = ALL_OBJECTIVES.map(o => ({
+  ...o,
+  _search: (o.id + ' ' + o.title + ' ' + _buildCuratedText(o.id)).toLowerCase(),
+}))
+
+const LAB_SEARCH_INDEX = allLabs().map(lab => {
+  const parts = [lab.title, lab.scenario]
+  lab.learningGoals?.forEach(g => parts.push(g))
+  lab.tasks?.forEach(t => parts.push(t.title, t.instruction))
+  lab.commonMistakes?.forEach(m => parts.push(m))
+  lab.successCriteria?.forEach(s => parts.push(s))
+  lab.failureCriteria?.forEach(f => parts.push(f))
+  return { ...lab, _search: parts.filter(Boolean).join(' ').toLowerCase() }
+})
+
+/* =========================================================================
    GLOBAL SEARCH — Cmd+K (desktop) or a persistent search button opens a
    full-screen modal that filters all 53 objectives in real time.
    ========================================================================= */
-function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
+function GlobalSearchModal({ progress, onSelectObjective, onOpenLab, onClose }) {
   const [query, setQuery] = useState('')
   const inputRef = useRef(null)
   const dialogRef = useRef(null)
@@ -3175,16 +3214,27 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
         .map(x => x.o)
       const seen = new Set(recent.map(o => o.id))
       const fill = ALL_OBJECTIVES.filter(o => !seen.has(o.id)).slice(0, Math.max(0, 12 - recent.length))
-      return [...recent, ...fill]
+      return [...recent, ...fill].map(o => ({ type: 'objective', data: o }))
     }
-    return ALL_OBJECTIVES.filter(o =>
-      o.id.toLowerCase().includes(q) || o.title.toLowerCase().includes(q)
-    ).slice(0, 15)
+    const objs = OBJECTIVE_SEARCH_INDEX
+      .filter(o => o._search.includes(q))
+      .slice(0, 12)
+      .map(o => ({ type: 'objective', data: o }))
+    const labs = LAB_SEARCH_INDEX
+      .filter(l => l._search.includes(q))
+      .slice(0, 5)
+      .map(l => ({ type: 'lab', data: l }))
+    return [...objs, ...labs]
   }, [query, progress])
 
-  function pick(obj) {
-    const domain = DOMAINS.find(d => d.objectives.some(o => o.id === obj.id))
-    onSelectObjective({ ...obj, domainId: domain?.id, domainName: domain?.name, accent: domain?.accent })
+  function pick(result) {
+    if (result.type === 'lab') {
+      onOpenLab(result.data.id)
+    } else {
+      const o = result.data
+      const domain = DOMAINS.find(d => d.objectives.some(x => x.id === o.id))
+      onSelectObjective({ ...o, domainId: domain?.id, domainName: domain?.name, accent: domain?.accent })
+    }
     onClose()
   }
 
@@ -3221,13 +3271,29 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
           <button type="button" onClick={onClose} aria-label="Close search" style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)', cursor: 'pointer', minWidth: 44, minHeight: 44, padding: '4px 8px' }}>✕</button>
         </div>
         <div className="global-search-results">
-          {results.map(o => {
+          {results.map(result => {
+            if (result.type === 'lab') {
+              const lab = result.data
+              const domain = DOMAINS.find(d => d.id === lab.domainId)
+              return (
+                <button
+                  key={`lab-${lab.id}`}
+                  onClick={() => pick(result)}
+                  style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', minWidth: 0, padding: '12px 16px', background: 'none', border: 'none', borderBottom: `1px solid ${COLORS.border}`, color: COLORS.silver, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}
+                >
+                  <span style={{ fontSize: 'var(--ccna-type-sm)', flexShrink: 0 }} aria-hidden>🧪</span>
+                  <span style={{ ...styles.pill(domain?.accent || 'silver'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>Lab</span>
+                  <OverflowMarquee text={lab.title} style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }} />
+                </button>
+              )
+            }
+            const o = result.data
             const status = progress[o.id]?.status || 'unseen'
             const domain = DOMAINS.find(d => d.objectives.some(x => x.id === o.id))
             return (
               <button
-                key={o.id}
-                onClick={() => pick(o)}
+                key={`obj-${o.id}`}
+                onClick={() => pick(result)}
                 style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', minWidth: 0, padding: '12px 16px', background: 'none', border: 'none', borderBottom: `1px solid ${COLORS.border}`, color: COLORS.silver, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}
               >
                 <StatusDot status={status} />
@@ -3240,10 +3306,10 @@ function GlobalSearchModal({ progress, onSelectObjective, onClose }) {
             )
           })}
           {results.length === 0 && (
-            <div style={{ padding: 20, textAlign: 'center', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)' }}>No objectives match "{query}"</div>
+            <div style={{ padding: 20, textAlign: 'center', color: COLORS.silverMid, fontSize: 'var(--ccna-type-sm)' }}>No results match "{query}"</div>
           )}
         </div>
-        {!query && <div style={{ padding: '8px 16px', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, borderTop: `1px solid ${COLORS.border}` }}>Recent objectives first · type to search all {ALL_OBJECTIVES.length}</div>}
+        {!query && <div style={{ padding: '8px 16px', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, borderTop: `1px solid ${COLORS.border}` }}>Recent objectives first · type to search all {ALL_OBJECTIVES.length} objectives + labs</div>}
       </div>
     </div>
   )
@@ -4978,7 +5044,7 @@ export default function App() {
         </div>
       )}
       {showExport && <ExportModal progress={progress} missed={missed} streak={streak} onImport={handleImport} onClose={() => setShowExport(false)} />}
-      {showSearch && <GlobalSearchModal progress={progress} onSelectObjective={selectObjective} onClose={() => setShowSearch(false)} />}
+      {showSearch && <GlobalSearchModal progress={progress} onSelectObjective={selectObjective} onOpenLab={openLab} onClose={() => setShowSearch(false)} />}
       {showSync && (
         <SyncModal
           syncCode={syncCode}
