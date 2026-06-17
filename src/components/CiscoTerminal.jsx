@@ -24,12 +24,18 @@ export default function CiscoTerminal({
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight })
   }, [history])
 
+  const scrollStyle = {
+    WebkitOverflowScrolling: 'touch',
+    overflowY: 'auto',
+    ...(height != null ? { height } : {}),
+  }
+
   return (
     <div className={`cisco-terminal ${className}`.trim()} style={{ borderTop: `1px solid ${COLORS.border}` }}>
       <div
         ref={scrollRef}
         className="cisco-terminal-scroll"
-        style={height != null ? { height } : undefined}
+        style={scrollStyle}
       >
         {history.length === 0 && emptyMessage && (
           <div style={{ color: '#6b7088' }}>{emptyMessage}</div>

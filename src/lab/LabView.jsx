@@ -159,8 +159,8 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
 
       {phase === 'practice' && (
         <>
-          <div style={{ ...styles.card, padding: 0, overflow: 'hidden', border: `1px solid ${COLORS.border}` }}>
-            <div className="lab-practice-layout">
+          <div style={{ ...styles.card, padding: 0, border: `1px solid ${COLORS.border}`, overflow: 'hidden' }}>
+            <div className="lab-practice-layout" style={{ minHeight: 'min(62dvh, 520px)' }}>
               <div className="lab-practice-tasks">
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px 6px' }}>
                   <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.4 }}>
