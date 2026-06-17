@@ -68,12 +68,13 @@ export function cliNavTarget(norm) {
   if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
   if (/^disable$/.test(norm)) return { to: 'user', from: ['priv'] }
   if (/^(configure terminal|conf t|config t|configure t|conf terminal)$/.test(norm)) return { to: 'config', from: ['priv'] }
-  if (/^(interface|int) /.test(norm)) return { to: 'config-if', from: ['config', 'config-if'] }
-  if (/^vlan \d+$/.test(norm)) return { to: 'config-vlan', from: ['config', 'config-vlan'] }
-  if (/^line /.test(norm)) return { to: 'config-line', from: ['config', 'config-line'] }
-  if (/^router \w+/.test(norm)) return { to: 'config-router', from: ['config', 'config-router'] }
-  if (/^ip dhcp pool /.test(norm)) return { to: 'config-dhcp', from: ['config', 'config-dhcp'] }
-  if (/^ip access-list /.test(norm)) return { to: 'config-acl', from: ['config', 'config-acl'] }
+  let m
+  if ((m = norm.match(/^(?:interface|int) (.+)$/))) return { to: 'config-if', from: ['config', 'config-if'], arg: m[1] }
+  if ((m = norm.match(/^vlan (\d+)$/))) return { to: 'config-vlan', from: ['config', 'config-vlan'], arg: m[1] }
+  if ((m = norm.match(/^line (.+)$/))) return { to: 'config-line', from: ['config', 'config-line'], arg: m[1] }
+  if ((m = norm.match(/^router (\w+)(?: (\S+))?$/))) return { to: 'config-router', from: ['config', 'config-router'], arg: m[2] || m[1] }
+  if ((m = norm.match(/^ip dhcp pool (\S+)$/))) return { to: 'config-dhcp', from: ['config', 'config-dhcp'], arg: m[1] }
+  if ((m = norm.match(/^ip access-list (?:standard|extended) (\S+)$/))) return { to: 'config-acl', from: ['config', 'config-acl'], arg: m[1] }
   return null
 }
 
@@ -90,17 +91,18 @@ export function cliExitTarget(norm, mode) {
 
 export function cliRequiredMode(norm) {
   if (/^show /.test(norm)) return 'priv'
+  if (/^(ping |ssh )/.test(norm)) return 'priv'
   if (cliNavTarget(norm)) {
     if (/^(enable|en|disable)$/.test(norm)) return 'user'
     if (/^(configure terminal|conf t|config t|configure t|conf terminal)$/.test(norm)) return 'priv'
     return 'config'
   }
   if (/^name /.test(norm)) return 'config-vlan'
-  if (/ area /.test(norm) || /^router-id /.test(norm)) return 'config-router'
+  if (/ area /.test(norm) || /^router-id /.test(norm) || /^default-information originate$/.test(norm)) return 'config-router'
   if (/^default-router /.test(norm) || (/^network /.test(norm) && !/ area /.test(norm))) return 'config-dhcp'
-  if (/^(transport input |login local$|login$)/.test(norm)) return 'config-line'
+  if (/^(transport input |login local$|login$|login authentication )/.test(norm)) return 'config-line'
   if (/^(deny |permit )/.test(norm)) return 'config-acl'
-  if (/^(ip address |no shut|no shutdown|ipv6 address |ipv6 enable|switchport|channel-group |standby |no cdp enable|ip helper-address |ip access-group )/.test(norm)) return 'config-if'
+  if (/^(ip address |shutdown$|no shut|no shutdown|ipv6 address |ipv6 enable|switchport|no switchport$|channel-group |standby |no cdp enable|ip helper-address |ip access-group |ip nat (inside|outside)$|ip arp inspection trust$|ip dhcp snooping trust$|encapsulation dot1q |spanning-tree (portfast|bpduguard enable)$)/.test(norm)) return 'config-if'
   return 'config'
 }
 

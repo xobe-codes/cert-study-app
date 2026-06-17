@@ -4,6 +4,7 @@ import {
   commandMatches,
   cliNavTarget,
   cliExitTarget,
+  cliRequiredMode,
   processCliLine,
   cliHostnameForObjective,
   deviceHostname,
@@ -72,5 +73,38 @@ describe('cliEngine', () => {
     expect(cliHostnameForObjective('3.1')).toBe('Router')
     expect(deviceHostname('SW1')).toBe('SW1')
     expect(deviceHostname('R1')).toBe('R1')
+  })
+
+  it('preserves multi-word nav args (vlan interfaces, port-channels)', () => {
+    expect(cliNavTarget('interface vlan 10')?.arg).toBe('vlan 10')
+    expect(cliNavTarget('interface port-channel 1')?.arg).toBe('port-channel 1')
+  })
+
+  it('requires priv mode for ping and ssh, not config', () => {
+    expect(cliRequiredMode('ping 10.0.0.1')).toBe('priv')
+    expect(cliRequiredMode('ssh -l admin 10.0.0.1')).toBe('priv')
+  })
+
+  it('requires config-if mode for interface-level NAT, security, and STP commands', () => {
+    expect(cliRequiredMode('ip nat inside')).toBe('config-if')
+    expect(cliRequiredMode('ip nat outside')).toBe('config-if')
+    expect(cliRequiredMode('ip arp inspection trust')).toBe('config-if')
+    expect(cliRequiredMode('ip dhcp snooping trust')).toBe('config-if')
+    expect(cliRequiredMode('no switchport')).toBe('config-if')
+    expect(cliRequiredMode('encapsulation dot1q 10')).toBe('config-if')
+    expect(cliRequiredMode('shutdown')).toBe('config-if')
+    expect(cliRequiredMode('spanning-tree portfast')).toBe('config-if')
+    expect(cliRequiredMode('spanning-tree bpduguard enable')).toBe('config-if')
+  })
+
+  it('requires the right submode for router and line commands outside their main keyword', () => {
+    expect(cliRequiredMode('default-information originate')).toBe('config-router')
+    expect(cliRequiredMode('login authentication default')).toBe('config-line')
+  })
+
+  it('still treats global ip dhcp snooping and ip arp inspection vlan commands as global config', () => {
+    expect(cliRequiredMode('ip dhcp snooping')).toBe('config')
+    expect(cliRequiredMode('ip dhcp snooping vlan 1')).toBe('config')
+    expect(cliRequiredMode('ip arp inspection vlan 1')).toBe('config')
   })
 })

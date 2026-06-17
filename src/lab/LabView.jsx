@@ -4,9 +4,25 @@ import { labProgress, normalizeCliLine } from '../data/ccnaLabs.js'
 import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
 import CiscoTerminal from '../components/CiscoTerminal.jsx'
-import { deviceHostname, normalizeCmd, processCliLine } from './cliEngine.js'
+import {
+  deviceHostname, normalizeCmd, commandMatches,
+  cliNavTarget, cliExitTarget, cliRequiredMode,
+  CLI_MODE_PROMPT, CLI_MODE_HINT, CLI_SHOW_OUTPUT,
+} from './cliEngine.js'
+import {
+  createDeviceState, applyConfigCommand, renderShow, simulatePing,
+  resolveDhcpClient, canonIface, displayIface,
+} from './iosSim.js'
 import { markLabDone } from './labStorage.js'
 import LabLearnPanel from './LabLearnPanel.jsx'
+
+function defaultSession(host) {
+  return {
+    mode: 'user',
+    ctxName: null,
+    history: [{ text: `% Connected to ${host}. Navigate: enable → configure terminal → task commands.`, kind: 'info' }],
+  }
+}
 
 const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'amber' }
 
@@ -29,9 +45,8 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
   const showNavHint = useNavHint()
 
   const [phase, setPhase] = useState('learn')
-  const [mode, setMode] = useState('user')
+  const [deviceSessions, setDeviceSessions] = useState({})
   const [entered, setEntered] = useState([])
-  const [history, setHistory] = useState([])
   const [input, setInput] = useState('')
   const [taskCmdDone, setTaskCmdDone] = useState(() =>
     Object.fromEntries(lab.tasks.map(t => [t.id, (t.expectedCommands || []).map(() => false)])),
@@ -40,16 +55,23 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
   const [revealVerify, setRevealVerify] = useState(false)
   const taskScrollRef = useRef(null)
   const justCompleted = useRef(false)
+  const iosStatesRef = useRef({})
 
   const prog = labProgress(lab.id, entered)
   const activeTask = lab.tasks[activeTaskIdx]
   const host = deviceHostname(activeTask?.device || 'R1')
+  const session = deviceSessions[host] || defaultSession(host)
+  const mode = session.mode
+  const history = session.history
 
-  useEffect(() => {
-    if (phase !== 'practice') return
-    setMode('user')
-    setHistory([{ text: `% Connected to ${host}. Navigate: enable → configure terminal → task commands.`, kind: 'info' }])
-  }, [host, phase])
+  function getIosState(h) {
+    if (!iosStatesRef.current[h]) iosStatesRef.current[h] = createDeviceState(h)
+    return iosStatesRef.current[h]
+  }
+
+  function updateSession(h, patch) {
+    setDeviceSessions(prev => ({ ...prev, [h]: { ...(prev[h] || defaultSession(h)), ...patch } }))
+  }
 
   useEffect(() => {
     if (prog.complete && !justCompleted.current) {
@@ -103,29 +125,97 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
     const raw = input.trim()
     if (!raw || !activeTask) return
 
+    const norm = normalizeCmd(raw)
     const expected = activeTask.expectedCommands || []
     const doneFlags = taskCmdDone[activeTask.id] || []
-    const objectives = expected.map((cmd, i) => ({
-      answer: [cmd],
-      label: cmd,
-      hint: doneFlags[i] ? null : `Enter: ${cmd}`,
-    }))
+    const iosState = getIosState(host)
+    const lines = [{ text: `${host}${CLI_MODE_PROMPT[mode]} ${raw}`, kind: 'cmd' }]
+    const newlyCompleted = []
+    let newMode = mode
+    let newCtxName = session.ctxName
 
-    const result = processCliLine({
-      raw,
-      mode,
-      host,
-      objectives,
-      completed: doneFlags,
-    })
+    // Task objectives are tracked independently of the realistic IOS engine
+    // output below — a command only "counts" toward the task if it's also
+    // valid from the current mode, mirroring real IOS gating.
+    function checkObjectives() {
+      const req = cliRequiredMode(norm)
+      const nav = cliNavTarget(norm)
+      const modeOk = nav ? nav.from.includes(mode) : mode === req
+      if (!modeOk) return
+      expected.forEach((cmd, i) => {
+        if (!doneFlags[i] && commandMatches(norm, cmd)) newlyCompleted.push(i)
+      })
+    }
 
-    setHistory(h => [...h, ...result.lines])
-    setMode(result.newMode)
+    if (norm === 'hint') {
+      const nextIdx = doneFlags.findIndex(d => !d)
+      lines.push({ text: nextIdx >= 0 ? `Hint: Enter — ${expected[nextIdx]}` : 'All commands for this task are complete.', kind: 'out' })
+    } else if (norm === '?') {
+      lines.push({ text: 'IOS help — navigate: enable → configure terminal → interface/vlan/router. Type exit/end to leave config. Type hint for task help.', kind: 'out' })
+    } else if (norm === 'exit' || norm === 'end') {
+      const exitTo = cliExitTarget(norm, mode)
+      if (exitTo !== null) { newMode = exitTo; newCtxName = null }
+    } else {
+      const nav = cliNavTarget(norm)
+      if (nav) {
+        if (nav.from.includes(mode)) {
+          newMode = nav.to
+          newCtxName = nav.to === 'config-if' ? canonIface(nav.arg) : (nav.arg ?? null)
+          checkObjectives()
+        } else {
+          lines.push({ text: `% "${raw}" is not available from ${CLI_MODE_PROMPT[mode]}. ${CLI_MODE_HINT[nav.from[0]] || ''}`, kind: 'warn' })
+        }
+      } else if (/^show /.test(norm)) {
+        if (mode !== 'priv' && !mode.startsWith('config')) {
+          lines.push({ text: "% show commands run from privileged EXEC — type 'enable' first.", kind: 'warn' })
+        } else {
+          const dyn = renderShow(norm, { state: iosState })
+          if (dyn) dyn.forEach(row => lines.push({ text: row, kind: 'out' }))
+          else if (CLI_SHOW_OUTPUT[norm]) CLI_SHOW_OUTPUT[norm].split('\n').forEach(row => lines.push({ text: row, kind: 'out' }))
+          else lines.push({ text: '% Output not simulated for this show command in this lab.', kind: 'info' })
+          checkObjectives()
+        }
+      } else if (/^ping (\S+)/.test(norm)) {
+        if (mode !== 'priv' && !mode.startsWith('config')) {
+          lines.push({ text: "% ping runs from privileged EXEC — type 'enable' first.", kind: 'warn' })
+        } else {
+          const target = norm.match(/^ping (\S+)/)[1]
+          simulatePing({ target, deviceKey: host, allStates: iosStatesRef.current, labId: lab.id })
+            .forEach(row => lines.push({ text: row, kind: 'out' }))
+          checkObjectives()
+        }
+      } else {
+        const result = applyConfigCommand({ state: iosState, norm, mode, target: { name: newCtxName } })
+        if (result.matched && result.modeOk) {
+          let out = result.lines
+          if (/^ip address dhcp$/.test(norm) && newCtxName) {
+            const leased = resolveDhcpClient(iosStatesRef.current, host, newCtxName)
+            if (leased) out = [...out, `Interface ${displayIface(newCtxName)} assigned DHCP address ${leased}`]
+          }
+          out.forEach(row => lines.push({ text: row, kind: 'out' }))
+          checkObjectives()
+        } else if (result.matched && !result.modeOk) {
+          lines.push({ text: `% Wrong mode. That command belongs in ${result.label}.`, kind: 'warn' })
+        } else {
+          checkObjectives()
+          if (newlyCompleted.length) {
+            lines.push({ text: '% OK', kind: 'ok' })
+          } else {
+            const firstWord = norm.split(' ')[0]
+            const near = expected.find((cmd, i) => !doneFlags[i] && normalizeCmd(cmd).split(' ')[0] === firstWord)
+            if (near) lines.push({ text: `% Incomplete or incorrect syntax. Expected: ${near}`, kind: 'warn' })
+            else lines.push({ text: '% Invalid input. Type "hint" for help or "?" for navigation tips.', kind: 'warn' })
+          }
+        }
+      }
+    }
+
+    updateSession(host, { mode: newMode, ctxName: newCtxName, history: [...session.history, ...lines] })
     setInput('')
 
-    if (result.newlyCompleted.length) {
+    if (newlyCompleted.length) {
       const nextFlags = [...doneFlags]
-      result.newlyCompleted.forEach(i => { nextFlags[i] = true })
+      newlyCompleted.forEach(i => { nextFlags[i] = true })
       setTaskCmdDone(prev => ({ ...prev, [activeTask.id]: nextFlags }))
       setEntered(e => [...e, normalizeCliLine(raw), normalizeCmd(raw)])
     }
