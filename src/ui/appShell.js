@@ -1059,11 +1059,12 @@ export function buildAppShellCss(colors) {
     .cisco-terminal-scroll {
       padding: 10px 12px;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       font-family: ui-monospace, Menlo, monospace;
       font-size: var(--ccna-type-sm);
       line-height: 1.55;
-      height: clamp(140px, 32dvh, 280px);
-      min-height: 120px;
+      height: clamp(28dvh, 32dvh, 280px);
+      min-height: 22dvh;
     }
     .cisco-terminal-input-row {
       display: flex;
@@ -1092,7 +1093,7 @@ export function buildAppShellCss(colors) {
     .lab-practice-tasks {
       min-width: 0;
     }
-    @media (orientation: landscape) and (min-width: 640px) and (min-height: 420px) {
+    @media (orientation: landscape) and (min-width: 640px) and (min-height: 320px) {
       .lab-practice-layout {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(240px, 42%);
@@ -1172,8 +1173,8 @@ export function buildAppShellCss(colors) {
         margin-bottom: 4px !important;
       }
       .cisco-terminal-scroll {
-        height: clamp(100px, 28dvh, 180px);
-        min-height: 96px;
+        height: clamp(24dvh, 28dvh, 180px);
+        min-height: 20dvh;
       }
       .home-study-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
