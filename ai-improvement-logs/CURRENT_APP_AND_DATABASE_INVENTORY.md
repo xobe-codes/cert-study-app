@@ -16,7 +16,7 @@
 | Hand curated | `src/data/ccnaCurated.js` | 22 rich+ |
 | Factory supplements | `curatedReadingSupplement*.js` | 31 thin |
 | KB patches | `kbCompiledPatches.js` | 42 |
-| Clean bank | `data/clean-question-bank/` | 267 Q |
+| Clean bank | `data/clean-question-bank/` | 270 Q |
 | Labs | `ccnaLabs*.js` | 20 objs with labs |
 
 ## Learner storage (localStorage)

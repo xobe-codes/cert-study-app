@@ -103,7 +103,7 @@
     {
       "id": "lab_31_route_lite",
       "priority": "high",
-      "status": "pending",
+      "status": "done",
       "area": "labs",
       "objectiveNumber": "3.1",
       "problem": "No routing table lab",
@@ -111,13 +111,21 @@
       "riskLevel": "medium",
       "confidenceScore": 78,
       "effort": "M",
-      "scoreImpact": { "labs": 8, "coverage_depth": 5 },
-      "files": ["src/data/ccnaLabs.js", "src/lab/LabView.jsx", "src/lab/cliEngine.js"],
+      "scoreImpact": {
+        "labs": 8,
+        "coverage_depth": 5
+      },
+      "files": [
+        "src/data/ccnaLabs.js",
+        "src/lab/LabView.jsx",
+        "src/lab/cliEngine.js"
+      ],
       "acceptance": [
         "Lab 3.1 teach-first flow with show ip route verify step",
         "Validator accepts correct route-table interpretation",
         "npm test && npm run build pass"
-      ]
+      ],
+      "completedAt": "2026-06-15T17:19:10.063Z"
     }
   ]
 }

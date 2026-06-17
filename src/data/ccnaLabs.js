@@ -20,6 +20,7 @@ export const LAB_SOURCES = {
 
 import { EXTENDED_LAB_BUNDLES } from './ccnaLabsExtended.js'
 import { PHASE_LAB_BUNDLES } from './ccnaLabsPhases.js'
+import { CLI_ROUTE_31_SHOW_OUTPUT } from '../lab/cliEngine.js'
 
 /* -------------------------------------------------------------------------
    LAB: Dynamic ARP Inspection with DHCP Snooping
@@ -1171,9 +1172,158 @@ const FLOWS_SUBNET = [
 const SUBNET_LAB = { lab: LAB_SUBNET_DEF, topology: TOPO_SUBNET, validator: VALIDATOR_SUBNET, diagram: DIAGRAM_SUBNET, packetFlows: FLOWS_SUBNET }
 
 /* -------------------------------------------------------------------------
+   LAB: Interpret the Routing Table (lab-lite)
+   Maps to Domain 3.0 / Objective 3.1 (routing table components).
+   ------------------------------------------------------------------------- */
+const LAB_ROUTE_31 = {
+  id: 'LAB-31-ROUTE-INTERPRET',
+  title: 'Interpret the Routing Table with show ip route',
+  domainId: 'connectivity',
+  objectiveId: '3.1',
+  ckuIds: ['CKU-ROUTING-TABLE-ENTRY', 'CKU-ROUTE-SOURCE-CODES', 'CKU-CONNECTED-LOCAL-ROUTES'],
+  labType: 'guided',
+  interpretOnly: true,
+  difficulty: 'beginner',
+  estimatedTimeMinutes: 10,
+  tools: ['Packet Tracer', 'GNS3', 'CML'],
+  examRelevance: 'core',
+  cliShowOutput: CLI_ROUTE_31_SHOW_OUTPUT,
+  scenario: 'R1 is a branch edge router with a LAN (10.0.1.0/24), an OSPF-learned route to 10.0.2.0/24, a static route to 10.10.10.0/24, and a default static route. The configuration is already in place — your job is to read the routing table like an engineer on a ticket.',
+  learningGoals: [
+    'Read route source codes (C, L, S, O) and what each means.',
+    'Parse [AD/metric] brackets — AD first, metric second.',
+    'Identify connected vs local routes on the same interface.',
+    'Use show ip route filters (connected, ospf, static) and prefix lookup.',
+    'Recognize the gateway of last resort and the S* default route.',
+  ],
+  topologyId: 'TOPO-ROUTE-31',
+  prerequisites: ['CKU-ROUTING-TABLE-ENTRY'],
+
+  tasks: [
+    { id: 't1', order: 1, title: 'Enter privileged EXEC', device: 'R1', instruction: 'Enter enable mode so you can run show commands.',
+      expectedCommands: ['enable'] },
+    { id: 't2', order: 2, title: 'Full routing table', device: 'R1', instruction: 'Run show ip route. Find the gateway of last resort, the OSPF route to 10.0.2.0/24, and the S* default route.',
+      expectedCommands: ['show ip route'] },
+    { id: 't3', order: 3, title: 'Connected routes only', device: 'R1', instruction: 'Filter to connected (C) and local (L) routes. Confirm both 10.0.1.0/24 and 10.0.1.1/32 appear for Gi0/0.',
+      expectedCommands: ['show ip route connected'] },
+    { id: 't4', order: 4, title: 'OSPF routes', device: 'R1', instruction: 'Show only OSPF routes. Note the AD [110/20] and next-hop 10.0.12.2 on Gi0/1.',
+      expectedCommands: ['show ip route ospf'] },
+    { id: 't5', order: 5, title: 'Prefix lookup', device: 'R1', instruction: 'Look up the specific prefix 10.0.2.0/24 to see which route was selected and why (OSPF, AD 110).',
+      expectedCommands: ['show ip route 10.0.2.0'] },
+    { id: 't6', order: 6, title: 'Static and default routes', device: 'R1', instruction: 'Show static routes. Identify the S* default (0.0.0.0/0) and the static to 10.10.10.0/24 — both use AD 1.',
+      expectedCommands: ['show ip route static'] },
+  ],
+
+  verificationCommands: [
+    'show ip route',
+    'show ip route connected',
+    'show ip route ospf',
+    'show ip route 10.0.2.0',
+    'show ip route static',
+  ],
+  successCriteria: [
+    'show ip route lists C/L for 10.0.1.0/24 on Gi0/0, O 10.0.2.0/24 [110/20], and S* 0.0.0.0/0.',
+    'Gateway of last resort points to 203.0.113.1 (the default static next-hop).',
+    'show ip route 10.0.2.0 confirms OSPF as the selected source with AD 110.',
+    'You can explain why L 10.0.1.1/32 exists alongside C 10.0.1.0/24.',
+  ],
+  failureCriteria: [
+    'Confusing [110/20] as metric/AD instead of AD/metric.',
+    'Thinking the L route forwards traffic to end hosts instead of the router own IP.',
+    'Missing the S* asterisk meaning default route.',
+  ],
+  commonMistakes: [
+    'Reading [AD/metric] backwards — AD is always the first number in brackets.',
+    'Assuming L routes reach PCs — L is only for the router own interface /32.',
+    'Forgetting enable before show commands.',
+    'Mixing up O (OSPF AD 110) with S (static AD 1) when both appear in the full table.',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '3.1 Interpret routing table components', confidence: 0.95 },
+  metadata: { version: '1', status: 'validated', confidence: 0.95 },
+}
+
+const TOPO_ROUTE_31 = {
+  id: 'TOPO-ROUTE-31',
+  title: 'R1 edge router routing table',
+  objectiveId: '3.1',
+  nodes: [
+    { id: 'lan', label: 'LAN 10.0.1.0/24', type: 'subnet', x: 10, y: 50 },
+    { id: 'r1', label: 'R1 (preconfigured)', type: 'router', x: 45, y: 50, status: 'highlighted' },
+    { id: 'r2', label: 'R2 — 10.0.2.0/24 via OSPF', type: 'router', x: 75, y: 35 },
+    { id: 'wan', label: 'ISP 203.0.113.0/30', type: 'cloud', x: 75, y: 65 },
+    { id: 'remote', label: '10.10.10.0/24 (static)', type: 'server', x: 95, y: 65 },
+  ],
+  links: [
+    { id: 'k1', source: 'lan', target: 'r1', label: 'Gi0/0 10.0.1.1/24', status: 'forwarding' },
+    { id: 'k2', source: 'r1', target: 'r2', label: 'Gi0/1 10.0.12.0/30 — OSPF', status: 'forwarding' },
+    { id: 'k3', source: 'r1', target: 'wan', label: 'Gi0/2 — default static', status: 'forwarding' },
+    { id: 'k4', source: 'r1', target: 'remote', label: 'S 10.10.10.0/24', status: 'forwarding' },
+  ],
+  notes: ['Configuration is pre-loaded — this lab focuses on verify and interpret, not config.'],
+}
+
+const VALIDATOR_ROUTE_31 = {
+  labId: 'LAB-31-ROUTE-INTERPRET',
+  requiredCommands: [
+    { device: 'R1', command: 'enable' },
+    { device: 'R1', command: 'show ip route' },
+    { device: 'R1', command: 'show ip route connected' },
+    { device: 'R1', command: 'show ip route ospf' },
+    { device: 'R1', command: 'show ip route 10.0.2.0' },
+    { device: 'R1', command: 'show ip route static' },
+  ],
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show ip route', expectedResult: 'C/L for 10.0.1.0/24, O 10.0.2.0/24 [110/20], S* 0.0.0.0/0; gateway of last resort 203.0.113.1.', passCondition: 'full table interpreted' },
+    { id: 'v2', device: 'R1', command: 'show ip route connected', expectedResult: 'Only C 10.0.1.0/24 and L 10.0.1.1/32 on Gi0/0.', passCondition: 'connected filter' },
+    { id: 'v3', device: 'R1', command: 'show ip route ospf', expectedResult: 'O 10.0.2.0/24 [110/20] via 10.0.12.2 on Gi0/1.', passCondition: 'OSPF AD 110' },
+    { id: 'v4', device: 'R1', command: 'show ip route 10.0.2.0', expectedResult: 'Selected route: OSPF, distance 110, metric 20, via 10.0.12.2.', passCondition: 'prefix lookup' },
+    { id: 'v5', device: 'R1', command: 'show ip route static', expectedResult: 'S 10.10.10.0/24 [1/0] and S* 0.0.0.0/0 [1/0] via 203.0.113.1.', passCondition: 'static + default' },
+  ],
+  failureChecks: [
+    { id: 'f1', device: 'R1', command: 'show ip route', expectedFailure: 'Student reads [110/20] as metric/AD', reason: 'AD is always first inside brackets — OSPF AD is 110, metric (cost) is 20.' },
+  ],
+}
+
+const DIAGRAM_ROUTE_31 = {
+  id: 'DIAG-31-route-anatomy',
+  title: 'Anatomy of a routing table entry',
+  type: 'reference',
+  ckuIds: ['CKU-ROUTING-TABLE-ENTRY', 'CKU-ROUTE-SOURCE-CODES'],
+  nodes: [
+    { id: 'code', label: 'O — source code', type: 'process', x: 12, y: 30 },
+    { id: 'prefix', label: '10.0.2.0/24 — destination', type: 'process', x: 35, y: 30 },
+    { id: 'adm', label: '[110/20] — AD / metric', type: 'process', x: 58, y: 30, status: 'highlighted' },
+    { id: 'nh', label: 'via 10.0.12.2 — next-hop', type: 'process', x: 35, y: 65 },
+    { id: 'if', label: 'Gi0/1 — outgoing interface', type: 'process', x: 65, y: 65 },
+  ],
+  links: [
+    { id: 'l1', source: 'code', target: 'prefix', label: 'learned via OSPF' },
+    { id: 'l2', source: 'prefix', target: 'adm', label: 'trust + cost' },
+    { id: 'l3', source: 'adm', target: 'nh', label: 'forward to' },
+    { id: 'l4', source: 'nh', target: 'if', label: 'egress' },
+  ],
+  annotations: ['Read left to right: code → prefix → [AD/metric] → next-hop → interface.', 'S* marks the default route (0.0.0.0/0).'],
+  sourceRefs: [{ sourceName: LAB_SOURCES.blueprint, chapter: '3.1', confidence: 0.95 }],
+}
+
+const FLOWS_ROUTE_31 = [
+  {
+    id: 'FLOW-31-read-entry', title: 'Parse one OSPF entry line-by-line', ckuIds: ['CKU-ROUTING-TABLE-ENTRY'], diagramId: 'DIAG-31-route-anatomy',
+    steps: [
+      { id: 's1', order: 1, title: 'Source code', action: 'O = learned via OSPF (AD 110 by default).', successState: 'learned' },
+      { id: 's2', order: 2, title: 'Prefix', action: 'Destination network 10.0.2.0/24 — longest match wins at lookup time.', successState: 'matched' },
+      { id: 's3', order: 3, title: 'AD/metric', action: '[110/20] — administrative distance 110, OSPF cost 20.', successState: 'matched' },
+      { id: 's4', order: 4, title: 'Next-hop + interface', action: 'Forward via 10.0.12.2 out Gi0/1 toward R2.', successState: 'forwarded' },
+    ],
+  },
+]
+
+const ROUTE_31 = { lab: LAB_ROUTE_31, topology: TOPO_ROUTE_31, validator: VALIDATOR_ROUTE_31, diagram: DIAGRAM_ROUTE_31, packetFlows: FLOWS_ROUTE_31 }
+
+/* -------------------------------------------------------------------------
    REGISTRY + LOADERS
    ------------------------------------------------------------------------- */
-const CORE_LABS = { [DAI.lab.id]: DAI, [VLAN_TRUNK.lab.id]: VLAN_TRUNK, [OSPF.lab.id]: OSPF, [NAT.lab.id]: NAT, [STATIC.lab.id]: STATIC, [SSH.lab.id]: SSH, [ACL.lab.id]: ACL, [SUBNET_LAB.lab.id]: SUBNET_LAB }
+const CORE_LABS = { [DAI.lab.id]: DAI, [VLAN_TRUNK.lab.id]: VLAN_TRUNK, [OSPF.lab.id]: OSPF, [NAT.lab.id]: NAT, [STATIC.lab.id]: STATIC, [SSH.lab.id]: SSH, [ACL.lab.id]: ACL, [SUBNET_LAB.lab.id]: SUBNET_LAB, [ROUTE_31.lab.id]: ROUTE_31 }
 const LABS = {
   ...CORE_LABS,
   ...Object.fromEntries(EXTENDED_LAB_BUNDLES.map(b => [b.lab.id, b])),

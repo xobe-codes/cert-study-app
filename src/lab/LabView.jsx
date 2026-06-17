@@ -4,7 +4,7 @@ import { labProgress, normalizeCliLine } from '../data/ccnaLabs.js'
 import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
 import CiscoTerminal from '../components/CiscoTerminal.jsx'
-import { deviceHostname, normalizeCmd, processCliLine } from './cliEngine.js'
+import { deviceHostname, normalizeCmd, processCliLine, CLI_SHOW_OUTPUT } from './cliEngine.js'
 import { markLabDone } from './labStorage.js'
 import LabLearnPanel from './LabLearnPanel.jsx'
 
@@ -48,8 +48,13 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
   useEffect(() => {
     if (phase !== 'practice') return
     setMode('user')
-    setHistory([{ text: `% Connected to ${host}. Navigate: enable → configure terminal → task commands.`, kind: 'info' }])
-  }, [host, phase])
+    setHistory([{
+      text: lab.interpretOnly
+        ? `% Connected to ${host}. Type enable, then run each task's show command.`
+        : `% Connected to ${host}. Navigate: enable → configure terminal → task commands.`,
+      kind: 'info',
+    }])
+  }, [host, phase, lab.interpretOnly])
 
   useEffect(() => {
     if (prog.complete && !justCompleted.current) {
@@ -117,6 +122,7 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
       host,
       objectives,
       completed: doneFlags,
+      showOutput: { ...CLI_SHOW_OUTPUT, ...(lab.cliShowOutput || {}) },
     })
 
     setHistory(h => [...h, ...result.lines])
@@ -228,7 +234,9 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
                 input={input}
                 onInputChange={setInput}
                 onSubmit={submit}
-                emptyMessage={`${host} ready — type enable, then configure terminal.`}
+                emptyMessage={lab.interpretOnly
+                  ? `${host} ready — type enable, then run the show command for each task.`
+                  : `${host} ready — type enable, then configure terminal.`}
               />
             </div>
           </div>

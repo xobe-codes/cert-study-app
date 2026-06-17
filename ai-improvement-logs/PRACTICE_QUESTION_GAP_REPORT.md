@@ -22,7 +22,7 @@
 - 5.6: only 1 questions (target ≥12)
 - 5.7: only 1 questions (target ≥12)
 - 5.8: only 1 questions (target ≥12)
-- 5.9: only 1 questions (target ≥12)
+- 5.9: only 4 questions (target ≥12)
 - 5.10: only 1 questions (target ≥12)
 - 5.11: only 1 questions (target ≥12)
 - 6.1: only 1 questions (target ≥12)

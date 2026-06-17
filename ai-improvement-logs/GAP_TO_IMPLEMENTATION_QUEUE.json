@@ -1,12 +1,11 @@
 {
-  "generatedAt": "2026-06-15T06:33:38.379Z",
+  "generatedAt": "2026-06-15T16:14:17.159Z",
   "gaps": [
     {
       "gapId": "gap_2_3",
       "objectiveId": "2.3",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "quiz_question"
       ],
@@ -19,7 +18,6 @@
       "objectiveId": "2.4",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "quiz_question"
@@ -33,7 +31,6 @@
       "objectiveId": "2.6",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -48,7 +45,6 @@
       "objectiveId": "2.7",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -63,7 +59,6 @@
       "objectiveId": "2.8",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "quiz_question"
@@ -90,7 +85,6 @@
       "objectiveId": "3.6",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "quiz_question"
@@ -104,7 +98,6 @@
       "objectiveId": "4.2",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "quiz_question"
@@ -118,7 +111,6 @@
       "objectiveId": "4.3",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -133,7 +125,6 @@
       "objectiveId": "4.4",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "quiz_question"
@@ -147,7 +138,6 @@
       "objectiveId": "4.5",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "quiz_question"
@@ -161,7 +151,6 @@
       "objectiveId": "4.6",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "quiz_question"
@@ -175,7 +164,6 @@
       "objectiveId": "4.7",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -190,7 +178,6 @@
       "objectiveId": "4.8",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "quiz_question"
@@ -204,7 +191,6 @@
       "objectiveId": "4.9",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -219,7 +205,6 @@
       "objectiveId": "4.10",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -234,7 +219,6 @@
       "objectiveId": "5.2",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -249,7 +233,6 @@
       "objectiveId": "5.3",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "quiz_question"
@@ -263,7 +246,6 @@
       "objectiveId": "5.4",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "quiz_question"
@@ -290,7 +272,6 @@
       "objectiveId": "5.7",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -305,7 +286,6 @@
       "objectiveId": "5.8",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -320,8 +300,6 @@
       "objectiveId": "5.9",
       "tier": "C",
       "missing": [
-        "exam_trap",
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -335,7 +313,6 @@
       "objectiveId": "5.10",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -350,7 +327,6 @@
       "objectiveId": "5.11",
       "tier": "C",
       "missing": [
-        "exam_trap",
         "flashcard",
         "cli_verification",
         "lab",
@@ -365,8 +341,6 @@
       "objectiveId": "6.1",
       "tier": "C",
       "missing": [
-        "exam_trap",
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -380,8 +354,6 @@
       "objectiveId": "6.2",
       "tier": "C",
       "missing": [
-        "exam_trap",
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -395,8 +367,6 @@
       "objectiveId": "6.3",
       "tier": "C",
       "missing": [
-        "exam_trap",
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -410,8 +380,6 @@
       "objectiveId": "6.4",
       "tier": "C",
       "missing": [
-        "exam_trap",
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -425,8 +393,6 @@
       "objectiveId": "6.5",
       "tier": "C",
       "missing": [
-        "exam_trap",
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"
@@ -440,8 +406,6 @@
       "objectiveId": "6.6",
       "tier": "C",
       "missing": [
-        "exam_trap",
-        "flashcard",
         "cli_verification",
         "lab",
         "quiz_question"

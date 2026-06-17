@@ -64,6 +64,33 @@ C       192.168.10.0/24 is directly connected, GigabitEthernet0/0
 L       192.168.10.1/32 is directly connected, GigabitEthernet0/0`,
 }
 
+/** R1 routing table for LAB-31-ROUTE-INTERPRET (objective 3.1). */
+export const CLI_ROUTE_31_SHOW_OUTPUT = {
+  'show ip route': `Codes: C - connected, L - local, S - static, O - OSPF
+Gateway of last resort is 203.0.113.1 to network 0.0.0.0
+
+      10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+C       10.0.1.0/24 is directly connected, GigabitEthernet0/0
+L       10.0.1.1/32 is directly connected, GigabitEthernet0/0
+O       10.0.2.0/24 [110/20] via 10.0.12.2, 00:05:12, GigabitEthernet0/1
+S       10.10.10.0/24 [1/0] via 203.0.113.1
+S*      0.0.0.0/0 [1/0] via 203.0.113.1`,
+  'show ip route connected': `Codes: C - connected, L - local
+C       10.0.1.0/24 is directly connected, GigabitEthernet0/0
+L       10.0.1.1/32 is directly connected, GigabitEthernet0/0`,
+  'show ip route ospf': `Codes: O - OSPF
+O       10.0.2.0/24 [110/20] via 10.0.12.2, 00:05:12, GigabitEthernet0/1`,
+  'show ip route 10.0.2.0': `Routing entry for 10.0.2.0/24
+  Known via "ospf 1", distance 110, metric 20, type intra area
+  Last update from 10.0.12.2 on GigabitEthernet0/1, 00:05:12 ago
+  Routing Descriptor Blocks:
+  * 10.0.12.2, from 2.2.2.2, 00:05:12 ago, via GigabitEthernet0/1
+    Route metric is 20, traffic share count is 1`,
+  'show ip route static': `Codes: S - static
+S       10.10.10.0/24 [1/0] via 203.0.113.1
+S*      0.0.0.0/0 [1/0] via 203.0.113.1`,
+}
+
 export function cliNavTarget(norm) {
   if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
   if (/^disable$/.test(norm)) return { to: 'user', from: ['priv'] }
@@ -173,6 +200,30 @@ export function processCliLine({
     return { lines, newMode, newlyCompleted, counters }
   }
 
+  if (/^show /.test(norm)) {
+    if (mode !== 'priv' && mode !== 'config' && !mode.startsWith('config')) {
+      counters.wrongModeErrors += 1
+      lines.push({ text: "% show commands run from privileged EXEC — type 'enable' first.", kind: 'warn' })
+    } else {
+      let showMatchIdx = -1
+      for (let i = 0; i < objectives.length; i++) {
+        if (completed[i]) continue
+        const answers = objectives[i].answer || objectives[i].answers || []
+        if (answers.some(a => commandVariants(a).some(v => norm === v))) { showMatchIdx = i; break }
+      }
+      if (showMatchIdx >= 0) {
+        newlyCompleted.push(showMatchIdx)
+        lines.push({ text: `% OK — ${objectives[showMatchIdx].label || objectives[showMatchIdx].answer[0]}`, kind: 'ok' })
+      }
+      if (showOutput[norm]) {
+        showOutput[norm].split('\n').forEach(row => lines.push({ text: row, kind: 'out' }))
+      } else {
+        lines.push({ text: '% Output not simulated for this show command in this lab.', kind: 'info' })
+      }
+    }
+    return { lines, newMode, newlyCompleted, counters }
+  }
+
   let matchIdx = -1
   for (let i = 0; i < objectives.length; i++) {
     if (completed[i]) continue
@@ -200,18 +251,6 @@ export function processCliLine({
     else {
       counters.wrongModeErrors += 1
       lines.push({ text: `% "${raw}" is not available from ${CLI_MODE_PROMPT[mode]}. ${CLI_MODE_HINT[nav.from[0]] || ''}`, kind: 'warn' })
-    }
-    return { lines, newMode, newlyCompleted, counters }
-  }
-
-  if (/^show /.test(norm)) {
-    if (mode !== 'priv' && mode !== 'config' && !mode.startsWith('config')) {
-      counters.wrongModeErrors += 1
-      lines.push({ text: "% show commands run from privileged EXEC — type 'enable' first.", kind: 'warn' })
-    } else if (showOutput[norm]) {
-      showOutput[norm].split('\n').forEach(row => lines.push({ text: row, kind: 'out' }))
-    } else {
-      lines.push({ text: '% Output not simulated for this show command in this lab.', kind: 'info' })
     }
     return { lines, newMode, newlyCompleted, counters }
   }

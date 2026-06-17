@@ -7,7 +7,9 @@ import {
   processCliLine,
   cliHostnameForObjective,
   deviceHostname,
+  CLI_ROUTE_31_SHOW_OUTPUT,
 } from '../lab/cliEngine.js'
+import { labProgress } from '../data/ccnaLabs.js'
 
 describe('cliEngine', () => {
   it('normalizes IOS abbreviations', () => {
@@ -72,5 +74,37 @@ describe('cliEngine', () => {
     expect(cliHostnameForObjective('3.1')).toBe('Router')
     expect(deviceHostname('SW1')).toBe('SW1')
     expect(deviceHostname('R1')).toBe('R1')
+  })
+
+  it('completes show-command objectives with exact match and prints output', () => {
+    const r = processCliLine({
+      raw: 'show ip route ospf',
+      mode: 'priv',
+      host: 'R1',
+      objectives: [{ answer: ['show ip route ospf'], label: 'OSPF routes' }],
+      completed: [false],
+      showOutput: CLI_ROUTE_31_SHOW_OUTPUT,
+    })
+    expect(r.newlyCompleted).toEqual([0])
+    expect(r.lines.some(l => l.text.includes('10.0.2.0/24'))).toBe(true)
+  })
+
+  it('does not match show ip route when objective is show ip route ospf', () => {
+    const r = processCliLine({
+      raw: 'show ip route',
+      mode: 'priv',
+      host: 'R1',
+      objectives: [{ answer: ['show ip route ospf'] }],
+      completed: [false],
+      showOutput: CLI_ROUTE_31_SHOW_OUTPUT,
+    })
+    expect(r.newlyCompleted).toHaveLength(0)
+  })
+
+  it('lab_31_route_lite progress completes after all verify commands', () => {
+    const entered = ['enable', 'show ip route', 'show ip route connected', 'show ip route ospf', 'show ip route 10.0.2.0', 'show ip route static']
+    const prog = labProgress('LAB-31-ROUTE-INTERPRET', entered)
+    expect(prog.complete).toBe(true)
+    expect(prog.done.length).toBe(6)
   })
 })
