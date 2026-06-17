@@ -56,12 +56,37 @@ GigabitEthernet0/1     192.168.10.1    YES manual up                    up`,
 SW2              Gig 0/1           152             R S I    WS-C2960  Gig 0/1`,
   'show lldp neighbors': `Device ID        Local Intf     Hold-time  Capability      Port ID
 SW2              Gi0/1          120        B,R             Gi0/1`,
-  'show ip route': `Codes: L - local, C - connected, S - static, R - RIP, O - OSPF
-Gateway of last resort is not set
+  'show ip route': `Codes: L - local, C - connected, S - static, R - RIP, O - OSPF, D - EIGRP
+       * - candidate default
+Gateway of last resort is 10.0.0.1 to network 0.0.0.0
 
-     192.168.10.0/24 is variably subnetted, 2 subnets, 2 masks
-C       192.168.10.0/24 is directly connected, GigabitEthernet0/0
-L       192.168.10.1/32 is directly connected, GigabitEthernet0/0`,
+S*    0.0.0.0/0 [1/0] via 10.0.0.1
+      10.0.0.0/30 is subnetted, 1 subnets
+C       10.0.0.0/30 is directly connected, GigabitEthernet0/1
+L       10.0.0.1/32 is directly connected, GigabitEthernet0/1
+      192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+C       192.168.1.0/24 is directly connected, GigabitEthernet0/0
+L       192.168.1.1/32 is directly connected, GigabitEthernet0/0
+O     192.168.2.0/24 [110/20] via 10.0.0.2, 00:01:23, GigabitEthernet0/1
+S     172.16.0.0/16 [1/0] via 10.0.0.2`,
+  'show ip route ospf': `Codes: O - OSPF
+O     192.168.2.0/24 [110/20] via 10.0.0.2, 00:01:23, GigabitEthernet0/1`,
+  'show ip route connected': `Codes: C - connected, L - local
+      10.0.0.0/30 is subnetted, 1 subnets
+C       10.0.0.0/30 is directly connected, GigabitEthernet0/1
+L       10.0.0.1/32 is directly connected, GigabitEthernet0/1
+      192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+C       192.168.1.0/24 is directly connected, GigabitEthernet0/0
+L       192.168.1.1/32 is directly connected, GigabitEthernet0/0`,
+  'show ip route static': `Codes: S - static
+S*    0.0.0.0/0 [1/0] via 10.0.0.1
+S     172.16.0.0/16 [1/0] via 10.0.0.2`,
+  'show ip route 192.168.2.0': `Routing entry for 192.168.2.0/24
+  Known via "ospf 1", distance 110, metric 20, type intra area
+  Last update from 10.0.0.2 on GigabitEthernet0/1, 00:01:23 ago
+  Routing Descriptor Blocks:
+  * 10.0.0.2, from 10.0.0.2, 00:01:23 ago, via GigabitEthernet0/1
+      Route metric is 20, traffic share count is 1`,
 }
 
 export function cliNavTarget(norm) {
@@ -188,6 +213,10 @@ export function processCliLine({
       if (nav) newMode = nav.to
       newlyCompleted.push(matchIdx)
       lines.push({ text: `% OK — ${objectives[matchIdx].label || 'command accepted'}`, kind: 'ok' })
+      // For show commands, also display the simulated output so the learner can read and interpret it
+      if (/^show /.test(norm) && showOutput[norm]) {
+        showOutput[norm].split('\n').forEach(row => lines.push({ text: row, kind: 'out' }))
+      }
     } else {
       counters.wrongModeErrors += 1
       lines.push({ text: `% Wrong mode. That command belongs in ${CLI_MODE_HINT[req] || req}.`, kind: 'warn' })

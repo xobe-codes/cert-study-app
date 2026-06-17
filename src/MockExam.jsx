@@ -415,7 +415,21 @@ export default function MockExam({ onExit, examMode = false }) {
           </div>
         )}
         {report.deferredTips?.length > 0 && <DeferredExamTips tips={report.deferredTips} />}
-        <button style={styles.primaryBtn} onClick={() => { setCurrent(0); setPhase('review') }}>Review answers</button>
+        {(() => {
+          const firstWrongIdx = questions.findIndex((qItem, idx) => {
+            const sel = responses[idx]
+            return sel != null && sel !== qItem.correctIndex
+          })
+          return firstWrongIdx >= 0 ? (
+            <button
+              style={{ ...styles.primaryBtn, background: COLORS.roseDim, borderColor: COLORS.rose, color: COLORS.rose }}
+              onClick={() => { setCurrent(firstWrongIdx); setPhase('review') }}
+            >
+              Review first wrong answer (Q{firstWrongIdx + 1}) →
+            </button>
+          ) : null
+        })()}
+        <button style={{ ...styles.primaryBtn, marginTop: 8 }} onClick={() => { setCurrent(0); setPhase('review') }}>Review all answers</button>
         <button
           style={{ ...styles.secondaryBtn, marginTop: 8 }}
           onClick={isStudyMode ? startDomainStudy : start}
