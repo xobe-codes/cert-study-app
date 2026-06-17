@@ -58,6 +58,7 @@ export default function MockExam({ onExit, examMode = false }) {
   const [questions, setQuestions] = useState([])
   const [current, setCurrent] = useState(0)
   const [responses, setResponses] = useState({}) // qIndex -> selectedIndex
+  const [studyRevealed, setStudyRevealed] = useState({}) // qIndex -> true once answer shown (study mode only)
   const [secondsLeft, setSecondsLeft] = useState(MOCK_EXAM_DURATION_MIN * 60)
   const [bankReady, setBankReady] = useState(false)
 
@@ -97,6 +98,7 @@ export default function MockExam({ onExit, examMode = false }) {
       if (final.length === 0) throw new Error('No questions were available for the selected domain(s).')
       setQuestions(final)
       setResponses({})
+      setStudyRevealed({})
       setCurrent(0)
       setPhase('active')
     } catch (err) {
@@ -119,6 +121,7 @@ export default function MockExam({ onExit, examMode = false }) {
       const final = buildStaticMockExamPool(DOMAINS, getMc, shuffleArray)
       setQuestions(final)
       setResponses({})
+      setStudyRevealed({})
       setCurrent(0)
       setSecondsLeft(MOCK_EXAM_DURATION_MIN * 60)
       setPhase('active')
@@ -145,7 +148,12 @@ export default function MockExam({ onExit, examMode = false }) {
   }, [phase, isStudyMode])
 
   function selectChoice(idx) {
+    // In study mode, lock the answer once revealed — no changing after first pick
+    if (isStudyMode && studyRevealed[current]) return
     setResponses(r => ({ ...r, [current]: idx }))
+    if (isStudyMode) {
+      setStudyRevealed(r => ({ ...r, [current]: true }))
+    }
   }
 
   useEffect(() => {
@@ -326,6 +334,8 @@ export default function MockExam({ onExit, examMode = false }) {
 
   if (phase === 'done') {
     const pct = report.total > 0 ? Math.round((report.correct / report.total) * 100) : 0
+    const skippedCount = report.total - Object.keys(responses).length
+    const wrongCount = report.total - report.correct - skippedCount
     return (
       <div>
         <button style={styles.backBtn} onClick={onExit}>‹ Back to Home</button>
@@ -333,6 +343,41 @@ export default function MockExam({ onExit, examMode = false }) {
         <div style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-display)', fontWeight: 700, color: pct >= 70 ? COLORS.mint : COLORS.rose }}>{pct}%</div>
           <div style={styles.small}>{report.correct} / {report.total} correct</div>
+          <div style={{ display: 'flex', gap: 16, marginTop: 10, flexWrap: 'wrap' }}>
+            <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.mint }}>✓ {report.correct} correct</span>
+            {wrongCount > 0 && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.rose }}>✗ {wrongCount} incorrect</span>}
+            {skippedCount > 0 && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.amber }}>— {skippedCount} skipped</span>}
+          </div>
+        </div>
+        <div style={styles.card}>
+          <h2 style={styles.h2}>Question summary</h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
+            {questions.map((qItem, idx) => {
+              const sel = responses[idx]
+              const isCorrect = sel != null && sel === qItem.correctIndex
+              const isSkipped = sel == null
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  title={`Q${idx + 1}: ${isSkipped ? 'Skipped' : isCorrect ? 'Correct' : 'Incorrect'}`}
+                  onClick={() => { setCurrent(idx); setPhase('review') }}
+                  style={{
+                    width: 36, height: 36, borderRadius: 8,
+                    background: isSkipped ? COLORS.surface : isCorrect ? COLORS.mintDim : COLORS.roseDim,
+                    border: `2px solid ${isSkipped ? COLORS.border : isCorrect ? COLORS.mintBorder : COLORS.rose}`,
+                    color: isSkipped ? COLORS.silverMid : isCorrect ? COLORS.mint : COLORS.rose,
+                    fontWeight: 700, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer',
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    fontFamily: 'inherit',
+                  }}
+                >
+                  {idx + 1}
+                </button>
+              )
+            })}
+          </div>
+          <div style={{ ...styles.small, color: COLORS.silverMid }}>Tap any number to jump straight to that question's review</div>
         </div>
         <div style={styles.card}>
           <h2 style={styles.h2}>By Domain</h2>
@@ -370,7 +415,21 @@ export default function MockExam({ onExit, examMode = false }) {
           </div>
         )}
         {report.deferredTips?.length > 0 && <DeferredExamTips tips={report.deferredTips} />}
-        <button style={styles.primaryBtn} onClick={() => { setCurrent(0); setPhase('review') }}>Review answers</button>
+        {(() => {
+          const firstWrongIdx = questions.findIndex((qItem, idx) => {
+            const sel = responses[idx]
+            return sel != null && sel !== qItem.correctIndex
+          })
+          return firstWrongIdx >= 0 ? (
+            <button
+              style={{ ...styles.primaryBtn, background: COLORS.roseDim, borderColor: COLORS.rose, color: COLORS.rose }}
+              onClick={() => { setCurrent(firstWrongIdx); setPhase('review') }}
+            >
+              Review first wrong answer (Q{firstWrongIdx + 1}) →
+            </button>
+          ) : null
+        })()}
+        <button style={{ ...styles.primaryBtn, marginTop: 8 }} onClick={() => { setCurrent(0); setPhase('review') }}>Review all answers</button>
         <button
           style={{ ...styles.secondaryBtn, marginTop: 8 }}
           onClick={isStudyMode ? startDomainStudy : start}
@@ -427,10 +486,21 @@ export default function MockExam({ onExit, examMode = false }) {
     )
   }
 
-  // active — exam mode keeps choices fully visible until submit; accordion applies in review.
+  // active — study mode reveals answer immediately on selection; full mock keeps choices hidden until submit.
   const q = questions[current]
   const selected = responses[current]
   const answeredCount = Object.keys(responses).length
+  const isCurrentRevealed = isStudyMode && !!studyRevealed[current]
+  const isCurrentCorrect = selected != null && selected === q.correctIndex
+
+  // Running score pill for study mode: counts only questions already answered
+  const studyAnsweredCount = Object.keys(studyRevealed).length
+  const studyCorrectCount = isStudyMode
+    ? Object.keys(studyRevealed).filter(
+        idx => responses[parseInt(idx, 10)] === questions[parseInt(idx, 10)]?.correctIndex,
+      ).length
+    : 0
+
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
@@ -438,28 +508,67 @@ export default function MockExam({ onExit, examMode = false }) {
         {!isStudyMode && (
           <div style={{ ...styles.pill(secondsLeft < 600 ? 'rose' : 'sky') }}>{formatSeconds(secondsLeft)}</div>
         )}
-        {isStudyMode && (
+        {isStudyMode && studyAnsweredCount === 0 && (
           <div style={{ ...styles.pill('mint') }}>Study mode</div>
+        )}
+        {isStudyMode && studyAnsweredCount > 0 && (
+          <div style={{ ...styles.pill(studyCorrectCount / studyAnsweredCount >= 0.7 ? 'mint' : 'rose') }}>
+            {studyCorrectCount}/{studyAnsweredCount} correct
+          </div>
         )}
       </div>
       <div style={styles.card}>
         <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{q.question}</div>
-        <McChoices q={q} selected={selected ?? null} revealed={false} onSelect={selectChoice} />
+        <McChoices q={q} selected={selected ?? null} revealed={isCurrentRevealed} onSelect={selectChoice} />
+        {isStudyMode && !isCurrentRevealed && (
+          <div style={{ ...styles.small, marginTop: 10, textAlign: 'center', color: COLORS.silverMid }}>
+            Select an answer to see instant feedback
+          </div>
+        )}
+        {isCurrentRevealed && (
+          <div
+            className="ccna-quiz-reveal"
+            style={{
+              marginTop: 10, padding: 12, borderRadius: 10,
+              background: isCurrentCorrect ? COLORS.mintDim : COLORS.roseDim,
+              border: `2px solid ${isCurrentCorrect ? COLORS.mintBorder : COLORS.rose}`,
+            }}
+          >
+            <div style={{
+              fontWeight: 700,
+              color: isCurrentCorrect ? COLORS.mint : COLORS.rose,
+              marginBottom: 6,
+              fontSize: 'var(--ccna-type-sm)',
+            }}>
+              {isCurrentCorrect ? '✓ Correct!' : '✗ Incorrect'}
+            </div>
+            <AnswerReview q={q} selected={selected} hideExamTip={examMode && isStudyMode} />
+          </div>
+        )}
       </div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
         <button style={styles.secondaryBtn} disabled={current === 0} onClick={() => setCurrent(c => Math.max(0, c - 1))}>Previous</button>
         {current < questions.length - 1 ? (
-          <button style={styles.primaryBtn} onClick={() => setCurrent(c => Math.min(questions.length - 1, c + 1))}>Next</button>
+          <button style={styles.primaryBtn} onClick={() => setCurrent(c => Math.min(questions.length - 1, c + 1))}>
+            {isCurrentRevealed ? 'Next →' : 'Next'}
+          </button>
         ) : (
           <button style={styles.primaryBtn} onClick={() => setPhase('done')}>
             {isStudyMode ? 'Finish session' : 'Submit Exam'}
           </button>
         )}
       </div>
-      <div style={{ ...styles.small, textAlign: 'center' }}>{answeredCount} / {questions.length} answered</div>
-      {current === questions.length - 1 ? null : (
+      {!isStudyMode && (
+        <div style={{ ...styles.small, textAlign: 'center' }}>{answeredCount} / {questions.length} answered</div>
+      )}
+      {!isStudyMode && current !== questions.length - 1 && (
         <button style={{ ...styles.secondaryBtn, marginTop: 8, background: 'none', border: 'none', color: COLORS.silverMid }} onClick={() => setPhase('done')}>
-          {isStudyMode ? 'Finish session now' : 'Submit exam now'}
+          Submit exam now
+        </button>
+      )}
+      {isStudyMode && current !== questions.length - 1 && (
+        <button style={{ ...styles.secondaryBtn, marginTop: 8, background: 'none', border: 'none', color: COLORS.silverMid }} onClick={() => setPhase('done')}>
+          Finish session now
         </button>
       )}
     </div>

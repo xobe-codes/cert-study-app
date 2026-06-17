@@ -15,3 +15,10 @@
 - Home UI: FOR YOU cards use `homeAccentStrip`; session recap inner box radius 14
 - Regenerated coverage logs (`zeroTraps: []`, tier counts unchanged)
 - **2026-06-15** `lab_31_route_lite`: Added LAB-31-ROUTE-INTERPRET teach-first verify lab for objective 3.1
+
+## 2026-06-17 (95+ pass)
+- Mock study: instant per-question feedback, question summary grid, jump-to-first-wrong on done screen
+- **2026-06-17** `lab_31_route_lite`: Added LAB-ROUTE-TABLE-31 in extended labs; richer CLI show ip route output; 5 new 3.1 skill questions
+- Content depth: 40 new questions for 10 thin objectives (2.3/2.4/2.6/2.7/2.8/4.3/4.7/4.9/5.2/5.7)
+- Labs: wireless arch 2.6, DHCP/DNS 4.3, SSH device access 5.3
+- Tests: 53 cliEngine unit tests; mobile dvh terminal fix

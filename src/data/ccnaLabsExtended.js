@@ -972,8 +972,147 @@ const DEVICE_ACCESS_53 = {
   ]),
 }
 
+/* ---- Routing table interpret (3.1) ---- */
+const LAB_ROUTE_TABLE_31 = {
+  id: 'LAB-ROUTE-TABLE-31',
+  title: 'Interpret an IPv4 Routing Table',
+  domainId: 'connectivity',
+  objectiveId: '3.1',
+  ckuIds: ['CKU-ROUTE-SOURCE-CODES', 'CKU-AD', 'CKU-STATIC-ROUTE'],
+  labType: 'guided',
+  difficulty: 'beginner',
+  estimatedTimeMinutes: 12,
+  tools: ['Packet Tracer', 'GNS3', 'CML'],
+  examRelevance: 'core',
+  scenario: 'R1 is pre-configured with four route types: connected (C), local (L), OSPF-learned (O), and a static default route (S*). Your mission is to enter privileged EXEC mode and interpret the routing table — read source codes, decode [AD/metric] brackets, identify next-hop IPs, and use filtered show commands to isolate route types.',
+  learningGoals: [
+    'Navigate from user EXEC to privileged EXEC with enable.',
+    'Read source codes: C (connected), L (local /32), S (static), O (OSPF).',
+    'Decode [AD/metric] — e.g. [110/20] is OSPF AD 110, cost 20.',
+    'Identify next-hop IP (via X.X.X.X) and exit interface per route.',
+    'Use show ip route ospf and show ip route connected to filter the table.',
+    'Look up a specific prefix to see its full routing descriptor block.',
+  ],
+  topologyId: 'TOPO-ROUTE-TABLE-31',
+  prerequisites: ['CKU-IP-ADDRESSING'],
+  tasks: [
+    {
+      id: 't1', order: 1,
+      title: 'Enter privileged mode and view the full routing table',
+      device: 'R1',
+      instruction: 'Type enable to reach privileged EXEC (#), then run show ip route. Read the codes legend — match C, L, S*, O entries. Notice the [AD/metric] bracket on the OSPF line and the gateway of last resort for the default route.',
+      expectedCommands: ['enable', 'show ip route'],
+    },
+    {
+      id: 't2', order: 2,
+      title: 'Filter for OSPF-learned routes only',
+      device: 'R1',
+      instruction: 'Run show ip route ospf to scope output to OSPF entries. Confirm the bracket shows [110/20] — 110 is the OSPF administrative distance, 20 is the path cost to the destination.',
+      expectedCommands: ['show ip route ospf'],
+    },
+    {
+      id: 't3', order: 3,
+      title: 'Filter for connected routes only',
+      device: 'R1',
+      instruction: 'Run show ip route connected to see only C and L entries. Connected routes have no [AD/metric] bracket and always show "is directly connected." L entries are /32 host routes for the router own interface addresses.',
+      expectedCommands: ['show ip route connected'],
+    },
+    {
+      id: 't4', order: 4,
+      title: 'Look up a specific destination prefix',
+      device: 'R1',
+      instruction: 'Run show ip route 192.168.2.0 to display the full routing descriptor block for that prefix. This shows the source protocol, AD/metric, next-hop, and age — exactly what the router uses to make the forwarding decision.',
+      expectedCommands: ['show ip route 192.168.2.0'],
+    },
+  ],
+  verificationCommands: ['show ip route', 'show ip route ospf', 'show ip route connected'],
+  successCriteria: [
+    'Full table shows C (connected), S* (default static), O (OSPF) entries',
+    'OSPF route 192.168.2.0/24 has [110/20] — AD 110, OSPF cost 20',
+    'S* 0.0.0.0/0 via 10.0.0.1 is listed as gateway of last resort',
+    'Connected entries have no AD/metric bracket',
+    'Descriptor block for 192.168.2.0 shows distance 110 and metric 20',
+  ],
+  failureCriteria: [
+    'If show ip route shows only C/L — OSPF adjacency not established',
+    'If no S* entry — default static route missing from R1',
+  ],
+  commonMistakes: [
+    'Reading [AD/metric] as [metric/AD] — administrative distance is always first',
+    'Confusing C (connected network) with L (local /32 host route for the interface IP)',
+    'Thinking a lower AD means worse — lower AD = more trusted; S AD=1 beats O AD=110',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '3.1 Interpret routing table components', confidence: 0.93 },
+  metadata: { version: '1', status: 'validated', confidence: 0.93 },
+}
+const TOPO_ROUTE_TABLE_31 = {
+  id: 'TOPO-ROUTE-TABLE-31',
+  title: 'R1 with C / S* / O routes',
+  objectiveId: '3.1',
+  nodes: [
+    { id: 'r1', label: 'R1 (interpret table)', type: 'router', x: 48, y: 30 },
+    { id: 'pc1', label: 'PC1\n192.168.1.0/24', type: 'pc', x: 10, y: 72 },
+    { id: 'r2', label: 'R2\nOSPF peer', type: 'router', x: 85, y: 72 },
+    { id: 'isp', label: 'ISP / default\n0.0.0.0/0', type: 'cloud', x: 48, y: 78 },
+  ],
+  links: [
+    { id: 'l1', source: 'r1', target: 'pc1', label: 'Gi0/0 .1', status: 'forwarding' },
+    { id: 'l2', source: 'r1', target: 'r2', label: 'Gi0/1 10.0.0.0/30', status: 'forwarding' },
+    { id: 'l3', source: 'r1', target: 'isp', label: 'S* via 10.0.0.1', status: 'forwarding' },
+  ],
+}
+const VALIDATOR_ROUTE_TABLE_31 = {
+  labId: 'LAB-ROUTE-TABLE-31',
+  requiredCommands: [
+    { device: 'R1', command: 'show ip route' },
+    { device: 'R1', command: 'show ip route ospf' },
+    { device: 'R1', command: 'show ip route connected' },
+  ],
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show ip route', expectedResult: 'O 192.168.2.0/24 [110/20] via 10.0.0.2', passCondition: 'OSPF route present with correct AD 110 and metric 20' },
+    { id: 'v2', device: 'R1', command: 'show ip route ospf', expectedResult: 'O 192.168.2.0/24 [110/20]', passCondition: 'OSPF filter returns the learned route' },
+    { id: 'v3', device: 'R1', command: 'show ip route connected', expectedResult: 'C 192.168.1.0/24 is directly connected', passCondition: 'Connected routes on Gi0/0 and Gi0/1' },
+  ],
+}
+const DIAGRAM_ROUTE_TABLE_31 = mkDiagram(
+  'DIAG-ROUTE-TABLE-31',
+  'Routing table source codes',
+  '3.1',
+  [
+    { id: 'c', label: 'C — Connected\n(no AD bracket)', type: 'process', x: 15, y: 55, status: 'highlighted' },
+    { id: 's', label: 'S* — Static default\n[1/0]', type: 'process', x: 40, y: 55 },
+    { id: 'o', label: 'O — OSPF\n[110/20]', type: 'process', x: 65, y: 55 },
+    { id: 'r1', label: 'R1\nRouting Table', type: 'router', x: 40, y: 20 },
+  ],
+  [
+    { id: 'd1', source: 'r1', target: 'c', status: 'forwarding' },
+    { id: 'd2', source: 'r1', target: 's', status: 'forwarding' },
+    { id: 'd3', source: 'r1', target: 'o', status: 'forwarding' },
+  ],
+  [{ id: 'a1', x: 65, y: 85, text: 'Lower AD = more trusted. Longest prefix always wins first.' }],
+)
+const FLOWS_ROUTE_TABLE_31 = mkFlows(
+  'FLOW-ROUTE-TABLE-31',
+  'Reading one routing table line',
+  'DIAG-ROUTE-TABLE-31',
+  ['CKU-ROUTE-SOURCE-CODES', 'CKU-AD'],
+  [
+    { id: 's1', order: 1, title: 'Source code', action: 'O = OSPF. Other common codes: C = connected, L = local /32, S = static, D = EIGRP, R = RIP.', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Destination prefix', action: '192.168.2.0/24 — the network the router can reach via this entry.', successState: 'noted' },
+    { id: 's3', order: 3, title: '[AD/metric] bracket', action: '[110/20] — AD 110 (OSPF trustworthiness), metric 20 (OSPF cost). Lower AD wins between protocols; lower metric wins within OSPF.', successState: 'noted' },
+    { id: 's4', order: 4, title: 'Next-hop and exit interface', action: 'via 10.0.0.2 is where the packet goes next. GigabitEthernet0/1 is the outbound interface on this router.', successState: 'forwarded' },
+  ],
+)
+const ROUTE_TABLE_31 = {
+  lab: LAB_ROUTE_TABLE_31,
+  topology: TOPO_ROUTE_TABLE_31,
+  validator: VALIDATOR_ROUTE_TABLE_31,
+  diagram: DIAGRAM_ROUTE_TABLE_31,
+  packetFlows: FLOWS_ROUTE_TABLE_31,
+}
+
 export const EXTENDED_LAB_BUNDLES = [
   HSRP, DHCP_RELAY, ETHERCHANNEL, STP, DEVICE_ACCESS, NTP, AAA, SYSLOG,
   TS_OSPF, TS_TRUNK, TS_IF, TS_ACL, TS_ROUTE, TS_DHCP, TS_HSRP, TS_MASK,
-  WIRELESS_26, DHCP_DNS_43, DEVICE_ACCESS_53,
+  WIRELESS_26, DHCP_DNS_43, DEVICE_ACCESS_53, ROUTE_TABLE_31,
 ]
