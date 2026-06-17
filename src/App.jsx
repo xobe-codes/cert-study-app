@@ -36,7 +36,6 @@ import OverflowMarquee from './components/OverflowMarquee.jsx'
 import DeferredExamTips from './components/DeferredExamTips.jsx'
 import { ExplainTab, QuizTab } from './tabs/studyQuizTabs.jsx'
 import { BOOK_REF } from './data/bookRefFull.js'
-import { formatCuratedAttribution } from './curatedDisplay.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
@@ -1280,19 +1279,6 @@ const EXPLAIN_SCHEMA = {
     related: { type: 'array', items: { type: 'string' } },
     advanced: { type: 'string' },
   },
-}
-
-/* =========================================================================
-   SOURCES — verifiable only. We cite the authoritative Cisco exam blueprint
-   (objective id/title) and named reference works. No AI-invented page numbers.
-   Lives here as exam-level config so it generalises to other certifications.
-   ========================================================================= */
-const EXAM_SOURCES = {
-  examName: 'CCNA 200-301',
-  blueprintUrl: 'https://learningnetwork.cisco.com/s/ccna-exam-topics',
-  references: [
-    { title: 'CCNA 200-301 Official Cert Guide (Vol 1 & 2)', author: 'Wendell Odom', publisher: 'Cisco Press' },
-  ],
 }
 
 /* =========================================================================
@@ -4286,9 +4272,7 @@ function TutorChat({ progress, missed, onBack }) {
         {error && <ErrorBox message={error} onRetry={send} />}
         {messages.length > 0 && !loading && (
           <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.5, padding: '4px 2px' }}>
-            Tutor answers are AI-generated study help. Verify exam objectives, command syntax, and key terms against the{' '}
-            <a href={EXAM_SOURCES.blueprintUrl} target="_blank" rel="noreferrer" style={{ color: COLORS.sky, textDecoration: 'none' }}>{EXAM_SOURCES.examName} exam topics</a>
-            {' '}and {EXAM_SOURCES.references.map(r => r.title).join(', ')} — open the matching objective's Explain tab for cited definitions.
+            Tutor answers are AI-generated study help — verify exam objectives, command syntax, and key terms before relying on them for the exam.
           </div>
         )}
       </div>

@@ -273,9 +273,6 @@ export default function LabView({ bundle, onBack, onDone, celebrate, haptic }) {
 
       <LabSection icon="✅" title="SUCCESS CRITERIA" accent="mint" items={lab.successCriteria} />
       <LabSection icon="⚠️" title="COMMON MISTAKES" accent="rose" items={lab.commonMistakes} />
-      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim, marginTop: 8 }}>
-        Source: {lab.source.name}{lab.source.chapter ? ` — ${lab.source.chapter}` : ''}. Cisco IOS syntax; lab paraphrased.
-      </div>
     </div>
   )
 }

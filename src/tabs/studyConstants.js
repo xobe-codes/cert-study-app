@@ -22,19 +22,6 @@ export const EXPLAIN_SCHEMA = {
 }
 
 /* =========================================================================
-   SOURCES — verifiable only. We cite the authoritative Cisco exam blueprint
-   (objective id/title) and named reference works. No AI-invented page numbers.
-   Lives here as exam-level config so it generalises to other certifications.
-   ========================================================================= */
-export const EXAM_SOURCES = {
-  examName: 'CCNA 200-301',
-  blueprintUrl: 'https://learningnetwork.cisco.com/s/ccna-exam-topics',
-  references: [
-    { title: 'CCNA 200-301 Official Cert Guide (Vol 1 & 2)', author: 'Wendell Odom', publisher: 'Cisco Press' },
-  ],
-}
-
-/* =========================================================================
    PRE-ASSESSMENT — test out of a section before studying it.
    ========================================================================= */
 export const PREASSESS_CACHE_KEY = 'ccna_preassess_v1'

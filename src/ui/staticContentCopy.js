@@ -4,7 +4,6 @@
  */
 export const STATIC_COPY = {
   badge: 'curated pack',
-  sources: 'Chapter-level citations are in SOURCES above.',
   quickRefPill: 'CURATED · OFFLINE',
   bankReview: 'from your saved bank — instant review',
   curatedQuizPool: 'curated pool — starts instantly',

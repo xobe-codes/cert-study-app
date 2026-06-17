@@ -20,7 +20,6 @@ import CuratedStaticBadge from '../components/CuratedStaticBadge.jsx'
 import OverflowMarquee from '../components/OverflowMarquee.jsx'
 import EngineerViewSection from '../components/EngineerViewSection.jsx'
 import { getEngineerView } from '../lesson/engineerView.js'
-import { formatCuratedAttribution } from '../curatedDisplay.js'
 import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
 import ErrorBox from '../components/ErrorBox.jsx'
@@ -584,15 +583,11 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, sh
   }
 
   const r = data.reading
-  const attribution = formatCuratedAttribution(r.sourceRefs, data.objectiveId)
   return (
     <div className="ccna-stagger objective-reading-prose lesson-prose">
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'nowrap' }}>
         <CuratedStaticBadge objectiveId={data.objectiveId} fontSize={10} />
-        <OverflowMarquee
-          text={attribution}
-          style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}
-        />
+        <span style={{ flex: 1 }} />
         <SpeakButton getText={() => _curatedReadingText(r, tier)} />
       </div>
       {hint && (
@@ -647,65 +642,6 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, sh
       {r.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}><RichText text={r.advanced} /></ExplainBlock>}
       {r.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={r.related} /></ExplainBlock>}
       {showDiagram && data.diagram && <CuratedDiagram diagram={data.diagram} />}
-      <CuratedSources data={data} />
-    </div>
-  )
-}
-
-// Sources panel for curated content — lists the actual per-reading sourceRefs.
-function CuratedSources({ data }) {
-  const [open, setOpen] = useState(false)
-  const refs = data.reading.sourceRefs
-  return (
-    <div style={{ ...styles.card, padding: 12, marginTop: 4 }}>
-      <button onClick={() => setOpen(o => !o)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
-        <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid }}>📚 SOURCES (verifiable)</span>
-        <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>{open ? '−' : '+'}</span>
-      </button>
-      {open && (
-        <div style={{ marginTop: 10, fontSize: 'var(--ccna-type-xs)', lineHeight: 1.5, color: COLORS.silverMid }}>
-          <div style={{ marginBottom: 8 }}>
-            <a href={EXAM_SOURCES.blueprintUrl} target="_blank" rel="noreferrer" style={{ color: COLORS.sky, textDecoration: 'none' }}>{EXAM_SOURCES.examName} exam topic {data.objectiveId}</a> — official blueprint (authoritative).
-          </div>
-          {refs.map((s, i) => (
-            <div key={i} style={{ marginBottom: 6 }}>
-              <span style={{ color: COLORS.silver }}>{s.sourceName}</span>{s.chapter ? ` — ${s.chapter}` : ''}.
-              <span style={{ color: COLORS.silverDim }}> confidence {Math.round(s.confidence * 100)}%</span>
-            </div>
-          ))}
-          <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim }}>{STATIC_COPY.sources}</div>
-        </div>
-      )}
-    </div>
-  )
-}
-
-/* ---- Sources panel (verifiable only) ---- */
-function SourcesPanel({ objective }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <div style={{ ...styles.card, padding: 12, marginTop: 4 }}>
-      <button onClick={() => setOpen(o => !o)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
-        <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid }}>📚 SOURCES</span>
-        <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>{open ? '−' : '+'}</span>
-      </button>
-      {open && (
-        <div style={{ marginTop: 10, fontSize: 'var(--ccna-type-xs)', lineHeight: 1.5, color: COLORS.silverMid }}>
-          <div style={{ marginBottom: 8 }}>
-            <a href={EXAM_SOURCES.blueprintUrl} target="_blank" rel="noreferrer" style={{ color: COLORS.sky, textDecoration: 'none' }}>
-              {EXAM_SOURCES.examName} exam topic {objective.id} — {objective.title}
-            </a>
-            <div>Official Cisco exam blueprint (authoritative).</div>
-          </div>
-          {EXAM_SOURCES.references.map((r, i) => (
-            <div key={i} style={{ marginBottom: 6 }}>
-              <span style={{ color: COLORS.silver }}>{r.title}</span> — {r.author}, {r.publisher}.
-              <div>Covers: {objective.domainName}.</div>
-            </div>
-          ))}
-          <div style={{ marginTop: 6, fontSize: 'var(--ccna-type-xs)', color: COLORS.silverDim }}>Explanations and key terms are AI study aids grounded in these sources — verify command syntax against official docs.</div>
-        </div>
-      )}
     </div>
   )
 }
@@ -1104,7 +1040,6 @@ export function ExplainTab({
               <div className="objective-reading-prose lesson-prose">
                 <StructuredExplanation data={content} />
               </div>
-              <SourcesPanel objective={objective} />
             </>
           )}
           {isStudy && hasCuratedVisual && (curated || recalled) && (
