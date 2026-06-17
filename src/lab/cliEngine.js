@@ -62,6 +62,95 @@ Gateway of last resort is not set
      192.168.10.0/24 is variably subnetted, 2 subnets, 2 masks
 C       192.168.10.0/24 is directly connected, GigabitEthernet0/0
 L       192.168.10.1/32 is directly connected, GigabitEthernet0/0`,
+  'show ip route ospf': `Codes: O - OSPF
+O     192.168.2.0/24 [110/20] via 10.0.0.2, 00:01:23, GigabitEthernet0/1`,
+  'show ip route connected': `Codes: C - connected, L - local
+      10.0.0.0/30 is subnetted, 1 subnets
+C       10.0.0.0/30 is directly connected, GigabitEthernet0/1
+L       10.0.0.1/32 is directly connected, GigabitEthernet0/1
+      192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+C       192.168.1.0/24 is directly connected, GigabitEthernet0/0
+L       192.168.1.1/32 is directly connected, GigabitEthernet0/0`,
+  'show ip route static': `Codes: S - static
+S*    0.0.0.0/0 [1/0] via 10.0.0.1
+S     172.16.0.0/16 [1/0] via 10.0.0.2`,
+  'show ip route 192.168.2.0': `Routing entry for 192.168.2.0/24
+  Known via "ospf 1", distance 110, metric 20, type intra area
+  Last update from 10.0.0.2 on GigabitEthernet0/1, 00:01:23 ago
+  Routing Descriptor Blocks:
+  * 10.0.0.2, from 10.0.0.2, 00:01:23 ago, via GigabitEthernet0/1
+      Route metric is 20, traffic share count is 1`,
+  'show standby brief': `                     P indicates configured to preempt.
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Gi0/0       1    150 P Active  local           192.168.1.3     192.168.1.1`,
+  'show interfaces trunk': `Port        Mode         Encapsulation  Status        Native vlan
+Gi0/1       on           802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Gi0/1       1-4094
+
+Port        Vlans allowed and active in management domain
+Gi0/1       1,20`,
+  'show ap summary': `AP Summary
+
+Number of APs: 3
+
+AP Name              Slots  AP Model      Ethernet MAC    Location      Country  IP Address   State
+-------------------  -----  ------------  --------------  ------------  -------  -----------  ------
+AP-Floor1            2      AIR-CAP2702I  00a3.8e10.0001  Floor 1       US       10.1.1.11    Joined
+AP-Floor2            2      AIR-CAP2702I  00a3.8e10.0002  Floor 2       US       10.1.1.12    Joined
+AP-Conf              2      AIR-CAP3702I  00a3.8e10.0003  Conference    US       10.1.1.13    Joined`,
+  'show wireless client summary': `Number of Local Clients: 2
+
+MAC Address     AP Name       WLAN ID  State        Protocol
+-----------     ---------     -------  -----        --------
+0c6e.d489.0001  AP-Floor1     1        Associated   802.11n
+0c6e.d489.0002  AP-Floor2     1        Associated   802.11ac`,
+  'show capwap detail': `CAPWAP Tunnel Detail
+
+AP Name      IP Address    Control(UDP)  Data(UDP)  State
+-----------  ------------  ------------  ---------  ------
+AP-Floor1    10.1.1.11     5246          5247       UP
+AP-Floor2    10.1.1.12     5246          5247       UP
+AP-Conf      10.1.1.13     5246          5247       UP
+
+Control messages: DTLS-encrypted. Data: optional encryption per WLAN policy.`,
+  'show ip dhcp binding': `Bindings from all pools not associated with VRF:
+IP address       Client-ID / Hardware address    Lease expiration          Type
+192.168.1.10     0100.1122.3344.5566             Jun 18 2026 08:00 AM      Automatic
+192.168.1.11     0100.aabb.ccdd.eeff             Jun 18 2026 09:15 AM      Automatic`,
+  'show ip dhcp pool': `Pool LAN :
+ Utilization mark (high/low)    : 100 / 0
+ Subnet size (first/next)       : 0 / 0
+ Total addresses                : 253
+ Leased addresses               : 2
+ Pending event                  : none
+ 1 subnet is currently in the pool :
+ Current index        IP address range                Leased addresses
+ 192.168.1.12         192.168.1.1   - 192.168.1.254    2
+ Network: 192.168.1.0/24
+ Default router: 192.168.1.1
+ DNS server: 8.8.8.8
+ Lease length: 1 days`,
+  'show hosts': `Default domain is ccna.lab
+Name/address lookup uses domain service
+Name servers are 8.8.8.8
+
+Codes: UN - unknown, EX - expired, OK - OK, ?? - revalidate
+       temp - temporary, perm - permanent
+
+Host                   Port  Flags       Age Type   Address(es)
+gateway.ccna.lab       None  (perm, OK)  0   IP     192.168.1.1
+server.ccna.lab        None  (perm, OK)  0   IP     10.0.0.10`,
+  'show ip ssh': `SSH Enabled - version 2.0
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 1024 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded):
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAB...truncated... R1.ccna.lab`,
+  'show users': `    Line       User       Host(s)              Idle       Location
+*  1 vty 0    admin      idle                 00:00:00    192.168.1.100
+
+  Interface    User               Mode         Idle     Peer Address`,
 }
 
 /** R1 routing table for LAB-31-ROUTE-INTERPRET (objective 3.1). */

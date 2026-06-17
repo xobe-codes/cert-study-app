@@ -581,7 +581,399 @@ const TS_MASK = tsBundle(LAB_TS_MASK,
   [{ id: 'l1', source: 'pc', target: 'r1', status: 'blocked' }],
   [{ device: 'R1', command: 'ip address 192.168.1.1 255.255.255.0' }])
 
+/* ---- Wireless Architecture (2.6) ---- */
+const LAB_WIRELESS_26 = {
+  id: 'LAB-WIRELESS-ARCH',
+  title: 'Verify WLC and Lightweight AP Deployment',
+  domainId: 'access',
+  objectiveId: '2.6',
+  ckuIds: ['CKU-WLC', 'CKU-AP-MODES'],
+  labType: 'guided',
+  difficulty: 'beginner',
+  estimatedTimeMinutes: 12,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'A Wireless LAN Controller (WLC1) manages three Lightweight APs over CAPWAP tunnels. Read WLC show output to identify AP operational modes, verify client associations, and trace CAPWAP control/data channels. Lightweight APs hold no local config — all policy lives on the WLC.',
+  learningGoals: [
+    'Distinguish Lightweight (CAPWAP-managed) from Autonomous (standalone IOS) AP operation',
+    'Identify CAPWAP control plane (UDP 5246) and data plane (UDP 5247)',
+    'Read show ap summary to verify AP join state',
+    'Verify wireless client associations with show wireless client summary',
+  ],
+  topologyId: 'TOPO-WIRELESS-26',
+  prerequisites: ['CKU-VLAN'],
+  tasks: [
+    {
+      id: 't1', order: 1,
+      title: 'View AP registrations',
+      device: 'WLC1',
+      instruction: 'Run show ap summary. Confirm all three APs show "Joined" state, their model, IP address, and operating mode (Local). A Lightweight AP in Local mode tunnels all client traffic back to the WLC via CAPWAP — it cannot forward independently.',
+      expectedCommands: ['show ap summary'],
+    },
+    {
+      id: 't2', order: 2,
+      title: 'Check client associations',
+      device: 'WLC1',
+      instruction: 'Run show wireless client summary. Note each client MAC, the AP it is associated to, WLAN ID, and 802.11 protocol. The WLC tracks all clients centrally — Lightweight APs relay this information via CAPWAP.',
+      expectedCommands: ['show wireless client summary'],
+    },
+    {
+      id: 't3', order: 3,
+      title: 'Inspect CAPWAP tunnels',
+      device: 'WLC1',
+      instruction: 'Run show capwap detail. Verify the control channel (UDP 5246) and data channel (UDP 5247) are UP for each AP. DTLS encrypts control messages; data encryption is optional per WLAN policy.',
+      expectedCommands: ['show capwap detail'],
+    },
+  ],
+  verificationCommands: ['show ap summary', 'show wireless client summary', 'show capwap detail'],
+  successCriteria: [
+    'All APs show Joined state in show ap summary',
+    'Client MACs appear with correct AP and WLAN associations',
+    'CAPWAP control (UDP 5246) and data (UDP 5247) channels show UP',
+  ],
+  failureCriteria: [
+    'AP shows Discovering — CAPWAP tunnel not established; check IP reachability and that UDP 5246/5247 is not blocked',
+    'No clients listed — SSID misconfigured or management VLAN not trunked to AP switch port',
+  ],
+  commonMistakes: [
+    'Confusing Lightweight AP (no local config, CAPWAP-dependent) with Autonomous AP (runs IOS locally)',
+    'Thinking CAPWAP uses TCP — control uses UDP 5246, data uses UDP 5247',
+    'Expecting AP to operate if WLC is unreachable — Lightweight APs cannot forward without WLC',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '2.6 Wireless architectures and AP modes', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_WIRELESS_26 = {
+  id: 'TOPO-WIRELESS-26',
+  title: 'WLC + Lightweight AP topology',
+  objectiveId: '2.6',
+  nodes: [
+    { id: 'wlc', label: 'WLC1', type: 'server', x: 50, y: 15 },
+    { id: 'sw', label: 'SW1 (trunk)', type: 'switch', x: 50, y: 42 },
+    { id: 'ap1', label: 'AP-Floor1\n(Local)', type: 'router', x: 15, y: 75 },
+    { id: 'ap2', label: 'AP-Floor2\n(Local)', type: 'router', x: 50, y: 75 },
+    { id: 'ap3', label: 'AP-Conf\n(Local)', type: 'router', x: 85, y: 75 },
+  ],
+  links: [
+    { id: 'l1', source: 'wlc', target: 'sw', label: 'mgmt VLAN', status: 'forwarding' },
+    { id: 'l2', source: 'sw', target: 'ap1', label: 'CAPWAP', status: 'forwarding' },
+    { id: 'l3', source: 'sw', target: 'ap2', label: 'CAPWAP', status: 'forwarding' },
+    { id: 'l4', source: 'sw', target: 'ap3', label: 'CAPWAP', status: 'forwarding' },
+  ],
+}
+const VALIDATOR_WIRELESS_26 = {
+  labId: 'LAB-WIRELESS-ARCH',
+  requiredCommands: [
+    { device: 'WLC1', command: 'show ap summary' },
+    { device: 'WLC1', command: 'show wireless client summary' },
+    { device: 'WLC1', command: 'show capwap detail' },
+  ],
+  verificationChecks: [
+    { id: 'v1', device: 'WLC1', command: 'show ap summary', expectedResult: 'AP-Floor1 Joined', passCondition: 'APs registered' },
+    { id: 'v2', device: 'WLC1', command: 'show capwap detail', expectedResult: 'UP', passCondition: 'CAPWAP active' },
+  ],
+}
+const DIAGRAM_WIRELESS_26 = mkDiagram(
+  'DIAG-WIRELESS-26',
+  'Lightweight AP CAPWAP architecture',
+  '2.6',
+  [
+    { id: 'wlc', label: 'WLC\n(policy, auth)', type: 'server', x: 50, y: 15, status: 'highlighted' },
+    { id: 'cap', label: 'CAPWAP\nControl UDP/5246\nData UDP/5247', type: 'process', x: 50, y: 45 },
+    { id: 'ap', label: 'Lightweight AP\n(no local config)', type: 'router', x: 20, y: 78 },
+    { id: 'client', label: 'Wi-Fi Client', type: 'pc', x: 80, y: 78 },
+  ],
+  [
+    { id: 'd1', source: 'wlc', target: 'cap', status: 'forwarding' },
+    { id: 'd2', source: 'cap', target: 'ap', status: 'forwarding' },
+    { id: 'd3', source: 'ap', target: 'client', label: '802.11', status: 'forwarding' },
+  ],
+  [{ id: 'a1', x: 50, y: 93, text: 'Autonomous AP: IOS config lives on AP. Lightweight: config lives on WLC.' }],
+)
+const WIRELESS_26 = {
+  lab: LAB_WIRELESS_26,
+  topology: TOPO_WIRELESS_26,
+  validator: VALIDATOR_WIRELESS_26,
+  diagram: DIAGRAM_WIRELESS_26,
+  packetFlows: mkFlows('FLOW-WIRELESS-26', 'Client frames tunneled to WLC', 'DIAG-WIRELESS-26', ['CKU-WLC', 'CKU-AP-MODES'], [
+    { id: 's1', order: 1, title: 'Association', action: 'Client sends 802.11 probe/auth/assoc to Lightweight AP', successState: 'forwarded' },
+    { id: 's2', order: 2, title: 'CAPWAP encap', action: 'AP wraps client frame in CAPWAP data (UDP 5247) and sends to WLC', successState: 'modified' },
+    { id: 's3', order: 3, title: 'WLC policy', action: 'WLC applies VLAN, QoS, and security policy before forwarding to wired network', successState: 'forwarded' },
+  ]),
+}
+
+/* ---- DHCP and DNS roles (4.3) ---- */
+const LAB_DHCP_DNS_43 = {
+  id: 'LAB-DHCP-DNS-FLOW',
+  title: 'Verify DHCP Negotiation and DNS Resolution',
+  domainId: 'ip_services',
+  objectiveId: '4.3',
+  ckuIds: ['CKU-DHCP', 'CKU-DNS'],
+  labType: 'guided',
+  difficulty: 'beginner',
+  estimatedTimeMinutes: 12,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'R1 acts as DHCP server and DNS forwarder for the 192.168.1.0/24 LAN. Two PCs have already completed the DORA exchange and hold active leases. Read DHCP pool and binding output to verify addresses were assigned correctly, then inspect the host table to confirm DNS name-to-IP mappings.',
+  learningGoals: [
+    'Read show ip dhcp pool to see pool range, utilization, and lease time',
+    'Read show ip dhcp binding to confirm client IP and MAC associations',
+    'Read show hosts to verify DNS hostname-to-IP mappings',
+    'Trace the four-step DORA exchange: Discover → Offer → Request → Ack',
+  ],
+  topologyId: 'TOPO-DHCP-DNS-43',
+  prerequisites: ['CKU-IP-ADDRESSING'],
+  tasks: [
+    {
+      id: 't1', order: 1,
+      title: 'Inspect the DHCP pool configuration',
+      device: 'R1',
+      instruction: 'Run show ip dhcp pool. Read the pool name, network/mask, default-router, DNS server, and lease time. The "Leased addresses" count shows how many IPs from the pool are currently in use.',
+      expectedCommands: ['show ip dhcp pool'],
+    },
+    {
+      id: 't2', order: 2,
+      title: 'Review current DHCP bindings',
+      device: 'R1',
+      instruction: 'Run show ip dhcp binding. Each row maps a client hardware address (MAC) to an assigned IP and lease expiry time. Automatic bindings were created by the DORA handshake; Manual bindings use ip dhcp pool / host.',
+      expectedCommands: ['show ip dhcp binding'],
+    },
+    {
+      id: 't3', order: 3,
+      title: 'Check the DNS host table',
+      device: 'R1',
+      instruction: 'Run show hosts. Review cached hostname-to-IP mappings. Entries marked "perm" were statically added with ip host; "temp" entries were learned via DNS lookup. The default domain and name servers used for resolution are also shown.',
+      expectedCommands: ['show hosts'],
+    },
+  ],
+  verificationCommands: ['show ip dhcp pool', 'show ip dhcp binding', 'show hosts'],
+  successCriteria: [
+    'Pool shows correct network and default-router',
+    'Two automatic bindings present for LAN clients',
+    'show hosts lists at least one hostname mapping',
+  ],
+  failureCriteria: [
+    'Empty binding table — client DHCPDISCOVER never reached the server',
+    'Pool shows exhausted — check ip dhcp excluded-address range',
+  ],
+  commonMistakes: [
+    'Omitting ip dhcp excluded-address for the gateway — server may assign the router IP to a client',
+    'Expecting show hosts to populate without a name-server or ip host config',
+    'Confusing DORA steps: Discover and Request are client broadcasts; Offer and Ack are server replies',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '4.3 Explain the role of DHCP and DNS', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_DHCP_DNS_43 = {
+  id: 'TOPO-DHCP-DNS-43',
+  title: 'DHCP server and DNS forwarder on R1',
+  objectiveId: '4.3',
+  nodes: [
+    { id: 'r1', label: 'R1\nDHCP + DNS fwd', type: 'router', x: 50, y: 20 },
+    { id: 'pc1', label: 'PC1\n192.168.1.10', type: 'pc', x: 20, y: 72 },
+    { id: 'pc2', label: 'PC2\n192.168.1.11', type: 'pc', x: 50, y: 72 },
+    { id: 'dns', label: 'DNS Server\n8.8.8.8', type: 'server', x: 80, y: 72 },
+  ],
+  links: [
+    { id: 'l1', source: 'r1', target: 'pc1', label: 'DORA', status: 'forwarding' },
+    { id: 'l2', source: 'r1', target: 'pc2', label: 'DORA', status: 'forwarding' },
+    { id: 'l3', source: 'r1', target: 'dns', label: 'forward', status: 'forwarding' },
+  ],
+}
+const VALIDATOR_DHCP_DNS_43 = {
+  labId: 'LAB-DHCP-DNS-FLOW',
+  requiredCommands: [
+    { device: 'R1', command: 'show ip dhcp pool' },
+    { device: 'R1', command: 'show ip dhcp binding' },
+    { device: 'R1', command: 'show hosts' },
+  ],
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show ip dhcp binding', expectedResult: '192.168.1.10 Automatic', passCondition: 'binding present' },
+    { id: 'v2', device: 'R1', command: 'show hosts', expectedResult: 'gateway.ccna.lab', passCondition: 'host entry present' },
+  ],
+}
+const DIAGRAM_DHCP_DNS_43 = mkDiagram(
+  'DIAG-DHCP-DNS-43',
+  'DHCP DORA and DNS lookup flow',
+  '4.3',
+  [
+    { id: 'pc', label: 'PC\n(DHCP client)', type: 'pc', x: 10, y: 50 },
+    { id: 'r1', label: 'R1\nDHCP server', type: 'router', x: 42, y: 50, status: 'highlighted' },
+    { id: 'dns', label: 'DNS\n8.8.8.8', type: 'server', x: 78, y: 50 },
+    { id: 'dora', label: 'DORA\nDiscover→Offer\nRequest→Ack', type: 'process', x: 25, y: 82 },
+  ],
+  [
+    { id: 'd1', source: 'pc', target: 'r1', label: 'Discover (bcast)', status: 'forwarding' },
+    { id: 'd2', source: 'r1', target: 'pc', label: 'Offer / Ack', status: 'forwarding' },
+    { id: 'd3', source: 'r1', target: 'dns', label: 'forward DNS', status: 'forwarding' },
+  ],
+  [{ id: 'a1', x: 50, y: 93, text: 'DORA: Discover + Request = client broadcast. Offer + Ack = server reply.' }],
+)
+const DHCP_DNS_43 = {
+  lab: LAB_DHCP_DNS_43,
+  topology: TOPO_DHCP_DNS_43,
+  validator: VALIDATOR_DHCP_DNS_43,
+  diagram: DIAGRAM_DHCP_DNS_43,
+  packetFlows: mkFlows('FLOW-DHCP-DNS-43', 'DORA exchange and DNS resolution', 'DIAG-DHCP-DNS-43', ['CKU-DHCP', 'CKU-DNS'], [
+    { id: 's1', order: 1, title: 'Discover', action: 'PC broadcasts DHCPDISCOVER (src 0.0.0.0, dst 255.255.255.255)', successState: 'forwarded' },
+    { id: 's2', order: 2, title: 'Offer', action: 'DHCP server unicasts DHCPOFFER with proposed IP, mask, GW, and DNS', successState: 'offered' },
+    { id: 's3', order: 3, title: 'Request', action: 'PC broadcasts DHCPREQUEST confirming the offered lease', successState: 'forwarded' },
+    { id: 's4', order: 4, title: 'Ack', action: 'Server sends DHCPACK — binding now active and logged in show ip dhcp binding', successState: 'forwarded' },
+  ]),
+}
+
+/* ---- SSH VTY access (5.3) ---- */
+const LAB_SSH_VTY = {
+  id: 'LAB-SSH-VTY',
+  title: 'Configure and Verify SSH Access on VTY Lines',
+  domainId: 'security',
+  objectiveId: '5.3',
+  ckuIds: ['CKU-SSH', 'CKU-LOCAL-AUTH'],
+  labType: 'guided',
+  difficulty: 'beginner',
+  estimatedTimeMinutes: 15,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'R1 must accept management access only via SSH v2 — Telnet must be blocked. Configure a domain name and RSA key, create a local admin user, restrict VTY lines to SSH with local authentication, then verify with show ip ssh and show users.',
+  learningGoals: [
+    'Set ip domain-name (required before crypto key generate rsa)',
+    'Generate RSA keypair with modulus 1024 to enable SSH v2',
+    'Restrict VTY to transport input ssh — disables Telnet',
+    'Combine login local with local username/secret for per-user authentication',
+    'Verify SSH version and active sessions',
+  ],
+  topologyId: 'TOPO-SSH-VTY',
+  prerequisites: ['CKU-LOCAL-AUTH'],
+  tasks: [
+    {
+      id: 't1', order: 1,
+      title: 'Set enable secret',
+      device: 'R1',
+      instruction: 'Set the encrypted enable secret to cisco123 to protect privileged mode. Use enable secret, not enable password — the secret is MD5-hashed in the running config.',
+      expectedCommands: ['enable secret cisco123'],
+    },
+    {
+      id: 't2', order: 2,
+      title: 'Create local admin user',
+      device: 'R1',
+      instruction: 'Create username admin secret AdminPass. This credential will be required for all SSH VTY sessions when login local is configured.',
+      expectedCommands: ['username admin secret AdminPass'],
+    },
+    {
+      id: 't3', order: 3,
+      title: 'Configure domain name',
+      device: 'R1',
+      instruction: 'Set ip domain-name ccna.lab. IOS uses hostname + domain name to label the RSA key — this step is mandatory before key generation will succeed.',
+      expectedCommands: ['ip domain-name ccna.lab'],
+    },
+    {
+      id: 't4', order: 4,
+      title: 'Generate RSA key',
+      device: 'R1',
+      instruction: 'Run crypto key generate rsa modulus 1024. A 1024-bit key satisfies the SSH v2 minimum (768 bits). The key is stored as R1.ccna.lab.',
+      expectedCommands: ['crypto key generate rsa modulus 1024'],
+    },
+    {
+      id: 't5', order: 5,
+      title: 'Restrict VTY to SSH only',
+      device: 'R1',
+      instruction: 'Enter line vty 0 4, set transport input ssh (drops Telnet), and require login local so every session is authenticated against the local user database.',
+      expectedCommands: ['line vty 0 4', 'transport input ssh', 'login local'],
+    },
+    {
+      id: 't6', order: 6,
+      title: 'Verify SSH is enabled',
+      device: 'R1',
+      instruction: 'Run show ip ssh. Confirm "SSH Enabled - version 2.0" and review the authentication timeout and retry settings.',
+      expectedCommands: ['show ip ssh'],
+    },
+    {
+      id: 't7', order: 7,
+      title: 'Verify active sessions',
+      device: 'R1',
+      instruction: 'Run show users to view active VTY connections and their source IP. An asterisk (*) marks the currently active line.',
+      expectedCommands: ['show users'],
+    },
+  ],
+  verificationCommands: ['show ip ssh', 'show users', 'show running-config | section line vty'],
+  successCriteria: [
+    'show ip ssh shows SSH Enabled - version 2.0',
+    'VTY lines show transport input ssh and login local in running-config',
+    'Telnet connection attempt is refused — only SSH accepted on TCP/22',
+  ],
+  failureCriteria: [
+    'No ip domain-name set — crypto key generate rsa returns an error',
+    'transport input all or telnet left — Telnet still accepted (insecure)',
+    'No local username — login local locks out all VTY sessions immediately',
+  ],
+  commonMistakes: [
+    'Skipping ip domain-name before RSA key generation — key generation fails without it',
+    'Using login instead of login local — no username prompt; relies on line password only',
+    'RSA modulus 512 — SSH v2 requires minimum 768 bits; 1024 is the CCNA standard',
+    'Applying transport input ssh to line con 0 — console does not use SSH',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '5.3 Configure and verify device access control', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_SSH_VTY = {
+  id: 'TOPO-SSH-VTY',
+  title: 'SSH VTY access topology',
+  objectiveId: '5.3',
+  nodes: [
+    { id: 'admin', label: 'Admin PC\n192.168.1.100', type: 'pc', x: 20, y: 50 },
+    { id: 'r1', label: 'R1\nSSH only (TCP/22)', type: 'router', x: 72, y: 50 },
+  ],
+  links: [
+    { id: 'l1', source: 'admin', target: 'r1', label: 'SSH TCP/22', status: 'forwarding' },
+  ],
+}
+const VALIDATOR_SSH_VTY = {
+  labId: 'LAB-SSH-VTY',
+  requiredCommands: [
+    { device: 'R1', command: 'ip domain-name ccna.lab' },
+    { device: 'R1', command: 'crypto key generate rsa modulus 1024' },
+    { device: 'R1', command: 'transport input ssh' },
+    { device: 'R1', command: 'login local' },
+  ],
+  verificationChecks: [
+    { id: 'v1', device: 'R1', command: 'show ip ssh', expectedResult: 'SSH Enabled - version 2.0', passCondition: 'ssh v2 enabled' },
+    { id: 'v2', device: 'R1', command: 'show users', expectedResult: 'vty 0   admin', passCondition: 'ssh session active' },
+  ],
+}
+const DIAGRAM_SSH_VTY = mkDiagram(
+  'DIAG-SSH-VTY',
+  'SSH VTY authentication flow',
+  '5.3',
+  [
+    { id: 'admin', label: 'Admin\nssh -l admin R1', type: 'pc', x: 12, y: 50 },
+    { id: 'tcp22', label: 'TCP/22\nSSH v2', type: 'process', x: 38, y: 50 },
+    { id: 'vty', label: 'VTY 0-4\ntransport input ssh\nlogin local', type: 'process', x: 65, y: 50 },
+    { id: 'db', label: 'Local DB\nadmin secret', type: 'process', x: 65, y: 80 },
+    { id: 'r1', label: 'R1 priv#', type: 'router', x: 88, y: 50 },
+  ],
+  [
+    { id: 'd1', source: 'admin', target: 'tcp22', status: 'forwarding' },
+    { id: 'd2', source: 'tcp22', target: 'vty', status: 'forwarding' },
+    { id: 'd3', source: 'vty', target: 'db', status: 'forwarding' },
+    { id: 'd4', source: 'vty', target: 'r1', status: 'forwarding' },
+  ],
+  [{ id: 'a1', x: 50, y: 93, text: 'transport input ssh blocks Telnet. login local requires username + secret.' }],
+)
+const DEVICE_ACCESS_53 = {
+  lab: LAB_SSH_VTY,
+  topology: TOPO_SSH_VTY,
+  validator: VALIDATOR_SSH_VTY,
+  diagram: DIAGRAM_SSH_VTY,
+  packetFlows: mkFlows('FLOW-SSH-VTY', 'SSH session establishment', 'DIAG-SSH-VTY', ['CKU-SSH', 'CKU-LOCAL-AUTH'], [
+    { id: 's1', order: 1, title: 'TCP/22 connect', action: 'Admin PC initiates SSH connection to R1 on TCP port 22', successState: 'forwarded' },
+    { id: 's2', order: 2, title: 'Key exchange', action: 'RSA key negotiated; session encrypted with derived symmetric key', successState: 'matched' },
+    { id: 's3', order: 3, title: 'Auth', action: 'VTY prompts for username/password — checked against local database', successState: 'matched' },
+    { id: 's4', order: 4, title: 'Session open', action: 'Authenticated user enters user EXEC; enable secret grants privileged access', successState: 'forwarded' },
+  ]),
+}
+
 export const EXTENDED_LAB_BUNDLES = [
   HSRP, DHCP_RELAY, ETHERCHANNEL, STP, DEVICE_ACCESS, NTP, AAA, SYSLOG,
   TS_OSPF, TS_TRUNK, TS_IF, TS_ACL, TS_ROUTE, TS_DHCP, TS_HSRP, TS_MASK,
+  WIRELESS_26, DHCP_DNS_43, DEVICE_ACCESS_53,
 ]
