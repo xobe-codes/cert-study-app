@@ -76,7 +76,8 @@ import AppTour from './components/AppTour.jsx'
 import BottomNav from './components/BottomNav.jsx'
 import CiscoTerminal from './components/CiscoTerminal.jsx'
 import LabView from './lab/LabView.jsx'
-import LabsHub from './lab/LabsHub.jsx'
+import TopicFocusStudio from './topic/TopicFocusStudio.jsx'
+import TopicFocusSession from './topic/TopicFocusSession.jsx'
 import {
   normalizeCmd,
   processCliLine,
@@ -4297,7 +4298,8 @@ function AppShell({ view, compactTopChrome, withBottomNav, children }) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | examtraps | subnet | routing | extrastudy
+  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | examtraps | subnet | routing | extrastudy
+  const [topicFocusConfig, setTopicFocusConfig] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -4868,6 +4870,7 @@ export default function App() {
             onOpenLabs={() => setView('labs')}
             onOpenReview={() => setView('review')}
             onOpenFocus={() => setView('focus')}
+            onOpenTopicFocus={() => setView('topicfocus')}
             onOpenExamTraps={() => setView('examtraps')}
             onOpenSubnet={() => setView('subnet')}
             onOpenRouting={() => setView('routing')}
@@ -4951,6 +4954,21 @@ export default function App() {
         )}
         {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
         {view === 'focus' && <FocusModeSession progress={progress} onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} />}
+        {view === 'topicfocus' && (
+          <TopicFocusStudio
+            missed={missed}
+            onBack={() => setView('home')}
+            onStart={(config) => { setTopicFocusConfig(config); setView('topicfocussession') }}
+          />
+        )}
+        {view === 'topicfocussession' && topicFocusConfig && (
+          <TopicFocusSession
+            config={topicFocusConfig}
+            onBack={() => setView('topicfocus')}
+            onMissed={handleMissed}
+            onDone={refreshDue}
+          />
+        )}
         {view === 'examtraps' && <ExamTrapStudyMode styles={styles} onBack={() => setView('home')} />}
         {view === 'subnet' && <SubnetPracticeHome onBack={() => setView('home')} />}
         {view === 'routing' && <RoutingDecoderMode styles={styles} COLORS={COLORS} onBack={() => setView('home')} />}

@@ -22,4 +22,6 @@ export const STORAGE_KEYS = {
   quizSessionSize: 'ccna_quiz_session_size_v1',
   studyBlock: 'ccna_study_block_v1',
   premiumUnlocked: 'ccna_premium_unlocked_v1',
+  topicFocusSets: 'ccna_topic_focus_sets_v1',
+  topicFocusPins: 'ccna_topic_focus_pins_v1',
 }

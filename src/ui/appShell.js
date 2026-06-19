@@ -1187,5 +1187,25 @@ export function buildAppShellCss(colors) {
         grid-template-columns: repeat(5, minmax(0, 1fr));
       }
     }
+
+    .topic-focus-bar {
+      position: sticky;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0 -12px -8px;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+      background: color-mix(in srgb, ${colors.card} 94%, transparent);
+      border-top: 1px solid ${colors.border};
+      backdrop-filter: blur(10px);
+      z-index: 4;
+    }
+    .topic-focus-studio .topic-focus-list {
+      max-height: none;
+    }
+    .topic-focus-search:focus {
+      outline: 2px solid ${colors.skyBorder};
+      outline-offset: 1px;
+    }
   `
 }
