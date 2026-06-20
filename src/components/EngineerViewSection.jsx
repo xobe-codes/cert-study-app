@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 
-export default function EngineerViewSection({ data }) {
-  const [open, setOpen] = useState(false)
+export default function EngineerViewSection({ data, defaultOpen = false }) {
+  const [open, setOpen] = useState(defaultOpen)
   if (!data) return null
 
   return (

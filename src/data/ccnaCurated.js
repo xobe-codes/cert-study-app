@@ -26,6 +26,7 @@ import {
 } from './ccnaCuratedDomain1Rest.js'
 import { EXPLANATION_PILOT_PATCHES } from './explanationPilotPatches.js'
 import { KB_COMPILED_PATCHES } from './kbCompiledPatches.js'
+import { mergeKbReadingPatch, finalizeReading } from '../lesson/readingEnrichment.js'
 import { READING_SUPPLEMENTS } from './curatedReadingSupplement.js'
 import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
 import { applyContentEnrichment } from './contentEnrichmentPatches.js'
@@ -302,6 +303,7 @@ const OBJ_16 = {
       intermediate: 'The mask is 32 bits: 1s mark the network, 0s mark the host, written as /n (CIDR). Hosts per subnet = 2^h − 2 where h is the number of host bits (you subtract the network and broadcast addresses). To subnet, you borrow bits from the host side: borrowing b bits makes 2^b subnets, each smaller. The fastest way to find boundaries is the block size = 256 − the interesting mask octet; subnets start at multiples of that block size.',
       examReady: 'IPv4 = 32 bits / 4 octets + a mask of contiguous 1s (network) then 0s (host); the prefix /n is the count of 1s. Hosts/subnet = 2^h − 2 (h = host bits; network and broadcast are unusable). Subnets from borrowing b bits = 2^b. Block size (magic number) = 256 − interesting-octet mask value; subnet network IDs are multiples of the block size in that octet. For any address: network = host bits all 0, broadcast = host bits all 1, usable range = everything between. Examples: /26 (`255.255.255.192`) → block 64, 4 subnets (.0/.64/.128/.192), 62 hosts each; /30 (`255.255.255.252`) → block 4, 2 hosts (point-to-point links); /27 (`255.255.255.224`) → block 32, 30 hosts.',
     },
+    bigTakeaway: 'Block size and 2^h − 2 host math — subnet boundaries follow the mask octet.',
     definition: 'An IPv4 address is **32 bits** split by a **subnet mask** into network + host portions. **Subnetting** borrows host bits to make more, smaller networks; **block size** (`256 − mask octet`) locates subnet boundaries instantly.',
     keyPoints: [
       'Hosts per subnet = `2^h − 2` (h = host bits; network + broadcast are unusable).',
@@ -1993,18 +1995,13 @@ export function getCurated(objectiveId) {
     }
   }
   if (kbPatch && base.reading) {
-    const mergedKeyPoints = kbPatch.keyPoints?.length
-      ? [...new Set([...(base.reading.keyPoints || []), ...kbPatch.keyPoints])].slice(0, 12)
-      : base.reading.keyPoints
     base = {
       ...base,
-      reading: {
-        ...base.reading,
-        tiers: { ...base.reading.tiers, ...kbPatch.tiers },
-        ...(kbPatch.bigTakeaway ? { bigTakeaway: kbPatch.bigTakeaway } : {}),
-        ...(mergedKeyPoints?.length ? { keyPoints: mergedKeyPoints } : {}),
-      },
+      reading: mergeKbReadingPatch(base.reading, kbPatch),
     }
+  }
+  if (base.reading) {
+    base = { ...base, reading: finalizeReading(base.reading, base) }
   }
   const vis = VISUAL_DIAGRAMS[objectiveId]
   const withVis = vis ? { ...base, diagram: vis } : base

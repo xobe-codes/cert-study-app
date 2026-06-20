@@ -5,11 +5,13 @@ import { computeCkuWeakness } from '../weaknessUtils.js'
 import {
   getTopicIndex, TOPIC_PRESETS, CONCEPT_KIND_LABEL,
 } from './topicIndex.js'
+import { searchTopicsGlobal, dictionaryEntriesForDomain } from './topicSearch.js'
 import { estimateTopicFocusQuestions } from './topicFocusQuiz.js'
 import { preloadCleanBank } from '../data/cleanQuestionAdapter.js'
 import {
   loadFocusSets, saveFocusSet, deleteFocusSet, loadPinnedConcepts, togglePinnedConcept,
 } from './topicFocusStorage.js'
+import TopicTermDetail from './TopicTermDetail.jsx'
 
 const SORT_OPTIONS = [
   { id: 'domain', label: 'Domain' },
@@ -21,17 +23,31 @@ function kindAccent(kind) {
   if (kind === 'trap') return 'rose'
   if (kind === 'glossary') return 'sky'
   if (kind === 'flashcard') return 'mint'
+  if (kind === 'mnemonic') return 'amber'
   return 'purple'
+}
+
+function selectEntryForQuiz(entry, index, setSelectedConcepts, setSelectedObjectives) {
+  setSelectedConcepts(prev => {
+    const next = new Set(prev)
+    for (const id of entry.conceptIds || []) next.add(id)
+    return next
+  })
+  setSelectedObjectives(prev => {
+    const next = new Set(prev)
+    for (const id of entry.objectiveIds || []) next.add(id)
+    return next
+  })
 }
 
 export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
   const index = useMemo(() => getTopicIndex(), [])
   const weakCkUs = useMemo(() => new Set(computeCkuWeakness(missed).map(w => w.id)), [missed])
 
-  const [tab, setTab] = useState('objectives')
+  const [tab, setTab] = useState('dictionary')
   const [search, setSearch] = useState('')
   const [domainFilter, setDomainFilter] = useState('all')
-  const [sort, setSort] = useState('domain')
+  const [sort, setSort] = useState('alpha')
   const [expandedObj, setExpandedObj] = useState(() => new Set())
   const [selectedObjectives, setSelectedObjectives] = useState(() => new Set())
   const [selectedConcepts, setSelectedConcepts] = useState(() => new Set())
@@ -39,6 +55,7 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
   const [savedSets, setSavedSets] = useState([])
   const [saveName, setSaveName] = useState('')
   const [showSave, setShowSave] = useState(false)
+  const [detailEntry, setDetailEntry] = useState(null)
 
   useEffect(() => {
     preloadCleanBank()
@@ -53,37 +70,40 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
     [objectiveIds, conceptIds, index],
   )
 
-  const q = search.trim().toLowerCase()
+  const q = search.trim()
+  const globalResults = useMemo(
+    () => (q ? searchTopicsGlobal(index, q, { domainFilter }) : null),
+    [index, q, domainFilter],
+  )
+
+  const dictionaryList = useMemo(() => {
+    let list = dictionaryEntriesForDomain(index, domainFilter)
+    if (q) {
+      const dictIds = new Set((globalResults?.dictionary || []).map(d => d.entry.id))
+      list = list.filter(e => dictIds.has(e.id))
+    }
+    if (sort === 'alpha') return list
+    if (sort === 'objective') {
+      return [...list].sort((a, b) => (a.objectiveIds[0] || '').localeCompare(b.objectiveIds[0] || '', undefined, { numeric: true }))
+    }
+    return [...list].sort((a, b) => {
+      const da = index.objectives.find(x => x.id === a.objectiveIds[0])?.domainId || ''
+      const db = index.objectives.find(x => x.id === b.objectiveIds[0])?.domainId || ''
+      return da.localeCompare(db) || a.term.localeCompare(b.term)
+    })
+  }, [index, domainFilter, q, globalResults, sort])
 
   const filteredObjectives = useMemo(() => {
     let list = index.objectives.filter(o => {
       if (domainFilter !== 'all' && o.domainId !== domainFilter) return false
       if (!q) return true
-      return o.id.includes(q) || o.title.toLowerCase().includes(q)
+      return o.id.includes(q.toLowerCase()) || o.title.toLowerCase().includes(q.toLowerCase())
+        || (globalResults?.objectives || []).some(x => x.objective.id === o.id)
     })
     if (sort === 'alpha') list = [...list].sort((a, b) => a.title.localeCompare(b.title))
     else if (sort === 'objective') list = [...list].sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }))
     return list
-  }, [index.objectives, domainFilter, q, sort])
-
-  const filteredConcepts = useMemo(() => {
-    let list = index.concepts.filter(c => {
-      if (domainFilter !== 'all') {
-        const o = index.objectives.find(x => x.id === c.objectiveId)
-        if (o?.domainId !== domainFilter) return false
-      }
-      if (!q) return true
-      return c.searchText.includes(q) || c.label.toLowerCase().includes(q)
-    })
-    if (sort === 'alpha') list = [...list].sort((a, b) => a.label.localeCompare(b.label))
-    else if (sort === 'objective') list = [...list].sort((a, b) => a.objectiveId.localeCompare(b.objectiveId, undefined, { numeric: true }))
-    else list = [...list].sort((a, b) => {
-      const da = index.objectives.find(x => x.id === a.objectiveId)?.domainId || ''
-      const db = index.objectives.find(x => x.id === b.objectiveId)?.domainId || ''
-      return da.localeCompare(db) || a.label.localeCompare(b.label)
-    })
-    return list
-  }, [index, domainFilter, q, sort])
+  }, [index.objectives, domainFilter, q, sort, globalResults])
 
   const toggleObjective = useCallback((id) => {
     setSelectedObjectives(prev => {
@@ -116,18 +136,24 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
     setSelectedObjectives(new Set(preset.objectiveIds))
     setSelectedConcepts(new Set())
     setTab('objectives')
+    setDetailEntry(null)
   }, [])
 
   const loadSet = useCallback((set) => {
     setSelectedObjectives(new Set(set.objectiveIds || []))
     setSelectedConcepts(new Set(set.conceptIds || []))
     setTab('objectives')
+    setDetailEntry(null)
   }, [])
 
   const clearSelection = useCallback(() => {
     setSelectedObjectives(new Set())
     setSelectedConcepts(new Set())
   }, [])
+
+  const handleSelectAllFromEntry = useCallback((entry) => {
+    selectEntryForQuiz(entry, index, setSelectedConcepts, setSelectedObjectives)
+  }, [index])
 
   async function handleSaveSet() {
     const entry = await saveFocusSet({
@@ -155,15 +181,36 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
     })
   }
 
+  function openCluster(term) {
+    const entry = index.dictionary.find(d => d.registryId === term.id)
+    if (entry) setDetailEntry(entry)
+    else setDetailEntry({
+      id: `dict:${term.id}`,
+      term: term.term,
+      definition: term.definition,
+      aliases: term.aliases,
+      tags: term.tags,
+      objectiveIds: term.objectiveIds,
+      conceptIds: term.relatedConceptIds || [],
+      source: 'registry',
+      note: term.note || '',
+      registryId: term.id,
+    })
+  }
+
   const selectionCount = selectedObjectives.size + selectedConcepts.size
   const canStart = selectionCount > 0 && questionEstimate > 0
+  const hasSearchResults = q && globalResults && (
+    globalResults.clusters.length + globalResults.dictionary.length
+    + globalResults.objectives.length + globalResults.concepts.length
+  ) > 0
 
   return (
     <div className="topic-focus-studio">
       <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
       <h1 style={styles.h1}>Topic Focus</h1>
       <p style={{ ...styles.small, marginBottom: 12, lineHeight: 1.5 }}>
-        Pick exam objectives and specific terms — then drill only those questions. Ideal after an external practice test.
+        CCNA Term Hub — search vocabulary, read full definitions, pick objectives and linked concepts, then drill quiz questions.
       </p>
 
       <div className="topic-focus-presets ccna-h-scroll" style={{ display: 'flex', gap: 6, overflowX: 'auto', marginBottom: 12, paddingBottom: 4 }}>
@@ -183,7 +230,7 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
         type="search"
         value={search}
         onChange={e => setSearch(e.target.value)}
-        placeholder="Search terms, traps, objectives…"
+        placeholder="Search EIGRP, VLAN, NAT, traps, objectives…"
         className="topic-focus-search"
         style={{
           width: '100%', boxSizing: 'border-box', marginBottom: 10, padding: '10px 12px',
@@ -204,10 +251,14 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
       </div>
 
       <div style={{ display: 'flex', gap: 6, marginBottom: 12, flexWrap: 'wrap' }}>
-        {['objectives', 'concepts', 'saved'].map(t => (
-          <button key={t} type="button" onClick={() => setTab(t)}
-            style={{ ...styles.pill(tab === t ? 'purple' : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit', textTransform: 'capitalize' }}>
-            {t === 'saved' ? 'Saved sets' : t === 'objectives' ? 'By objective' : 'All concepts'}
+        {[
+          { id: 'dictionary', label: 'Dictionary' },
+          { id: 'objectives', label: 'By objective' },
+          { id: 'saved', label: 'Saved sets' },
+        ].map(t => (
+          <button key={t.id} type="button" onClick={() => { setTab(t.id); setDetailEntry(null) }}
+            style={{ ...styles.pill(tab === t.id ? 'purple' : 'silver'), border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>
+            {t.label}
           </button>
         ))}
         {SORT_OPTIONS.map(s => (
@@ -218,7 +269,136 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
         ))}
       </div>
 
+      {detailEntry && (
+        <div style={{ marginBottom: 12 }}>
+          <TopicTermDetail
+            entry={detailEntry}
+            index={index}
+            selectedConcepts={selectedConcepts}
+            selectedObjectives={selectedObjectives}
+            onClose={() => setDetailEntry(null)}
+            onToggleConcept={toggleConcept}
+            onToggleObjective={toggleObjective}
+            onSelectAll={handleSelectAllFromEntry}
+          />
+        </div>
+      )}
+
       <div className="topic-focus-list" style={{ paddingBottom: 88 }}>
+        {q && hasSearchResults && !detailEntry && (
+          <div className="topic-focus-search-results" style={{ marginBottom: 16 }}>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 8, fontWeight: 600 }}>
+              Search results for “{q}”
+            </div>
+
+            {globalResults.clusters.map(({ term }) => {
+              const qEst = estimateTopicFocusQuestions(term.objectiveIds || [], term.relatedConceptIds || [], index)
+              return (
+                <div key={term.id} className="topic-focus-cluster" style={{ ...styles.card, marginBottom: 8, padding: '12px 14px', border: `1px solid ${COLORS.purpleBorder}` }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
+                    <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)' }}>Topic cluster</span>
+                    <span style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid }}>~{qEst} Q</span>
+                  </div>
+                  <button type="button" onClick={() => openCluster(term)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', color: COLORS.silver, fontFamily: 'inherit', width: '100%' }}>
+                    <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 700, marginBottom: 6 }}>{term.term}</div>
+                    <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45, marginBottom: 8 }}>
+                      {term.definition.slice(0, 160)}{term.definition.length > 160 ? '…' : ''}
+                    </div>
+                  </button>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                    {(term.objectiveIds || []).map(oid => (
+                      <span key={oid} style={{ ...styles.pill('sky'), fontSize: 'var(--ccna-type-micro)' }}>{oid}</span>
+                    ))}
+                    <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>
+                      {term.relatedConceptIds?.length || 0} linked items
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    style={{ ...styles.secondaryBtn, width: '100%', marginTop: 10, fontSize: 'var(--ccna-type-sm)' }}
+                    onClick={() => {
+                      selectEntryForQuiz({
+                        conceptIds: term.relatedConceptIds,
+                        objectiveIds: term.objectiveIds,
+                      }, index, setSelectedConcepts, setSelectedObjectives)
+                    }}
+                  >
+                    Select cluster for quiz
+                  </button>
+                </div>
+              )
+            })}
+
+            {globalResults.concepts.slice(0, 6).map(({ concept }) => {
+              const sel = selectedConcepts.has(concept.id)
+              return (
+                <div key={concept.id} style={{ ...styles.card, marginBottom: 6, padding: '8px 12px', display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                  <input type="checkbox" checked={sel} onChange={() => toggleConcept(concept.id)} style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <span style={{ ...styles.pill(kindAccent(concept.kind)), fontSize: 'var(--ccna-type-micro)' }}>{CONCEPT_KIND_LABEL[concept.kind]}</span>
+                    <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, marginTop: 4 }}>{concept.label}</div>
+                    {concept.definition && (
+                      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45, marginTop: 4 }}>
+                        {concept.definition.slice(0, 120)}{concept.definition.length > 120 ? '…' : ''}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
+
+        {q && !hasSearchResults && !detailEntry && (
+          <div style={{ ...styles.card, marginBottom: 12, fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>
+            No matches for “{q}”. Try a protocol name (EIGRP, OSPF), acronym (VLAN, NAT), or objective number.
+          </div>
+        )}
+
+        {tab === 'dictionary' && dictionaryList.map(entry => {
+          const sel = (entry.conceptIds || []).some(id => selectedConcepts.has(id))
+            || (entry.objectiveIds || []).some(id => selectedObjectives.has(id))
+          const isOpen = detailEntry?.id === entry.id
+          return (
+            <div
+              key={entry.id}
+              style={{
+                ...styles.card,
+                marginBottom: 8,
+                padding: '10px 12px',
+                border: isOpen ? `1px solid ${COLORS.purpleBorder}` : sel ? `1px solid ${COLORS.skyBorder}` : undefined,
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setDetailEntry(isOpen ? null : entry)}
+                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', color: COLORS.silver, fontFamily: 'inherit', width: '100%' }}
+              >
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 4 }}>
+                  <span style={{ ...styles.pill(entry.source === 'registry' ? 'purple' : 'sky'), fontSize: 'var(--ccna-type-micro)' }}>
+                    {entry.source === 'registry' ? 'CCNA term' : 'Glossary'}
+                  </span>
+                  {entry.objectiveIds.slice(0, 3).map(oid => (
+                    <span key={oid} style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{oid}</span>
+                  ))}
+                </div>
+                <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, marginBottom: 6 }}>{entry.term}</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.5 }}>
+                  {entry.definition}
+                </div>
+              </button>
+              <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
+                <button type="button" style={{ ...styles.secondaryBtn, flex: 1, fontSize: 'var(--ccna-type-xs)' }} onClick={() => setDetailEntry(entry)}>
+                  Details
+                </button>
+                <button type="button" style={{ ...styles.secondaryBtn, flex: 1, fontSize: 'var(--ccna-type-xs)' }} onClick={() => handleSelectAllFromEntry(entry)}>
+                  Add to quiz
+                </button>
+              </div>
+            </div>
+          )
+        })}
+
         {tab === 'objectives' && filteredObjectives.map(o => {
           const isOpen = expandedObj.has(o.id)
           const checked = selectedObjectives.has(o.id)
@@ -266,28 +446,6 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
           )
         })}
 
-        {tab === 'concepts' && filteredConcepts.map(con => {
-          const sel = selectedConcepts.has(con.id)
-          const isWeak = con.ckuIds?.some(k => weakCkUs.has(k))
-          return (
-            <div key={con.id} style={{ ...styles.card, marginBottom: 8, padding: '10px 12px', display: 'flex', gap: 10, alignItems: 'flex-start', border: sel ? `1px solid ${COLORS.skyBorder}` : undefined }}>
-              <input type="checkbox" checked={sel} onChange={() => toggleConcept(con.id)} aria-label={`Select ${con.label}`} style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 4 }}>
-                  <span style={{ ...styles.pill(kindAccent(con.kind)), fontSize: 'var(--ccna-type-micro)' }}>{CONCEPT_KIND_LABEL[con.kind]}</span>
-                  <span style={{ ...styles.pill('silver'), fontSize: 'var(--ccna-type-micro)' }}>{con.objectiveId}</span>
-                  {isWeak && <span style={{ ...styles.pill('rose'), fontSize: 'var(--ccna-type-micro)' }}>weak area</span>}
-                </div>
-                <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, marginBottom: 4 }}>{con.label}</div>
-                {con.detail && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45 }}>{con.detail}</div>}
-              </div>
-              <button type="button" onClick={() => handlePin(con.id)} aria-label="Pin concept" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 'var(--ccna-type-md)', padding: 4 }}>
-                {pinned.includes(con.id) ? '📌' : '○'}
-              </button>
-            </div>
-          )
-        })}
-
         {tab === 'saved' && (
           savedSets.length === 0 ? (
             <div style={{ ...styles.card, fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>No saved sets yet. Select topics and tap Save set.</div>
@@ -303,6 +461,12 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
               </div>
             </div>
           ))
+        )}
+
+        {tab === 'dictionary' && dictionaryList.length === 0 && !q && (
+          <div style={{ ...styles.card, fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>
+            {index.dictionary?.length || 0} CCNA terms loaded. Use search to find EIGRP, OSPF, VLAN, and more.
+          </div>
         )}
       </div>
 

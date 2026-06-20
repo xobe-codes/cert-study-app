@@ -1207,5 +1207,29 @@ export function buildAppShellCss(colors) {
       outline: 2px solid ${colors.skyBorder};
       outline-offset: 1px;
     }
+    .topic-term-detail {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid ${colors.purpleBorder};
+      background: color-mix(in srgb, ${colors.card} 96%, ${colors.purpleDim});
+    }
+    .topic-focus-cluster button:focus-visible,
+    .topic-focus-studio .topic-focus-list button:focus-visible {
+      outline: 2px solid ${colors.skyBorder};
+      outline-offset: 2px;
+    }
+    .command-detail-panel {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid ${colors.mintBorder};
+      background: color-mix(in srgb, ${colors.card} 96%, ${colors.mintDim});
+    }
+    .command-hub-search:focus {
+      outline: 2px solid ${colors.mintBorder};
+      outline-offset: 1px;
+    }
+    .command-hub-studio .command-hub-list {
+      max-height: none;
+    }
   `
 }

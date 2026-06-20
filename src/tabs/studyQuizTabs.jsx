@@ -19,7 +19,7 @@ import CuratedDiagram from '../components/CuratedDiagram.jsx'
 import CuratedStaticBadge from '../components/CuratedStaticBadge.jsx'
 import OverflowMarquee from '../components/OverflowMarquee.jsx'
 import EngineerViewSection from '../components/EngineerViewSection.jsx'
-import { getEngineerView } from '../lesson/engineerView.js'
+import { shouldDefaultOpenRealWorld } from '../lesson/readingEnrichment.js'
 import { formatCuratedAttribution } from '../curatedDisplay.js'
 import McChoices from '../components/McChoices.jsx'
 import AnswerReview from '../components/AnswerReview.jsx'
@@ -457,6 +457,22 @@ function Bullets({ items }) {
   return <ul style={{ margin: 0, paddingLeft: 18 }}>{(items || []).map((t, i) => <li key={i} style={{ marginBottom: 4 }}><RichText text={t} /></li>)}</ul>
 }
 
+function CoreConceptsBlock({ ckus }) {
+  if (!ckus?.length) return null
+  return (
+    <ExplainBlock icon="🧩" title="CORE CONCEPTS" accent="purple">
+      {ckus.map(c => (
+        <div key={c.id} style={{ marginBottom: ckus.length > 1 ? 12 : 0 }}>
+          <div style={{ fontWeight: 600, fontSize: 'var(--ccna-type-sm)', marginBottom: 4 }}>{c.title}</div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, lineHeight: 1.55 }}>
+            <RichText text={c.summary} />
+          </div>
+        </div>
+      ))}
+    </ExplainBlock>
+  )
+}
+
 function ExplanationSection({ body, takeaway }) {
   if (!body) return null
   return (
@@ -511,6 +527,7 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, sh
   }
 
   const r = data.reading
+  const openRealWorld = shouldDefaultOpenRealWorld(data)
   const attribution = formatCuratedAttribution(r.sourceRefs, data.objectiveId)
   return (
     <div className="ccna-stagger objective-reading-prose lesson-prose">
@@ -567,11 +584,13 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, sh
         body={explanationBodyFromReading(r, tier)}
         takeaway={resolveBigTakeaway(r)}
       />
+      <CoreConceptsBlock ckus={data.ckus} />
       <ExplainBlock icon="📌" title="KEY POINTS" accent="amber"><Bullets items={r.keyPoints} /></ExplainBlock>
       <ExplainBlock icon="⚠️" title="COMMON MISTAKES" accent="rose"><Bullets items={r.commonMistakes} /></ExplainBlock>
-      {r.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={false}><RichText text={r.realWorld} /></ExplainBlock>}
+      {r.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={openRealWorld}><RichText text={r.realWorld} /></ExplainBlock>}
       {r.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}><RichText text={r.advanced} /></ExplainBlock>}
       {r.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={r.related} /></ExplainBlock>}
+      {data.engineerView && <EngineerViewSection data={data.engineerView} defaultOpen={openRealWorld} />}
       {showDiagram && data.diagram && <CuratedDiagram diagram={data.diagram} />}
       <CuratedSources data={data} />
     </div>
@@ -1010,9 +1029,6 @@ export function ExplainTab({
               onOpenReference={showReference ? () => setLessonView('reference') : undefined}
               showDiagram={!isStudy}
             />
-          )}
-          {isStudy && (curated || recalled) && getEngineerView(objective.id) && (
-            <EngineerViewSection data={getEngineerView(objective.id)} />
           )}
           {showReading && !curated && premiumUnlocked && <AiBudgetWarning />}
           {showReading && !curated && !premiumUnlocked && recalled && !content && !loading && (

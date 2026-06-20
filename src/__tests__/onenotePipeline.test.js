@@ -41,4 +41,9 @@ describe('onenote pipeline', () => {
     expect(curated?.reading?.bigTakeaway).toBeTruthy()
     expect(EXPLANATION_PILOT_IDS.has('4.1')).toBe(true)
   })
+
+  it('getCurated does not replace substantial tiers with draft KB template', () => {
+    const curated = getCurated('3.2')
+    expect(curated.reading.tiers.examReady).not.toMatch(/Know the core behavior/i)
+  })
 })

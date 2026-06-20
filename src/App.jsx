@@ -78,6 +78,7 @@ import CiscoTerminal from './components/CiscoTerminal.jsx'
 import LabView from './lab/LabView.jsx'
 import TopicFocusStudio from './topic/TopicFocusStudio.jsx'
 import TopicFocusSession from './topic/TopicFocusSession.jsx'
+import CommandHubStudio from './commands/CommandHubStudio.jsx'
 import {
   normalizeCmd,
   processCliLine,
@@ -4298,7 +4299,7 @@ function AppShell({ view, compactTopChrome, withBottomNav, children }) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | examtraps | subnet | routing | extrastudy
+  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | commandhub | examtraps | subnet | routing | extrastudy
   const [topicFocusConfig, setTopicFocusConfig] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
@@ -4871,6 +4872,7 @@ export default function App() {
             onOpenReview={() => setView('review')}
             onOpenFocus={() => setView('focus')}
             onOpenTopicFocus={() => setView('topicfocus')}
+            onOpenCommandHub={() => setView('commandhub')}
             onOpenExamTraps={() => setView('examtraps')}
             onOpenSubnet={() => setView('subnet')}
             onOpenRouting={() => setView('routing')}
@@ -4967,6 +4969,15 @@ export default function App() {
             onBack={() => setView('topicfocus')}
             onMissed={handleMissed}
             onDone={refreshDue}
+          />
+        )}
+        {view === 'commandhub' && (
+          <CommandHubStudio
+            onBack={() => setView('home')}
+            onSelectObjective={(objectiveId) => {
+              const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
+              if (obj) selectObjective(obj)
+            }}
           />
         )}
         {view === 'examtraps' && <ExamTrapStudyMode styles={styles} onBack={() => setView('home')} />}
