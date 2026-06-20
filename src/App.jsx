@@ -79,6 +79,7 @@ import LabView from './lab/LabView.jsx'
 import TopicFocusStudio from './topic/TopicFocusStudio.jsx'
 import TopicFocusSession from './topic/TopicFocusSession.jsx'
 import CommandHubStudio from './commands/CommandHubStudio.jsx'
+import StudyLensStudio from './lens/StudyLensStudio.jsx'
 import {
   normalizeCmd,
   processCliLine,
@@ -107,7 +108,7 @@ import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import pkg from '../package.json'
 
 const PREMIUM_TOAST_MESSAGES = {
-  [PREMIUM_FEATURES.tutor]: 'AI Tutor will unlock with supporter access.',
+  [PREMIUM_FEATURES.tutor]: 'AI Tutor and Study Lens synthesis unlock with supporter access.',
   [PREMIUM_FEATURES.offline_pack]: 'Offline AI packaging is a premium feature.',
   [PREMIUM_FEATURES.ai_visual]: 'Custom AI visuals require supporter access.',
   [PREMIUM_FEATURES.ai_terms]: 'AI key-term flashcards require supporter access.',
@@ -4299,7 +4300,7 @@ function AppShell({ view, compactTopChrome, withBottomNav, children }) {
    APP ROOT
    ========================================================================= */
 export default function App() {
-  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | commandhub | examtraps | subnet | routing | extrastudy
+  const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | commandhub | studylens | examtraps | subnet | routing | extrastudy
   const [topicFocusConfig, setTopicFocusConfig] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
@@ -4873,6 +4874,7 @@ export default function App() {
             onOpenFocus={() => setView('focus')}
             onOpenTopicFocus={() => setView('topicfocus')}
             onOpenCommandHub={() => setView('commandhub')}
+            onOpenStudyLens={() => setView('studylens')}
             onOpenExamTraps={() => setView('examtraps')}
             onOpenSubnet={() => setView('subnet')}
             onOpenRouting={() => setView('routing')}
@@ -4974,6 +4976,17 @@ export default function App() {
         {view === 'commandhub' && (
           <CommandHubStudio
             onBack={() => setView('home')}
+            onSelectObjective={(objectiveId) => {
+              const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
+              if (obj) selectObjective(obj)
+            }}
+          />
+        )}
+        {view === 'studylens' && (
+          <StudyLensStudio
+            onBack={() => setView('home')}
+            premiumUnlocked={premiumUnlocked}
+            onPremiumBlocked={handlePremiumBlocked}
             onSelectObjective={(objectiveId) => {
               const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
               if (obj) selectObjective(obj)

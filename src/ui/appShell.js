@@ -1231,5 +1231,12 @@ export function buildAppShellCss(colors) {
     .command-hub-studio .command-hub-list {
       max-height: none;
     }
+    .study-lens-search:focus {
+      outline: 2px solid ${colors.skyBorder};
+      outline-offset: 1px;
+    }
+    .study-lens-studio .study-lens-list {
+      max-height: none;
+    }
   `
 }

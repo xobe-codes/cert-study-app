@@ -12,7 +12,7 @@ export const MODEL = MODELS.smart
 // Wraps a system string as a cacheable block so a stable prefix can be reused
 // across calls (prompt caching). Used where the context is large/repeated
 // (tutor turns, mock-exam domain notes).
-function cachedSystem(text) {
+export function cachedSystem(text) {
   return [{ type: 'text', text, cache_control: { type: 'ephemeral' } }]
 }
 
@@ -170,10 +170,68 @@ export async function callClaude(body, retries = 2, feature = 'other') {
 }
 
 // Text completion. `model` lets callers pick a tier (defaults to Sonnet).
-async function askClaude({ system, messages, max_tokens = 1000, model = MODEL, feature = 'other', retries = 2 }) {
+export async function askClaude({ system, messages, max_tokens = 1000, model = MODEL, feature = 'other', retries = 2 }) {
   const data = await callClaude({ model, max_tokens, system, messages }, retries, feature)
   const text = data?.content?.find(b => b.type === 'text')?.text
   if (!text) throw new Error('Claude API returned an empty response.')
+  return text
+}
+
+export async function askClaudeStream({ system, messages, max_tokens = 1000, model = MODEL, feature = 'other', onDelta }) {
+  const streamDelays = [1000, 3000]
+  const wait = (ms) => new Promise(r => setTimeout(r, ms))
+  let res
+  for (let attempt = 0; attempt <= 2; attempt++) {
+    res = await claudeFetch({ model, max_tokens, system, messages, stream: true })
+    if (res.ok) break
+    if ((res.status === 529 || res.status >= 500) && attempt < 2) {
+      await wait(streamDelays[attempt])
+      continue
+    }
+    let detail = ''
+    try { detail = (await res.json())?.error?.message || '' } catch { /* not JSON */ }
+    throw new Error(`Claude API error ${res.status}${detail ? `: ${detail}` : ''}`)
+  }
+  if (!res.ok) {
+    let detail = ''
+    try { detail = (await res.json())?.error?.message || '' } catch { /* not JSON */ }
+    throw new Error(`Claude API error ${res.status}${detail ? `: ${detail}` : ''}`)
+  }
+  if (!res.body) {
+    return askClaude({ system, messages, max_tokens, model, feature })
+  }
+
+  const reader = res.body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ''
+  let text = ''
+  const usage = {}
+
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+    buffer += decoder.decode(value, { stream: true })
+    const lines = buffer.split('\n')
+    buffer = lines.pop()
+    for (const line of lines) {
+      if (!line.startsWith('data: ')) continue
+      let evt
+      try { evt = JSON.parse(line.slice(6)) } catch { continue }
+      if (evt.type === 'content_block_delta' && evt.delta?.type === 'text_delta') {
+        text += evt.delta.text
+        onDelta?.(evt.delta.text)
+      } else if (evt.type === 'message_start' && evt.message?.usage) {
+        Object.assign(usage, evt.message.usage)
+      } else if (evt.type === 'message_delta' && evt.usage) {
+        Object.assign(usage, evt.usage)
+      } else if (evt.type === 'error') {
+        throw new Error(`Claude API error: ${evt.error?.message || 'stream error'}`)
+      }
+    }
+  }
+  if (Object.keys(usage).length) logUsage(feature, model, usage)
+  if (!text) throw new Error('Claude API returned an empty response.')
+  bumpSessionAiCalls()
   return text
 }
 

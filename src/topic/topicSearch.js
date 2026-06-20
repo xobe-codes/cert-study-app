@@ -1,24 +1,8 @@
 /** Global search + ranking for Topic Focus / CCNA Term Hub. */
 
-function norm(s) {
-  return String(s || '').toLowerCase().trim()
-}
+import { norm, scoreToken, bestScore } from '../search/textRank.js'
 
-function scoreToken(text, query) {
-  const t = norm(text)
-  const q = norm(query)
-  if (!q || !t) return 0
-  if (t === q) return 100
-  if (t.startsWith(q)) return 80
-  if (t.includes(q)) return 50
-  const words = q.split(/\s+/).filter(Boolean)
-  if (words.length > 1 && words.every(w => t.includes(w))) return 45
-  return 0
-}
-
-function bestScore(query, ...fields) {
-  return Math.max(0, ...fields.map(f => scoreToken(f, query)))
-}
+export { norm, scoreToken, bestScore }
 
 /**
  * @param {import('./topicIndex.js').TopicIndex} index
