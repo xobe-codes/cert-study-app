@@ -4,9 +4,13 @@ import { getTopicIndex } from '../topic/topicIndex.js'
 import { getCommandIndex } from '../commands/commandIndex.js'
 import { curatedObjectiveIds, getCurated } from '../data/ccnaCurated.js'
 import { isDraftKbTierText } from '../lesson/readingEnrichment.js'
-import { bestScore, inDomain, norm } from '../search/textRank.js'
+import { bestScore, inDomain, norm, scoreQuery, hasTokenMatch } from '../search/textRank.js'
 import { makeChunk, navObjective } from './libraryChunk.js'
 import { detectIntent, INTENT_KIND_BOOST } from './intentDetect.js'
+import {
+  resolveTopicCluster,
+  clusterMemberChunkId,
+} from './topicClusters.js'
 
 let _cache = null
 
@@ -191,12 +195,18 @@ export function getLibraryIndex() {
   return _cache
 }
 
-function pickDiverse(scored, limit = 12) {
+function pickDiverse(scored, limit = 12, cluster = null) {
+  const maxPerKind = cluster
+    ? { term: 8, 'reading-tier': 2, 'reading-section': 2, command: 2, objective: 2 }
+    : {}
+  const defaultMax = 2
+
   const kindCount = {}
   const out = []
   for (const hit of scored) {
     const k = hit.kind
-    if ((kindCount[k] || 0) >= 2) continue
+    const cap = maxPerKind[k] ?? defaultMax
+    if ((kindCount[k] || 0) >= cap) continue
     kindCount[k] = (kindCount[k] || 0) + 1
     out.push(hit)
     if (out.length >= limit) break
@@ -211,6 +221,26 @@ function pickDiverse(scored, limit = 12) {
   return out
 }
 
+function injectClusterMembers(index, scored, cluster) {
+  const byId = new Map(scored.map(h => [h.id, h]))
+  const injected = []
+
+  for (const termId of cluster.memberTermIds) {
+    const chunkId = clusterMemberChunkId(termId)
+    const existing = byId.get(chunkId)
+    if (existing) {
+      existing.score = Math.max(existing.score, 95)
+      existing.clusterBoost = true
+      continue
+    }
+    const chunk = index.chunkById.get(chunkId)
+    if (!chunk) continue
+    injected.push({ ...chunk, score: 92, clusterBoost: true })
+  }
+
+  return [...injected, ...scored].sort((a, b) => b.score - a.score)
+}
+
 export function searchLibrary(query, {
   domainFilter = 'all',
   scopeObjectiveId = null,
@@ -221,7 +251,8 @@ export function searchLibrary(query, {
   const index = getLibraryIndex()
   const q = norm(query)
   const resolvedIntent = intent || detectIntent(query)
-  if (!q) return { hits: [], intent: resolvedIntent, facets: index.facets }
+  const cluster = resolveTopicCluster(query)
+  if (!q) return { hits: [], intent: resolvedIntent, facets: index.facets, cluster: null }
 
   const scored = []
   for (const chunk of index.chunks) {
@@ -229,20 +260,43 @@ export function searchLibrary(query, {
     if (!inDomain(chunk.objectiveIds, domainFilter, index.objectives)) continue
     if (kinds?.length && !kinds.includes(chunk.kind)) continue
 
-    let score = bestScore(q, chunk.title, chunk.body, ...(chunk.tags || []))
+    const fields = [chunk.title, chunk.body, ...(chunk.tags || [])]
+    if (!hasTokenMatch(q, ...fields)) continue
+
+    let score = scoreQuery(q, ...fields)
     score += INTENT_KIND_BOOST[resolvedIntent]?.[chunk.kind] || 0
     if (chunk.quality === 'authoritative') score += 4
+    if (cluster?.memberTermIds.some(tid => chunk.id === clusterMemberChunkId(tid))) {
+      score += 25
+    }
     if (score <= 0) continue
     scored.push({ ...chunk, score })
   }
 
-  scored.sort((a, b) => b.score - a.score)
-  const hits = pickDiverse(scored, limit)
+  let ranked = scored.sort((a, b) => b.score - a.score)
+  if (cluster) ranked = injectClusterMembers(index, ranked, cluster)
 
-  return { hits, intent: resolvedIntent, facets: index.facets, totalMatches: scored.length }
+  const hits = pickDiverse(ranked, limit, cluster)
+
+  return {
+    hits,
+    intent: resolvedIntent,
+    facets: index.facets,
+    totalMatches: ranked.length,
+    cluster,
+  }
 }
 
-export function chunksForSynthesis(hits, max = 8) {
+export function chunksForSynthesis(hits, max = 8, cluster = null) {
+  if (cluster) {
+    const index = getLibraryIndex()
+    const members = cluster.memberTermIds
+      .map(id => hits.find(h => h.id === clusterMemberChunkId(id)) || index.chunkById.get(clusterMemberChunkId(id)))
+      .filter(Boolean)
+      .map(h => ({ ...h, score: h.score || 90 }))
+    const rest = hits.filter(h => !members.some(m => m.id === h.id))
+    return pickDiverse([...members, ...rest], max, cluster)
+  }
   return pickDiverse(hits.map(h => ({ ...h })), max)
 }
 

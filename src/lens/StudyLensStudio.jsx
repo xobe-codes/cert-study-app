@@ -12,10 +12,10 @@ import { loadSynthesisCache, saveSynthesisCache } from '../lens/lensStorage.js'
 
 const SUGGESTED = [
   'What is longest prefix match?',
-  'Difference between OSPF and EIGRP',
+  'AAA protocols',
+  'Routing protocols on CCNA',
   'How do I configure SSH on a router?',
-  'Why do clients get 169.254.x.x?',
-  'What is an exam trap for /27 subnetting?',
+  'Wireless security protocols',
 ]
 
 function RichText({ text }) {
@@ -62,7 +62,7 @@ export default function StudyLensStudio({
 
   const instant = useMemo(() => {
     if (!searchResult?.hits?.length) return null
-    return buildInstantAnswer(submitted, searchResult.hits, searchResult.intent)
+    return buildInstantAnswer(submitted, searchResult.hits, searchResult.intent, searchResult.cluster)
   }, [submitted, searchResult])
 
   const runSearch = useCallback(() => {
@@ -101,6 +101,7 @@ export default function StudyLensStudio({
         query: submitted,
         hits: searchResult.hits,
         intent: searchResult.intent,
+        cluster: searchResult.cluster,
         onDelta: chunk => setStreaming(prev => (prev || '') + chunk),
       })
       setSynthesized(answer)
@@ -176,6 +177,9 @@ export default function StudyLensStudio({
         <>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 10, flexWrap: 'wrap' }}>
             <span style={styles.pill('sky')}>{INTENT_LABEL[intent] || intent}</span>
+            {searchResult.cluster && (
+              <span style={styles.pill('mint')}>{searchResult.cluster.label}</span>
+            )}
             <span style={{ ...styles.small, color: COLORS.silverMid }}>{searchResult.totalMatches} library matches</span>
           </div>
 
@@ -193,6 +197,19 @@ export default function StudyLensStudio({
                 <div style={{ display: 'grid', gap: 8 }}>
                   {instant.compareRows.map(row => (
                     <div key={row.label} style={{ padding: '8px 10px', borderRadius: 8, background: COLORS.surface }}>
+                      <div style={{ fontWeight: 600, marginBottom: 4 }}>{row.label}</div>
+                      <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={row.detail} /></div>
+                    </div>
+                  ))}
+                </div>
+              ) : instant.familyRows ? (
+                <div style={{ display: 'grid', gap: 8 }}>
+                  {instant.familyRows.map(row => (
+                    <div key={row.label} style={{
+                      padding: '8px 10px', borderRadius: 8,
+                      background: row.isPrimary ? COLORS.surface : 'transparent',
+                      border: row.isPrimary ? `1px solid ${COLORS.mintBorder}` : 'none',
+                    }}>
                       <div style={{ fontWeight: 600, marginBottom: 4 }}>{row.label}</div>
                       <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}><RichText text={row.detail} /></div>
                     </div>

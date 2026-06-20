@@ -17,9 +17,10 @@ export async function synthesizeLibraryAnswer({
   query,
   hits,
   intent,
+  cluster = null,
   onDelta,
 }) {
-  const selected = chunksForSynthesis(hits, 8)
+  const selected = chunksForSynthesis(hits, 8, cluster)
   const chunkBlock = selected.map(h => `[${h.id}] ${h.body}`).join('\n\n')
   const model = (intent === 'compare' || intent === 'troubleshoot')
     ? MODELS.smart

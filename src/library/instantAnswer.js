@@ -1,5 +1,8 @@
 /** Template instant answers from library hits — no API, works offline. */
 
+import { clusterMemberChunkId } from './topicClusters.js'
+import { getLibraryIndex } from './libraryIndex.js'
+
 function firstSentence(text) {
   const parts = String(text || '').split(/(?<=[.!?])\s+/).filter(Boolean)
   return parts[0] || String(text || '').trim()
@@ -15,6 +18,35 @@ function uniqueNonEmpty(items) {
     out.push(t)
   }
   return out
+}
+
+function memberChunks(cluster, hits) {
+  const index = getLibraryIndex()
+  return cluster.memberTermIds
+    .map(id => hits.find(h => h.id === clusterMemberChunkId(id)) || index.chunkById.get(clusterMemberChunkId(id)))
+    .filter(Boolean)
+}
+
+function buildFamilyAnswer(cluster, hits) {
+  const members = memberChunks(cluster, hits)
+  if (members.length < 2) return null
+
+  const primaryId = clusterMemberChunkId(cluster.primaryTermId)
+  const primary = members.find(m => m.id === primaryId) || members[0]
+  const related = members.filter(m => m.id !== primary.id)
+
+  return {
+    sufficient: true,
+    confidence: 'high',
+    mode: 'family',
+    familyLabel: cluster.label,
+    text: `${primary.title} — ${firstSentence(primary.body)} On CCNA, related ${cluster.label.toLowerCase()} include ${related.map(r => r.title).join(', ')}.`,
+    familyRows: members.map(m => ({
+      label: m.title,
+      detail: firstSentence(m.body),
+      isPrimary: m.id === primary.id,
+    })),
+  }
 }
 
 function buildCompareAnswer(hits) {
@@ -55,7 +87,12 @@ function buildDefineAnswer(hits) {
   }
 }
 
-export function buildInstantAnswer(query, hits, intent) {
+export function buildInstantAnswer(query, hits, intent, cluster = null) {
+  if (cluster) {
+    const family = buildFamilyAnswer(cluster, hits)
+    if (family) return family
+  }
+
   if (!hits?.length) {
     return {
       sufficient: false,

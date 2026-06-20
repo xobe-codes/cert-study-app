@@ -20,6 +20,38 @@ export function bestScore(query, ...fields) {
   return Math.max(0, ...fields.map(f => scoreToken(f, query)))
 }
 
+/** Score across full query and individual tokens — handles "AAA protocols" → AAA. */
+export function scoreQuery(query, ...fields) {
+  const q = norm(query)
+  if (!q) return 0
+
+  const full = bestScore(q, ...fields)
+  const tokens = q.split(/\s+/).filter(w => w.length > 1)
+  if (!tokens.length) return full
+
+  let tokenSum = 0
+  let matched = 0
+  let maxToken = 0
+  for (const tok of tokens) {
+    const s = bestScore(tok, ...fields)
+    maxToken = Math.max(maxToken, s)
+    if (s > 0) {
+      tokenSum += s
+      matched += 1
+    }
+  }
+
+  const perToken = matched ? tokenSum / matched : 0
+  return Math.max(full, perToken, maxToken >= 80 ? maxToken : maxToken * 0.9)
+}
+
+export function hasTokenMatch(query, ...fields) {
+  const q = norm(query)
+  if (!q) return false
+  if (bestScore(q, ...fields) > 0) return true
+  return q.split(/\s+/).some(tok => tok.length > 1 && bestScore(tok, ...fields) >= 45)
+}
+
 export function inDomain(objectiveIds, domainFilter, objectives) {
   if (domainFilter === 'all') return true
   return (objectiveIds || []).some(oid => {

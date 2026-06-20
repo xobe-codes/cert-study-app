@@ -1,9 +1,14 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { buildLibraryIndex, searchLibrary, getLibraryIndex } from '../library/libraryIndex.js'
 import { detectIntent } from '../library/intentDetect.js'
 import { buildInstantAnswer } from '../library/instantAnswer.js'
+import { resolveTopicCluster } from '../library/topicClusters.js'
 
 describe('study lens', () => {
+  beforeEach(() => {
+    // library index is module-cached; cluster logic is in search path only
+  })
+
   it('builds a federated library index with diverse chunk kinds', () => {
     const index = buildLibraryIndex()
     expect(index.chunks.length).toBeGreaterThan(400)
@@ -37,5 +42,37 @@ describe('study lens', () => {
 
   it('returns cached singleton index', () => {
     expect(getLibraryIndex()).toBe(getLibraryIndex())
+  })
+
+  it('resolves AAA protocols to the AAA topic cluster', () => {
+    const cluster = resolveTopicCluster('AAA protocols')
+    expect(cluster?.id).toBe('aaa')
+    expect(cluster?.memberTermIds).toContain('term-tacacs-plus')
+    expect(cluster?.memberTermIds).toContain('term-radius')
+  })
+
+  it('finds TACACS+ and RADIUS when asking about AAA protocols', () => {
+    const { hits, cluster } = searchLibrary('AAA protocols')
+    expect(cluster?.id).toBe('aaa')
+    const titles = hits.map(h => h.title)
+    expect(titles).toContain('AAA')
+    expect(titles).toContain('TACACS+')
+    expect(titles).toContain('RADIUS')
+  })
+
+  it('builds a family instant answer for AAA protocols', () => {
+    const { hits, intent, cluster } = searchLibrary('AAA protocols')
+    const answer = buildInstantAnswer('AAA protocols', hits, intent, cluster)
+    expect(answer.mode).toBe('family')
+    expect(answer.familyRows?.map(r => r.label)).toEqual(expect.arrayContaining(['AAA', 'TACACS+', 'RADIUS']))
+    expect(answer.text).toMatch(/TACACS\+|RADIUS/i)
+  })
+
+  it('expands routing protocols to OSPF and EIGRP', () => {
+    const { hits, cluster } = searchLibrary('routing protocols')
+    expect(cluster?.id).toBe('routing-protocols')
+    const titles = hits.map(h => h.title)
+    expect(titles.some(t => /OSPF/i.test(t))).toBe(true)
+    expect(titles.some(t => /EIGRP/i.test(t))).toBe(true)
   })
 })
