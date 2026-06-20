@@ -4228,7 +4228,7 @@ function TutorChat({ progress, missed, onBack }) {
           </div>
         )}
       </div>
-      <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+      <div className="tutor-input-bar">
         <input
           style={{ ...styles.input, flex: 1 }}
           value={input}
@@ -4265,7 +4265,12 @@ function parseAppHash() {
     }
   }
   const simple = raw.replace(/^\//, '')
-  if (['mock', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor'].includes(simple)) {
+  // topicfocussession needs live config (topicFocusConfig) — restore picker on refresh instead.
+  if (simple === 'topicfocussession') return { view: 'topicfocus' }
+  if ([
+    'mock', 'metrics', 'stats', 'review', 'missed', 'labs', 'focus', 'tutor',
+    'topicfocus', 'commandhub', 'studylens', 'examtraps', 'subnet', 'routing', 'extrastudy',
+  ].includes(simple)) {
     return { view: simple }
   }
   return null
@@ -4301,6 +4306,7 @@ function AppShell({ view, compactTopChrome, withBottomNav, children }) {
    ========================================================================= */
 export default function App() {
   const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | commandhub | studylens | examtraps | subnet | routing | extrastudy
+  const [returnToView, setReturnToView] = useState('home')
   const [topicFocusConfig, setTopicFocusConfig] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
@@ -4396,9 +4402,11 @@ export default function App() {
       }
       const hashRoute = parseAppHash()
       if (hashRoute?.objective) {
+        setReturnToView('home')
         setSelectedObjective(hashRoute.objective)
         setView('objective')
       } else if (hashRoute?.view) {
+        setReturnToView('home')
         setView(hashRoute.view)
       }
       const updatedStreak = await bumpStreak()
@@ -4582,12 +4590,15 @@ export default function App() {
     function onHashChange() {
       const route = parseAppHash()
       if (route?.objective) {
+        setReturnToView('home')
         setSelectedObjective(route.objective)
         setView('objective')
       } else if (route?.view) {
         setSelectedObjective(null)
+        setReturnToView('home')
         setView(route.view)
       } else {
+        setReturnToView('home')
         setView('home')
       }
     }
@@ -4735,10 +4746,31 @@ export default function App() {
   }, [])
 
   function selectObjective(obj) {
+    setReturnToView(view)
     bumpSessionStudy('objective', obj.id) // #16: track objective visits for session recap
     setSelectedObjective(obj)
     setView('objective')
   }
+
+  const navigateTo = useCallback((nextView) => {
+    setReturnToView(view)
+    setView(nextView)
+  }, [view])
+
+  const goBack = useCallback(() => {
+    setView(returnToView)
+  }, [returnToView])
+
+  useEffect(() => {
+    if (!loaded || view !== 'objective' || selectedObjective) return
+    const route = parseAppHash()
+    if (route?.objective) {
+      setSelectedObjective(route.objective)
+      setReturnToView('home')
+      return
+    }
+    setView('home')
+  }, [loaded, view, selectedObjective])
 
   const handleFocusBlockCompleted = useCallback(async () => {
     const next = await bumpStreak()
@@ -4764,6 +4796,8 @@ export default function App() {
 
   const routeScrolls = view !== 'objective' && view !== 'tutor'
   const compactTopChrome = view === 'objective' || view === 'tutor'
+  const showNavBack = view !== 'home' && view !== 'onboarding' && view !== 'objective'
+  const objectiveBackLabel = returnToView === 'home' ? 'Topics' : 'Back'
   const bottomNavActive = showSettings ? 'more' : showSearch ? 'search' : view === 'home' ? 'home' : view === 'objective' ? 'home' : null
   const bottomNavCompact = view === 'objective'
 
@@ -4861,24 +4895,24 @@ export default function App() {
             apiOnline={apiOnline}
             offlineReady={offlineReady}
             onSelectObjective={selectObjective}
-            onOpenMock={() => setView('mock')}
-            onOpenMissed={() => setView('missed')}
-            onOpenTutor={() => setView('tutor')}
+            onOpenMock={() => navigateTo('mock')}
+            onOpenMissed={() => navigateTo('missed')}
+            onOpenTutor={() => navigateTo('tutor')}
             premiumUnlocked={premiumUnlocked}
             onPremiumBlocked={handlePremiumBlocked}
-            onOpenMetrics={() => setView('metrics')}
-            onOpenStats={() => setView('stats')}
+            onOpenMetrics={() => navigateTo('metrics')}
+            onOpenStats={() => navigateTo('stats')}
             onOpenSettings={() => setShowSettings(true)}
-            onOpenLabs={() => setView('labs')}
-            onOpenReview={() => setView('review')}
-            onOpenFocus={() => setView('focus')}
-            onOpenTopicFocus={() => setView('topicfocus')}
-            onOpenCommandHub={() => setView('commandhub')}
-            onOpenStudyLens={() => setView('studylens')}
-            onOpenExamTraps={() => setView('examtraps')}
-            onOpenSubnet={() => setView('subnet')}
-            onOpenRouting={() => setView('routing')}
-            onOpenExtraStudy={() => setView('extrastudy')}
+            onOpenLabs={() => navigateTo('labs')}
+            onOpenReview={() => navigateTo('review')}
+            onOpenFocus={() => navigateTo('focus')}
+            onOpenTopicFocus={() => navigateTo('topicfocus')}
+            onOpenCommandHub={() => navigateTo('commandhub')}
+            onOpenStudyLens={() => navigateTo('studylens')}
+            onOpenExamTraps={() => navigateTo('examtraps')}
+            onOpenSubnet={() => navigateTo('subnet')}
+            onOpenRouting={() => navigateTo('routing')}
+            onOpenExtraStudy={() => navigateTo('extrastudy')}
             dueCount={dueCount}
             openDomain={openDomain}
             onOpenDomain={setOpenDomain}
@@ -4886,6 +4920,9 @@ export default function App() {
             theme={theme}
             onToggleTheme={toggleTheme}
           />
+        )}
+        {view === 'objective' && !selectedObjective && (
+          <Spinner label="Loading topic…" />
         )}
         {view === 'objective' && selectedObjective && (
           <ObjectiveScreen
@@ -4895,7 +4932,8 @@ export default function App() {
             offlineReady={offlineReady}
             packagingId={packagingId}
             onPackage={packageObjective}
-            onBack={() => setView('home')}
+            onBack={goBack}
+            backLabel={objectiveBackLabel}
             onUpdateProgress={updateProgress}
             onMissed={handleMissed}
             missed={missed}
@@ -4931,23 +4969,23 @@ export default function App() {
             theme={theme}
           />
         )}
-        {view === 'mock' && <MockExam onExit={() => setView('home')} examMode={settingsExamMode} />}
-        {view === 'missed' && <MissedReview missed={missed} onBack={() => setView('home')} onRemove={removeMissed} />}
+        {view === 'mock' && <MockExam onExit={goBack} examMode={settingsExamMode} />}
+        {view === 'missed' && <MissedReview missed={missed} onBack={goBack} onRemove={removeMissed} />}
         {view === 'tutor' && (
           premiumUnlocked
-            ? <TutorChat progress={progress} missed={missed} onBack={() => setView('home')} />
-            : <PremiumBlockedShell title="AI Tutor" onBack={() => setView('home')} />
+            ? <TutorChat progress={progress} missed={missed} onBack={goBack} />
+            : <PremiumBlockedShell title="AI Tutor" onBack={goBack} />
         )}
         {view === 'stats' && (
           <StatsPage
             progress={progress}
             streak={streak}
-            onBack={() => setView('home')}
-            onOpenMetrics={() => setView('metrics')}
+            onBack={goBack}
+            onOpenMetrics={() => navigateTo('metrics')}
           />
         )}
-        {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} dueCount={dueCount} onBack={() => setView('home')} onSelectObjective={selectObjective} onOpenReview={() => setView('review')} onOpenStats={() => setView('stats')} />}
-        {view === 'labs' && <LabsHub onBack={() => setView('home')} onOpenLab={(id) => openLab(id, 'labs')} />}
+        {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} dueCount={dueCount} onBack={goBack} onSelectObjective={selectObjective} onOpenReview={() => navigateTo('review')} onOpenStats={() => navigateTo('stats')} />}
+        {view === 'labs' && <LabsHub onBack={goBack} onOpenLab={(id) => openLab(id, 'labs')} />}
         {view === 'lab' && selectedLab && (
           <LabView
             bundle={getLab(selectedLab)}
@@ -4956,26 +4994,27 @@ export default function App() {
             haptic={haptic}
           />
         )}
-        {view === 'review' && <ReviewSession onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
-        {view === 'focus' && <FocusModeSession progress={progress} onBack={() => setView('home')} onMissed={handleMissed} onDone={refreshDue} />}
+        {view === 'review' && <ReviewSession onBack={goBack} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
+        {view === 'focus' && <FocusModeSession progress={progress} onBack={goBack} onMissed={handleMissed} onDone={refreshDue} />}
         {view === 'topicfocus' && (
           <TopicFocusStudio
             missed={missed}
-            onBack={() => setView('home')}
-            onStart={(config) => { setTopicFocusConfig(config); setView('topicfocussession') }}
+            haptic={haptic}
+            onBack={goBack}
+            onStart={(config) => { setTopicFocusConfig(config); navigateTo('topicfocussession') }}
           />
         )}
         {view === 'topicfocussession' && topicFocusConfig && (
           <TopicFocusSession
             config={topicFocusConfig}
-            onBack={() => setView('topicfocus')}
+            onBack={goBack}
             onMissed={handleMissed}
             onDone={refreshDue}
           />
         )}
         {view === 'commandhub' && (
           <CommandHubStudio
-            onBack={() => setView('home')}
+            onBack={goBack}
             onSelectObjective={(objectiveId) => {
               const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
               if (obj) selectObjective(obj)
@@ -4984,7 +5023,7 @@ export default function App() {
         )}
         {view === 'studylens' && (
           <StudyLensStudio
-            onBack={() => setView('home')}
+            onBack={goBack}
             premiumUnlocked={premiumUnlocked}
             onPremiumBlocked={handlePremiumBlocked}
             onSelectObjective={(objectiveId) => {
@@ -4993,9 +5032,9 @@ export default function App() {
             }}
           />
         )}
-        {view === 'examtraps' && <ExamTrapStudyMode styles={styles} onBack={() => setView('home')} />}
-        {view === 'subnet' && <SubnetPracticeHome onBack={() => setView('home')} />}
-        {view === 'routing' && <RoutingDecoderMode styles={styles} COLORS={COLORS} onBack={() => setView('home')} />}
+        {view === 'examtraps' && <ExamTrapStudyMode styles={styles} onBack={goBack} />}
+        {view === 'subnet' && <SubnetPracticeHome onBack={goBack} />}
+        {view === 'routing' && <RoutingDecoderMode styles={styles} COLORS={COLORS} onBack={goBack} />}
         {view === 'extrastudy' && (
           <ExtraStudyMode
             styles={styles}
@@ -5004,7 +5043,7 @@ export default function App() {
             AnswerReview={AnswerReview}
             QuestionMeta={QuestionMeta}
             McChoices={McChoices}
-            onBack={() => setView('home')}
+            onBack={goBack}
           />
         )}
       </RouteShell>
@@ -5013,7 +5052,9 @@ export default function App() {
           <BottomNav
             active={bottomNavActive}
             compact={bottomNavCompact}
-            onHome={() => setView('home')}
+            homeLabel={showNavBack ? 'Back' : 'Home'}
+            homeIcon={showNavBack ? 'back' : 'home'}
+            onHome={showNavBack ? goBack : () => setView('home')}
             onSearch={() => setShowSearch(true)}
             onMore={() => setShowSettings(true)}
           />

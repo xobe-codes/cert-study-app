@@ -70,6 +70,7 @@ export function buildAppShellCss(colors) {
       width: 100%;
       max-width: min(${SITE_COLUMN_MAX}px, 100%);
       height: 100vh;
+      min-height: 100vh;
       overflow: hidden;
       overflow-x: hidden;
       overscroll-behavior-x: none;
@@ -102,13 +103,9 @@ export function buildAppShellCss(colors) {
       }
     }
     @supports (height: 100dvh) {
-      .app-shell { height: 100dvh; }
-    }
-    @supports (height: 100svh) {
-      .app-shell--with-bottom-nav {
-        height: 100svh;
-        min-height: 100svh;
-        max-height: 100svh;
+      .app-shell {
+        height: 100dvh;
+        min-height: 100dvh;
       }
     }
     .site-column {
@@ -390,8 +387,14 @@ export function buildAppShellCss(colors) {
       overflow: hidden;
       overflow-x: hidden;
     }
+    .page-fill > .objective-shell,
+    .page-fill > .tutor-shell {
+      flex: 1;
+      min-height: 0;
+      height: auto;
+    }
     .objective-shell {
-      height: 100%;
+      flex: 1;
       min-height: 0;
       min-width: 0;
       display: flex;
@@ -641,6 +644,8 @@ export function buildAppShellCss(colors) {
       flex-direction: column;
       gap: 6px;
       min-width: 180px;
+      max-height: min(50dvh, 280px);
+      overflow-y: auto;
       padding: 8px;
       border-radius: 12px;
       border: 1px solid ${colors.border};
@@ -781,6 +786,56 @@ export function buildAppShellCss(colors) {
       min-height: 0;
       min-width: 0;
       overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .study-mode-header {
+      position: sticky;
+      top: 0;
+      z-index: 45;
+      margin: 0 0 10px;
+      padding: calc(env(safe-area-inset-top) + 2px) 0 10px;
+      background: linear-gradient(
+        to bottom,
+        color-mix(in srgb, ${colors.bg} 98%, transparent) 0%,
+        color-mix(in srgb, ${colors.bg} 92%, transparent) 85%,
+        transparent 100%
+      );
+    }
+    .study-mode-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 44px;
+      padding: 0 12px 0 4px;
+      margin: 0 0 6px;
+      border: 1px solid ${colors.border};
+      border-radius: 10px;
+      background: ${colors.surface};
+      color: ${colors.silver};
+      font-size: var(--ccna-type-sm);
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .study-mode-back-btn__icon {
+      font-size: var(--ccna-type-md);
+      line-height: 1;
+      color: ${colors.silverMid};
+    }
+    .study-mode-header__title {
+      margin: 0 0 4px;
+      font-size: var(--ccna-type-xl);
+      font-weight: 700;
+      line-height: 1.25;
+      color: ${colors.silver};
+    }
+    .study-mode-header__subtitle {
+      margin: 0;
+      font-size: var(--ccna-type-sm);
+      line-height: 1.5;
+      color: ${colors.silverMid};
     }
     .stats-bottom-bar {
       margin-bottom: 8px;
@@ -839,6 +894,11 @@ export function buildAppShellCss(colors) {
     .objective-overflow-item:hover {
       background: ${colors.surface};
     }
+    .objective-overflow-menu {
+      max-height: min(70dvh, calc(100dvh - 120px));
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
     .app-shell--with-bottom-nav .objective-body {
       padding-bottom: calc(var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 8px);
     }
@@ -852,6 +912,13 @@ export function buildAppShellCss(colors) {
     .tutor-messages {
       flex: 1;
       min-height: 0;
+      overflow: auto;
+    }
+    .tutor-input-bar {
+      flex-shrink: 0;
+      display: flex;
+      gap: 8px;
+      padding-bottom: calc(env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px));
     }
     .ccna-overlay {
       position: fixed;
@@ -1189,16 +1256,115 @@ export function buildAppShellCss(colors) {
     }
 
     .topic-focus-bar {
-      position: sticky;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: 0 -12px -8px;
-      padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: calc(var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px));
+      width: 100%;
+      max-width: min(${SITE_COLUMN_MAX}px, 100%);
+      margin: 0;
+      padding: 10px max(16px, env(safe-area-inset-left)) 10px max(16px, env(safe-area-inset-right));
       background: color-mix(in srgb, ${colors.card} 94%, transparent);
       border-top: 1px solid ${colors.border};
       backdrop-filter: blur(10px);
-      z-index: 4;
+      z-index: 210;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .topic-focus-bar--active {
+      border-top-color: ${colors.mintBorder};
+      box-shadow: 0 -8px 28px color-mix(in srgb, ${colors.mint} 22%, transparent);
+    }
+    .topic-focus-bar--pulse {
+      animation: topic-focus-bar-pulse 0.5s ease-out;
+    }
+    @keyframes topic-focus-bar-pulse {
+      0% { transform: translateX(-50%) scale(1); }
+      35% { transform: translateX(-50%) scale(1.015); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
+    .topic-focus-toast {
+      margin-bottom: 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: color-mix(in srgb, ${colors.mintDim} 88%, ${colors.card});
+      border: 1px solid ${colors.mintBorder};
+      color: ${colors.mint};
+      font-size: var(--ccna-type-sm);
+      font-weight: 600;
+      line-height: 1.35;
+      animation: topic-focus-toast-in 0.28s ease both;
+    }
+    @keyframes topic-focus-toast-in {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: none; }
+    }
+    .topic-focus-bar__stats {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: var(--ccna-type-xs);
+      color: ${colors.silverMid};
+    }
+    .topic-focus-bar__stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: ${colors.surface};
+      border: 1px solid ${colors.border};
+      transition: transform 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+    }
+    .topic-focus-bar__stat--bump {
+      transform: scale(1.06);
+      border-color: ${colors.mintBorder};
+      color: ${colors.mint};
+    }
+    .topic-focus-bar__stat--questions {
+      font-weight: 700;
+      color: ${colors.silver};
+    }
+    .topic-focus-bar__hint,
+    .topic-focus-bar__warn {
+      margin-bottom: 8px;
+      font-size: var(--ccna-type-xs);
+      line-height: 1.4;
+    }
+    .topic-focus-bar__hint { color: ${colors.silverMid}; }
+    .topic-focus-bar__warn { color: ${colors.amber}; }
+    .topic-focus-card--selected {
+      animation: topic-focus-card-select 0.35s ease both;
+    }
+    @keyframes topic-focus-card-select {
+      from { box-shadow: 0 0 0 0 color-mix(in srgb, ${colors.mint} 45%, transparent); }
+      to { box-shadow: none; }
+    }
+    .topic-focus-add-btn--added {
+      background: ${colors.mintDim} !important;
+      border-color: ${colors.mintBorder} !important;
+      color: ${colors.mint} !important;
+    }
+    .topic-focus-concept-pill--selected {
+      animation: topic-focus-pill-pop 0.28s ease both;
+    }
+    @keyframes topic-focus-pill-pop {
+      0% { transform: scale(0.94); }
+      55% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+    html[data-reduce-motion="true"] .topic-focus-bar--pulse,
+    html[data-reduce-motion="true"] .topic-focus-toast,
+    html[data-reduce-motion="true"] .topic-focus-card--selected,
+    html[data-reduce-motion="true"] .topic-focus-concept-pill--selected {
+      animation: none !important;
+    }
+    .app-shell--with-bottom-nav .topic-focus-list {
+      padding-bottom: calc(var(--ccna-bottom-nav-height) + 120px + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px));
+    }
+    .topic-focus-session {
+      padding-bottom: calc(var(--ccna-bottom-nav-height) + env(safe-area-inset-bottom) + var(--vv-bottom-inset, 0px) + 16px);
     }
     .topic-focus-studio .topic-focus-list {
       max-height: none;

@@ -9,6 +9,7 @@ import { buildInstantAnswer } from '../library/instantAnswer.js'
 import { detectIntent, INTENT_LABEL } from '../library/intentDetect.js'
 import { synthesizeLibraryAnswer, synthesisCacheKey } from '../library/synthesizeAnswer.js'
 import { loadSynthesisCache, saveSynthesisCache } from '../lens/lensStorage.js'
+import StudyModeHeader from '../components/StudyModeHeader.jsx'
 
 const SUGGESTED = [
   'What is longest prefix match?',
@@ -119,11 +120,11 @@ export default function StudyLensStudio({
 
   return (
     <div className="study-lens-studio">
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Study Lens</h1>
-      <p style={{ ...styles.small, marginBottom: 12, lineHeight: 1.5 }}>
-        Ask anything CCNA — instant answers from your study library. Synthesize cited prose with AI Tutor access.
-      </p>
+      <StudyModeHeader
+        title="Study Lens"
+        onBack={onBack}
+        subtitle="Ask anything CCNA — instant answers from your study library. Synthesize cited prose with AI Tutor access."
+      />
 
       <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
         <input

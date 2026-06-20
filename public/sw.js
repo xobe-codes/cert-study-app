@@ -1,5 +1,39 @@
-const CACHE = 'ccna-shell-v1'
-const SHELL = ['/', '/index.html', '/manifest.webmanifest', '/icon-192.svg']
+const CACHE = 'ccna-shell-v2'
+const SHELL = ['/manifest.webmanifest', '/icon-192.svg']
+
+function isAppShell(url) {
+  return url.pathname === '/' || url.pathname === '/index.html' || url.pathname.startsWith('/assets/')
+}
+
+function isShellAsset(url) {
+  return SHELL.includes(url.pathname)
+}
+
+async function networkFirst(request) {
+  try {
+    const res = await fetch(request)
+    if (res && res.status === 200 && res.type === 'basic') {
+      const copy = res.clone()
+      caches.open(CACHE).then(cache => cache.put(request, copy))
+    }
+    return res
+  } catch {
+    const cached = await caches.match(request)
+    if (cached) return cached
+    throw new Error('offline')
+  }
+}
+
+async function cacheFirst(request) {
+  const cached = await caches.match(request)
+  if (cached) return cached
+  const res = await fetch(request)
+  if (res && res.status === 200 && res.type === 'basic') {
+    const copy = res.clone()
+    caches.open(CACHE).then(cache => cache.put(request, copy))
+  }
+  return res
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -19,15 +53,11 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return
   if (!url.pathname.startsWith('/') || url.pathname.includes('/api')) return
 
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached
-      return fetch(event.request).then(res => {
-        if (!res || res.status !== 200 || res.type !== 'basic') return res
-        const copy = res.clone()
-        caches.open(CACHE).then(cache => cache.put(event.request, copy))
-        return res
-      }).catch(() => cached)
-    })
-  )
+  if (isAppShell(url)) {
+    event.respondWith(networkFirst(event.request))
+    return
+  }
+  if (isShellAsset(url)) {
+    event.respondWith(cacheFirst(event.request))
+  }
 })

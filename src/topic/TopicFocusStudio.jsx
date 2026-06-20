@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { DOMAINS } from '../data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from '../ui/appTheme.js'
 import { computeCkuWeakness } from '../weaknessUtils.js'
@@ -12,6 +12,7 @@ import {
   loadFocusSets, saveFocusSet, deleteFocusSet, loadPinnedConcepts, togglePinnedConcept,
 } from './topicFocusStorage.js'
 import TopicTermDetail from './TopicTermDetail.jsx'
+import StudyModeHeader from '../components/StudyModeHeader.jsx'
 
 const SORT_OPTIONS = [
   { id: 'domain', label: 'Domain' },
@@ -27,20 +28,29 @@ function kindAccent(kind) {
   return 'purple'
 }
 
-function selectEntryForQuiz(entry, index, setSelectedConcepts, setSelectedObjectives) {
+function selectEntryForQuiz(entry, setSelectedConcepts, setSelectedObjectives) {
+  let addedConcepts = 0
+  let addedObjectives = 0
   setSelectedConcepts(prev => {
     const next = new Set(prev)
-    for (const id of entry.conceptIds || []) next.add(id)
+    for (const id of entry.conceptIds || []) {
+      if (!next.has(id)) addedConcepts += 1
+      next.add(id)
+    }
     return next
   })
   setSelectedObjectives(prev => {
     const next = new Set(prev)
-    for (const id of entry.objectiveIds || []) next.add(id)
+    for (const id of entry.objectiveIds || []) {
+      if (!next.has(id)) addedObjectives += 1
+      next.add(id)
+    }
     return next
   })
+  return { addedConcepts, addedObjectives }
 }
 
-export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
+export default function TopicFocusStudio({ onBack, onStart, missed = [], haptic }) {
   const index = useMemo(() => getTopicIndex(), [])
   const weakCkUs = useMemo(() => new Set(computeCkuWeakness(missed).map(w => w.id)), [missed])
 
@@ -56,6 +66,37 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
   const [saveName, setSaveName] = useState('')
   const [showSave, setShowSave] = useState(false)
   const [detailEntry, setDetailEntry] = useState(null)
+  const [barPulse, setBarPulse] = useState(false)
+  const [statBump, setStatBump] = useState(false)
+  const [selectionToast, setSelectionToast] = useState(null)
+  const [flashCardId, setFlashCardId] = useState(null)
+  const [flashConceptId, setFlashConceptId] = useState(null)
+  const toastTimerRef = useRef(null)
+  const flashTimerRef = useRef(null)
+
+  useEffect(() => () => {
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current)
+    if (flashTimerRef.current) clearTimeout(flashTimerRef.current)
+  }, [])
+
+  const notifySelection = useCallback((message) => {
+    setBarPulse(true)
+    setStatBump(true)
+    setSelectionToast(message)
+    haptic?.(12)
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current)
+    toastTimerRef.current = setTimeout(() => {
+      setSelectionToast(null)
+      setBarPulse(false)
+      setStatBump(false)
+    }, 2200)
+  }, [haptic])
+
+  const flashCard = useCallback((id) => {
+    setFlashCardId(id)
+    if (flashTimerRef.current) clearTimeout(flashTimerRef.current)
+    flashTimerRef.current = setTimeout(() => setFlashCardId(null), 450)
+  }, [])
 
   useEffect(() => {
     preloadCleanBank()
@@ -108,20 +149,35 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
   const toggleObjective = useCallback((id) => {
     setSelectedObjectives(prev => {
       const next = new Set(prev)
+      const adding = !next.has(id)
       if (next.has(id)) next.delete(id)
       else next.add(id)
+      if (adding) {
+        flashCard(id)
+        notifySelection(`Objective ${id} added to quiz`)
+      } else {
+        notifySelection(`Objective ${id} removed`)
+      }
       return next
     })
-  }, [])
+  }, [flashCard, notifySelection])
 
   const toggleConcept = useCallback((id) => {
     setSelectedConcepts(prev => {
       const next = new Set(prev)
+      const adding = !next.has(id)
       if (next.has(id)) next.delete(id)
       else next.add(id)
+      if (adding) {
+        setFlashConceptId(id)
+        setTimeout(() => setFlashConceptId(null), 320)
+        notifySelection('Concept added to quiz')
+      } else {
+        notifySelection('Concept removed')
+      }
       return next
     })
-  }, [])
+  }, [notifySelection])
 
   const toggleExpand = useCallback((id) => {
     setExpandedObj(prev => {
@@ -137,14 +193,16 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
     setSelectedConcepts(new Set())
     setTab('objectives')
     setDetailEntry(null)
-  }, [])
+    notifySelection(`${preset.label} preset loaded`)
+  }, [notifySelection])
 
   const loadSet = useCallback((set) => {
     setSelectedObjectives(new Set(set.objectiveIds || []))
     setSelectedConcepts(new Set(set.conceptIds || []))
     setTab('objectives')
     setDetailEntry(null)
-  }, [])
+    notifySelection(`Loaded “${set.name}”`)
+  }, [notifySelection])
 
   const clearSelection = useCallback(() => {
     setSelectedObjectives(new Set())
@@ -152,8 +210,15 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
   }, [])
 
   const handleSelectAllFromEntry = useCallback((entry) => {
-    selectEntryForQuiz(entry, index, setSelectedConcepts, setSelectedObjectives)
-  }, [index])
+    const { addedConcepts, addedObjectives } = selectEntryForQuiz(entry, setSelectedConcepts, setSelectedObjectives)
+    flashCard(entry.id)
+    const parts = []
+    if (addedObjectives) parts.push(`${addedObjectives} objective${addedObjectives === 1 ? '' : 's'}`)
+    if (addedConcepts) parts.push(`${addedConcepts} concept${addedConcepts === 1 ? '' : 's'}`)
+    notifySelection(parts.length
+      ? `Added ${parts.join(' · ')} to quiz`
+      : `${entry.term} already in quiz`)
+  }, [flashCard, notifySelection])
 
   async function handleSaveSet() {
     const entry = await saveFocusSet({
@@ -207,11 +272,11 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
 
   return (
     <div className="topic-focus-studio">
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Topic Focus</h1>
-      <p style={{ ...styles.small, marginBottom: 12, lineHeight: 1.5 }}>
-        CCNA Term Hub — search vocabulary, read full definitions, pick objectives and linked concepts, then drill quiz questions.
-      </p>
+      <StudyModeHeader
+        title="Topic Focus"
+        onBack={onBack}
+        subtitle="CCNA Term Hub — search vocabulary, read full definitions, pick objectives and linked concepts, then drill quiz questions."
+      />
 
       <div className="topic-focus-presets ccna-h-scroll" style={{ display: 'flex', gap: 6, overflowX: 'auto', marginBottom: 12, paddingBottom: 4 }}>
         {TOPIC_PRESETS.map(p => (
@@ -284,7 +349,7 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
         </div>
       )}
 
-      <div className="topic-focus-list" style={{ paddingBottom: 88 }}>
+      <div className="topic-focus-list">
         {q && hasSearchResults && !detailEntry && (
           <div className="topic-focus-search-results" style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 8, fontWeight: 600 }}>
@@ -317,10 +382,14 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
                     type="button"
                     style={{ ...styles.secondaryBtn, width: '100%', marginTop: 10, fontSize: 'var(--ccna-type-sm)' }}
                     onClick={() => {
-                      selectEntryForQuiz({
+                      const { addedConcepts, addedObjectives } = selectEntryForQuiz({
                         conceptIds: term.relatedConceptIds,
                         objectiveIds: term.objectiveIds,
-                      }, index, setSelectedConcepts, setSelectedObjectives)
+                      }, setSelectedConcepts, setSelectedObjectives)
+                      const parts = []
+                      if (addedObjectives) parts.push(`${addedObjectives} objectives`)
+                      if (addedConcepts) parts.push(`${addedConcepts} concepts`)
+                      notifySelection(parts.length ? `Cluster added · ${parts.join(', ')}` : 'Cluster already in quiz')
                     }}
                   >
                     Select cluster for quiz
@@ -332,7 +401,7 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
             {globalResults.concepts.slice(0, 6).map(({ concept }) => {
               const sel = selectedConcepts.has(concept.id)
               return (
-                <div key={concept.id} style={{ ...styles.card, marginBottom: 6, padding: '8px 12px', display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                <div key={concept.id} className={sel ? 'topic-focus-card--selected' : undefined} style={{ ...styles.card, marginBottom: 6, padding: '8px 12px', display: 'flex', gap: 8, alignItems: 'flex-start', border: sel ? `1px solid ${COLORS.mintBorder}` : undefined }}>
                   <input type="checkbox" checked={sel} onChange={() => toggleConcept(concept.id)} style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <span style={{ ...styles.pill(kindAccent(concept.kind)), fontSize: 'var(--ccna-type-micro)' }}>{CONCEPT_KIND_LABEL[concept.kind]}</span>
@@ -362,11 +431,13 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
           return (
             <div
               key={entry.id}
+              className={flashCardId === entry.id ? 'topic-focus-card--selected' : undefined}
               style={{
                 ...styles.card,
                 marginBottom: 8,
                 padding: '10px 12px',
-                border: isOpen ? `1px solid ${COLORS.purpleBorder}` : sel ? `1px solid ${COLORS.skyBorder}` : undefined,
+                border: isOpen ? `1px solid ${COLORS.purpleBorder}` : sel ? `1px solid ${COLORS.mintBorder}` : undefined,
+                background: sel ? COLORS.mintDim : undefined,
               }}
             >
               <button
@@ -391,8 +462,13 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
                 <button type="button" style={{ ...styles.secondaryBtn, flex: 1, fontSize: 'var(--ccna-type-xs)' }} onClick={() => setDetailEntry(entry)}>
                   Details
                 </button>
-                <button type="button" style={{ ...styles.secondaryBtn, flex: 1, fontSize: 'var(--ccna-type-xs)' }} onClick={() => handleSelectAllFromEntry(entry)}>
-                  Add to quiz
+                <button
+                  type="button"
+                  className={sel ? 'topic-focus-add-btn--added' : undefined}
+                  style={{ ...styles.secondaryBtn, flex: 1, fontSize: 'var(--ccna-type-xs)' }}
+                  onClick={() => handleSelectAllFromEntry(entry)}
+                >
+                  {sel ? '✓ In quiz' : 'Add to quiz'}
                 </button>
               </div>
             </div>
@@ -405,7 +481,7 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
           const concepts = o.conceptIds.map(id => index.conceptById.get(id)).filter(Boolean)
           const c = accentColors(o.accent)
           return (
-            <div key={o.id} style={{ ...styles.card, marginBottom: 8, padding: 0, overflow: 'hidden', border: checked ? `1px solid ${c.border}` : `1px solid ${COLORS.border}` }}>
+            <div key={o.id} className={checked && flashCardId === o.id ? 'topic-focus-card--selected' : undefined} style={{ ...styles.card, marginBottom: 8, padding: 0, overflow: 'hidden', border: checked ? `1px solid ${c.border}` : `1px solid ${COLORS.border}` }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '10px 12px' }}>
                 <input type="checkbox" checked={checked} onChange={() => toggleObjective(o.id)} aria-label={`Select ${o.id}`} style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
                 <button type="button" onClick={() => toggleExpand(o.id)} style={{ flex: 1, minWidth: 0, background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', color: COLORS.silver, fontFamily: 'inherit' }}>
@@ -427,6 +503,7 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
                       <button
                         key={con.id}
                         type="button"
+                        className={sel && flashConceptId === con.id ? 'topic-focus-concept-pill--selected' : undefined}
                         onClick={() => toggleConcept(con.id)}
                         style={{
                           ...styles.pill(sel ? kindAccent(con.kind) : 'silver'),
@@ -470,9 +547,26 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [] }) {
         )}
       </div>
 
-      <div className="topic-focus-bar">
-        <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 6 }}>
-          {selectedObjectives.size} objective{selectedObjectives.size === 1 ? '' : 's'} · {selectedConcepts.size} concept{selectedConcepts.size === 1 ? '' : 's'} · ~{questionEstimate} Q
+      <div className={`topic-focus-bar${selectionCount > 0 ? ' topic-focus-bar--active' : ''}${barPulse ? ' topic-focus-bar--pulse' : ''}`}>
+        {selectionToast && (
+          <div className="topic-focus-toast" role="status" aria-live="polite">{selectionToast}</div>
+        )}
+        {selectionCount === 0 && (
+          <div className="topic-focus-bar__hint">Select objectives or tap <strong>Add to quiz</strong> to build your set.</div>
+        )}
+        {selectionCount > 0 && !canStart && (
+          <div className="topic-focus-bar__warn">No matching questions for this mix — try full objectives or a preset.</div>
+        )}
+        <div className="topic-focus-bar__stats">
+          <span className={`topic-focus-bar__stat${statBump ? ' topic-focus-bar__stat--bump' : ''}`}>
+            {selectedObjectives.size} objective{selectedObjectives.size === 1 ? '' : 's'}
+          </span>
+          <span className={`topic-focus-bar__stat${statBump ? ' topic-focus-bar__stat--bump' : ''}`}>
+            {selectedConcepts.size} concept{selectedConcepts.size === 1 ? '' : 's'}
+          </span>
+          <span className={`topic-focus-bar__stat topic-focus-bar__stat--questions${statBump ? ' topic-focus-bar__stat--bump' : ''}`}>
+            ~{questionEstimate} Q
+          </span>
         </div>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <button type="button" style={{ ...styles.secondaryBtn, flex: '1 1 80px', fontSize: 'var(--ccna-type-sm)' }} onClick={clearSelection} disabled={!selectionCount}>Clear</button>

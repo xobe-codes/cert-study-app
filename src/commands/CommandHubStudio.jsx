@@ -7,6 +7,7 @@ import {
   COMMAND_PRESETS, CATEGORY_LABEL, MODE_LABEL, DEVICE_LABEL,
 } from './commandWorkflows.js'
 import CommandDetailPanel from './CommandDetailPanel.jsx'
+import StudyModeHeader from '../components/StudyModeHeader.jsx'
 
 const CATEGORY_FILTERS = [
   { id: 'all', label: 'All types' },
@@ -76,11 +77,11 @@ export default function CommandHubStudio({ onBack, onSelectObjective }) {
 
   return (
     <div className="command-hub-studio">
-      <button type="button" style={styles.backBtn} onClick={onBack}>‹ Back</button>
-      <h1 style={styles.h1}>Command Hub</h1>
-      <p style={{ ...styles.small, marginBottom: 12, lineHeight: 1.5 }}>
-        CCNA IOS reference — search commands, read what they do, see sample output, and follow config workflows.
-      </p>
+      <StudyModeHeader
+        title="Command Hub"
+        onBack={onBack}
+        subtitle="CCNA IOS reference — search commands, read what they do, see sample output, and follow config workflows."
+      />
 
       <div className="command-hub-presets ccna-h-scroll" style={{ display: 'flex', gap: 6, overflowX: 'auto', marginBottom: 12, paddingBottom: 4 }}>
         {COMMAND_PRESETS.map(p => (

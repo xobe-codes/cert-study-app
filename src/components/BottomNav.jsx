@@ -1,6 +1,13 @@
 import React from 'react'
 
 function NavIcon({ name }) {
+  if (name === 'back') {
+    return (
+      <svg className="app-bottom-nav-svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M15 18 9 12l6-6" />
+      </svg>
+    )
+  }
   if (name === 'home') {
     return (
       <svg className="app-bottom-nav-svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -24,9 +31,9 @@ function NavIcon({ name }) {
   )
 }
 
-export default function BottomNav({ active, onHome, onSearch, onMore, compact = false }) {
+export default function BottomNav({ active, onHome, onSearch, onMore, compact = false, homeLabel = 'Home', homeIcon = 'home' }) {
   const items = [
-    { id: 'home', label: 'Home', icon: 'home', onClick: onHome },
+    { id: 'home', label: homeLabel, icon: homeIcon, onClick: onHome },
     { id: 'search', label: 'Search', icon: 'search', onClick: onSearch },
     { id: 'more', label: 'More', icon: 'more', onClick: onMore },
   ]

@@ -32,7 +32,7 @@ function mapLegacyTab(tab) {
 }
 
 export default function ObjectiveScreen({
-  objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed,
+  objective, progress, apiOnline, offlineReady, packagingId, onPackage, onBack, backLabel = 'Back', onUpdateProgress, onMissed, missed, onOpenLab, onSelectObjective, onOpenMissed,
   ExplainTab, VisualAidTab, QuizTab, CLIDrillTab, SubnettingTab, VLSMTab, IPv6CalcTab, ACLCalcTab,
   examMode = false,
   premiumUnlocked = false,
@@ -233,9 +233,9 @@ export default function ObjectiveScreen({
       <div className="objective-header objective-header--sticky">
         <div className="objective-sticky-chrome">
           <div className="objective-wayfind-row objective-wayfind-row--compact">
-            <button type="button" className="objective-back-btn" onClick={onBack} aria-label="Back to topics">
+            <button type="button" className="objective-back-btn" onClick={onBack} aria-label={`Back to ${backLabel.toLowerCase()}`}>
               <span className="objective-back-btn__icon" aria-hidden="true">←</span>
-              <span className="objective-back-btn__label">Topics</span>
+              <span className="objective-back-btn__label">{backLabel}</span>
             </button>
             <ObjectiveOverflowMenu
               objective={objective}
