@@ -40,6 +40,7 @@ import { formatCuratedAttribution } from './curatedDisplay.js'
 import { STORAGE_KEYS } from './storageKeys.js'
 import McChoices from './components/McChoices.jsx'
 import AnswerReview from './components/AnswerReview.jsx'
+import { QuizRichText, QuestionMeta, OrderingQuestion } from './components/QuizQuestionChrome.jsx'
 import Spinner from './components/Spinner.jsx'
 import ErrorBox from './components/ErrorBox.jsx'
 import StatusDot from './components/StatusDot.jsx'
@@ -106,6 +107,9 @@ import {
 import { applyAnswerReviewToQuestion, inferTrapForChoice } from './answerReviewLogic.js'
 import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import pkg from '../package.json'
+import { buildDiagnosticSet } from './onboarding/diagnosticSet.js'
+
+const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
 const PREMIUM_TOAST_MESSAGES = {
   [PREMIUM_FEATURES.tutor]: 'AI Tutor and Study Lens synthesis unlock with supporter access.',
@@ -3128,7 +3132,7 @@ function FocusModeSession({ progress, onBack, onMissed, onDone }) {
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={current.question} /></div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
         ) : (
@@ -3360,7 +3364,7 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
       {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
       <div style={styles.card}>
         <QuestionMeta q={current} />
-        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={current.question} /></div>
         {ordering ? (
           <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
         ) : (
@@ -3392,36 +3396,15 @@ function ReviewSession({ onBack, onMissed, onDone, onOpenSection }) {
    curated questions (zero API cost). Seeds initial mastery estimates for the
    objectives it samples and recommends a starting point.
    ========================================================================= */
-const DIAGNOSTIC_CAP = 18
-const DIAGNOSTIC_PER_OBJ = 2
-const DIAGNOSTIC_SKILL_MIN = 5 // ordering + troubleshooting in placement check
-
-async function buildDiagnosticSet() {
-  const { allSkillQuestions } = await import('./data/ccnaSkillQuestions.js')
-  const skillPool = allSkillQuestions().filter(q => isOrderingQuestion(q) || q.type === 'troubleshooting')
-  const mcPool = []
-  for (const obj of ALL_OBJECTIVES) {
-    if (!hasCuratedQuestions(obj.id)) continue
-    getCuratedQuestions(obj.id)
-      .filter(isMcQuestion)
-      .slice(0, DIAGNOSTIC_PER_OBJ)
-      .forEach(q => mcPool.push({ ...q, objectiveId: obj.id }))
-  }
-  const skillPick = randomizeQuestionOrder(skillPool).slice(0, DIAGNOSTIC_SKILL_MIN)
-  const seen = new Set(skillPick.map(q => q.id || q.question))
-  const mcPick = randomizeQuestionOrder(mcPool.filter(q => !seen.has(q.id || q.question)))
-    .slice(0, Math.max(0, DIAGNOSTIC_CAP - skillPick.length))
-  return randomizeQuestionOrder([...skillPick, ...mcPick]).slice(0, DIAGNOSTIC_CAP)
-}
-
 function Onboarding({ onComplete, onSkip }) {
   const showNavHint = useNavHint()
   const doneHintFired = useRef(false)
-  const [phase, setPhase] = useState('intro') // intro | active | done
+  const [phase, setPhase] = useState('intro') // intro | loading | active | done | error
   const [queue, setQueue] = useState([])
   const [current, setCurrent] = useState(null)
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
+  const [loadError, setLoadError] = useState(null)
   const [orderDraft, setOrderDraft] = useState([])
   const [results, setResults] = useState({})
   const [total, setTotal] = useState(0)
@@ -3449,6 +3432,7 @@ function Onboarding({ onComplete, onSkip }) {
   }, [phase, results, showNavHint])
 
   function recordResult(correct) {
+    if (!current?.objectiveId) return
     setResults(r => {
       const e = r[current.objectiveId] || { correct: 0, total: 0 }
       return { ...r, [current.objectiveId]: { correct: e.correct + (correct ? 1 : 0), total: e.total + 1 } }
@@ -3457,14 +3441,28 @@ function Onboarding({ onComplete, onSkip }) {
   }
 
   function start() {
+    setLoadError(null)
+    setPhase('loading')
     ;(async () => {
-      const set = await buildDiagnosticSet()
-      if (set.length === 0) { onComplete({}); return }
-      setTotal(set.length)
-      setResults({})
-      setAnswered(0)
-      setCurrent(set[0]); setQueue(set.slice(1)); setSelected(null); setRevealed(false)
-      setPhase('active')
+      try {
+        const set = await buildDiagnosticSet()
+        if (set.length === 0) {
+          onComplete({})
+          return
+        }
+        setTotal(set.length)
+        setResults({})
+        setAnswered(0)
+        setCurrent(set[0])
+        setQueue(set.slice(1))
+        setSelected(null)
+        setRevealed(false)
+        setPhase('active')
+      } catch (err) {
+        console.error('[Onboarding] buildDiagnosticSet failed', err)
+        setLoadError(err?.message || 'Could not load placement questions.')
+        setPhase('error')
+      }
     })()
   }
 
@@ -3489,7 +3487,7 @@ function Onboarding({ onComplete, onSkip }) {
 
   if (phase === 'intro') {
     return (
-      <div>
+      <div className="onboarding-shell">
         <div style={styles.card}>
           <h1 style={styles.h1}>Welcome 👋🏾</h1>
           <p style={{ fontSize: 'var(--ccna-type-md)', lineHeight: 1.6, color: COLORS.silver, marginBottom: 10 }}>
@@ -3504,12 +3502,40 @@ function Onboarding({ onComplete, onSkip }) {
     )
   }
 
+  if (phase === 'loading') {
+    return (
+      <div className="onboarding-shell">
+        <Spinner label="Building your placement check…" />
+      </div>
+    )
+  }
+
+  if (phase === 'error') {
+    return (
+      <div className="onboarding-shell">
+        <div style={styles.card}>
+          <h2 style={styles.h2}>Couldn't start placement check</h2>
+          <p style={{ ...styles.small, marginBottom: 12 }}>{loadError}</p>
+          <button style={styles.primaryBtn} onClick={start}>Try again</button>
+          <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={onSkip}>Skip — start studying</button>
+        </div>
+      </div>
+    )
+  }
+
   if (phase === 'active') {
+    if (!current) {
+      return (
+        <div className="onboarding-shell">
+          <Spinner label="Loading question…" />
+        </div>
+      )
+    }
     const ordering = isOrderingQuestion(current)
     const isCorrect = revealed && (ordering ? gradeQuestion(current, orderDraft) : gradeQuestion(current, selected))
     const obj = ALL_OBJECTIVES.find(o => o.id === current.objectiveId)
     return (
-      <div>
+      <div className="onboarding-shell onboarding-shell--quiz">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
           <h1 style={{ ...styles.h1, margin: 0 }}>Placement Check</h1>
           <span style={styles.small}>{answered} of {total}</span>
@@ -3517,7 +3543,7 @@ function Onboarding({ onComplete, onSkip }) {
         {obj && <div style={{ ...styles.small, marginBottom: 8 }}>{obj.id} {obj.title}</div>}
         <div style={styles.card}>
           <QuestionMeta q={current} />
-          <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><RichText text={current.question} /></div>
+          <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 14, lineHeight: 1.5, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={current.question} /></div>
           {ordering ? (
             <OrderingQuestion items={orderDraft} onChange={setOrderDraft} revealed={revealed} correctOrder={revealed ? current.orderItems : null} />
           ) : (
@@ -3544,7 +3570,7 @@ function Onboarding({ onComplete, onSkip }) {
   const overall = rows.length ? rows.reduce((s, r) => s + r.acc, 0) / rows.length : 0
 
   return (
-    <div>
+    <div className="onboarding-shell">
       <div style={styles.card}>
         <h2 style={styles.h2}>Placement check complete</h2>
         <p style={{ fontSize: 'var(--ccna-type-2xl)', fontWeight: 700, color: COLORS.mint, margin: '4px 0' }}>{fmtPct(overall)}</p>
@@ -4206,13 +4232,13 @@ function TutorChat({ progress, missed, onBack }) {
             border: `1px solid ${m.role === 'user' ? COLORS.borderGlow : COLORS.skyBorder}`,
             whiteSpace: 'pre-wrap', fontSize: 'var(--ccna-type-md)', lineHeight: 1.5,
           }}>
-            <RichText text={m.content} />
+            <QuizRichText text={m.content} />
           </div>
         ))}
         {loading && (
           streamingText ? (
             <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, whiteSpace: 'pre-wrap', fontSize: 'var(--ccna-type-md)', lineHeight: 1.5 }}>
-              <RichText text={streamingText} />
+              <QuizRichText text={streamingText} />
               <span className="ccna-pulse" style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: COLORS.sky, marginLeft: 4 }} />
             </div>
           ) : (
@@ -4397,17 +4423,22 @@ export default function App() {
       setSettingsReduceMotion(reduceMotion)
       setSettingsExamMode(await loadExamMode())
       if (!onboardDone) {
-        if (Object.keys(p).length === 0) setView('onboarding')
-        else await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
+        if (Object.keys(p).length === 0) {
+          setView('onboarding')
+        } else {
+          await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
+        }
       }
-      const hashRoute = parseAppHash()
-      if (hashRoute?.objective) {
-        setReturnToView('home')
-        setSelectedObjective(hashRoute.objective)
-        setView('objective')
-      } else if (hashRoute?.view) {
-        setReturnToView('home')
-        setView(hashRoute.view)
+      if (onboardDone || Object.keys(p).length > 0) {
+        const hashRoute = parseAppHash()
+        if (hashRoute?.objective) {
+          setReturnToView('home')
+          setSelectedObjective(hashRoute.objective)
+          setView('objective')
+        } else if (hashRoute?.view) {
+          setReturnToView('home')
+          setView(hashRoute.view)
+        }
       }
       const updatedStreak = await bumpStreak()
       setStreak(updatedStreak)

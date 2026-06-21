@@ -1349,6 +1349,12 @@ export function buildAppShellCss(colors) {
     .topic-focus-concept-pill--selected {
       animation: topic-focus-pill-pop 0.28s ease both;
     }
+    .onboarding-shell {
+      padding-bottom: calc(env(safe-area-inset-bottom) + 16px);
+    }
+    .onboarding-shell--quiz {
+      padding-bottom: calc(env(safe-area-inset-bottom) + 24px);
+    }
     @keyframes topic-focus-pill-pop {
       0% { transform: scale(0.94); }
       55% { transform: scale(1.04); }
