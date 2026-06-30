@@ -68,18 +68,19 @@ import {
 } from './premium/premiumFeatures.js'
 import AppTour from './components/AppTour.jsx'
 import BottomNav from './components/BottomNav.jsx'
-import CiscoTerminal from './components/CiscoTerminal.jsx'
 import LabView from './lab/LabView.jsx'
 import LabsHub from './lab/LabsHub.jsx'
 import TopicFocusStudio from './topic/TopicFocusStudio.jsx'
 import TopicFocusSession from './topic/TopicFocusSession.jsx'
 import CommandHubStudio from './commands/CommandHubStudio.jsx'
 import StudyLensStudio from './lens/StudyLensStudio.jsx'
+import { COMMAND_DRILLS } from './lab/commandDrills.js'
+import CLIDrillTab from './lab/CLIDrillTab.jsx'
 import {
-  normalizeCmd,
-  processCliLine,
-  cliHostnameForObjective,
-} from './lab/cliEngine.js'
+  QUIZ_BANK_MIN, MASTERY_GATE,
+  loadQuizBank, saveQuizBank, mergeIntoBank, enableSectionReview,
+  quizQuestionKey,
+} from './quiz/quizBankStorage.js'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 import {
   loadExamDate,
@@ -107,7 +108,6 @@ import {
 } from './ai/claudeClient.js'
 import { computeMastery } from './netUtils.js'
 import { logEvent } from './eventLog.js'
-import { loadCliStats } from './lab/cliStatsStorage.js'
 import { importCcnaJsonFromFile } from './features/export/importCcnaJson.js'
 import ExportModal from './features/export/ExportModal.jsx'
 import SyncModal from './features/sync/SyncModal.jsx'
@@ -119,7 +119,6 @@ import ReviewSession from './features/review/ReviewSession.jsx'
 import Onboarding from './features/onboarding/Onboarding.jsx'
 import MissedReview from './features/missed/MissedReview.jsx'
 import MetricsDashboard from './features/metrics/MetricsDashboard.jsx'
-import { COMMAND_DRILLS } from './lab/commandDrills.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
@@ -190,101 +189,6 @@ async function bumpStreak() {
   await saveStreak(streak)
   return streak
 }
-
-/* =========================================================================
-   QUIZ BANK — generate-once, reuse-often. Questions are stored permanently
-   per objective so review sessions cost zero API calls. We only call the API
-   when the bank is too small or the learner explicitly asks for fresh ones.
-   bank shape: { [objectiveId]: [{ id, question, choices, correctIndex,
-                 explanation, ratings:[{value,at}], attempts:[{correct,at}] }] }
-   ========================================================================= */
-const QUIZ_BANK_MIN = 5   // questions needed before we can run a no-API session
-const QUIZ_SESSION_SIZE = 5
-
-async function loadQuizBank() {
-  return (await window.storage.getItem(STORAGE_KEYS.quizBank)) || {}
-}
-async function saveQuizBank(bank) {
-  await window.storage.setItem(STORAGE_KEYS.quizBank, bank)
-}
-function normalizeQuestionText(q) {
-  return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
-}
-// Adds new questions to an objective's bank, skipping duplicates. Returns the
-// updated full bank object (caller persists it).
-function mergeIntoBank(bank, objectiveId, questions) {
-  const existing = bank[objectiveId] || []
-  const seen = new Set(existing.map(q => normalizeQuestionText(q.question)))
-  let counter = existing.length
-  const added = questions
-    .filter(q => q && q.question && !seen.has(normalizeQuestionText(q.question)))
-    .map(q => normalizeQuestionForBank(q, objectiveId, counter++))
-  bank[objectiveId] = [...existing, ...added]
-  return bank
-}
-// Picks up to sessionSize questions — see lesson/quizCoverage.js for CKU-aware logic.
-// Records an attempt + optional confidence rating against a banked question.
-// `schedule` gates spaced-repetition: a question only joins the review queue
-// once its section has cleared the mastery gate (see enableSectionReview).
-// Reviewing material the learner doesn't yet understand just reinforces
-// confusion, so until the gate opens we record attempts but assign no schedule.
-async function recordQuizResult(objectiveId, questionId, { correct, rating, schedule = true } = {}) {
-  const bank = await loadQuizBank()
-  const list = bank[objectiveId]
-  if (!list) return
-  const q = list.find(x => x.id === questionId)
-  if (!q) return
-  if (typeof correct === 'boolean') {
-    q.attempts.push({ correct, at: Date.now() })
-    if (schedule) q.srs = nextSrs(q.srs, correct) // advance spaced-repetition schedule
-  }
-  if (rating) q.ratings.push({ value: rating, at: Date.now() })
-  await saveQuizBank(bank)
-}
-
-/* =========================================================================
-   SPACED REPETITION — expanding fixed-ladder scheduler grounded in the
-   forgetting curve. Each answered question carries a schedule so it returns
-   for review on the right day, across sessions and devices (synced). All local.
-   srs shape: { due (ts), interval (days), reps (consecutiveCorrect),
-                lapses, intervalIndex }
-   ========================================================================= */
-const DAY_MS = 86400000
-// Expanding intervals (days): 2d → 1wk → 2wk → 1mo → 2mo (maintenance).
-const SRS_LADDER = [2, 7, 14, 30, 60]
-const MASTERY_GATE = 0.7 // section accuracy required before reviews schedule
-function nextSrs(prev, correct) {
-  const s = prev || { reps: 0, lapses: 0 }
-  let reps = s.reps || 0
-  let lapses = s.lapses || 0
-  if (correct) {
-    reps += 1                       // advance to the next, longer interval
-  } else {
-    reps = 0                        // lapse: reset to the 2-day interval + flag
-    lapses += 1
-  }
-  const intervalIndex = Math.min(Math.max(reps - 1, 0), SRS_LADDER.length - 1)
-  const interval = SRS_LADDER[intervalIndex]
-  return { interval, reps, lapses, intervalIndex, due: Date.now() + interval * DAY_MS }
-}
-// Mastery gate: once a learner clears MASTERY_GATE on a section, its already-
-// answered questions enter the review queue (seeded from their last attempt).
-// Mirrors seedTestedOutReview but for the normal "studied + passed" path.
-async function enableSectionReview(objectiveId) {
-  const bank = await loadQuizBank()
-  const list = bank[objectiveId]
-  if (!list) return
-  let changed = false
-  list.forEach(q => {
-    if ((q.attempts?.length || 0) > 0 && !q.srs) {
-      q.srs = nextSrs(undefined, q.attempts[q.attempts.length - 1].correct)
-      changed = true
-    }
-  })
-  if (changed) await saveQuizBank(bank)
-}
-
-
 
 /* =========================================================================
    CROSS-DEVICE SYNC  — shareable code + D1 (via /api/sync). The bundle holds
@@ -361,7 +265,7 @@ function mergeQuizBank(a = {}, b = {}) {
   for (const id of new Set([...Object.keys(a), ...Object.keys(b)])) {
     const map = {}
     ;[...(a[id] || []), ...(b[id] || [])].forEach(q => {
-      const k = normalizeQuestionText(q.question)
+      const k = quizQuestionKey(q.question)
       // keep the copy with more recorded attempts (more learner history)
       if (!map[k] || (q.attempts?.length || 0) > (map[k].attempts?.length || 0)) map[k] = q
     })
@@ -1138,177 +1042,6 @@ function VisualAidTab({ objective, premiumUnlocked, onPremiumBlocked }) {
         <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => fetchVisual(true)}>
           {hasCuratedVisual ? 'Generate AI visual instead' : 'Regenerate visual'}
         </button>
-      )}
-    </div>
-  )
-}
-
-// Tested-out topics still re-surface in spaced repetition: add the
-// pre-assessment questions to the quiz bank with an SRS review due in ~7 days.
-async function seedTestedOutReview(objectiveId, questions) {
-  let bank = await loadQuizBank()
-  bank = mergeIntoBank(bank, objectiveId, questions)
-  const now = Date.now()
-  const incoming = new Set(questions.map(q => normalizeQuestionText(q.question)))
-  bank[objectiveId].forEach(q => {
-    if (incoming.has(normalizeQuestionText(q.question)) && (q.attempts?.length || 0) === 0) {
-      q.attempts = [{ correct: true, at: now }]
-      // Tested out → seed at the 1-week interval (ladder index 1).
-      q.srs = { interval: SRS_LADDER[1], reps: 2, lapses: 0, intervalIndex: 1, due: now + SRS_LADDER[1] * DAY_MS }
-    }
-  })
-  await saveQuizBank(bank)
-}
-
-/* =========================================================================
-   CLI DRILL TAB — uses shared engine in src/lab/cliEngine.js
-   ========================================================================= */
-
-/* ---- CLI skill metrics (local, feeds the future dashboard) ---- */
-async function recordCliLabResult(objectiveId, patch) {
-  const all = await loadCliStats()
-  const prev = all[objectiveId] || { runs: 0, bestScore: 0, lastScore: 0, commandsEntered: 0, syntaxErrors: 0, wrongModeErrors: 0, hintsUsed: 0, completedObjectives: 0, totalObjectives: 0 }
-  const merged = {
-    ...prev,
-    runs: prev.runs + (patch.completed ? 1 : 0),
-    bestScore: Math.max(prev.bestScore, patch.score ?? 0),
-    lastScore: patch.score ?? prev.lastScore,
-    commandsEntered: prev.commandsEntered + (patch.commandsEntered || 0),
-    syntaxErrors: prev.syntaxErrors + (patch.syntaxErrors || 0),
-    wrongModeErrors: prev.wrongModeErrors + (patch.wrongModeErrors || 0),
-    hintsUsed: prev.hintsUsed + (patch.hintsUsed || 0),
-    completedObjectives: Math.max(prev.completedObjectives, patch.completedObjectives || 0),
-    totalObjectives: patch.totalObjectives || prev.totalObjectives,
-    updatedAt: Date.now(),
-  }
-  all[objectiveId] = merged
-  await window.storage.setItem(STORAGE_KEYS.cliStats, all)
-}
-
-function CLIDrillTab({ objective }) {
-  const drills = COMMAND_DRILLS[objective.id] || []
-  const host = cliHostnameForObjective(objective.id)
-
-  const [mode, setMode] = useState('user')
-  const [input, setInput] = useState('')
-  const [history, setHistory] = useState([])
-  const [statuses, setStatuses] = useState(() => drills.map(() => false))
-  const [hintIdx, setHintIdx] = useState(null)
-  const [done, setDone] = useState(false)
-  const counters = useRef({ commandsEntered: 0, syntaxErrors: 0, wrongModeErrors: 0, hintsUsed: 0 })
-
-  const reset = useCallback(() => {
-    setMode('user'); setInput(''); setHistory([]); setStatuses(drills.map(() => false))
-    setHintIdx(null); setDone(false)
-    counters.current = { commandsEntered: 0, syntaxErrors: 0, wrongModeErrors: 0, hintsUsed: 0 }
-  }, [drills])
-
-  useEffect(() => { reset() }, [objective.id, reset])
-
-  if (drills.length === 0) {
-    return <p style={styles.small}>No CLI lab is defined for this objective.</p>
-  }
-
-  function submit() {
-    const raw = input.trim()
-    if (!raw) return
-
-    const objectives = drills.map(d => ({ answer: d.answer, label: d.prompt, hint: d.hint }))
-    const result = processCliLine({ raw, mode, host, objectives, completed: statuses })
-
-    setInput('')
-    counters.current.commandsEntered += 1
-    counters.current.syntaxErrors += result.counters.syntaxErrors
-    counters.current.wrongModeErrors += result.counters.wrongModeErrors
-
-    if (normalizeCmd(raw) === 'hint') {
-      const nextIdx = statuses.findIndex(s => !s)
-      if (nextIdx >= 0) { setHintIdx(nextIdx); counters.current.hintsUsed += 1 }
-    }
-
-    let lines = [...result.lines]
-    let nextStatuses = statuses
-
-    if (result.newlyCompleted.length) {
-      nextStatuses = [...statuses]
-      result.newlyCompleted.forEach(i => {
-        nextStatuses[i] = true
-        lines = lines.map(l => (
-          l.kind === 'ok' && l.text.startsWith('% OK —')
-            ? { text: `% Objective complete: ${drills[i].prompt}`, kind: 'ok' }
-            : l
-        ))
-        logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: true })
-      })
-      setStatuses(nextStatuses)
-
-      if (nextStatuses.every(Boolean)) {
-        const completedCount = nextStatuses.filter(Boolean).length
-        const score = Math.round((completedCount / drills.length) * 100)
-        lines.push({ text: `% Lab complete — ${completedCount}/${drills.length} objectives. Score: ${score}%`, kind: 'ok' })
-        setDone(true)
-        recordCliLabResult(objective.id, {
-          completed: true, score,
-          completedObjectives: completedCount, totalObjectives: drills.length,
-          ...counters.current,
-        })
-        logEvent('user_completed_cli_lab', { objectiveId: objective.id, score })
-      }
-    } else if (result.counters.syntaxErrors) {
-      logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'syntax' })
-    } else if (result.counters.wrongModeErrors) {
-      logEvent('user_entered_cli_command', { objectiveId: objective.id, ok: false, reason: 'mode' })
-    }
-
-    setHistory(h => [...h, ...lines])
-    setMode(result.newMode)
-  }
-
-  const completed = statuses.filter(Boolean).length
-
-  return (
-    <div>
-      <p style={{ ...styles.small, marginBottom: 10 }}>
-        Interactive IOS lab. Type real commands — navigate with <code style={{ fontFamily: 'ui-monospace, monospace' }}>enable</code>, <code style={{ fontFamily: 'ui-monospace, monospace' }}>configure terminal</code>, <code style={{ fontFamily: 'ui-monospace, monospace' }}>interface …</code>, <code style={{ fontFamily: 'ui-monospace, monospace' }}>exit</code>. Type <code style={{ fontFamily: 'ui-monospace, monospace' }}>hint</code> anytime.
-      </p>
-
-      <div style={{ ...styles.card, padding: 12, marginBottom: 10 }}>
-        <div style={{ ...styles.small, fontWeight: 700, marginBottom: 8 }}>Lab objectives · {completed}/{drills.length}</div>
-        {drills.map((d, i) => (
-          <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '4px 0', borderBottom: i < drills.length - 1 ? `1px solid ${COLORS.border}` : 'none' }}>
-            <span style={{ color: statuses[i] ? COLORS.mint : COLORS.silverDim, fontSize: 'var(--ccna-type-sm)', marginTop: 1 }}>{statuses[i] ? '✓' : '○'}</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 'var(--ccna-type-sm)', color: statuses[i] ? COLORS.silverMid : COLORS.silver, lineHeight: 1.4, textDecoration: statuses[i] ? 'line-through' : 'none' }}>
-                <OverflowMarquee text={d.prompt} style={{ fontSize: 'var(--ccna-type-sm)' }} />
-              </div>
-              {hintIdx === i && <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.sky, marginTop: 2 }}>Hint: {d.hint}</div>}
-            </div>
-            {!statuses[i] && (
-              <button
-                type="button"
-                onClick={() => { setHintIdx(i); counters.current.hintsUsed += 1 }}
-                style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '2px 4px', minHeight: 28 }}
-              >Hint</button>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div style={{ ...styles.card, padding: 0, overflow: 'hidden', border: `1px solid ${COLORS.border}`, marginBottom: 8 }}>
-        <CiscoTerminal
-          host={host}
-          mode={mode}
-          history={history}
-          input={input}
-          onInputChange={setInput}
-          onSubmit={submit}
-          disabled={done}
-          emptyMessage={`${host} terminal ready. Type enable to begin.`}
-        />
-      </div>
-
-      {done && (
-        <button type="button" style={styles.primaryBtn} onClick={reset}>Restart lab</button>
       )}
     </div>
   )

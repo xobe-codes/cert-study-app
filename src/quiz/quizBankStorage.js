@@ -2,12 +2,18 @@ import { STORAGE_KEYS } from '../storageKeys.js'
 import { normalizeQuestionForBank } from '../questionUtils.js'
 
 export const QUIZ_BANK_MIN = 5
+export const MASTERY_GATE = 0.7
 
 const DAY_MS = 86400000
 const SRS_LADDER = [2, 7, 14, 30, 60]
 
 function normalizeQuestionText(q) {
   return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
+}
+
+/** Dedup key for quiz bank merge (sync + import). */
+export function quizQuestionKey(q) {
+  return normalizeQuestionText(q?.question ?? q)
 }
 
 function nextSrs(prev, correct) {

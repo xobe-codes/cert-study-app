@@ -1,5 +1,7 @@
 /** Engineer-view verify layers for Tier C factory objectives (show commands + traps). */
 
+import { FACTORY_ENGINEER_VIEW_PATCHES_WAVE2 } from './factoryEngineerViewPatchesWave2.js'
+
 export const FACTORY_ENGINEER_VIEW_PATCHES = {
   '2.3': {
     engineerView: {
@@ -182,4 +184,5 @@ export const FACTORY_ENGINEER_VIEW_PATCHES = {
       },
     },
   },
+  ...FACTORY_ENGINEER_VIEW_PATCHES_WAVE2,
 }

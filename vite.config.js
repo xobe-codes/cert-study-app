@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  // Cloudflare Pages serves the app at the domain root.
-  base: '/',
+  // Cloudflare Pages: `/`. GitHub Pages project site: set VITE_BASE=/cert-study-app/ in deploy workflow.
+  base: process.env.VITE_BASE || '/',
   build: {
     rollupOptions: {
       output: {
