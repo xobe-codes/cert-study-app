@@ -24,6 +24,16 @@ export async function buildDiagnosticSet() {
       .forEach(q => mcPool.push({ ...q, objectiveId: obj.id }))
   }
   const skillPick = randomizeQuestionOrder(skillPool).slice(0, DIAGNOSTIC_SKILL_MIN)
+  const orderingInPick = skillPick.some(isOrderingQuestion)
+  const orderingAvailable = skillPool.some(isOrderingQuestion)
+  if (orderingAvailable && !orderingInPick) {
+    const orderingQ = randomizeQuestionOrder(skillPool.filter(isOrderingQuestion))[0]
+    if (orderingQ && skillPick.length >= DIAGNOSTIC_SKILL_MIN) {
+      skillPick[skillPick.length - 1] = orderingQ
+    } else if (orderingQ) {
+      skillPick.push(orderingQ)
+    }
+  }
   const seen = new Set(skillPick.map(q => q.id || q.question))
   const mcPick = randomizeQuestionOrder(mcPool.filter(q => !seen.has(q.id || q.question)))
     .slice(0, Math.max(0, DIAGNOSTIC_CAP - skillPick.length))

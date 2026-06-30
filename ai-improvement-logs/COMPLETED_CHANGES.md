@@ -43,3 +43,5 @@
 - Added `contentDepth35.test.js`, `reviewDailySmoke.test.js`; optional `e2e/review-daily.spec.js` + `npm run test:e2e` (Playwright)
 - **2026-06-30** `content_depth_35_hsrp`: Added 2 HSRP troubleshooting skill questions; fixed audit scanner to count clean bank; review smoke tests
 - **2026-06-30** `content_depth_wave2`: Skill questions for 5.9/6.1; shared questionBankCount; Playwright CI job
+- **2026-06-30** `extract_app_shell_modules`: Extract tutor/search/modals/sessions to src/features/; App.jsx 5071→3401 lines (−1670)
+- **2026-06-30** `labs_connectivity_wave`: Added LAB-ROUTE-FORWARD-32, LAB-OSPF-VERIFY-34, LAB-HSRP-VERIFY-35 + cliEngine show standby/protocols

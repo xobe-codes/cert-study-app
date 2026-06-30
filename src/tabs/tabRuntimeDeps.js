@@ -3,7 +3,7 @@
  */
 export {
   askClaudeJSON, MODEL, MODELS, AiBudgetWarning,
-} from '../ai/claudeClient.jsx'
+} from '../ai/claudeClient.js'
 
 export {
   EXPLAIN_CACHE_KEY, EXPLAIN_PROMPT_SYSTEM, EXPLAIN_SCHEMA,

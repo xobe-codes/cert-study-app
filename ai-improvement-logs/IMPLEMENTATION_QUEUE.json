@@ -205,7 +205,7 @@
     {
       "id": "extract_app_shell_modules",
       "priority": "high",
-      "status": "pending",
+      "status": "done",
       "area": "maintainability",
       "objectiveNumber": "app",
       "problem": "App.jsx still ~5k lines after tab extract",
@@ -224,7 +224,8 @@
         "src/App.jsx",
         "src/features/",
         "src/routes/"
-      ]
+      ],
+      "completedAt": "2026-06-30T09:23:49.890Z"
     },
     {
       "id": "engineer_view_tier_c",
@@ -252,7 +253,7 @@
     {
       "id": "labs_connectivity_wave",
       "priority": "high",
-      "status": "pending",
+      "status": "done",
       "area": "labs",
       "objectiveNumber": "3.2/3.4/3.5",
       "problem": "30 objectives have no lab; routing/FHRP gaps remain",
@@ -270,7 +271,8 @@
       "files": [
         "src/data/ccnaLabsExtended.js",
         "src/lab/cliEngine.js"
-      ]
+      ],
+      "completedAt": "2026-06-30T09:23:50.485Z"
     },
     {
       "id": "pwa_offline_curated",

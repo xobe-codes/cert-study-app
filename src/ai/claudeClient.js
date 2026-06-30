@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import { COLORS } from '../ui/appTheme.js'
+import { useState, useEffect } from 'react'
 import { STORAGE_KEYS } from '../storageKeys.js'
 
 const API_URL = 'https://api.anthropic.com/v1/messages'
 const PROXY_URL = '/api/claude'
-// Model tiers: cheap/mechanical generation runs on Haiku, reasoning-heavy work
-// (explanations, quizzes, tutor) on Sonnet. Routing per task keeps cost down.
 export const MODELS = { smart: 'claude-sonnet-4-6', fast: 'claude-haiku-4-5' }
 export const MODEL = MODELS.smart
 
-// Wraps a system string as a cacheable block so a stable prefix can be reused
-// across calls (prompt caching). Used where the context is large/repeated
-// (tutor turns, mock-exam domain notes).
 export function cachedSystem(text) {
   return [{ type: 'text', text, cache_control: { type: 'ephemeral' } }]
 }
 
-// In production we call our same-origin Cloudflare Pages Function, which holds
-// the API key server-side. During local `npm run dev` (no Function running) we
-// fall back to a direct browser call using the local .env key, so dev still works.
 const DEV_DIRECT = import.meta.env.DEV && !!import.meta.env.VITE_ANTHROPIC_API_KEY
 function claudeFetch(body) {
   if (DEV_DIRECT) {
@@ -40,8 +31,6 @@ function claudeFetch(body) {
   })
 }
 
-/* ---- Per-session AI call counter (in-memory; resets on page reload) ---- */
-// Lightweight pub/sub so any component can subscribe to call-count updates.
 let _sessionAiCalls = 0
 const _aiCallListeners = new Set()
 function bumpSessionAiCalls() {
@@ -51,50 +40,12 @@ function bumpSessionAiCalls() {
 function getSessionAiCalls() { return _sessionAiCalls }
 function subscribeAiCalls(fn) { _aiCallListeners.add(fn); return () => _aiCallListeners.delete(fn) }
 
-const AI_BUDGET_LIMIT = 20
-
-// Hook: re-renders the consumer whenever a new AI call completes.
-function useAiCallCount() {
+export function useAiCallCount() {
   const [count, setCount] = useState(() => getSessionAiCalls())
   useEffect(() => subscribeAiCalls(setCount), [])
   return count
 }
 
-// Subtle budget warning shown inside AI-powered sections once calls > 20.
-export function AiBudgetWarning() {
-  const count = useAiCallCount()
-  if (count <= AI_BUDGET_LIMIT) return null
-  return (
-    <div style={{
-      background: COLORS.amberDim, border: `1px solid ${COLORS.amberBorder}`,
-      borderRadius: 8, padding: '6px 10px', fontSize: 'var(--ccna-type-xs)', color: COLORS.amber,
-      marginBottom: 8,
-    }}>
-      ⚠ High API usage today ({count} calls) — consider packaging this objective offline for faster, free access.
-    </div>
-  )
-}
-
-// Small home-screen indicator showing how many AI calls have been made this session.
-function AiCallsIndicator() {
-  const count = useAiCallCount()
-  if (count === 0) return null
-  const overBudget = count > AI_BUDGET_LIMIT
-  return (
-    <div style={{
-      display: 'flex', alignItems: 'center', gap: 6,
-      fontSize: 'var(--ccna-type-xs)', color: overBudget ? COLORS.amber : COLORS.silverMid,
-      marginBottom: 12,
-    }}>
-      <span style={{ opacity: 0.7 }}>🤖</span>
-      <span>{count} AI call{count === 1 ? '' : 's'} this session</span>
-      {overBudget && <span style={{ color: COLORS.amber, fontWeight: 600 }}>· High usage</span>}
-    </div>
-  )
-}
-
-/* ---- Token usage + cost telemetry (local; no network) ---- */
-// $ per 1M tokens. Cache reads are ~0.1x input; cache writes ~1.25x.
 const PRICING = {
   'claude-sonnet-4-6': { in: 3, out: 15 },
   'claude-haiku-4-5': { in: 1, out: 5 },
@@ -108,7 +59,6 @@ function estimateCost(model, u = {}) {
   const output = u.output_tokens || 0
   return (input * r.in + cacheRead * r.in * 0.1 + cacheWrite * r.in * 1.25 + output * r.out) / 1e6
 }
-// Fire-and-forget: accumulate per-feature / per-model token + cost totals.
 async function logUsage(feature, model, u) {
   try {
     if (!u) return
@@ -128,9 +78,6 @@ async function logUsage(feature, model, u) {
   } catch { /* telemetry must never break the app */ }
 }
 
-// Core request loop: tries up to (1 + retries) times with 800ms / 1600ms backoff
-// (+jitter), retrying network errors and 429/5xx/529. Returns the parsed
-// response object. Throws an Error with a user-facing message on failure.
 export async function callClaude(body, retries = 2, feature = 'other') {
   const delays = [800, 1600]
   const wait = (ms) => new Promise(r => setTimeout(r, ms + Math.floor(Math.random() * 200)))
@@ -143,7 +90,6 @@ export async function callClaude(body, retries = 2, feature = 'other') {
       if (!res.ok) {
         let detail = ''
         try { detail = (await res.json())?.error?.message || '' } catch { /* body wasn't JSON */ }
-        // Retry on rate limit, overloaded (529), or server errors.
         if (res.status === 429 || res.status === 529 || res.status >= 500) {
           lastError = new Error(`Claude API error ${res.status}${detail ? `: ${detail}` : ''}`)
           if (attempt < retries) { await wait(delays[attempt] || 1600); continue }
@@ -169,12 +115,22 @@ export async function callClaude(body, retries = 2, feature = 'other') {
   throw lastError || new Error('Unknown error contacting Claude API.')
 }
 
-// Text completion. `model` lets callers pick a tier (defaults to Sonnet).
 export async function askClaude({ system, messages, max_tokens = 1000, model = MODEL, feature = 'other', retries = 2 }) {
   const data = await callClaude({ model, max_tokens, system, messages }, retries, feature)
   const text = data?.content?.find(b => b.type === 'text')?.text
   if (!text) throw new Error('Claude API returned an empty response.')
   return text
+}
+
+export async function askClaudeJSON({ system, messages, max_tokens = 1500, model = MODEL, schema, toolName = 'emit_result', feature = 'other', retries = 2 }) {
+  const tool = { name: toolName, description: 'Return the result as structured data.', input_schema: schema }
+  const data = await callClaude({
+    model, max_tokens, system, messages,
+    tools: [tool], tool_choice: { type: 'tool', name: toolName },
+  }, retries, feature)
+  const block = data?.content?.find(b => b.type === 'tool_use')
+  if (!block || !block.input) throw new Error('Claude returned no structured result. Please try again.')
+  return block.input
 }
 
 export async function askClaudeStream({ system, messages, max_tokens = 1000, model = MODEL, feature = 'other', onDelta }) {
@@ -235,16 +191,63 @@ export async function askClaudeStream({ system, messages, max_tokens = 1000, mod
   return text
 }
 
-// Structured output via a forced tool call: Claude must return data matching
-// `schema`, so we get a guaranteed-shaped object instead of parsing JSON out of
-// prose. Eliminates the whole "unexpected format" failure class.
-export async function askClaudeJSON({ system, messages, max_tokens = 1500, model = MODEL, schema, toolName = 'emit_result', feature = 'other', retries = 2 }) {
-  const tool = { name: toolName, description: 'Return the result as structured data.', input_schema: schema }
-  const data = await callClaude({
-    model, max_tokens, system, messages,
-    tools: [tool], tool_choice: { type: 'tool', name: toolName },
-  }, retries, feature)
-  const block = data?.content?.find(b => b.type === 'tool_use')
-  if (!block || !block.input) throw new Error('Claude returned no structured result. Please try again.')
-  return block.input
+export const QUIZ_SCHEMA = {
+  type: 'object', required: ['questions'],
+  properties: { questions: { type: 'array', items: {
+    type: 'object', required: ['question', 'choices', 'correctIndex', 'explanation', 'type', 'difficulty'],
+    properties: {
+      question: { type: 'string' },
+      choices: { type: 'array', items: { type: 'string' }, minItems: 2, maxItems: 4 },
+      correctIndex: { type: 'integer', minimum: 0, maximum: 3 },
+      explanation: { type: 'string' },
+      type: { type: 'string', enum: ['definition', 'scenario', 'application', 'true-false', 'troubleshooting'] },
+      difficulty: { type: 'string', enum: ['easy', 'medium', 'hard'] },
+      concept: { type: 'string' },
+    },
+  } } },
 }
+
+export const MOCK_SCHEMA = {
+  type: 'object', required: ['questions'],
+  properties: { questions: { type: 'array', items: {
+    type: 'object', required: ['objectiveId', 'question', 'choices', 'correctIndex', 'explanation'],
+    properties: {
+      objectiveId: { type: 'string' },
+      question: { type: 'string' },
+      choices: { type: 'array', items: { type: 'string' }, minItems: 4, maxItems: 4 },
+      correctIndex: { type: 'integer', minimum: 0, maximum: 3 },
+      explanation: { type: 'string' },
+    },
+  } } },
+}
+
+export const TERMS_SCHEMA = {
+  type: 'object', required: ['cards'],
+  properties: { cards: { type: 'array', items: {
+    type: 'object', required: ['term', 'detail'],
+    properties: { term: { type: 'string' }, detail: { type: 'string' } },
+  } } },
+}
+
+export const VISUAL_SCHEMA = {
+  type: 'object', required: ['type', 'title'],
+  properties: {
+    type: { type: 'string', enum: ['command_sequence', 'comparison', 'layer_stack', 'flow'] },
+    title: { type: 'string' },
+    steps: { type: 'array', items: { type: 'string' } },
+    layers: { type: 'array', items: { type: 'object', required: ['label'], properties: { label: { type: 'string' }, note: { type: 'string' } } } },
+    left: { type: 'object', properties: { label: { type: 'string' }, points: { type: 'array', items: { type: 'string' } } } },
+    right: { type: 'object', properties: { label: { type: 'string' }, points: { type: 'array', items: { type: 'string' } } } },
+  },
+}
+
+export async function checkApiReachable() {
+  try {
+    const res = await claudeFetch({ model: MODELS.fast, max_tokens: 1, messages: [{ role: 'user', content: 'hi' }] })
+    return res.status !== 0
+  } catch {
+    return false
+  }
+}
+
+export { AiBudgetWarning, AiCallsIndicator } from './claudeClientIndicators.jsx'

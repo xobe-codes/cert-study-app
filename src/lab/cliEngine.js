@@ -90,6 +90,29 @@ S     172.16.0.0/16 [1/0] via 10.0.0.2`,
   'show standby brief': `                     P indicates configured to preempt.
 Interface   Grp  Pri P State   Active          Standby         Virtual IP
 Gi0/0       1    150 P Active  local           192.168.1.3     192.168.1.1`,
+  'show standby': `GigabitEthernet0/0 - Group 1
+  State is Active
+  2 state changes, last state change 00:01:05
+  Virtual IP address is 192.168.1.1
+  Active virtual MAC address is 0000.0c07.ac01
+  Local virtual MAC address is 0000.0c07.ac01 (bia 0000.0c07.ac01)
+  Priority 150 (configured 150)
+  Preemption enabled
+  Active router is local
+  Standby router is 192.168.1.3, priority 100`,
+  'show ip protocols': `Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 1.1.1.1
+  Number of areas in this router is 1. 1 normal, 0 stub, 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.0.1.0 0.0.0.255 area 0
+    10.0.12.0 0.0.0.3 area 0
+  Routing Information Sources:
+    Gateway         Last updated
+    10.0.12.2                00:05:00
+  Distance: (default is 110)`,
   'show interfaces trunk': `Port        Mode         Encapsulation  Status        Native vlan
 Gi0/1       on           802.1q         trunking      1
 

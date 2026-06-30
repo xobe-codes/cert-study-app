@@ -1111,8 +1111,204 @@ const ROUTE_TABLE_31 = {
   packetFlows: FLOWS_ROUTE_TABLE_31,
 }
 
+/* ---- Router forwarding decision (3.2) ---- */
+const LAB_ROUTE_FORWARD_32 = {
+  id: 'LAB-ROUTE-FORWARD-32',
+  title: 'Verify Router Forwarding Decisions',
+  domainId: 'connectivity',
+  objectiveId: '3.2',
+  ckuIds: ['CKU-LONGEST-PREFIX-MATCH', 'CKU-ROUTING-TABLE'],
+  labType: 'guided',
+  difficulty: 'intermediate',
+  estimatedTimeMinutes: 12,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'R1 is pre-configured with connected, static, and OSPF routes. A packet to 192.168.2.50 must match the most specific route (192.168.2.0/24 OSPF), not the summary static 172.16.0.0/16 or default route. Use show commands to read the routing table and explain the forwarding decision.',
+  learningGoals: [
+    'Read source codes (C, L, S, O) and [AD/metric] brackets',
+    'Apply longest-prefix-match for a host destination',
+    'Compare administrative distance when multiple protocols exist',
+  ],
+  topologyId: 'TOPO-ROUTE-FORWARD-32',
+  prerequisites: ['CKU-IP-ADDRESSING'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Full routing table', device: 'R1', instruction: 'Enter privileged EXEC and run show ip route. Note connected LAN 192.168.1.0/24, OSPF 192.168.2.0/24 [110/20], static 172.16.0.0/16, and default route S*.',
+      expectedCommands: ['enable', 'show ip route'] },
+    { id: 't2', order: 2, title: 'Longest match lookup', device: 'R1', instruction: 'Run show ip route 192.168.2.0 to confirm the /24 OSPF entry wins over broader statics for hosts in that subnet.',
+      expectedCommands: ['show ip route 192.168.2.0'] },
+    { id: 't3', order: 3, title: 'Filter OSPF routes', device: 'R1', instruction: 'Run show ip route ospf — verify AD 110 and next-hop 10.0.0.2 for the learned LAN.',
+      expectedCommands: ['show ip route ospf'] },
+    { id: 't4', order: 4, title: 'Static routes only', device: 'R1', instruction: 'Run show ip route static — confirm the /16 summary exists but does not override the more specific OSPF /24 for 192.168.2.x.',
+      expectedCommands: ['show ip route static'] },
+  ],
+  verificationCommands: ['show ip route', 'show ip route 192.168.2.0', 'show ip route ospf'],
+  successCriteria: [
+    '192.168.2.0/24 is selected via OSPF (AD 110) for destinations in that subnet',
+    'Connected /24 on Gi0/0 is used for local 192.168.1.x traffic',
+    'Default route S* does not override more specific prefixes',
+  ],
+  failureCriteria: [
+    'Choosing the static /16 for a 192.168.2.x host — violates longest prefix match',
+    'Ignoring [AD/metric] when comparing O vs S for the same prefix length',
+  ],
+  commonMistakes: [
+    'Assuming the default route always wins',
+    'Confusing wildcard masks with subnet masks when reading network statements',
+    'Picking lowest metric across different prefix lengths instead of longest match first',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '3.2 Forwarding decision', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_ROUTE_FORWARD_32 = { id: 'TOPO-ROUTE-FORWARD-32', title: 'R1 multi-route lookup', objectiveId: '3.2',
+  nodes: [{ id: 'r1', label: 'R1', type: 'router', x: 50, y: 40 }, { id: 'lan1', label: 'LAN1 .1.0/24', type: 'pc', x: 20, y: 75 }, { id: 'r2', label: 'R2 OSPF peer', type: 'router', x: 80, y: 75 }],
+  links: [{ id: 'l1', source: 'r1', target: 'lan1', status: 'forwarding' }, { id: 'l2', source: 'r1', target: 'r2', label: '10.0.0.0/30', status: 'forwarding' }] }
+const VALIDATOR_ROUTE_FORWARD_32 = { labId: 'LAB-ROUTE-FORWARD-32', requiredCommands: [
+  { device: 'R1', command: 'show ip route' },
+  { device: 'R1', command: 'show ip route 192.168.2.0' },
+  { device: 'R1', command: 'show ip route ospf' },
+], verificationChecks: [
+  { id: 'v1', device: 'R1', command: 'show ip route 192.168.2.0', expectedResult: 'Known via ospf 1, distance 110', passCondition: 'OSPF /24 selected for lookup' },
+] }
+const ROUTE_FORWARD_32 = { lab: LAB_ROUTE_FORWARD_32, topology: TOPO_ROUTE_FORWARD_32, validator: VALIDATOR_ROUTE_FORWARD_32,
+  diagram: mkDiagram('DIAG-ROUTE-FORWARD-32', 'Longest prefix match', '3.2',
+    [{ id: 'host', label: 'Host 192.168.2.50', type: 'pc', x: 15, y: 50 }, { id: 'r1', label: 'R1 LPM lookup', type: 'router', x: 50, y: 50, status: 'highlighted' }, { id: 'ospf', label: 'O 192.168.2.0/24', type: 'process', x: 85, y: 30 }],
+    [{ id: 'd1', source: 'host', target: 'r1', status: 'forwarding' }, { id: 'd2', source: 'r1', target: 'ospf', status: 'forwarding' }]),
+  packetFlows: mkFlows('FLOW-ROUTE-FORWARD-32', 'LPM selects /24 OSPF', 'DIAG-ROUTE-FORWARD-32', ['CKU-LONGEST-PREFIX-MATCH'], [
+    { id: 's1', order: 1, title: 'Lookup', action: 'R1 compares prefix lengths — /24 OSPF beats /16 static and default', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Forward', action: 'Packet exits Gi0/1 toward next-hop 10.0.0.2', successState: 'forwarded' },
+  ]) }
+
+/* ---- OSPF verify (3.4) ---- */
+const LAB_OSPF_VERIFY_34 = {
+  id: 'LAB-OSPF-VERIFY-34',
+  title: 'Verify Single-Area OSPFv2 Adjacency and Routes',
+  domainId: 'connectivity',
+  objectiveId: '3.4',
+  ckuIds: ['CKU-OSPF', 'CKU-OSPF-NEIGHBOR'],
+  labType: 'guided',
+  difficulty: 'intermediate',
+  estimatedTimeMinutes: 10,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'R1 and R2 are already configured with OSPFv2 in area 0 on 10.0.12.0/30 and each LAN. Verify neighbor FULL state, OSPF routes in the table, and AD 110 on learned prefixes.',
+  learningGoals: [
+    'Confirm OSPF neighbor state FULL with show ip ospf neighbor',
+    'Filter OSPF routes with show ip route ospf',
+    'Read AD 110 and OSPF cost from the routing table',
+  ],
+  topologyId: 'TOPO-OSPF-VERIFY-34',
+  prerequisites: ['CKU-OSPF'],
+  tasks: [
+    { id: 't1', order: 1, title: 'Neighbor table', device: 'R1', instruction: 'Run show ip ospf neighbor — confirm R2 (2.2.2.2) is FULL on the point-to-point link.',
+      expectedCommands: ['show ip ospf neighbor'] },
+    { id: 't2', order: 2, title: 'OSPF routes on R1', device: 'R1', instruction: 'Run show ip route ospf — verify O 10.0.2.0/24 [110/20] via 10.0.12.2.',
+      expectedCommands: ['show ip route ospf'] },
+    { id: 't3', order: 3, title: 'OSPF routes on R2', device: 'R2', instruction: 'On R2, run show ip route ospf — verify O 10.0.1.0/24 learned from R1.',
+      expectedCommands: ['show ip route ospf'] },
+    { id: 't4', order: 4, title: 'Protocol summary', device: 'R1', instruction: 'Run show ip protocols — confirm OSPF process 1 and area 0 network statements.',
+      expectedCommands: ['show ip protocols'] },
+  ],
+  verificationCommands: ['show ip ospf neighbor', 'show ip route ospf', 'show ip protocols'],
+  successCriteria: [
+    'Neighbor state FULL on both ends of 10.0.12.0/30',
+    'Each router learns the remote LAN via O with AD 110',
+    'show ip protocols lists OSPF 1 with area 0',
+  ],
+  failureCriteria: [
+    'Neighbor stuck in INIT/2-WAY — area or subnet mismatch',
+    'No O routes — network statement wildcard wrong or interface down',
+  ],
+  commonMistakes: [
+    'Checking full table without show ip route ospf filter',
+    'Expecting EIGRP AD 90 instead of OSPF AD 110',
+    'Verifying only one router — both must exchange routes',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '3.4 OSPFv2 verify', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_OSPF_VERIFY_34 = { id: 'TOPO-OSPF-VERIFY-34', title: 'OSPF area 0 verify', objectiveId: '3.4',
+  nodes: [{ id: 'r1', label: 'R1 1.1.1.1', type: 'router', x: 30, y: 45 }, { id: 'r2', label: 'R2 2.2.2.2', type: 'router', x: 70, y: 45 }, { id: 'lan1', label: '10.0.1.0/24', type: 'pc', x: 15, y: 80 }, { id: 'lan2', label: '10.0.2.0/24', type: 'pc', x: 85, y: 80 }],
+  links: [{ id: 'l1', source: 'r1', target: 'r2', label: '10.0.12.0/30', status: 'forwarding' }, { id: 'l2', source: 'r1', target: 'lan1', status: 'forwarding' }, { id: 'l3', source: 'r2', target: 'lan2', status: 'forwarding' }] }
+const VALIDATOR_OSPF_VERIFY_34 = { labId: 'LAB-OSPF-VERIFY-34', requiredCommands: [
+  { device: 'R1', command: 'show ip ospf neighbor' },
+  { device: 'R1', command: 'show ip route ospf' },
+  { device: 'R2', command: 'show ip route ospf' },
+], verificationChecks: [
+  { id: 'v1', device: 'R1', command: 'show ip ospf neighbor', expectedResult: 'FULL', passCondition: 'adjacency up' },
+] }
+const OSPF_VERIFY_34 = { lab: LAB_OSPF_VERIFY_34, topology: TOPO_OSPF_VERIFY_34, validator: VALIDATOR_OSPF_VERIFY_34,
+  diagram: mkDiagram('DIAG-OSPF-VERIFY-34', 'OSPF FULL adjacency', '3.4',
+    [{ id: 'r1', label: 'R1', type: 'router', x: 25, y: 50 }, { id: 'r2', label: 'R2', type: 'router', x: 75, y: 50, status: 'highlighted' }],
+    [{ id: 'd1', source: 'r1', target: 'r2', label: 'area 0', status: 'forwarding' }]),
+  packetFlows: mkFlows('FLOW-OSPF-VERIFY-34', 'LSAs exchanged in area 0', 'DIAG-OSPF-VERIFY-34', ['CKU-OSPF'], [
+    { id: 's1', order: 1, title: 'Hello', action: 'R1/R2 form FULL on 10.0.12.0/30', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Install routes', action: 'Each router adds O routes for remote LAN', successState: 'forwarded' },
+  ]) }
+
+/* ---- HSRP verify (3.5) ---- */
+const LAB_HSRP_VERIFY_35 = {
+  id: 'LAB-HSRP-VERIFY-35',
+  title: 'Verify HSRP Active and Standby Roles',
+  domainId: 'connectivity',
+  objectiveId: '3.5',
+  ckuIds: ['CKU-HSRP'],
+  labType: 'guided',
+  difficulty: 'beginner',
+  estimatedTimeMinutes: 8,
+  tools: ['Packet Tracer', 'GNS3'],
+  examRelevance: 'core',
+  scenario: 'R1 and R2 are configured with HSRP group 1 virtual IP 192.168.1.1/24 on Gi0/0. R1 should be Active (priority 150, preempt); R2 Standby. Verify roles without changing configuration.',
+  learningGoals: [
+    'Read Active/Standby state from show standby brief',
+    'Confirm virtual IP and group number match on both routers',
+    'Explain preempt and priority from show output',
+  ],
+  topologyId: 'TOPO-HSRP-VERIFY-35',
+  prerequisites: ['CKU-HSRP'],
+  tasks: [
+    { id: 't1', order: 1, title: 'HSRP summary on R1', device: 'R1', instruction: 'Run show standby brief — R1 Gi0/0 group 1 should be Active with virtual IP 192.168.1.1.',
+      expectedCommands: ['show standby brief'] },
+    { id: 't2', order: 2, title: 'HSRP detail on R1', device: 'R1', instruction: 'Run show standby — confirm priority 150 and preempt enabled (P flag).',
+      expectedCommands: ['show standby'] },
+    { id: 't3', order: 3, title: 'HSRP summary on R2', device: 'R2', instruction: 'On R2, run show standby brief — Gi0/0 group 1 should be Standby with the same virtual IP.',
+      expectedCommands: ['show standby brief'] },
+  ],
+  verificationCommands: ['show standby brief', 'show standby'],
+  successCriteria: [
+    'R1 Active, R2 Standby for group 1',
+    'Virtual IP 192.168.1.1 on both routers',
+    'R1 priority 150 with preempt',
+  ],
+  failureCriteria: [
+    'Both routers Active — group/IP mismatch',
+    'R2 Active when R1 is up — missing preempt or lower priority on R1',
+  ],
+  commonMistakes: [
+    'Checking physical IP instead of virtual IP for default gateway',
+    'Different HSRP group numbers on each router',
+    'Forgetting preempt on the intended active router',
+  ],
+  source: { name: LAB_SOURCES.blueprint, chapter: '3.5 HSRP verify', confidence: 0.9 },
+  metadata: { version: '1', status: 'validated', confidence: 0.9 },
+}
+const TOPO_HSRP_VERIFY_35 = { id: 'TOPO-HSRP-VERIFY-35', title: 'HSRP verify topology', objectiveId: '3.5',
+  nodes: [{ id: 'r1', label: 'R1 Active', type: 'router', x: 30, y: 40 }, { id: 'r2', label: 'R2 Standby', type: 'router', x: 70, y: 40 }, { id: 'pc', label: 'GW 192.168.1.1', type: 'pc', x: 50, y: 80 }],
+  links: [{ id: 'l1', source: 'r1', target: 'pc', status: 'forwarding' }, { id: 'l2', source: 'r2', target: 'pc', status: 'forwarding' }] }
+const VALIDATOR_HSRP_VERIFY_35 = { labId: 'LAB-HSRP-VERIFY-35', requiredCommands: [
+  { device: 'R1', command: 'show standby brief' },
+  { device: 'R1', command: 'show standby' },
+  { device: 'R2', command: 'show standby brief' },
+], verificationChecks: [
+  { id: 'v1', device: 'R1', command: 'show standby brief', expectedResult: 'Active', passCondition: 'R1 is active gateway' },
+] }
+const HSRP_VERIFY_35 = { lab: LAB_HSRP_VERIFY_35, topology: TOPO_HSRP_VERIFY_35, validator: VALIDATOR_HSRP_VERIFY_35,
+  diagram: DIAGRAM_HSRP,
+  packetFlows: HSRP.packetFlows,
+}
+
 export const EXTENDED_LAB_BUNDLES = [
-  HSRP, DHCP_RELAY, ETHERCHANNEL, STP, DEVICE_ACCESS, NTP, AAA, SYSLOG,
+  HSRP, HSRP_VERIFY_35, ROUTE_FORWARD_32, OSPF_VERIFY_34,
+  DHCP_RELAY, ETHERCHANNEL, STP, DEVICE_ACCESS, NTP, AAA, SYSLOG,
   TS_OSPF, TS_TRUNK, TS_IF, TS_ACL, TS_ROUTE, TS_DHCP, TS_HSRP, TS_MASK,
   WIRELESS_26, DHCP_DNS_43, DEVICE_ACCESS_53, ROUTE_TABLE_31,
 ]

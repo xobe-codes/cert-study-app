@@ -1,6 +1,6 @@
 /** AI synthesis for Study Lens — cite-only answers from retrieved chunks. */
 
-import { askClaudeStream, cachedSystem, MODELS } from '../ai/claudeClient.jsx'
+import { askClaudeStream, cachedSystem, MODELS } from '../ai/claudeClient.js'
 import { chunksForSynthesis } from './libraryIndex.js'
 
 const LIBRARY_QA_SYSTEM = `You are a CCNA 200-301 study librarian. Answer ONLY using the REFERENCE CHUNKS below.
