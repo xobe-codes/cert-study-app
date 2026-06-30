@@ -230,7 +230,7 @@
     {
       "id": "engineer_view_tier_c",
       "priority": "medium",
-      "status": "pending",
+      "status": "done",
       "area": "content",
       "objectiveNumber": "28 objs",
       "problem": "Tier C objectives lack engineerView verify layer",
@@ -248,7 +248,8 @@
       },
       "files": [
         "src/data/contentEnrichmentPatches.js"
-      ]
+      ],
+      "completedAt": "2026-06-30T09:38:59.859Z"
     },
     {
       "id": "labs_connectivity_wave",
@@ -277,7 +278,7 @@
     {
       "id": "pwa_offline_curated",
       "priority": "medium",
-      "status": "pending",
+      "status": "done",
       "area": "mobile",
       "objectiveNumber": "app",
       "problem": "PWA caches shell only — curated content offline gap",
@@ -296,7 +297,8 @@
       "files": [
         "vite.config.js",
         "public/sw.js"
-      ]
+      ],
+      "completedAt": "2026-06-30T09:39:00.462Z"
     }
   ]
 }

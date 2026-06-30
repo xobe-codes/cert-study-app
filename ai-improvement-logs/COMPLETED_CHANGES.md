@@ -45,3 +45,5 @@
 - **2026-06-30** `content_depth_wave2`: Skill questions for 5.9/6.1; shared questionBankCount; Playwright CI job
 - **2026-06-30** `extract_app_shell_modules`: Extract tutor/search/modals/sessions to src/features/; App.jsx 5071→3401 lines (−1670)
 - **2026-06-30** `labs_connectivity_wave`: Added LAB-ROUTE-FORWARD-32, LAB-OSPF-VERIFY-34, LAB-HSRP-VERIFY-35 + cliEngine show standby/protocols
+- **2026-06-30** `engineer_view_tier_c`: 10 Tier C engineerView patches via factoryEngineerViewPatches.js
+- **2026-06-30** `pwa_offline_curated`: SW ccna-curated-v3 stale-while-revalidate for question chunks

@@ -1,5 +1,15 @@
-const CACHE = 'ccna-shell-v2'
-const SHELL = ['/manifest.webmanifest', '/icon-192.svg']
+const CACHE = 'ccna-curated-v3'
+const SHELL = ['/', '/index.html', '/manifest.webmanifest', '/icon-192.svg']
+
+function isCuratedAsset(url) {
+  if (!url.pathname.startsWith('/assets/')) return false
+  return (
+    url.pathname.includes('skill-questions')
+    || url.pathname.includes('clean-questions')
+    || url.pathname.includes('shelved-questions')
+    || url.pathname.includes('index-')
+  )
+}
 
 function isAppShell(url) {
   return url.pathname === '/' || url.pathname === '/index.html' || url.pathname.startsWith('/assets/')
@@ -7,6 +17,27 @@ function isAppShell(url) {
 
 function isShellAsset(url) {
   return SHELL.includes(url.pathname)
+}
+
+/** Stale-while-revalidate — serve cache immediately; refresh in background when online. */
+async function staleWhileRevalidate(request) {
+  const cache = await caches.open(CACHE)
+  const cached = await cache.match(request)
+  const networkFetch = fetch(request)
+    .then((res) => {
+      if (res && res.status === 200 && res.type === 'basic') {
+        cache.put(request, res.clone())
+      }
+      return res
+    })
+    .catch(() => null)
+  if (cached) {
+    networkFetch.catch(() => {})
+    return cached
+  }
+  const res = await networkFetch
+  if (res) return res
+  throw new Error('offline')
 }
 
 async function networkFirst(request) {
@@ -37,13 +68,17 @@ async function cacheFirst(request) {
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting())
+    caches.open(CACHE)
+      .then(cache => cache.addAll(SHELL))
+      .then(() => self.skipWaiting())
   )
 })
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(() => self.clients.claim())
   )
 })
 
@@ -53,6 +88,10 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return
   if (!url.pathname.startsWith('/') || url.pathname.includes('/api')) return
 
+  if (isCuratedAsset(url)) {
+    event.respondWith(staleWhileRevalidate(event.request))
+    return
+  }
   if (isAppShell(url)) {
     event.respondWith(networkFirst(event.request))
     return

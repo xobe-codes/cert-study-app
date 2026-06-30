@@ -2,11 +2,13 @@
 
 import { FACTORY_TRAP_PATCHES } from './factoryTrapPatches.js'
 import { FACTORY_FLASHCARD_PATCHES } from './factoryFlashcardPatches.js'
+import { FACTORY_ENGINEER_VIEW_PATCHES } from './factoryEngineerViewPatches.js'
 
 function factoryPatchFor(objectiveId) {
   const traps = FACTORY_TRAP_PATCHES[objectiveId]
   const flash = FACTORY_FLASHCARD_PATCHES[objectiveId]
-  if (!traps && !flash) return null
+  const engineer = FACTORY_ENGINEER_VIEW_PATCHES[objectiveId]
+  if (!traps && !flash && !engineer) return null
   const flashcards = [
     ...(traps?.flashcards || []),
     ...(flash?.flashcards || []),
@@ -14,6 +16,7 @@ function factoryPatchFor(objectiveId) {
   return {
     ...traps,
     ...flash,
+    ...engineer,
     ...(flashcards.length ? { flashcards } : {}),
   }
 }
@@ -322,7 +325,9 @@ export function applyContentEnrichment(base, objectiveId) {
   if (patch?.questions) questions = mergeList(questions, patch.questions)
   return {
     ...base,
-    ...(patch?.engineerView ? { engineerView: patch.engineerView } : {}),
+    ...(patch?.engineerView || factory?.engineerView
+      ? { engineerView: patch?.engineerView || factory?.engineerView }
+      : {}),
     examTraps,
     flashcards,
     questions,
