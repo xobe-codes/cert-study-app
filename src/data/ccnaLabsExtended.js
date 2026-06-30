@@ -1306,9 +1306,503 @@ const HSRP_VERIFY_35 = { lab: LAB_HSRP_VERIFY_35, topology: TOPO_HSRP_VERIFY_35,
   packetFlows: HSRP.packetFlows,
 }
 
+/* =========================================================================
+   ROUTING TROUBLESHOOT — static next-hop unreachable (3.6)
+   ========================================================================= */
+const LAB_TS_STATIC_NH = tsLab('LAB-TS-STATIC-NH', 'Troubleshoot Static Route with Unreachable Next-Hop', '3.6', 'connectivity',
+  'Symptom: Branch PC cannot reach 172.16.50.0/24. `show running-config` lists `ip route 172.16.50.0 255.255.255.0 10.0.12.99` but `show ip route` has no S entry — next-hop 10.0.12.99 is not reachable on the 10.0.12.0/30 link (R2 is 10.0.12.2). Fix the static route next-hop to 10.0.12.2.',
+  [
+    { id: 't1', order: 1, title: 'Confirm symptom', device: 'R1', instruction: 'Run show ip route 172.16.50.0 — route not installed. Run show ip route static — empty or missing entry.',
+      expectedCommands: ['show ip route 172.16.50.0', 'show ip route static'] },
+    { id: 't2', order: 2, title: 'Find bad next-hop', device: 'R1', instruction: 'Run show running-config | include ip route — note next-hop 10.0.12.99. Run show ip interface brief — Gi0/1 is 10.0.12.1/30; only .2 is reachable.',
+      expectedCommands: ['show running-config | include ip route', 'show ip interface brief'] },
+    { id: 't3', order: 3, title: 'Fix static route', device: 'R1', instruction: 'Remove the bad route and add ip route 172.16.50.0 255.255.255.0 10.0.12.2.',
+      expectedCommands: ['no ip route 172.16.50.0 255.255.255.0 10.0.12.99', 'ip route 172.16.50.0 255.255.255.0 10.0.12.2'] },
+    { id: 't4', order: 4, title: 'Verify install', device: 'R1', instruction: 'Confirm S entry appears in the routing table.',
+      expectedCommands: ['show ip route static'] },
+  ],
+  [{ device: 'R1', command: 'ip route 172.16.50.0 255.255.255.0 10.0.12.2' }],
+  ['show ip route static', 'show running-config | include ip route'],
+  ['Changing OSPF instead of fixing static next-hop', 'Assuming config in running-config always installs into RIB'])
+
+const TS_STATIC_NH = tsBundle(LAB_TS_STATIC_NH,
+  [{ id: 'r1', label: 'R1 bad static NH', type: 'router', x: 40, y: 50, status: 'error' }, { id: 'r2', label: 'R2 .12.2', type: 'router', x: 75, y: 50 }, { id: 'lan', label: '172.16.50.0/24', type: 'pc', x: 75, y: 80 }],
+  [{ id: 'l1', source: 'r1', target: 'r2', label: '10.0.12.0/30', status: 'blocked' }, { id: 'l2', source: 'r2', target: 'lan', status: 'forwarding' }],
+  [{ device: 'R1', command: 'ip route 172.16.50.0 255.255.255.0 10.0.12.2' }])
+
+/* =========================================================================
+   AUTOMATION DOMAIN — interpret-only lab-lite (6.1–6.6)
+   Static show output only — no live API. Works via lab.cliShowOutput in LabView.
+   ========================================================================= */
+function autoInterpretBundle(lab, cliShowOutput, topoNodes, topoLinks, diagramNodes, diagramLinks, flowSteps, verifyChecks) {
+  const topo = { id: lab.topologyId, title: lab.title, objectiveId: lab.objectiveId, nodes: topoNodes, links: topoLinks }
+  const validator = {
+    labId: lab.id,
+    requiredCommands: lab.tasks.flatMap(t => (t.expectedCommands || []).filter(c => c !== 'enable').map(c => ({ device: t.device, command: c }))),
+    verificationChecks: verifyChecks,
+  }
+  const diagram = mkDiagram(`DIAG-${lab.id}`, lab.title, lab.objectiveId, diagramNodes, diagramLinks)
+  return {
+    lab: { ...lab, cliShowOutput },
+    topology: topo,
+    validator,
+    diagram,
+    packetFlows: mkFlows(`FLOW-${lab.id}`, lab.title, `DIAG-${lab.id}`, lab.ckuIds, flowSteps),
+  }
+}
+
+function autoLabBase(id, title, objectiveId, ckuIds, chapter, scenario, goals, mistakes) {
+  return {
+    id, title, domainId: 'automation', objectiveId, ckuIds,
+    labType: 'guided', interpretOnly: true,
+    difficulty: 'beginner', estimatedTimeMinutes: 10,
+    tools: ['Ansible', 'Postman', 'DNA Center'],
+    examRelevance: 'core', scenario, learningGoals: goals,
+    topologyId: `TOPO-${id}`, prerequisites: [],
+    commonMistakes: mistakes,
+    source: { name: LAB_SOURCES.blueprint, chapter, confidence: 0.9 },
+    metadata: { version: '1', status: 'validated', confidence: 0.9 },
+  }
+}
+
+/* ---- 6.1 Automation impact ---- */
+const CLI_AUTO_MGMT_61 = {
+  'show automation summary': `Automation Operations Dashboard (static snapshot)
+────────────────────────────────────────────────────
+Deployment model     Manual CLI (baseline)  →  Ansible playbook
+Devices touched      48 edge switches
+Last manual change   4h 12m (per-device login, copy/paste errors)
+Last playbook run    6m 04s (parallel, idempotent)
+Config drift events  0 after last playbook (desired state enforced)
+Human error rate     Manual: 3.2%  |  Automated: 0.1%
+Version control      Git repo: network-config/main  (Infrastructure as Code)`,
+  'show automation playbook log': `PLAY [Push VLAN 20 access template to branch switches] ***********************
+
+TASK [Ensure VLAN 20 exists] **************************************************
+ok: [SW-BR01]  ok: [SW-BR02]  ok: [SW-BR03]  ... (48 hosts)
+
+TASK [Apply access port template to Fa0/5-24] *********************************
+changed: [SW-BR12]  changed: [SW-BR19]
+ok: [all others — already compliant]
+
+PLAY RECAP ********************************************************************
+48 hosts ok, 2 changed, 0 failed, 0 unreachable`,
+  'show automation diff': `--- running-config (SW-BR12 Fa0/8)     +++ desired-state (template)
+-switchport access vlan 10              +switchport access vlan 20
++description Sales access               +description Sales access
+
+Note: Playbook reapplies template until device matches desired state (idempotent).`,
+}
+
+const LAB_AUTO_MGMT_61 = autoLabBase(
+  'LAB-AUTO-MGMT-61', 'Interpret Automation Impact on Network Operations', '6.1', ['CKU-AUTOMATION'],
+  '6.1 Automation impact',
+  'Your team replaced box-by-box CLI VLAN changes with an Ansible playbook stored in Git. The automation console is pre-loaded — read the summary, playbook log, and config diff to explain why automation scales expert knowledge and reduces human error (Infrastructure as Code).',
+  ['Compare manual CLI vs playbook deployment time', 'Explain idempotent desired-state enforcement', 'Identify Git/version control as Infrastructure as Code'],
+  ['Assuming automation removes need for networking fundamentals', 'Thinking scripts guarantee zero outages without validation windows'],
+)
+
+const AUTO_MGMT_61 = autoInterpretBundle(
+  {
+    ...LAB_AUTO_MGMT_61,
+    tasks: [
+      { id: 't1', order: 1, title: 'Automation summary', device: 'AUTO', instruction: 'Run show automation summary — note parallel deployment time vs manual per-device CLI and the drift/error comparison.',
+        expectedCommands: ['enable', 'show automation summary'] },
+      { id: 't2', order: 2, title: 'Playbook execution log', device: 'AUTO', instruction: 'Run show automation playbook log — confirm idempotent ok/changed counts across 48 hosts.',
+        expectedCommands: ['show automation playbook log'] },
+      { id: 't3', order: 3, title: 'Config drift diff', device: 'AUTO', instruction: 'Run show automation diff — read how desired-state template corrects VLAN mismatch on SW-BR12.',
+        expectedCommands: ['show automation diff'] },
+    ],
+    verificationCommands: ['show automation summary', 'show automation playbook log', 'show automation diff'],
+    successCriteria: ['Playbook completed in minutes vs hours of manual CLI', 'Idempotent replay shows ok on compliant devices', 'Git-backed templates define desired state'],
+    failureCriteria: ['Claiming automation eliminates need for design/troubleshooting skills'],
+    commonMistakes: LAB_AUTO_MGMT_61.commonMistakes,
+  },
+  CLI_AUTO_MGMT_61,
+  [{ id: 'git', label: 'Git repo', type: 'server', x: 20, y: 40 }, { id: 'auto', label: 'Ansible', type: 'process', x: 50, y: 40, status: 'highlighted' }, { id: 'sw', label: '48 switches', type: 'switch', x: 80, y: 40 }],
+  [{ id: 'l1', source: 'git', target: 'auto', status: 'forwarding' }, { id: 'l2', source: 'auto', target: 'sw', status: 'forwarding' }],
+  [{ id: 'manual', label: 'Manual CLI\n(per device)', type: 'process', x: 25, y: 55 }, { id: 'play', label: 'Playbook\n(parallel)', type: 'process', x: 75, y: 55, status: 'highlighted' }],
+  [{ id: 'd1', source: 'manual', target: 'play', status: 'forwarding' }],
+  [
+    { id: 's1', order: 1, title: 'Define intent', action: 'Engineer commits VLAN template to Git (Infrastructure as Code)', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Push state', action: 'Ansible applies desired config to all switches in parallel', successState: 'forwarded' },
+    { id: 's3', order: 3, title: 'Verify drift', action: 'Diff shows any device still out of compliance', successState: 'noted' },
+  ],
+  [
+    { id: 'v1', device: 'AUTO', command: 'show automation summary', expectedResult: 'Playbook 6m vs manual 4h+', passCondition: 'automation faster with lower error rate' },
+    { id: 'v2', device: 'AUTO', command: 'show automation playbook log', expectedResult: '48 hosts ok, idempotent', passCondition: 'parallel playbook success' },
+  ],
+)
+
+/* ---- 6.2 Traditional vs controller-based ---- */
+const CLI_AUTO_CTRL_62 = {
+  'show network mode': `Network Management Model Report
+────────────────────────────────
+Traditional (distributed):
+  - Each router/switch runs its own control plane (OSPF, STP, ACL logic)
+  - Engineer SSH/Telnet to each device CLI individually
+  - No central policy view; config drift common
+
+Controller-based (centralized):
+  - SDN controller holds control-plane decisions (DNA Center, APIC-EM)
+  - Devices retain data plane (forwarding at line rate)
+  - Policy pushed via southbound APIs (NETCONF/REST) — not box-by-box CLI`,
+  'show controller devices': `Controller Inventory (DNA Center)
+Device ID    Hostname      Role           Reachability  Config Source
+────────────────────────────────────────────────────────────────────
+dev-001      CORE-R1       Border Router  REACHABLE     Controller
+dev-002      DIST-SW1      Distribution   REACHABLE     Controller
+dev-003      ACCESS-SW12   Access         REACHABLE     Controller
+
+Managed devices: 3   |   CLI-only (unmanaged): 0`,
+  'show controller policy': `Intent Policy: Branch-QoS-Voice
+Status: COMPLIANT (verified 2m ago)
+Applied to: 3 devices via NETCONF push
+Traditional equivalent: 3 separate CLI sessions, manual copy/paste`,
+}
+
+const LAB_AUTO_CTRL_62 = autoLabBase(
+  'LAB-AUTO-CTRL-62', 'Compare Traditional and Controller-Based Networking', '6.2', ['CKU-SDN-TRAD'],
+  '6.2 Traditional vs controller-based',
+  'DNA Center manages three campus devices centrally. Read show output comparing distributed CLI management with controller-based policy push — control plane centralized, data plane remains on devices.',
+  ['Contrast distributed control plane vs centralized controller', 'Identify southbound push vs per-device CLI', 'Explain data plane stays on switches/routers'],
+  ['Thinking SDN removes all intelligence from switches — data plane still forwards locally', 'Confusing management plane SSH with southbound NETCONF/REST'],
+)
+
+const AUTO_CTRL_62 = autoInterpretBundle(
+  {
+    ...LAB_AUTO_CTRL_62,
+    tasks: [
+      { id: 't1', order: 1, title: 'Network mode comparison', device: 'CTRL', instruction: 'Run show network mode — list differences between traditional distributed control and controller-based centralized policy.',
+        expectedCommands: ['enable', 'show network mode'] },
+      { id: 't2', order: 2, title: 'Controller inventory', device: 'CTRL', instruction: 'Run show controller devices — confirm all devices are controller-managed with REACHABLE status.',
+        expectedCommands: ['show controller devices'] },
+      { id: 't3', order: 3, title: 'Centralized policy', device: 'CTRL', instruction: 'Run show controller policy — note single intent applied to multiple devices vs manual CLI sessions.',
+        expectedCommands: ['show controller policy'] },
+    ],
+    verificationCommands: ['show network mode', 'show controller devices', 'show controller policy'],
+    successCriteria: ['Control plane centralized on controller', 'Data plane forwarding stays on devices', 'Policy pushed to 3 devices from one intent'],
+    failureCriteria: ['Expecting OpenFlow to replace all IOS forwarding on every CCNA device'],
+    commonMistakes: LAB_AUTO_CTRL_62.commonMistakes,
+  },
+  CLI_AUTO_CTRL_62,
+  [{ id: 'ctrl', label: 'Controller', type: 'server', x: 50, y: 20, status: 'highlighted' }, { id: 'r1', label: 'R1', type: 'router', x: 25, y: 70 }, { id: 'sw1', label: 'SW1', type: 'switch', x: 50, y: 70 }, { id: 'sw2', label: 'SW2', type: 'switch', x: 75, y: 70 }],
+  [{ id: 'l1', source: 'ctrl', target: 'r1', label: 'southbound', status: 'forwarding' }, { id: 'l2', source: 'ctrl', target: 'sw1', status: 'forwarding' }, { id: 'l3', source: 'ctrl', target: 'sw2', status: 'forwarding' }],
+  [{ id: 'trad', label: 'Traditional\nCLI each box', type: 'process', x: 25, y: 50 }, { id: 'sdn', label: 'Controller\npolicy push', type: 'process', x: 75, y: 50, status: 'highlighted' }],
+  [{ id: 'd1', source: 'trad', target: 'sdn', status: 'forwarding' }],
+  [
+    { id: 's1', order: 1, title: 'Traditional', action: 'Each device decides OSPF/STP/ACL independently via local CLI', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Controller', action: 'Controller computes policy, pushes to devices via southbound API', successState: 'forwarded' },
+    { id: 's3', order: 3, title: 'Forward', action: 'Devices still switch/route packets at line rate (data plane)', successState: 'noted' },
+  ],
+  [
+    { id: 'v1', device: 'CTRL', command: 'show network mode', expectedResult: 'Centralized control, distributed data plane', passCondition: 'SDN model understood' },
+    { id: 'v2', device: 'CTRL', command: 'show controller policy', expectedResult: 'COMPLIANT on 3 devices', passCondition: 'intent-based push' },
+  ],
+)
+
+/* ---- 6.3 SDN architecture ---- */
+const CLI_AUTO_SDN_63 = {
+  'show sdn architecture': `SDN Architectural Planes
+──────────────────────────
+Application / Orchestration (above controller)
+    ↑ Northbound APIs (REST/JSON) — apps talk TO controller
+    │
+SDN Controller (control plane centralized)
+    ↓ Southbound APIs — controller talks TO devices
+        NETCONF, RESTCONF, OpenFlow, SNMP, CLI
+Network Devices (data plane distributed — forward packets)`,
+  'show sdn northbound': `Northbound API Endpoints (REST/JSON)
+Base URL: https://controller.local/api/v1
+
+GET  /topology           — graph of nodes/links for apps
+GET  /policies           — read intent policies
+POST /policies           — create new intent
+GET  /telemetry/flows    — analytics for assurance apps
+
+Used by: DNA Center GUI, custom Python scripts, ITSM integrations`,
+  'show sdn southbound': `Southbound Device Sessions
+Device        Protocol    State      Last Push
+────────────────────────────────────────────────
+CORE-R1       NETCONF     connected  00:02:11 ago
+DIST-SW1      NETCONF     connected  00:02:09 ago
+ACCESS-SW12   RESTCONF    connected  00:02:15 ago
+
+Note: Southbound = controller → device. Northbound = app → controller.`,
+}
+
+const LAB_AUTO_SDN_63 = autoLabBase(
+  'LAB-AUTO-SDN-63', 'Interpret SDN Control and Data Plane Architecture', '6.3', ['CKU-SDN-ARCH'],
+  '6.3 SDN architectures',
+  'An SDN controller exposes northbound REST APIs to orchestration apps and uses southbound NETCONF/RESTCONF to program devices. Read the architecture summary and API listings — no live controller connection.',
+  ['Map northbound vs southbound API direction', 'Place control plane on controller, data plane on devices', 'Name common southbound protocols (NETCONF, RESTCONF)'],
+  ['Reversing northbound/southbound direction', 'Assuming OpenFlow is the only southbound option on CCNA'],
+)
+
+const AUTO_SDN_63 = autoInterpretBundle(
+  {
+    ...LAB_AUTO_SDN_63,
+    tasks: [
+      { id: 't1', order: 1, title: 'SDN planes', device: 'CTRL', instruction: 'Run show sdn architecture — identify where control plane lives vs where packets are forwarded.',
+        expectedCommands: ['enable', 'show sdn architecture'] },
+      { id: 't2', order: 2, title: 'Northbound APIs', device: 'CTRL', instruction: 'Run show sdn northbound — these REST endpoints face applications above the controller.',
+        expectedCommands: ['show sdn northbound'] },
+      { id: 't3', order: 3, title: 'Southbound sessions', device: 'CTRL', instruction: 'Run show sdn southbound — controller pushes config to devices via NETCONF/RESTCONF.',
+        expectedCommands: ['show sdn southbound'] },
+    ],
+    verificationCommands: ['show sdn architecture', 'show sdn northbound', 'show sdn southbound'],
+    successCriteria: ['Northbound = app→controller REST', 'Southbound = controller→device NETCONF/RESTCONF', 'Data plane remains on network devices'],
+    failureCriteria: ['Placing data plane on controller — it stays distributed on devices'],
+    commonMistakes: LAB_AUTO_SDN_63.commonMistakes,
+  },
+  CLI_AUTO_SDN_63,
+  [{ id: 'app', label: 'Orchestration app', type: 'pc', x: 50, y: 10 }, { id: 'ctrl', label: 'SDN Controller', type: 'server', x: 50, y: 45, status: 'highlighted' }, { id: 'dev', label: 'IOS devices', type: 'router', x: 50, y: 80 }],
+  [{ id: 'l1', source: 'app', target: 'ctrl', label: 'northbound REST', status: 'forwarding' }, { id: 'l2', source: 'ctrl', target: 'dev', label: 'southbound NETCONF', status: 'forwarding' }],
+  [{ id: 'nb', label: 'Northbound\n(app → ctrl)', type: 'process', x: 30, y: 50, status: 'highlighted' }, { id: 'sb', label: 'Southbound\n(ctrl → device)', type: 'process', x: 70, y: 50 }],
+  [{ id: 'd1', source: 'nb', target: 'sb', status: 'forwarding' }],
+  [
+    { id: 's1', order: 1, title: 'Northbound', action: 'GUI/Python calls REST on controller to declare intent', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Southbound', action: 'Controller translates intent into device-specific NETCONF config', successState: 'forwarded' },
+    { id: 's3', order: 3, title: 'Forward', action: 'Switch/router data plane forwards frames/packets locally', successState: 'noted' },
+  ],
+  [
+    { id: 'v1', device: 'CTRL', command: 'show sdn architecture', expectedResult: 'Control centralized, data distributed', passCondition: 'plane separation' },
+    { id: 'v2', device: 'CTRL', command: 'show sdn southbound', expectedResult: 'NETCONF connected', passCondition: 'southbound push' },
+  ],
+)
+
+/* ---- 6.4 DNA Center ---- */
+const CLI_AUTO_DNA_64 = {
+  'show dna inventory': `Cisco DNA Center — Device Inventory
+Site: Branch-East    Total devices: 12
+────────────────────────────────────────────────────────
+Hostname     Model          SW Version   Reachability
+ACCESS-SW01  C9300-48P      17.9.4       REACHABLE
+ACCESS-SW02  C9300-24P      17.9.4       REACHABLE
+BR-RTR01     ISR4331        17.9.4       REACHABLE
+...
+Image golden standard: 17.9.4 (2 devices pending upgrade)`,
+  'show dna assurance health': `Assurance — Client Health (last 24h)
+Overall score: 92/100
+
+Top issue: DHCP latency on VLAN 20 (3 clients affected)
+Root cause hint: helper-address missing on DIST-SW1 SVI (see ticket INC-4421)
+Wireless RF score: 88  |  Wired connectivity: 96`,
+  'show dna provision status': `Provisioning Workflow: Branch-Onboarding
+Status: SUCCEEDED
+Steps completed:
+  [✓] Discover devices via CDP/LLDP
+  [✓] Assign to site Branch-East
+  [✓] Push day-zero config template (SSH, SNMP, VLANs)
+  [✓] Verify intent compliance
+
+Traditional equivalent: 12 manual CLI onboarding sessions`,
+}
+
+const LAB_AUTO_DNA_64 = autoLabBase(
+  'LAB-AUTO-DNA-64', 'Compare DNA Center with Traditional Campus Management', '6.4', ['CKU-DNA'],
+  '6.4 DNA Center vs traditional',
+  'DNA Center provides centralized design, provisioning, assurance, and image management for a 12-device branch. Read inventory, assurance health, and provisioning workflow output — contrast with box-by-box CLI onboarding.',
+  ['Identify DNA Center pillars: design, provision, assure, automate', 'Read assurance health scores and root-cause hints', 'Contrast template provisioning vs manual CLI onboarding'],
+  ['Expecting DNA Center to replace all CLI troubleshooting on exam', 'Confusing assurance telemetry with southbound config push'],
+)
+
+const AUTO_DNA_64 = autoInterpretBundle(
+  {
+    ...LAB_AUTO_DNA_64,
+    tasks: [
+      { id: 't1', order: 1, title: 'Device inventory', device: 'DNA', instruction: 'Run show dna inventory — note centralized view of models, software versions, and reachability.',
+        expectedCommands: ['enable', 'show dna inventory'] },
+      { id: 't2', order: 2, title: 'Assurance health', device: 'DNA', instruction: 'Run show dna assurance health — read overall score and AI-driven root-cause hint.',
+        expectedCommands: ['show dna assurance health'] },
+      { id: 't3', order: 3, title: 'Provisioning workflow', device: 'DNA', instruction: 'Run show dna provision status — compare automated onboarding template vs 12 manual CLI sessions.',
+        expectedCommands: ['show dna provision status'] },
+    ],
+    verificationCommands: ['show dna inventory', 'show dna assurance health', 'show dna provision status'],
+    successCriteria: ['12 devices managed from one dashboard', 'Assurance score with actionable root cause', 'Template provisioning succeeded'],
+    failureCriteria: ['Assuming DNA Center eliminates need for IOS show commands on devices'],
+    commonMistakes: LAB_AUTO_DNA_64.commonMistakes,
+  },
+  CLI_AUTO_DNA_64,
+  [{ id: 'dna', label: 'DNA Center', type: 'server', x: 50, y: 25, status: 'highlighted' }, { id: 'site', label: 'Branch-East\n12 devices', type: 'switch', x: 50, y: 75 }],
+  [{ id: 'l1', source: 'dna', target: 'site', label: 'intent', status: 'forwarding' }],
+  [{ id: 'cli', label: 'Traditional\n12× CLI', type: 'process', x: 25, y: 55 }, { id: 'dnaP', label: 'DNA template\nprovision', type: 'process', x: 75, y: 55, status: 'highlighted' }],
+  [{ id: 'd1', source: 'cli', target: 'dnaP', status: 'forwarding' }],
+  [
+    { id: 's1', order: 1, title: 'Design', action: 'Admin declares site intent in DNA Center GUI', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Provision', action: 'Template pushes day-zero config to discovered devices', successState: 'forwarded' },
+    { id: 's3', order: 3, title: 'Assure', action: 'Telemetry feeds health score and root-cause analysis', successState: 'noted' },
+  ],
+  [
+    { id: 'v1', device: 'DNA', command: 'show dna inventory', expectedResult: '12 devices REACHABLE', passCondition: 'centralized inventory' },
+    { id: 'v2', device: 'DNA', command: 'show dna assurance health', expectedResult: 'Score 92 with root cause', passCondition: 'assurance analytics' },
+  ],
+)
+
+/* ---- 6.5 REST APIs ---- */
+const CLI_AUTO_REST_65 = {
+  'show rest get /dna/intent/api/v1/network-device': `HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 30 Jun 2026 14:22:01 GMT
+
+{
+  "response": [
+    {
+      "id": "a1b2c3d4-1111-2222-3333-444455556666",
+      "hostname": "CORE-R1",
+      "managementIpAddress": "10.10.1.1",
+      "role": "BORDER ROUTER",
+      "reachabilityStatus": "Reachable"
+    }
+  ]
+}`,
+  'show rest methods': `REST HTTP Methods (CRUD mapping)
+─────────────────────────────────
+GET     — retrieve resource (read-only, safe)
+POST    — create new resource
+PUT     — replace entire resource
+PATCH   — partial update
+DELETE  — remove resource
+
+Stateless: each request carries auth + all needed context; server stores no client session.`,
+  'show rest response codes': `Common HTTP Status Codes
+──────────────────────────
+200 OK           — GET succeeded, body contains resource
+201 Created      — POST created new resource
+204 No Content   — DELETE succeeded, empty body
+400 Bad Request  — malformed JSON or missing field
+401 Unauthorized — missing/invalid token
+404 Not Found    — URL resource does not exist
+500 Server Error — controller internal failure`,
+}
+
+const LAB_AUTO_REST_65 = autoLabBase(
+  'LAB-AUTO-REST-65', 'Interpret REST API Responses and HTTP Methods', '6.5', ['CKU-REST'],
+  '6.5 REST-based APIs',
+  'A DNA Center REST GET for network devices returned HTTP 200 with a JSON body. Read the static response, HTTP method reference, and status code list — typical northbound API interaction with no live call.',
+  ['Map GET/POST/PUT/DELETE to CRUD operations', 'Read JSON key-value fields in a 200 response', 'Match HTTP status codes 200/201/400/401/404/500 to situations'],
+  ['Thinking REST requires SOAP/XML on CCNA — JSON is standard', 'Assuming 401 means server down — it means auth failure'],
+)
+
+const AUTO_REST_65 = autoInterpretBundle(
+  {
+    ...LAB_AUTO_REST_65,
+    tasks: [
+      { id: 't1', order: 1, title: 'GET device list', device: 'API', instruction: 'Run show rest get /dna/intent/api/v1/network-device — read HTTP 200, Content-Type application/json, and hostname/reachability fields.',
+        expectedCommands: ['enable', 'show rest get /dna/intent/api/v1/network-device'] },
+      { id: 't2', order: 2, title: 'HTTP methods', device: 'API', instruction: 'Run show rest methods — match GET to retrieve and POST to create.',
+        expectedCommands: ['show rest methods'] },
+      { id: 't3', order: 3, title: 'Status codes', device: 'API', instruction: 'Run show rest response codes — know 401 Unauthorized vs 404 Not Found vs 500 Server Error.',
+        expectedCommands: ['show rest response codes'] },
+    ],
+    verificationCommands: ['show rest get /dna/intent/api/v1/network-device', 'show rest methods', 'show rest response codes'],
+    successCriteria: ['200 OK with JSON array of devices', 'GET is read-only retrieve', '401 = auth failure, 404 = bad URL'],
+    failureCriteria: ['Confusing PUT (full replace) with PATCH (partial update)'],
+    commonMistakes: LAB_AUTO_REST_65.commonMistakes,
+  },
+  CLI_AUTO_REST_65,
+  [{ id: 'app', label: 'Python script', type: 'pc', x: 25, y: 50 }, { id: 'api', label: 'REST API', type: 'server', x: 55, y: 50, status: 'highlighted' }, { id: 'ctrl', label: 'Controller', type: 'server', x: 85, y: 50 }],
+  [{ id: 'l1', source: 'app', target: 'api', label: 'GET + JSON', status: 'forwarding' }, { id: 'l2', source: 'api', target: 'ctrl', status: 'forwarding' }],
+  [{ id: 'get', label: 'GET /devices\n200 JSON', type: 'process', x: 50, y: 70, status: 'highlighted' }],
+  [],
+  [
+    { id: 's1', order: 1, title: 'Request', action: 'Client sends HTTP GET with Authorization header to resource URL', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Response', action: 'Server returns 200 OK and JSON payload — stateless, no session stored', successState: 'noted' },
+    { id: 's3', order: 3, title: 'Parse', action: 'App reads hostname, managementIpAddress, reachabilityStatus keys', successState: 'forwarded' },
+  ],
+  [
+    { id: 'v1', device: 'API', command: 'show rest get /dna/intent/api/v1/network-device', expectedResult: '200 OK JSON device list', passCondition: 'REST GET response parsed' },
+    { id: 'v2', device: 'API', command: 'show rest response codes', expectedResult: '401 Unauthorized = auth', passCondition: 'status codes known' },
+  ],
+)
+
+/* ---- 6.6 JSON and config management ---- */
+const CLI_AUTO_JSON_66 = {
+  'show json payload': `Sample API JSON (device interface status)
+{
+  "interface": "GigabitEthernet0/0",
+  "adminStatus": "up",
+  "operStatus": "up",
+  "ipAddress": "192.168.1.1",
+  "vlan": null,
+  "errors": []
+}
+
+JSON rules: keys in double quotes, strings quoted, numbers bare,
+arrays [ ], objects { }, null/boolean literals allowed.`,
+  'show ansible playbook': `PLAYBOOK: deploy-snmp.yml (YAML — Ansible playbooks)
+──────────────────────────────────────────────────────
+- name: Configure SNMP on routers
+  hosts: routers
+  connection: network_cli
+  tasks:
+    - name: Ensure SNMP community
+      cisco.ios.ios_config:
+        lines:
+          - snmp-server community PUBLIC RO
+          - snmp-server location Branch-East
+
+Agentless: Ansible uses SSH; no agent on IOS devices.`,
+  'show ansible inventory': `INVENTORY: inventory.yml
+────────────────────────
+all:
+  children:
+    routers:
+      hosts:
+        BR-RTR01:
+          ansible_host: 10.10.1.1
+    switches:
+      hosts:
+        ACCESS-SW01:
+          ansible_host: 10.10.2.1
+
+Puppet/Chef contrast: agent-based pull model (device checks in to master).`,
+}
+
+const LAB_AUTO_JSON_66 = autoLabBase(
+  'LAB-AUTO-JSON-66', 'Interpret JSON Payloads and Ansible Playbooks', '6.6', ['CKU-JSON-ANSIBLE'],
+  '6.6 JSON and config management',
+  'Network automation exchanges JSON over REST and uses Ansible YAML playbooks for desired-state config. Read a sample JSON interface payload, an SNMP playbook snippet, and inventory — compare Ansible (agentless SSH) with agent-based Puppet/Chef.',
+  ['Parse JSON key-value pairs and null/array syntax', 'Read Ansible playbook structure (hosts, tasks, modules)', 'Contrast agentless Ansible vs agent-based Puppet/Chef'],
+  ['Using single quotes in JSON — keys/strings require double quotes', 'Thinking Ansible requires an agent on Cisco IOS'],
+)
+
+const AUTO_JSON_66 = autoInterpretBundle(
+  {
+    ...LAB_AUTO_JSON_66,
+    tasks: [
+      { id: 't1', order: 1, title: 'JSON interface payload', device: 'API', instruction: 'Run show json payload — identify adminStatus, operStatus, and ipAddress keys.',
+        expectedCommands: ['enable', 'show json payload'] },
+      { id: 't2', order: 2, title: 'Ansible playbook', device: 'AUTO', instruction: 'Run show ansible playbook — note YAML list structure, hosts group, and ios_config module (agentless SSH).',
+        expectedCommands: ['show ansible playbook'] },
+      { id: 't3', order: 3, title: 'Inventory and tools', device: 'AUTO', instruction: 'Run show ansible inventory — compare agentless Ansible SSH model with Puppet/Chef pull agents noted in output.',
+        expectedCommands: ['show ansible inventory'] },
+    ],
+    verificationCommands: ['show json payload', 'show ansible playbook', 'show ansible inventory'],
+    successCriteria: ['JSON keys parsed correctly', 'Playbook targets routers group via SSH', 'Ansible agentless vs Puppet/Chef agent-based understood'],
+    failureCriteria: ['Confusing YAML playbook syntax with JSON API payload'],
+    commonMistakes: LAB_AUTO_JSON_66.commonMistakes,
+  },
+  CLI_AUTO_JSON_66,
+  [{ id: 'api', label: 'REST JSON', type: 'server', x: 30, y: 45 }, { id: 'ans', label: 'Ansible', type: 'process', x: 70, y: 45, status: 'highlighted' }, { id: 'dev', label: 'IOS devices', type: 'router', x: 70, y: 75 }],
+  [{ id: 'l1', source: 'ans', target: 'dev', label: 'SSH', status: 'forwarding' }, { id: 'l2', source: 'api', target: 'dev', label: 'telemetry JSON', status: 'forwarding' }],
+  [{ id: 'json', label: 'JSON\nkey-value', type: 'process', x: 30, y: 70, status: 'highlighted' }, { id: 'yaml', label: 'YAML\nplaybook', type: 'process', x: 70, y: 70 }],
+  [{ id: 'd1', source: 'json', target: 'yaml', status: 'forwarding' }],
+  [
+    { id: 's1', order: 1, title: 'JSON', action: 'API returns {"adminStatus":"up"} for assurance apps', successState: 'noted' },
+    { id: 's2', order: 2, title: 'Playbook', action: 'Ansible applies ios_config lines over SSH to all routers', successState: 'forwarded' },
+    { id: 's3', order: 3, title: 'Contrast', action: 'Puppet/Chef agents pull from master — different model than Ansible', successState: 'noted' },
+  ],
+  [
+    { id: 'v1', device: 'API', command: 'show json payload', expectedResult: 'adminStatus up, ipAddress set', passCondition: 'JSON parsed' },
+    { id: 'v2', device: 'AUTO', command: 'show ansible playbook', expectedResult: 'ios_config over network_cli', passCondition: 'agentless playbook' },
+  ],
+)
+
 export const EXTENDED_LAB_BUNDLES = [
   HSRP, HSRP_VERIFY_35, ROUTE_FORWARD_32, OSPF_VERIFY_34,
   DHCP_RELAY, ETHERCHANNEL, STP, DEVICE_ACCESS, NTP, AAA, SYSLOG,
-  TS_OSPF, TS_TRUNK, TS_IF, TS_ACL, TS_ROUTE, TS_DHCP, TS_HSRP, TS_MASK,
+  TS_OSPF, TS_TRUNK, TS_IF, TS_ACL, TS_ROUTE, TS_DHCP, TS_HSRP, TS_MASK, TS_STATIC_NH,
   WIRELESS_26, DHCP_DNS_43, DEVICE_ACCESS_53, ROUTE_TABLE_31,
+  AUTO_MGMT_61, AUTO_CTRL_62, AUTO_SDN_63, AUTO_DNA_64, AUTO_REST_65, AUTO_JSON_66,
 ]

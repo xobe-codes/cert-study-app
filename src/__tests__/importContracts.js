@@ -32,8 +32,17 @@ function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
 
-/** True when `source` imports `symbol` from `from` (named or default import). */
+/** True when `source` lazy-imports `symbol` from `from`. */
+export function hasLazyImport(source, symbol, from) {
+  const fromRe = escapeRe(from)
+  return new RegExp(
+    `(?:const|let)\\s+${symbol}\\s*=\\s*lazy\\(\\s*\\(\\)\\s*=>\\s*import\\(['"]${fromRe}['"]\\)`
+  ).test(source)
+}
+
+/** True when `source` imports `symbol` from `from` (named, default, or lazy). */
 export function hasNamedImport(source, symbol, from) {
+  if (hasLazyImport(source, symbol, from)) return true
   const fromRe = escapeRe(from)
   const patterns = [
     new RegExp(`import\\s+\\{[^}]*\\b${symbol}\\b[^}]*\\}\\s+from\\s+['"]${fromRe}['"]`),

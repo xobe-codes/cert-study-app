@@ -41,6 +41,7 @@ import {
   PREMIUM_FEATURES,
   PREMIUM_COMING_SOON_LABEL,
 } from '../premium/premiumFeatures.js'
+import { SubnettingTab } from './subnetPracticeTabs.jsx'
 import {
   askClaudeJSON, MODEL, MODELS, AiBudgetWarning,
   EXPLAIN_CACHE_KEY, EXPLAIN_PROMPT_SYSTEM, EXPLAIN_SCHEMA,

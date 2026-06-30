@@ -4,6 +4,7 @@
  */
 import { CLEAN_BANK_OBJECTIVES, CLEAN_BANK_COUNTS } from './ccnaCleanBankMeta.js'
 import { getSkillQuestions } from './ccnaSkillQuestions.js'
+import { getEnrichmentPatchQuestions } from './contentEnrichmentPatches.js'
 
 function cleanQuestionCount(objectiveId) {
   if (!CLEAN_BANK_OBJECTIVES.has(objectiveId)) return 0
@@ -11,9 +12,11 @@ function cleanQuestionCount(objectiveId) {
   return typeof fromMeta === 'number' ? fromMeta : 0
 }
 
-/** Total quiz items for an objective (clean bank + skill). */
+/** Total quiz items for an objective (clean bank + skill + enrichment patches). */
 export function countObjectiveQuestions(objectiveId) {
-  return cleanQuestionCount(objectiveId) + getSkillQuestions(objectiveId).length
+  return cleanQuestionCount(objectiveId)
+    + getSkillQuestions(objectiveId).length
+    + getEnrichmentPatchQuestions(objectiveId).length
 }
 
 /** True when the compiled bank lists questions for this objective. */

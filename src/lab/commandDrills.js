@@ -1,7 +1,23 @@
-/** CLI config drills for 14 config-heavy objectives.
+/** CLI config drills for config-heavy objectives + verify drills for interpret objectives.
  *  Each step: { prompt, answer, hint }. answer may be an array of acceptable
  *  strings (case-insensitive, whitespace-normalized match). */
 export const COMMAND_DRILLS = {
+  '1.1': [
+    { prompt: 'Show a summary of all interfaces with IP addresses and line status', answer: ['show ip interface brief'], hint: 'Quick L3 interface table — first hop for connectivity checks.' },
+    { prompt: 'Show the MAC address table to see which MAC is learned on which port', answer: ['show mac address-table', 'show mac address table'], hint: 'Layer 2 forwarding table on a switch.' },
+  ],
+  '1.3': [
+    { prompt: 'Show interface status including speed, duplex, VLAN, and err-disabled state', answer: ['show interfaces status'], hint: 'Physical layer troubleshooting starts here.' },
+    { prompt: 'Show detailed counters for GigabitEthernet0/1 including CRC errors', answer: ['show interfaces gigabitethernet0/1', 'show interfaces gi0/1'], hint: 'show interfaces <name> for input errors and CRC.' },
+  ],
+  '1.4': [
+    { prompt: 'Show interface error counters (CRC, runts, giants) on all interfaces', answer: ['show interfaces counters errors'], hint: 'Isolates bad cable vs config issues.' },
+    { prompt: 'Show any ports in err-disabled state and why', answer: ['show interfaces status err-disabled', 'show interfaces status'], hint: 'Security violation, BPDU guard, or link-flap protection.' },
+  ],
+  '1.5': [
+    { prompt: 'Show dynamically learned MAC addresses and their ports', answer: ['show mac address-table dynamic', 'show mac address table dynamic'], hint: 'Confirms which port forwards to a given MAC.' },
+    { prompt: 'Show spanning-tree state for interface Gi0/1 (role and status)', answer: ['show spanning-tree interface gi0/1', 'show spanning-tree interface gigabitethernet0/1'], hint: 'Blocking port explains one-way traffic.' },
+  ],
   '1.6': [
     { prompt: 'Enter interface configuration mode for GigabitEthernet0/1', answer: ['interface gigabitethernet0/1', 'interface gi0/1', 'int g0/1'], hint: "Use 'interface' followed by the interface name." },
     { prompt: 'Assign the IP address 192.168.10.1 with subnet mask 255.255.255.0', answer: ['ip address 192.168.10.1 255.255.255.0'], hint: "ip address <address> <mask>" },
@@ -28,6 +44,14 @@ export const COMMAND_DRILLS = {
     { prompt: 'Re-enable CDP globally', answer: ['cdp run'], hint: 'Opposite of the previous command.' },
     { prompt: 'On a single interface, disable CDP only on that port', answer: ['no cdp enable'], hint: 'Interface-level command (note: different keyword than the global one).' },
     { prompt: 'Globally enable LLDP', answer: ['lldp run'], hint: 'LLDP is disabled by default, unlike CDP.' },
+  ],
+  '2.7': [
+    { prompt: 'Show switch port status for AP uplink (mode, VLAN, speed)', answer: ['show interfaces status'], hint: 'AP uplink must be correct access/trunk + VLAN before RF tuning.' },
+    { prompt: 'Show PoE power delivered to connected devices', answer: ['show power inline'], hint: 'Underpowered AP may boot-loop or drop clients.' },
+  ],
+  '2.8': [
+    { prompt: 'Show WLAN summary — SSID policy, security, and VLAN mapping', answer: ['show wlan summary'], hint: 'WLC-side SSID config — not just AP radio power.' },
+    { prompt: 'Show associated wireless clients and their VLAN/SSID', answer: ['show wireless client summary', 'show dot11 associations'], hint: 'Association is step one — check VLAN and IP next.' },
   ],
   '2.4': [
     { prompt: 'On interface Gi0/1, add it to EtherChannel group 1 using LACP active mode', answer: ['channel-group 1 mode active'], hint: 'channel-group <number> mode <active|passive|desirable|auto>' },
@@ -78,6 +102,10 @@ export const COMMAND_DRILLS = {
     { prompt: 'Add a line denying TCP traffic from any source to any destination on port 23 (Telnet)', answer: ['deny tcp any any eq 23', 'deny tcp any any eq telnet'], hint: 'deny tcp <source> <destination> eq <port>' },
     { prompt: 'Add a line permitting all other IP traffic', answer: ['permit ip any any'], hint: 'There is an implicit deny at the end, so this is needed to allow everything else.' },
     { prompt: 'Apply this ACL inbound on interface Gi0/0', answer: ['ip access-group BLOCK_TELNET in', 'ip access-group block_telnet in'], hint: 'ip access-group <name> in|out, entered on the interface.' },
+  ],
+  '5.9': [
+    { prompt: 'Show WLAN security settings for WLAN ID 1 (WPA2-PSK / AES)', answer: ['show wlan security 1', 'show wlan summary'], hint: 'Verify WPA2-AES (CCMP) — not WEP or TKIP.' },
+    { prompt: 'Show associated clients and authentication state', answer: ['show wireless client summary', 'show dot11 associations'], hint: 'PSK mismatch shows associate-but-no-data or repeated deauth.' },
   ],
   '5.6': [
     { prompt: 'On an access port, enable port security', answer: ['switchport port-security'], hint: 'Interface must already be in access mode.' },

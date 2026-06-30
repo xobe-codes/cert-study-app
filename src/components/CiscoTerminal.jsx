@@ -24,14 +24,14 @@ export default function CiscoTerminal({
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight })
   }, [history])
 
-  const scrollStyle = {
-    WebkitOverflowScrolling: 'touch',
-    overflowY: 'auto',
-    ...(height != null ? { height } : {}),
-  }
+  const isFluid = height == null
+  const rootClass = ['cisco-terminal', isFluid && 'cisco-terminal--fluid', className].filter(Boolean).join(' ')
+  const scrollStyle = height != null
+    ? { WebkitOverflowScrolling: 'touch', overflowY: 'auto', height }
+    : undefined
 
   return (
-    <div className={`cisco-terminal ${className}`.trim()} style={{ borderTop: `1px solid ${COLORS.border}` }}>
+    <div className={rootClass} style={{ borderTop: `1px solid ${COLORS.border}` }}>
       <div
         ref={scrollRef}
         className="cisco-terminal-scroll"

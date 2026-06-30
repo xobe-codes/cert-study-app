@@ -1121,7 +1121,12 @@ export function buildAppShellCss(colors) {
       display: flex;
       flex-direction: column;
       min-height: 0;
+      min-width: 0;
       background: #05060a;
+    }
+    .cisco-terminal--fluid {
+      flex: 1;
+      min-height: min(28dvh, 240px);
     }
     .cisco-terminal-scroll {
       padding: 10px 12px;
@@ -1132,13 +1137,22 @@ export function buildAppShellCss(colors) {
       line-height: 1.55;
       height: clamp(28dvh, 32dvh, 280px);
       min-height: 22dvh;
+      flex: 1;
+      min-width: 0;
+    }
+    .cisco-terminal--fluid .cisco-terminal-scroll {
+      flex: 1;
+      min-height: 22dvh;
+      height: auto;
+      max-height: min(48dvh, 480px);
     }
     .cisco-terminal-input-row {
       display: flex;
       gap: 8px;
       align-items: center;
       flex-wrap: wrap;
-      padding: 8px 12px 12px;
+      flex-shrink: 0;
+      padding: 8px 12px calc(12px + env(safe-area-inset-bottom, 0px));
       border-top: 1px solid ${colors.border};
     }
     .cisco-terminal-prompt {

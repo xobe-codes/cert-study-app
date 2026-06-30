@@ -30,8 +30,9 @@ import { KB_COMPILED_PATCHES } from './kbCompiledPatches.js'
 import { mergeKbReadingPatch, finalizeReading } from '../lesson/readingEnrichment.js'
 import { READING_SUPPLEMENTS } from './curatedReadingSupplement.js'
 import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
-import { applyContentEnrichment } from './contentEnrichmentPatches.js'
+import { applyContentEnrichment, getEnrichmentPatchQuestions } from './contentEnrichmentPatches.js'
 import { VISUAL_DIAGRAMS } from './visualDiagramSupplement.js'
+import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
 
 // Short source identifiers reused across records.
 export const CURATED_SOURCES = {
@@ -2022,22 +2023,42 @@ export function getCuratedQuestionCount(objectiveId) {
   return countObjectiveQuestions(objectiveId)
 }
 
+/** Reshape a curated/patch question to the app's quiz-bank question shape. */
+function mapQuizQuestion(q, objectiveId) {
+  const shaped = {
+    question: q.question,
+    choices: q.choices,
+    correctIndex: q.correctIndex,
+    explanation: q.explanation,
+    type: q.type,
+    difficulty: q.difficulty,
+    concept: q.concept,
+    skill: q.skill,
+    orderItems: q.orderItems,
+    id: q.id,
+    ...(q.ckuIds?.length ? { ckuIds: q.ckuIds } : {}),
+    ...(q.answerReview ? { answerReview: q.answerReview } : {}),
+  }
+  return q.choices?.length && q.correctIndex != null
+    ? applyAnswerReviewToQuestion({ ...shaped, objectiveId })
+    : shaped
+}
+
+function getEnrichmentQuestions(objectiveId) {
+  return getEnrichmentPatchQuestions(objectiveId).map(q => mapQuizQuestion(q, objectiveId))
+}
+
 /** Curated + bulk-imported questions reshaped to the app's quiz-bank question shape. */
 export function getCuratedQuestions(objectiveId) {
   if (hasCleanBank(objectiveId)) {
     const clean = getImportedOrCleanQuestions(objectiveId)
     const skill = getSkillQuestions(objectiveId)
-    return clean.concat(skill)
+    const enrichment = getEnrichmentQuestions(objectiveId)
+    return clean.concat(skill, enrichment)
   }
 
   const o = getCurated(objectiveId)
-  const hand = (o?.questions || []).map(q => ({
-    question: q.question, choices: q.choices, correctIndex: q.correctIndex,
-    explanation: q.explanation, type: q.type, difficulty: q.difficulty, concept: q.concept,
-    skill: q.skill, orderItems: q.orderItems, id: q.id,
-    ...(q.ckuIds?.length ? { ckuIds: q.ckuIds } : {}),
-    ...(q.answerReview ? { answerReview: q.answerReview } : {}),
-  }))
+  const hand = (o?.questions || []).map(q => mapQuizQuestion(q, objectiveId))
   const imported = getImportedOrCleanQuestions(objectiveId)
   const skill = getSkillQuestions(objectiveId)
   return hand.concat(imported, skill)

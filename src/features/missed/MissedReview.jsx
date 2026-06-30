@@ -1,14 +1,14 @@
 import React, { useState, useMemo } from 'react'
 import { randomizeQuestionOrder } from '../../questionUtils.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
-import { groupMissedByTrap } from '../../missed/missedTrapGroups.js'
+import { groupMissedByTrap, getMissedTrapInfo, isActionableMissedTrap } from '../../missed/missedTrapGroups.js'
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 
 function normalizeQuestionText(q) {
   return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
 }
 
-export default function MissedReview({ missed, onBack, onRemove }) {
+export default function MissedReview({ missed, onBack, onRemove, onOpenExamTraps }) {
   const [revealedIdx, setRevealedIdx] = useState(null)
   const [trapFilter, setTrapFilter] = useState(null)
   const trapGroups = useMemo(() => groupMissedByTrap(missed), [missed])
@@ -80,6 +80,27 @@ export default function MissedReview({ missed, onBack, onRemove }) {
           {revealedIdx === idx ? (
             <div style={{ marginTop: 4 }}>
               <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginBottom: 8, lineHeight: 1.5 }}>{m.explanation}</div>
+              {(() => {
+                const { trap, domainId } = getMissedTrapInfo(m)
+                if (!onOpenExamTraps || !isActionableMissedTrap(trap)) return null
+                const shortTrap = trap.length > 52 ? `${trap.slice(0, 50)}…` : trap
+                return (
+                  <button
+                    type="button"
+                    style={{
+                      ...styles.primaryBtn,
+                      marginTop: 8,
+                      marginBottom: 8,
+                      background: COLORS.amberDim,
+                      borderColor: COLORS.amberBorder,
+                      color: COLORS.amber,
+                    }}
+                    onClick={() => onOpenExamTraps({ domainId, trapLabel: trap, objectiveId: m.objectiveId })}
+                  >
+                    Study exam trap: {shortTrap} →
+                  </button>
+                )
+              })()}
               <button style={{ ...styles.secondaryBtn, marginTop: 8 }} onClick={() => onRemove(missed.indexOf(m))}>Mark as reviewed (remove)</button>
             </div>
           ) : (

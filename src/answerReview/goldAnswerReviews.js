@@ -28,27 +28,27 @@ export const GOLD_ANSWER_REVIEWS = {
   },
   '1.1-c-q3': {
     correct: {
-      choiceIndex: 0,
-      explanation: 'Layer 3 switches provide inter-VLAN routing at switching speed; hubs do not segment broadcasts.',
+      choiceIndex: 1,
+      explanation: 'An L3 switch uses SVIs to route between VLANs locally without an external router.',
     },
     incorrect: [
       {
-        choiceIndex: 1,
-        explanation: 'A hub is a Layer 1 repeater — it repeats every frame out every port and does not segment broadcast domains or route between VLANs.',
-        misconceptionTested: 'Treating a hub like a switch or router',
+        choiceIndex: 0,
+        explanation: 'Port mirroring copies frames to a monitor port for analysis — it does not route traffic between VLAN 10 and VLAN 20.',
+        misconceptionTested: 'Confusing traffic capture with inter-VLAN routing',
       },
       {
         choiceIndex: 2,
-        explanation: 'A WLAN controller manages access points and SSIDs — it does not replace a Layer 3 switch for inter-VLAN routing at line rate in a branch office.',
-        misconceptionTested: 'Expecting a WLAN controller to do L3 inter-VLAN routing',
+        explanation: 'Spanning Tree prevents Layer 2 loops — it does not provide inter-VLAN routing or replace an SVI on a Layer 3 switch.',
+        misconceptionTested: 'Expecting STP to route between VLANs',
       },
       {
         choiceIndex: 3,
-        explanation: 'A cable modem connects a site to an ISP WAN — it is not the LAN device that segments VLANs and routes between them at enterprise line rate.',
-        misconceptionTested: 'Using WAN CPE where LAN switching/routing is required',
+        explanation: 'EtherChannel bundles links for bandwidth and redundancy — it is not the feature that routes between VLANs on one campus switch.',
+        misconceptionTested: 'Using link aggregation where L3 SVI routing is required',
       },
     ],
-    examTip: 'Segment broadcasts + inter-VLAN routing at speed → L3 switch (or router). Hub = never.',
+    examTip: 'Inter-VLAN on one switch without external router → SVI on an L3 switch.',
   },
 }
 

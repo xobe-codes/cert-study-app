@@ -12,6 +12,10 @@ export default defineConfig({
           if (id.includes('ccnaCleanQuestions')) return 'clean-questions'
           if (id.includes('ccnaShelvedQuestions')) return 'shelved-questions'
           if (id.includes('ccnaSkillQuestions')) return 'skill-questions'
+          if (id.includes('MockExam')) return 'mock-exam'
+          if (id.includes('/lab/') || id.includes('ccnaLabs')) return 'labs'
+          if (id.includes('ExtraStudyMode') || id.includes('ExamTrapStudyMode') || id.includes('RoutingDecoderMode')) return 'study-modes'
+          if (id.includes('TopicFocus') || id.includes('CommandHub') || id.includes('StudyLens')) return 'studios'
         },
       },
     },

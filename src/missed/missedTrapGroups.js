@@ -10,6 +10,19 @@ function trapForMissed(m) {
   return m.concept ? `${m.concept} confusion` : 'General concept gap'
 }
 
+/** Resolved trap label + domain for a missed bank entry. */
+export function getMissedTrapInfo(m) {
+  const enriched = m.answerReview ? m : applyAnswerReviewToQuestion(m)
+  const trap = trapForMissed(enriched)
+  const domainId = (m.objectiveId || '1.1').split('.')[0]
+  return { trap, domainId, objectiveId: m.objectiveId }
+}
+
+/** Whether a missed trap label is worth linking to Exam Trap drill. */
+export function isActionableMissedTrap(trap) {
+  return Boolean(trap && trap !== 'General concept gap' && trap !== 'Review this topic')
+}
+
 /** Group missed bank entries by exam trap label for study planning. */
 export function groupMissedByTrap(missed = []) {
   const groups = new Map()

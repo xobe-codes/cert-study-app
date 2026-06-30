@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef, useId } from 'react'
+import React, { useState, useEffect, useMemo, useCallback, useRef, useId, lazy, Suspense } from 'react'
 import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from './data/ccnaCurated.js'
 import { getLab } from './data/ccnaLabs.js'
 import {
@@ -6,7 +6,6 @@ import {
   shuffleArrayCopy, randomizeQuestionOrder, computeBankMix, normalizeQuestionForBank, inferSkill, buildMissedEntry,
 } from './questionUtils.js'
 import { getLessonReference, hasLessonReference } from './lesson/knowledgeReference.js'
-import { buildConceptDetail } from './lesson/conceptDetail.js'
 import { pickReviewSet, computeCkuCoverage, getObjectiveCkuIds } from './lesson/quizCoverage.js'
 import {
   READING_TIERS,
@@ -22,7 +21,6 @@ import {
   resolveBigTakeaway,
   resolveAiTakeaway,
 } from './lesson/explanationFormat.js'
-import { parseRichTextSegments } from './lesson/richTextParse.js'
 import CuratedDiagram from './components/CuratedDiagram.jsx'
 import { preloadCleanBank, getCleanBankStats } from './data/cleanQuestionAdapter.js'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
@@ -47,11 +45,11 @@ import StatusLabel from './components/StatusLabel.jsx'
 import HomeScreen from './HomeScreen.jsx'
 import StatsPage from './StatsPage.jsx'
 import ObjectiveScreen from './ObjectiveScreen.jsx'
-import MockExam from './MockExam.jsx'
 import { bumpSessionStudy } from './home/sessionRecap.js'
-import ExtraStudyMode from './ExtraStudyMode.jsx'
-import ExamTrapStudyMode from './ExamTrapStudyMode.jsx'
-import RoutingDecoderMode from './RoutingDecoderMode.jsx'
+const MockExam = lazy(() => import('./MockExam.jsx'))
+const ExtraStudyMode = lazy(() => import('./ExtraStudyMode.jsx'))
+const ExamTrapStudyMode = lazy(() => import('./ExamTrapStudyMode.jsx'))
+const RoutingDecoderMode = lazy(() => import('./RoutingDecoderMode.jsx'))
 import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, clampQuizSessionSize, loadQuizSessionSize, saveQuizSessionSize } from './quizSessionConfig.js'
 import { loadDueQuestions, countDueQuestions, REVIEW_SESSION_CAP } from './quiz/srsReview.js'
 import { NavHintProvider, useNavHint } from './components/NavHintProvider.jsx'
@@ -68,18 +66,17 @@ import {
 } from './premium/premiumFeatures.js'
 import AppTour from './components/AppTour.jsx'
 import BottomNav from './components/BottomNav.jsx'
-import LabView from './lab/LabView.jsx'
-import LabsHub from './lab/LabsHub.jsx'
-import TopicFocusStudio from './topic/TopicFocusStudio.jsx'
-import TopicFocusSession from './topic/TopicFocusSession.jsx'
-import CommandHubStudio from './commands/CommandHubStudio.jsx'
-import StudyLensStudio from './lens/StudyLensStudio.jsx'
+const LabsHub = lazy(() => import('./lab/LabsHub.jsx'))
+const LabView = lazy(() => import('./lab/LabView.jsx'))
+const TopicFocusStudio = lazy(() => import('./topic/TopicFocusStudio.jsx'))
+const TopicFocusSession = lazy(() => import('./topic/TopicFocusSession.jsx'))
+const CommandHubStudio = lazy(() => import('./commands/CommandHubStudio.jsx'))
+const StudyLensStudio = lazy(() => import('./lens/StudyLensStudio.jsx'))
 import { COMMAND_DRILLS } from './lab/commandDrills.js'
 import CLIDrillTab from './lab/CLIDrillTab.jsx'
 import {
   QUIZ_BANK_MIN, MASTERY_GATE,
   loadQuizBank, saveQuizBank, mergeIntoBank, enableSectionReview,
-  quizQuestionKey,
 } from './quiz/quizBankStorage.js'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 import {
@@ -119,8 +116,17 @@ import ReviewSession from './features/review/ReviewSession.jsx'
 import Onboarding from './features/onboarding/Onboarding.jsx'
 import MissedReview from './features/missed/MissedReview.jsx'
 import MetricsDashboard from './features/metrics/MetricsDashboard.jsx'
+import {
+  generateSyncCode, loadSyncBundle, saveSyncBundle, mergeSyncData, pullSync, pushSync,
+} from './features/sync/syncMerge.js'
+import { EXPLAIN_CACHE_KEY, EXPLAIN_PROMPT_SYSTEM, EXPLAIN_SCHEMA } from './tabs/studyConstants.js'
+import { SubnettingTab, VLSMTab, IPv6CalcTab, ACLWildcardTab } from './tabs/subnetPracticeTabs.jsx'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
+
+function LazyRoute({ children, label = 'Loading…' }) {
+  return <Suspense fallback={<Spinner label={label} />}>{children}</Suspense>
+}
 
 const PREMIUM_TOAST_MESSAGES = {
   [PREMIUM_FEATURES.tutor]: 'AI Tutor and Study Lens synthesis unlock with supporter access.',
@@ -188,270 +194,6 @@ async function bumpStreak() {
   streak.lastStudyDate = today
   await saveStreak(streak)
   return streak
-}
-
-/* =========================================================================
-   CROSS-DEVICE SYNC  — shareable code + D1 (via /api/sync). The bundle holds
-   the user-specific learning data; merges are deterministic and convergent so
-   syncing the same code on two devices ends with both holding the union.
-   ========================================================================= */
-const SYNC_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
-function generateSyncCode() {
-  let s = ''
-  for (let i = 0; i < 16; i++) {
-    if (i && i % 4 === 0) s += '-'
-    s += SYNC_CODE_ALPHABET[Math.floor(Math.random() * SYNC_CODE_ALPHABET.length)]
-  }
-  return s
-}
-
-async function loadSyncBundle() {
-  const [progress, missed, quizBank, cliStats, streak] = await Promise.all([
-    window.storage.getItem(STORAGE_KEYS.progress),
-    window.storage.getItem(STORAGE_KEYS.missed),
-    window.storage.getItem(STORAGE_KEYS.quizBank),
-    window.storage.getItem(STORAGE_KEYS.cliStats),
-    window.storage.getItem(STORAGE_KEYS.streak),
-  ])
-  return {
-    progress: progress || {}, missed: missed || [], quizBank: quizBank || {},
-    cliStats: cliStats || {}, streak: streak || { count: 0, lastStudyDate: null },
-  }
-}
-async function saveSyncBundle(b) {
-  await Promise.all([
-    window.storage.setItem(STORAGE_KEYS.progress, b.progress),
-    window.storage.setItem(STORAGE_KEYS.missed, b.missed),
-    window.storage.setItem(STORAGE_KEYS.quizBank, b.quizBank),
-    window.storage.setItem(STORAGE_KEYS.cliStats, b.cliStats),
-    window.storage.setItem(STORAGE_KEYS.streak, b.streak),
-  ])
-}
-
-// Merge a single progress entry: union quiz sessions by date, keep the richer
-// confidence history, recompute mastery from the merged data.
-function mergeProgressEntry(a, b) {
-  if (!a) return b
-  if (!b) return a
-  const byDate = {}
-  ;[...(a.quizScores || []), ...(b.quizScores || [])].forEach(s => { byDate[s.date] = s })
-  const quizScores = Object.values(byDate).sort((x, y) => x.date - y.date)
-  const confidenceRatings = ((a.confidenceRatings || []).length >= (b.confidenceRatings || []).length ? a.confidenceRatings : b.confidenceRatings) || []
-  const { score, mastered } = computeMastery({ quizScores, confidenceRatings })
-  return {
-    status: mastered ? 'mastered' : (quizScores.length ? 'in_progress' : (a.status || b.status || 'unseen')),
-    quizScores, confidenceRatings, masteryScore: score,
-    lastSeen: Math.max(a.lastSeen || 0, b.lastSeen || 0),
-  }
-}
-function mergeProgress(a = {}, b = {}) {
-  const out = { ...a }
-  for (const id of new Set([...Object.keys(a), ...Object.keys(b)])) {
-    out[id] = mergeProgressEntry(a[id], b[id])
-  }
-  return out
-}
-function mergeMissed(a = [], b = []) {
-  const seen = new Set()
-  const out = []
-  ;[...a, ...b].forEach(m => {
-    const k = `${m.objectiveId}::${m.question}`
-    if (!seen.has(k)) { seen.add(k); out.push(m) }
-  })
-  return out
-}
-function mergeQuizBank(a = {}, b = {}) {
-  const out = {}
-  for (const id of new Set([...Object.keys(a), ...Object.keys(b)])) {
-    const map = {}
-    ;[...(a[id] || []), ...(b[id] || [])].forEach(q => {
-      const k = quizQuestionKey(q.question)
-      // keep the copy with more recorded attempts (more learner history)
-      if (!map[k] || (q.attempts?.length || 0) > (map[k].attempts?.length || 0)) map[k] = q
-    })
-    out[id] = Object.values(map)
-  }
-  return out
-}
-function mergeCliStats(a = {}, b = {}) {
-  const out = { ...a }
-  for (const id of Object.keys(b)) {
-    if (!out[id] || (b[id].updatedAt || 0) > (out[id].updatedAt || 0)) out[id] = b[id]
-  }
-  return out
-}
-function mergeStreak(a = { count: 0 }, b = { count: 0 }) {
-  const ad = a?.lastStudyDate || '', bd = b?.lastStudyDate || ''
-  if (bd > ad) return b
-  if (ad > bd) return a
-  return (b?.count || 0) > (a?.count || 0) ? b : a
-}
-function mergeSyncData(local, remote = {}) {
-  return {
-    progress: mergeProgress(local.progress, remote.progress || {}),
-    missed: mergeMissed(local.missed, remote.missed || []),
-    quizBank: mergeQuizBank(local.quizBank, remote.quizBank || {}),
-    cliStats: mergeCliStats(local.cliStats, remote.cliStats || {}),
-    streak: mergeStreak(local.streak, remote.streak || { count: 0, lastStudyDate: null }),
-  }
-}
-
-async function pullSync(code) {
-  const res = await fetch(`/api/sync?code=${encodeURIComponent(code)}`)
-  if (!res.ok) throw new Error(`Sync server error ${res.status}`)
-  const j = await res.json()
-  return j.data || null
-}
-async function pushSync(code, data) {
-  const res = await fetch('/api/sync', {
-    method: 'POST', headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ code, data }),
-  })
-  if (!res.ok) throw new Error(`Sync server error ${res.status}`)
-  return res.json()
-}
-
-/* =========================================================================
-   LEARNER SUMMARY + LOCAL RECOMMENDATION ENGINE
-   Deterministic analysis of progress + event log + missed bank. Produces both
-   the "For You" suggestion cards and the behaviour context the AI tutor reads.
-   No AI and no network — recommendations are business logic, generated locally.
-   ========================================================================= */
-
-// Compact behaviour context for the tutor's system prompt (string block).
-
-/* =========================================================================
-   SUBNETTING PROBLEM GENERATOR
-   ========================================================================= */
-function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min }
-
-function ipToOctets(ip) { return ip.split('.').map(Number) }
-function octetsToIp(o) { return o.join('.') }
-function maskFromCidr(cidr) {
-  const bits = '1'.repeat(cidr) + '0'.repeat(32 - cidr)
-  return [0, 8, 16, 24].map(i => parseInt(bits.slice(i, i + 8), 2))
-}
-function cidrFromMask(mask) {
-  return mask.reduce((acc, o) => acc + o.toString(2).split('1').length - 1, 0)
-}
-
-// Generates a random "given an IP and CIDR, find network/broadcast/range/etc" problem
-function generateSubnetProblem() {
-  const cidr = randInt(2, 30)
-  const octets = [randInt(1, 223), randInt(0, 255), randInt(0, 255), randInt(1, 254)]
-  const ip = octetsToIp(octets)
-  const mask = maskFromCidr(cidr)
-
-  const networkOctets = octets.map((o, i) => o & mask[i])
-  const wildcard = mask.map(m => 255 - m)
-  const broadcastOctets = networkOctets.map((o, i) => o | wildcard[i])
-
-  const hostBits = 32 - cidr
-  const totalHosts = Math.pow(2, hostBits)
-  const usableHosts = hostBits >= 1 ? Math.max(totalHosts - 2, 0) : 0
-
-  const firstUsable = [...networkOctets]
-  const lastUsable = [...broadcastOctets]
-  if (hostBits >= 1) {
-    firstUsable[3] += 1
-    lastUsable[3] -= 1
-  }
-
-  // block size = 256 - interesting octet of mask (find first non-255 octet)
-  let blockSizeOctetIndex = mask.findIndex(m => m !== 255 && m !== 0)
-  if (blockSizeOctetIndex === -1) blockSizeOctetIndex = cidr === 32 ? 3 : 0
-  const blockSize = 256 - mask[blockSizeOctetIndex]
-
-  return {
-    type: 'subnet',
-    ip,
-    cidr,
-    mask: octetsToIp(mask),
-    network: octetsToIp(networkOctets),
-    broadcast: octetsToIp(broadcastOctets),
-    firstUsable: hostBits >= 1 ? octetsToIp(firstUsable) : null,
-    lastUsable: hostBits >= 1 ? octetsToIp(lastUsable) : null,
-    usableHosts,
-    totalHosts,
-    blockSize,
-    blockSizeOctetIndex,
-    steps: [
-      `Block size = 256 - ${mask[blockSizeOctetIndex]} (octet ${blockSizeOctetIndex + 1} of the mask) = ${blockSize}`,
-      `Network address: round octet ${blockSizeOctetIndex + 1} of ${ip} down to the nearest multiple of ${blockSize} → ${octetsToIp(networkOctets)}`,
-      `Broadcast address: add (block size - 1) = ${blockSize - 1} to octet ${blockSizeOctetIndex + 1} of the network address, set octets after it to 255 → ${octetsToIp(broadcastOctets)}`,
-      hostBits >= 1
-        ? `Usable host range: ${octetsToIp(firstUsable)} - ${octetsToIp(lastUsable)} (${usableHosts} usable hosts = 2^${hostBits} - 2)`
-        : `/${cidr} has no usable hosts (point-to-point or host route).`,
-    ],
-  }
-}
-
-// VLSM: given a base network and a list of required host counts, allocate
-// subnets in descending order of size (largest-first allocation).
-function generateVLSMProblem() {
-  const baseCidr = 24
-  const octets = [randInt(1, 223), randInt(0, 255), randInt(0, 255), 0]
-  const baseNetwork = octetsToIp(octets)
-
-  // Generate 3-4 requirements that fit within a /24 (max 254 usable)
-  const numReqs = randInt(3, 4)
-  const reqs = []
-  let remaining = 200
-  for (let i = 0; i < numReqs; i++) {
-    const maxForThis = Math.floor(remaining / (numReqs - i)) || 2
-    const hosts = randInt(2, Math.max(2, Math.min(maxForThis, 60)))
-    reqs.push({ name: `Subnet ${String.fromCharCode(65 + i)}`, hostsNeeded: hosts })
-    remaining -= hosts
-  }
-  // sort largest first for allocation (this is the "answer order")
-  const sorted = [...reqs].sort((a, b) => b.hostsNeeded - a.hostsNeeded)
-
-  let cursor = ipToOctets(baseNetwork)
-  const allocations = sorted.map(req => {
-    // smallest CIDR that fits hostsNeeded + 2 (network + broadcast)
-    let hostBits = 1
-    while (Math.pow(2, hostBits) - 2 < req.hostsNeeded) hostBits++
-    const cidr = 32 - hostBits
-    const blockSize = Math.pow(2, hostBits)
-    const mask = maskFromCidr(cidr)
-
-    const network = [...cursor]
-    const broadcastOctets = network.map((o, i) => o | (255 - mask[i]))
-    const firstUsable = [...network]; firstUsable[3] += 1
-    const lastUsable = [...broadcastOctets]; lastUsable[3] -= 1
-
-    const allocation = {
-      name: req.name,
-      hostsNeeded: req.hostsNeeded,
-      cidr,
-      mask: octetsToIp(mask),
-      network: octetsToIp(network),
-      broadcast: octetsToIp(broadcastOctets),
-      firstUsable: octetsToIp(firstUsable),
-      lastUsable: octetsToIp(lastUsable),
-      usableHosts: blockSize - 2,
-      blockSize,
-    }
-
-    // advance cursor by blockSize (32-bit addition on the 4th octet, carrying)
-    let val = cursor[0] * 16777216 + cursor[1] * 65536 + cursor[2] * 256 + cursor[3]
-    val += blockSize
-    cursor = [
-      (val >>> 24) & 255,
-      (val >>> 16) & 255,
-      (val >>> 8) & 255,
-      val & 255,
-    ]
-
-    return allocation
-  })
-
-  return {
-    type: 'vlsm',
-    baseNetwork: `${baseNetwork}/${baseCidr}`,
-    requirements: reqs,
-    allocations,
-  }
 }
 
 /* =========================================================================
@@ -587,223 +329,6 @@ function ProgressRing({ value, size = 72, stroke = 7, accent = 'purple', caption
         </div>
       </div>
       {caption && <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, textAlign: 'center', maxWidth: size + 16, lineHeight: 1.3 }}>{caption}</span>}
-    </div>
-  )
-}
-
-/* =========================================================================
-   EXPLAIN TAB
-   ========================================================================= */
-const EXPLAIN_CACHE_KEY = 'ccna_explain_cache_v2' // v2: structured sections (was prose)
-const EXPLAIN_PROMPT_SYSTEM = `You are a CCNA 200-301 tutor. Use the provided reference notes as your primary source. If the notes don't fully cover something a CCNA candidate needs, fill the gap with accurate, exam-relevant CCNA 200-301 knowledge — but never contradict the reference notes. Produce a clear, layered explanation in the requested structured fields. Keep each field tight and scannable: short sentences, plain language. The "advanced" field holds deeper detail a learner can skip on first pass.${''}
-- definition: 2-4 short plain-English sentences — what it is and why it matters. No commands, formulas, exam traps, or citations here.
-- bigTakeaway: one sentence the learner must remember (max ~25 words).
-- keyPoints: 3-5 of the most testable core facts (short phrases) — formulas and commands belong here.
-- realWorld: 1-2 sentences of practical/exam/lab context
-- commonMistakes: 2-3 things students typically confuse or get wrong
-- related: 2-4 prerequisite or follow-on topics (short labels)
-- advanced: optional deeper detail (1-3 sentences), or omit if not needed`
-const EXPLAIN_SCHEMA = {
-  type: 'object',
-  required: ['definition', 'bigTakeaway', 'keyPoints', 'commonMistakes'],
-  properties: {
-    definition: { type: 'string' },
-    bigTakeaway: { type: 'string' },
-    keyPoints: { type: 'array', items: { type: 'string' } },
-    realWorld: { type: 'string' },
-    commonMistakes: { type: 'array', items: { type: 'string' } },
-    related: { type: 'array', items: { type: 'string' } },
-    advanced: { type: 'string' },
-  },
-}
-
-/* =========================================================================
-   SOURCES — verifiable only. We cite the authoritative Cisco exam blueprint
-   (objective id/title) and named reference works. No AI-invented page numbers.
-   Lives here as exam-level config so it generalises to other certifications.
-   ========================================================================= */
-const EXAM_SOURCES = {
-  examName: 'CCNA 200-301',
-  blueprintUrl: 'https://learningnetwork.cisco.com/s/ccna-exam-topics',
-  references: [
-    { title: 'CCNA 200-301 Official Cert Guide (Vol 1 & 2)', author: 'Wendell Odom', publisher: 'Cisco Press' },
-  ],
-}
-
-/* =========================================================================
-   PRE-ASSESSMENT — test out of a section before studying it.
-   ========================================================================= */
-const PREASSESS_CACHE_KEY = 'ccna_preassess_v1'
-const PREASSESS_PROMPT_SYSTEM = `You are a CCNA 200-301 assessment writer. Using the reference notes as your primary source (supplement with accurate CCNA knowledge consistent with them), write 6 multiple-choice questions that test whether a learner already knows this section's core concepts. Cover distinct sub-concepts so a wrong answer pinpoints a specific gap. Tag each question with the short sub-concept it tests.`
-const PREASSESS_SCHEMA = {
-  type: 'object', required: ['questions'],
-  properties: { questions: { type: 'array', items: {
-    type: 'object', required: ['question', 'choices', 'correctIndex', 'explanation', 'concept'],
-    properties: {
-      question: { type: 'string' },
-      choices: { type: 'array', items: { type: 'string' }, minItems: 4, maxItems: 4 },
-      correctIndex: { type: 'integer', minimum: 0, maximum: 3 },
-      explanation: { type: 'string' },
-      concept: { type: 'string' },
-    },
-  } } },
-}
-
-/* =========================================================================
-   KEY TERMS CAROUSEL — horizontal "flash card" pockets of must-know terms
-   ========================================================================= */
-const TERMS_CACHE_KEY = 'ccna_terms_cache_v1'
-const TERMS_PROMPT_SYSTEM = `You are a CCNA 200-301 study aid generator. Use the provided reference notes as your primary source; where the notes don't fully cover a detail a CCNA candidate needs, fill the gap with accurate CCNA 200-301 knowledge consistent with the notes. Produce 6-8 key-term flashcards for this objective — the most exam-relevant terms, acronyms, commands, or concepts to know cold.
-
-Respond with ONLY valid JSON (no markdown fences, no commentary), in this exact shape:
-{"cards":[{"term":"...","detail":"..."}]}
-
-"term": a short label, max ~4 words (a word, acronym, command, or short phrase).
-"detail": 1-2 short sentences with the key fact, definition, or syntax.`
-
-function KeyTermsCarousel({ objective, premiumUnlocked = false, onPremiumBlocked }) {
-  const [cards, setCards] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [flipped, setFlipped] = useState(() => new Set())
-  const [detailIdx, setDetailIdx] = useState(null)
-  const [fromCurated, setFromCurated] = useState(false)
-  const curatedFlashcards = useMemo(() => getCurated(objective.id)?.flashcards || null, [objective.id])
-
-  const fetchTerms = useCallback(async (force) => {
-    setLoading(true)
-    setError(null)
-    setFromCurated(false)
-    try {
-      if (!force && curatedFlashcards?.length) {
-        setCards(curatedFlashcards.map(f => ({ term: f.front, detail: f.back, ckuId: f.ckuId || null, id: f.id })))
-        setFromCurated(true)
-        setLoading(false)
-        return
-      }
-      if (!force) {
-        const cache = (await window.storage.getItem(TERMS_CACHE_KEY)) || {}
-        if (cache[objective.id]) {
-          setCards(cache[objective.id])
-          setLoading(false)
-          return
-        }
-      }
-      if (!premiumUnlocked) {
-        onPremiumBlocked?.(PREMIUM_FEATURES.ai_terms, 'key_terms', { objectiveId: objective.id })
-        setCards(null)
-        setLoading(false)
-        return
-      }
-      const refNotes = BOOK_REF[objective.id] || ''
-      const data = await askClaudeJSON({
-        system: TERMS_PROMPT_SYSTEM,
-        messages: [{
-          role: 'user',
-          content: `Objective ${objective.id}: ${objective.title}\n\nReference notes:\n${refNotes}\n\nGenerate key-term flashcards for this objective.`,
-        }],
-        max_tokens: 700,
-        model: MODELS.fast,
-        schema: TERMS_SCHEMA,
-        toolName: 'emit_terms',
-        feature: 'terms',
-      })
-      const list = data.cards || []
-      if (list.length === 0) throw new Error('Claude returned no flashcards.')
-      setCards(list)
-      const cache = (await window.storage.getItem(TERMS_CACHE_KEY)) || {}
-      cache[objective.id] = list
-      await window.storage.setItem(TERMS_CACHE_KEY, cache)
-    } catch (err) {
-      setError(err.message.includes('JSON') ? 'Claude returned an unexpected format. Please try again.' : err.message)
-    } finally {
-      setLoading(false)
-    }
-  }, [objective.id, objective.title, curatedFlashcards, premiumUnlocked, onPremiumBlocked])
-
-  useEffect(() => {
-    setCards(null)
-    setError(null)
-    setFlipped(new Set())
-    setDetailIdx(null)
-    fetchTerms(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [objective.id])
-
-  const toggleFlip = (idx) => {
-    setFlipped(prev => {
-      const next = new Set(prev)
-      if (next.has(idx)) {
-        next.delete(idx)
-        setDetailIdx(current => (current === idx ? null : current))
-      } else {
-        next.add(idx)
-        setDetailIdx(idx)
-      }
-      return next
-    })
-  }
-
-  if (loading) return <Spinner label="Pulling key terms..." />
-  if (error) return <ErrorBox message={error} onRetry={() => fetchTerms(true)} />
-  if (!cards) return null
-
-  return (
-    <div style={{ marginBottom: 12 }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-          <div>
-            <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.9 }}>🃏 KEY TERMS</div>
-            <div style={{ ...styles.small, fontSize: 'var(--ccna-type-xs)', marginTop: 1 }}>Tap a card to flip</div>
-          </div>
-          {fromCurated && <CuratedStaticBadge objectiveId={objective.id} fontSize={9} />}
-        </div>
-        {premiumUnlocked && (
-          <button
-            type="button"
-            style={{ background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', padding: '4px 0', minHeight: 32 }}
-            onClick={() => fetchTerms(true)}
-          >
-            {fromCurated ? 'Generate with AI' : 'Refresh'}
-          </button>
-        )}
-      </div>
-      <div style={{
-        display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6, width: '100%', maxWidth: '100%',
-        scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch',
-        overscrollBehaviorX: 'contain', touchAction: 'pan-x pan-y',
-      }}>
-        {cards.map((c, idx) => {
-          const isFlipped = flipped.has(idx)
-          return (
-            <button
-              key={idx}
-              onClick={() => toggleFlip(idx)}
-              className={`key-term-card${isFlipped ? ' key-term-card--flipped' : ''}`}
-              style={{
-                flex: '0 0 auto', width: 168, minHeight: 110, scrollSnapAlign: 'start',
-                background: isFlipped ? COLORS.skyDim : COLORS.purpleDim,
-                border: `1px solid ${isFlipped ? COLORS.skyBorder : COLORS.borderGlow}`,
-                borderRadius: 12, padding: 12, textAlign: 'left', cursor: 'pointer',
-                display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6,
-                fontFamily: 'inherit', color: COLORS.silver,
-              }}
-            >
-              <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: isFlipped ? COLORS.sky : COLORS.purpleGlow }}>
-                {c.term}
-              </div>
-              {isFlipped ? (
-                <div style={{ fontSize: 'var(--ccna-type-xs)', lineHeight: 1.4, color: COLORS.silver }}>{c.detail}</div>
-              ) : (
-                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>Tap to reveal</div>
-              )}
-            </button>
-          )
-        })}
-      </div>
-      {detailIdx != null && cards[detailIdx] && flipped.has(detailIdx) && (
-        <ConceptDetailPanel objectiveId={objective.id} card={cards[detailIdx]} />
-      )}
     </div>
   )
 }
@@ -1048,406 +573,22 @@ function VisualAidTab({ objective, premiumUnlocked, onPremiumBlocked }) {
 }
 
 /* =========================================================================
-   SUBNETTING TAB
-   ========================================================================= */
-function SubnetField({ label, value, onChange, placeholder }) {
-  return (
-    <div style={{ marginBottom: 8 }}>
-      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>{label}</div>
-      <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
-        value={value} onChange={onChange} placeholder={placeholder}
-        autoCapitalize="none" autoCorrect="off" spellCheck={false} inputMode="decimal" />
-    </div>
-  )
-}
-
-function SubnettingTab() {
-  const [problem, setProblem] = useState(() => generateSubnetProblem())
-  const [answers, setAnswers] = useState({ network: '', broadcast: '', firstUsable: '', lastUsable: '', usableHosts: '' })
-  const [checked, setChecked] = useState(false)
-  const [drillMode, setDrillMode] = useState(false) // binary step-by-step drill
-
-  function newProblem() {
-    setProblem(generateSubnetProblem())
-    setAnswers({ network: '', broadcast: '', firstUsable: '', lastUsable: '', usableHosts: '' })
-    setChecked(false)
-  }
-
-  function field(key) {
-    return { value: answers[key], onChange: e => setAnswers(a => ({ ...a, [key]: e.target.value })) }
-  }
-
-  function isCorrect(key, expected) {
-    if (!checked) return null
-    const got = (answers[key] || '').trim()
-    return got === String(expected ?? '')
-  }
-
-  // Binary drill: show IP in binary + step-by-step prompts
-  const ipBin = drillMode ? problem.ip.split('.').map(o => parseInt(o).toString(2).padStart(8, '0')).join('.') : null
-  const maskBin = drillMode ? maskFromCidr(problem.cidr).map(o => o.toString(2).padStart(8, '0')).join('.') : null
-
-  return (
-    <div>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-        {[false, true].map(dm => (
-          <button key={String(dm)} onClick={() => { setDrillMode(dm); newProblem() }}
-            style={{ flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${drillMode === dm ? COLORS.skyBorder : COLORS.border}`, background: drillMode === dm ? COLORS.skyDim : COLORS.surface, color: drillMode === dm ? COLORS.sky : COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', fontFamily: 'inherit' }}>
-            {dm ? '🔢 Binary Drill' : '🔣 Standard'}
-          </button>
-        ))}
-      </div>
-
-      <div style={styles.card}>
-        <div style={styles.small}>Given:</div>
-        <div style={{ fontSize: 'var(--ccna-type-lg)', fontWeight: 700, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', marginTop: 4, marginBottom: drillMode ? 4 : 12 }}>
-          {problem.ip} /{problem.cidr}
-        </div>
-        {drillMode && (
-          <div style={{ fontSize: 'var(--ccna-type-xs)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.sky, marginBottom: 12, lineHeight: 1.8 }}>
-            <div>IP:   {ipBin}</div>
-            <div>Mask: {maskBin}</div>
-            <div style={{ color: COLORS.silverMid, fontSize: 'var(--ccna-type-micro)', marginTop: 4 }}>AND the IP with the mask to find the network; OR with wildcard for broadcast</div>
-          </div>
-        )}
-        <SubnetField label="Network address" placeholder="x.x.x.x" {...field('network')} />
-        <SubnetField label="Broadcast address" placeholder="x.x.x.x" {...field('broadcast')} />
-        <SubnetField label="First usable host" placeholder="x.x.x.x or n/a" {...field('firstUsable')} />
-        <SubnetField label="Last usable host" placeholder="x.x.x.x or n/a" {...field('lastUsable')} />
-        <SubnetField label="Number of usable hosts" placeholder="0" {...field('usableHosts')} />
-
-        {checked && (
-          <div style={{ marginTop: 4, marginBottom: 4 }}>
-            {[
-              ['network', problem.network],
-              ['broadcast', problem.broadcast],
-              ['firstUsable', problem.firstUsable ?? 'n/a'],
-              ['lastUsable', problem.lastUsable ?? 'n/a'],
-              ['usableHosts', problem.usableHosts],
-            ].map(([key, expected]) => {
-              const ok = isCorrect(key, expected)
-              return (
-                <div key={key} style={{ fontSize: 'var(--ccna-type-sm)', color: ok ? COLORS.mint : COLORS.rose, marginBottom: 2 }}>
-                  {ok ? '✓' : '✗'} {key}: expected {String(expected)}
-                </div>
-              )
-            })}
-          </div>
-        )}
-      </div>
-
-      {checked && (
-        <div style={{ ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
-          <div style={styles.h2}>Step-by-step solution</div>
-          {drillMode && (
-            <div style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-xs)', color: COLORS.sky, marginBottom: 10, lineHeight: 1.8 }}>
-              <div>IP:        {ipBin}</div>
-              <div>Mask:      {maskBin}</div>
-              <div>Network:   {problem.network.split('.').map(o => parseInt(o).toString(2).padStart(8,'0')).join('.')} = {problem.network}</div>
-              <div>Broadcast: {problem.broadcast.split('.').map(o => parseInt(o).toString(2).padStart(8,'0')).join('.')} = {problem.broadcast}</div>
-            </div>
-          )}
-          <ol style={{ paddingLeft: 18, margin: 0, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.7 }}>
-            {problem.steps.map((s, i) => <li key={i}>{s}</li>)}
-          </ol>
-        </div>
-      )}
-
-      <div style={{ display: 'flex', gap: 8 }}>
-        {!checked && <button style={styles.primaryBtn} onClick={() => setChecked(true)}>Check answers</button>}
-        <button style={checked ? styles.primaryBtn : styles.secondaryBtn} onClick={newProblem}>New problem</button>
-      </div>
-    </div>
-  )
-}
-/* =========================================================================
-   VLSM PRACTICE TAB
-   ========================================================================= */
-function VLSMTab() {
-  const [problem, setProblem] = useState(() => generateVLSMProblem())
-  const [answers, setAnswers] = useState({})
-  const [checked, setChecked] = useState(false)
-
-  function newProblem() {
-    setProblem(generateVLSMProblem())
-    setAnswers({})
-    setChecked(false)
-  }
-
-  function setField(name, key, value) {
-    setAnswers(a => ({ ...a, [`${name}_${key}`]: value }))
-  }
-
-  return (
-    <div>
-      <div style={styles.card}>
-        <div style={styles.small}>Base network: <strong style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.silver }}>{problem.baseNetwork}</strong></div>
-        <div style={{ ...styles.small, marginTop: 8, marginBottom: 4 }}>Allocate subnets in order, largest requirement first:</div>
-        <ul style={{ paddingLeft: 18, margin: 0, fontSize: 'var(--ccna-type-sm)', lineHeight: 1.7 }}>
-          {problem.requirements.map(r => (
-            <li key={r.name}>{r.name}: {r.hostsNeeded} hosts needed</li>
-          ))}
-        </ul>
-      </div>
-
-      {problem.allocations.map((a, idx) => (
-        <div key={a.name} style={styles.card}>
-          <div style={{ ...styles.h2, fontSize: 'var(--ccna-type-md)' }}>{idx + 1}. {a.name} ({a.hostsNeeded} hosts needed)</div>
-          <SubnetField label="Network address" placeholder="x.x.x.x" value={answers[`${a.name}_network`] || ''} onChange={e => setField(a.name, 'network', e.target.value)} />
-          <SubnetField label="CIDR (/n)" placeholder="/n" value={answers[`${a.name}_cidr`] || ''} onChange={e => setField(a.name, 'cidr', e.target.value)} />
-          <SubnetField label="Broadcast address" placeholder="x.x.x.x" value={answers[`${a.name}_broadcast`] || ''} onChange={e => setField(a.name, 'broadcast', e.target.value)} />
-          {checked && (
-            <div style={{ marginTop: 4 }}>
-              {[
-                ['network', a.network], ['cidr', `/${a.cidr}`], ['broadcast', a.broadcast],
-              ].map(([key, expected]) => {
-                const got = (answers[`${a.name}_${key}`] || '').trim()
-                const ok = got === String(expected)
-                return (
-                  <div key={key} style={{ fontSize: 'var(--ccna-type-sm)', color: ok ? COLORS.mint : COLORS.rose, marginBottom: 2 }}>
-                    {ok ? '✓' : '✗'} {key}: expected {expected}
-                  </div>
-                )
-              })}
-              <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 4 }}>
-                Usable range: {a.firstUsable} - {a.lastUsable} ({a.usableHosts} usable hosts, block size {a.blockSize})
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
-
-      <div style={{ display: 'flex', gap: 8 }}>
-        {!checked && <button style={styles.primaryBtn} onClick={() => setChecked(true)}>Check answers</button>}
-        <button style={checked ? styles.primaryBtn : styles.secondaryBtn} onClick={newProblem}>New problem</button>
-      </div>
-    </div>
-  )
-}
-
-
-/* =========================================================================
-   IPv6 ADDRESSING CALCULATOR — prefix notation, expanded/compressed forms,
-   and prefix range for a given IPv6 address/prefix length. Zero API cost.
-   ========================================================================= */
-function expandIPv6(addr) {
-  // Expand :: shorthand and pad each group to 4 hex digits
-  let full = addr.trim()
-  if (full.includes('::')) {
-    const [left, right] = full.split('::')
-    const leftGroups = left ? left.split(':') : []
-    const rightGroups = right ? right.split(':') : []
-    const missing = 8 - leftGroups.length - rightGroups.length
-    const mid = Array(missing).fill('0000')
-    full = [...leftGroups, ...mid, ...rightGroups].join(':')
-  }
-  return full.split(':').map(g => g.padStart(4, '0')).join(':')
-}
-function compressIPv6(expanded) {
-  // Remove leading zeros in each group, then find longest run of :0: for ::
-  const groups = expanded.split(':').map(g => g.replace(/^0+/, '') || '0')
-  const str = groups.join(':')
-  // Find longest consecutive sequence of :0: groups
-  let best = '', bestLen = 0, cur = '', curLen = 0
-  for (let i = 0; i < groups.length; i++) {
-    if (groups[i] === '0') { cur += (cur ? ':' : '') + '0'; curLen++; if (curLen > bestLen) { best = cur; bestLen = curLen } }
-    else { cur = ''; curLen = 0 }
-  }
-  if (bestLen >= 2) {
-    const rx = new RegExp('(^|:)' + best.replace(/:/g, ':') + '($|:)')
-    return str.replace(rx, '::').replace(/:{3,}/, '::')
-  }
-  return str
-}
-
-function IPv6CalcTab() {
-  const [input, setInput] = useState('')
-  const [prefix, setPrefix] = useState('64')
-  const [result, setResult] = useState(null)
-  const [error, setError] = useState('')
-
-  function calculate() {
-    setError('')
-    try {
-      const pfx = parseInt(prefix, 10)
-      if (isNaN(pfx) || pfx < 0 || pfx > 128) throw new Error('Prefix length must be 0–128.')
-      let addr = input.trim()
-      if (!addr) throw new Error('Enter an IPv6 address.')
-      // Basic validation: allow hex digits, colons, double colon
-      if (!/^[0-9a-fA-F:]+$/.test(addr)) throw new Error('Invalid characters — use hex digits and colons.')
-      const expanded = expandIPv6(addr)
-      const groups = expanded.split(':')
-      if (groups.length !== 8) throw new Error('Invalid IPv6 address (need 8 groups after expansion).')
-      // Convert to 128-bit bigint
-      const full = BigInt('0x' + groups.map(g => g.padStart(4, '0')).join(''))
-      const mask = pfx === 0 ? 0n : (((1n << BigInt(pfx)) - 1n) << BigInt(128 - pfx))
-      const network = full & mask
-      const lastAddr = pfx === 128 ? network : network | ((1n << BigInt(128 - pfx)) - 1n)
-      function bigToIPv6(n) {
-        const hex = n.toString(16).padStart(32, '0')
-        return compressIPv6(hex.match(/.{4}/g).join(':'))
-      }
-      setResult({
-        expanded: expanded.toLowerCase(),
-        compressed: compressIPv6(expanded.toLowerCase()),
-        prefixLength: pfx,
-        networkPrefix: bigToIPv6(network) + '/' + pfx,
-        firstHost: pfx < 128 ? bigToIPv6(network + 1n) : bigToIPv6(network),
-        lastAddr: bigToIPv6(lastAddr),
-        totalAddresses: pfx <= 64 ? '2^' + (128 - pfx) + ' (' + ((128 - pfx) >= 64 ? '≥18 quintillion' : String(2n ** BigInt(128 - pfx))) + ')' : String(2n ** BigInt(128 - pfx)),
-      })
-    } catch (e) { setError(e.message) }
-  }
-
-  return (
-    <div>
-      <div style={styles.card}>
-        <div style={{ ...styles.small, fontWeight: 700, marginBottom: 10 }}>IPv6 Address / Prefix Calculator</div>
-        <div style={{ marginBottom: 8 }}>
-          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>IPv6 Address</div>
-          <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
-            value={input} onChange={e => setInput(e.target.value)} placeholder="e.g. 2001:db8::1 or 2001:0db8::" autoCapitalize="none" autoCorrect="off" />
-        </div>
-        <div style={{ marginBottom: 12 }}>
-          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>Prefix Length</div>
-          <input style={{ ...styles.input, width: 80 }} value={prefix} onChange={e => setPrefix(e.target.value)} placeholder="64" inputMode="numeric" />
-        </div>
-        <button style={styles.primaryBtn} onClick={calculate}>Calculate</button>
-      </div>
-      {error && <div style={{ color: COLORS.rose, fontSize: 'var(--ccna-type-sm)', marginTop: 8 }}>{error}</div>}
-      {result && (
-        <div style={styles.card}>
-          {[
-            ['Expanded form', result.expanded],
-            ['Compressed form', result.compressed],
-            ['Network prefix', result.networkPrefix],
-            ['First host address', result.firstHost],
-            ['Last address in block', result.lastAddr],
-            ['Total addresses', result.totalAddresses],
-          ].map(([label, val]) => (
-            <div key={label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, flexWrap: 'wrap', gap: 4 }}>
-              <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{label}</span>
-              <span style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', color: COLORS.sky }}>{val}</span>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  )
-}
-
-/* =========================================================================
-   ACL WILDCARD-MASK CALCULATOR — converts subnet mask ↔ wildcard mask,
-   and shows the matching network range for a given address + wildcard.
-   ========================================================================= */
-function ACLWildcardTab() {
-  const [mode, setMode] = useState('mask') // mask | range
-  const [mask, setMask] = useState('')
-  const [address, setAddress] = useState('')
-  const [wildcard, setWildcard] = useState('')
-  const [result, setResult] = useState(null)
-  const [error, setError] = useState('')
-
-  function validateOctets(ip) {
-    const parts = ip.split('.')
-    if (parts.length !== 4) return false
-    return parts.every(p => { const n = parseInt(p, 10); return !isNaN(n) && n >= 0 && n <= 255 && String(n) === p })
-  }
-
-  function calculate() {
-    setError(''); setResult(null)
-    try {
-      if (mode === 'mask') {
-        if (!validateOctets(mask)) throw new Error('Enter a valid subnet mask (e.g. 255.255.255.0)')
-        const maskOcts = mask.split('.').map(Number)
-        const wildcardOcts = maskOcts.map(o => 255 - o)
-        const cidr = maskOcts.reduce((s, o) => s + o.toString(2).split('').filter(b => b === '1').length, 0)
-        setResult({
-          subnetMask: mask,
-          wildcardMask: wildcardOcts.join('.'),
-          cidr: '/' + cidr,
-          note: 'Wildcard = bitwise NOT of subnet mask',
-        })
-      } else {
-        if (!validateOctets(address)) throw new Error('Enter a valid IP address.')
-        if (!validateOctets(wildcard)) throw new Error('Enter a valid wildcard mask.')
-        const addrOcts = address.split('.').map(Number)
-        const wcOcts = wildcard.split('.').map(Number)
-        // Network = address AND (NOT wildcard)
-        const netOcts = addrOcts.map((o, i) => o & (255 - wcOcts[i]))
-        // Broadcast = network OR wildcard
-        const broadOcts = netOcts.map((o, i) => o | wcOcts[i])
-        const subnetMask = wcOcts.map(o => 255 - o).join('.')
-        const cidr = wcOcts.map(o => (255 - o).toString(2).split('1').length - 1).reduce((a, b) => a + b, 0)
-        const hosts = wcOcts.reduce((prod, o) => prod * (o + 1), 1)
-        setResult({
-          networkAddress: netOcts.join('.'),
-          broadcastAddress: broadOcts.join('.'),
-          subnetMask,
-          cidr: '/' + cidr,
-          matchingHosts: hosts + ' IP address' + (hosts !== 1 ? 'es' : ''),
-          aclStatement: `access-list 1 permit ${netOcts.join('.')} ${wildcard}`,
-        })
-      }
-    } catch (e) { setError(e.message) }
-  }
-
-  return (
-    <div>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-        {[['mask', 'Mask → Wildcard'], ['range', 'Address + Wildcard → Range']].map(([m, label]) => (
-          <button key={m} onClick={() => { setMode(m); setResult(null); setError('') }}
-            style={{ flex: 1, minHeight: 36, borderRadius: 10, border: `1px solid ${mode === m ? COLORS.skyBorder : COLORS.border}`, background: mode === m ? COLORS.skyDim : COLORS.surface, color: mode === m ? COLORS.sky : COLORS.silverMid, fontSize: 'var(--ccna-type-xs)', cursor: 'pointer', fontFamily: 'inherit' }}>
-            {label}
-          </button>
-        ))}
-      </div>
-      <div style={styles.card}>
-        {mode === 'mask' ? (
-          <div style={{ marginBottom: 12 }}>
-            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>Subnet Mask</div>
-            <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
-              value={mask} onChange={e => setMask(e.target.value)} placeholder="255.255.255.0" inputMode="decimal" />
-          </div>
-        ) : (
-          <>
-            <div style={{ marginBottom: 8 }}>
-              <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>IP Address</div>
-              <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
-                value={address} onChange={e => setAddress(e.target.value)} placeholder="192.168.1.0" inputMode="decimal" />
-            </div>
-            <div style={{ marginBottom: 12 }}>
-              <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4 }}>Wildcard Mask</div>
-              <input style={{ ...styles.input, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}
-                value={wildcard} onChange={e => setWildcard(e.target.value)} placeholder="0.0.0.255" inputMode="decimal" />
-            </div>
-          </>
-        )}
-        <button style={styles.primaryBtn} onClick={calculate}>Calculate</button>
-      </div>
-      {error && <div style={{ color: COLORS.rose, fontSize: 'var(--ccna-type-sm)', marginTop: 8 }}>{error}</div>}
-      {result && (
-        <div style={styles.card}>
-          {Object.entries(result).map(([key, val]) => (
-            <div key={key} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, flexWrap: 'wrap', gap: 4 }}>
-              <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, textTransform: 'capitalize' }}>{key.replace(/([A-Z])/g, ' $1').trim()}</span>
-              <span style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 'var(--ccna-type-sm)', color: COLORS.sky }}>{val}</span>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  )
-}
-
-
-/* =========================================================================
    OFFLINE PACKAGING
    Every AI asset (explanation, key terms, visual aid, quiz bank) is cached in
    window.storage. A topic is "offline-ready" once all four exist locally, after
    which it works with no network. Packaging pre-generates only what's missing
    (online required); re-viewing packaged content later costs zero API calls.
    ========================================================================= */
+const TERMS_CACHE_KEY = 'ccna_terms_cache_v1'
+const TERMS_PROMPT_SYSTEM = `You are a CCNA 200-301 study aid generator. Use the provided reference notes as your primary source; where the notes don't fully cover a detail a CCNA candidate needs, fill the gap with accurate CCNA 200-301 knowledge consistent with the notes. Produce 6-8 key-term flashcards for this objective — the most exam-relevant terms, acronyms, commands, or concepts to know cold.
+
+Respond with ONLY valid JSON (no markdown fences, no commentary), in this exact shape:
+{"cards":[{"term":"...","detail":"..."}]}
+
+"term": a short label, max ~4 words (a word, acronym, command, or short phrase).
+"detail": 1-2 short sentences with the key fact, definition, or syntax.`
+const QUIZ_PROMPT_SYSTEM = `You are a CCNA 200-301 quiz generator. Use the provided reference notes as your primary source; where the notes don't cover a detail needed for a good question, you may draw on accurate broader CCNA 200-301 knowledge consistent with the notes. Write questions at genuine CCNA exam difficulty with 4 choices, short explanations, and tags for type, difficulty, skill, and concept.`
+
 async function ensureExplanationCached(objective) {
   // Curated objectives render from bundled data — no cache entry needed
   if (hasCuratedReading(objective.id)) return
@@ -1605,6 +746,7 @@ export default function App() {
   const [view, setView] = useState('home') // home | objective | mock | missed | tutor | metrics | stats | focus | topicfocus | topicfocussession | commandhub | studylens | examtraps | subnet | routing | extrastudy
   const [returnToView, setReturnToView] = useState('home')
   const [topicFocusConfig, setTopicFocusConfig] = useState(null)
+  const [examTrapPrefill, setExamTrapPrefill] = useState(null)
   const [selectedObjective, setSelectedObjective] = useState(null)
   const [progress, setProgress] = useState({})
   const [missed, setMissed] = useState([])
@@ -2059,6 +1201,13 @@ export default function App() {
     setView(nextView)
   }, [view])
 
+  const openExamTraps = useCallback((prefill) => {
+    setExamTrapPrefill(prefill || null)
+    navigateTo('examtraps')
+  }, [navigateTo])
+
+  const clearExamTrapPrefill = useCallback(() => setExamTrapPrefill(null), [])
+
   const goBack = useCallback(() => {
     setView(returnToView)
   }, [returnToView])
@@ -2211,7 +1360,7 @@ export default function App() {
             onOpenTopicFocus={() => navigateTo('topicfocus')}
             onOpenCommandHub={() => navigateTo('commandhub')}
             onOpenStudyLens={() => navigateTo('studylens')}
-            onOpenExamTraps={() => navigateTo('examtraps')}
+            onOpenExamTraps={openExamTraps}
             onOpenSubnet={() => navigateTo('subnet')}
             onOpenRouting={() => navigateTo('routing')}
             onOpenExtraStudy={() => navigateTo('extrastudy')}
@@ -2271,8 +1420,19 @@ export default function App() {
             theme={theme}
           />
         )}
-        {view === 'mock' && <MockExam onExit={goBack} examMode={settingsExamMode} />}
-        {view === 'missed' && <MissedReview missed={missed} onBack={goBack} onRemove={removeMissed} />}
+        {view === 'mock' && (
+          <LazyRoute label="Loading mock exam…">
+            <MockExam onExit={goBack} examMode={settingsExamMode} />
+          </LazyRoute>
+        )}
+        {view === 'missed' && (
+          <MissedReview
+            missed={missed}
+            onBack={goBack}
+            onRemove={removeMissed}
+            onOpenExamTraps={openExamTraps}
+          />
+        )}
         {view === 'tutor' && (
           premiumUnlocked
             ? <TutorChat progress={progress} missed={missed} onBack={goBack} />
@@ -2287,66 +1447,95 @@ export default function App() {
           />
         )}
         {view === 'metrics' && <MetricsDashboard progress={progress} missed={missed} dueCount={dueCount} onBack={goBack} onSelectObjective={selectObjective} onOpenReview={() => navigateTo('review')} onOpenStats={() => navigateTo('stats')} />}
-        {view === 'labs' && <LabsHub onBack={goBack} onOpenLab={(id) => openLab(id, 'labs')} />}
+        {view === 'labs' && (
+          <LazyRoute label="Loading labs…">
+            <LabsHub onBack={goBack} onOpenLab={(id) => openLab(id, 'labs')} />
+          </LazyRoute>
+        )}
         {view === 'lab' && selectedLab && (
-          <LabView
-            bundle={getLab(selectedLab)}
-            onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')}
-            celebrate={celebrate}
-            haptic={haptic}
-          />
+          <LazyRoute label="Loading lab…">
+            <LabView
+              bundle={getLab(selectedLab)}
+              onBack={() => setView(labReturn === 'objective' ? 'objective' : 'labs')}
+              celebrate={celebrate}
+              haptic={haptic}
+            />
+          </LazyRoute>
         )}
         {view === 'review' && <ReviewSession onBack={goBack} onMissed={handleMissed} onDone={refreshDue} onOpenSection={selectObjective} />}
         {view === 'focus' && <FocusModeSession progress={progress} onBack={goBack} onMissed={handleMissed} onDone={refreshDue} />}
         {view === 'topicfocus' && (
-          <TopicFocusStudio
-            missed={missed}
-            haptic={haptic}
-            onBack={goBack}
-            onStart={(config) => { setTopicFocusConfig(config); navigateTo('topicfocussession') }}
-          />
+          <LazyRoute label="Loading topic focus…">
+            <TopicFocusStudio
+              missed={missed}
+              haptic={haptic}
+              onBack={goBack}
+              onStart={(config) => { setTopicFocusConfig(config); navigateTo('topicfocussession') }}
+            />
+          </LazyRoute>
         )}
         {view === 'topicfocussession' && topicFocusConfig && (
-          <TopicFocusSession
-            config={topicFocusConfig}
-            onBack={goBack}
-            onMissed={handleMissed}
-            onDone={refreshDue}
-          />
+          <LazyRoute label="Loading session…">
+            <TopicFocusSession
+              config={topicFocusConfig}
+              onBack={goBack}
+              onMissed={handleMissed}
+              onDone={refreshDue}
+            />
+          </LazyRoute>
         )}
         {view === 'commandhub' && (
-          <CommandHubStudio
-            onBack={goBack}
-            onSelectObjective={(objectiveId) => {
-              const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
-              if (obj) selectObjective(obj)
-            }}
-          />
+          <LazyRoute label="Loading command hub…">
+            <CommandHubStudio
+              onBack={goBack}
+              onSelectObjective={(objectiveId) => {
+                const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
+                if (obj) selectObjective(obj)
+              }}
+            />
+          </LazyRoute>
         )}
         {view === 'studylens' && (
-          <StudyLensStudio
-            onBack={goBack}
-            premiumUnlocked={premiumUnlocked}
-            onPremiumBlocked={handlePremiumBlocked}
-            onSelectObjective={(objectiveId) => {
-              const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
-              if (obj) selectObjective(obj)
-            }}
-          />
+          <LazyRoute label="Loading study lens…">
+            <StudyLensStudio
+              onBack={goBack}
+              premiumUnlocked={premiumUnlocked}
+              onPremiumBlocked={handlePremiumBlocked}
+              onSelectObjective={(objectiveId) => {
+                const obj = ALL_OBJECTIVES.find(o => o.id === objectiveId)
+                if (obj) selectObjective(obj)
+              }}
+            />
+          </LazyRoute>
         )}
-        {view === 'examtraps' && <ExamTrapStudyMode styles={styles} onBack={goBack} />}
+        {view === 'examtraps' && (
+          <LazyRoute label="Loading exam traps…">
+            <ExamTrapStudyMode
+              styles={styles}
+              onBack={goBack}
+              prefill={examTrapPrefill}
+              onPrefillConsumed={clearExamTrapPrefill}
+            />
+          </LazyRoute>
+        )}
         {view === 'subnet' && <SubnetPracticeHome onBack={goBack} />}
-        {view === 'routing' && <RoutingDecoderMode styles={styles} COLORS={COLORS} onBack={goBack} />}
+        {view === 'routing' && (
+          <LazyRoute label="Loading routing decoder…">
+            <RoutingDecoderMode styles={styles} COLORS={COLORS} onBack={goBack} />
+          </LazyRoute>
+        )}
         {view === 'extrastudy' && (
-          <ExtraStudyMode
-            styles={styles}
-            COLORS={COLORS}
-            accentColors={accentColors}
-            AnswerReview={AnswerReview}
-            QuestionMeta={QuestionMeta}
-            McChoices={McChoices}
-            onBack={goBack}
-          />
+          <LazyRoute label="Loading extra study…">
+            <ExtraStudyMode
+              styles={styles}
+              COLORS={COLORS}
+              accentColors={accentColors}
+              AnswerReview={AnswerReview}
+              QuestionMeta={QuestionMeta}
+              McChoices={McChoices}
+              onBack={goBack}
+            />
+          </LazyRoute>
         )}
       </RouteShell>
       {showBottomNav && (

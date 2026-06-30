@@ -190,4 +190,35 @@ export const VISUAL_DIAGRAMS = {
     { id: 'l2', source: 'ctrl', target: 'sw2', label: 'southbound API' },
     { id: 'l3', source: 'sw1', target: 'sw2', label: 'data plane', status: 'forwarding' },
   ], ['Controller programs forwarding; switches forward traffic']),
+
+  '5.9': topo('DIAG-5.9-wpa2', 'WPA2-PSK WLAN flow', [
+    { id: 'client', label: 'Wi-Fi client', type: 'pc', x: 15, y: 55 },
+    { id: 'ap', label: 'Lightweight AP', type: 'router', x: 40, y: 55 },
+    { id: 'wlc', label: 'WLC (WLAN + PSK)', type: 'server', x: 65, y: 35, status: 'highlighted' },
+    { id: 'vlan', label: 'Employee VLAN', type: 'subnet', x: 85, y: 55 },
+  ], [
+    { id: 'l1', source: 'client', target: 'ap', label: 'SSID + PSK' },
+    { id: 'l2', source: 'ap', target: 'wlc', label: '4-way handshake' },
+    { id: 'l3', source: 'wlc', target: 'vlan', label: 'WLAN → VLAN map' },
+  ], ['WPA2-AES + PSK; map SSID to VLAN for correct IP scope']),
+
+  '6.1': topo('DIAG-6.1-auto', 'Manual CLI vs automation', [
+    { id: 'eng', label: 'Engineer', type: 'pc', x: 15, y: 50 },
+    { id: 'play', label: 'Ansible playbook', type: 'process', x: 45, y: 30, status: 'highlighted' },
+    { id: 'sw1', label: 'Switch A', type: 'router', x: 70, y: 40 },
+    { id: 'sw2', label: 'Switch B', type: 'router', x: 70, y: 65 },
+  ], [
+    { id: 'l1', source: 'eng', target: 'play', label: 'template / IaC' },
+    { id: 'l2', source: 'play', target: 'sw1', label: 'SSH push' },
+    { id: 'l3', source: 'play', target: 'sw2', label: 'SSH push' },
+  ], ['One playbook applies consistent config across many devices']),
+
+  '6.3': topo('DIAG-6.3-sdn-api', 'SDN API planes', [
+    { id: 'app', label: 'Orchestration app', type: 'pc', x: 20, y: 25 },
+    { id: 'ctrl', label: 'SDN Controller', type: 'server', x: 50, y: 40, status: 'highlighted' },
+    { id: 'dev', label: 'Network device', type: 'router', x: 80, y: 55 },
+  ], [
+    { id: 'l1', source: 'app', target: 'ctrl', label: 'northbound REST' },
+    { id: 'l2', source: 'ctrl', target: 'dev', label: 'southbound NETCONF/OpenFlow' },
+  ], ['Northbound: apps to controller. Southbound: controller to devices']),
 }

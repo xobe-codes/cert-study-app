@@ -229,6 +229,48 @@ export const CONTENT_ENRICHMENT_PATCHES = {
   '4.6': { engineerView: ENGINEER_46 },
   '4.8': { engineerView: ENGINEER_48 },
   '5.5': { engineerView: ENGINEER_55 },
+  '4.9': {
+    questions: [
+      {
+        id: '4.9-en-q1',
+        concept: 'tftp transport',
+        type: 'definition',
+        difficulty: 'easy',
+        question: 'Which transport protocol and port does TFTP use?',
+        choices: ['UDP port 69', 'TCP port 21', 'TCP port 69', 'UDP port 21'],
+        correctIndex: 0,
+        explanation: 'TFTP is connectionless UDP on port 69 — simple for IOS image copy on trusted LANs.',
+        ckuIds: ['CKU-TFTP-FTP'],
+      },
+      {
+        id: '4.9-en-q2',
+        concept: 'ftp auth',
+        type: 'scenario',
+        difficulty: 'medium',
+        question: 'An engineer must copy an IOS image from a server that requires username and password. Which protocol fits?',
+        choices: ['FTP or SCP', 'TFTP only', 'SNMP v2c get', 'HTTP without auth'],
+        correctIndex: 0,
+        explanation: 'TFTP has no authentication; FTP and SCP support credentials for file transfer.',
+        ckuIds: ['CKU-TFTP-FTP'],
+      },
+      {
+        id: '4.9-en-q3',
+        concept: 'copy direction',
+        type: 'application',
+        difficulty: 'medium',
+        question: 'Which IOS command downloads a new image from TFTP server 10.0.0.5 to flash?',
+        choices: [
+          'copy tftp://10.0.0.5/image.bin flash:',
+          'copy flash: tftp://10.0.0.5/image.bin',
+          'download tftp 10.0.0.5 image.bin',
+          'archive copy tftp flash',
+        ],
+        correctIndex: 0,
+        explanation: 'Source first, destination second — `copy tftp: flash:` pulls from server to local flash.',
+        ckuIds: ['CKU-TFTP-FTP'],
+      },
+    ],
+  },
   '5.9': {
     engineerView: ENGINEER_59,
     examTraps: [
@@ -256,6 +298,56 @@ export const CONTENT_ENRICHMENT_PATCHES = {
     flashcards: [
       { id: '6.1-f1', ckuId: 'CKU-AUTOMATION', front: 'Top ops benefit of network automation?', back: 'Faster, repeatable changes with fewer manual CLI errors.' },
       { id: '6.1-f2', ckuId: 'CKU-AUTOMATION', front: 'Infrastructure as Code means?', back: 'Device config defined in versioned templates/playbooks, not one-off CLI.' },
+    ],
+    questions: [
+      {
+        id: '6.1-en-q1',
+        concept: 'ops benefit',
+        type: 'definition',
+        difficulty: 'easy',
+        question: 'What is the primary operational benefit of network automation on CCNA?',
+        choices: [
+          'Faster, repeatable changes with fewer manual CLI errors',
+          'Eliminates need for IP addressing plans',
+          'Removes requirement for routing protocols',
+          'Guarantees zero configuration drift forever',
+        ],
+        correctIndex: 0,
+        explanation: 'Automation scales consistent deployment — the core ops win is speed and repeatability with less human error.',
+        ckuIds: ['CKU-AUTOMATION'],
+      },
+      {
+        id: '6.1-en-q2',
+        concept: 'infrastructure as code',
+        type: 'definition',
+        difficulty: 'medium',
+        question: 'Infrastructure as Code (IaC) for networks means what?',
+        choices: [
+          'Device config defined in versioned templates/playbooks instead of one-off CLI',
+          'Replacing all routers with virtual machines only',
+          'Disabling SSH in favor of console-only access',
+          'Running routing protocols in the cloud exclusively',
+        ],
+        correctIndex: 0,
+        explanation: 'IaC treats network config as code — templates, playbooks, and APIs apply desired state at scale.',
+        ckuIds: ['CKU-AUTOMATION'],
+      },
+      {
+        id: '6.1-en-q3',
+        concept: 'role shift',
+        type: 'scenario',
+        difficulty: 'medium',
+        question: 'After adopting Ansible for campus switches, what shifts most for the network team?',
+        choices: [
+          'More time writing/maintaining automation and less box-by-box CLI',
+          'No need to understand VLANs or routing',
+          'Elimination of change windows and validation',
+          'Removal of all show commands from troubleshooting',
+        ],
+        correctIndex: 0,
+        explanation: 'Engineers focus on templates, APIs, and validation while automation handles repetitive CLI at scale.',
+        ckuIds: ['CKU-AUTOMATION'],
+      },
     ],
   },
   '6.2': {
@@ -305,6 +397,16 @@ export const CONTENT_ENRICHMENT_PATCHES = {
       { id: '6.6-f2', ckuId: 'CKU-JSON-ANSIBLE', front: 'Ansible vs Puppet/Chef model?', back: 'Ansible: agentless push via SSH. Puppet/Chef: often agent pull to master.' },
     ],
   },
+}
+
+/** Raw supplemental MC questions from factory + enrichment patches (not yet quiz-shaped). */
+export function getEnrichmentPatchQuestions(objectiveId) {
+  const factory = factoryPatchFor(objectiveId)
+  const patch = CONTENT_ENRICHMENT_PATCHES[objectiveId]
+  const qs = []
+  if (factory?.questions?.length) qs.push(...factory.questions)
+  if (patch?.questions?.length) qs.push(...patch.questions)
+  return qs
 }
 
 /** Merge enrichment patch into a curated objective object. */

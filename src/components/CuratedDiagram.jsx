@@ -25,6 +25,31 @@ function useCompactViewport(maxWidth = 900) {
   return compact
 }
 
+/** Touch / coarse-pointer devices (iPad, phones) — no hover-only affordances. */
+function useTouchFriendly() {
+  const [touchFriendly, setTouchFriendly] = useState(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return false
+    return window.matchMedia('(pointer: coarse)').matches
+      || window.matchMedia('(hover: none)').matches
+  })
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return
+    const coarse = window.matchMedia('(pointer: coarse)')
+    const noHover = window.matchMedia('(hover: none)')
+    const onChange = () => setTouchFriendly(coarse.matches || noHover.matches)
+    onChange()
+    coarse.addEventListener('change', onChange)
+    noHover.addEventListener('change', onChange)
+    return () => {
+      coarse.removeEventListener('change', onChange)
+      noHover.removeEventListener('change', onChange)
+    }
+  }, [])
+
+  return touchFriendly
+}
+
 function useFocusTrap(containerRef) {
   useEffect(() => {
     const root = containerRef.current
@@ -274,9 +299,10 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
   )
 }
 
-function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle = true, ariaExpanded = false, isMobile = false }) {
+function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle = true, ariaExpanded = false, isMobile = false, touchFriendly = false }) {
   const linkStatuses = new Set((diagram.links || []).map(l => l.status).filter(Boolean))
   const isPreview = detail === 'preview'
+  const showExpandButton = expandable && (isMobile || touchFriendly)
   const maxHeight = isMobile
     ? (isPreview ? (compact ? 260 : 280) : compact ? 240 : 320)
     : (isPreview ? (compact ? 148 : 200) : compact ? 168 : 260)
@@ -297,7 +323,7 @@ function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle
       }}
     >
       <DiagramSvg diagram={diagram} detail={detail} compact={compact} isMobile={isMobile} />
-      {expandable && !isMobile && (
+      {expandable && !showExpandButton && (
         <div
           aria-hidden="true"
           style={{
@@ -308,6 +334,19 @@ function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle
           }}
         >
           <span>↗</span><span>View full</span>
+        </div>
+      )}
+      {showExpandButton && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute', right: 8, bottom: 8, display: 'flex', alignItems: 'center', gap: 4,
+            fontSize: 'var(--ccna-type-micro)', fontWeight: 600, color: COLORS.sky,
+            background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, borderRadius: 6, padding: '4px 8px',
+            pointerEvents: 'none',
+          }}
+        >
+          <span>↗</span><span>Tap to expand</span>
         </div>
       )}
     </div>
@@ -322,7 +361,7 @@ function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle
           🗺️ {diagram.title.toUpperCase()}
         </div>
       )}
-      {expandable && !isMobile ? (
+      {expandable && !showExpandButton ? (
         <button
           type="button"
           onClick={onExpand}
@@ -347,7 +386,7 @@ function DiagramCard({ diagram, detail, compact, expandable, onExpand, showTitle
           {canvas}
         </div>
       )}
-      {expandable && isMobile && (
+      {showExpandButton && (
         <button
           type="button"
           className="curated-diagram-expand-btn"
@@ -485,12 +524,13 @@ function DiagramExpandModal({ diagram, onClose, isMobile = false }) {
 export default function CuratedDiagram({ diagram, compact = false }) {
   const [open, setOpen] = useState(false)
   const isMobile = useCompactViewport()
+  const touchFriendly = useTouchFriendly()
   const needsExpand = useMemo(() => diagramNeedsExpand(diagram), [diagram])
 
   if (!diagram?.nodes?.length) return null
 
   if (!needsExpand) {
-    return <DiagramCard diagram={diagram} detail="full" compact={compact} isMobile={isMobile} />
+    return <DiagramCard diagram={diagram} detail="full" compact={compact} isMobile={isMobile} touchFriendly={touchFriendly} />
   }
 
   return (
@@ -503,6 +543,7 @@ export default function CuratedDiagram({ diagram, compact = false }) {
         ariaExpanded={open}
         onExpand={() => setOpen(true)}
         isMobile={isMobile}
+        touchFriendly={touchFriendly}
       />
       {open && <DiagramExpandModal diagram={diagram} onClose={() => setOpen(false)} isMobile={isMobile} />}
     </>
