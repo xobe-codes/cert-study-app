@@ -33,6 +33,7 @@ import { READING_SUPPLEMENTS_2 } from './curatedReadingSupplement2.js'
 import { applyContentEnrichment, getEnrichmentPatchQuestions } from './contentEnrichmentPatches.js'
 import { VISUAL_DIAGRAMS } from './visualDiagramSupplement.js'
 import { applyAnswerReviewToQuestion } from '../answerReviewLogic.js'
+import { filterHealthyQuestions } from './questionHealth.js'
 
 // Short source identifiers reused across records.
 export const CURATED_SOURCES = {
@@ -2054,14 +2055,14 @@ export function getCuratedQuestions(objectiveId) {
     const clean = getImportedOrCleanQuestions(objectiveId)
     const skill = getSkillQuestions(objectiveId)
     const enrichment = getEnrichmentQuestions(objectiveId)
-    return clean.concat(skill, enrichment)
+    return filterHealthyQuestions(clean.concat(skill, enrichment))
   }
 
   const o = getCurated(objectiveId)
   const hand = (o?.questions || []).map(q => mapQuizQuestion(q, objectiveId))
   const imported = getImportedOrCleanQuestions(objectiveId)
   const skill = getSkillQuestions(objectiveId)
-  return hand.concat(imported, skill)
+  return filterHealthyQuestions(hand.concat(imported, skill))
 }
 
 /* -------------------------------------------------------------------------

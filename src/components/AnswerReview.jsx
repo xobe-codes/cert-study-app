@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 import { resolveIncorrectItem } from '../answerReviewLogic.js'
+import QuestionFlagPanel from './QuestionFlagPanel.jsx'
 import { COLORS, accentColors } from '../ui/appTheme.js'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
@@ -58,7 +59,7 @@ function WrongChoiceReview({ q, item }) {
 }
 
 /** Post-reveal breakdown — correct + your pick expanded; other distractors collapsed. */
-export default function AnswerReview({ q, selected, hideExamTip = false }) {
+export default function AnswerReview({ q, selected, hideExamTip = false, objectiveId, showQuestionFlag = false }) {
   const correctIdx = q.correctIndex
   if (!Array.isArray(q.choices) || typeof correctIdx !== 'number') {
     return <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>{q.explanation}</div>
@@ -116,6 +117,9 @@ export default function AnswerReview({ q, selected, hideExamTip = false }) {
         <ReviewBlock icon="🧠" title="MEMORY HOOK" accent="purple" collapsible defaultOpen={false}>
           <RichText text={ar.memoryHook} />
         </ReviewBlock>
+      )}
+      {showQuestionFlag && selected != null && selected !== correctIdx && objectiveId && q?.id && (
+        <QuestionFlagPanel question={q} objectiveId={objectiveId} selectedIndex={selected} />
       )}
     </div>
   )

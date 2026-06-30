@@ -78,6 +78,7 @@ import {
   QUIZ_BANK_MIN, MASTERY_GATE,
   loadQuizBank, saveQuizBank, mergeIntoBank, enableSectionReview,
 } from './quiz/quizBankStorage.js'
+import { flushQuestionFlagQueue } from './quiz/questionHealthClient.js'
 import { NAV_HINT_KEYS } from './ui/navHintConfig.js'
 import {
   loadExamDate,
@@ -831,6 +832,7 @@ export default function App() {
       setDueCount(due)
       setPremiumUnlocked(premium)
       setLoaded(true)
+      flushQuestionFlagQueue().catch(() => {})
       const reduceMotion = await loadReduceMotion()
       applyReduceMotionPreference(reduceMotion)
       setSettingsReduceMotion(reduceMotion)

@@ -51,6 +51,7 @@ import {
   loadQuizBank, saveQuizBank, mergeIntoBank, recordQuizResult,
   enableSectionReview, loadDueQuestions,
 } from './tabRuntimeDeps.js'
+import { recordQuestionHealthSignal } from '../quiz/questionHealthSignals.js'
 
 function VisualBadge({ children, accent }) {
   const c = accent || COLORS.purpleGlow
@@ -1567,6 +1568,13 @@ export function QuizTab({
       })
     }
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) {
+      recordQuestionHealthSignal(current.id, objective.id, {
+        correct,
+        selectedIndex: idx,
+        lastRating: current.ratings?.length ? current.ratings[current.ratings.length - 1].value : null,
+      })
+    }
     logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
     if (!correct) {
       collectDeferredTip(current, idx)
@@ -1793,7 +1801,7 @@ export function QuizTab({
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 4, fontSize: 'var(--ccna-type-sm)' }}>
               {isCorrect ? 'Correct' : 'Incorrect'}
             </div>
-            <AnswerReview q={current} selected={selected} hideExamTip={examMode} />
+            <AnswerReview q={current} selected={selected} hideExamTip={examMode} objectiveId={objective.id} showQuestionFlag />
           </div>
         )}
       </div>

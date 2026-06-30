@@ -24,4 +24,6 @@ export const STORAGE_KEYS = {
   premiumUnlocked: 'ccna_premium_unlocked_v1',
   topicFocusSets: 'ccna_topic_focus_sets_v1',
   topicFocusPins: 'ccna_topic_focus_pins_v1',
+  questionHealthFlags: 'ccna_question_health_flags_v1',
+  questionHealthSignals: 'ccna_question_health_signals_v1',
 }
