@@ -25,35 +25,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Status is disabled.\"."
+          "explanation": "If the WLAN status is disabled (admin down), clients will not see or join the SSID regardless of other settings."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SSID beaconing is enabled. describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, Status is disabled. matches the tested behavior — SSID beaconing is enabled. applies a different mechanism.",
+            "explanation": "SSID beaconing enabled is required for visibility — this choice says it is already enabled, so it is not the problem described.",
+            "misconceptionTested": "Picking a healthy setting as the fault",
             "whatItDoes": "SSID beaconing is enabled. describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — SSID beaconing is enabled. applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSID beaconing is enabled.\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — SSID beaconing is enabled. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Multicast support is disabled. describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, Status is disabled. matches the tested behavior — Multicast support is disabled. applies a different mechanism.",
+            "explanation": "Multicast settings affect delivery of multicast traffic — they do not typically hide the SSID from clients.",
+            "misconceptionTested": "Blaming multicast for SSID invisibility",
             "whatItDoes": "Multicast support is disabled. describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — Multicast support is disabled. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Multicast support is disabled.\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — Multicast support is disabled. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Radio Policy is configured to all. describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, Status is disabled. matches the tested behavior — Radio Policy is configured to all. applies a different mechanism.",
+            "explanation": "Radio policy set to all bands should still advertise the SSID — disabled WLAN status is the direct block.",
+            "misconceptionTested": "Over-focusing on band policy when the WLAN is admin-down",
             "whatItDoes": "Radio Policy is configured to all. describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — Radio Policy is configured to all. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Radio Policy is configured to all.\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — Radio Policy is configured to all. applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for wlc gui wlan before picking a familiar-sounding wrong term."
+        "examTip": "SSID not visible → check WLAN enabled status first, then beacon/hide SSID settings."
       }
     },
     {
@@ -81,35 +78,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"One PSK (one hex or one ASCII)\"."
+          "explanation": "A WPA2-Personal WLAN uses one PSK at a time — either hex or ASCII format, not multiple concurrent keys."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Two PSKs (one hex and one ASCII) describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Two PSKs (one hex and one ASCII) applies a different mechanism.",
+            "explanation": "Cisco WLC WPA2-Personal does not provision separate hex and ASCII PSKs simultaneously — one active key only.",
+            "misconceptionTested": "Assuming dual hex+ASCII keys on one WLAN",
             "whatItDoes": "Two PSKs (one hex and one ASCII) describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Two PSKs (one hex and one ASCII) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Two PSKs (one hex and one ASCII)\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Two PSKs (one hex and one ASCII) applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Four PSKs (two hex and two ASCII) describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Four PSKs (two hex and two ASCII) applies a different mechanism.",
+            "explanation": "There is not a pool of four PSKs per WLAN — personal mode is one shared key for all clients.",
+            "misconceptionTested": "Expecting multiple rotating PSK slots like enterprise policies",
             "whatItDoes": "Four PSKs (two hex and two ASCII) describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Four PSKs (two hex and two ASCII) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Four PSKs (two hex and two ASCII)\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Four PSKs (two hex and two ASCII) applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Unlimited number of PSKs describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Unlimited number of PSKs applies a different mechanism.",
+            "explanation": "PSK count is limited by design — not unlimited keys on a single WPA2-Personal SSID.",
+            "misconceptionTested": "Treating PSK like per-user enterprise credentials",
             "whatItDoes": "Unlimited number of PSKs describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Unlimited number of PSKs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Unlimited number of PSKs\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Unlimited number of PSKs applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA2-Personal = one PSK (hex OR ASCII). Enterprise = per-user via RADIUS."
       }
     },
     {
@@ -138,35 +132,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"WPA2-AES\"."
+          "explanation": "WPA2 with AES (CCMP) is the strongest common WPA2 cipher — avoid TKIP/RC4 legacy options."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WPA-AES describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA-AES applies a different mechanism.",
+            "explanation": "WPA-AES is first-generation WPA — WPA2-AES is the stronger, current standard for new deployments.",
+            "misconceptionTested": "Stopping at WPA instead of WPA2",
             "whatItDoes": "WPA-AES describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA-AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA-AES\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA-AES applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "WPA2-TKIP describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-TKIP applies a different mechanism.",
+            "explanation": "WPA2-TKIP keeps legacy cipher support — AES/CCMP is stronger and preferred for highest security.",
+            "misconceptionTested": "Choosing TKIP under a WPA2 SSID for \"security\"",
             "whatItDoes": "WPA2-TKIP describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-TKIP applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA2-TKIP\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-TKIP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "WPA2-RC4 describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-RC4 applies a different mechanism.",
+            "explanation": "RC4-based options are legacy — WPA2-AES (CCMP) is the exam answer for strongest WPA2 cipher.",
+            "misconceptionTested": "Selecting deprecated RC4 ciphers",
             "whatItDoes": "WPA2-RC4 describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-RC4 applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA2-RC4\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-RC4 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "Highest WPA2 security → WPA2-AES (CCMP). Disable TKIP when hardening."
       }
     },
     {
@@ -194,35 +185,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"WPA2-Personal\"."
+          "explanation": "WPA2-Personal (PSK) minimizes infrastructure — no RADIUS — while still using modern WPA2 security for a small site."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WPA-Enterprise describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Enterprise applies a different mechanism.",
+            "explanation": "WPA-Enterprise requires RADIUS and more infrastructure — opposite of minimizing backend services.",
+            "misconceptionTested": "Choosing enterprise auth when minimal infra is required",
             "whatItDoes": "WPA-Enterprise describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Enterprise applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA-Enterprise\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Enterprise applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "WPA3-Enterprise describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA3-Enterprise applies a different mechanism.",
+            "explanation": "WPA3-Enterprise also needs RADIUS and newer hardware — more complex than WPA2-Personal for a minimal setup.",
+            "misconceptionTested": "Over-engineering with WPA3-Enterprise for minimal infra",
             "whatItDoes": "WPA3-Enterprise describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA3-Enterprise applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA3-Enterprise\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA3-Enterprise applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "WPA-Personal describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Personal applies a different mechanism.",
+            "explanation": "Original WPA-Personal is older than WPA2-Personal — the stem asks for modern security with minimal infrastructure.",
+            "misconceptionTested": "Reverting to WPA instead of WPA2-Personal",
             "whatItDoes": "WPA-Personal describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Personal applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA-Personal\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Personal applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "Small site, minimal infra, shared key OK → WPA2-Personal. Enterprise/users → WPA2-Enterprise + RADIUS."
       }
     }
   ]

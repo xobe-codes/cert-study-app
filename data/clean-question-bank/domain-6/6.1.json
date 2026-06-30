@@ -78,35 +78,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Create a Python script to configure each router.\"."
+          "explanation": "At scale (20 routers), a Python script (Ansible, Netmiko, etc.) is repeatable, auditable, and far faster than manual paste."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Copy and paste scripts built in Notepad++ into each router. describes a mechanism that could sound plausible for automation. Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Notepad++ into each router. applies a different mechanism.",
+            "explanation": "Manual copy/paste across 20 devices is error-prone and does not scale — automation is the network engineer approach.",
+            "misconceptionTested": "Treating repetitive CLI as a manual-only task",
             "whatItDoes": "Copy and paste scripts built in Notepad++ into each router. describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Notepad++ into each router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Copy and paste scripts built in Note\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Notepad++ into each router. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Copy and paste scripts built in Excel into each router. describes a mechanism that could sound plausible for automation. Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Excel into each router. applies a different mechanism.",
+            "explanation": "Spreadsheets do not execute or validate IOS — they are worse than purpose-built automation for device config.",
+            "misconceptionTested": "Using office tools instead of network automation",
             "whatItDoes": "Copy and paste scripts built in Excel into each router. describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Excel into each router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Copy and paste scripts built in Exce\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Excel into each router. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Work with a partner so that both of you can double-check each other’s work and cut the time in half. describes a mechanism that could sound plausible for automation. CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router. — not both addresses as table entries.",
+            "explanation": "Two people checking manual work still scales linearly with device count — scripts reduce time and human error.",
+            "misconceptionTested": "Doubling manual labor instead of automating",
             "whatItDoes": "Work with a partner so that both of you can double-check each other’s work and cut the time in half. describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router. — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
-            "needsExplanationReview": true
+            "whyWrongHere": "CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router. — not both addresses as table entries."
           }
         ],
-        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
+        "examTip": "Many devices, same change → script/API (Python/Ansible), not manual CLI paste."
       }
     },
     {
@@ -293,35 +290,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Monitoring\"."
+          "explanation": "After production release, monitor outcomes — logs, metrics, alerts — to catch regressions and validate the automation."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Testing describes a mechanism that could sound plausible for automation. Given automation, Monitoring matches the tested behavior — Testing applies a different mechanism.",
+            "explanation": "Testing belongs before production release — post-release focus shifts to monitoring live behavior.",
+            "misconceptionTested": "Running test phase after go-live",
             "whatItDoes": "Testing describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Testing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Testing\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Testing applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Building describes a mechanism that could sound plausible for automation. Given automation, Monitoring matches the tested behavior — Building applies a different mechanism.",
+            "explanation": "Building is complete once deployed — the lifecycle step after release is operations/monitoring.",
+            "misconceptionTested": "Confusing build phase with post-deploy ops",
             "whatItDoes": "Building describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Building applies a different mechanism.",
-            "misconceptionTested": "Applying \"Building\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Building applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Planning describes a mechanism that could sound plausible for automation. Given automation, Monitoring matches the tested behavior — Planning applies a different mechanism.",
+            "explanation": "Planning happens upfront — after release you observe whether the change met intent in production.",
+            "misconceptionTested": "Re-planning instead of monitoring outcomes",
             "whatItDoes": "Planning describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Planning applies a different mechanism.",
-            "misconceptionTested": "Applying \"Planning\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Planning applies a different mechanism."
           }
         ],
-        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
+        "examTip": "Automation lifecycle: plan → build → test → deploy → monitor."
       }
     }
   ]

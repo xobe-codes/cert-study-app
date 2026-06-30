@@ -1108,6 +1108,25 @@ export function buildAppShellCss(colors) {
       overscroll-behavior-x: contain;
       -webkit-overflow-scrolling: touch;
     }
+    .ccna-answer-review {
+      min-width: 0;
+      max-width: 100%;
+    }
+    .ccna-answer-review .ccna-review-block {
+      max-width: 100%;
+    }
+    @media (max-width: 480px) {
+      .ccna-answer-review .ccna-review-block {
+        padding: 8px 10px;
+      }
+      .ccna-answer-review .ccna-review-block .ccna-review-block {
+        padding: 8px;
+        margin-bottom: 6px;
+      }
+      .ccna-answer-review .ccna-review-block__title {
+        font-size: var(--ccna-type-caption);
+      }
+    }
     .key-term-card {
       width: clamp(148px, 42vw, 192px) !important;
     }

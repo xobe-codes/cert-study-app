@@ -7,6 +7,8 @@ import {
   resolveIncorrectItem,
 } from '../answerReviewLogic.js'
 import { isFallbackExplanation, scoreAnswerReview } from '../answerReview/answerReviewQuality.js'
+import { goldAnswerReviewFor } from '../answerReview/goldAnswerReviews.js'
+import { ASAP_SCENARIO_GOLD } from '../answerReview/goldAnswerReviewsAsap.js'
 
 const MAC_Q = {
   id: '1.5-c-q1',
@@ -86,5 +88,27 @@ describe('answerReviewLogic', () => {
     expect(ar.incorrect).toHaveLength(3)
     const texts = ar.incorrect.map(i => i.explanation)
     expect(new Set(texts).size).toBe(3)
+  })
+
+  it('ASAP scenario gold reviews pass SADE quality bar', () => {
+    expect(Object.keys(ASAP_SCENARIO_GOLD).length).toBeGreaterThanOrEqual(15)
+    for (const [id, gold] of Object.entries(ASAP_SCENARIO_GOLD)) {
+      const q = {
+        id,
+        question: `Scenario stem for ${id}`,
+        choices: ['A', 'B', 'C', 'D'],
+        correctIndex: gold.correct.choiceIndex,
+        explanation: gold.correct.explanation,
+        type: 'scenario',
+        answerReview: { ...gold, incorrect: gold.incorrect },
+      }
+      const ar = generateAnswerReview(q)
+      expect(goldAnswerReviewFor(id)).toBeTruthy()
+      expect(ar.incorrect).toHaveLength(3)
+      ar.incorrect.forEach(item => {
+        expect(isFallbackExplanation(item.explanation)).toBe(false)
+      })
+      expect(scoreAnswerReview({ ...q, answerReview: ar }).min).toBeGreaterThanOrEqual(3)
+    }
   })
 })

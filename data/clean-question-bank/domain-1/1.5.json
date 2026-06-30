@@ -77,27 +77,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Flood it out all ports describes flooding the frame to multiple ports in the VLAN. Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs.",
+            "explanation": "Flooding is for unknown destinations. This frame has a known MAC mapped to another port — forward it out that single port only.",
+            "misconceptionTested": "Applying unknown-unicast flood behavior to a known CAM entry",
             "whatItDoes": "Flood it out all ports describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs.",
-            "misconceptionTested": "Choosing flood behavior when the destination is already in the MAC table"
+            "whyWrongHere": "Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switches do not drop unknown unicast by default — they flood within the VLAN so the destination can be learned.",
+            "explanation": "Switches do not drop known unicast frames by default. With a valid CAM entry, the switch forwards out the mapped egress port.",
+            "misconceptionTested": "Assuming the switch discards traffic it could forward",
             "whatItDoes": "Drop the frame implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "In this stem (forwarding decision), the switch should Forward it out only the mapped port — not discard traffic for unknown or normal unicast handling.",
-            "misconceptionTested": "Assuming unknown destination means drop/filter"
+            "whyWrongHere": "In this stem (forwarding decision), the switch should Forward it out only the mapped port — not discard traffic for unknown or normal unicast handling."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Broadcast it within the VLAN describes flooding the frame to multiple ports in the VLAN. Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs.",
+            "explanation": "Broadcast/multicast flood within a VLAN is different from known unicast forwarding — this is a mapped unicast, not a broadcast decision.",
+            "misconceptionTested": "Confusing broadcast flood with known unicast forwarding",
             "whatItDoes": "Broadcast it within the VLAN describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs. Picking Broadcast it within the VLAN misses the exact behavior this stem tests.",
-            "misconceptionTested": "Applying \"Broadcast it within the VLAN\" without matching forwarding decision"
+            "whyWrongHere": "Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs. Picking Broadcast it within the VLAN misses the exact behavior this stem tests."
           }
         ],
-        "examTip": "On the exam: Forgetting same-port source/destination frames are filtered, not forwarded — If both MACs map to the same ingress port, the switch does not forward the frame at all"
+        "examTip": "Known MAC in CAM → one egress port. Unknown MAC → flood (same VLAN, except ingress)."
       }
     },
     {
@@ -221,27 +221,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Forwards it out a different port reflects a common trap: Forgetting same-port source/destination frames are filtered, not forwarded. If both MACs map to the same ingress port, the switch does not forward the frame at all.",
+            "explanation": "There is no other port to forward to — both hosts share the hubbed segment on one switch port, so the frame stays local.",
+            "misconceptionTested": "Expecting the switch to forward when source and destination share one port",
             "whatItDoes": "Forwards it out a different port describes a mechanism that could sound plausible for filtering.",
-            "whyWrongHere": "Given filtering, Filters it — does not forward, since both are on the same port matches the tested behavior — Forwards it out a different port applies a different mechanism.",
-            "misconceptionTested": "Forgetting same-port source/destination frames are filtered, not forwarded"
+            "whyWrongHere": "Given filtering, Filters it — does not forward, since both are on the same port matches the tested behavior — Forwards it out a different port applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Floods it everywhere describes flooding the frame to multiple ports in the VLAN. Here (filtering), the destination is handled with Filters it — does not forward, since both are on the same port because flooding is for unknown destinations, not known mapped MACs.",
+            "explanation": "Flooding sends frames to other ports in the VLAN. Same-port traffic never leaves the ingress port.",
+            "misconceptionTested": "Using unknown-unicast flood logic on same-port traffic",
             "whatItDoes": "Floods it everywhere describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Here (filtering), the destination is handled with Filters it — does not forward, since both are on the same port because flooding is for unknown destinations, not known mapped MACs.",
-            "misconceptionTested": "Choosing flood behavior when the destination is already in the MAC table"
+            "whyWrongHere": "Here (filtering), the destination is handled with Filters it — does not forward, since both are on the same port because flooding is for unknown destinations, not known mapped MACs."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Drops it as an error implies the device should discard the frame instead of forwarding or flooding it. In this stem (filtering), the switch should Filters it — does not forward, since both are on the same port — not discard traffic for unknown or normal unicast handling.",
+            "explanation": "Same-port frames are filtered, not errors. The switch simply does not retransmit what already arrived on that port.",
+            "misconceptionTested": "Treating normal same-port behavior as a fault",
             "whatItDoes": "Drops it as an error implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "In this stem (filtering), the switch should Filters it — does not forward, since both are on the same port — not discard traffic for unknown or normal unicast handling.",
-            "misconceptionTested": "Applying \"Drops it as an error\" without matching filtering"
+            "whyWrongHere": "In this stem (filtering), the switch should Filters it — does not forward, since both are on the same port — not discard traffic for unknown or normal unicast handling."
           }
         ],
-        "examTip": "On the exam: Forgetting same-port source/destination frames are filtered, not forwarded — If both MACs map to the same ingress port, the switch does not forward the frame at all"
+        "examTip": "Same ingress port for source and destination → filter (do not forward)."
       }
     },
     {
@@ -446,27 +446,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It cannot — the server is unknown describes a mechanism that could sound plausible for first frame. Given first frame, It floods the frame (unknown unicast) since the server's MAC isn't learned yet matches the tested behavior — It cannot — the server is unknown applies a different mechanism.",
+            "explanation": "The switch can still deliver the frame — it floods unknown unicast within the VLAN so the new host can reply and be learned.",
+            "misconceptionTested": "Believing an unlearned MAC blocks all delivery",
             "whatItDoes": "It cannot — the server is unknown describes a mechanism that could sound plausible for first frame.",
-            "whyWrongHere": "Given first frame, It floods the frame (unknown unicast) since the server's MAC isn't learned yet matches the tested behavior — It cannot — the server is unknown applies a different mechanism.",
-            "misconceptionTested": "Applying \"It cannot — the server is unknown\" without matching first frame"
+            "whyWrongHere": "Given first frame, It floods the frame (unknown unicast) since the server's MAC isn't learned yet matches the tested behavior — It cannot — the server is unknown applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "It drops the frame and logs an error reflects a common trap: Thinking switches broadcast every frame. Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port.",
+            "explanation": "Unknown unicast is normal switch behavior, not an error log event. The frame is flooded, not dropped.",
+            "misconceptionTested": "Assuming unknown destination means drop/filter",
             "whatItDoes": "It drops the frame and logs an error implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "In this stem (first frame), the switch should It floods the frame (unknown unicast) since the server's MAC isn't learned yet — not discard traffic for unknown or normal unicast handling.",
-            "misconceptionTested": "Thinking switches broadcast every frame"
+            "whyWrongHere": "In this stem (first frame), the switch should It floods the frame (unknown unicast) since the server's MAC isn't learned yet — not discard traffic for unknown or normal unicast handling."
           },
           {
             "choiceIndex": 3,
-            "explanation": "A switch forwards frames using MAC addresses — it does not originate ARP on behalf of every unknown unicast frame arrival.",
+            "explanation": "Hosts ARP for IP; switches forward Ethernet frames by MAC. The switch floods the frame — it does not originate ARP for the server.",
+            "misconceptionTested": "Expecting the switch to ARP before Layer 2 forwarding",
             "whatItDoes": "It sends an ARP request first describes a mechanism that could sound plausible for first frame.",
-            "whyWrongHere": "Given first frame, It floods the frame (unknown unicast) since the server's MAC isn't learned yet matches the tested behavior — It sends an ARP request first applies a different mechanism.",
-            "misconceptionTested": "Expecting the switch to ARP before forwarding at Layer 2"
+            "whyWrongHere": "Given first frame, It floods the frame (unknown unicast) since the server's MAC isn't learned yet matches the tested behavior — It sends an ARP request first applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Thinking switches broadcast every frame — Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port"
+        "examTip": "Brand-new host, no CAM entry yet → unknown unicast flood until the server sends a frame."
       }
     },
     {
@@ -495,27 +495,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Nothing — the entry stays on port 1 forever uses the wrong value. The tested fact calls for 5 — not 1.",
+            "explanation": "CAM entries are not permanent. The laptop's next frame from port 5 relearns the MAC; the old port-1 mapping ages out or is replaced.",
+            "misconceptionTested": "Assuming MAC table entries never move between ports",
             "whatItDoes": "Nothing — the entry stays on port 1 forever describes a mechanism that could sound plausible for relearning after move.",
-            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — Nothing — the entry stays on port 1 forever applies a different mechanism.",
-            "misconceptionTested": "Memorizing 1 instead of the correct 5"
+            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — Nothing — the entry stays on port 1 forever applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The switch immediately deletes all entries describes a mechanism that could sound plausible for relearning after move. Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — The switch immediately deletes all entries applies a different mechanism.",
+            "explanation": "The switch does not flush the entire table on one move — only the affected entry is updated or aged.",
+            "misconceptionTested": "Overreacting to a single host move with a full table wipe",
             "whatItDoes": "The switch immediately deletes all entries describes a mechanism that could sound plausible for relearning after move.",
-            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — The switch immediately deletes all entries applies a different mechanism.",
-            "misconceptionTested": "Applying \"The switch immediately deletes all e\" without matching relearning after move"
+            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — The switch immediately deletes all entries applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The switch shuts down port 5 uses the wrong value. The tested fact calls for 1 — not 5.",
+            "explanation": "Port moves are normal; the switch learns from incoming frames — it does not err-disable the new port.",
+            "misconceptionTested": "Confusing learning updates with port security shutdown",
             "whatItDoes": "The switch shuts down port 5 describes a mechanism that could sound plausible for relearning after move.",
-            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — The switch shuts down port 5 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 5 instead of the correct 1"
+            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — The switch shuts down port 5 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Assuming the aging timer disconnects the device — Aging only removes the table entry; the device itself is unaffected and will be relearned on its next frame"
+        "examTip": "Move a host → next frame relearns MAC-to-port; stale entry ages out."
       }
     },
     {

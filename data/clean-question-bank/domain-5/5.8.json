@@ -26,35 +26,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Enable MAC filtering\"."
+          "explanation": "MAC filtering allows only listed client MAC addresses to associate — the keyed answer for this legacy SOHO stem."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Enable WPA2 describes a mechanism that could sound plausible for wireless security. Given wireless security, Enable MAC filtering matches the tested behavior — Enable WPA2 applies a different mechanism.",
+            "explanation": "WPA2 encrypts traffic but does not by itself restrict which devices may join — pairing encryption with an allow list is what this stem asks for.",
+            "misconceptionTested": "Stopping at WPA2 without a join-control mechanism",
             "whatItDoes": "Enable WPA2 describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Enable WPA2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Enable WPA2\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Enable WPA2 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Enable port security describes a mechanism that could sound plausible for wireless security. Given wireless security, Enable MAC filtering matches the tested behavior — Enable port security applies a different mechanism.",
+            "explanation": "Port security is a switch access-port feature — not wireless client admission on a SOHO AP.",
+            "misconceptionTested": "Applying switch port security to WLAN admission",
             "whatItDoes": "Enable port security describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Enable port security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Enable port security\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Enable port security applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN. Given wireless security, Enable MAC filtering matches the tested behavior — Disable SSID broadcasts applies a different mechanism.",
+            "explanation": "Hiding the SSID does not stop unauthorized clients who know the name — it is not a substitute for an allow list.",
+            "misconceptionTested": "Treating hidden SSID as access control",
             "whatItDoes": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Disable SSID broadcasts applies a different mechanism.",
-            "misconceptionTested": "Applying \"Disable SSID broadcasts\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Disable SSID broadcasts applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does."
       }
     },
     {
@@ -80,35 +77,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Certificate infrastructure\"."
+          "explanation": "WPA2-Enterprise uses 802.1X — you need certificate/RADIUS infrastructure to validate users, not a shared PSK."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Creation of a PSK describes a mechanism that could sound plausible for wireless security. Given wireless security, Certificate infrastructure matches the tested behavior — Creation of a PSK applies a different mechanism.",
+            "explanation": "PSK is for WPA2-Personal — Enterprise mode uses per-user credentials via RADIUS/EAP.",
+            "misconceptionTested": "Applying personal WPA2 (PSK) to enterprise",
             "whatItDoes": "Creation of a PSK describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — Creation of a PSK applies a different mechanism.",
-            "misconceptionTested": "Applying \"Creation of a PSK\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — Creation of a PSK applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "192-bit key strength describes a mechanism that could sound plausible for wireless security. Given wireless security, Certificate infrastructure matches the tested behavior — 192-bit key strength applies a different mechanism.",
+            "explanation": "192-bit security is a WPA3-Enterprise option — not the baseline requirement named for WPA2-Enterprise here.",
+            "misconceptionTested": "Mixing WPA3-192 requirements into WPA2-Enterprise",
             "whatItDoes": "192-bit key strength describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — 192-bit key strength applies a different mechanism.",
-            "misconceptionTested": "Applying \"192-bit key strength\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — 192-bit key strength applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "802.11ac describes a mechanism that could sound plausible for wireless security. Given wireless security, Certificate infrastructure matches the tested behavior — 802.11ac applies a different mechanism.",
+            "explanation": "802.11ac is a Wi-Fi generation/PHY standard — unrelated to enterprise authentication requirements.",
+            "misconceptionTested": "Confusing radio standard with AAA requirements",
             "whatItDoes": "802.11ac describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — 802.11ac applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.11ac\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — 802.11ac applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA2-Enterprise → 802.1X + RADIUS (+ certs on some EAP types). Personal → PSK."
       }
     },
     {
@@ -135,35 +129,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"MIC\"."
+          "explanation": "MIC (Message Integrity Check) in WPA detects tampering and replay of data frames."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "TKIP describes a mechanism that could sound plausible for wireless security. Given wireless security, MIC matches the tested behavior — TKIP applies a different mechanism.",
+            "explanation": "TKIP is the encryption/key mixing protocol — MIC is the integrity piece that catches altered/replayed frames.",
+            "misconceptionTested": "Equating TKIP encryption with integrity checking",
             "whatItDoes": "TKIP describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — TKIP applies a different mechanism.",
-            "misconceptionTested": "Applying \"TKIP\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — TKIP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, MIC matches the tested behavior — AES applies a different mechanism.",
+            "explanation": "AES encrypts frame payload in WPA2 — the WPA-era integrity mechanism tested here is MIC.",
+            "misconceptionTested": "Naming encryption when integrity is asked",
             "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"AES\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — AES applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CRC describes a mechanism that could sound plausible for wireless security. Given wireless security, MIC matches the tested behavior — CRC applies a different mechanism.",
+            "explanation": "CRC is a basic error check on wired Ethernet — not the WPA anti-replay/integrity control.",
+            "misconceptionTested": "Using Ethernet CRC thinking for WPA integrity",
             "whatItDoes": "CRC describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — CRC applies a different mechanism.",
-            "misconceptionTested": "Applying \"CRC\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — CRC applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA integrity/replay → MIC. WPA2 confidentiality → AES-CCMP."
       }
     },
     {
@@ -189,35 +180,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"192-bit\"."
+          "explanation": "WPA3-Enterprise optional 192-bit security mode (GCMP-256) is the highest strength option in the blueprint."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "64-bit describes a mechanism that could sound plausible for wireless security. Given wireless security, 192-bit matches the tested behavior — 64-bit applies a different mechanism.",
+            "explanation": "64-bit strength is far below WPA3-Enterprise high-security modes — not the exam answer for strongest WPA3-Enterprise.",
+            "misconceptionTested": "Understating WPA3 key strength options",
             "whatItDoes": "64-bit describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 64-bit applies a different mechanism.",
-            "misconceptionTested": "Applying \"64-bit\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 64-bit applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "128-bit describes a mechanism that could sound plausible for wireless security. Given wireless security, 192-bit matches the tested behavior — 128-bit applies a different mechanism.",
+            "explanation": "128-bit is common for WPA2-AES — WPA3-Enterprise highest mode is 192-bit in CCNA stems.",
+            "misconceptionTested": "Stopping at WPA2-era 128-bit for WPA3-Enterprise",
             "whatItDoes": "128-bit describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 128-bit applies a different mechanism.",
-            "misconceptionTested": "Applying \"128-bit\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 128-bit applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "256-bit describes a mechanism that could sound plausible for wireless security. Given wireless security, 192-bit matches the tested behavior — 256-bit applies a different mechanism.",
+            "explanation": "256-bit is not the named WPA3-Enterprise high-security mode in Cisco CCNA material — 192-bit is keyed.",
+            "misconceptionTested": "Guessing 256-bit without matching WPA3-Enterprise options",
             "whatItDoes": "256-bit describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 256-bit applies a different mechanism.",
-            "misconceptionTested": "Applying \"256-bit\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 256-bit applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA3-Enterprise strongest common exam answer → 192-bit (GCMP-256 suite)."
       }
     },
     {
@@ -242,35 +230,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"WPA was released as a fix for poor encryption.\"."
+          "explanation": "WPA was introduced to replace WEP because WEP encryption was broken — not for coverage or rebranding alone."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WEP is deprecated and insecure — CCNA expects WPA2/WPA3 for real deployments.",
+            "explanation": "WEP predates WPA — WPA came later as an interim fix before WPA2/802.11i.",
+            "misconceptionTested": "Thinking WPA and WEP shipped together",
             "whatItDoes": "WPA was released at the same time as WEP. describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released at the same time as WEP. applies a different mechanism.",
-            "misconceptionTested": "Choosing WEP for compatibility",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released at the same time as WEP. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "WPA was released as a fix for poor coverage. describes a mechanism that could sound plausible for wireless security. Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released as a fix for poor coverage. applies a different mechanism.",
+            "explanation": "WPA addresses cryptographic weakness — RF coverage is a physical/placement issue, not what WPA fixed.",
+            "misconceptionTested": "Confusing RF coverage with encryption upgrades",
             "whatItDoes": "WPA was released as a fix for poor coverage. describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released as a fix for poor coverage. applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA was released as a fix for poor c\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released as a fix for poor coverage. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The Wi-Fi Alliance wanted to rebrand WEP with WPA. describes a mechanism that could sound plausible for wireless security. Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — The Wi-Fi Alliance wanted to rebrand WEP with WPA. applies a different mechanism.",
+            "explanation": "WPA introduced TKIP/MIC improvements — it was a security fix, not a simple WEP rebrand.",
+            "misconceptionTested": "Dismissing WPA as marketing-only",
             "whatItDoes": "The Wi-Fi Alliance wanted to rebrand WEP with WPA. describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — The Wi-Fi Alliance wanted to rebrand WEP with WPA. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The Wi-Fi Alliance wanted to rebrand\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — The Wi-Fi Alliance wanted to rebrand WEP with WPA. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "History trap: WEP broken → WPA (TKIP/MIC) → WPA2 (AES-CCMP) → WPA3 (SAE)."
       }
     },
     {
@@ -295,35 +280,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Frame-level encryption\"."
+          "explanation": "802.11i (WPA2) standardizes robust frame-level encryption — AES-CCMP protecting data frames."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The use of certificates describes a mechanism that could sound plausible for wireless security. Given wireless security, Frame-level encryption matches the tested behavior — The use of certificates applies a different mechanism.",
+            "explanation": "Certificates support enterprise 802.1X — 802.11i’s core addition to WPA2 is strong frame encryption (AES-CCMP).",
+            "misconceptionTested": "Naming AAA certs instead of 802.11i encryption",
             "whatItDoes": "The use of certificates describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — The use of certificates applies a different mechanism.",
-            "misconceptionTested": "Applying \"The use of certificates\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — The use of certificates applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Pre-shared keys describes a mechanism that could sound plausible for wireless security. Given wireless security, Frame-level encryption matches the tested behavior — Pre-shared keys applies a different mechanism.",
+            "explanation": "PSKs existed in WPA Personal before 802.11i — the standard’s big leap is AES-based frame encryption.",
+            "misconceptionTested": "Crediting PSK to 802.11i",
             "whatItDoes": "Pre-shared keys describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — Pre-shared keys applies a different mechanism.",
-            "misconceptionTested": "Applying \"Pre-shared keys\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — Pre-shared keys applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CRC checking describes a mechanism that could sound plausible for wireless security. Given wireless security, Frame-level encryption matches the tested behavior — CRC checking applies a different mechanism.",
+            "explanation": "CRC checking is not the 802.11i security upgrade — CCMP/AES replaces WEP/TKIP weaknesses.",
+            "misconceptionTested": "Choosing legacy integrity instead of AES-CCMP",
             "whatItDoes": "CRC checking describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — CRC checking applies a different mechanism.",
-            "misconceptionTested": "Applying \"CRC checking\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — CRC checking applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "802.11i = WPA2 → AES-CCMP frame encryption."
       }
     },
     {
@@ -349,35 +331,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"AES-CCMP\"."
+          "explanation": "WPA2 (802.11i) uses AES-CCMP for confidentiality — replacing WEP/TKIP ciphers."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RC4 describes a mechanism that could sound plausible for wireless security. Given wireless security, AES-CCMP matches the tested behavior — RC4 applies a different mechanism.",
+            "explanation": "RC4 underpinned WEP/TKIP — WPA2 moved to AES-CCMP, not RC4.",
+            "misconceptionTested": "Selecting legacy RC4 for WPA2",
             "whatItDoes": "RC4 describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — RC4 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RC4\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — RC4 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "MD5 describes a mechanism that could sound plausible for wireless security. Given wireless security, AES-CCMP matches the tested behavior — MD5 applies a different mechanism.",
+            "explanation": "MD5 is a hash used in other contexts — WPA2 data-plane encryption is AES-CCMP.",
+            "misconceptionTested": "Confusing hash algorithms with WLAN cipher",
             "whatItDoes": "MD5 describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — MD5 applies a different mechanism.",
-            "misconceptionTested": "Applying \"MD5\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — MD5 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SHA1 describes a mechanism that could sound plausible for wireless security. Given wireless security, AES-CCMP matches the tested behavior — SHA1 applies a different mechanism.",
+            "explanation": "SHA1 appears in handshake/auth contexts — the WPA2 encryption mode tested is AES-CCMP.",
+            "misconceptionTested": "Naming SHA1 instead of AES-CCMP",
             "whatItDoes": "SHA1 describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — SHA1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"SHA1\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — SHA1 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA2 cipher → AES-CCMP. TKIP/RC4 = legacy/WPA1 era."
       }
     },
     {
@@ -404,35 +383,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"SAE authentication\"."
+          "explanation": "WPA3-Personal replaces WPA2 PSK with SAE (Simultaneous Authentication of Equals) — stronger against offline guessing."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Certificate support describes a mechanism that could sound plausible for wireless security. Given wireless security, SAE authentication matches the tested behavior — Certificate support applies a different mechanism.",
+            "explanation": "Certificate-based auth is enterprise 802.1X — WPA3-Personal’s headline upgrade is SAE for PSK networks.",
+            "misconceptionTested": "Applying enterprise certs to WPA3-Personal",
             "whatItDoes": "Certificate support describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — Certificate support applies a different mechanism.",
-            "misconceptionTested": "Applying \"Certificate support\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — Certificate support applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Per-frame encryption describes a mechanism that could sound plausible for wireless security. Given wireless security, SAE authentication matches the tested behavior — Per-frame encryption applies a different mechanism.",
+            "explanation": "Frame encryption existed in WPA2 — SAE is the WPA3 authentication upgrade for personal networks.",
+            "misconceptionTested": "Crediting generic encryption instead of SAE",
             "whatItDoes": "Per-frame encryption describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — Per-frame encryption applies a different mechanism.",
-            "misconceptionTested": "Applying \"Per-frame encryption\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — Per-frame encryption applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "TKIP describes a mechanism that could sound plausible for wireless security. Given wireless security, SAE authentication matches the tested behavior — TKIP applies a different mechanism.",
+            "explanation": "TKIP is legacy — WPA3 moves forward with SAE + stronger ciphers, not TKIP.",
+            "misconceptionTested": "Selecting TKIP on a WPA3 question",
             "whatItDoes": "TKIP describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — TKIP applies a different mechanism.",
-            "misconceptionTested": "Applying \"TKIP\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — TKIP applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA3-Personal headline → SAE. WPA3-Enterprise → optional 192-bit modes."
       }
     },
     {
@@ -460,35 +436,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"RADIUS server\"."
+          "explanation": "WPA2-Enterprise uses 802.1X — the WLC or AP must reach a RADIUS server for user authentication."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "NTP server describes a mechanism that could sound plausible for wireless security. Given wireless security, RADIUS server matches the tested behavior — NTP server applies a different mechanism.",
+            "explanation": "NTP keeps clocks synchronized — it is not required to enable WPA2-Enterprise 802.1X authentication.",
+            "misconceptionTested": "Confusing time sync with enterprise WLAN auth",
             "whatItDoes": "NTP server describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — NTP server applies a different mechanism.",
-            "misconceptionTested": "Applying \"NTP server\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — NTP server applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "PSK describes a mechanism that could sound plausible for wireless security. Given wireless security, RADIUS server matches the tested behavior — PSK applies a different mechanism.",
+            "explanation": "PSK is for WPA2-Personal. Enterprise mode uses per-user credentials validated by RADIUS, not one shared key.",
+            "misconceptionTested": "Applying personal WPA2 (PSK) to an enterprise deployment",
             "whatItDoes": "PSK describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — PSK applies a different mechanism.",
-            "misconceptionTested": "Applying \"PSK\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — PSK applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Captive portal describes a mechanism that could sound plausible for wireless security. Given wireless security, RADIUS server matches the tested behavior — Captive portal applies a different mechanism.",
+            "explanation": "Captive portal is guest/web auth flow — not the core requirement for standard WPA2-Enterprise 802.1X.",
+            "misconceptionTested": "Substituting guest portal auth for 802.1X enterprise",
             "whatItDoes": "Captive portal describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — Captive portal applies a different mechanism.",
-            "misconceptionTested": "Applying \"Captive portal\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — Captive portal applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA2-Enterprise → 802.1X + RADIUS. WPA2-Personal → PSK."
       }
     },
     {
@@ -516,35 +489,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"TKIP\"."
+          "explanation": "TKIP enables WPA/WPA2 mixed or legacy fallback. Disable TKIP to enforce AES-only WPA2."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1X describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — 802.1X applies a different mechanism.",
+            "explanation": "802.1X is the authentication framework — disabling it breaks enterprise auth; it does not control WPA vs WPA2 cipher fallback.",
+            "misconceptionTested": "Disabling auth instead of legacy cipher suites",
             "whatItDoes": "802.1X describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — 802.1X applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.1X\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — 802.1X applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
+            "explanation": "AES (CCMP) is what you want to keep — it is the modern WPA2 cipher, not the legacy fallback.",
+            "misconceptionTested": "Removing the strong cipher instead of TKIP",
             "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"AES\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC filtering describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — MAC filtering applies a different mechanism.",
+            "explanation": "MAC filtering is a separate layer-2 allow list — it does not prevent WPA falling back to older ciphers.",
+            "misconceptionTested": "Using MAC filter as a WPA2 hardening control",
             "whatItDoes": "MAC filtering describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — MAC filtering applies a different mechanism.",
-            "misconceptionTested": "Applying \"MAC filtering\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — MAC filtering applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA2-only (no WPA fallback) → allow AES/CCMP, disable TKIP."
       }
     },
     {
@@ -572,35 +542,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"PSK\"."
+          "explanation": "WPA2-Personal uses a Pre-Shared Key — one symmetric passphrase shared by all clients on the SSID."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, PSK matches the tested behavior — AES applies a different mechanism.",
+            "explanation": "AES-CCMP is the encryption cipher — authentication with a shared passphrase is PSK mode.",
+            "misconceptionTested": "Naming the cipher instead of the PSK auth mode",
             "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"AES\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — AES applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Certificates describes a mechanism that could sound plausible for wireless security. Given wireless security, PSK matches the tested behavior — Certificates applies a different mechanism.",
+            "explanation": "Certificates are used in WPA2-Enterprise 802.1X — not the symmetric-key personal mode.",
+            "misconceptionTested": "Mixing enterprise cert auth with PSK personal",
             "whatItDoes": "Certificates describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — Certificates applies a different mechanism.",
-            "misconceptionTested": "Applying \"Certificates\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — Certificates applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "TKIP describes a mechanism that could sound plausible for wireless security. Given wireless security, PSK matches the tested behavior — TKIP applies a different mechanism.",
+            "explanation": "TKIP is a legacy cipher option — symmetric-key authentication in WPA2-Personal is PSK.",
+            "misconceptionTested": "Selecting TKIP when auth mechanism is asked",
             "whatItDoes": "TKIP describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — TKIP applies a different mechanism.",
-            "misconceptionTested": "Applying \"TKIP\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — TKIP applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "Symmetric shared key on WPA2 → PSK (Personal). Per-user → Enterprise + RADIUS."
       }
     },
     {
@@ -628,35 +595,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"TKIP\"."
+          "explanation": "TKIP uses older RC4-based processing and caps throughput on modern radios — AES/CCMP achieves higher rates."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
+            "explanation": "AES (CCMP) is the modern WPA2 cipher and supports high throughput on current hardware.",
+            "misconceptionTested": "Blaming AES for throughput limits",
             "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"AES\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "CCMP describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — CCMP applies a different mechanism.",
+            "explanation": "CCMP is the AES-based cipher for WPA2 — it is not the legacy bottleneck.",
+            "misconceptionTested": "Treating CCMP as legacy like TKIP",
             "whatItDoes": "CCMP describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — CCMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"CCMP\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — CCMP applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "PSK describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — PSK applies a different mechanism.",
+            "explanation": "PSK is an authentication mode (personal vs enterprise), not a cipher that throttles throughput like TKIP.",
+            "misconceptionTested": "Confusing PSK auth mode with cipher performance",
             "whatItDoes": "PSK describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — PSK applies a different mechanism.",
-            "misconceptionTested": "Applying \"PSK\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — PSK applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "Throughput exam trap: TKIP = legacy/slower. Prefer WPA2-AES (CCMP)."
       }
     }
   ]

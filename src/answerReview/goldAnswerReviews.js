@@ -1,6 +1,9 @@
 /**
  * Hand-authored gold answer reviews — override generator for high-traffic questions.
  */
+import { ASAP_SCENARIO_GOLD } from './goldAnswerReviewsAsap.js'
+import { WLAN_58_GOLD } from './goldAnswerReviewsWlan58.js'
+
 export const GOLD_ANSWER_REVIEWS = {
   '1.5-c-q3': {
     correct: {
@@ -75,6 +78,8 @@ export const GOLD_ANSWER_REVIEWS = {
     ],
     examTip: 'Inter-VLAN on one switch without external router → SVI on an L3 switch.',
   },
+  ...ASAP_SCENARIO_GOLD,
+  ...WLAN_58_GOLD,
 }
 
 export function goldAnswerReviewFor(questionId) {

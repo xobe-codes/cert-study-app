@@ -1,6 +1,8 @@
 {
-  "generatedAt": "2026-06-30T10:26:46.827Z",
+  "generatedAt": "2026-06-30T10:47:29.592Z",
   "learnerQuarantineThreshold": 3,
+  "sadeQuarantineMin": 2,
+  "sadeNeedsFixMin": 3,
   "entries": {},
   "excludedIds": []
 }

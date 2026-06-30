@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-06-30T10:47:29.592Z",
+  "thresholds": {
+    "quarantineMin": 2,
+    "needsFixMin": 3
+  },
+  "summary": {
+    "totalQuestions": 950,
+    "quarantineCandidates": 0,
+    "needsFixCandidates": 0,
+    "weakStemAnchor": 0,
+    "avgMin": 4,
+    "avgAvg": 4,
+    "totalFallbackSlots": 0
+  },
+  "quarantinedBySade": [],
+  "needsFixBySade": []
+}

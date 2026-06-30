@@ -1558,27 +1558,27 @@ export const CLEAN_QUESTIONS = {
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Flood it out all ports describes flooding the frame to multiple ports in the VLAN. Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs.",
+            "explanation": "Flooding is for unknown destinations. This frame has a known MAC mapped to another port — forward it out that single port only.",
+            "misconceptionTested": "Applying unknown-unicast flood behavior to a known CAM entry",
             "whatItDoes": "Flood it out all ports describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs.",
-            "misconceptionTested": "Choosing flood behavior when the destination is already in the MAC table"
+            "whyWrongHere": "Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Switches do not drop unknown unicast by default — they flood within the VLAN so the destination can be learned.",
+            "explanation": "Switches do not drop known unicast frames by default. With a valid CAM entry, the switch forwards out the mapped egress port.",
+            "misconceptionTested": "Assuming the switch discards traffic it could forward",
             "whatItDoes": "Drop the frame implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "In this stem (forwarding decision), the switch should Forward it out only the mapped port — not discard traffic for unknown or normal unicast handling.",
-            "misconceptionTested": "Assuming unknown destination means drop/filter"
+            "whyWrongHere": "In this stem (forwarding decision), the switch should Forward it out only the mapped port — not discard traffic for unknown or normal unicast handling."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Broadcast it within the VLAN describes flooding the frame to multiple ports in the VLAN. Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs.",
+            "explanation": "Broadcast/multicast flood within a VLAN is different from known unicast forwarding — this is a mapped unicast, not a broadcast decision.",
+            "misconceptionTested": "Confusing broadcast flood with known unicast forwarding",
             "whatItDoes": "Broadcast it within the VLAN describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs. Picking Broadcast it within the VLAN misses the exact behavior this stem tests.",
-            "misconceptionTested": "Applying \"Broadcast it within the VLAN\" without matching forwarding decision"
+            "whyWrongHere": "Here (forwarding decision), the destination is handled with Forward it out only the mapped port because flooding is for unknown destinations, not known mapped MACs. Picking Broadcast it within the VLAN misses the exact behavior this stem tests."
           }
         ],
-        "examTip": "On the exam: Forgetting same-port source/destination frames are filtered, not forwarded — If both MACs map to the same ingress port, the switch does not forward the frame at all"
+        "examTip": "Known MAC in CAM → one egress port. Unknown MAC → flood (same VLAN, except ingress)."
       }
     },
     {
@@ -1702,27 +1702,27 @@ export const CLEAN_QUESTIONS = {
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Forwards it out a different port reflects a common trap: Forgetting same-port source/destination frames are filtered, not forwarded. If both MACs map to the same ingress port, the switch does not forward the frame at all.",
+            "explanation": "There is no other port to forward to — both hosts share the hubbed segment on one switch port, so the frame stays local.",
+            "misconceptionTested": "Expecting the switch to forward when source and destination share one port",
             "whatItDoes": "Forwards it out a different port describes a mechanism that could sound plausible for filtering.",
-            "whyWrongHere": "Given filtering, Filters it — does not forward, since both are on the same port matches the tested behavior — Forwards it out a different port applies a different mechanism.",
-            "misconceptionTested": "Forgetting same-port source/destination frames are filtered, not forwarded"
+            "whyWrongHere": "Given filtering, Filters it — does not forward, since both are on the same port matches the tested behavior — Forwards it out a different port applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Floods it everywhere describes flooding the frame to multiple ports in the VLAN. Here (filtering), the destination is handled with Filters it — does not forward, since both are on the same port because flooding is for unknown destinations, not known mapped MACs.",
+            "explanation": "Flooding sends frames to other ports in the VLAN. Same-port traffic never leaves the ingress port.",
+            "misconceptionTested": "Using unknown-unicast flood logic on same-port traffic",
             "whatItDoes": "Floods it everywhere describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Here (filtering), the destination is handled with Filters it — does not forward, since both are on the same port because flooding is for unknown destinations, not known mapped MACs.",
-            "misconceptionTested": "Choosing flood behavior when the destination is already in the MAC table"
+            "whyWrongHere": "Here (filtering), the destination is handled with Filters it — does not forward, since both are on the same port because flooding is for unknown destinations, not known mapped MACs."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Drops it as an error implies the device should discard the frame instead of forwarding or flooding it. In this stem (filtering), the switch should Filters it — does not forward, since both are on the same port — not discard traffic for unknown or normal unicast handling.",
+            "explanation": "Same-port frames are filtered, not errors. The switch simply does not retransmit what already arrived on that port.",
+            "misconceptionTested": "Treating normal same-port behavior as a fault",
             "whatItDoes": "Drops it as an error implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "In this stem (filtering), the switch should Filters it — does not forward, since both are on the same port — not discard traffic for unknown or normal unicast handling.",
-            "misconceptionTested": "Applying \"Drops it as an error\" without matching filtering"
+            "whyWrongHere": "In this stem (filtering), the switch should Filters it — does not forward, since both are on the same port — not discard traffic for unknown or normal unicast handling."
           }
         ],
-        "examTip": "On the exam: Forgetting same-port source/destination frames are filtered, not forwarded — If both MACs map to the same ingress port, the switch does not forward the frame at all"
+        "examTip": "Same ingress port for source and destination → filter (do not forward)."
       }
     },
     {
@@ -1927,27 +1927,27 @@ export const CLEAN_QUESTIONS = {
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "It cannot — the server is unknown describes a mechanism that could sound plausible for first frame. Given first frame, It floods the frame (unknown unicast) since the server's MAC isn't learned yet matches the tested behavior — It cannot — the server is unknown applies a different mechanism.",
+            "explanation": "The switch can still deliver the frame — it floods unknown unicast within the VLAN so the new host can reply and be learned.",
+            "misconceptionTested": "Believing an unlearned MAC blocks all delivery",
             "whatItDoes": "It cannot — the server is unknown describes a mechanism that could sound plausible for first frame.",
-            "whyWrongHere": "Given first frame, It floods the frame (unknown unicast) since the server's MAC isn't learned yet matches the tested behavior — It cannot — the server is unknown applies a different mechanism.",
-            "misconceptionTested": "Applying \"It cannot — the server is unknown\" without matching first frame"
+            "whyWrongHere": "Given first frame, It floods the frame (unknown unicast) since the server's MAC isn't learned yet matches the tested behavior — It cannot — the server is unknown applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "It drops the frame and logs an error reflects a common trap: Thinking switches broadcast every frame. Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port.",
+            "explanation": "Unknown unicast is normal switch behavior, not an error log event. The frame is flooded, not dropped.",
+            "misconceptionTested": "Assuming unknown destination means drop/filter",
             "whatItDoes": "It drops the frame and logs an error implies the device should discard the frame instead of forwarding or flooding it.",
-            "whyWrongHere": "In this stem (first frame), the switch should It floods the frame (unknown unicast) since the server's MAC isn't learned yet — not discard traffic for unknown or normal unicast handling.",
-            "misconceptionTested": "Thinking switches broadcast every frame"
+            "whyWrongHere": "In this stem (first frame), the switch should It floods the frame (unknown unicast) since the server's MAC isn't learned yet — not discard traffic for unknown or normal unicast handling."
           },
           {
             "choiceIndex": 3,
-            "explanation": "A switch forwards frames using MAC addresses — it does not originate ARP on behalf of every unknown unicast frame arrival.",
+            "explanation": "Hosts ARP for IP; switches forward Ethernet frames by MAC. The switch floods the frame — it does not originate ARP for the server.",
+            "misconceptionTested": "Expecting the switch to ARP before Layer 2 forwarding",
             "whatItDoes": "It sends an ARP request first describes a mechanism that could sound plausible for first frame.",
-            "whyWrongHere": "Given first frame, It floods the frame (unknown unicast) since the server's MAC isn't learned yet matches the tested behavior — It sends an ARP request first applies a different mechanism.",
-            "misconceptionTested": "Expecting the switch to ARP before forwarding at Layer 2"
+            "whyWrongHere": "Given first frame, It floods the frame (unknown unicast) since the server's MAC isn't learned yet matches the tested behavior — It sends an ARP request first applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Thinking switches broadcast every frame — Only unknown unicast, broadcast, and multicast frames are flooded; known unicast goes to one port"
+        "examTip": "Brand-new host, no CAM entry yet → unknown unicast flood until the server sends a frame."
       }
     },
     {
@@ -1976,27 +1976,27 @@ export const CLEAN_QUESTIONS = {
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Nothing — the entry stays on port 1 forever uses the wrong value. The tested fact calls for 5 — not 1.",
+            "explanation": "CAM entries are not permanent. The laptop's next frame from port 5 relearns the MAC; the old port-1 mapping ages out or is replaced.",
+            "misconceptionTested": "Assuming MAC table entries never move between ports",
             "whatItDoes": "Nothing — the entry stays on port 1 forever describes a mechanism that could sound plausible for relearning after move.",
-            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — Nothing — the entry stays on port 1 forever applies a different mechanism.",
-            "misconceptionTested": "Memorizing 1 instead of the correct 5"
+            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — Nothing — the entry stays on port 1 forever applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "The switch immediately deletes all entries describes a mechanism that could sound plausible for relearning after move. Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — The switch immediately deletes all entries applies a different mechanism.",
+            "explanation": "The switch does not flush the entire table on one move — only the affected entry is updated or aged.",
+            "misconceptionTested": "Overreacting to a single host move with a full table wipe",
             "whatItDoes": "The switch immediately deletes all entries describes a mechanism that could sound plausible for relearning after move.",
-            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — The switch immediately deletes all entries applies a different mechanism.",
-            "misconceptionTested": "Applying \"The switch immediately deletes all e\" without matching relearning after move"
+            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — The switch immediately deletes all entries applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The switch shuts down port 5 uses the wrong value. The tested fact calls for 1 — not 5.",
+            "explanation": "Port moves are normal; the switch learns from incoming frames — it does not err-disable the new port.",
+            "misconceptionTested": "Confusing learning updates with port security shutdown",
             "whatItDoes": "The switch shuts down port 5 describes a mechanism that could sound plausible for relearning after move.",
-            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — The switch shuts down port 5 applies a different mechanism.",
-            "misconceptionTested": "Memorizing 5 instead of the correct 1"
+            "whyWrongHere": "Given relearning after move, The old port 1 entry ages out (or is overwritten) and a new entry for port 5 is learned from the laptop's next frame matches the tested behavior — The switch shuts down port 5 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Assuming the aging timer disconnects the device — Aging only removes the table entry; the device itself is unaffected and will be relearned on its next frame"
+        "examTip": "Move a host → next frame relearns MAC-to-port; stale entry ages out."
       }
     },
     {
@@ -7000,32 +7000,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "LACP active mode actively starts negotiation."
+          "explanation": "LACP requires at least one side in active mode to start negotiation — active on both sides guarantees LACP forms."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Passive mode on both sides describes a mechanism that could sound plausible for etherchannel. Given etherchannel, Active mode on both sides matches the tested behavior — Passive mode on both sides applies a different mechanism.",
+            "explanation": "Passive on both sides waits forever — neither side initiates LACP. You need active on at least one side (both active is fine).",
+            "misconceptionTested": "Expecting passive/passive to negotiate LACP",
             "whatItDoes": "Passive mode on both sides describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Passive mode on both sides applies a different mechanism.",
-            "misconceptionTested": "Applying \"Passive mode on both sides\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Passive mode on both sides applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Auto mode on both sides describes a mechanism that could sound plausible for etherchannel. Given etherchannel, Active mode on both sides matches the tested behavior — Auto mode on both sides applies a different mechanism.",
+            "explanation": "Auto is PAgP terminology, not LACP. This stem asks specifically for LACP between switches.",
+            "misconceptionTested": "Mixing PAgP modes with LACP",
             "whatItDoes": "Auto mode on both sides describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Auto mode on both sides applies a different mechanism.",
-            "misconceptionTested": "Applying \"Auto mode on both sides\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Auto mode on both sides applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Desirable mode on both sides describes a mechanism that could sound plausible for etherchannel. Given etherchannel, Active mode on both sides matches the tested behavior — Desirable mode on both sides applies a different mechanism.",
+            "explanation": "Desirable is also PAgP — not IEEE 802.3ad LACP. Use channel-group mode active/passive for LACP.",
+            "misconceptionTested": "Selecting Cisco PAgP modes on an LACP question",
             "whatItDoes": "Desirable mode on both sides describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Desirable mode on both sides applies a different mechanism.",
-            "misconceptionTested": "Applying \"Desirable mode on both sides\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Desirable mode on both sides applies a different mechanism."
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "LACP = active/passive. PAgP = desirable/auto. Passive + passive never forms a bundle."
       }
     },
     {
@@ -16729,27 +16729,27 @@ export const CLEAN_QUESTIONS = {
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Static routes require OSPF to advertise them reflects a common trap: Exit-interface static routes are always preferred on Ethernet. Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
+            "explanation": "Static routes do not require OSPF — they install when the next-hop is reachable, regardless of dynamic protocol.",
+            "misconceptionTested": "Believing static routes depend on OSPF",
             "whatItDoes": "Static routes require OSPF to advertise them describes a mechanism that could sound plausible for recursive lookup.",
-            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — Static routes require OSPF to advertise them applies a different mechanism.",
-            "misconceptionTested": "Exit-interface static routes are always preferred on Ethernet"
+            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — Static routes require OSPF to advertise them applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static routes must use exit interface only reflects a common trap: Exit-interface static routes are always preferred on Ethernet. Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
+            "explanation": "Exit-interface-only statics are valid on point-to-point links — the issue here is an unreachable next-hop subnet.",
+            "misconceptionTested": "Misdiagnosing as exit-interface requirement",
             "whatItDoes": "Static routes must use exit interface only describes a mechanism that could sound plausible for recursive lookup.",
-            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — Static routes must use exit interface only applies a different mechanism.",
-            "misconceptionTested": "Exit-interface static routes are always preferred on Ethernet"
+            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — Static routes must use exit interface only applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The mask is incompatible describes a mechanism that could sound plausible for recursive lookup. Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — The mask is incompatible applies a different mechanism.",
+            "explanation": "The mask is fine — the static fails recursive lookup because the next-hop network is disconnected/unreachable.",
+            "misconceptionTested": "Blaming subnet mask instead of next-hop reachability",
             "whatItDoes": "The mask is incompatible describes a mechanism that could sound plausible for recursive lookup.",
-            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — The mask is incompatible applies a different mechanism.",
-            "misconceptionTested": "Applying \"The mask is incompatible\" without matching recursive lookup"
+            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — The mask is incompatible applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
+        "examTip": "Static missing from table → check next-hop reachability first (recursive lookup)."
       }
     },
     {
@@ -16922,27 +16922,27 @@ export const CLEAN_QUESTIONS = {
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The route disappears from the table reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "The route typically stays in the table — the problem is inefficient ARP behavior, not disappearance.",
+            "misconceptionTested": "Expecting the route to vanish instead of ARP inefficiency",
             "whatItDoes": "The route disappears from the table describes a mechanism that could sound plausible for exit interface vs next-hop.",
-            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The route disappears from the table applies a different mechanism.",
-            "misconceptionTested": "A static route installs even if the next-hop is unreachable"
+            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The route disappears from the table applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The route has AD 255 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "Administrative distance 255 means unusable — a normal exit-interface static uses AD 1, not 255.",
+            "misconceptionTested": "Confusing AD 255 with exit-interface statics",
             "whatItDoes": "The route has AD 255 describes a mechanism that could sound plausible for exit interface vs next-hop.",
-            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The route has AD 255 applies a different mechanism.",
-            "misconceptionTested": "A static route installs even if the next-hop is unreachable"
+            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The route has AD 255 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The router uses OSPF to resolve the path describes a mechanism that could sound plausible for exit interface vs next-hop. Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The router uses OSPF to resolve the path applies a different mechanism.",
+            "explanation": "OSPF does not resolve static next-hops — the router ARP-requests each destination on the multi-access segment.",
+            "misconceptionTested": "Expecting OSPF to fix static ARP behavior",
             "whatItDoes": "The router uses OSPF to resolve the path describes a mechanism that could sound plausible for exit interface vs next-hop.",
-            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The router uses OSPF to resolve the path applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router uses OSPF to resolve the \" without matching exit interface vs next-hop"
+            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The router uses OSPF to resolve the path applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
+        "examTip": "Multi-access Ethernet static → use next-hop IP, not exit interface only (avoids ARP for every destination)."
       }
     },
     {
@@ -39565,35 +39565,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Enable MAC filtering\"."
+          "explanation": "MAC filtering allows only listed client MAC addresses to associate — the keyed answer for this legacy SOHO stem."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Enable WPA2 describes a mechanism that could sound plausible for wireless security. Given wireless security, Enable MAC filtering matches the tested behavior — Enable WPA2 applies a different mechanism.",
+            "explanation": "WPA2 encrypts traffic but does not by itself restrict which devices may join — pairing encryption with an allow list is what this stem asks for.",
+            "misconceptionTested": "Stopping at WPA2 without a join-control mechanism",
             "whatItDoes": "Enable WPA2 describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Enable WPA2 applies a different mechanism.",
-            "misconceptionTested": "Applying \"Enable WPA2\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Enable WPA2 applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Enable port security describes a mechanism that could sound plausible for wireless security. Given wireless security, Enable MAC filtering matches the tested behavior — Enable port security applies a different mechanism.",
+            "explanation": "Port security is a switch access-port feature — not wireless client admission on a SOHO AP.",
+            "misconceptionTested": "Applying switch port security to WLAN admission",
             "whatItDoes": "Enable port security describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Enable port security applies a different mechanism.",
-            "misconceptionTested": "Applying \"Enable port security\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Enable port security applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN. Given wireless security, Enable MAC filtering matches the tested behavior — Disable SSID broadcasts applies a different mechanism.",
+            "explanation": "Hiding the SSID does not stop unauthorized clients who know the name — it is not a substitute for an allow list.",
+            "misconceptionTested": "Treating hidden SSID as access control",
             "whatItDoes": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Disable SSID broadcasts applies a different mechanism.",
-            "misconceptionTested": "Applying \"Disable SSID broadcasts\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Enable MAC filtering matches the tested behavior — Disable SSID broadcasts applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does."
       }
     },
     {
@@ -39619,35 +39616,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Certificate infrastructure\"."
+          "explanation": "WPA2-Enterprise uses 802.1X — you need certificate/RADIUS infrastructure to validate users, not a shared PSK."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Creation of a PSK describes a mechanism that could sound plausible for wireless security. Given wireless security, Certificate infrastructure matches the tested behavior — Creation of a PSK applies a different mechanism.",
+            "explanation": "PSK is for WPA2-Personal — Enterprise mode uses per-user credentials via RADIUS/EAP.",
+            "misconceptionTested": "Applying personal WPA2 (PSK) to enterprise",
             "whatItDoes": "Creation of a PSK describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — Creation of a PSK applies a different mechanism.",
-            "misconceptionTested": "Applying \"Creation of a PSK\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — Creation of a PSK applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "192-bit key strength describes a mechanism that could sound plausible for wireless security. Given wireless security, Certificate infrastructure matches the tested behavior — 192-bit key strength applies a different mechanism.",
+            "explanation": "192-bit security is a WPA3-Enterprise option — not the baseline requirement named for WPA2-Enterprise here.",
+            "misconceptionTested": "Mixing WPA3-192 requirements into WPA2-Enterprise",
             "whatItDoes": "192-bit key strength describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — 192-bit key strength applies a different mechanism.",
-            "misconceptionTested": "Applying \"192-bit key strength\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — 192-bit key strength applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "802.11ac describes a mechanism that could sound plausible for wireless security. Given wireless security, Certificate infrastructure matches the tested behavior — 802.11ac applies a different mechanism.",
+            "explanation": "802.11ac is a Wi-Fi generation/PHY standard — unrelated to enterprise authentication requirements.",
+            "misconceptionTested": "Confusing radio standard with AAA requirements",
             "whatItDoes": "802.11ac describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — 802.11ac applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.11ac\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Certificate infrastructure matches the tested behavior — 802.11ac applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA2-Enterprise → 802.1X + RADIUS (+ certs on some EAP types). Personal → PSK."
       }
     },
     {
@@ -39674,35 +39668,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"MIC\"."
+          "explanation": "MIC (Message Integrity Check) in WPA detects tampering and replay of data frames."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "TKIP describes a mechanism that could sound plausible for wireless security. Given wireless security, MIC matches the tested behavior — TKIP applies a different mechanism.",
+            "explanation": "TKIP is the encryption/key mixing protocol — MIC is the integrity piece that catches altered/replayed frames.",
+            "misconceptionTested": "Equating TKIP encryption with integrity checking",
             "whatItDoes": "TKIP describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — TKIP applies a different mechanism.",
-            "misconceptionTested": "Applying \"TKIP\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — TKIP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, MIC matches the tested behavior — AES applies a different mechanism.",
+            "explanation": "AES encrypts frame payload in WPA2 — the WPA-era integrity mechanism tested here is MIC.",
+            "misconceptionTested": "Naming encryption when integrity is asked",
             "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"AES\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — AES applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CRC describes a mechanism that could sound plausible for wireless security. Given wireless security, MIC matches the tested behavior — CRC applies a different mechanism.",
+            "explanation": "CRC is a basic error check on wired Ethernet — not the WPA anti-replay/integrity control.",
+            "misconceptionTested": "Using Ethernet CRC thinking for WPA integrity",
             "whatItDoes": "CRC describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — CRC applies a different mechanism.",
-            "misconceptionTested": "Applying \"CRC\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, MIC matches the tested behavior — CRC applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA integrity/replay → MIC. WPA2 confidentiality → AES-CCMP."
       }
     },
     {
@@ -39728,35 +39719,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"192-bit\"."
+          "explanation": "WPA3-Enterprise optional 192-bit security mode (GCMP-256) is the highest strength option in the blueprint."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "64-bit describes a mechanism that could sound plausible for wireless security. Given wireless security, 192-bit matches the tested behavior — 64-bit applies a different mechanism.",
+            "explanation": "64-bit strength is far below WPA3-Enterprise high-security modes — not the exam answer for strongest WPA3-Enterprise.",
+            "misconceptionTested": "Understating WPA3 key strength options",
             "whatItDoes": "64-bit describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 64-bit applies a different mechanism.",
-            "misconceptionTested": "Applying \"64-bit\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 64-bit applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "128-bit describes a mechanism that could sound plausible for wireless security. Given wireless security, 192-bit matches the tested behavior — 128-bit applies a different mechanism.",
+            "explanation": "128-bit is common for WPA2-AES — WPA3-Enterprise highest mode is 192-bit in CCNA stems.",
+            "misconceptionTested": "Stopping at WPA2-era 128-bit for WPA3-Enterprise",
             "whatItDoes": "128-bit describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 128-bit applies a different mechanism.",
-            "misconceptionTested": "Applying \"128-bit\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 128-bit applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "256-bit describes a mechanism that could sound plausible for wireless security. Given wireless security, 192-bit matches the tested behavior — 256-bit applies a different mechanism.",
+            "explanation": "256-bit is not the named WPA3-Enterprise high-security mode in Cisco CCNA material — 192-bit is keyed.",
+            "misconceptionTested": "Guessing 256-bit without matching WPA3-Enterprise options",
             "whatItDoes": "256-bit describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 256-bit applies a different mechanism.",
-            "misconceptionTested": "Applying \"256-bit\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, 192-bit matches the tested behavior — 256-bit applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA3-Enterprise strongest common exam answer → 192-bit (GCMP-256 suite)."
       }
     },
     {
@@ -39781,35 +39769,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"WPA was released as a fix for poor encryption.\"."
+          "explanation": "WPA was introduced to replace WEP because WEP encryption was broken — not for coverage or rebranding alone."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WEP is deprecated and insecure — CCNA expects WPA2/WPA3 for real deployments.",
+            "explanation": "WEP predates WPA — WPA came later as an interim fix before WPA2/802.11i.",
+            "misconceptionTested": "Thinking WPA and WEP shipped together",
             "whatItDoes": "WPA was released at the same time as WEP. describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released at the same time as WEP. applies a different mechanism.",
-            "misconceptionTested": "Choosing WEP for compatibility",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released at the same time as WEP. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "WPA was released as a fix for poor coverage. describes a mechanism that could sound plausible for wireless security. Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released as a fix for poor coverage. applies a different mechanism.",
+            "explanation": "WPA addresses cryptographic weakness — RF coverage is a physical/placement issue, not what WPA fixed.",
+            "misconceptionTested": "Confusing RF coverage with encryption upgrades",
             "whatItDoes": "WPA was released as a fix for poor coverage. describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released as a fix for poor coverage. applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA was released as a fix for poor c\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — WPA was released as a fix for poor coverage. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The Wi-Fi Alliance wanted to rebrand WEP with WPA. describes a mechanism that could sound plausible for wireless security. Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — The Wi-Fi Alliance wanted to rebrand WEP with WPA. applies a different mechanism.",
+            "explanation": "WPA introduced TKIP/MIC improvements — it was a security fix, not a simple WEP rebrand.",
+            "misconceptionTested": "Dismissing WPA as marketing-only",
             "whatItDoes": "The Wi-Fi Alliance wanted to rebrand WEP with WPA. describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — The Wi-Fi Alliance wanted to rebrand WEP with WPA. applies a different mechanism.",
-            "misconceptionTested": "Applying \"The Wi-Fi Alliance wanted to rebrand\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, WPA was released as a fix for poor encryption. matches the tested behavior — The Wi-Fi Alliance wanted to rebrand WEP with WPA. applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "History trap: WEP broken → WPA (TKIP/MIC) → WPA2 (AES-CCMP) → WPA3 (SAE)."
       }
     },
     {
@@ -39834,35 +39819,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"Frame-level encryption\"."
+          "explanation": "802.11i (WPA2) standardizes robust frame-level encryption — AES-CCMP protecting data frames."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The use of certificates describes a mechanism that could sound plausible for wireless security. Given wireless security, Frame-level encryption matches the tested behavior — The use of certificates applies a different mechanism.",
+            "explanation": "Certificates support enterprise 802.1X — 802.11i’s core addition to WPA2 is strong frame encryption (AES-CCMP).",
+            "misconceptionTested": "Naming AAA certs instead of 802.11i encryption",
             "whatItDoes": "The use of certificates describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — The use of certificates applies a different mechanism.",
-            "misconceptionTested": "Applying \"The use of certificates\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — The use of certificates applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Pre-shared keys describes a mechanism that could sound plausible for wireless security. Given wireless security, Frame-level encryption matches the tested behavior — Pre-shared keys applies a different mechanism.",
+            "explanation": "PSKs existed in WPA Personal before 802.11i — the standard’s big leap is AES-based frame encryption.",
+            "misconceptionTested": "Crediting PSK to 802.11i",
             "whatItDoes": "Pre-shared keys describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — Pre-shared keys applies a different mechanism.",
-            "misconceptionTested": "Applying \"Pre-shared keys\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — Pre-shared keys applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CRC checking describes a mechanism that could sound plausible for wireless security. Given wireless security, Frame-level encryption matches the tested behavior — CRC checking applies a different mechanism.",
+            "explanation": "CRC checking is not the 802.11i security upgrade — CCMP/AES replaces WEP/TKIP weaknesses.",
+            "misconceptionTested": "Choosing legacy integrity instead of AES-CCMP",
             "whatItDoes": "CRC checking describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — CRC checking applies a different mechanism.",
-            "misconceptionTested": "Applying \"CRC checking\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, Frame-level encryption matches the tested behavior — CRC checking applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "802.11i = WPA2 → AES-CCMP frame encryption."
       }
     },
     {
@@ -39888,35 +39870,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"AES-CCMP\"."
+          "explanation": "WPA2 (802.11i) uses AES-CCMP for confidentiality — replacing WEP/TKIP ciphers."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "RC4 describes a mechanism that could sound plausible for wireless security. Given wireless security, AES-CCMP matches the tested behavior — RC4 applies a different mechanism.",
+            "explanation": "RC4 underpinned WEP/TKIP — WPA2 moved to AES-CCMP, not RC4.",
+            "misconceptionTested": "Selecting legacy RC4 for WPA2",
             "whatItDoes": "RC4 describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — RC4 applies a different mechanism.",
-            "misconceptionTested": "Applying \"RC4\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — RC4 applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "MD5 describes a mechanism that could sound plausible for wireless security. Given wireless security, AES-CCMP matches the tested behavior — MD5 applies a different mechanism.",
+            "explanation": "MD5 is a hash used in other contexts — WPA2 data-plane encryption is AES-CCMP.",
+            "misconceptionTested": "Confusing hash algorithms with WLAN cipher",
             "whatItDoes": "MD5 describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — MD5 applies a different mechanism.",
-            "misconceptionTested": "Applying \"MD5\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — MD5 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "SHA1 describes a mechanism that could sound plausible for wireless security. Given wireless security, AES-CCMP matches the tested behavior — SHA1 applies a different mechanism.",
+            "explanation": "SHA1 appears in handshake/auth contexts — the WPA2 encryption mode tested is AES-CCMP.",
+            "misconceptionTested": "Naming SHA1 instead of AES-CCMP",
             "whatItDoes": "SHA1 describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — SHA1 applies a different mechanism.",
-            "misconceptionTested": "Applying \"SHA1\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, AES-CCMP matches the tested behavior — SHA1 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA2 cipher → AES-CCMP. TKIP/RC4 = legacy/WPA1 era."
       }
     },
     {
@@ -39943,35 +39922,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"SAE authentication\"."
+          "explanation": "WPA3-Personal replaces WPA2 PSK with SAE (Simultaneous Authentication of Equals) — stronger against offline guessing."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Certificate support describes a mechanism that could sound plausible for wireless security. Given wireless security, SAE authentication matches the tested behavior — Certificate support applies a different mechanism.",
+            "explanation": "Certificate-based auth is enterprise 802.1X — WPA3-Personal’s headline upgrade is SAE for PSK networks.",
+            "misconceptionTested": "Applying enterprise certs to WPA3-Personal",
             "whatItDoes": "Certificate support describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — Certificate support applies a different mechanism.",
-            "misconceptionTested": "Applying \"Certificate support\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — Certificate support applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Per-frame encryption describes a mechanism that could sound plausible for wireless security. Given wireless security, SAE authentication matches the tested behavior — Per-frame encryption applies a different mechanism.",
+            "explanation": "Frame encryption existed in WPA2 — SAE is the WPA3 authentication upgrade for personal networks.",
+            "misconceptionTested": "Crediting generic encryption instead of SAE",
             "whatItDoes": "Per-frame encryption describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — Per-frame encryption applies a different mechanism.",
-            "misconceptionTested": "Applying \"Per-frame encryption\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — Per-frame encryption applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "TKIP describes a mechanism that could sound plausible for wireless security. Given wireless security, SAE authentication matches the tested behavior — TKIP applies a different mechanism.",
+            "explanation": "TKIP is legacy — WPA3 moves forward with SAE + stronger ciphers, not TKIP.",
+            "misconceptionTested": "Selecting TKIP on a WPA3 question",
             "whatItDoes": "TKIP describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — TKIP applies a different mechanism.",
-            "misconceptionTested": "Applying \"TKIP\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, SAE authentication matches the tested behavior — TKIP applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA3-Personal headline → SAE. WPA3-Enterprise → optional 192-bit modes."
       }
     },
     {
@@ -39999,35 +39975,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"RADIUS server\"."
+          "explanation": "WPA2-Enterprise uses 802.1X — the WLC or AP must reach a RADIUS server for user authentication."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "NTP server describes a mechanism that could sound plausible for wireless security. Given wireless security, RADIUS server matches the tested behavior — NTP server applies a different mechanism.",
+            "explanation": "NTP keeps clocks synchronized — it is not required to enable WPA2-Enterprise 802.1X authentication.",
+            "misconceptionTested": "Confusing time sync with enterprise WLAN auth",
             "whatItDoes": "NTP server describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — NTP server applies a different mechanism.",
-            "misconceptionTested": "Applying \"NTP server\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — NTP server applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "PSK describes a mechanism that could sound plausible for wireless security. Given wireless security, RADIUS server matches the tested behavior — PSK applies a different mechanism.",
+            "explanation": "PSK is for WPA2-Personal. Enterprise mode uses per-user credentials validated by RADIUS, not one shared key.",
+            "misconceptionTested": "Applying personal WPA2 (PSK) to an enterprise deployment",
             "whatItDoes": "PSK describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — PSK applies a different mechanism.",
-            "misconceptionTested": "Applying \"PSK\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — PSK applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Captive portal describes a mechanism that could sound plausible for wireless security. Given wireless security, RADIUS server matches the tested behavior — Captive portal applies a different mechanism.",
+            "explanation": "Captive portal is guest/web auth flow — not the core requirement for standard WPA2-Enterprise 802.1X.",
+            "misconceptionTested": "Substituting guest portal auth for 802.1X enterprise",
             "whatItDoes": "Captive portal describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — Captive portal applies a different mechanism.",
-            "misconceptionTested": "Applying \"Captive portal\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, RADIUS server matches the tested behavior — Captive portal applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA2-Enterprise → 802.1X + RADIUS. WPA2-Personal → PSK."
       }
     },
     {
@@ -40055,35 +40028,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"TKIP\"."
+          "explanation": "TKIP enables WPA/WPA2 mixed or legacy fallback. Disable TKIP to enforce AES-only WPA2."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "802.1X describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — 802.1X applies a different mechanism.",
+            "explanation": "802.1X is the authentication framework — disabling it breaks enterprise auth; it does not control WPA vs WPA2 cipher fallback.",
+            "misconceptionTested": "Disabling auth instead of legacy cipher suites",
             "whatItDoes": "802.1X describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — 802.1X applies a different mechanism.",
-            "misconceptionTested": "Applying \"802.1X\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — 802.1X applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
+            "explanation": "AES (CCMP) is what you want to keep — it is the modern WPA2 cipher, not the legacy fallback.",
+            "misconceptionTested": "Removing the strong cipher instead of TKIP",
             "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"AES\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "MAC filtering describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — MAC filtering applies a different mechanism.",
+            "explanation": "MAC filtering is a separate layer-2 allow list — it does not prevent WPA falling back to older ciphers.",
+            "misconceptionTested": "Using MAC filter as a WPA2 hardening control",
             "whatItDoes": "MAC filtering describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — MAC filtering applies a different mechanism.",
-            "misconceptionTested": "Applying \"MAC filtering\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — MAC filtering applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA2-only (no WPA fallback) → allow AES/CCMP, disable TKIP."
       }
     },
     {
@@ -40111,35 +40081,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"PSK\"."
+          "explanation": "WPA2-Personal uses a Pre-Shared Key — one symmetric passphrase shared by all clients on the SSID."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, PSK matches the tested behavior — AES applies a different mechanism.",
+            "explanation": "AES-CCMP is the encryption cipher — authentication with a shared passphrase is PSK mode.",
+            "misconceptionTested": "Naming the cipher instead of the PSK auth mode",
             "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"AES\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — AES applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Certificates describes a mechanism that could sound plausible for wireless security. Given wireless security, PSK matches the tested behavior — Certificates applies a different mechanism.",
+            "explanation": "Certificates are used in WPA2-Enterprise 802.1X — not the symmetric-key personal mode.",
+            "misconceptionTested": "Mixing enterprise cert auth with PSK personal",
             "whatItDoes": "Certificates describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — Certificates applies a different mechanism.",
-            "misconceptionTested": "Applying \"Certificates\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — Certificates applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "TKIP describes a mechanism that could sound plausible for wireless security. Given wireless security, PSK matches the tested behavior — TKIP applies a different mechanism.",
+            "explanation": "TKIP is a legacy cipher option — symmetric-key authentication in WPA2-Personal is PSK.",
+            "misconceptionTested": "Selecting TKIP when auth mechanism is asked",
             "whatItDoes": "TKIP describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — TKIP applies a different mechanism.",
-            "misconceptionTested": "Applying \"TKIP\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, PSK matches the tested behavior — TKIP applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "Symmetric shared key on WPA2 → PSK (Personal). Per-user → Enterprise + RADIUS."
       }
     },
     {
@@ -40167,35 +40134,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"TKIP\"."
+          "explanation": "TKIP uses older RC4-based processing and caps throughput on modern radios — AES/CCMP achieves higher rates."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "AES describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
+            "explanation": "AES (CCMP) is the modern WPA2 cipher and supports high throughput on current hardware.",
+            "misconceptionTested": "Blaming AES for throughput limits",
             "whatItDoes": "AES describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"AES\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — AES applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "CCMP describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — CCMP applies a different mechanism.",
+            "explanation": "CCMP is the AES-based cipher for WPA2 — it is not the legacy bottleneck.",
+            "misconceptionTested": "Treating CCMP as legacy like TKIP",
             "whatItDoes": "CCMP describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — CCMP applies a different mechanism.",
-            "misconceptionTested": "Applying \"CCMP\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — CCMP applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "PSK describes a mechanism that could sound plausible for wireless security. Given wireless security, TKIP matches the tested behavior — PSK applies a different mechanism.",
+            "explanation": "PSK is an authentication mode (personal vs enterprise), not a cipher that throttles throughput like TKIP.",
+            "misconceptionTested": "Confusing PSK auth mode with cipher performance",
             "whatItDoes": "PSK describes a mechanism that could sound plausible for wireless security.",
-            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — PSK applies a different mechanism.",
-            "misconceptionTested": "Applying \"PSK\" without matching wireless security",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wireless security, TKIP matches the tested behavior — PSK applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "Throughput exam trap: TKIP = legacy/slower. Prefer WPA2-AES (CCMP)."
       }
     }
   ],
@@ -40223,35 +40187,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Status is disabled.\"."
+          "explanation": "If the WLAN status is disabled (admin down), clients will not see or join the SSID regardless of other settings."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "SSID beaconing is enabled. describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, Status is disabled. matches the tested behavior — SSID beaconing is enabled. applies a different mechanism.",
+            "explanation": "SSID beaconing enabled is required for visibility — this choice says it is already enabled, so it is not the problem described.",
+            "misconceptionTested": "Picking a healthy setting as the fault",
             "whatItDoes": "SSID beaconing is enabled. describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — SSID beaconing is enabled. applies a different mechanism.",
-            "misconceptionTested": "Applying \"SSID beaconing is enabled.\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — SSID beaconing is enabled. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Multicast support is disabled. describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, Status is disabled. matches the tested behavior — Multicast support is disabled. applies a different mechanism.",
+            "explanation": "Multicast settings affect delivery of multicast traffic — they do not typically hide the SSID from clients.",
+            "misconceptionTested": "Blaming multicast for SSID invisibility",
             "whatItDoes": "Multicast support is disabled. describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — Multicast support is disabled. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Multicast support is disabled.\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — Multicast support is disabled. applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Radio Policy is configured to all. describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, Status is disabled. matches the tested behavior — Radio Policy is configured to all. applies a different mechanism.",
+            "explanation": "Radio policy set to all bands should still advertise the SSID — disabled WLAN status is the direct block.",
+            "misconceptionTested": "Over-focusing on band policy when the WLAN is admin-down",
             "whatItDoes": "Radio Policy is configured to all. describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — Radio Policy is configured to all. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Radio Policy is configured to all.\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, Status is disabled. matches the tested behavior — Radio Policy is configured to all. applies a different mechanism."
           }
         ],
-        "examTip": "Re-read the stem constraint for wlc gui wlan before picking a familiar-sounding wrong term."
+        "examTip": "SSID not visible → check WLAN enabled status first, then beacon/hide SSID settings."
       }
     },
     {
@@ -40279,35 +40240,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "The correct answer is \"One PSK (one hex or one ASCII)\"."
+          "explanation": "A WPA2-Personal WLAN uses one PSK at a time — either hex or ASCII format, not multiple concurrent keys."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Two PSKs (one hex and one ASCII) describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Two PSKs (one hex and one ASCII) applies a different mechanism.",
+            "explanation": "Cisco WLC WPA2-Personal does not provision separate hex and ASCII PSKs simultaneously — one active key only.",
+            "misconceptionTested": "Assuming dual hex+ASCII keys on one WLAN",
             "whatItDoes": "Two PSKs (one hex and one ASCII) describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Two PSKs (one hex and one ASCII) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Two PSKs (one hex and one ASCII)\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Two PSKs (one hex and one ASCII) applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Four PSKs (two hex and two ASCII) describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Four PSKs (two hex and two ASCII) applies a different mechanism.",
+            "explanation": "There is not a pool of four PSKs per WLAN — personal mode is one shared key for all clients.",
+            "misconceptionTested": "Expecting multiple rotating PSK slots like enterprise policies",
             "whatItDoes": "Four PSKs (two hex and two ASCII) describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Four PSKs (two hex and two ASCII) applies a different mechanism.",
-            "misconceptionTested": "Applying \"Four PSKs (two hex and two ASCII)\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Four PSKs (two hex and two ASCII) applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Unlimited number of PSKs describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Unlimited number of PSKs applies a different mechanism.",
+            "explanation": "PSK count is limited by design — not unlimited keys on a single WPA2-Personal SSID.",
+            "misconceptionTested": "Treating PSK like per-user enterprise credentials",
             "whatItDoes": "Unlimited number of PSKs describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Unlimited number of PSKs applies a different mechanism.",
-            "misconceptionTested": "Applying \"Unlimited number of PSKs\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, One PSK (one hex or one ASCII) matches the tested behavior — Unlimited number of PSKs applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "WPA2-Personal = one PSK (hex OR ASCII). Enterprise = per-user via RADIUS."
       }
     },
     {
@@ -40336,35 +40294,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"WPA2-AES\"."
+          "explanation": "WPA2 with AES (CCMP) is the strongest common WPA2 cipher — avoid TKIP/RC4 legacy options."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WPA-AES describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA-AES applies a different mechanism.",
+            "explanation": "WPA-AES is first-generation WPA — WPA2-AES is the stronger, current standard for new deployments.",
+            "misconceptionTested": "Stopping at WPA instead of WPA2",
             "whatItDoes": "WPA-AES describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA-AES applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA-AES\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA-AES applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "WPA2-TKIP describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-TKIP applies a different mechanism.",
+            "explanation": "WPA2-TKIP keeps legacy cipher support — AES/CCMP is stronger and preferred for highest security.",
+            "misconceptionTested": "Choosing TKIP under a WPA2 SSID for \"security\"",
             "whatItDoes": "WPA2-TKIP describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-TKIP applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA2-TKIP\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-TKIP applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "WPA2-RC4 describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-RC4 applies a different mechanism.",
+            "explanation": "RC4-based options are legacy — WPA2-AES (CCMP) is the exam answer for strongest WPA2 cipher.",
+            "misconceptionTested": "Selecting deprecated RC4 ciphers",
             "whatItDoes": "WPA2-RC4 describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-RC4 applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA2-RC4\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-AES matches the tested behavior — WPA2-RC4 applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "Highest WPA2 security → WPA2-AES (CCMP). Disable TKIP when hardening."
       }
     },
     {
@@ -40392,35 +40347,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "The correct answer is \"WPA2-Personal\"."
+          "explanation": "WPA2-Personal (PSK) minimizes infrastructure — no RADIUS — while still using modern WPA2 security for a small site."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "WPA-Enterprise describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Enterprise applies a different mechanism.",
+            "explanation": "WPA-Enterprise requires RADIUS and more infrastructure — opposite of minimizing backend services.",
+            "misconceptionTested": "Choosing enterprise auth when minimal infra is required",
             "whatItDoes": "WPA-Enterprise describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Enterprise applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA-Enterprise\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Enterprise applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "WPA3-Enterprise describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA3-Enterprise applies a different mechanism.",
+            "explanation": "WPA3-Enterprise also needs RADIUS and newer hardware — more complex than WPA2-Personal for a minimal setup.",
+            "misconceptionTested": "Over-engineering with WPA3-Enterprise for minimal infra",
             "whatItDoes": "WPA3-Enterprise describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA3-Enterprise applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA3-Enterprise\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA3-Enterprise applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "WPA-Personal describes a mechanism that could sound plausible for wlc gui wlan. Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Personal applies a different mechanism.",
+            "explanation": "Original WPA-Personal is older than WPA2-Personal — the stem asks for modern security with minimal infrastructure.",
+            "misconceptionTested": "Reverting to WPA instead of WPA2-Personal",
             "whatItDoes": "WPA-Personal describes a mechanism that could sound plausible for wlc gui wlan.",
-            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Personal applies a different mechanism.",
-            "misconceptionTested": "Applying \"WPA-Personal\" without matching wlc gui wlan",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given wlc gui wlan, WPA2-Personal matches the tested behavior — WPA-Personal applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Choosing WEP for compatibility — WEP is insecure; use WPA2 minimum, WPA3 preferred"
+        "examTip": "Small site, minimal infra, shared key OK → WPA2-Personal. Enterprise/users → WPA2-Enterprise + RADIUS."
       }
     }
   ],
@@ -41420,35 +41372,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The correct answer is \"Create a Python script to configure each router.\"."
+          "explanation": "At scale (20 routers), a Python script (Ansible, Netmiko, etc.) is repeatable, auditable, and far faster than manual paste."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Copy and paste scripts built in Notepad++ into each router. describes a mechanism that could sound plausible for automation. Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Notepad++ into each router. applies a different mechanism.",
+            "explanation": "Manual copy/paste across 20 devices is error-prone and does not scale — automation is the network engineer approach.",
+            "misconceptionTested": "Treating repetitive CLI as a manual-only task",
             "whatItDoes": "Copy and paste scripts built in Notepad++ into each router. describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Notepad++ into each router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Copy and paste scripts built in Note\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Notepad++ into each router. applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Copy and paste scripts built in Excel into each router. describes a mechanism that could sound plausible for automation. Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Excel into each router. applies a different mechanism.",
+            "explanation": "Spreadsheets do not execute or validate IOS — they are worse than purpose-built automation for device config.",
+            "misconceptionTested": "Using office tools instead of network automation",
             "whatItDoes": "Copy and paste scripts built in Excel into each router. describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Excel into each router. applies a different mechanism.",
-            "misconceptionTested": "Applying \"Copy and paste scripts built in Exce\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Create a Python script to configure each router. matches the tested behavior — Copy and paste scripts built in Excel into each router. applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Work with a partner so that both of you can double-check each other’s work and cut the time in half. describes a mechanism that could sound plausible for automation. CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router. — not both addresses as table entries.",
+            "explanation": "Two people checking manual work still scales linearly with device count — scripts reduce time and human error.",
+            "misconceptionTested": "Doubling manual labor instead of automating",
             "whatItDoes": "Work with a partner so that both of you can double-check each other’s work and cut the time in half. describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router. — not both addresses as table entries.",
-            "misconceptionTested": "Assuming both MAC addresses are learned into the CAM table",
-            "needsExplanationReview": true
+            "whyWrongHere": "CAM learning stores one mapping per arrival (automation): Create a Python script to configure each router. — not both addresses as table entries."
           }
         ],
-        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
+        "examTip": "Many devices, same change → script/API (Python/Ansible), not manual CLI paste."
       }
     },
     {
@@ -41635,35 +41584,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "The correct answer is \"Monitoring\"."
+          "explanation": "After production release, monitor outcomes — logs, metrics, alerts — to catch regressions and validate the automation."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Testing describes a mechanism that could sound plausible for automation. Given automation, Monitoring matches the tested behavior — Testing applies a different mechanism.",
+            "explanation": "Testing belongs before production release — post-release focus shifts to monitoring live behavior.",
+            "misconceptionTested": "Running test phase after go-live",
             "whatItDoes": "Testing describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Testing applies a different mechanism.",
-            "misconceptionTested": "Applying \"Testing\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Testing applies a different mechanism."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Building describes a mechanism that could sound plausible for automation. Given automation, Monitoring matches the tested behavior — Building applies a different mechanism.",
+            "explanation": "Building is complete once deployed — the lifecycle step after release is operations/monitoring.",
+            "misconceptionTested": "Confusing build phase with post-deploy ops",
             "whatItDoes": "Building describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Building applies a different mechanism.",
-            "misconceptionTested": "Applying \"Building\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Building applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Planning describes a mechanism that could sound plausible for automation. Given automation, Monitoring matches the tested behavior — Planning applies a different mechanism.",
+            "explanation": "Planning happens upfront — after release you observe whether the change met intent in production.",
+            "misconceptionTested": "Re-planning instead of monitoring outcomes",
             "whatItDoes": "Planning describes a mechanism that could sound plausible for automation.",
-            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Planning applies a different mechanism.",
-            "misconceptionTested": "Applying \"Planning\" without matching automation",
-            "needsExplanationReview": true
+            "whyWrongHere": "Given automation, Monitoring matches the tested behavior — Planning applies a different mechanism."
           }
         ],
-        "examTip": "Separate management plane (API/controller) from data plane (forwarding)."
+        "examTip": "Automation lifecycle: plan → build → test → deploy → monitor."
       }
     }
   ],

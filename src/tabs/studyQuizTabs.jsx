@@ -22,6 +22,7 @@ import CuratedDiagram from '../components/CuratedDiagram.jsx'
 import CuratedStaticBadge from '../components/CuratedStaticBadge.jsx'
 import OverflowMarquee from '../components/OverflowMarquee.jsx'
 import EngineerViewSection from '../components/EngineerViewSection.jsx'
+import QuestionHealthAdminSection from '../components/QuestionHealthAdminSection.jsx'
 import { shouldDefaultOpenRealWorld } from '../lesson/readingEnrichment.js'
 import { formatCuratedAttribution } from '../curatedDisplay.js'
 import McChoices from '../components/McChoices.jsx'
@@ -596,6 +597,7 @@ function CuratedReading({ data, progressEntry, onTierChange, onOpenReference, sh
       {r.advanced && <ExplainBlock icon="🧬" title="ADVANCED DETAILS" accent="silver" collapsible defaultOpen={false}><RichText text={r.advanced} /></ExplainBlock>}
       {r.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false}><Bullets items={r.related} /></ExplainBlock>}
       {data.engineerView && <EngineerViewSection data={data.engineerView} defaultOpen={openRealWorld} />}
+      <QuestionHealthAdminSection objectiveId={data.objectiveId} />
       {showDiagram && data.diagram && <CuratedDiagram diagram={data.diagram} />}
       <CuratedSources data={data} />
     </div>

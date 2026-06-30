@@ -531,32 +531,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "LACP active mode actively starts negotiation."
+          "explanation": "LACP requires at least one side in active mode to start negotiation — active on both sides guarantees LACP forms."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Passive mode on both sides describes a mechanism that could sound plausible for etherchannel. Given etherchannel, Active mode on both sides matches the tested behavior — Passive mode on both sides applies a different mechanism.",
+            "explanation": "Passive on both sides waits forever — neither side initiates LACP. You need active on at least one side (both active is fine).",
+            "misconceptionTested": "Expecting passive/passive to negotiate LACP",
             "whatItDoes": "Passive mode on both sides describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Passive mode on both sides applies a different mechanism.",
-            "misconceptionTested": "Applying \"Passive mode on both sides\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Passive mode on both sides applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Auto mode on both sides describes a mechanism that could sound plausible for etherchannel. Given etherchannel, Active mode on both sides matches the tested behavior — Auto mode on both sides applies a different mechanism.",
+            "explanation": "Auto is PAgP terminology, not LACP. This stem asks specifically for LACP between switches.",
+            "misconceptionTested": "Mixing PAgP modes with LACP",
             "whatItDoes": "Auto mode on both sides describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Auto mode on both sides applies a different mechanism.",
-            "misconceptionTested": "Applying \"Auto mode on both sides\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Auto mode on both sides applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Desirable mode on both sides describes a mechanism that could sound plausible for etherchannel. Given etherchannel, Active mode on both sides matches the tested behavior — Desirable mode on both sides applies a different mechanism.",
+            "explanation": "Desirable is also PAgP — not IEEE 802.3ad LACP. Use channel-group mode active/passive for LACP.",
+            "misconceptionTested": "Selecting Cisco PAgP modes on an LACP question",
             "whatItDoes": "Desirable mode on both sides describes a mechanism that could sound plausible for etherchannel.",
-            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Desirable mode on both sides applies a different mechanism.",
-            "misconceptionTested": "Applying \"Desirable mode on both sides\" without matching etherchannel"
+            "whyWrongHere": "Given etherchannel, Active mode on both sides matches the tested behavior — Desirable mode on both sides applies a different mechanism."
           }
         ],
-        "examTip": "EtherChannel is one logical link to STP — LACP (802.3ad) is standards-based; PAgP is Cisco-proprietary."
+        "examTip": "LACP = active/passive. PAgP = desirable/auto. Passive + passive never forms a bundle."
       }
     },
     {

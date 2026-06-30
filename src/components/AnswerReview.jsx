@@ -26,16 +26,16 @@ function ReviewBlock({ icon, title, accent, children, collapsible, defaultOpen =
   const [open, setOpen] = useState(defaultOpen)
   const c = accentColors(accent)
   return (
-    <div style={{ borderLeft: `3px solid ${c.text}`, background: c.dim, border: `1px solid ${c.border}`, borderRadius: 6, padding: '10px 12px', marginBottom: 8, boxShadow: '0 2px 10px #00000022' }}>
+    <div className="ccna-review-block" style={{ borderLeft: `3px solid ${c.text}`, background: c.dim, border: `1px solid ${c.border}`, borderRadius: 6, padding: '10px 12px', marginBottom: 8, boxShadow: '0 2px 10px #00000022', minWidth: 0 }}>
       <button
         type="button"
         onClick={() => collapsible && setOpen(o => !o)}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: collapsible ? 'pointer' : 'default', color: c.text, fontFamily: 'inherit' }}
       >
-        <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, letterSpacing: 0.3, textAlign: 'left' }}>{icon} {title}</span>
+        <span className="ccna-review-block__title" style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, letterSpacing: 0.3, textAlign: 'left', overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{icon} {title}</span>
         {collapsible && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>}
       </button>
-      {open && <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-md)', lineHeight: 1.55, color: COLORS.silver }}>{children}</div>}
+      {open && <div className="ccna-review-block__body" style={{ marginTop: 8, fontSize: 'var(--ccna-type-md)', lineHeight: 1.55, color: COLORS.silver, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{children}</div>}
     </div>
   )
 }
@@ -89,7 +89,7 @@ export default function AnswerReview({ q, selected, hideExamTip = false, objecti
   const otherWrong = incorrect.filter(item => item.choiceIndex !== selectedWrongIdx)
 
   return (
-    <div style={{ marginTop: 8 }}>
+    <div className="ccna-answer-review" style={{ marginTop: 8, minWidth: 0 }}>
       <ReviewBlock icon="✅" title={`CORRECT ANSWER: ${CHOICE_LETTERS[correctIdx] || correctIdx}`} accent="mint">
         <RichText text={ar?.correct?.explanation || q.explanation} />
       </ReviewBlock>

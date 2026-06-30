@@ -171,27 +171,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Static routes require OSPF to advertise them reflects a common trap: Exit-interface static routes are always preferred on Ethernet. Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
+            "explanation": "Static routes do not require OSPF — they install when the next-hop is reachable, regardless of dynamic protocol.",
+            "misconceptionTested": "Believing static routes depend on OSPF",
             "whatItDoes": "Static routes require OSPF to advertise them describes a mechanism that could sound plausible for recursive lookup.",
-            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — Static routes require OSPF to advertise them applies a different mechanism.",
-            "misconceptionTested": "Exit-interface static routes are always preferred on Ethernet"
+            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — Static routes require OSPF to advertise them applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Static routes must use exit interface only reflects a common trap: Exit-interface static routes are always preferred on Ethernet. Next-hop IP is preferred on multi-access segments to avoid ARP for every destination.",
+            "explanation": "Exit-interface-only statics are valid on point-to-point links — the issue here is an unreachable next-hop subnet.",
+            "misconceptionTested": "Misdiagnosing as exit-interface requirement",
             "whatItDoes": "Static routes must use exit interface only describes a mechanism that could sound plausible for recursive lookup.",
-            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — Static routes must use exit interface only applies a different mechanism.",
-            "misconceptionTested": "Exit-interface static routes are always preferred on Ethernet"
+            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — Static routes must use exit interface only applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The mask is incompatible describes a mechanism that could sound plausible for recursive lookup. Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — The mask is incompatible applies a different mechanism.",
+            "explanation": "The mask is fine — the static fails recursive lookup because the next-hop network is disconnected/unreachable.",
+            "misconceptionTested": "Blaming subnet mask instead of next-hop reachability",
             "whatItDoes": "The mask is incompatible describes a mechanism that could sound plausible for recursive lookup.",
-            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — The mask is incompatible applies a different mechanism.",
-            "misconceptionTested": "Applying \"The mask is incompatible\" without matching recursive lookup"
+            "whyWrongHere": "Given recursive lookup, The next-hop must be reachable — recursive lookup fails matches the tested behavior — The mask is incompatible applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
+        "examTip": "Static missing from table → check next-hop reachability first (recursive lookup)."
       }
     },
     {
@@ -364,27 +364,27 @@
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "The route disappears from the table reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "The route typically stays in the table — the problem is inefficient ARP behavior, not disappearance.",
+            "misconceptionTested": "Expecting the route to vanish instead of ARP inefficiency",
             "whatItDoes": "The route disappears from the table describes a mechanism that could sound plausible for exit interface vs next-hop.",
-            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The route disappears from the table applies a different mechanism.",
-            "misconceptionTested": "A static route installs even if the next-hop is unreachable"
+            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The route disappears from the table applies a different mechanism."
           },
           {
             "choiceIndex": 2,
-            "explanation": "The route has AD 255 reflects a common trap: A static route installs even if the next-hop is unreachable. Recursive lookup must succeed — the next-hop must be reachable via another route.",
+            "explanation": "Administrative distance 255 means unusable — a normal exit-interface static uses AD 1, not 255.",
+            "misconceptionTested": "Confusing AD 255 with exit-interface statics",
             "whatItDoes": "The route has AD 255 describes a mechanism that could sound plausible for exit interface vs next-hop.",
-            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The route has AD 255 applies a different mechanism.",
-            "misconceptionTested": "A static route installs even if the next-hop is unreachable"
+            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The route has AD 255 applies a different mechanism."
           },
           {
             "choiceIndex": 3,
-            "explanation": "The router uses OSPF to resolve the path describes a mechanism that could sound plausible for exit interface vs next-hop. Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The router uses OSPF to resolve the path applies a different mechanism.",
+            "explanation": "OSPF does not resolve static next-hops — the router ARP-requests each destination on the multi-access segment.",
+            "misconceptionTested": "Expecting OSPF to fix static ARP behavior",
             "whatItDoes": "The router uses OSPF to resolve the path describes a mechanism that could sound plausible for exit interface vs next-hop.",
-            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The router uses OSPF to resolve the path applies a different mechanism.",
-            "misconceptionTested": "Applying \"The router uses OSPF to resolve the \" without matching exit interface vs next-hop"
+            "whyWrongHere": "Given exit interface vs next-hop, The router ARP-resolves every destination individually, wasting resources matches the tested behavior — The router uses OSPF to resolve the path applies a different mechanism."
           }
         ],
-        "examTip": "On the exam: Exit-interface static routes are always preferred on Ethernet — Next-hop IP is preferred on multi-access segments to avoid ARP for every destination"
+        "examTip": "Multi-access Ethernet static → use next-hop IP, not exit interface only (avoids ARP for every destination)."
       }
     },
     {

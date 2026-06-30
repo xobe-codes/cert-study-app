@@ -24,6 +24,7 @@ import { loadQuizBank } from '../../quiz/quizBankStorage.js'
 import { STORAGE_KEYS } from '../../storageKeys.js'
 import { AiCallsIndicator } from '../../ai/claudeClient.js'
 import { COMMAND_DRILLS } from '../../lab/commandDrills.js'
+import QuestionHealthAdminSection from '../../components/QuestionHealthAdminSection.jsx'
 
 const DAY_MS = 86400000
 
@@ -267,6 +268,13 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
       )}
 
       <AiCallsIndicator />
+
+      <MetricsCollapsibleSection
+        title="QUESTION HEALTH — SADE QUARANTINE"
+        summary="Compile-time distractor audit & auto-quarantine"
+      >
+        <QuestionHealthAdminSection showWhenClean embedded />
+      </MetricsCollapsibleSection>
 
       <MetricsCollapsibleSection
         title="MASTERY OVERVIEW"
